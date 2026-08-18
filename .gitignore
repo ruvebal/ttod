@@ -1,0 +1,9 @@
+exports/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+/tmp/* /tmp/.* /tmp/
+_private/
+_test/
+_backup/

@@ -1,0 +1,16 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+
+© 2025–2026 Rubén Vega Balbás, PhD — crea-comm.net
+
+Content (the quotes in `ttod.yml`, `docs/`, and `sources/`) is licensed under CC BY-NC-SA 4.0.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+---
+
+Scope and defaults: this is the repository-level default for TTOD content. Item-level
+`rights.license` on an individual quote, once schema v3 exists, takes precedence over this
+default and travels with the quote. See
+`docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md` for the full decision record,
+including what this default does and does not do (it does not claw back prior CC BY-NC-SA 4.0
+grants, does not relicense third-party text inside quotes, and does not rewrite `ttod.yml` or
+`AGENTS.md` / legacy `CLAUDE.md` redirect before Q6).

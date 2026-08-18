@@ -1,14 +1,31 @@
-# Q0 decision — default TTOD license is CC BY-NC-SA 4.0
+# Q0 decision — repository split-license: code MIT, content CC BY-NC-SA 4.0
 
 **Status:** FROZEN (rights-holder instruction, 2026-08-18)
 **Decider:** Rubén Vega Balbás (TTOD rights holder)
 **Cascade:** Phase Q0 rights/unresolved policy
 **Does not mutate:** `ttod.yml`, `cli.py`, source chapters, exports
+**Amended:** 2026-08-18 — added the repository split-license (decision 1 below) and the two
+`LICENSE-CODE`/`LICENSE-CONTENT` files at repo root; the original NC-default decision (2) is
+unchanged, only reframed as the content half of the split.
 
 ## Decision
 
-The **default license for the TTOD database and for new canonical quotes** is
-**CC BY-NC-SA 4.0**, not CC BY-SA 4.0.
+Two separate decisions, frozen together:
+
+1. **Repository split license**, mirroring the pattern already in production at
+   [`web-atelier-udit`](https://github.com/ruvebal/web-atelier-udit) (`LICENSE-CODE` +
+   `LICENSE-CONTENT` at repo root):
+   - **Code** (`cli.py`, `ttod_core/` once created, `schema/*.json`, `pyproject.toml`, tests,
+     tooling) is **MIT**. See [`../../../LICENSE-CODE`](../../../LICENSE-CODE).
+   - **Content** (`ttod.yml` quote text, `docs/`, `sources/`) is **CC BY-NC-SA 4.0**. See
+     [`../../../LICENSE-CONTENT`](../../../LICENSE-CONTENT).
+   - This split exists because code and pedagogical prose have different reuse goals: the CLI
+     and schema should be freely embeddable in other tooling; the quotes should not be resold
+     or folded into a commercial product without the same share-alike terms.
+
+2. **The default license for the TTOD database and for new canonical quotes** is
+   **CC BY-NC-SA 4.0**, not CC BY-NC-SA 4.0. This is the content half of decision 1, stated
+   precisely for the schema/CLI implementation.
 
 Item-level `rights.license` still travels with each quote. The default fills only
 records whose rights were previously database-inherited or unresolved **and**
@@ -26,9 +43,12 @@ whose author is this rights holder.
 
 ## What this does not do
 
-- It does **not** rewrite `ttod.yml` header/`CLAUDE.md` in this session.
-  Those strings change in **Q6** (docs/migration) after schemas exist.
-- It does **not** claw back copies already distributed under CC BY-SA 4.0.
+- It does **not** rewrite `ttod.yml` header/`AGENTS.md` in this session. Legacy `CLAUDE.md` is now
+  a redirect; both currently still
+  say `License: CC BY-NC-SA 4.0` — stale relative to both halves of this decision. Those strings
+  change in **Q6** (docs/migration) after schemas exist; `LICENSE-CODE`/`LICENSE-CONTENT` are the
+  authoritative repository-level statement in the meantime.
+- It does **not** claw back copies already distributed under CC BY-NC-SA 4.0.
   Prior BY-SA grants remain valid for those copies. Forward snapshots use NC.
 - It does **not** invent licenses for third-party text inside quotes. Those
   stay `unresolved` until a source_ref + permission_basis exists.
@@ -38,14 +58,14 @@ whose author is this rights holder.
 
 ## Q1/Q5 consequences
 
-| Surface | Rule |
-| --- | --- |
-| Default `rights.license` | `CC-BY-NC-SA-4.0` |
-| Default `rights.holder` | `ruvebal@crea-comm.net` (named identity, not inferred origin) |
-| Public export | NC restriction must appear in snapshot manifest; commercial reuse is out of license |
-| NC → SA merge | still forbidden |
+| Surface                     | Rule                                                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| Default `rights.license`    | `CC-BY-NC-SA-4.0`                                                                      |
+| Default `rights.holder`     | `ruvebal@crea-comm.net` (named identity, not inferred origin)                          |
+| Public export               | NC restriction must appear in snapshot manifest; commercial reuse is out of license    |
+| NC → SA merge               | still forbidden                                                                        |
 | SA → NC (own work, forward) | allowed by this decision; record `permission_basis=rights-holder-relicense-2026-08-18` |
-| Unresolved item rights | still block public export (Q5 sensor) |
+| Unresolved item rights      | still block public export (Q5 sensor)                                                  |
 
 ## Pending quotes this unblocks (after Q3)
 

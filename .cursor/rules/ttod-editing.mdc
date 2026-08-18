@@ -1,12 +1,12 @@
 ---
-description: Strict TTOD YAML editing — schema, IDs, tags, collections, validation
+description: Strict TTOD YAML editing — schema, IDs, tags, collections, validation. Agent contract AGENTS.md.
 globs: ttod.yml
 alwaysApply: false
 ---
 
 # TTOD Editing Discipline
 
-When editing `ttod.yml`, treat the CLI validator as the gate. Run from repo root:
+Read [`AGENTS.md`](../AGENTS.md) first. When editing `ttod.yml`, treat the CLI validator as the gate.
 
 ```bash
 . .venv/bin/activate && python cli.py validate

@@ -218,141 +218,34 @@ sequentially. Only one lane may run a live Athanor/Postgres/Ollama integration a
 | Q5 | 1–1.5 d | parallel by sensor | Q3/Q4 contract | independence, rights, lifecycle, provenance sensors green |
 | Q6 | 1–1.5 d | sequential | Q4/Q5 green | migration, E2E, docs/comments, rollback proof, report |
 
-## 5. Phase prompts and touched-path budgets
+## 5. Phase index
 
-### Q0 — schema and authority freeze
+Each phase below has its own self-contained runbook under
+[`PHASES/`](PHASES/), written for execution by an autonomous coding agent (Cascade, Devin, or
+equivalent) with **no other file open**. Every phase file restates the relevant slice of this
+contract (boundaries, touched-path budget, rollback law, applicable gates) inline — it does not
+assume the agent will faithfully cross-reference this document, `CLAUDE.md`, and
+`.cursor/rules/ttod-editing.mdc` mid-task. This document remains the single normative source; the
+phase files are derived from it and must be regenerated from it if it changes, not edited to
+diverge from it.
 
-```text
-Act as TTOD contract steward. Read CLAUDE.md, .cursor/rules/ttod-editing.mdc, this cascade,
-PHASE-Q0-READINESS-REPORT.md, cli.py, the ttod.yml header and complete root schema, the source
-README, the DevIAC knowledge flywheel, Athanor Provenance Law/Phase S, and the frozen WPL contract.
-Record hashes and repository status. Do not edit canonical data.
+| Phase | Runbook | Mode | Entry | Exit |
+| --- | --- | --- | --- | --- |
+| Q0 | [`PHASES/Q0-schema-authority-freeze.md`](PHASES/Q0-schema-authority-freeze.md) | sequential blocker | this plan + readiness audit | signed decisions/baseline; recoverable boundary |
+| Q1 | [`PHASES/Q1-schemas-contract-fixtures.md`](PHASES/Q1-schemas-contract-fixtures.md) | sequential | Q0 green | schemas and golden fixtures validate/fail as intended |
+| Q2V | [`PHASES/Q2V-validation-core.md`](PHASES/Q2V-validation-core.md) | parallel | Q1 | strict root/record/reference/derived-state gates |
+| Q2E | [`PHASES/Q2E-canonical-export-digests.md`](PHASES/Q2E-canonical-export-digests.md) | parallel | Q1 | byte-stable exports and manifests |
+| Q2P | [`PHASES/Q2P-proposals-review.md`](PHASES/Q2P-proposals-review.md) | parallel | Q1 | proposal lifecycle and human-review gates |
+| Q3 | [`PHASES/Q3-atomic-repository-cli.md`](PHASES/Q3-atomic-repository-cli.md) | sequential | Q2 lanes green | atomic CLI transactions and failure rollback |
+| Q4 | [`PHASES/Q4-athanor-bridge.md`](PHASES/Q4-athanor-bridge.md) | TTOD then Athanor | Q3 + Athanor S0-WPL freeze | two-way round-trip, no canonical auto-write |
+| Q5 | [`PHASES/Q5-policy-provenance-sensors.md`](PHASES/Q5-policy-provenance-sensors.md) | parallel by sensor | Q3/Q4 contract | independence, rights, lifecycle, provenance sensors green |
+| Q6 | [`PHASES/Q6-migration-e2e-docs.md`](PHASES/Q6-migration-e2e-docs.md) | sequential | Q4/Q5 green | migration, E2E, docs/comments, rollback proof, report |
 
-Freeze: v3 field names/enums; compatibility period; TTOD-C14N-v1 projection; proposal lifecycle;
-human reviewer identity shape; rights/unresolved policy; higher-law erasure authority; shared
-EvidenceSnapshot fields; sibling-output prohibition; arch-052 expected verdict; Athanor/WPL
-version pins. Establish a recoverable TTOD baseline before mutation. File Q0 report and decision
-record. No unresolved semantic decision may leak into Q1.
-```
-
-Touched-path budget: `docs/DEV_PLAN/`, decision artifacts, and a read-only baseline artifact only.
-No `ttod.yml`, dependency, export, source chapter, corpus, or external database write.
-
-### Q1 — schemas and contract fixtures
-
-```text
-Implement Draft 2020-12 quote, root, and proposal JSON Schemas from the frozen decision record.
-Create positive fixtures for legacy-read, v3 human, reviewed-blackbox, deprecated, and protected
-erasure-tombstone records. Create one focused negative fixture per invariant: missing review,
-unknown/non-string tag, missing rights decision on public export, dangling relation, canonical ID
-inside a proposal, broken ancestry, digest mismatch, sibling-output evidence, and arch-052
-self-corroboration. Make failures assert exact codes, not prose substrings.
-```
-
-Touched-path budget: `schema/*.json`, `tests/fixtures/q1_*`, `tests/test_schema_contract.py`, and
-contract docs. Do not edit `cli.py` or `ttod.yml`.
-
-### Q2V / Q2E / Q2P — parallel core lanes
-
-```text
-Q2V owns ttod_core/validation.py and tests/test_validation.py. Enforce JSON Schema plus global
-identity, prefix/section, root count/max-ID, taxonomy, collections, lessons, relation, lifecycle,
-rights, review, and ancestry invariants. Never count missing origin as human. Emit stable codes and
-JSON diagnostics. --strict must fail all drift; compatibility warnings remain nonzero in report.
-
-Q2E owns ttod_core/canonical.py, ttod_core/exporter.py, and their tests. Implement
-TTOD-C14N-v1, content/snapshot/manifest digests, deterministic JSON/graph output, atomic export,
-and export policy for deprecated/erased/restricted records. Preserve fields and array order.
-
-Q2P owns ttod_core/proposals.py and tests/test_proposals.py. Implement proposal IDs before
-canonical IDs, append-only review activities, identified-human acceptance, rejection/withdrawal,
-rights and provenance carry-through, and no write to ttod.yml. A machine may propose but may not
-accept. Preserve proposal ancestry and the WPL/evidence digests exactly.
-```
-
-The lanes must not edit the same file. Shared interfaces are frozen in Q1. If an interface is
-wrong, stop and amend Q1 sequentially; do not fork incompatible local interpretations.
-
-### Q3 — atomic repository and CLI
-
-```text
-Integrate the Q2 cores behind cli.py. Replace text append with parse -> construct candidate ->
-validate complete candidate -> acquire exclusive lock -> re-read/rebase -> allocate ID -> write
-same-directory temp -> flush/fsync -> atomic rename -> validate persisted bytes. On every failure,
-ttod.yml remains byte-identical and the proposal remains resumable.
-
-Add validate --strict/--json, stats --check, snapshot, export, proposal create/import/review/accept,
-deprecate, and guarded erase commands. `add` becomes a human-authored proposal+accept convenience
-path or is deprecated; it never bypasses review/transaction rules. Recompute totals, last IDs,
-taxonomy decisions, collection counts, statistics, and coverage in the same candidate snapshot.
-Never copy a literal count from documentation; expose the generated snapshot digest and counts
-through CLI/API responses.
-Reject unknown tags by default; taxonomy extension is an explicit reviewed operation.
-```
-
-Touched-path budget: `cli.py`, `ttod_core/repository.py`, `pyproject.toml`, CLI integration tests,
-and migration script. Do not migrate live `ttod.yml` yet.
-
-### Q4 — Athanor-mediated two-way bridge
-
-```text
-First freeze and test a TTOD transport schema. Quote-out returns canonical quote ID/text/content
-digest, snapshot digest, origin, item rights, review status, relations, lifecycle, ancestry, and
-usage_role=pedagogical. Proposal-in accepts a proposal without canonical ID and preserves the WPL
-record and EvidenceSnapshot identifiers/digests. No transport field may be silently dropped.
-
-Then implement the Athanor adapter through its hexagonal ports. Athanor reads only a versioned
-TTOD export/snapshot, never ttod.yml. Athanor stores generated proposal/provenance in its own
-outbox and returns a portable proposal artifact; it has no filesystem/database credential that can
-mutate canonical TTOD. A human explicitly imports and accepts through TTOD CLI after reading
-.cursor/rules/ttod-editing.mdc. Run the round trip in both directions and compare every protected
-field and digest.
-```
-
-TTOD touched-path budget: bridge schema/core/tests and CLI transport wiring. Athanor work uses a
-separate Athanor phase/worktree and its declared domain/application/adapter/tests budget. If those
-paths overlap active Phase S work, queue integration rather than overwrite it.
-
-### Q5 — policy and provenance sensors
-
-```text
-Build deterministic sensors for sibling-process quotation, evidence admissibility, rights/public
-export, observed-vs-declared generation, human acceptance, immutable ID/deprecation, higher-law
-erasure, digest transfer, and shared-snapshot equality. Every sensor has positive and negative
-fixtures. Use arch-052 as the self-corroboration adversary.
-
-Ordinary deletion fails. A higher-law erasure requires an identified human authority, decision
-reference, exact scope, and protected audit record; it replaces public content with a tombstone and
-must not retain the erased personal content merely to satisfy provenance. The system records the
-decision and authority—it does not adjudicate law. Public export excludes or redacts protected
-records according to the recorded decision.
-```
-
-Touched-path budget: policy module, sensor scripts, focused fixtures/tests. No live canonical or
-corpus mutation.
-
-### Q6 — migration, E2E, and same-patch documentation
-
-```text
-Re-hash the Q0 inputs and reconcile any drift. Generate a v3 candidate in a temporary path. Do not
-invent missing authorship, validation, sources, or licenses. Convert numeric 404 tags only through
-an explicit migration decision. Recompute all derived metadata mechanically. Show a semantic diff
-and obtain human approval before replacing ttod.yml atomically.
-
-Run the full gate matrix and a real TTOD -> Athanor -> proposal -> TTOD review/accept round trip on
-fixtures. Run failure injection after lock, after temp write, and before rename; prove source bytes
-survive. Verify arch-052 is displayable but evidence-inadmissible for Athanor/WPL architecture.
-
-In the same implementation patch update CLAUDE.md, .cursor/rules/ttod-editing.mdc, the source
-README, user CLI docs, DEV_PLAN status/report, schema examples, and every pertinent public
-docstring/invariant comment. Comments explain the boundary (atomicity, human promotion,
-self-corroboration, rights/erasure), not line-by-line mechanics. A schema or behavior change with
-stale docs/comments fails the docs-contract gate.
-```
-
-Touched-path budget: approved candidate `ttod.yml`, documentation/rules, pertinent docstrings,
-release report, and generated baseline manifest. No source-chapter rewrite, corpus injection,
-deployment, commit, or push unless separately authorized.
+Each runbook carries its own touched-path budget (allow-list and explicit deny-list), a
+phase-specific "do not" list of failure modes observed in prior agent runs on this class of task,
+the applicable rows of the mechanical gate matrix (§6), the relevant rollback law (§7), the
+relevant documentation-propagation row (§8), and a paste-ready agent prompt block. Do not
+hand an agent this master document alone and ask it to "do Q3" — hand it the Q3 runbook.
 
 ## 6. Mechanical gate matrix
 
@@ -437,27 +330,40 @@ Calendar slip is acceptable. A failed gate never becomes schedule permission.
 
 ## 10. Master orchestrator prompt
 
+Use this prompt only if a single agent session is driving multiple phases end to end (e.g. a
+human operator supervising a long Cascade/Devin run across several sequential phases). If instead
+you are handing one phase to one agent session — the normal case for free/cheap-tier agents,
+which lose the thread across a long document — hand it the matching file in
+[`PHASES/`](PHASES/) directly (§5) and skip this prompt; the phase file already contains
+everything below, scoped and expanded for that phase.
+
 ```text
-You are the TTOD Phase Q programme engineer. Execute only the next READY node in
-docs/DEV_PLAN/PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md.
+You are the TTOD Phase Q programme engineer. Execute only the next READY node, using its runbook
+in docs/DEV_PLAN/PHASES/ (see docs/DEV_PLAN/PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md §5 for the
+index) as the complete task specification for that phase. Do not improvise a phase's scope from
+this master document alone.
 
-Before editing, read TTOD CLAUDE.md and .cursor/rules/ttod-editing.mdc completely, the active phase
-prompt, the latest prior report, and the applicable Athanor/WPL contract versions. Inspect current
-hashes and repository state. Treat older counts and prose as claims to verify.
+Before editing, read TTOD CLAUDE.md and .cursor/rules/ttod-editing.mdc completely, the active
+phase runbook, the latest prior phase report, and the applicable Athanor/WPL contract versions.
+Inspect current hashes and repository state. Treat older counts and prose as claims to verify.
 
-Use an isolated worktree/branch per parallel lane. Enforce touched-path budgets. Run computation
-before model review. Never let an agent/model allocate a canonical quote ID, accept a proposal,
-write ttod.yml directly, infer missing human authorship, silently relicense material, use sibling
-process prose as evidence, or use a TTOD quote as corroboration of its own ancestor.
+Use an isolated worktree/branch per parallel lane. Enforce each runbook's touched-path budget
+exactly — its deny-list is not advisory. Run computation before model review. Never let an
+agent/model allocate a canonical quote ID, accept a proposal, write ttod.yml directly, infer
+missing human authorship, silently relicense material, use sibling process prose as evidence, or
+use a TTOD quote as corroboration of its own ancestor.
 
 Athanor and WPL may use the same immutable EvidenceSnapshot digest. They produce independent
 outputs and cannot quote each other. TTOD quote-out is pedagogical. Proposal-in remains
 non-canonical until identified human acceptance under TTOD rules.
 
-For each phase, file a report containing state, input hashes, exact commands/exits, artifacts,
-negative and failure-injection results, files/external state touched, decisions, provenance transfer
-matrix, and exact resume point. Update plan status only after gates and report are green. Ensure
-schema changes propagate to docs and pertinent code comments/docstrings in the same patch.
+For each phase, file a report at docs/DEV_PLAN/PHASE-Qx-REPORT.md (naming: match
+PHASE-Q0-READINESS-REPORT.md) containing state, input hashes, exact commands/exits, artifacts,
+negative and failure-injection results, files/external state touched, decisions, provenance
+transfer matrix, and exact resume point — the runbook's own "Report requirements" section is
+authoritative on the exact fields. Update docs/DEV_PLAN/INDEX.md's phase-state table only after
+gates and report are green. Ensure schema changes propagate to docs and pertinent code
+comments/docstrings in the same patch (§8).
 
 Run Q0 first. Never claim Phase Q complete from planning-document checks alone.
 ```

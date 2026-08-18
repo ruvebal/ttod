@@ -10,17 +10,17 @@ commit, or deployment was changed.
 
 ## 1. Inputs inspected
 
-| Input | SHA-256 at audit |
-| --- | --- |
-| `/Users/ruvebal/src/ttod/CLAUDE.md` | `fb3bbb0a80cdc9fee29291d72df4fa396bb710cef593f352e9ecca175f57b0dc` |
-| `/Users/ruvebal/src/ttod/.cursor/rules/ttod-editing.mdc` | `b95a5ce222299d73bf6d6c2f4aec57c0c9b35ee098455cd63c971650e8375db4` |
-| `/Users/ruvebal/src/ttod/cli.py` | `55acf4b45c78e92d4a77cb03d913040bb3ffb016e195e049063fc3f4c71e3b47` |
-| `/Users/ruvebal/src/ttod/ttod.yml` | `141e314722ae53bcd9c6101782af55ec6a3c33e70aa820afafaae912323afcb5` |
+| Input                                                             | SHA-256 at audit                                                   |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `/Users/ruvebal/src/ttod/CLAUDE.md`                               | `fb3bbb0a80cdc9fee29291d72df4fa396bb710cef593f352e9ecca175f57b0dc` |
+| `/Users/ruvebal/src/ttod/.cursor/rules/ttod-editing.mdc`          | `b95a5ce222299d73bf6d6c2f4aec57c0c9b35ee098455cd63c971650e8375db4` |
+| `/Users/ruvebal/src/ttod/cli.py`                                  | `55acf4b45c78e92d4a77cb03d913040bb3ffb016e195e049063fc3f4c71e3b47` |
+| `/Users/ruvebal/src/ttod/ttod.yml`                                | `141e314722ae53bcd9c6101782af55ec6a3c33e70aa820afafaae912323afcb5` |
 | `/Users/ruvebal/src/ttod/sources/tao-of-ai-development/README.md` | `24cbb08432c14b563c0ba5329f2807b6fd3827ae3d7725c361ca36355cbc3078` |
-| DevIAC development-plan index | `b41a01d5180159c5e27eb16bfef9796be04b4398a3aaee9864fd90d09effea81` |
-| Athanor Provenance Law | `43d56b16b9d9a6e79c6f832d5c11517e415622495fe33ec0a7094b5e89ceba59` |
-| Athanor Phase S cascade | `567e442b0510adf710bee6258ba0fd3f95c065a25820b520deb7df31a185bb70` |
-| WPL conformance profile | `1660303637225a4796442bb95de017dc3d3d3d71d7f1306dab9426d556108077` |
+| DevIAC development-plan index                                     | `b41a01d5180159c5e27eb16bfef9796be04b4398a3aaee9864fd90d09effea81` |
+| Athanor Provenance Law                                            | `43d56b16b9d9a6e79c6f832d5c11517e415622495fe33ec0a7094b5e89ceba59` |
+| Athanor Phase S cascade                                           | `567e442b0510adf710bee6258ba0fd3f95c065a25820b520deb7df31a185bb70` |
+| WPL conformance profile                                           | `1660303637225a4796442bb95de017dc3d3d3d71d7f1306dab9426d556108077` |
 
 The TTOD directory has no `.git` directory and `git -C /Users/ruvebal/src/ttod status --short`
 fails. Q0 must therefore establish a recoverable version-control or equivalent signed-snapshot
@@ -32,25 +32,25 @@ unversioned or its repository metadata is elsewhere.
 The current `python cli.py validate` exits 0 and says `229 quotes validated, 0 errors`. That result
 means only the current hand-written checks passed; it is not schema or contract conformance.
 
-| Observation | Measured result | Consequence |
-| --- | --- | --- |
-| Documented count | `CLAUDE.md` says 221; YAML and CLI contain 229 | documentation drift is already user-visible |
-| Claimed schema | `schema/quote.schema.json` is absent | “validate against schema” is not true |
-| Add transaction | disposable-copy `cli.py add` reported `arch-060`, then `validate` raised a YAML `ParserError` at the appended item | canonical add path is unsafe and blocked |
-| Derived statistics | YAML says architecture 43 and wisdom 14; actual values are 51 and 16 | materialized statistics are stale |
-| Level statistics | YAML says 50/67/44/52; actual beginner/intermediate/advanced/master are 50/73/50/56 | dashboards cannot trust stored counters |
-| Coverage | YAML says 12 of 16; there are 18 declared sections and 13 populated | denominator and numerator are stale |
-| Collection counts | `daily_wisdom=12` vs 90 matching `featured`; `masters_path=12` vs 56 master quotes | collection metadata is not derived mechanically |
-| Tag taxonomy | 236 used scalar values are absent from the declared taxonomy | current validator does not enforce the editing rule |
-| YAML scalar typing | tag `404` loads as an integer in `img-009` and `img-024` | canonical exports do not have a stable string-only tag type |
-| Human validation | no quote contains `validated_by`; no current quote has `origin=blackbox` | the conditional rule has never been mechanically exercised |
-| Origin accounting | 215 records omit `origin`, but `stats` counts omissions as `human` | authorship is being inferred without evidence |
-| Identity metadata | `meta.last_id_by_section` matches observed maxima | preserve this currently consistent invariant |
-| Reference integrity | all current collection IDs and lesson quote IDs resolve; all `related` targets resolve | preserve these currently green invariants |
-| Related graph | 435 directed edges, 229 without a reverse edge | acceptable under the current “preferred” rule; do not auto-rewrite semantics |
-| Deprecation | no current record uses `deprecated` | retirement and erasure paths have no exercised fixture |
-| License boundary | source chapter is CC BY-NC-SA 4.0 while the database says CC BY-SA 4.0 | source material cannot be merged under an inherited license |
-| Editing instructions | the Cursor rule tells editors to read `meta.sections`; sections are at root `sections` | rule and schema disagree |
+| Observation          | Measured result                                                                                                    | Consequence                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Documented count     | `CLAUDE.md` says 221; YAML and CLI contain 229                                                                     | documentation drift is already user-visible                                  |
+| Claimed schema       | `schema/quote.schema.json` is absent                                                                               | “validate against schema” is not true                                        |
+| Add transaction      | disposable-copy `cli.py add` reported `arch-060`, then `validate` raised a YAML `ParserError` at the appended item | canonical add path is unsafe and blocked                                     |
+| Derived statistics   | YAML says architecture 43 and wisdom 14; actual values are 51 and 16                                               | materialized statistics are stale                                            |
+| Level statistics     | YAML says 50/67/44/52; actual beginner/intermediate/advanced/master are 50/73/50/56                                | dashboards cannot trust stored counters                                      |
+| Coverage             | YAML says 12 of 16; there are 18 declared sections and 13 populated                                                | denominator and numerator are stale                                          |
+| Collection counts    | `daily_wisdom=12` vs 90 matching `featured`; `masters_path=12` vs 56 master quotes                                 | collection metadata is not derived mechanically                              |
+| Tag taxonomy         | 236 used scalar values are absent from the declared taxonomy                                                       | current validator does not enforce the editing rule                          |
+| YAML scalar typing   | tag `404` loads as an integer in `img-009` and `img-024`                                                           | canonical exports do not have a stable string-only tag type                  |
+| Human validation     | no quote contains `validated_by`; no current quote has `origin=blackbox`                                           | the conditional rule has never been mechanically exercised                   |
+| Origin accounting    | 215 records omit `origin`, but `stats` counts omissions as `human`                                                 | authorship is being inferred without evidence                                |
+| Identity metadata    | `meta.last_id_by_section` matches observed maxima                                                                  | preserve this currently consistent invariant                                 |
+| Reference integrity  | all current collection IDs and lesson quote IDs resolve; all `related` targets resolve                             | preserve these currently green invariants                                    |
+| Related graph        | 435 directed edges, 229 without a reverse edge                                                                     | acceptable under the current “preferred” rule; do not auto-rewrite semantics |
+| Deprecation          | no current record uses `deprecated`                                                                                | retirement and erasure paths have no exercised fixture                       |
+| License boundary     | source chapter is CC BY-NC-SA 4.0 while the database says CC BY-NC-SA 4.0                                          | source material cannot be merged under an inherited license                  |
+| Editing instructions | the Cursor rule tells editors to read `meta.sections`; sections are at root `sections`                             | rule and schema disagree                                                     |
 
 The `add` probe used only copies in a newly created temporary directory. It established a real
 failure mode: `cli.py` appends a YAML list item after the root `templates` mapping rather than

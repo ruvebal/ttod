@@ -3,10 +3,10 @@
 **Status:** parked for merge into `ttod.yml`. Do not treat these files as the
 quote database. The YAML remains the source of truth for IDs.
 
-| File | Language | Origin |
-| --- | --- | --- |
-| `en.md` | English | Moved 2026-08-13 from Web Atelier `methodology/en/tao-of-ai-development/` |
-| `es.md` | Spanish | Moved 2026-08-13 from `methodology/es/ai-practical-guide/tao-of-ai-development/` |
+| File    | Language | Origin                                                                           |
+| ------- | -------- | -------------------------------------------------------------------------------- |
+| `en.md` | English  | Moved 2026-08-13 from Web Atelier `methodology/en/tao-of-ai-development/`        |
+| `es.md` | Spanish  | Moved 2026-08-13 from `methodology/es/ai-practical-guide/tao-of-ai-development/` |
 
 Jekyll frontmatter is still on the files so the move is lossless. Strip it
 when extracting quotes.
@@ -44,4 +44,4 @@ Priority distill (the lines other artefacts are waiting on):
 ## License
 
 Chapter prose: CC BY-NC-SA 4.0 (Web Atelier teaching content).
-TTOD database: CC BY-SA 4.0. Reconcile on merge — do not silently relicense.
+TTOD database: CC BY-NC-SA 4.0. Reconcile on merge — do not silently relicense.

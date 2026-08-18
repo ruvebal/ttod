@@ -1,6 +1,6 @@
 # 道 THE TAO OF THE DEVELOPMENT (TTOD)
 
-**by Rubén Vega Balbás, Phd**
+**by Rubén Vega Balbás, Phd** — `ruvebal@crea-comm.net`
 
 ```
 ═══════════════════════════════════════════════════════════════════════════════
@@ -20,41 +20,21 @@
 
 ---
 
-**Shared studio protocol:**
-[`deviac/docs/DEV_PLAN/TTOD-BRIDGE-INTEROPERABILITY-CONTRACT.md`](../../../deviac/docs/DEV_PLAN/TTOD-BRIDGE-INTEROPERABILITY-CONTRACT.md)
+TTOD is a pedagogical wisdom database — aphorisms for developers walking the path, organized by
+section and mastery level, and served outward as content-addressed, human-governed quotes. See
+[`AGENTS.md`](AGENTS.md) for the agent contract, data model, and CLI.
 
-TTOD owns canonical quote identity; the studio protocol supplies reusable REST, offline-bundle,
-and graph/RDF bindings. Counts, coverage, and collection totals are generated dynamically from a
-snapshot rather than hardcoded in instructions.
+**Development status, contract, and phase runbooks** live in one place so they never drift into
+two tellings: [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md). That file is the canonical
+source for programme state, the active-phase table, and links to every phase report. This README
+does not repeat it.
 
-TTOD is the studio-owned pedagogical quotation system. `ttod.yml` remains its canonical
-human-governed database. Athanor may serve a versioned TTOD snapshot and may return proposed
-quotes to a review inbox, but no model, Athanor adapter, WPL process, or sibling repository may
-write canonical quote records directly.
+**License:** code is MIT ([`LICENSE-CODE`](LICENSE-CODE)); content — `ttod.yml` quotes, `docs/`,
+`sources/` — is CC BY-NC-SA 4.0 ([`LICENSE-CONTENT`](LICENSE-CONTENT)), per
+[`docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md`](docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md).
 
-## Active programme
-
-| Phase | Purpose                                                        | Mode                   | State                                   |
-| ----- | -------------------------------------------------------------- | ---------------------- | --------------------------------------- |
-| Q0    | Freeze the measured baseline and v3 contract decisions         | sequential blocker     | READY (rights/NC frozen 2026-08-18)     |
-| Q1    | Schema, compatibility model, and golden fixtures               | sequential             | BLOCKED by Q0                           |
-| Q2V   | Strict validation and invariant engine                         | parallel lane          | BLOCKED by Q1                           |
-| Q2E   | Canonical serialization, exports, and digests                  | parallel lane          | BLOCKED by Q1                           |
-| Q2P   | Proposal and human-review workflow                             | parallel lane          | BLOCKED by Q1                           |
-| Q3    | Atomic repository and CLI integration                          | sequential integration | BLOCKED by Q2V/Q2E/Q2P                  |
-| Q4    | Athanor-mediated quote-out / proposal-in bridge                | cross-repo integration | BLOCKED by Q3 and Athanor S0-WPL freeze |
-| Q5    | Independence, provenance, rights, and erasure sensors          | parallel by sensor     | BLOCKED by Q3/Q4 contract               |
-| Q6    | Migration, end-to-end verification, documentation, and release | sequential closeout    | BLOCKED by Q4/Q5                        |
-
-## Evidence and status
-
-- [`PHASE-Q0-READINESS-REPORT.md`](PHASE-Q0-READINESS-REPORT.md) records the read-only
-  2026-08-14 audit, exact input hashes, observed failures, and the safe resume point.
-- [`docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md`](docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md)
-  freezes default TTOD license as **CC BY-NC-SA 4.0**. `ttod.yml` is not rewritten until Q6.
-- A phase is not `DONE` because this plan exists. Each phase must file a verified report with
-  commands, exits, artifacts, negative tests, and a provenance transfer matrix.
-- The live `/Users/ruvebal/src/ttod` tree was not modified while preparing this plan.
+**Agent contract:** [`AGENTS.md`](AGENTS.md)
+([agentsmd standard](https://github.com/agentsmd/agents.md)).
 
 ## Constitutional boundary
 
@@ -62,4 +42,5 @@ The Athanor and WPL development processes may reference the same immutable Athan
 snapshot, including ingested research and governed field-research records. They must not quote,
 cite, or summarize each other's draft output as evidence. TTOD quotes are pedagogical material,
 not independent corroboration. A quote derived from an Athanor plan, including `arch-052`, must
-never be fed back to Athanor or WPL as support for that plan.
+never be fed back to Athanor or WPL as support for that plan. Full contract:
+[`docs/DEV_PLAN/PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md`](docs/DEV_PLAN/PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md).

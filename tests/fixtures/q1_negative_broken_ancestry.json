@@ -1,0 +1,11 @@
+{
+  "id": "arch-074",
+  "schema_version": "3.0.0",
+  "text": "Quote with broken ancestry reference.",
+  "section": "architecture",
+  "level": "advanced",
+  "tags": ["ancestry"],
+  "origin": "human",
+  "immediate_parent_refs": ["arch-999"],
+  "created_at": "2026-08-18"
+}

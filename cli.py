@@ -1,243 +1,527 @@
 #!/usr/bin/env python3
 """
-TTOD CLI — The Tao of Development
-Validate, query, export, and grow the pedagogical wisdom database.
+TTOD CLI — The Tao of Development (Q3)
 
-Usage:
-    python cli.py validate
-    python cli.py stats
-    python cli.py export --format json
-    python cli.py add --section architecture --level advanced --text "..."
-    python cli.py graph
+All ttod.yml mutations go through TTODRepository write transactions.
+Read docs/DEV_PLAN/PHASES/Q3-atomic-repository-cli.md before changing write paths.
 """
+
+from __future__ import annotations
 
 import json
 import sys
-from collections import Counter
-from datetime import date
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import typer
 import yaml
 
-app = typer.Typer(help="The Tao of Development — pedagogical wisdom CLI")
+from ttod_core.canonical import Canonicalizer
+from ttod_core.exporter import Exporter
+from ttod_core.bridge import BridgeError, TTODBridge, TEST_REVIEWER_ID
+from ttod_core.migration import migrate_root, serialize_migrated_document, write_candidate
+from ttod_core.repository import ProposalStore, RepositoryError, TTODRepository
+from ttod_core.validation import TTODValidator
 
-TTOD_PATH = Path(__file__).parent / "ttod.yml"
-EXPORTS_DIR = Path(__file__).parent / "exports"
+app = typer.Typer(help="The Tao of Development — pedagogical wisdom CLI")
+proposal_app = typer.Typer(help="Proposal lifecycle (only accept touches ttod.yml)")
+bridge_app = typer.Typer(help="Athanor bridge transport (serialization only; no canonical writes)")
+app.add_typer(proposal_app, name="proposal")
+migrate_app = typer.Typer(help="Phase Q6 v2→v3 migration (live ttod.yml only with --apply)")
+app.add_typer(migrate_app, name="migrate")
+
+DEFAULT_TTOD = Path(__file__).parent / "ttod.yml"
+DEFAULT_EXPORTS = Path(__file__).parent / "exports"
+DEFAULT_PROPOSALS = Path(__file__).parent / "proposals"
 
 VALID_LEVELS = {"beginner", "intermediate", "advanced", "master"}
-VALID_ORIGINS = {"human", "studio", "blackbox"}
 
 
-def load_ttod() -> dict[str, Any]:
-    """Load and return the full TTOD database."""
-    return yaml.safe_load(TTOD_PATH.read_text(encoding="utf-8"))
+def _repo(file: Optional[Path]) -> TTODRepository:
+    return TTODRepository(file or DEFAULT_TTOD)
 
 
-def get_quotes(data: dict[str, Any]) -> list[dict[str, Any]]:
-    """Extract quotes list from TTOD data."""
-    return data.get("quotes", [])
-
-
-def get_sections(data: dict[str, Any]) -> list[dict[str, Any]]:
-    """Extract section definitions."""
-    return data.get("sections", [])
+def _proposal_store() -> ProposalStore:
+    return ProposalStore(DEFAULT_PROPOSALS)
 
 
 @app.command()
-def validate():
-    """Validate ttod.yml against schema rules."""
-    data = load_ttod()
-    quotes = get_quotes(data)
-    sections = get_sections(data)
-
-    section_ids = {s["id"] for s in sections}
-    section_prefixes = {s["prefix"]: s["id"] for s in sections}
-    all_ids = {q["id"] for q in quotes}
-    errors: list[str] = []
-
-    for i, q in enumerate(quotes):
-        qid = q.get("id", f"<missing-id at index {i}>")
-
-        # Required fields
-        for field in ("id", "text", "section", "level"):
-            if field not in q:
-                errors.append(f"{qid}: missing required field '{field}'")
-
-        # Level validation
-        level = q.get("level")
-        if level and level not in VALID_LEVELS:
-            errors.append(f"{qid}: invalid level '{level}'")
-
-        # Section validation
-        section = q.get("section")
-        if section and section not in section_ids:
-            errors.append(f"{qid}: unknown section '{section}'")
-
-        # ID prefix matches section
-        if "id" in q and "section" in q:
-            prefix = q["id"].rsplit("-", 1)[0]
-            expected_section = section_prefixes.get(prefix)
-            if expected_section and expected_section != q["section"]:
-                errors.append(f"{qid}: prefix '{prefix}' maps to '{expected_section}', not '{q['section']}'")
-
-        # Related IDs exist
-        for rel_id in q.get("related", []):
-            if rel_id not in all_ids:
-                errors.append(f"{qid}: related ID '{rel_id}' not found")
-
-        # Origin validation (optional field)
-        origin = q.get("origin")
-        if origin and origin not in VALID_ORIGINS:
-            errors.append(f"{qid}: invalid origin '{origin}'")
-
-    # Duplicate ID check
-    id_counts = Counter(q.get("id") for q in quotes)
-    for qid, count in id_counts.items():
-        if count > 1:
-            errors.append(f"{qid}: duplicate ID ({count} occurrences)")
-
-    if errors:
-        typer.echo(f"FAIL — {len(errors)} errors:")
-        for e in errors:
-            typer.echo(f"  - {e}")
-        raise typer.Exit(1)
+def validate(
+    strict: bool = typer.Option(False, "--strict", help="Treat drift as hard failure"),
+    as_json: bool = typer.Option(False, "--json", help="Emit JSON diagnostics"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML path (default: ttod.yml)"),
+):
+    """Validate ttod.yml via Q2V."""
+    result = _repo(file).validate(strict=strict)
+    if as_json:
+        typer.echo(json.dumps(result.to_dict(), indent=2))
     else:
-        typer.echo(f"OK — {len(quotes)} quotes validated, 0 errors.")
+        typer.echo(
+            f"{'OK' if result.is_valid else 'FAIL'} — "
+            f"{len(result.errors)} errors, {len(result.warnings)} warnings"
+        )
+        for diag in result.errors[:20]:
+            loc = f" [{diag.quote_id}]" if diag.quote_id else ""
+            typer.echo(f"  ERROR {diag.code.value}{loc}: {diag.message}")
+        for diag in result.warnings[:10]:
+            loc = f" [{diag.quote_id}]" if diag.quote_id else ""
+            typer.echo(f"  WARN  {diag.code.value}{loc}: {diag.message}")
+
+    if not result.is_valid:
+        raise typer.Exit(1)
 
 
 @app.command()
-def stats():
-    """Show statistics breakdown."""
-    data = load_ttod()
-    quotes = get_quotes(data)
+def stats(
+    check: bool = typer.Option(False, "--check", help="Recompute derived metadata and report drift"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML path"),
+):
+    """Show statistics; --check recomputes derived meta without hand-patching."""
+    repo = _repo(file)
+    root = repo.load()
+    quotes = root.get("quotes", [])
+
+    if check:
+        result = repo.stats_check()
+        if result.contract_blockers:
+            typer.echo("CONTRACT BLOCKER — cannot recompute atomically:")
+            for blocker in result.contract_blockers:
+                typer.echo(f"  - {blocker}")
+            raise typer.Exit(2)
+
+        derived = result.derived
+        typer.echo(f"Recomputed total_quotes: {derived.total_quotes}")
+        typer.echo(f"Recomputed last_id_by_section: {derived.last_id_by_section}")
+        if result.drifts:
+            typer.echo(f"\nDRIFT — {len(result.drifts)} field(s) differ from stored meta:")
+            for drift in result.drifts:
+                typer.echo(f"  {drift.field}: stored={drift.stored!r} computed={drift.computed!r}")
+            raise typer.Exit(1)
+        typer.echo("\nOK — stored meta matches recomputed snapshot.")
+        return
 
     typer.echo(f"Total quotes: {len(quotes)}\n")
 
     typer.echo("By section:")
-    for section, count in sorted(Counter(q.get("section") for q in quotes).items(), key=lambda x: -x[1]):
+    section_counts: dict[str, int] = {}
+    for q in quotes:
+        sec = q.get("section")
+        if sec:
+            section_counts[sec] = section_counts.get(sec, 0) + 1
+    for section, count in sorted(section_counts.items(), key=lambda x: -x[1]):
         typer.echo(f"  {section}: {count}")
 
     typer.echo("\nBy level:")
-    for level, count in sorted(Counter(q.get("level") for q in quotes).items(), key=lambda x: -x[1]):
+    level_counts: dict[str, int] = {}
+    for q in quotes:
+        lvl = q.get("level")
+        if lvl:
+            level_counts[lvl] = level_counts.get(lvl, 0) + 1
+    for level, count in sorted(level_counts.items(), key=lambda x: -x[1]):
         typer.echo(f"  {level}: {count}")
 
-    typer.echo("\nBy origin:")
-    origin_counts = Counter(q.get("origin", "human") for q in quotes)
+    typer.echo("\nBy origin (missing origin reported explicitly, never defaulted to human):")
+    origin_counts: dict[str, int] = {}
+    missing_origin = 0
+    for q in quotes:
+        origin = q.get("origin")
+        if origin is None:
+            missing_origin += 1
+            origin_counts["<missing>"] = origin_counts.get("<missing>", 0) + 1
+        else:
+            origin_counts[origin] = origin_counts.get(origin, 0) + 1
     for origin, count in sorted(origin_counts.items(), key=lambda x: -x[1]):
         typer.echo(f"  {origin}: {count}")
+    if missing_origin:
+        typer.echo(f"  ({missing_origin} quotes lack origin — not counted as human)")
 
-    # Tag frequency
-    all_tags: list[str] = []
-    for q in quotes:
-        all_tags.extend(q.get("tags", []))
-    typer.echo(f"\nUnique tags: {len(set(all_tags))}")
-    typer.echo("Top 10 tags:")
-    for tag, count in Counter(all_tags).most_common(10):
-        typer.echo(f"  {tag}: {count}")
+
+@app.command()
+def snapshot(
+    output: Path = typer.Option(..., "--output", help="Output JSON path"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML source"),
+):
+    """Export a canonical C14N snapshot via Q2E."""
+    root = _repo(file).load()
+    exporter = Exporter(Canonicalizer())
+    manifest = exporter.export_json(root, output)
+    typer.echo(f"Snapshot written: {output} (records={manifest.record_count})")
 
 
 @app.command()
 def export(
     format: str = typer.Option("json", help="Export format: json, graph"),
-    output: Path = typer.Option(None, help="Output file path"),
+    output: Optional[Path] = typer.Option(None, "--output", help="Output file path"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML source"),
 ):
-    """Export TTOD to JSON or graph format."""
-    data = load_ttod()
-    EXPORTS_DIR.mkdir(exist_ok=True)
+    """Export TTOD to canonical JSON or graph projection via Q2E."""
+    root = _repo(file).load()
+    exporter = Exporter(Canonicalizer())
+    DEFAULT_EXPORTS.mkdir(exist_ok=True)
 
     if format == "json":
-        out_path = output or EXPORTS_DIR / "ttod.json"
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False, default=str)
-        typer.echo(f"Exported to {out_path}")
-
+        out_path = output or DEFAULT_EXPORTS / "ttod.json"
+        manifest = exporter.export_json(root, out_path)
+        typer.echo(f"Exported JSON: {out_path} (records={manifest.record_count})")
     elif format == "graph":
-        out_path = output or EXPORTS_DIR / "graph.json"
-        quotes = get_quotes(data)
-        nodes = []
-        edges = []
-        for q in quotes:
-            nodes.append({
-                "id": q["id"],
-                "label": q["text"][:80],
-                "section": q.get("section"),
-                "level": q.get("level"),
-                "tags": q.get("tags", []),
-            })
-            for rel_id in q.get("related", []):
-                edges.append({"source": q["id"], "target": rel_id, "type": "semantic_link"})
-
-        graph = {"nodes": nodes, "edges": edges}
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(graph, f, indent=2, ensure_ascii=False)
-        typer.echo(f"Graph exported: {len(nodes)} nodes, {len(edges)} edges → {out_path}")
-
+        out_path = output or DEFAULT_EXPORTS / "graph.json"
+        manifest = exporter.export_graph(root, out_path)
+        typer.echo(f"Exported graph: {out_path} (records={manifest.record_count})")
     else:
-        typer.echo(f"Unknown format: {format}")
+        typer.echo(f"Unknown format: {format}. Use json or graph.")
         raise typer.Exit(1)
+
+
+@proposal_app.command("create")
+def proposal_create(
+    section: str = typer.Option(..., help="Section ID"),
+    level: str = typer.Option("intermediate", help="Level"),
+    text: str = typer.Option(..., help="Quote text"),
+    origin: str = typer.Option("studio", help="Origin: human/studio/blackbox"),
+    tags: str = typer.Option("", help="Comma-separated tags"),
+    proposer_id: str = typer.Option("cli-user", help="Proposer identifier"),
+    output: Optional[Path] = typer.Option(None, "--output", help="Write proposal JSON here"),
+):
+    """Create a proposal (does not touch ttod.yml)."""
+    if level not in VALID_LEVELS:
+        typer.echo(f"Invalid level: {level}")
+        raise typer.Exit(1)
+
+    candidate: dict[str, Any] = {
+        "text": text,
+        "section": section,
+        "level": level,
+        "origin": origin,
+    }
+    tag_list = [t.strip() for t in tags.split(",") if t.strip()]
+    if tag_list:
+        candidate["tags"] = tag_list
+
+    proposal = create_proposal(
+        candidate_content=candidate,
+        proposer_kind="human",
+        proposer_id=proposer_id,
+        generation_method="cli-proposal-create",
+    )
+
+    if output:
+        path = _proposal_store().save(proposal)
+        typer.echo(f"Proposal saved: {path}")
+    else:
+        typer.echo(json.dumps(proposal.to_dict(), indent=2))
+
+    typer.echo(f"proposal_id={proposal.proposal_id}")
+
+
+@proposal_app.command("import")
+def proposal_import(
+    path: Path = typer.Argument(..., help="Proposal JSON file to import into store"),
+):
+    """Import a proposal JSON file into the proposals store."""
+    store = _proposal_store()
+    proposal = store.load_path(path)
+    saved = store.save(proposal)
+    typer.echo(f"Imported proposal {proposal.proposal_id} → {saved}")
+
+
+@proposal_app.command("review")
+def proposal_review(
+    proposal_id: str = typer.Argument(..., help="Proposal UUID"),
+    action: str = typer.Option(..., help="comment|revision|reject|withdraw"),
+    reviewer_id: str = typer.Option(..., help="Reviewer identifier"),
+    comment: Optional[str] = typer.Option(None, help="Comment or reason"),
+):
+    """Review a proposal (does not touch ttod.yml)."""
+    store = _proposal_store()
+    proposal = store.load(proposal_id)
+
+    if action == "comment":
+        if not comment:
+            typer.echo("--comment required for comment action")
+            raise typer.Exit(1)
+        proposal.add_comment(reviewer_id, comment)
+    elif action == "revision":
+        if not comment:
+            typer.echo("--comment required for revision action")
+            raise typer.Exit(1)
+        proposal.request_revision(reviewer_id, comment)
+    elif action == "reject":
+        proposal.reject(reviewer_id, comment)
+    elif action == "withdraw":
+        proposal.withdraw(reviewer_id, comment)
+    else:
+        typer.echo(f"Unknown action: {action}")
+        raise typer.Exit(1)
+
+    store.save(proposal)
+    typer.echo(f"Proposal {proposal_id} → {proposal.status.value}")
+
+
+@proposal_app.command("accept")
+def proposal_accept(
+    proposal_id: str = typer.Argument(..., help="Proposal UUID"),
+    reviewer_id: str = typer.Option(..., help="Human reviewer identifier (required)"),
+    file: Optional[Path] = typer.Option(None, "--file", help="Target TTOD YAML"),
+    allow_unknown_tags: bool = typer.Option(
+        False,
+        "--allow-unknown-tags",
+        help="Allow tags outside taxonomy (default: reject)",
+    ),
+):
+    """Accept a proposal into ttod.yml via atomic write transaction."""
+    store = _proposal_store()
+    proposal = store.load(proposal_id)
+    repo = _repo(file)
+
+    try:
+        result = repo.accept_proposal(
+            proposal,
+            reviewer_id,
+            reject_unknown_tags=not allow_unknown_tags,
+        )
+    except RepositoryError as exc:
+        typer.echo(f"ACCEPT FAILED: {exc}")
+        raise typer.Exit(1)
+
+    store.save(proposal)
+    typer.echo(f"Accepted {result.quote_id} from proposal {result.proposal_id}")
+
+
+@app.command()
+def deprecate(
+    quote_id: str = typer.Argument(..., help="Canonical quote ID"),
+    deprecated_by: Optional[str] = typer.Option(None, help="Successor quote ID"),
+    file: Optional[Path] = typer.Option(None, "--file", help="Target TTOD YAML"),
+):
+    """Mark a quote deprecated (never deletes)."""
+    try:
+        _repo(file).deprecate_quote(quote_id, deprecated_by=deprecated_by)
+    except RepositoryError as exc:
+        typer.echo(f"DEPRECATE FAILED: {exc}")
+        raise typer.Exit(1)
+    typer.echo(f"Deprecated: {quote_id}")
+
+
+@app.command()
+def erase(
+    quote_id: str = typer.Argument(..., help="Canonical quote ID"),
+    authority: str = typer.Option(..., help="Erasure authority (required)"),
+    decision_ref: str = typer.Option(..., help="Institutional decision reference (required)"),
+    reason: Optional[str] = typer.Option(None, help="Erasure reason"),
+    file: Optional[Path] = typer.Option(None, "--file", help="Target TTOD YAML"),
+):
+    """Higher-law erasure tombstone — requires explicit authority and decision reference."""
+    try:
+        _repo(file).erase_quote(
+            quote_id,
+            authority=authority,
+            decision_ref=decision_ref,
+            reason=reason,
+        )
+    except RepositoryError as exc:
+        typer.echo(f"ERASE FAILED: {exc}")
+        raise typer.Exit(1)
+    typer.echo(f"Erased (tombstone): {quote_id}")
 
 
 @app.command()
 def add(
     section: str = typer.Option(..., help="Section ID"),
-    level: str = typer.Option("intermediate", help="Level: beginner/intermediate/advanced/master"),
+    level: str = typer.Option("intermediate", help="Level"),
     text: str = typer.Option(..., help="The wisdom text"),
-    subsection: str = typer.Option(None, help="Subsection"),
-    teaches: str = typer.Option(None, help="What it teaches"),
-    origin: str = typer.Option("studio", help="Origin: human/studio/blackbox"),
+    origin: str = typer.Option("human", help="Origin: human/studio/blackbox"),
     tags: str = typer.Option("", help="Comma-separated tags"),
+    reviewer_id: str = typer.Option(..., help="Human reviewer ID (required — no bypass)"),
+    file: Optional[Path] = typer.Option(None, "--file", help="Target TTOD YAML"),
+    allow_unknown_tags: bool = typer.Option(False, "--allow-unknown-tags"),
 ):
-    """Add a new quote to ttod.yml."""
-    data = load_ttod()
-    sections = get_sections(data)
-    section_map = {s["id"]: s for s in sections}
+    """
+    Add a quote via proposal+accept transaction (same path as proposal accept).
 
-    if section not in section_map:
-        typer.echo(f"Unknown section: {section}. Available: {list(section_map.keys())}")
-        raise typer.Exit(1)
-
+    Does not bypass review or locking rules.
+    """
     if level not in VALID_LEVELS:
-        typer.echo(f"Invalid level: {level}. Use: {VALID_LEVELS}")
+        typer.echo(f"Invalid level: {level}")
         raise typer.Exit(1)
 
-    # Generate next ID
-    prefix = section_map[section]["prefix"]
-    existing_ids = [q["id"] for q in get_quotes(data) if q["id"].startswith(prefix + "-")]
-    max_num = max((int(qid.split("-")[1]) for qid in existing_ids), default=0)
-    new_id = f"{prefix}-{max_num + 1:03d}"
-
-    new_quote: dict[str, Any] = {
-        "id": new_id,
+    candidate: dict[str, Any] = {
         "text": text,
         "section": section,
         "level": level,
-        "tags": [t.strip() for t in tags.split(",") if t.strip()],
         "origin": origin,
-        "created_at": str(date.today()),
     }
-    if subsection:
-        new_quote["subsection"] = subsection
-    if teaches:
-        new_quote["teaches"] = teaches
+    tag_list = [t.strip() for t in tags.split(",") if t.strip()]
+    if tag_list:
+        candidate["tags"] = tag_list
 
-    # Append to YAML (load raw, append, write)
-    raw = TTOD_PATH.read_text(encoding="utf-8")
-    quote_yaml = yaml.dump([new_quote], default_flow_style=False, allow_unicode=True)
-    # Indent to match existing structure (1 space for list items)
-    indented = "\n" + "\n".join(" " + line for line in quote_yaml.strip().split("\n"))
-    raw = raw.rstrip() + "\n" + indented + "\n"
-    TTOD_PATH.write_text(raw, encoding="utf-8")
+    try:
+        result = _repo(file).accept_quote_direct(
+            candidate,
+            reviewer_id,
+            reject_unknown_tags=not allow_unknown_tags,
+        )
+    except RepositoryError as exc:
+        typer.echo(f"ADD FAILED: {exc}")
+        raise typer.Exit(1)
 
-    typer.echo(f"Added: {new_id} ({section}/{level})")
-    typer.echo(f"  \"{text[:80]}...\"" if len(text) > 80 else f"  \"{text}\"")
+    typer.echo(f"Added: {result.quote_id} ({section}/{level})")
+
+
+@migrate_app.command("prepare")
+def migrate_prepare(
+    output: Path = typer.Option(
+        Path("/tmp/ttod-v3-candidate.yml"),
+        "--output",
+        help="Write v3 candidate YAML here",
+    ),
+    file: Optional[Path] = typer.Option(None, "--file", help="Source TTOD YAML (default: ttod.yml)"),
+    as_json: bool = typer.Option(False, "--json", help="Emit semantic summary as JSON"),
+):
+    """Generate a v3 migration candidate in a temporary path (does not modify live file)."""
+    repo = _repo(file)
+    original_text = repo.path.read_text(encoding="utf-8")
+    root = repo.load()
+    migrated, summary = migrate_root(root)
+    candidate_text = serialize_migrated_document(migrated, original_text)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(candidate_text, encoding="utf-8")
+
+    pre = TTODValidator(strict=True).validate_root(migrated)
+    if as_json:
+        payload = summary.to_dict()
+        payload["candidate_path"] = str(output)
+        payload["strict_valid"] = pre.is_valid
+        payload["error_count"] = len(pre.errors)
+        typer.echo(json.dumps(payload, indent=2))
+    else:
+        typer.echo(f"Candidate: {output}")
+        typer.echo(json.dumps(summary.to_dict(), indent=2))
+        typer.echo(f"Strict validation: {'OK' if pre.is_valid else 'FAIL'} ({len(pre.errors)} errors)")
+
+    if not pre.is_valid:
+        raise typer.Exit(1)
+
+
+@migrate_app.command("apply")
+def migrate_apply(
+    approve: bool = typer.Option(
+        False,
+        "--approve",
+        help="Required — records operator authorization to replace live ttod.yml",
+    ),
+    file: Optional[Path] = typer.Option(None, "--file", help="Target TTOD YAML (default: live ttod.yml)"),
+):
+    """Apply v3 migration to ttod.yml via Q3 atomic write transaction."""
+    if not approve:
+        typer.echo("REFUSED: --approve required (human authorization for live migration)")
+        raise typer.Exit(2)
+
+    repo = _repo(file)
+    try:
+        summary = repo.apply_v3_migration()
+    except RepositoryError as exc:
+        typer.echo(f"MIGRATE FAILED: {exc}")
+        raise typer.Exit(1)
+
+    typer.echo(json.dumps(summary.to_dict(), indent=2))
+    typer.echo("OK — live ttod.yml migrated to v3")
+
+
+@app.command("bridge-self-test")
+def bridge_self_test(
+    fixture: Path = typer.Option(
+        Path(__file__).parent / "tests/fixtures/q4_roundtrip.json",
+        "--fixture",
+        help="Round-trip fixture path",
+    ),
+    file: Path = typer.Option(..., "--file", help="Disposable TTOD YAML copy (required)"),
+):
+    """Run quote-out → proposal-in → accept round-trip on a fixture (never live ttod.yml)."""
+    from ttod_core.bridge_self_test import run_bridge_self_test
+
+    if file.resolve() == DEFAULT_TTOD.resolve():
+        typer.echo("REFUSED: --file must be a disposable copy, not live ttod.yml")
+        raise typer.Exit(2)
+
+    try:
+        result = run_bridge_self_test(fixture, file)
+    except Exception as exc:
+        typer.echo(f"BRIDGE SELF-TEST FAILED: {exc}")
+        raise typer.Exit(1)
+
+    typer.echo(json.dumps(result, indent=2))
+    if not result.get("wpl_record_digest_preserved"):
+        raise typer.Exit(1)
+    typer.echo("OK — bridge round-trip passed")
+
+
+@bridge_app.command("quote-out")
+def bridge_quote_out(
+    quote_id: str = typer.Argument(..., help="Canonical quote ID"),
+    snapshot: Path = typer.Option(..., "--snapshot", help="Q2E JSON snapshot path (not ttod.yml)"),
+    output: Optional[Path] = typer.Option(None, "--output", help="Write transport JSON here"),
+):
+    """Export a quote-out transport payload from a Q2E snapshot."""
+    if snapshot.suffix in (".yml", ".yaml"):
+        typer.echo("REFUSED: read Q2E export JSON, never ttod.yml")
+        raise typer.Exit(2)
+
+    data = json.loads(snapshot.read_text(encoding="utf-8"))
+    manifest = data.get("_manifest", {})
+    snapshot_digest = manifest.get("snapshot_digest")
+    if not snapshot_digest:
+        typer.echo("Snapshot missing _manifest.snapshot_digest")
+        raise typer.Exit(1)
+
+    quotes = data.get("quotes", [])
+    quote = next((q for q in quotes if q.get("id") == quote_id), None)
+    if quote is None:
+        typer.echo(f"Quote not found in snapshot: {quote_id}")
+        raise typer.Exit(1)
+
+    bridge = TTODBridge()
+    try:
+        transport = bridge.export_quote_out(quote, snapshot_digest)
+    except BridgeError as exc:
+        typer.echo(f"QUOTE-OUT FAILED: {exc}")
+        raise typer.Exit(1)
+
+    payload = json.dumps(transport, indent=2, ensure_ascii=False)
+    if output:
+        output.write_text(payload + "\n", encoding="utf-8")
+        typer.echo(f"Quote-out written: {output}")
+    else:
+        typer.echo(payload)
+
+
+@bridge_app.command("proposal-in")
+def bridge_proposal_in(
+    path: Path = typer.Argument(..., help="Proposal-in transport JSON"),
+    store: bool = typer.Option(True, help="Save to proposals store"),
+):
+    """Import proposal-in transport into proposals store (does not accept or write ttod.yml)."""
+    transport = json.loads(path.read_text(encoding="utf-8"))
+    bridge = TTODBridge()
+    try:
+        proposal = bridge.import_proposal_in(transport)
+    except BridgeError as exc:
+        typer.echo(f"PROPOSAL-IN FAILED: {exc}")
+        raise typer.Exit(1)
+
+    if store:
+        saved = _proposal_store().save(proposal)
+        typer.echo(f"Imported proposal {proposal.proposal_id} → {saved}")
+    else:
+        typer.echo(json.dumps(proposal.to_dict(), indent=2))
 
 
 @app.command()
-def graph():
-    """Export graph data for 3D visualization."""
-    export(format="graph")
+def graph(
+    output: Optional[Path] = typer.Option(None, "--output", help="Output path"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML source"),
+):
+    """Export graph projection (alias for export --format graph)."""
+    export(format="graph", output=output, file=file)
 
 
 if __name__ == "__main__":

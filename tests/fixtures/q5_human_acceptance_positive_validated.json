@@ -1,0 +1,17 @@
+{
+  "quote": {
+    "id": "arch-301",
+    "text": "Reviewed model output.",
+    "section": "architecture",
+    "level": "advanced",
+    "origin": "blackbox",
+    "status": "active",
+    "validation": {
+      "status": "validated",
+      "method": "human-review",
+      "reviewer_id": "test-fixture-reviewer-q5-NOT-HUMAN",
+      "activity_id": "review-q5-fixture-001",
+      "reviewed_at": "2026-08-18T12:00:00Z"
+    }
+  }
+}

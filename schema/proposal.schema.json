@@ -1,0 +1,123 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "proposal.schema.json",
+	"title": "TTOD Proposal Record v3",
+	"description": "Pre-canonical proposal record. MUST reject any canonical id field being present at all.",
+	"type": "object",
+	"required": ["proposal_id", "status", "candidate_content"],
+	"properties": {
+		"proposal_id": {
+			"type": "string",
+			"description": "UUID/URN allocated before review (not a canonical section-number ID)"
+		},
+		"status": {
+			"type": "string",
+			"enum": ["proposed", "needs_revision", "accepted", "rejected", "withdrawn"],
+			"description": "Proposal lifecycle status"
+		},
+		"candidate_content": {
+			"type": "object",
+			"description": "Candidate quote content without canonical id",
+			"required": ["text", "section", "level", "origin"],
+			"properties": {
+				"text": {
+					"type": "string"
+				},
+				"section": {
+					"type": "string"
+				},
+				"subsection": {
+					"type": "string"
+				},
+				"level": {
+					"type": "string",
+					"enum": ["beginner", "intermediate", "advanced", "master"]
+				},
+				"tags": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"teaches": {
+					"type": "string"
+				},
+				"show_when": {
+					"type": "string"
+				},
+				"origin": {
+					"type": "string",
+					"enum": ["human", "studio", "blackbox", "mixed", "legacy-unknown"]
+				},
+				"source_refs": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"rights": {
+					"type": "object"
+				},
+				"related": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"immediate_parent_refs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"root_source_refs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"proposer_kind": {
+			"type": "string",
+			"description": "Type of proposer (e.g., model, human)"
+		},
+		"proposer_id": {
+			"type": "string",
+			"description": "Proposer identifier"
+		},
+		"generation_method": {
+			"type": "string",
+			"description": "Observed-or-declared generation method"
+		},
+		"wpl_record_id": {
+			"type": "string",
+			"description": "WPL generation record identifier"
+		},
+		"wpl_record_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$"
+		},
+		"evidence_snapshot_id": {
+			"type": "string",
+			"description": "Shared Athanor evidence snapshot identifier"
+		},
+		"evidence_snapshot_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$"
+		},
+		"human_review_activities": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			}
+		},
+		"accepted_quote_id": {
+			"type": "string",
+			"description": "Canonical quote ID only after atomic acceptance transaction"
+		}
+	},
+	"not": {
+		"required": ["id"]
+	}
+}

@@ -1,0 +1,297 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "quote.schema.json",
+	"title": "TTOD Quote Record v3",
+	"description": "Canonical quote record with all v3 axes: Identity, Content, Authorship, Review, Source, Evidence, Rights, Relations, Lifecycle, Ancestry",
+	"type": "object",
+	"required": ["id", "schema_version", "text", "section", "level", "origin"],
+	"properties": {
+		"id": {
+			"type": "string",
+			"description": "Canonical immutable identifier (format: {section_prefix}-{number})",
+			"pattern": "^[a-z][a-z0-9]*-[0-9]+$"
+		},
+		"schema_version": {
+			"type": "string",
+			"description": "Schema version this record conforms to (legacy v2.x allowed for compatibility)",
+			"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+		},
+		"content_digest": {
+			"type": "string",
+			"description": "SHA-256 digest computed via TTOD-C14N-v1 canonical projection",
+			"pattern": "^[a-f0-9]{64}$"
+		},
+		"text": {
+			"type": "string",
+			"description": "The aphorism text (Unicode NFC normalized)"
+		},
+		"section": {
+			"type": "string",
+			"description": "Section identifier (must match id prefix)"
+		},
+		"subsection": {
+			"type": "string",
+			"description": "Subsection within section"
+		},
+		"level": {
+			"type": "string",
+			"enum": ["beginner", "intermediate", "advanced", "master"],
+			"description": "Pedagogical mastery level"
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"description": "Tag from controlled taxonomy (must be string, not numeric)"
+			},
+			"description": "Controlled vocabulary tags"
+		},
+		"teaches": {
+			"type": "string",
+			"description": "What the student learns from this quote"
+		},
+		"show_when": {
+			"type": "string",
+			"description": "When to surface this quote"
+		},
+		"origin": {
+			"type": "string",
+			"enum": ["human", "studio", "blackbox", "mixed", "legacy-unknown"],
+			"description": "Authorship assertion. No default-to-human. Missing origin must be explicit legacy-unknown, not inferred."
+		},
+		"authorship_assertion": {
+			"type": "string",
+			"description": "Additional authorship metadata"
+		},
+		"validation": {
+			"type": "object",
+			"description": "Review and validation status",
+			"properties": {
+				"status": {
+					"type": "string",
+					"enum": ["pending", "validated", "rejected"]
+				},
+				"method": {
+					"type": "string"
+				},
+				"reviewer_id": {
+					"type": "string",
+					"description": "Identifier of human reviewer"
+				},
+				"activity_id": {
+					"type": "string",
+					"description": "Human acceptance activity identifier"
+				},
+				"reviewed_at": {
+					"type": "string",
+					"format": "date-time",
+					"description": "ISO-8601 timestamp of review"
+				},
+				"record_digest": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$",
+					"description": "Digest of the review record"
+				}
+			},
+			"required": ["status"]
+		},
+		"source_refs": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["source_id"],
+				"properties": {
+					"source_id": {
+						"type": "string",
+						"description": "Native source identifier"
+					},
+					"locator": {
+						"type": "string",
+						"description": "Page/spatial locator when available"
+					},
+					"content_digest": {
+						"type": "string",
+						"pattern": "^[a-f0-9]{64}$"
+					},
+					"role": {
+						"type": "string"
+					},
+					"derivation_method": {
+						"type": "string"
+					}
+				}
+			},
+			"description": "Source references with native identifiers"
+		},
+		"evidence_snapshot_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of shared Athanor evidence snapshot"
+		},
+		"wpl_record_id": {
+			"type": "string",
+			"description": "Optional WPL generation record identifier"
+		},
+		"wpl_record_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of WPL generation record"
+		},
+		"rights": {
+			"type": "object",
+			"description": "Item-level rights and license terms",
+			"properties": {
+				"license": {
+					"type": "string",
+					"description": "License identifier (e.g., CC-BY-NC-SA-4.0)"
+				},
+				"holder": {
+					"type": "string",
+					"description": "Rights holder identity"
+				},
+				"permission_basis": {
+					"type": "string",
+					"description": "Basis for permission (e.g., rights-holder-relicense-2026-08-18)"
+				},
+				"access": {
+					"type": "string",
+					"enum": ["public", "restricted", "private"]
+				},
+				"restrictions": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"decision_ref": {
+					"type": "string",
+					"description": "Reference to rights decision document"
+				}
+			}
+		},
+		"related": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"description": "Related quote ID (directed edge)"
+			},
+			"description": "Directed related-quote edges. Bidirectionality may be proposed and reviewed, never inferred."
+		},
+		"relation_edges": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["target", "relation_type"],
+				"properties": {
+					"target": {
+						"type": "string"
+					},
+					"relation_type": {
+						"type": "string"
+					}
+				}
+			},
+			"description": "Typed relation edges (v3 addition)"
+		},
+		"status": {
+			"type": "string",
+			"enum": ["active", "deprecated", "erased"],
+			"description": "Lifecycle status"
+		},
+		"deprecated_by": {
+			"type": "string",
+			"description": "ID of quote that deprecates this one"
+		},
+		"superseded_by": {
+			"type": "string",
+			"description": "ID of quote that supersedes this one"
+		},
+		"reason": {
+			"type": "string",
+			"description": "Reason for deprecation or erasure"
+		},
+		"effective_at": {
+			"type": "string",
+			"format": "date-time",
+			"description": "ISO-8601 timestamp when status change takes effect"
+		},
+		"immediate_parent_refs": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"description": "Immediate parent quote IDs in derivation path"
+		},
+		"root_source_refs": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"description": "Root source quote IDs in derivation path"
+		},
+		"proposal_id": {
+			"type": "string",
+			"description": "Proposal ID if this quote was accepted from a proposal"
+		},
+		"lesson": {
+			"type": "string",
+			"description": "Associated lesson identifier (legacy field, preserved for compatibility)"
+		},
+		"source": {
+			"type": "string",
+			"description": "Source identifier (legacy field, preserved for compatibility)"
+		},
+		"created_at": {
+			"type": "string",
+			"format": "date",
+			"description": "ISO-8601 date when quote was created"
+		}
+	},
+	"allOf": [
+		{
+			"if": {
+				"required": ["origin"],
+				"properties": {
+					"origin": {
+						"enum": ["blackbox", "mixed"]
+					}
+				}
+			},
+			"then": {
+				"required": ["validation"],
+				"properties": {
+					"validation": {
+						"required": ["reviewer_id", "activity_id"],
+						"properties": {
+							"status": {
+								"enum": ["validated"]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"required": ["rights"],
+				"properties": {
+					"rights": {
+						"required": ["access"],
+						"properties": {
+							"access": {
+								"const": "public"
+							}
+						}
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"rights": {
+						"required": ["license", "holder"]
+					}
+				}
+			}
+		}
+	]
+}

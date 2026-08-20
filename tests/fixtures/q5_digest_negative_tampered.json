@@ -1,0 +1,11 @@
+{
+  "quote": {
+    "id": "arch-400",
+    "schema_version": "3.0.0",
+    "text": "Digest test quote.",
+    "section": "architecture",
+    "level": "advanced",
+    "origin": "human",
+    "content_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  }
+}

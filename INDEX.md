@@ -29,6 +29,19 @@ two tellings: [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md). That file is t
 source for programme state, the active-phase table, and links to every phase report. This README
 does not repeat it.
 
+**Programme status (2026-08-18):** Phase Q **complete** — live `ttod.yml` is schema **v3.0.0**,
+strict-valid, and writable only through the CLI/repository. Closeout report:
+[`docs/DEV_PLAN/PHASE-Q6-REPORT.md`](docs/DEV_PLAN/PHASE-Q6-REPORT.md).
+
+## Verification
+
+```bash
+cd ~/src/ttod && . .venv/bin/activate
+python cli.py validate --strict --json   # must exit 0
+python cli.py stats --check              # meta must match recomputed
+python -m unittest discover -s tests -p 'test_*.py'   # 161 tests
+```
+
 **License:** code is MIT ([`LICENSE-CODE`](LICENSE-CODE)); content — `ttod.yml` quotes, `docs/`,
 `sources/` — is CC BY-NC-SA 4.0 ([`LICENSE-CONTENT`](LICENSE-CONTENT)), per
 [`docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md`](docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md).

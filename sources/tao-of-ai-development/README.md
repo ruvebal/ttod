@@ -43,5 +43,6 @@ Priority distill (the lines other artefacts are waiting on):
 
 ## License
 
-Chapter prose: CC BY-NC-SA 4.0 (Web Atelier teaching content).
-TTOD database: CC BY-NC-SA 4.0. Reconcile on merge — do not silently relicense.
+- **Chapter prose:** CC BY-NC-SA 4.0 (Web Atelier teaching content) — see repo [`LICENSE-CONTENT`](../../LICENSE-CONTENT).
+- **TTOD tooling/code:** MIT — see [`LICENSE-CODE`](../../LICENSE-CODE).
+- **TTOD database quotes:** CC BY-NC-SA 4.0 per quote `rights.license`; reconcile on merge — do not silently relicense.

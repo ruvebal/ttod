@@ -1,0 +1,13 @@
+{
+  "id": "wis-021",
+  "schema_version": "3.0.0",
+  "text": "Public quote without rights decision.",
+  "section": "wisdom",
+  "level": "intermediate",
+  "tags": ["wisdom"],
+  "origin": "human",
+  "rights": {
+    "access": "public"
+  },
+  "created_at": "2026-08-18"
+}

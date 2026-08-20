@@ -1,0 +1,11 @@
+{
+  "id": "arch-072",
+  "schema_version": "3.0.0",
+  "text": "Quote with dangling related reference.",
+  "section": "architecture",
+  "level": "advanced",
+  "tags": ["boundaries"],
+  "origin": "human",
+  "related": ["arch-999"],
+  "created_at": "2026-08-18"
+}

@@ -1,0 +1,3350 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# 道 THE TAO OF DEVELOPMENT (TTOD) 道
+# ═══════════════════════════════════════════════════════════════════════════════
+# A pedagogical wisdom database for developers walking the path
+#
+# Schema Version: 2.2.0
+# Created: 2025-12-06
+# Updated: 2025-12-08
+# Maintainer: ruvebal
+# License: CC BY-SA 4.0
+#
+# Usage Examples:
+#
+# BASIC QUERIES:
+#   - Random quote: {{ site.data.ttod.quotes | sample }}
+#   - By section: {{ site.data.ttod.quotes | where: "section", "images" | sample }}
+#   - By level: {{ site.data.ttod.quotes | where: "level", "beginner" }}
+#   - By subsection: {{ site.data.ttod.quotes | where: "subsection", "naming" }}
+#   - By tag: {% assign svg_quotes = site.data.ttod.quotes | where_exp: "q", "q.tags contains 'svg'" %}
+#   - Featured only: {{ site.data.ttod.quotes | where_exp: "q", "q.tags contains 'featured'" }}
+#
+# ADVANCED QUERIES:
+#   - By koan: {% assign koans = site.data.ttod.quotes | where_exp: "q", "q.koan" %}
+#   - By chapter: {{ site.data.ttod.quotes | where: "chapter", "Naming Things Chapter" }}
+#   - By lesson: {{ site.data.ttod.quotes | where: "lesson", "the-tao-of-web-images" }}
+#   - By source: {{ site.data.ttod.quotes | where: "source", "web-qa-toolkit" }}
+#   - Related quotes: {% for rel_id in quote.related %}{{ site.data.ttod.quotes | where: "id", rel_id }}{% endfor %}
+#   - Multi-tag filter: {% assign quotes = site.data.ttod.quotes | where_exp: "q", "q.tags contains 'naming' and q.tags contains 'koan'" %}
+#
+# COLLECTIONS:
+#   - Daily wisdom: {{ site.data.ttod.collections.daily_wisdom.filter }}
+#   - Naming things: {{ site.data.ttod.collections.naming_things.ids }}
+#   - Architecture wisdom: {{ site.data.ttod.collections.architecture_wisdom.filter }}
+#   - Fractal dilemma: {{ site.data.ttod.collections.fractal_dilemma.ids }}
+#
+# LESSONS:
+#   - Lesson quotes: {{ site.data.ttod.lessons[0].quote_ids | map: "id" }}
+#   - Lesson metadata: {{ site.data.ttod.lessons | where: "id", "the-tao-of-web-images" }}
+#
+# VISUALIZATION:
+#   - 3D Graph: Use visualization schema with WebGPU/Three.js force layout
+#   - Node data: {{ quote.id }}, {{ quote.section }}, {{ quote.level }}
+#   - Edge data: {{ quote.related }} (array of related quote IDs)
+#   - Colors: {{ site.data.ttod.meta.sections | where: "id", quote.section | map: "color" }}
+#
+# PROGRAMMATIC ACCESS:
+#   - TypeScript: import { loadTTOD } from '@ruvebal/ttod'
+#   - Node.js: const ttod = require('@ruvebal/ttod')
+#   - Browser: fetch('https://unpkg.com/@ruvebal/ttod/dist/ttod.json')
+#
+# YAML INDENTATION RULES (Critical for Prettier & Parsers):
+#   - Root-level keys: 0 spaces (column 0)
+#   - First-level properties: 2 spaces
+#   - Nested properties: +2 spaces per level (4, 6, 8, etc.)
+#   - List items: Same indentation as parent, then properties +2
+#   - Quotes section: List items at 2 spaces, properties at 4 spaces
+#   - Sections list: List items at 4 spaces (under meta:), properties at 6 spaces
+#   - Always use 2-space increments (never mix 1-space and 2-space)
+#   - Comments: Indent to match context (2 spaces inside meta:, 2 spaces inside quotes:)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# METADATA & SCHEMA DEFINITIONS
+# ═══════════════════════════════════════════════════════════════════════════════
+meta:
+ title: 'The Tao of Development'
+ subtitle: 'Wisdom for the Digital Path'
+ version: '2.2.0'
+ language: 'en'
+ total_quotes: 229
+ last_id_by_section:
+  img: 73
+  qa: 19
+  ops: 1
+  dbg: 5
+  net: 1
+  ux: 4
+  cc: 38
+  wis: 16
+  dop: 7
+  arch: 59
+  rrp: 15
+  js: 1
+  a11y: 1
+
+audience:
+ - web-designers
+ - fullstack-developers
+ - frontend-developers
+ - backend-developers
+ - programming-students
+ - programming-educators
+ - product-managers
+ - digital-humanities-scholars
+ - accessibility-specialists
+ - data-engineers
+
+# Pedagogical levels with numeric weight for visualization
+levels:
+ beginner:
+  label: 'First steps on the path'
+  weight: 1
+  color: '#4ade80' # green-400
+ intermediate:
+  label: 'Walking with awareness'
+  weight: 2
+  color: '#facc15' # yellow-400
+ advanced:
+  label: 'Teaching others to walk'
+  weight: 3
+  color: '#f97316' # orange-500
+ master:
+  label: 'The path walks you'
+  weight: 4
+  color: '#ef4444' # red-500
+
+# Section definitions with subsections for systematic indexing
+sections:
+ - id: images
+   prefix: img
+   name: 'Web Images'
+   icon: '🖼️'
+   color: '#8b5cf6' # violet-500
+   description: 'The visual path: optimization, formats, and mindful asset usage'
+   subsections:
+    - optimization
+    - formats
+    - svg
+    - gif
+    - responsive
+    - lazy-loading
+    - alt-text
+    - accessibility
+    - performance
+    - architecture
+    - data-uri
+    - cdn
+    - ux
+    - errors
+    - philosophy
+    - ethics
+    - paradox
+    - laws
+    - koan
+    - contemplation
+    - journey
+
+ - id: css
+   prefix: css
+   name: 'CSS & Styling'
+   icon: '🎨'
+   color: '#06b6d4' # cyan-500
+   description: 'The art of appearance without attachment'
+   subsections:
+    - layout
+    - typography
+    - color
+    - animation
+    - responsive
+    - architecture
+
+ - id: html
+   prefix: htm
+   name: 'HTML & Semantics'
+   icon: '📜'
+   color: '#f59e0b' # amber-500
+   description: 'The structure beneath all things'
+   subsections:
+    - semantics
+    - forms
+    - accessibility
+    - structure
+
+ - id: javascript
+   prefix: js
+   name: 'JavaScript'
+   icon: '⚡'
+   color: '#eab308' # yellow-500
+   description: 'Dynamic change and the illusion of control'
+   subsections:
+    - async
+    - dom
+    - events
+    - state
+    - modules
+
+ - id: accessibility
+   prefix: a11y
+   name: 'Accessibility'
+   icon: '♿'
+   color: '#3b82f6' # blue-500
+   description: 'The inclusive way'
+   subsections:
+    - aria
+    - keyboard
+    - screen-readers
+    - color-contrast
+
+ - id: performance
+   prefix: perf
+   name: 'Performance'
+   icon: '🚀'
+   color: '#10b981' # emerald-500
+   description: 'Speed is emptiness; emptiness is speed'
+   subsections:
+    - loading
+    - caching
+    - metrics
+    - optimization
+
+ - id: git
+   prefix: git
+   name: 'Version Control'
+   icon: '🌳'
+   color: '#f43f5e' # rose-500
+   description: 'Branching paths, merging destinies'
+   subsections:
+    - branching
+    - commits
+    - collaboration
+    - history
+
+ - id: debugging
+   prefix: dbg
+   name: 'Debugging'
+   icon: '🔍'
+   color: '#a855f7' # purple-500
+   description: 'Finding truth in error'
+   subsections:
+    - persistence
+    - tools
+    - methodology
+    - mindset
+
+ - id: qa-tooling
+   prefix: qa
+   name: 'Quality Assurance & Tooling'
+   icon: '🔧'
+   color: '#64748b' # slate-500
+   description: 'Automation, validation, and the art of letting machines do the repetitive work'
+   subsections:
+    - automation
+    - documentation
+    - architecture
+    - dependencies
+    - contributing
+    - learning
+    - quality
+    - open-source
+    - grading
+    - versioning
+    - ci-cd
+    - persistence
+
+ - id: operations
+   prefix: ops
+   name: 'Operations & Reliability'
+   icon: '⚙️'
+   color: '#78716c' # stone-500
+   description: 'Keep systems calm, observable, and resilient under load'
+   subsections:
+    - reliability
+    - monitoring
+    - incident-response
+    - deployment
+
+ - id: networking
+   prefix: net
+   name: 'Networking'
+   icon: '🌐'
+   color: '#0ea5e9' # sky-500
+   description: 'Packet-level clarity so distributed services stay coherent'
+   subsections:
+    - diagnosis
+    - dns
+    - http
+    - protocols
+
+ - id: ux
+   prefix: ux
+   name: 'User Experience'
+   icon: '✨'
+   color: '#ec4899' # pink-500
+   description: 'Craft interfaces that feel natural before being explained'
+   subsections:
+    - clarity
+    - feedback
+    - navigation
+    - emotion
+
+ - id: code-craft
+   prefix: cc
+   name: 'Code Craft'
+   icon: '🛠️'
+   color: '#14b8a6' # teal-500
+   description: 'Human-first code with machine efficiency and clear intent'
+   subsections:
+    - readability
+    - naming
+    - refactoring
+    - patterns
+
+ - id: wisdom
+   prefix: wis
+   name: 'Wisdom'
+   icon: '🧠'
+   color: '#8b5cf6' # violet-500
+   description: 'Reflections that span beyond tools and frameworks'
+   subsections:
+    - reflection
+    - learning
+    - teaching
+    - philosophy
+
+ - id: devops
+   prefix: dop
+   name: 'DevOps'
+   icon: '📦'
+   color: '#22c55e' # green-500
+   description: 'Alignment between development, operations, and delivery'
+   subsections:
+    - reproducibility
+    - containers
+    - pipelines
+    - infrastructure
+
+ - id: general
+   prefix: gen
+   name: 'General Wisdom'
+   icon: '🧘'
+   color: '#6366f1' # indigo-500
+   description: 'Universal truths of the digital craft'
+   subsections:
+    - principles
+    - mindset
+    - collaboration
+
+ - id: architecture
+   prefix: arch
+   name: 'Architecture & Modularization'
+   icon: '🏛️'
+   color: '#0d9488' # teal-600
+   description: 'The fractal art of boundaries, dependencies, and composable systems'
+   subsections:
+    - boundaries
+    - dependencies
+    - extraction
+    - composition
+    - monorepo
+    - coupling
+    - cohesion
+    - fractals
+    - entropy
+
+ - id: remote-repo
+   prefix: rrp
+   name: 'Remote Repository Processing'
+   icon: '☁️'
+   color: '#3b82f6' # blue-500
+   description: 'The art of ephemeral processing and cloud-native grading'
+   subsections:
+    - cloning
+    - batch
+    - cleanup
+    - automation
+    - philosophy
+
+# Controlled vocabulary for tags (improves consistency)
+tag_taxonomy:
+ technical:
+  - optimization
+  - compression
+  - formats
+  - svg
+  - png
+  - jpg
+  - webp
+  - gif
+  - responsive
+  - lazy-loading
+  - srcset
+  - alt-text
+  - data-uri
+  - cdn
+  - caching
+  - performance
+  - dns
+  - http
+  - ci-cd
+  - automation
+  - testing
+  - documentation
+  - versioning
+  - devtools
+ conceptual:
+  - philosophy
+  - balance
+  - purpose
+  - meaning
+  - identity
+  - journey
+  - learning
+  - teaching
+  - wisdom
+  - reflection
+  - contemplation
+  - paradox
+  - koan
+  - laws
+  - ethics
+  - accessibility
+  - empathy
+  - compassion
+  - single-source-of-truth
+  - architecture
+  - boundaries
+  - modularity
+  - mcp
+  - athanor
+  - tao-of-system-architect
+  - tao-of-ai-engineer
+  - haiku
+  - poetry
+  - configuration
+  - dry
+  - synchronization
+  - mirror
+ pedagogical:
+  - beginner-friendly
+  - featured
+  - humor
+  - teaching
+  - grading
+  - assessment
+  - bwu
+  - build
+  - write
+ source:
+  - tao-of-web-images
+  - web-qa-toolkit
+  - ops-chapter
+  - debugging-chapter
+  - networking-chapter
+  - ux-chapter
+  - code-craft-chapter
+  - wisdom-chapter
+  - qa-chapter
+  - devops-chapter
+ naming:
+  - naming
+  - namespace
+  - scope
+  - slug
+  - alias
+  - registry
+  - manifest
+  - idempotency
+  - collision
+  - search
+  - canonical-identity
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# VISUALIZATION SCHEMA (for 3D/Network Graphs)
+# ═══════════════════════════════════════════════════════════════════════════════
+visualization:
+ description: 'Schema for rendering TTOD as interactive 3D knowledge graph'
+
+ # Node positioning strategy
+ layout:
+  algorithm: 'force-directed-3d' # Three.js + d3-force-3d
+  clustering: 'section' # Primary cluster by section
+  z_axis: 'level' # Z-depth by mastery level
+  node_size: 'connection_count' # Size by relationships
+
+ # Color encoding
+ encoding:
+  node_color: 'section'
+  node_opacity: 'level_weight'
+  edge_color: 'relationship_type'
+  edge_width: 'strength'
+
+ # Relationship types for edges
+ relationship_types:
+  - id: 'same_subsection'
+    label: 'Same Topic'
+    color: '#94a3b8'
+    strength: 0.8
+  - id: 'same_lesson'
+    label: 'Same Lesson'
+    color: '#60a5fa'
+    strength: 0.9
+  - id: 'semantic_link'
+    label: 'Related Concept'
+    color: '#34d399'
+    strength: 0.5
+  - id: 'progression'
+    label: 'Learning Path'
+    color: '#fbbf24'
+    strength: 0.7
+  - id: 'contrast'
+    label: 'Opposing View'
+    color: '#f87171'
+    strength: 0.4
+
+ # Export formats for visualization tools
+ export_formats:
+  - json_graph # D3.js compatible
+  - gexf # Gephi
+  - graphml # yEd, Cytoscape
+  - csv_edges # Spreadsheet analysis
+
+ # 3D rendering options
+ three_js_options:
+  camera_distance: 1500
+  fog_near: 1000
+  fog_far: 3000
+  particle_size: 8
+  link_opacity: 0.3
+  bloom_enabled: true
+  bloom_strength: 0.5
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STATISTICS (auto-generate from quotes for dashboards)
+# ═══════════════════════════════════════════════════════════════════════════════
+statistics:
+ by_section:
+  images: 73
+  qa-tooling: 19
+  architecture: 43
+  operations: 1
+  debugging: 5
+  networking: 1
+  ux: 4
+  code-craft: 38
+  wisdom: 14
+  devops: 7
+  remote-repo: 12
+  javascript: 1
+  accessibility: 1
+  css: 0
+  html: 0
+  performance: 0
+  git: 0
+  general: 0
+
+ by_level:
+  beginner: 50
+  intermediate: 67
+  advanced: 44
+  master: 52
+
+ by_source:
+  original: 28
+  tao-of-web-images: 45
+  web-qa-toolkit: 15
+  chapter-quotes: 8
+  modularization-chapter: 12
+  naming-chapter: 4
+  legal-pages-implementation: 18
+  ai-route-implementation-guide: 12
+
+ coverage:
+  sections_populated: 12
+  sections_total: 16
+  coverage_percent: 75.0
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# QUOTES DATABASE
+# ═══════════════════════════════════════════════════════════════════════════════
+quotes:
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: IMAGES - Web Image Optimization
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ # On Optimization
+ - id: img-001
+   text: 'The wise developer knows: the smallest image carries the heaviest meaning.'
+   section: images
+   subsection: optimization
+   level: beginner
+   tags: [optimization, file-size, meaning, featured]
+   teaches: 'Image optimization is about preserving meaning while reducing weight'
+   show_when: 'Student uploads unoptimized images'
+
+ - id: img-002
+   text: 'A GIF that loops forever teaches us: motion without movement is still life.'
+   section: images
+   subsection: gif
+   level: intermediate
+   tags: [gif, animation, philosophy]
+   teaches: 'Animation should serve purpose, not just exist'
+   related: [img-013, img-014, img-015, img-047]
+
+ - id: img-003
+   text: 'Compress not the soul of the image, only its weight.'
+   section: images
+   subsection: optimization
+   level: beginner
+   tags: [compression, quality, balance]
+   teaches: 'Quality vs file size tradeoff awareness'
+   related: [img-001, img-060]
+
+ - id: img-004
+   text: 'The SVG scales infinitely, yet remains exactly what it is. Be like the SVG.'
+   section: images
+   subsection: svg
+   level: beginner
+   tags: [svg, scalability, identity, featured]
+   teaches: 'Vector graphics maintain integrity at any size'
+   show_when: 'Introducing SVG format'
+
+ # On Format Choice
+ - id: img-005
+   text: 'PNG clings to every pixel. JPG lets go. Know when to cling, know when to release.'
+   section: images
+   subsection: formats
+   level: intermediate
+   tags: [png, jpg, lossless, lossy, formats]
+   teaches: 'Lossless vs lossy compression decision making'
+   related: [img-007, img-008, img-046]
+
+ - id: img-006
+   text: 'The developer who uses BMP in production has not yet begun to walk the path.'
+   section: images
+   subsection: formats
+   level: beginner
+   tags: [bmp, formats, anti-pattern, humor]
+   teaches: 'Some formats are not meant for the web'
+   related: [img-008]
+
+ - id: img-007
+   text: 'WebP is the middle way: neither the attachment of PNG nor the loss of JPG.'
+   section: images
+   subsection: formats
+   level: intermediate
+   tags: [webp, formats, balance]
+   teaches: 'Modern format advantages'
+   related: [img-005, img-031, img-046]
+
+ - id: img-008
+   text: 'To choose the right format is wisdom. To not choose at all is a 5MB hero image.'
+   section: images
+   subsection: formats
+   level: beginner
+   tags: [formats, decision-making, consequences]
+   teaches: 'Conscious format selection prevents bloat'
+   related: [img-062, img-049]
+
+ # On Presence and Absence
+ - id: img-009
+   text: 'The 404 page with no image is like a garden with no flowers — technically complete, spiritually empty.'
+   section: images
+   subsection: ux
+   level: beginner
+   tags: [404, ux, visual-design, completeness, featured]
+   teaches: 'Visual assets enhance user experience'
+   show_when: 'Student creates text-only 404 page'
+
+ - id: img-010
+   text: "An image that doesn't load teaches the user patience. But patience is not your lesson to teach."
+   section: images
+   subsection: performance
+   level: intermediate
+   tags: [loading, performance, ux, responsibility]
+   teaches: 'Developer responsibility for user experience'
+   related: [img-051, img-052]
+
+ - id: img-011
+   text: 'The space where the image should be is also an image. But the grader gives it zero points.'
+   section: images
+   subsection: errors
+   level: beginner
+   tags: [broken-images, grading, humor, alt-text]
+   teaches: 'Broken images are still visible failures'
+   related: [img-038, img-039]
+
+ - id: img-012
+   text: 'Inline the small. Externalize the large. This is the natural order.'
+   section: images
+   subsection: architecture
+   level: intermediate
+   tags: [inline, external, data-uri, architecture]
+   teaches: 'When to inline vs externalize assets'
+   related: [img-020, img-021]
+
+ # On the Animated GIF
+ - id: img-013
+   text: "The GIF asks: 'Am I an image or a video?' The Tao answers: 'Yes.' 🎉"
+   section: images
+   subsection: gif
+   level: beginner
+   tags: [gif, animation, duality, humor, featured]
+   teaches: 'GIFs occupy a unique space in web media'
+   related: [img-002, img-014, img-015, img-047]
+
+ - id: img-014
+   text: 'A well-placed GIF brings joy. An autoplaying video brings rage. Know the difference.'
+   section: images
+   subsection: gif
+   level: intermediate
+   tags: [gif, video, ux, autoplay, emotion]
+   teaches: 'User control and consent in media'
+   related: [img-058]
+
+ - id: img-015
+   text: 'The GIF loops endlessly, teaching us that some mistakes we will make again and again until we learn.'
+   section: images
+   subsection: gif
+   level: advanced
+   tags: [gif, loops, learning, mistakes, philosophy]
+   teaches: 'Iteration and learning from repetition'
+   related: [img-023, wis-001]
+
+ # On SVG (The Supreme Path)
+ - id: img-016
+   text: 'The raster image fears the zoom. The SVG welcomes it.'
+   section: images
+   subsection: svg
+   level: beginner
+   tags: [svg, raster, responsive, zoom]
+   teaches: 'Vector vs raster at different scales'
+   related: [img-004, img-048]
+
+ - id: img-017
+   text: 'SVG: Scalable, Vector, Graphics. Also: Serenity, Virtue, Grace.'
+   section: images
+   subsection: svg
+   level: beginner
+   tags: [svg, acronym, philosophy, humor]
+   teaches: 'SVG appreciation and wordplay'
+   related: [img-004]
+
+ - id: img-018
+   text: "The inline SVG says: 'I am one with the DOM.' The external SVG says: 'I am cached for eternity.' Both are correct."
+   section: images
+   subsection: svg
+   level: advanced
+   tags: [svg, inline, external, caching, dom]
+   teaches: 'Trade-offs between inline and external SVG'
+   related: [img-012, img-020]
+
+ - id: img-019
+   text: 'A thousand PNGs can be replaced by one SVG. This is not optimization. This is enlightenment.'
+   section: images
+   subsection: svg
+   level: intermediate
+   tags: [svg, png, icon-systems, optimization, featured]
+   teaches: 'SVG icon systems vs multiple raster files'
+   related: [img-004, img-048]
+
+ # On Data URIs
+ - id: img-020
+   text: "The data URI says: 'I need no HTTP request.' But at what cost? At what cost?"
+   section: images
+   subsection: data-uri
+   level: advanced
+   tags: [data-uri, base64, http, tradeoffs]
+   teaches: 'Data URI trade-offs (no cache, larger CSS)'
+   related: [img-012, img-021]
+
+ - id: img-021
+   text: 'Embed the icon. Never embed the hero. The Tao of Base64 is knowing when to stop.'
+   section: images
+   subsection: data-uri
+   level: intermediate
+   tags: [data-uri, base64, icons, hero-images, limits]
+   teaches: 'Appropriate use cases for data URIs'
+   related: [img-020, img-062]
+
+ # On CDN
+ - id: img-022
+   text: 'The image served from localhost reaches one. The image served from CDN reaches all. Think globally, cache eternally.'
+   section: images
+   subsection: cdn
+   level: intermediate
+   tags: [cdn, caching, distribution, scale]
+   teaches: 'Benefits of content delivery networks'
+   related: [img-064]
+
+ # On the Student's Journey
+ - id: img-023
+   text: 'First, the student adds images without thought. Then, the student removes images with fear. Finally, the student adds only the images that are needed. This is the path.'
+   section: images
+   subsection: journey
+   level: master
+   tags: [learning, journey, minimalism, growth, featured]
+   teaches: 'The three stages of image mastery'
+   show_when: 'End of images unit'
+
+ - id: img-024
+   text: 'Your 404 page is a mirror. What does it reflect?'
+   section: images
+   subsection: philosophy
+   level: advanced
+   tags: [404, reflection, design-philosophy, identity]
+   teaches: 'Error pages reveal developer care and personality'
+   related: [img-009]
+
+ - id: img-025
+   text: 'The browser does not judge your aesthetics. Only your kilobytes.'
+   section: images
+   subsection: performance
+   level: beginner
+   tags: [performance, browser, metrics, objectivity, humor]
+   teaches: 'Performance metrics are objective; design is subjective'
+   related: [img-051, img-068]
+
+ # Bonus wisdom
+ - id: img-026
+   text: "alt='' is silence. alt='image' is noise. alt='A astronaut floating past Mars' is poetry."
+   section: images
+   subsection: accessibility
+   level: beginner
+   tags: [alt-text, accessibility, semantics, featured]
+   teaches: 'Writing meaningful alt text'
+   related: [img-038, img-039, img-040, img-041, img-057]
+
+ - id: img-027
+   text: 'The lazy-loaded image waits below the fold, patient as a monk. It loads only when seen. This is wisdom.'
+   section: images
+   subsection: lazy-loading
+   level: intermediate
+   tags: [lazy-loading, performance, patience]
+   teaches: 'Lazy loading strategy'
+   related: [img-034, img-035, img-036, img-037]
+
+ - id: img-028
+   text: "srcset offers choice. The browser chooses. Trust the browser. Or don't. It will choose anyway."
+   section: images
+   subsection: responsive
+   level: advanced
+   tags: [srcset, responsive, browser, control]
+   teaches: 'Responsive images and browser selection'
+   related: [img-043, img-044, img-045]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: IMAGES - The Tao of Web Images Lesson
+ # Source: /lessons/en/media/images/the-tao-of-web-images/
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: img-029
+   text: 'The heaviest image weighs nothing when never loaded. The lightest image crushes the user when poorly placed.'
+   section: images
+   subsection: optimization
+   level: beginner
+   tags: [optimization, weight, tao-of-web-images]
+   teaches: "Avoid loading oversized assets and respect the user's bandwidth."
+   lesson: the-tao-of-web-images
+   related: [img-001, img-034]
+
+ - id: img-030
+   text: "Master Li compressed a 5MB image to 50KB. His student asked: 'Did you lose quality?' Li replied: 'I lost only what the eye could not see and the network could not bear.'"
+   section: images
+   subsection: optimization
+   level: intermediate
+   tags: [compression, quality, teaching, tao-of-web-images]
+   teaches: 'Trade off imperceptible detail for dramatic speed gains.'
+   lesson: the-tao-of-web-images
+   related: [img-003, img-060]
+
+ - id: img-031
+   text: 'The wise developer serves ten image formats. The enlightened developer serves only what the browser requests. The master serves WebP to Chrome and JPEG to the past.'
+   section: images
+   subsection: formats
+   level: intermediate
+   tags: [formats, webp, compatibility, tao-of-web-images]
+   teaches: 'Match formats to browser needs and let content decide.'
+   lesson: the-tao-of-web-images
+   related: [img-007, img-046]
+
+ - id: img-032
+   text: 'Optimize not for the device you hold, but for the connection you cannot see.'
+   section: images
+   subsection: optimization
+   level: beginner
+   tags: [connection, bandwidth, tao-of-web-images]
+   teaches: 'Design for network conditions, not just screen sizes.'
+   lesson: the-tao-of-web-images
+   related: [img-033, img-042]
+
+ - id: img-033
+   text: "A 4K image on a 320px screen is not luxury—it is violence against the user's data plan."
+   section: images
+   subsection: responsive
+   level: beginner
+   tags: [responsive, data-plan, tao-of-web-images]
+   teaches: 'Scale image resolution to the display to protect data caps.'
+   lesson: the-tao-of-web-images
+   related: [img-042, img-044]
+
+ - id: img-034
+   text: 'Load what is seen. Defer what is hidden. The page that loads everything loads nothing fast.'
+   section: images
+   subsection: lazy-loading
+   level: beginner
+   tags: [lazy-loading, priority, tao-of-web-images]
+   teaches: 'Load the viewable assets first and postpone the rest.'
+   lesson: the-tao-of-web-images
+   related: [img-027, img-036, img-050]
+
+ - id: img-035
+   text: "The student asked: 'Should I lazy load?' The master showed him a page that loaded 100 images at once. The student's browser wept. The master said: 'You have your answer.'"
+   section: images
+   subsection: lazy-loading
+   level: intermediate
+   tags: [lazy-loading, experiment, tao-of-web-images]
+   teaches: 'Demonstrate the emotional cost of eager loading.'
+   lesson: the-tao-of-web-images
+   related: [img-027, img-037]
+
+ - id: img-036
+   text: 'The image below the fold does not exist until the user scrolls. Why then do you make it exist at page load?'
+   section: images
+   subsection: lazy-loading
+   level: beginner
+   tags: [lazy-loading, fold, tao-of-web-images]
+   teaches: 'Let images appear only when the user needs them.'
+   lesson: the-tao-of-web-images
+   related: [img-027, img-034]
+
+ - id: img-037
+   text: 'Eager loading is greed. Lazy loading is wisdom. But loading nothing is enlightenment—question whether the image serves a purpose.'
+   section: images
+   subsection: lazy-loading
+   level: intermediate
+   tags: [lazy-loading, purpose, tao-of-web-images]
+   teaches: 'Evaluate the purpose of each asset before loading it.'
+   lesson: the-tao-of-web-images
+   related: [img-049, img-061, img-065]
+
+ - id: img-038
+   text: 'An image without alt text is a locked door to the blind user. You would not build a website with only locked doors.'
+   section: images
+   subsection: alt-text
+   level: beginner
+   tags: [alt-text, accessibility, tao-of-web-images]
+   teaches: 'Always provide descriptive alt text for content images.'
+   lesson: the-tao-of-web-images
+   related: [img-026, img-057, img-066]
+
+ - id: img-039
+   text: "The alt text that says 'image' is worse than no alt text. It is a sign that points to itself."
+   section: images
+   subsection: alt-text
+   level: beginner
+   tags: [alt-text, semantics, tao-of-web-images]
+   teaches: 'Avoid placeholder alt copy; speak the image meaningfully.'
+   lesson: the-tao-of-web-images
+   related: [img-026, img-011]
+
+ - id: img-040
+   text: 'Write alt text for your grandmother who cannot see. Write it for the search engine that cannot see. Write it for yourself when the image fails to load.'
+   section: images
+   subsection: alt-text
+   level: intermediate
+   tags: [alt-text, empathy, tao-of-web-images]
+   teaches: 'Consider real people and failure states when writing alt text.'
+   lesson: the-tao-of-web-images
+   related: [img-026, img-057]
+
+ - id: img-041
+   text: "Decorative images speak in silence: alt=''. Content images must sing their purpose aloud."
+   section: images
+   subsection: alt-text
+   level: beginner
+   tags: [alt-text, decorative, tao-of-web-images]
+   teaches: 'Use empty alt for decoratives and descriptive alt for content.'
+   lesson: the-tao-of-web-images
+   related: [img-026]
+
+ - id: img-042
+   text: 'Serve a 2000px image to a 375px phone, and the gods of bandwidth will curse your house for seven generations.'
+   section: images
+   subsection: responsive
+   level: beginner
+   tags: [responsive, bandwidth, tao-of-web-images]
+   teaches: 'Respect mobile screens by delivering appropriately sized assets.'
+   lesson: the-tao-of-web-images
+   related: [img-033, img-044]
+
+ - id: img-043
+   text: "The srcset is not complexity—it is respect. Respect for the mobile user's data. Respect for the desktop user's screen. Respect for the device you have not yet imagined."
+   section: images
+   subsection: responsive
+   level: intermediate
+   tags: [srcset, responsive, tao-of-web-images]
+   teaches: 'Let srcset and sizes empower browsers to choose wisely.'
+   lesson: the-tao-of-web-images
+   related: [img-028, img-045]
+
+ - id: img-044
+   text: 'One image for all screens is like one shoe size for all feet. It fits no one perfectly and everyone suffers.'
+   section: images
+   subsection: responsive
+   level: beginner
+   tags: [responsive, design, tao-of-web-images]
+   teaches: 'Provide multiple asset sizes to serve each device.'
+   lesson: the-tao-of-web-images
+   related: [img-033, img-042]
+
+ - id: img-045
+   text: "The master writes: `<img srcset='...' sizes='...' />`. The novice writes: `<img src='huge-image.jpg' />`. The user pays the price."
+   section: images
+   subsection: responsive
+   level: intermediate
+   tags: [img, srcset, tao-of-web-images]
+   teaches: 'Use modern responsive markup instead of single giant files.'
+   lesson: the-tao-of-web-images
+   related: [img-028, img-043]
+
+ - id: img-046
+   text: 'PNG for transparency, JPEG for photos, SVG for logos, WebP for the future. Know the nature of each, and choose with wisdom.'
+   section: images
+   subsection: formats
+   level: beginner
+   tags: [formats, decision, tao-of-web-images]
+   teaches: 'Choose a format based on transparency, richness, and compatibility.'
+   lesson: the-tao-of-web-images
+   related: [img-005, img-007, img-031]
+
+ - id: img-047
+   text: 'The animated GIF is the drunk uncle at the wedding: sometimes entertaining, often embarrassing, always taking up too much space.'
+   section: images
+   subsection: formats
+   level: intermediate
+   tags: [gif, animation, humor, tao-of-web-images]
+   teaches: 'Reserve GIFs for moments that justify their weight.'
+   lesson: the-tao-of-web-images
+   related: [img-002, img-013]
+
+ - id: img-048
+   text: 'SVG scales infinitely, yet weighs less than a single JPEG pixel. This is the paradox of vector over raster.'
+   section: images
+   subsection: formats
+   level: intermediate
+   tags: [svg, vector, tao-of-web-images]
+   teaches: 'Use vectors for logos and icons to stay sharp and light.'
+   lesson: the-tao-of-web-images
+   related: [img-004, img-016, img-019]
+
+ - id: img-049
+   text: 'The fastest image to load is the image not loaded. Question whether the hero needs to be a hero image.'
+   section: images
+   subsection: performance
+   level: beginner
+   tags: [performance, hero, tao-of-web-images]
+   teaches: 'Scrutinize whether a hero image is essential to the experience.'
+   lesson: the-tao-of-web-images
+   related: [img-062, img-037, img-059]
+
+ - id: img-050
+   text: 'Preload the critical. Defer the decorative. Remove the unnecessary. This is the three-fold path to enlightenment.'
+   section: images
+   subsection: performance
+   level: intermediate
+   tags: [performance, preload, tao-of-web-images]
+   teaches: 'Prioritize critical assets, delay others, and clear clutter.'
+   lesson: the-tao-of-web-images
+   related: [img-034, img-065]
+
+ - id: img-051
+   text: "The student said: 'My images look beautiful!' The master checked the Network tab and said: 'Your users have left before seeing them.'"
+   section: images
+   subsection: performance
+   level: intermediate
+   tags: [performance, network, tao-of-web-images]
+   teaches: 'Validate beauty with network performance metrics.'
+   lesson: the-tao-of-web-images
+   related: [img-025, img-068]
+
+ - id: img-052
+   text: 'A 3-second load time is not slow because of technology—it is slow because of your images. The server is blameless; the developer is not.'
+   section: images
+   subsection: performance
+   level: intermediate
+   tags: [performance, accountability, tao-of-web-images]
+   teaches: 'Take ownership when images drag down load times.'
+   lesson: the-tao-of-web-images
+   related: [img-010]
+
+ - id: img-053
+   text: 'Use images to enhance the message, not to be the message. Words remain when images fail.'
+   section: images
+   subsection: philosophy
+   level: beginner
+   tags: [design, message, tao-of-web-images]
+   teaches: 'Let imagery support, not replace, clear communication.'
+   lesson: the-tao-of-web-images
+   related: [img-063, img-065]
+
+ - id: img-054
+   text: 'The background image that obscures the text is like a painting that blocks the door—beautiful, but fundamentally misunderstanding its purpose.'
+   section: images
+   subsection: philosophy
+   level: intermediate
+   tags: [design, contrast, tao-of-web-images]
+   teaches: 'Ensure background art never hides the content.'
+   lesson: the-tao-of-web-images
+   related: [img-053]
+
+ - id: img-055
+   text: 'Fifteen stock photos of diverse people pointing at laptops do not make your website diverse. They make it a cliché.'
+   section: images
+   subsection: philosophy
+   level: intermediate
+   tags: [design, authenticity, humor, tao-of-web-images]
+   teaches: 'Choose unique imagery instead of copy-pasted clichés.'
+   lesson: the-tao-of-web-images
+   related: [img-065]
+
+ - id: img-056
+   text: 'The logo need not be large. The sun is distant yet illuminates all.'
+   section: images
+   subsection: philosophy
+   level: beginner
+   tags: [design, branding, tao-of-web-images]
+   teaches: 'Give logos breathing room; size alone does not signal importance.'
+   lesson: the-tao-of-web-images
+   related: [img-065]
+
+ - id: img-057
+   text: "The visually impaired user cannot see your images, but they can hear them through alt text. Speak clearly. Speak truthfully. Do not say 'image123.jpg'."
+   section: images
+   subsection: accessibility
+   level: beginner
+   tags: [accessibility, alt-text, tao-of-web-images]
+   teaches: 'Write honest alt descriptors that a screen reader can narrate.'
+   lesson: the-tao-of-web-images
+   related: [img-026, img-038, img-066]
+
+ - id: img-058
+   text: 'Autoplay video is not engagement—it is assault. The user who does not choose to hear does not consent to hear.'
+   section: images
+   subsection: ethics
+   level: intermediate
+   tags: [ethics, video, consent, tao-of-web-images]
+   teaches: 'Respect autonomy by avoiding unsolicited audio or motion.'
+   lesson: the-tao-of-web-images
+   related: [img-014]
+
+ - id: img-059
+   text: 'The perfect image is often no image at all. CSS can draw circles, gradients, and shadows. Why burden the network with what the browser can paint?'
+   section: images
+   subsection: paradox
+   level: master
+   tags: [paradox, css, tao-of-web-images]
+   teaches: 'Consider CSS art before sending raster payloads.'
+   lesson: the-tao-of-web-images
+   related: [img-049, img-061]
+
+ - id: img-060
+   text: 'Compress until it hurts. Then compress more. The user will never complain about an image being too fast.'
+   section: images
+   subsection: paradox
+   level: intermediate
+   tags: [compression, performance, tao-of-web-images]
+   teaches: 'Push compression beyond comfort while keeping quality acceptable.'
+   lesson: the-tao-of-web-images
+   related: [img-003, img-030]
+
+ - id: img-061
+   text: "The developer who uses `<img loading='lazy'>` has learned. The developer who uses `loading='eager'` has understood. The developer who questions whether the image should exist has achieved enlightenment."
+   section: images
+   subsection: paradox
+   level: beginner
+   tags: [loading, philosophy, tao-of-web-images]
+   teaches: 'Question every asset; only load what earns its place.'
+   lesson: the-tao-of-web-images
+   related: [img-037, img-049]
+
+ - id: img-062
+   text: 'Your hero image is not a hero. It is a 2MB obstacle between the user and their goal.'
+   section: images
+   subsection: paradox
+   level: beginner
+   tags: [hero, performance, tao-of-web-images]
+   teaches: 'Let user goals triumph over decorative extravagance.'
+   lesson: the-tao-of-web-images
+   related: [img-008, img-049, img-021]
+
+ - id: img-063
+   text: "The ancient masters said: 'Content is king.' The modern web has forgotten. Images have become the tyrant, and content serves at their pleasure."
+   section: images
+   subsection: paradox
+   level: master
+   tags: [content, philosophy, tao-of-web-images]
+   teaches: 'Ensure imagery supports a strong core message.'
+   lesson: the-tao-of-web-images
+   related: [img-053, img-065]
+
+ - id: img-064
+   text: 'Every byte you send travels thousands of miles through cables under oceans. Respect the journey.'
+   section: images
+   subsection: laws
+   level: master
+   tags: [laws, performance, ethics, tao-of-web-images]
+   teaches: 'Honor the global path of data by sending only necessity.'
+   lesson: the-tao-of-web-images
+   related: [img-022, img-032]
+
+ - id: img-065
+   text: 'An image without purpose is decoration. Decoration without restraint is clutter. Clutter is the enemy of meaning.'
+   section: images
+   subsection: laws
+   level: intermediate
+   tags: [laws, purpose, tao-of-web-images]
+   teaches: 'Give every image intentional meaning and context.'
+   lesson: the-tao-of-web-images
+   related: [img-037, img-053, img-055, img-056]
+
+ - id: img-066
+   text: 'The website that serves only the sighted serves only the half. The website that serves all serves the whole.'
+   section: images
+   subsection: laws
+   level: master
+   tags: [laws, accessibility, tao-of-web-images]
+   teaches: 'Build for everyone by embracing inclusive media practices.'
+   lesson: the-tao-of-web-images
+   related: [img-038, img-057]
+
+ - id: img-067
+   text: "A student asked the master: 'How do I know when my images are optimized?'"
+   section: images
+   subsection: koan
+   level: advanced
+   tags: [koan, reflection, tao-of-web-images]
+   teaches: 'Use questioning to trigger practical verification.'
+   lesson: the-tao-of-web-images
+   related: [img-068, img-069]
+
+ - id: img-068
+   text: "The master replied: 'Open your DevTools. Check your Network tab. If you see red, you have work to do. If you see green, you are learning. If you see nothing because you removed the images entirely and used CSS, you have understood.'"
+   section: images
+   subsection: koan
+   level: advanced
+   tags: [koan, devtools, tao-of-web-images]
+   teaches: 'Leverage DevTools colors to measure image impact.'
+   lesson: the-tao-of-web-images
+   related: [img-025, img-051, img-067]
+
+ - id: img-069
+   text: 'But if your users can accomplish their goals regardless of the images, then you have achieved the Tao.'
+   section: images
+   subsection: koan
+   level: master
+   tags: [koan, goals, tao-of-web-images]
+   teaches: 'True success is measured by the user journey, not pixels.'
+   lesson: the-tao-of-web-images
+   related: [img-067, img-070]
+
+ - id: img-070
+   text: 'The way of the image is the way of balance. Too heavy, and the user departs. Too light, and meaning is lost. Too many, and the message drowns. Too few, and the page speaks in monotone.'
+   section: images
+   subsection: contemplation
+   level: master
+   tags: [contemplation, balance, tao-of-web-images]
+   teaches: 'Hold balanced visual weight to prevent overload or emptiness.'
+   lesson: the-tao-of-web-images
+   related: [img-023, img-071]
+
+ - id: img-071
+   text: 'Seek the middle path. Optimize with compassion. Code with wisdom. Test with humility.'
+   section: images
+   subsection: contemplation
+   level: advanced
+   tags: [contemplation, compassion, tao-of-web-images]
+   teaches: 'Pair optimization with empathy and humility.'
+   lesson: the-tao-of-web-images
+   related: [img-023, img-070, qa-012]
+
+ - id: img-072
+   text: 'This is the Tao of Web Images.'
+   section: images
+   subsection: contemplation
+   level: master
+   tags: [contemplation, identity, tao-of-web-images]
+   teaches: 'Remember the lesson when crafting future media.'
+   lesson: the-tao-of-web-images
+   related: [img-073]
+
+ - id: img-073
+   text: 'May your students find enlightenment in the `<img>` tag, and may their Lighthouse scores be ever green.'
+   section: images
+   subsection: contemplation
+   level: advanced
+   tags: [contemplation, lighthouse, teaching, tao-of-web-images]
+   teaches: 'Blend pedagogy and performance for evergreen learning.'
+   lesson: the-tao-of-web-images
+   related: [img-072, qa-012]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: QA-TOOLING - Quality Assurance & Automation
+ # Source: Web QA Toolkit Documentation
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: qa-001
+   text: 'The wise instructor automates what repeats. The foolish instructor repeats what should be automated.'
+   section: qa-tooling
+   subsection: automation
+   level: beginner
+   tags: [automation, efficiency, teaching, featured]
+   teaches: 'Identify repetitive tasks and build tools to handle them'
+   source: web-qa-toolkit
+   related: [qa-005, qa-014]
+
+ - id: qa-002
+   text: 'The API that documents itself is the API that survives the next developer.'
+   section: qa-tooling
+   subsection: documentation
+   level: intermediate
+   tags: [api, documentation, sustainability]
+   teaches: 'Self-documenting code and clear APIs ensure longevity'
+   source: web-qa-toolkit
+   related: [qa-004, qa-010]
+
+ - id: qa-003
+   text: 'A system without clear layers is like a house without walls: technically functional, emotionally devastating.'
+   section: qa-tooling
+   subsection: architecture
+   level: intermediate
+   tags: [architecture, layers, design, featured]
+   teaches: 'Separation of concerns prevents structural chaos'
+   source: web-qa-toolkit
+   related: [qa-015]
+
+ - id: qa-004
+   text: 'The tool unused is a tool unknown. The tool undocumented is a tool abandoned.'
+   section: qa-tooling
+   subsection: documentation
+   level: beginner
+   tags: [documentation, adoption, usage]
+   teaches: 'Documentation determines tool survival'
+   source: web-qa-toolkit
+   related: [qa-002, qa-010]
+
+ - id: qa-005
+   text: 'The release that ships itself is the release that ships on time.'
+   section: qa-tooling
+   subsection: automation
+   level: intermediate
+   tags: [release, automation, ci-cd]
+   teaches: 'Automated releases reduce human error and delay'
+   source: web-qa-toolkit
+   related: [qa-001, qa-014, ops-001]
+
+ - id: qa-006
+   text: 'A dependency added is a dependency maintained. Choose wisely.'
+   section: qa-tooling
+   subsection: dependencies
+   level: beginner
+   tags: [dependencies, maintenance, decision-making]
+   teaches: 'Every dependency is a future maintenance burden'
+   source: web-qa-toolkit
+   related: [cc-001]
+
+ - id: qa-007
+   text: 'The contributor who reads the style guide is the contributor whose PR gets merged.'
+   section: qa-tooling
+   subsection: contributing
+   level: beginner
+   tags: [contributing, style-guide, collaboration]
+   teaches: 'Following conventions accelerates collaboration'
+   source: web-qa-toolkit
+   related: [qa-008]
+
+ - id: qa-008
+   text: 'The path to mastery begins with reading. The path to enlightenment continues with practice.'
+   section: qa-tooling
+   subsection: learning
+   level: beginner
+   tags: [learning, documentation, practice, featured]
+   teaches: 'Documentation is the start, hands-on practice is the journey'
+   source: web-qa-toolkit
+   related: [qa-007, wis-001]
+
+ - id: qa-009
+   text: 'Code without quality checks is like a ship without a compass: it moves, but who knows where.'
+   section: qa-tooling
+   subsection: quality
+   level: beginner
+   tags: [quality, testing, direction]
+   teaches: 'Quality checks provide direction and confidence'
+   source: web-qa-toolkit
+   related: [qa-016]
+
+ - id: qa-010
+   text: 'To understand the docs is to understand the code. To understand the code is to understand the mind that wrote it.'
+   section: qa-tooling
+   subsection: documentation
+   level: advanced
+   tags: [documentation, understanding, empathy]
+   teaches: 'Documentation reveals developer intent and thinking'
+   source: web-qa-toolkit
+   related: [qa-002, qa-004, cc-001]
+
+ - id: qa-011
+   text: 'Free as in freedom, stable as in tested. The Tao asks not for payment, only for proper attribution.'
+   section: qa-tooling
+   subsection: open-source
+   level: intermediate
+   tags: [open-source, licensing, attribution]
+   teaches: 'Open source thrives on credit and contribution'
+   source: web-qa-toolkit
+   related: []
+
+ - id: qa-012
+   text: 'The wise instructor grades with consistency. The enlightened instructor grades with compassion.'
+   section: qa-tooling
+   subsection: grading
+   level: intermediate
+   tags: [grading, teaching, compassion, featured]
+   teaches: 'Balance objective criteria with human understanding'
+   source: web-qa-toolkit
+   related: [img-071, img-073]
+
+ - id: qa-013
+   text: 'To bump wisely is to keep truth in two places: the manifest and the module.'
+   section: qa-tooling
+   subsection: versioning
+   level: intermediate
+   tags: [versioning, semver, consistency]
+   teaches: 'Version must be synchronized across all sources of truth'
+   source: web-qa-toolkit
+   related: [qa-015]
+
+ - id: qa-014
+   text: 'The documentation that deploys itself is the documentation that stays current.'
+   section: qa-tooling
+   subsection: ci-cd
+   level: intermediate
+   tags: [ci-cd, documentation, automation, featured]
+   teaches: 'Automated deployment keeps docs synchronized with code'
+   source: web-qa-toolkit
+   related: [qa-001, qa-005]
+
+ - id: qa-015
+   text: 'The Tao of configuration: change once, reflect everywhere.'
+   section: qa-tooling
+   subsection: architecture
+   level: intermediate
+   tags: [configuration, dry, single-source-of-truth]
+   teaches: 'Centralized configuration prevents inconsistency'
+   source: web-qa-toolkit
+   related: [qa-003, qa-013]
+
+ - id: qa-016
+   text: 'No bug can withstand the assault of sustained debugging.'
+   section: qa-tooling
+   subsection: persistence
+   level: master
+   tags: [qa, testing, persistence, quality]
+   teaches: 'Pair automated suites with disciplined investigation to pressure stubborn regressions.'
+   chapter: 'QA Chapter'
+   related: [qa-009, dbg-001]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: OPERATIONS - Reliability & Deployment
+ # Source: The Tao of Development - Ops Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: ops-001
+   text: 'Deploy in haste, repent in downtime.'
+   section: operations
+   subsection: reliability
+   level: master
+   tags: [operations, deployment, resilience, mastery]
+   teaches: 'Plan releases with rollback readiness; a steady cadence beats panic.'
+   chapter: 'Ops Chapter'
+   related: [qa-005, dop-001]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: DEBUGGING - Finding Truth in Error
+ # Source: The Tao of Development - Debugging Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: dbg-001
+   text: 'He who codes and runs away lives to debug another day.'
+   section: debugging
+   subsection: persistence
+   level: intermediate
+   tags: [debugging, persistence, intentionality]
+   teaches: 'Face the symptoms instead of fleeing; the bug will still require attention.'
+   chapter: 'Debugging Chapter'
+   related: [qa-016, wis-001]
+
+ - id: dbg-002
+   text: 'The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.'
+   section: debugging
+   subsection: methodology
+   level: master
+   tags: [debugging, estimation, reality, humor, featured]
+   teaches: 'Plan for the last 10%—it is where enlightenment happens. The most elegant solutions hide the most complexity.'
+   chapter: 'Debugging Chapter'
+   source: legal-pages-implementation
+   related: [dbg-003, wis-001]
+
+ - id: dbg-003
+   text: 'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
+   section: debugging
+   subsection: methodology
+   level: advanced
+   tags: [debugging, clarity, cleverness, wisdom]
+   teaches: 'Write code that is easy to debug, not code that is clever. Cleverness is the enemy of maintainability.'
+   chapter: 'Debugging Chapter'
+   source: legal-pages-implementation
+   related: [cc-001, dbg-002]
+
+ - id: dbg-004
+   text: 'Every bug is a question your code could not answer.'
+   section: debugging
+   subsection: mindset
+   level: advanced
+   tags: [debugging, learning, philosophy]
+   teaches: 'Do not just fix bugs—learn from them. Every bug reveals a gap in understanding. Fill it.'
+   chapter: 'Debugging Chapter'
+   source: legal-pages-implementation
+   related: [wis-001, dbg-002]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: JAVASCRIPT - Dynamic Change and the Illusion of Control
+ # Source: The Tao of Development - Scroll Restoration Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: js-001
+   text: 'The river does not push; it allows. The master developer does not force the scroll—they channel its flow.'
+   section: javascript
+   subsection: dom
+   level: master
+   tags: [dom, scroll, framework, react-router, philosophy, featured]
+   teaches: 'Work with framework patterns rather than fighting against them; understand the grain of the tool.'
+   chapter: 'Scroll Restoration Chapter'
+   related: [ux-001, cc-006]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: NETWORKING - Packet-Level Clarity
+ # Source: The Tao of Development - Networking Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: net-001
+   text: 'The novice blames the code, the expert blames the network; the master knows it was DNS all along.'
+   section: networking
+   subsection: diagnosis
+   level: advanced
+   tags: [networking, dns, diagnosis, mastery, humor]
+   teaches: 'Layered troubleshooting starts with assumptions; honor the network fundamentals.'
+   chapter: 'Networking Chapter'
+   related: [dbg-001]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: ACCESSIBILITY - The Inclusive Way
+ # Source: The Tao of Development - Accessibility Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: a11y-001
+   text: 'Accessibility is not a feature. It is the foundation upon which all features rest.'
+   section: accessibility
+   subsection: philosophy
+   level: master
+   tags: [accessibility, philosophy, foundation, featured]
+   teaches: 'Accessibility must be built into the core architecture, not added as an afterthought.'
+   chapter: 'Accessibility Chapter'
+   related: [img-038, img-057, img-066]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: UX - User Experience
+ # Source: The Tao of Development - UX Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: ux-001
+   text: "A user interface is like a joke; if you have to explain it, it's not that good."
+   section: ux
+   subsection: clarity
+   level: intermediate
+   tags: [ux, clarity, communication, humor]
+   teaches: 'Interfaces should reveal intent immediately; explanations belong in documentation.'
+   chapter: 'UX Chapter'
+   related: [img-009, img-053]
+
+ - id: ux-002
+   text: 'The best interface is no interface.'
+   section: ux
+   subsection: clarity
+   level: master
+   tags: [ux, minimalism, philosophy, featured]
+   teaches: 'Eliminate unnecessary page transitions; let content flow naturally. The best navigation is one you forget is there—until you need it.'
+   chapter: 'UX Chapter'
+   source: legal-pages-implementation
+   related: [ux-001, cc-007, arch-001]
+
+ - id: ux-003
+   text: 'Design is not just what it looks like and feels like. Design is how it works.'
+   section: ux
+   subsection: philosophy
+   level: master
+   tags: [ux, design, function, philosophy, featured]
+   teaches: 'Better design equals better function. Visual aesthetics serve usability, not replace it.'
+   chapter: 'UX Chapter'
+   source: legal-pages-implementation
+   related: [ux-001, cc-009, img-053]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: CODE-CRAFT - Human-First Code
+ # Source: The Tao of Development - Code Craft Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: cc-001
+   text: 'Write code for humans first, computers second; the Tao lies in balancing both.'
+   section: code-craft
+   subsection: readability
+   level: master
+   tags: [codecraft, readability, balance, best-practices]
+   teaches: 'Prioritize readability and expressiveness, then tune for efficiency without compromising clarity.'
+   chapter: 'Code Craft Chapter'
+   related: [qa-010, qa-006]
+
+ # Naming Things Chapter
+ - id: cc-002
+   text: "If you can name it too quickly, you do not understand it. If you can't name it at all, you do not understand yourself."
+   section: code-craft
+   subsection: naming
+   level: advanced
+   tags: [naming, understanding, self-awareness, koan, featured]
+   teaches: 'A name must serve both the thing and the fool who will type it at 3am.'
+   chapter: 'Naming Things Chapter'
+   koan: 'The Name That Refuses to Appear'
+   related: [cc-003, cc-004]
+
+ - id: cc-003
+   text: 'All codebases beat at different tempos. Some in allegro, some in adagio, some in panic.'
+   section: code-craft
+   subsection: naming
+   level: intermediate
+   tags: [naming, rhythm, quality, repository, koan]
+   teaches: 'Quality is rhythm; analysis is listening. Your tool must listen for the hidden rhythm.'
+   chapter: 'Naming Things Chapter'
+   koan: 'The Rhythm of Repositories'
+   related: [cc-002, qa-009]
+
+ - id: cc-004
+   text: 'When the namespace grows too wide, its meaning becomes thin. When the namespace is too narrow, its future suffocates.'
+   section: code-craft
+   subsection: naming
+   level: master
+   tags: [naming, namespace, scope, architecture, koan, featured]
+   teaches: 'Name the drum, not the drummer. Then let each drummer improvise.'
+   chapter: 'Naming Things Chapter'
+   koan: 'The Namespace Paradox'
+   related: [arch-002, arch-003, cc-002]
+
+ - id: cc-005
+   text: "A council of branding experts demanded: 'Define your unique value proposition!' The developer, exhausted, whispered: 'It saves me from hating my students.'"
+   section: code-craft
+   subsection: naming
+   level: advanced
+   tags: [naming, branding, authenticity, humor, koan]
+   teaches: 'Authenticity is the best brand strategy.'
+   chapter: 'Naming Things Chapter'
+   koan: 'Branding and the Void'
+   related: [cc-002, wis-001]
+
+ - id: cc-006
+   text: 'The wise developer does not add more code. They remove conflict.'
+   section: code-craft
+   subsection: refactoring
+   level: advanced
+   tags: [refactoring, simplicity, conflict-resolution, philosophy, featured]
+   teaches: 'Resolve conflicts by removing competing implementations rather than adding more layers.'
+   chapter: 'Scroll Restoration Chapter'
+   related: [js-001, arch-004, cc-001]
+
+ - id: cc-007
+   text: 'Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.'
+   section: code-craft
+   subsection: refactoring
+   level: master
+   tags: [codecraft, simplicity, refactoring, design, featured]
+   teaches: 'The best refactor removes code, not adds it. Before adding, ask: "What can I remove?"'
+   chapter: 'Code Craft Chapter'
+   source: legal-pages-implementation
+   related: [cc-001, arch-001, ux-002, cc-006]
+
+ - id: cc-008
+   text: 'Reuse proven patterns; avoid reinventing the wheel.'
+   section: code-craft
+   subsection: patterns
+   level: intermediate
+   tags: [codecraft, patterns, reuse, reliability]
+   teaches: 'Simplicity is prerequisite for reliability. Reuse what works; invent only when necessary.'
+   chapter: 'Code Craft Chapter'
+   source: legal-pages-implementation
+   related: [arch-004, qa-003, cc-007]
+
+ - id: cc-009
+   text: 'Content precedes design. Design in the absence of content is not design, it is decoration.'
+   section: code-craft
+   subsection: readability
+   level: master
+   tags: [codecraft, content, design, philosophy, featured]
+   teaches: 'Semantic structure first, visual polish second. Build meaning before beauty.'
+   chapter: 'Code Craft Chapter'
+   source: legal-pages-implementation
+   related: [cc-001, ux-001, img-053]
+
+ - id: cc-010
+   text: 'Make everything as simple as possible, but not simpler.'
+   section: code-craft
+   subsection: refactoring
+   level: master
+   tags: [codecraft, simplicity, balance, wisdom]
+   teaches: 'Simplicity without losing functionality. Elegance is not complexity—it is simplicity perfected.'
+   chapter: 'Code Craft Chapter'
+   source: legal-pages-implementation
+   related: [cc-006, cc-007, arch-001]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: WISDOM - Reflections Beyond Tools
+ # Source: The Tao of Development - Wisdom Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: wis-001
+   text: 'Experience is simply the name we give to our bugs after we fix them.'
+   section: wisdom
+   subsection: reflection
+   level: advanced
+   tags: [wisdom, experience, learning, humor]
+   teaches: 'Record how failures were resolved so the next traveler learns before stumbling.'
+   chapter: 'Wisdom Chapter'
+   related: [img-015, img-023, qa-008, dbg-001]
+
+ - id: wis-002
+   text: 'Before fixing, understand. Before understanding, observe. Before observing, breathe.'
+   section: wisdom
+   subsection: reflection
+   level: intermediate
+   tags: [reflection, methodology, debugging, philosophy, featured]
+   teaches: 'Methodical investigation requires patience and observation before action.'
+   chapter: 'Audit Chapter'
+   related: [dbg-001, wis-001, qa-008]
+
+ - id: wis-003
+   text: 'In shipping, there is learning. In learning, there is growth. In growth, there is the Tao.'
+   section: wisdom
+   subsection: learning
+   level: master
+   tags: [wisdom, learning, growth, shipping, philosophy, featured]
+   teaches: 'The cycle of delivery, reflection, and improvement is the path to mastery.'
+   chapter: 'Final Chapter'
+   related: [dop-002, wis-001, wis-002]
+
+ - id: wis-004
+   text: 'Simplicity is the ultimate sophistication.'
+   section: wisdom
+   subsection: philosophy
+   level: master
+   tags: [wisdom, simplicity, sophistication, design, featured]
+   teaches: 'The best refactor removes code. Elegance is not complexity—it is simplicity perfected.'
+   chapter: 'Wisdom Chapter'
+   source: legal-pages-implementation
+   related: [cc-006, cc-007, cc-010, arch-001]
+
+ - id: wis-005
+   text: 'Code is not written in text—it is written in understanding. The text is just the shadow of the understanding.'
+   section: wisdom
+   subsection: reflection
+   level: master
+   tags: [wisdom, understanding, code, philosophy, featured]
+   teaches: 'When you fix a bug, you do not fix the code—you fix the understanding. The code fixes itself when the understanding is clear.'
+   chapter: 'Wisdom Chapter'
+   source: legal-pages-implementation
+   related: [dbg-004, wis-001, cc-001]
+
+ - id: wis-006
+   text: 'These bugs were not errors—they were questions. The fixes were not corrections—they were answers.'
+   section: wisdom
+   subsection: reflection
+   level: master
+   tags: [wisdom, bugs, learning, philosophy, featured]
+   teaches: 'Every bug reveals a gap in understanding. Fill it. Document not just what was broken, but why it broke.'
+   chapter: 'Wisdom Chapter'
+   source: legal-pages-implementation
+   related: [dbg-004, wis-001, wis-005]
+
+ - id: wis-007
+   text: 'First make it work. The path begins when the code runs, not when it is admired.'
+   section: wisdom
+   subsection: principles
+   level: intermediate
+   tags: [wisdom, bwu, build, philosophy, featured]
+   teaches: 'Stage 1 (Build / 功): It works. Ship the working thing before polishing the prose.'
+   chapter: 'BWU Principle Chapter'
+   source: ai-route-implementation-guide
+   related: [wis-008, cc-011, cc-001]
+
+ - id: wis-008
+   text: 'Then make it readable. Maintainability is kindness to the next developer — often yourself.'
+   section: wisdom
+   subsection: principles
+   level: advanced
+   tags: [wisdom, bwu, write, philosophy, featured]
+   teaches: 'Stage 2 (Write / 文): It is maintainable. Structure, name, and document so others can walk the path.'
+   chapter: 'BWU Principle Chapter'
+   source: ai-route-implementation-guide
+   related: [wis-007, cc-011, cc-007]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: DATA OPERATIONS WISDOM - The Philosophy of Safe Operations
+ # Source: The Tao of Development - Data Operations & Migration Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: wis-009
+   text: 'The river updates the stones; it does not shatter them.'
+   section: wisdom
+   subsection: philosophy
+   level: master
+   tags: [wisdom, upsert, non-destructive, operations, philosophy, featured]
+   teaches: 'Upserts are the river; schema is the riverbed. The river updates the stones without shattering them. Choose operations that preserve what exists while allowing growth.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-015, cc-016, wis-010]
+
+ - id: wis-010
+   text: 'To rebuild the house, you may burn it; but where will you sleep that night?'
+   section: wisdom
+   subsection: philosophy
+   level: master
+   tags: [wisdom, deletion, backup, safety, risk, philosophy, featured]
+   teaches: 'Backups first, fire later—if ever. Deletion must never be the default. To rebuild, you may burn; but where will you sleep that night? Plan for continuity, not destruction.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-017, wis-009, cc-015]
+
+ - id: wis-011
+   text: 'A departed member is not a bug, but a story with an ending.'
+   section: wisdom
+   subsection: philosophy
+   level: advanced
+   tags: [wisdom, soft-delete, history, data-integrity, philosophy, featured]
+   teaches: 'Systems that remember endings are kinder to the truth. A departed member is not a bug—it is a story with an ending. Keep history; change visibility. Prefer soft status changes over hard deletes.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-018, wis-009, cc-015]
+
+ - id: wis-012
+   text: 'The wise engineer makes danger optional.'
+   section: wisdom
+   subsection: philosophy
+   level: master
+   tags: [wisdom, cli-design, safety, dangerous-operations, philosophy, featured]
+   teaches: 'A good CLI offers a safe path by default and a sharp blade only when asked. The wise engineer makes danger optional. Dangerous operations belong behind flags, with dry-runs and clear naming.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-019, wis-010, arch-027]
+
+ - id: wis-013
+   text: 'Practice in the dojo, perform in the arena.'
+   section: wisdom
+   subsection: teaching
+   level: advanced
+   tags: [wisdom, environments, practice, safety, teaching, philosophy, featured]
+   teaches: 'If a command surprises you in PROD, it was not trained enough. Practice in the dojo (DEV/STG), perform in the arena (PROD). PROD is where you perform only the drills that passed.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-020, wis-012, dop-001]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: DEVOPS - Alignment & Delivery
+ # Source: The Tao of Development - DevOps Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: dop-001
+   text: 'If it works on your machine, perhaps you should ship your machine.'
+   section: devops
+   subsection: reproducibility
+   level: advanced
+   tags: [devops, environment, portability, humor]
+   teaches: 'Invest in repeatable infrastructure so systems behave everywhere you deploy.'
+   chapter: 'DevOps Chapter'
+   related: [ops-001]
+
+ - id: dop-002
+   text: 'The journey of a thousand deploys begins with a single commit.'
+   section: devops
+   subsection: pipelines
+   level: beginner
+   tags: [devops, deployment, journey, humor, featured]
+   teaches: 'Every major deployment starts with a small, incremental change.'
+   chapter: 'Implementation Chapter'
+   related: [dop-001, ops-001, wis-003]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: ARCHITECTURE - The Fractal Art of Modularization
+ # Source: The Tao of Development - Modularization Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: arch-001
+   text: 'The module that knows its boundaries serves the whole. The module that knows no boundaries becomes the whole—and collapses under its own weight.'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: [architecture, boundaries, modularity, featured]
+   teaches: 'Clear interfaces prevent modules from absorbing responsibilities that do not belong.'
+   chapter: 'Modularization Chapter'
+   related: [qa-003, arch-002]
+
+ - id: arch-002
+   text: 'To fractalize is human. To know when to stop fractalizing is wisdom.'
+   section: architecture
+   subsection: fractals
+   level: advanced
+   tags: [architecture, fractals, abstraction, balance]
+   teaches: 'Infinite decomposition creates infinite complexity; find the level where value exceeds cost.'
+   chapter: 'Modularization Chapter'
+   related: [arch-001, arch-003]
+
+ - id: arch-003
+   text: 'The smallest unit of reuse is larger than you think. The largest unit of understanding is smaller than you hope.'
+   section: architecture
+   subsection: composition
+   level: intermediate
+   tags: [architecture, reuse, composition, humor]
+   teaches: 'Effective reuse requires meaningful abstraction; effective understanding requires limited scope.'
+   chapter: 'Modularization Chapter'
+   related: [arch-002, cc-001]
+
+ - id: arch-004
+   text: 'Dependencies flow inward like water seeking the center. Let nothing in the center know the shape of the shore.'
+   section: architecture
+   subsection: dependencies
+   level: master
+   tags: [architecture, dependencies, inversion, featured]
+   teaches: 'Core modules must remain ignorant of outer layers to stay portable and testable.'
+   chapter: 'Modularization Chapter'
+   related: [qa-006, arch-005]
+
+ - id: arch-005
+   text: 'The seed that stays in the garden grows tall. The seed that travels plants forests.'
+   section: architecture
+   subsection: extraction
+   level: advanced
+   tags: [architecture, extraction, open-source, growth]
+   teaches: 'Code extracted into packages multiplies its value across projects and communities.'
+   chapter: 'Modularization Chapter'
+   related: [qa-011, arch-004]
+
+ - id: arch-006
+   text: 'A monorepo is not a monolith. A monolith is not modular. A modular system need not be distributed.'
+   section: architecture
+   subsection: monorepo
+   level: intermediate
+   tags: [architecture, monorepo, monolith, terminology]
+   teaches: 'Repository structure, deployment topology, and code organization are orthogonal concerns.'
+   chapter: 'Modularization Chapter'
+   related: [arch-007]
+
+ - id: arch-007
+   text: 'Ship the module when it works alone. Ship the system when the modules work together. Ship the platform when the systems compose without speaking.'
+   section: architecture
+   subsection: composition
+   level: master
+   tags: [architecture, composition, evolution, featured]
+   teaches: 'Maturity progresses from unit to integration to emergent behavior.'
+   chapter: 'Modularization Chapter'
+   related: [arch-006, dop-001]
+
+ - id: arch-008
+   text: 'Tight coupling is a loan with compound interest. Loose coupling is savings that multiply.'
+   section: architecture
+   subsection: coupling
+   level: beginner
+   tags: [architecture, coupling, technical-debt]
+   teaches: 'Early decisions to entangle modules create escalating maintenance burdens.'
+   chapter: 'Modularization Chapter'
+   related: [qa-006, arch-009]
+
+ - id: arch-009
+   text: 'High cohesion is a team that finishes each other sentences. Low cohesion is a meeting where nobody knows the agenda.'
+   section: architecture
+   subsection: cohesion
+   level: intermediate
+   tags: [architecture, cohesion, design, humor]
+   teaches: 'Code that belongs together should live together; unrelated concerns fragment understanding.'
+   chapter: 'Modularization Chapter'
+   related: [arch-008, qa-003]
+
+ - id: arch-010
+   text: 'Extract when the boundary is clear. Inline when the boundary was premature. Know the difference by the friction of change.'
+   section: architecture
+   subsection: extraction
+   level: advanced
+   tags: [architecture, extraction, refactoring, judgment]
+   teaches: 'Let pain guide architecture: difficult changes reveal hidden coupling.'
+   chapter: 'Modularization Chapter'
+   related: [arch-005, wis-001]
+
+ - id: arch-011
+   text: 'The inner layer is the most reusable. The outer layer is the most disposable. Build value inward.'
+   section: architecture
+   subsection: dependencies
+   level: intermediate
+   tags: [architecture, layers, clean-architecture]
+   teaches: 'Framework adapters change often; business logic should outlast them.'
+   chapter: 'Modularization Chapter'
+   related: [arch-004, cc-001]
+
+ - id: arch-012
+   text: 'Am I fractalizing too much? If you must ask, pause. Count the consumers. If fewer than three, wait. If three or more, proceed.'
+   section: architecture
+   subsection: fractals
+   level: master
+   tags: [architecture, fractals, rule-of-three, wisdom, featured]
+   teaches: 'The rule of three: abstract when patterns repeat thrice, not before.'
+   chapter: 'Modularization Chapter'
+   related: [arch-002, arch-003]
+
+ - id: arch-015
+   text: 'When the same thing has two names, confusion reigns. When one thing serves two masters, both are betrayed.'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: [architecture, identity, naming, debugging, featured]
+   teaches: 'One entity, one identity. If your logical model uses one name, your DOM must use the same. If external constraints force a different name, make the mapping explicit and visible.'
+   chapter: 'Modularization Chapter'
+   source: legal-pages-implementation
+   related: [arch-001, cc-002, dbg-001]
+
+ - id: arch-016
+   text: 'The best navigation is one you forget is there—until you need it.'
+   section: architecture
+   subsection: composition
+   level: advanced
+   tags: [architecture, ux, invisibility, design]
+   teaches: 'Invisible until invoked. Good UI components do not compete for attention—they wait patiently, ready to serve. Weight betrays importance.'
+   chapter: 'Modularization Chapter'
+   source: legal-pages-implementation
+   related: [ux-002, arch-001, cc-007]
+
+ - id: arch-017
+   text: 'In a forest, every tree must be itself. Reuse is wisdom, but identity is sacred.'
+   section: architecture
+   subsection: composition
+   level: intermediate
+   tags: [architecture, reuse, identity, design-system]
+   teaches: 'Reuse patterns, not identities. You can reuse code, but each page should have its own visual signature. Variation within consistency.'
+   chapter: 'Modularization Chapter'
+   source: legal-pages-implementation
+   related: [arch-003, cc-008]
+
+ - id: arch-018
+   text: 'Offset is not mathematics—it is empathy. You must remember what came before.'
+   section: architecture
+   subsection: boundaries
+   level: intermediate
+   tags: [architecture, css, layout, memory]
+   teaches: 'Stacking context is human context. Every element that comes before affects what comes after. You must account for all layers. CSS variables are memories.'
+   chapter: 'Modularization Chapter'
+   source: legal-pages-implementation
+   related: [arch-011, ux-001]
+
+ - id: arch-019
+   text: 'An empty field is not an error—it is an incomplete promise. Code can be perfect, but data can be absent.'
+   section: architecture
+   subsection: boundaries
+   level: advanced
+   tags: [architecture, data, completeness, error-handling]
+   teaches: 'Perfect code, imperfect data. You can write flawless code, but if the data does not exist, your page is incomplete. Design for missing data gracefully.'
+   chapter: 'Modularization Chapter'
+   source: legal-pages-implementation
+   related: [arch-001, qa-009]
+
+ - id: arch-020
+   text: 'Not every problem is a bug. Sometimes the problem is expectation.'
+   section: architecture
+   subsection: boundaries
+   level: advanced
+   tags: [architecture, debugging, verification, discernment]
+   teaches: 'The first tool of debugging: Verify. Before fixing, verify the problem exists. Cache is not a bug—it is a feature misunderstood. Trust the code, verify the runtime.'
+   chapter: 'Modularization Chapter'
+   source: legal-pages-implementation
+   related: [dbg-001, dbg-004]
+
+ - id: arch-013
+   text: 'One source of truth. One place to change. One mind at peace.'
+   section: architecture
+   subsection: boundaries
+   level: intermediate
+   tags: [architecture, single-source-of-truth, configuration, boundaries, featured]
+   teaches: 'Centralized configuration eliminates inconsistency and reduces cognitive load.'
+   chapter: 'Design System Chapter'
+   related: [qa-015, arch-004, arch-011]
+
+ - id: arch-014
+   text: 'A template is not a constraint. It is a garden where a thousand flowers can bloom in harmony.'
+   section: architecture
+   subsection: composition
+   level: advanced
+   tags: [architecture, templates, composition, flexibility, philosophy, featured]
+   teaches: 'Templates provide structure that enables creativity rather than limiting it.'
+   chapter: 'Template Vision Chapter'
+   related: [arch-003, arch-007, cc-001]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: ROUTE IMPLEMENTATION - The Path of Structure
+ # Source: AI Route Implementation Guide (ADADI)
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: arch-021
+   text: 'Simplicity Is Sacred - Remove before you add.'
+   section: architecture
+   subsection: composition
+   level: master
+   tags: [architecture, simplicity, refactoring, sacred, featured]
+   teaches: 'The first question before adding code: What can I remove? Simplicity is not the absence of complexity—it is the presence of understanding.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [cc-007, arch-001, ux-002]
+
+ - id: arch-022
+   text: 'Identity Is Explicit - One thing, one name, clear mappings.'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: [architecture, identity, naming, explicit, featured]
+   teaches: 'When the same thing has two names, confusion reigns. Make identity explicit: one entity, one name, one mapping. If external constraints force a different name, make the mapping visible.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [arch-015, cc-002, cc-004]
+
+ - id: arch-023
+   text: 'Layouts Provide Context - Every route section deserves its wrapper.'
+   section: architecture
+   subsection: composition
+   level: intermediate
+   tags: [architecture, layout, context, structure, routing]
+   teaches: 'In the web of life we need a layout as a raindrop needs a cloud—the layout gives structure and context to the page, without weighing down the content it carries.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [arch-001, ux-001]
+
+ - id: arch-024
+   text: 'Footer as TOC - Global navigation beats local complexity.'
+   section: architecture
+   subsection: composition
+   level: advanced
+   tags: [architecture, navigation, footer, simplicity, ux, featured]
+   teaches: 'Eliminate unnecessary page transitions; let content flow naturally. The best navigation is one you forget is there—until you need it. Use footer for in-page navigation instead of local TOCs.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [ux-002, arch-016, ux-001]
+
+ - id: arch-025
+   text: 'CSS Variables Are Contracts - Use --header-height, --footer-height religiously.'
+   section: architecture
+   subsection: boundaries
+   level: intermediate
+   tags: [architecture, css, variables, contracts, maintainability]
+   teaches: 'CSS variables are contracts between components. Use them for all layout-related dimensions. They respond to theme changes, prevent magic numbers, and maintain consistency.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [arch-013, cc-008]
+
+ - id: arch-026
+   text: 'Translations Are Not Optional - Every string must have a key.'
+   section: architecture
+   subsection: boundaries
+   level: intermediate
+   tags: [architecture, i18n, translations, localization, contracts]
+   teaches: 'Every user-facing string must have a translation key. No hardcoded text. No exceptions. Translations are not optional—they are contracts with your users.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [arch-013, cc-001]
+
+ - id: arch-027
+   text: 'Verify Before You Fix - Not every symptom is a disease.'
+   section: architecture
+   subsection: boundaries
+   level: advanced
+   tags: [architecture, debugging, verification, methodology, featured]
+   teaches: 'The first tool of debugging: Verify. Before fixing, verify the problem exists. Cache is not a bug—it is a feature misunderstood. Trust the code, verify the runtime.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [dbg-004, arch-020, dbg-001]
+
+ - id: cc-011
+   text: 'Build → Write → Understand - The three stages of code enlightenment.'
+   section: code-craft
+   subsection: refactoring
+   level: advanced
+   tags: [codecraft, refactoring, bwu, evolution, philosophy, featured]
+   teaches: 'Stage 1 (Build): It works. Stage 2 (Write): It is maintainable. Stage 3 (Understand): It is simple. The bliss of code comes when you reach Stage 3—code reads like prose, intent is clear, changes are easy.'
+   chapter: 'BWU Principle Chapter'
+   source: ai-route-implementation-guide
+   related: [cc-001, cc-007, wis-007, wis-008]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: DATA FORMATTING - The Art of Human-Readable Structure
+ # Source: The Tao of Development - Data Formatting Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: cc-012
+   text: 'A student asked the master: "Should I use spaces or tabs for indentation?" The master replied: "Use spaces for consistency, tabs for flexibility, but never mix them. The real question is: Can a human read your data at 3am without weeping?"'
+   section: code-craft
+   subsection: readability
+   level: intermediate
+   tags: [codecraft, formatting, indentation, spaces, tabs, readability, koan, featured]
+   teaches: 'Data formatting is not about machines—it is about humans. Choose consistency over personal preference. The best format is the one that remains readable when you are tired, when you are debugging, when you are teaching.'
+   chapter: 'Data Formatting Chapter'
+   koan: 'The Indentation Paradox'
+   related: [cc-001, cc-002, arch-013]
+
+ - id: cc-013
+   text: 'Two spaces align, Four spaces nest deep, Tabs break the flow.'
+   section: code-craft
+   subsection: readability
+   level: beginner
+   tags: [codecraft, formatting, indentation, spaces, tabs, haiku, poetry, readability]
+   teaches: 'Consistency in indentation creates visual harmony. Two spaces for lists, four for nesting. Tabs introduce chaos when mixed with spaces. Choose one and honor it throughout.'
+   chapter: 'Data Formatting Chapter'
+   related: [cc-012, cc-001]
+
+ - id: cc-014
+   text: 'Data written for machines is noise. Data written for humans is music. The master writes data that both can read—machines parse it quickly, humans understand it immediately.'
+   section: code-craft
+   subsection: readability
+   level: master
+   tags: [codecraft, formatting, readability, philosophy, data, human-readable, featured]
+   teaches: 'The highest form of data formatting serves both machine and human. YAML with consistent indentation, JSON with proper spacing, XML with clear structure. When data reads like prose, both parser and programmer rejoice.'
+   chapter: 'Data Formatting Chapter'
+   related: [cc-001, cc-012, arch-013, cc-011]
+
+ - id: cc-015
+   text: 'A gardener waters, he does not burn the field.'
+   section: code-craft
+   subsection: patterns
+   level: advanced
+   tags: [codecraft, non-destructive, upsert, deletion, operations, patterns, koan, featured]
+   teaches: 'Upserts grow the garden; deletion is fire. Prefer non-destructive operations by default. Create and update preserve what exists; delete destroys what was. The gardener nurtures growth, not destruction.'
+   chapter: 'Data Operations Chapter'
+   koan: 'The Gardener and the Field'
+   related: [cc-001, arch-013, cc-011]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: DATA OPERATIONS - Sources of Truth, Upserts, and Safe Practices
+ # Source: The Tao of Development - Data Operations & Migration Chapter
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: cc-016
+   text: 'Choose a single source of truth and let your imports converge to it, not fight it. WP is the source. Strapi is the mirror. Upserts keep the mirror aligned without smashing it.'
+   section: code-craft
+   subsection: patterns
+   level: intermediate
+   tags: [codecraft, single-source-of-truth, upsert, imports, synchronization, patterns, featured]
+   teaches: 'Upserts keep the mirror aligned without smashing it. Choose one source of truth and let all systems converge to it. The source defines reality; mirrors reflect it. Upserts update without destruction.'
+   chapter: 'Data Operations Chapter'
+   related: [arch-013, cc-015, qa-015]
+
+ - id: cc-017
+   text: 'Deletion must never be the default; it must be a conscious act with a visible switch. Non-destructive import is the safe baseline. Pruning (removing missing members) is an opt-in ritual, not an accident.'
+   section: code-craft
+   subsection: patterns
+   level: advanced
+   tags: [codecraft, non-destructive, deletion, pruning, safety, operations, patterns, featured]
+   teaches: 'Deletion must never be the default. Non-destructive import is the safe baseline. Pruning is an opt-in ritual, not an accident. Backups first, fire later—if ever.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-015, cc-016, arch-027]
+
+ - id: cc-018
+   text: 'When people (or records) leave, the system should acknowledge that change, not erase their existence blindly. Prefer soft status changes (active → former) over hard deletes. Keep history; change visibility.'
+   section: code-craft
+   subsection: patterns
+   level: intermediate
+   tags: [codecraft, soft-delete, status-changes, history, data-integrity, patterns]
+   teaches: 'A departed member is not a bug, but a story with an ending. Systems that remember endings are kinder to the truth. Prefer soft status changes over hard deletes. Keep history; change visibility.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-015, cc-017, wis-011]
+
+ - id: cc-019
+   text: 'Dangerous operations belong behind flags, with dry-runs and clear naming. --prune-missing rather than hidden behavior. --prune-strategy=soft|hard rather than "guess what I did". --dry-run to rehearse before acting.'
+   section: code-craft
+   subsection: patterns
+   level: advanced
+   tags: [codecraft, cli-design, safety, flags, dry-run, dangerous-operations, patterns, featured]
+   teaches: 'The wise engineer makes danger optional. A good CLI offers a safe path by default and a sharp blade only when asked. Dangerous operations belong behind flags, with dry-runs and clear naming.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-017, wis-012, arch-027]
+
+ - id: cc-020
+   text: 'DEV and STG are where you practice deletion and pruning. PROD is where you perform only the drills that passed. Prototype --prune-missing in DEV. Rehearse it in STG with real data. Use it in PROD only after it has become boring.'
+   section: code-craft
+   subsection: patterns
+   level: intermediate
+   tags: [codecraft, environments, dev-stg-prod, practice, safety, operations, patterns]
+   teaches: 'Practice in the dojo, perform in the arena. If a command surprises you in PROD, it was not trained enough. DEV and STG are where you practice; PROD is where you perform only the drills that passed.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-019, wis-013, dop-001]
+
+ - id: cc-021
+   text: '"Drop and reimport" is not evil, but it is a ritual, not a routine. Use it where consequences are acceptable (DEV/STG). In PROD, prefer incremental convergence + optional prune.'
+   section: code-craft
+   subsection: patterns
+   level: intermediate
+   tags: [codecraft, migration, drop-reimport, incremental, convergence, patterns]
+   teaches: '"Drop and reimport" is a ritual, not a routine. Use it where consequences are acceptable. In PROD, prefer incremental convergence. Backup, then pour slow.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-016, cc-017, cc-020]
+
+ - id: cc-022
+   text: 'The pot once emptied, Must be filled without a spill, Backup, then pour slow.'
+   section: code-craft
+   subsection: patterns
+   level: beginner
+   tags: [codecraft, migration, backup, haiku, poetry, safety, patterns]
+   teaches: 'Migration requires care. The pot once emptied must be filled without a spill. Backup first, then pour slow. Incremental convergence beats reckless replacement.'
+   chapter: 'Data Operations Chapter'
+   related: [cc-021, cc-017]
+
+ - id: cc-023
+   text: "Name your repository 'Project' and it shall be deleted with the same indifference you showed when naming it."
+   section: code-craft
+   subsection: naming
+   level: beginner
+   tags: [naming, git, humor, anti-pattern]
+   teaches: 'Generic names lead to lost projects and lost grades'
+   show_when: 'Student names repo "project", "my-website", or "folder"'
+
+ - id: cc-024
+   text: 'CamelCase in URLs is like wearing a tuxedo to a mud wrestling match. You think you look fancy, but you are just going to get dirty.'
+   section: code-craft
+   subsection: naming
+   level: beginner
+   tags: [naming, conventions, humor]
+   teaches: 'URLs and file systems prefer kebab-case; case sensitivity is a trap'
+   related: [cc-028]
+
+ - id: cc-025
+   text: "You put an 'ñ' in the URL. The browser smiled, the server cried, and the git remote simply ceased to exist."
+   section: code-craft
+   subsection: naming
+   level: beginner
+   tags: [naming, encoding, urls, disaster]
+   teaches: 'Special characters in filenames are a ticking time bomb'
+   show_when: 'Student uses non-ASCII characters in filenames'
+
+ - id: cc-026
+   text: "Your repository is named 'assignment-1_x7z9'. Are you a human or a captcha? The grader is unsure."
+   section: code-craft
+   subsection: naming
+   level: intermediate
+   tags: [naming, clarity, humor, identity]
+   teaches: 'Avoid auto-generated or cryptic suffixes'
+
+ - id: cc-027
+   text: "User 'dark_killer_69' pushes code. The hiring manager pulls code. The hiring manager deletes the resume. The circle of life continues."
+   section: code-craft
+   subsection: naming
+   level: beginner
+   tags: [identity, professionalism, career, humor]
+   teaches: 'Your username is your first impression'
+   show_when: 'Student uses unprofessional handles'
+
+ - id: cc-028
+   text: 'Use a space in a filename, and the command line will treat your file as two strangers passing in the night.'
+   section: code-craft
+   subsection: naming
+   level: beginner
+   tags: [cli, naming, bash, suffering]
+   teaches: 'Spaces in filenames break scripts and command line arguments'
+   related: [cc-024]
+
+ - id: cc-029
+   text: "You named the variable 'data'. I assume the function is named 'doThings'. We shall bury them together in the graveyard of ambiguity."
+   section: code-craft
+   subsection: naming
+   level: intermediate
+   tags: [naming, variables, ambiguity, clean-code]
+   teaches: 'Vague naming is effectively no naming at all'
+
+ - id: cc-030
+   text: "A repository without a clear name is like a tombstone without an inscription. We know something is buried there, but we don't care who it was."
+   section: code-craft
+   subsection: naming
+   level: intermediate
+   tags: [naming, documentation, morbidity]
+   teaches: 'Descriptive names prevent project obsolescence'
+
+ - id: cc-031
+   text: 'Inconsistent casing is not a style. It is a ransom note written by a psychopath.'
+   section: code-craft
+   subsection: naming
+   level: beginner
+   tags: [consistency, naming, discipline, humor]
+   teaches: 'Pick one convention and stick to it or perish'
+
+ - id: cc-032
+   text: "'Final_Final_v2' implies you have looked into the future and were wrong. Twice."
+   section: code-craft
+   subsection: versioning
+   level: beginner
+   tags: [git, versioning, sarcasm, anti-pattern]
+   teaches: 'Git tags exist so you stop renaming files like a hoarder'
+   show_when: 'Student uses "final" in filenames'
+
+ - id: cc-033
+   text: "Before you baptise a star, grep the registry. The theme you invented at midnight may already orbit under another slug."
+   section: code-craft
+   subsection: naming
+   level: advanced
+   tags: [naming, registry, search, idempotency, koan]
+   teaches: 'Search manifests, registries, and sibling repos for the same theme under another slug before inventing a new name.'
+   show_when: 'Developer proposes a new namespace without checking existing catalogs'
+   related: [cc-002, cc-004, cc-030]
+   koan: 'Search Before Baptism'
+   source: profield-ahmes-naming
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: cc-034
+   text: "The path speaks to humans. The vault speaks to libraries. The scope speaks to machines. One string for three tongues, and at 3am the collision speaks loudest."
+   section: code-craft
+   subsection: naming
+   level: master
+   tags: [naming, namespace, scope, boundaries, architecture, koan, featured]
+   teaches: 'Keep human paths, library partitions, and machine scope identifiers separate — collapsing layers guarantees collision.'
+   related: [cc-004, cc-002, cc-029]
+   koan: 'Three Names, Three Jobs'
+   source: profield-ahmes-naming
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: cc-035
+   text: "Let the machine slug carry lineage with a prefix; let the human label breathe without it. The scope remembers ancestry; the speech remembers mercy."
+   section: code-craft
+   subsection: naming
+   level: intermediate
+   tags: [naming, scope, slug, conventions, clarity]
+   teaches: 'Prefix machine-scoped slugs with lineage; keep human-facing labels short and unburdened.'
+   related: [cc-004, cc-026, cc-031]
+   source: profield-ahmes-naming
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: cc-036
+   text: "The display name may welcome a guest. The canonical slug may not drift. Hospitality lives in aliases; law lives in identifiers."
+   section: code-craft
+   subsection: naming
+   level: advanced
+   tags: [naming, alias, slug, identity, single-source-of-truth, koan]
+   teaches: 'Aliases and display names may differ for humans; canonical slugs and identifiers must not drift.'
+   related: [cc-002, cc-004, cc-016]
+   koan: 'Alias and Slug'
+   source: profield-ahmes-naming
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: cc-037
+   text: "Two filenames, one content hash, one truth. Cite once. Inject once. The duplicate name is costume; the hash is the face."
+   section: code-craft
+   subsection: naming
+   level: intermediate
+   tags: [naming, idempotency, single-source-of-truth, upsert]
+   teaches: 'Identical content under different filenames shares one document identity — deduplicate by hash, not by name.'
+   related: [cc-015, cc-016, cc-017]
+   source: profield-ahmes-naming
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: cc-038
+   text: "Idempotency does not begin at the upsert. It begins when you recognize what was already baptised and bow to that name."
+   section: code-craft
+   subsection: naming
+   level: master
+   tags: [naming, idempotency, upsert, wisdom, koan, featured]
+   teaches: 'Recognize existing baptised names in the registry before creating new ones — idempotency starts with recognition.'
+   related: [cc-002, cc-015, cc-016, cc-033]
+   koan: 'The Name That Already Exists'
+   source: profield-ahmes-naming
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: dbg-005
+   text: 'The debugger who debugs wisely, debugs only once; for each bug fixed in understanding will not return in code.'
+   section: debugging
+   subsection: mindset
+   level: master
+   tags: [debugging, understanding, learning, philosophy, featured]
+   teaches: 'Do not just fix bugs—understand them. Every bug reveals a gap in understanding. Fill the gap, and the bug will not return. Debugging is not about fixing code—it is about fixing understanding.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [dbg-004, wis-001, dbg-002]
+
+ - id: ux-004
+   text: 'The master teaches by example, not by perfection.'
+   section: ux
+   subsection: philosophy
+   level: master
+   tags: [ux, teaching, example, philosophy, featured]
+   teaches: 'Documentation is a living document, born from real implementation experience. It evolves as new patterns emerge. The master teaches through working examples, not theoretical perfection.'
+   chapter: 'Route Implementation Chapter'
+   source: ai-route-implementation-guide
+   related: [wis-001, cc-001, arch-014]
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: ARCHITECTURE / DEVOPS / WISDOM — Tao of the System Architect (DevIAC)
+ # Source: merged from deviac/docs/tao/ttod.yaml → canonical ttod.yml
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: arch-028
+   text: "The sovereign developer does not ask permission to think. She does not pay per token to reason. She does not send her code to a stranger's server to understand it. Her tools run on her own metal, powered by her own silicon, governed by her own rules. This is not ideology — it is engineering independence."
+   koan: 'The Sovereign Forge'
+   section: architecture
+   subsection: principles
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§39): The Sovereign Forge — Haiku: silicon warms quiet / no cloud asked, no bill received / the thought is her own'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-029
+   text: "The cloud model answers in milliseconds. The local model answers in seconds. But the cloud model's answer belongs to someone else. Speed without sovereignty is a leash worn willingly."
+   koan: 'The Cost of Convenience'
+   section: architecture
+   subsection: principles
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§40): The Cost of Convenience — Haiku: fast reply arrives / but who read it on the way? / own your latency'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-030
+   text: "A student asked: 'Why not use the cloud model? It is faster.' The architect replied: 'Try asking it a thousand questions at midnight.' The student understood."
+   koan: 'The Rate Limit'
+   section: architecture
+   subsection: principles
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§41): The Rate Limit'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-031
+   text: "The developer's machine is the forge. The deployment host is the stage. One builds; the other runs. Confuse them and you will burn the audience or bore the smith."
+   koan: 'The Forge and the Stage'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§37): The Forge and the Stage — Haiku: Tanit shapes the steel / Lilith bears the finished blade / each knows its own fire'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-032
+   text: 'Domain logic is sacred; infrastructure is a detail. When Pydantic appears in your entity, the temple has been violated. When SQLAlchemy speaks in your value object, the priest has become the merchant.'
+   koan: 'The Sacred Domain'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§42): The Sacred Domain — Haiku: frozen dataclass / no imports from the outside / the domain stands pure'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-033
+   text: 'The sculptor reveals the form by removing stone. The architect reveals the system by removing services. ChromaDB, Redis, Terraform, Ansible — each removal was a clarification.'
+   koan: "The Sculptor's Wisdom"
+   section: architecture
+   subsection: entropy
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: "DevIAC Tao (§43): The Sculptor's Wisdom — Haiku: less is not lacking / each service stripped was a lie / Postgres is enough"
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-034
+   text: 'A protocol is a promise. An adapter is a translator. A port is a doorway. The domain does not know who knocks — it only knows the shape of the question.'
+   koan: 'The Hexagonal Garden'
+   section: architecture
+   subsection: boundaries
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§44): The Hexagonal Garden'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: dop-003
+   text: 'On Apple Silicon, the GPU and CPU drink from the same pool. 128GB unified is not a compromise — it is the reason a 72B model fits where no discrete GPU could hold it.'
+   koan: 'Metal and Memory'
+   section: devops
+   subsection: automation
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§35): Metal and Memory — Haiku: shared memory pool / seventy-two billion weights / fit where none could dream'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: dop-004
+   text: 'Docker on macOS runs Linux in a VM. The VM cannot see Metal. Ollama in Docker is Ollama without hands. Always run the model native; let containers carry the data, not the mind.'
+   koan: 'The Docker Trap'
+   section: devops
+   subsection: automation
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§36): The Docker Trap — Haiku: the VM has no eyes / Metal sleeps behind the wall / run native, run free'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-037
+   text: 'The honest AI engineer does not lie to herself about her tools. She knows what they can and cannot do, and she designs her workflow to amplify their strengths.'
+   koan: 'The Honest Assessment'
+   section: architecture
+   subsection: principles
+   level: intermediate
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§22): The Honest Assessment — Haiku: the gap is not size / context window, tool, and prompt / compensate with care'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-038
+   text: 'The model without memory is a stranger in your codebase. Feed it your architecture and it becomes a colleague. Feed it your conventions and it becomes a partner. But never mistake its fluency for understanding.'
+   koan: 'RAG as Memory'
+   section: architecture
+   subsection: dependencies
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§45): RAG as Memory'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-039
+   text: 'Every document enters the system exactly once. The SHA-256 hash is its fingerprint. If you see a duplicate, your ingestor lied. Idempotency is not a feature — it is a contract with truth.'
+   koan: 'The Hash is the Anchor'
+   section: architecture
+   subsection: principles
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§46): The Hash is the Anchor — Haiku: same bytes, same hash code / insert twice, exist but once / truth does not repeat'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-040
+   text: 'Where on the page? Where on the earth? What does it mean? Every fragment of knowledge must answer all three, or it floats unmoored — useful to no one, findable by nothing.'
+   koan: 'The Tri-Anchor'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§47): The Tri-Anchor — Haiku: spatial, geographic / semantic anchor completes / the triangle holds'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-041
+   text: 'A mutable entity is a lie waiting to happen. Freeze the dataclass. Version the schema. Let the original hash testify to what was, not what someone wished it had been.'
+   koan: 'The Frozen Record'
+   section: architecture
+   subsection: principles
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§48): The Frozen Record'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: dop-005
+   text: 'On macOS, /var/run/docker.sock is a symlink. The container follows the symlink and finds nothing. Mount the real path — ~/.docker/run/docker.sock — and the proxy finds its voice.'
+   koan: 'The Socket Speaks Not'
+   section: devops
+   subsection: automation
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§49): The Socket Speaks Not — Haiku: symlink deceives all / mount the real path, not the ghost / the proxy then speaks'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: dop-006
+   text: 'When the Docker provider fails, do not fight the daemon. Write the route in a file. Traefik watches the file. The file does not crash, timeout, or require API access. Simplicity is the ultimate reliability.'
+   koan: 'File Beats Docker'
+   section: devops
+   subsection: automation
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§50): File Beats Docker — Haiku: provider breaks down / a YAML file stands unchanged / the route still resolves'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: dop-007
+   text: "hatchling refused to build. The error said 'README.md does not exist.' But the file was there — two COPY instructions later. Order matters. Dependencies are not just between services; they exist between lines in a Dockerfile."
+   koan: 'The README Lesson'
+   section: devops
+   subsection: automation
+   level: intermediate
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§51): The README Lesson'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-045
+   text: 'ChromaDB for vectors, Redis for cache, Postgres for relations — three engines, three failure modes, three sets of credentials. Replace them all with Postgres + pgvector: one engine, one backup, one truth.'
+   koan: 'One Engine'
+   section: architecture
+   subsection: composition
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§52): One Engine — Haiku: three stores, three failures / pgvector in Postgres sleeps / one engine, one truth'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: wis-014
+   text: 'Before the first line of code, prepare the forge. Before the first query, load the memory. Documentation is not an afterthought — it is the first act of architecture.'
+   koan: 'The Living Document'
+   section: wisdom
+   subsection: principles
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§1): The Living Document — Haiku: write before you code / the plan becomes the compass / architecture lives'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: wis-015
+   text: 'Write documentation as if your future self has forgotten everything. Because she will.'
+   koan: 'Future Self'
+   section: wisdom
+   subsection: principles
+   level: intermediate
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§8): Future Self — Haiku: six months from today / you will read this as a stranger / be kind to her now'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: wis-016
+   text: 'A roadmap is not a promise — it is a direction. The sovereign developer adjusts course when the terrain reveals itself.'
+   koan: 'The Roadmap'
+   section: wisdom
+   subsection: principles
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§12): The Roadmap'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-049
+   text: 'Ahmes extracts. Arkadia curates. DevIAC serves. A student who understands this triangle understands that knowledge flows — it is never static, never finished, never owned by one system alone.'
+   koan: 'The Three Systems'
+   section: architecture
+   subsection: principles
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§53): The Three Systems — Haiku: extract, curate, serve / three systems, one flowing stream / knowledge never rests'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-050
+   text: 'Each PHASE-n.md is a self-contained prompt with all context embedded. A local 72B model following it will produce nearly identical output to a cloud model, because the prompt does the heavy lifting. The intelligence is in the specification, not the parameter count.'
+   koan: 'The Phase File'
+   section: architecture
+   subsection: extraction
+   level: advanced
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'DevIAC Tao (§54): The Phase File'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+ - id: arch-051
+   text: 'Before changing a domain entity, check for side effects in application use cases. Before trusting LLM output, parse it into a value object. The guard is not distrust — it is respect for the boundary.'
+   koan: 'The Test-First Guard'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: ['deviac', 'tao-of-system-architect', 'koan', 'featured', 'haiku']
+   teaches: 'DevIAC Tao (§55): The Test-First Guard — Haiku: test before you change / parse before you trust the words / boundaries are love'
+   source: 'deviac/docs/tao/ttod.yaml (merged)'
+
+
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # Athanor Phase 2 — MCP Single Door (harvested 2026-08-11)
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: arch-052
+   text: 'The wise architect builds one door and lets many enter. The MCP server is that door — Cursor, Claude, the web UI, and the CLI all walk through it. There is no side entrance to the vault.'
+   koan: 'The MCP Door'
+   section: architecture
+   subsection: boundaries
+   level: advanced
+   tags: ['architecture', 'boundaries', 'single-source-of-truth', 'mcp', 'athanor', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'One MCP facade for Cursor, chat, web, and CLI — no side entrance to the vault (Athanor Phase 2 §23).'
+   show_when: 'Designing retrieval APIs or debating a parallel Retriever beside MCP.'
+   related: [arch-054, arch-056, arch-057]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-053
+   text: 'The AI engineer who builds a chat system without a single source of truth for retrieval will soon have two systems that disagree. Then three. Then she will spend her career debugging the gaps between them.'
+   koan: 'The Diverging Retrievers'
+   section: architecture
+   subsection: coupling
+   level: advanced
+   tags: ['architecture', 'single-source-of-truth', 'athanor', 'tao-of-ai-engineer', 'koan', 'featured']
+   teaches: 'Chat without one retrieval SoT multiplies disagreeing systems (Athanor Phase 2 §14).'
+   show_when: 'Someone proposes a chat-only search path separate from MCP tools.'
+   related: [arch-052, arch-055, arch-013]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-054
+   text: "There is only one implementation of 'how to query the vault': the MCP tools. The chat backend is a client, not an architect."
+   koan: 'The Single Door'
+   section: architecture
+   subsection: boundaries
+   level: master
+   tags: ['architecture', 'boundaries', 'mcp', 'athanor', 'koan', 'featured']
+   teaches: 'Chat is an MCP client; vault query logic lives only in MCP tools (Koan of the Single Door).'
+   show_when: 'Implementing chat or CLI and tempted to call the vault directly.'
+   related: [arch-052, arch-055, arch-056]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-055
+   text: 'If you build a second path to the vault, you will soon have two truths. And two truths is a lie.'
+   koan: 'The Redundant Query'
+   section: architecture
+   subsection: coupling
+   level: master
+   tags: ['architecture', 'single-source-of-truth', 'paradox', 'athanor', 'koan', 'featured']
+   teaches: 'No parallel Retriever/ContextAssembler — a second path yields two truths (Koan of the Redundant Query).'
+   show_when: 'Reviewing a PR that adds a second retrieval path beside MCP.'
+   related: [arch-053, arch-054, arch-013]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-056
+   text: 'When the chat, the CLI, and the AI agent all see the same context from the same source — that is not redundancy. That is truth. One vault, one door, one answer.'
+   koan: 'One Vault, One Door'
+   section: architecture
+   subsection: composition
+   level: advanced
+   tags: ['architecture', 'single-source-of-truth', 'mcp', 'athanor', 'tao-of-system-architect', 'koan', 'featured']
+   teaches: 'Shared MCP context across chat, CLI, and agents is truth, not waste (Athanor Phase 2 §25).'
+   show_when: 'Justifying why CLI and chat must share MCP tool handlers.'
+   related: [arch-052, arch-054, arch-059]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-057
+   text: 'one door, many guests — the tool that serves the scholar serves the machine too'
+   koan: 'One Door, Many Guests'
+   section: architecture
+   subsection: composition
+   level: intermediate
+   tags: ['architecture', 'mcp', 'athanor', 'haiku', 'poetry', 'featured']
+   teaches: 'Haiku: one door, many guests — / the tool that serves the scholar / serves the machine too'
+   show_when: 'Teaching MCP as the shared door for human and agent clients.'
+   related: [arch-052, arch-059]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-058
+   text: 'the enricher writes ten thousand mentions — yet relations: zero'
+   koan: 'Mentions Without Relations'
+   section: architecture
+   subsection: extraction
+   level: intermediate
+   tags: ['architecture', 'athanor', 'haiku', 'poetry', 'featured']
+   teaches: 'Haiku from Ahmes field lesson: enricher volume ≠ relation graph; Athanor must build co-occurrence at inject/query time.'
+   show_when: 'After Ahmes inject when relation table is empty but entity_mention is dense.'
+   related: [arch-049, arch-055]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ - id: arch-059
+   text: 'scholar asks the vault, machine asks the vault the same — both receive the truth'
+   koan: 'Scholar and Machine'
+   section: architecture
+   subsection: composition
+   level: intermediate
+   tags: ['architecture', 'single-source-of-truth', 'mcp', 'athanor', 'haiku', 'poetry', 'featured']
+   teaches: 'Haiku: scholar asks the vault, / machine asks the vault the same — / both receive the truth'
+   show_when: 'Closing a Phase 2 lesson on shared MCP context.'
+   related: [arch-056, arch-057]
+   lesson: athanor-phase-2
+   chapter: 'Athanor Phase 2 — MCP Server + RAG Chat'
+   source: 'athanor/docs/DEV_PLAN/PHASE-2.md'
+   origin: studio
+   created_at: 2026-08-11
+
+ # ─────────────────────────────────────────────────────────────────────────────
+ # SECTION: REMOTE REPO - Ephemeral Processing
+ # Source: Web QA Toolkit Remote Repository Implementation Plan
+ # ─────────────────────────────────────────────────────────────────────────────
+
+ - id: rrp-001
+   text: 'Clone not what you can discard. Keep not what clutters the path.'
+   section: remote-repo
+   subsection: philosophy
+   level: intermediate
+   tags: [minimalism, cleanup, efficiency, tao-of-remote]
+   teaches: 'Do not hoard temporary artifacts; process and release.'
+   source: 'The Tao of the Developer'
+   related: [dop-001, wis-001]
+
+ - id: rrp-002
+   text: 'The master grader processes a hundred repos and leaves no trace—only wisdom remains.'
+   section: remote-repo
+   subsection: batch
+   level: master
+   tags: [batch, automation, wisdom, featured]
+   teaches: 'True automation is clean and leaves no side effects.'
+   source: 'Ancient DevOps Proverb'
+   related: [rrp-001, qa-001]
+
+ - id: rrp-003
+   text: 'He who builds tools while students wait, grades neither tool nor student.'
+   section: remote-repo
+   subsection: philosophy
+   level: advanced
+   tags: [urgency, priorities, teaching]
+   teaches: 'Prioritize delivery over perfection when others are waiting.'
+   source: "The Rushed Instructor's Lament"
+   related: [rrp-006]
+
+ - id: rrp-004
+   text: 'The path reveals itself to those who follow the YAML.'
+   section: remote-repo
+   subsection: automation
+   level: beginner
+   tags: [yaml, configuration, infrastructure-as-code]
+   teaches: 'Trust configuration as the source of truth.'
+   source: 'Koan of Configuration'
+   related: [ops-001]
+
+ - id: rrp-005
+   text: 'The wise instructor grades with tools, not toil. The foolish instructor toils without tools.'
+   section: remote-repo
+   subsection: philosophy
+   level: beginner
+   tags: [automation, tools, efficiency]
+   teaches: 'Leverage automation to reduce manual labor.'
+   source: 'The Tao of the Grader'
+   related: [qa-001]
+
+ - id: rrp-006
+   text: 'The tool that finishes is superior to the tool that is perfect.'
+   section: remote-repo
+   subsection: philosophy
+   level: advanced
+   tags: [pragmatism, shipping, perfectionism]
+   teaches: 'Completion beats perfection in operational contexts.'
+   source: 'The Three Truths'
+   related: [rrp-003]
+
+ - id: rrp-007
+   text: 'Clone shallow, grade deep. The wise instructor needs not the full history to see the present.'
+   section: remote-repo
+   subsection: cloning
+   level: intermediate
+   tags: [git, efficiency, shallow-clone]
+   teaches: 'Use shallow clones to save bandwidth and time when history is irrelevant.'
+   source: 'The Tao of the Developer'
+   related: [rrp-001]
+
+ - id: rrp-008
+   text: 'The temporary is eternal in its purpose—it serves and vanishes, leaving only results.'
+   section: remote-repo
+   subsection: cleanup
+   level: advanced
+   tags: [ephemeral, cleanup, purpose]
+   teaches: 'Respect ephemeral resources by cleaning them up.'
+   source: 'The Tao of the Developer'
+   related: [rrp-001]
+
+ - id: rrp-009
+   text: "Process many, keep none. The master's disk remains empty, yet knowledge flows to reports."
+   section: remote-repo
+   subsection: batch
+   level: master
+   tags: [batch, storage, data-flow]
+   teaches: 'Data should flow through the system, not stagnate on disk.'
+   source: 'The Tao of the Developer'
+   related: [rrp-002]
+
+ - id: rrp-010
+   text: 'The YAML already contains the path. The instructor need only read it.'
+   section: remote-repo
+   subsection: automation
+   level: intermediate
+   tags: [yaml, discovery, data-driven]
+   teaches: 'Data-driven discovery prevents manual entry errors.'
+   source: 'Koans for the Rushed Instructor'
+   related: [rrp-004]
+
+ - id: qa-017
+   text: 'Documentation unread is documentation unwritten. But documentation unwritten is failure guaranteed.'
+   section: qa-tooling
+   subsection: documentation
+   level: intermediate
+   tags: [documentation, communication, failure]
+   teaches: 'Documentation is a prerequisite for success, even if reading it is optional.'
+   source: 'The Tao of the Developer'
+   related: [qa-002]
+
+ - id: qa-018
+   text: 'The README that saves one question saves a thousand emails.'
+   section: qa-tooling
+   subsection: documentation
+   level: beginner
+   tags: [documentation, efficiency, scaling]
+   teaches: 'Good documentation scales your time.'
+   source: 'The Tao of the Developer'
+   related: [qa-002]
+
+ - id: qa-019
+   text: 'Tests guard the code. Mocks stand in for the cloud. Confidence grows strong.'
+   section: qa-tooling
+   subsection: quality
+   level: intermediate
+   tags: [testing, mocks, haiku]
+   teaches: 'Testing strategies for cloud dependencies.'
+   source: 'Koan of Confidence'
+   related: [qa-003]
+
+ - id: rrp-014
+   text: 'One report to rule them all, one chart to find them. In darkness bind them, in HTML light.'
+   section: remote-repo
+   subsection: batch
+   level: intermediate
+   tags: [reporting, visualization, humor]
+   teaches: 'Consolidated reporting brings clarity to batch processes.'
+   source: 'Koan of Clarity'
+   related: [rrp-002]
+
+ - id: rrp-015
+   text: 'The repo is temporary; the grade is permanent.'
+   section: remote-repo
+   subsection: philosophy
+   level: beginner
+   tags: [persistence, ephemeral, priorities]
+   teaches: 'Distinguish between the artifact and the value derived from it.'
+   source: 'The Three Truths'
+   related: [rrp-008]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# COLLECTIONS (Curated sets for specific purposes)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+collections:
+ daily_wisdom:
+  name: 'Quote of the Day'
+  description: 'Featured quotes suitable for daily display'
+  filter: "tags contains 'featured'"
+  count: 12
+
+ first_class:
+  name: 'First Class Quotes'
+  description: 'Best quotes to show in the first class of a unit'
+  ids: [img-001, img-004, img-009, img-023, qa-001, cc-001]
+
+ humor:
+  name: 'Lighter Moments'
+  description: 'Quotes with humor for engagement'
+  filter: "tags contains 'humor'"
+  count: 14
+
+ assessment:
+  name: 'Grading Context'
+  description: 'Quotes relevant to assessment feedback'
+  ids: [img-011, img-025, img-006, img-008, qa-012]
+
+ masters_path:
+  name: "The Master's Path"
+  description: 'Quotes at master level for advanced practitioners'
+  filter: "level == 'master'"
+  count: 12
+
+ accessibility_awareness:
+  name: 'Accessibility Awareness'
+  description: 'All quotes related to inclusive design'
+  filter: "tags contains 'accessibility' or tags contains 'alt-text'"
+  count: 10
+
+ performance_critical:
+  name: 'Performance Critical'
+  description: 'Quotes about optimization and speed'
+  filter: "tags contains 'performance' or tags contains 'optimization'"
+  count: 18
+
+ chapter_quotes:
+  name: 'Chapter Quotes'
+  description: 'One-liner wisdom from each chapter'
+  ids: [ops-001, dbg-001, net-001, ux-001, cc-001, wis-001, qa-016, dop-001, arch-001]
+
+ architecture_wisdom:
+  name: 'Architecture & Modularization'
+  description: 'Wisdom for structuring systems and knowing when to split'
+  filter: "section == 'architecture'"
+  count: 12
+
+ fractal_dilemma:
+  name: 'The Fractal Dilemma'
+  description: 'Quotes addressing the eternal question: Am I abstracting too much?'
+  ids: [arch-002, arch-003, arch-012, arch-010]
+
+ naming_things:
+  name: 'The Art of Naming'
+  description: 'Koans for the eternal struggle of naming things'
+  ids: [cc-002, cc-003, cc-004, cc-005, cc-033, cc-034, cc-035, cc-036, cc-037, cc-038]
+
+ naming_before_baptism:
+  name: 'Naming Before Baptism'
+  description: 'Search the registry, honor existing slugs, and separate path from vault from scope before baptising anew'
+  ids: [cc-033, cc-034, cc-035, cc-036, cc-037, cc-038]
+
+ six_pillars:
+  name: 'The Six Pillars of Development Enlightenment'
+  description: 'Wisdom from bug fixes: Identity, Simplicity, Context, Space, Completeness, Discernment'
+  ids: [arch-015, arch-016, arch-017, arch-018, arch-019, arch-020]
+
+ legal_pages_wisdom:
+  name: 'Legal Pages Implementation Wisdom'
+  description: 'Lessons learned from implementing legal pages: debugging, simplicity, and design philosophy'
+  filter: "source == 'legal-pages-implementation' or tags contains 'legal-pages'"
+  count: 18
+
+ ai_route_wisdom:
+  name: 'AI Route Implementation Wisdom'
+  description: 'Core principles and patterns from route implementation: BWU, simplicity, identity, and architecture'
+  filter: "source == 'ai-route-implementation-guide' or tags contains 'bwu' or tags contains 'route-implementation'"
+  count: 12
+
+ bwu_principle:
+  name: 'Build Write Understand (BWU) Principle'
+  description: 'The three stages of code enlightenment: Build (功), Write (文), Understand (悟)'
+  ids: [wis-007, wis-008, cc-011]
+
+ data_formatting_wisdom:
+  name: 'Data Formatting Wisdom'
+  description: 'The art of human-readable data: indentation, spaces, tabs, and the balance between machine and human'
+  ids: [cc-012, cc-013, cc-014]
+
+ koans_collection:
+  name: 'The Koans'
+  description: 'Paradoxical wisdom in question-answer form'
+  filter: "tags contains 'koan' or koan"
+  ids: [cc-002, cc-003, cc-004, cc-005, cc-012, cc-015, arch-052, arch-053, arch-054, arch-055, arch-056]
+
+ non_destructive_operations:
+  name: 'Non-Destructive by Default'
+  description: 'Wisdom about preferring upserts over deletions, growth over destruction'
+  filter: "tags contains 'non-destructive' or tags contains 'upsert'"
+  ids: [cc-015, cc-016, cc-017, cc-018, wis-009, wis-010]
+
+ data_operations_wisdom:
+  name: 'Data Operations & Migration Wisdom'
+  description: 'Complete wisdom on sources of truth, upserts, deletion safety, CLI design, environments, and migration strategies'
+  filter: "chapter == 'Data Operations Chapter' or tags contains 'upsert' or tags contains 'migration' or tags contains 'prune'"
+  ids: [cc-015, cc-016, cc-017, cc-018, cc-019, cc-020, cc-021, cc-022, wis-009, wis-010, wis-011, wis-012, wis-013]
+
+ sources_of_truth:
+  name: 'Sources of Truth'
+  description: 'Wisdom about single sources of truth, mirrors, and synchronization'
+  filter: "tags contains 'single-source-of-truth' or tags contains 'mirror' or tags contains 'synchronization'"
+  ids: [cc-016, arch-013, qa-015, arch-052, arch-053, arch-055, arch-056]
+
+ safe_operations:
+  name: 'Safe Operations Patterns'
+  description: 'CLI design, dangerous operations, dry-runs, and safety-first practices'
+  filter: "tags contains 'cli-design' or tags contains 'dangerous-operations' or tags contains 'dry-run' or tags contains 'safety'"
+  ids: [cc-019, wis-012, arch-027]
+
+ environment_practices:
+  name: 'Environment Practices (Dojo Pattern)'
+  description: 'Practice in DEV/STG, perform in PROD'
+  filter: "tags contains 'environments' or tags contains 'dev-stg-prod' or tags contains 'practice'"
+  ids: [cc-020, wis-013, dop-001]
+
+ haiku_collection:
+  name: 'The Haikus'
+  description: 'Poetic wisdom in 5-7-5 syllable form'
+  filter: "tags contains 'haiku'"
+  ids: [cc-013, cc-022, qa-019, arch-057, arch-058, arch-059]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# LESSONS (Link quotes to pedagogical content)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+lessons:
+ - id: the-tao-of-web-images
+   title: 'The Tao of Web Images'
+   title_alt: 'El Tao de las Imágenes Web'
+   author: 'Rubén Vega Balbás, PhD'
+   date: 2025-01-15
+   path: '/lessons/en/media/images/the-tao-of-web-images/'
+   permalink: '/lessons/en/media/images/the-tao-of-web-images/'
+   description: 'Paradoxical guidance on optimizing, formatting, and ethically designing web images for mindful performance.'
+   quote_ids:
+    - img-029
+    - img-030
+    - img-031
+    - img-032
+    - img-033
+    - img-034
+    - img-035
+    - img-036
+    - img-037
+    - img-038
+    - img-039
+    - img-040
+    - img-041
+    - img-042
+    - img-043
+    - img-044
+    - img-045
+    - img-046
+    - img-047
+    - img-048
+    - img-049
+    - img-050
+    - img-051
+    - img-052
+    - img-053
+    - img-054
+    - img-055
+    - img-056
+    - img-057
+    - img-058
+    - img-059
+    - img-060
+    - img-061
+    - img-062
+    - img-063
+    - img-064
+    - img-065
+    - img-066
+    - img-067
+    - img-068
+    - img-069
+    - img-070
+    - img-071
+    - img-072
+    - img-073
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DISPLAY TEMPLATES
+# ═══════════════════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════════════════════
+
+templates:
+ blockquote: |
+  <blockquote class="ttod-quote" data-section="{{ quote.section }}" data-level="{{ quote.level }}">
+    <p>{{ quote.text }}</p>
+    <footer>— The Tao of Development</footer>
+  </blockquote>
+
+ card: |
+  <div class="ttod-card ttod-{{ quote.section }}">
+    <span class="ttod-icon">道</span>
+    <p class="ttod-text">{{ quote.text }}</p>
+    <div class="ttod-meta">
+      <span class="ttod-section">{{ quote.section }}</span>
+      <span class="ttod-level">{{ quote.level }}</span>
+    </div>
+  </div>
+
+ tooltip:
+  '{{ quote.text }} — 道'
+
+  # 3D visualization node template
+ viz_node: |
+  {
+    "id": "{{ quote.id }}",
+    "label": "{{ quote.id }}",
+    "section": "{{ quote.section }}",
+    "subsection": "{{ quote.subsection }}",
+    "level": "{{ quote.level }}",
+    "level_weight": {{ site.data.ttod.meta.levels[quote.level].weight }},
+    "color": "{{ site.data.ttod.meta.sections | where: 'id', quote.section | map: 'color' | first }}",
+    "tags": {{ quote.tags | jsonify }},
+    "related": {{ quote.related | default: empty_array | jsonify }}
+  }
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# NEXT STEPS: ADVANCED 3D GRAPHICS VISUALIZATION
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# OPTION A: THREE.JS + D3-FORCE-3D (Recommended)
+# ─────────────────────────────────────────────────────────────────────────────
+# Best for: Interactive web-based 3D knowledge graphs
+# Implementation:
+#   1. Export quotes as JSON with `related` edges
+#   2. Use 3d-force-graph library (https://github.com/vasturiano/3d-force-graph)
+#   3. Map section → color, level → z-depth, related → edges
+#   4. Add bloom postprocessing for aesthetic glow
+#   5. Enable click-to-focus with camera lerp
+#
+# Code starter:
+#   import ForceGraph3D from '3d-force-graph';
+#   const Graph = ForceGraph3D()(document.getElementById('graph'))
+#     .graphData({ nodes, links })
+#     .nodeColor(n => sectionColors[n.section])
+#     .nodeVal(n => levelWeights[n.level])
+#     .linkDirectionalParticles(2);
+#
+# OPTION B: GEPHI + GEXF EXPORT
+# ─────────────────────────────────────────────────────────────────────────────
+# Best for: Publication-quality static renders, academic papers
+# Implementation:
+#   1. Export to GEXF format with node attributes
+#   2. Import into Gephi, apply ForceAtlas2 layout
+#   3. Color by section, size by degree centrality
+#   4. Export SVG/PNG at high resolution
+#   5. Annotate clusters with section labels
+#
+# OPTION C: OBSERVABLE / D3.JS (2D/2.5D)
+# ─────────────────────────────────────────────────────────────────────────────
+# Best for: Embeddable interactive notebooks, teaching demos
+# Implementation:
+#   1. Create Observable notebook
+#   2. Use d3-force with collision detection
+#   3. Add SVG filters for depth illusion
+#   4. Enable brush selection for filtering by tag
+#
+# OPTION D: UNITY/UNREAL (Full 3D VR/AR)
+# ─────────────────────────────────────────────────────────────────────────────
+# Best for: Immersive digital humanities exhibitions
+# Implementation:
+#   1. Export JSON, import as ScriptableObjects
+#   2. Instantiate quote nodes as 3D spheres
+#   3. Spring joints for related connections
+#   4. VR gaze selection for reading quotes
+#   5. Spatial audio for section clusters
+#
+# OPTION E: WEBGPU + CUSTOM SHADERS (Performance)
+# ─────────────────────────────────────────────────────────────────────────────
+# Best for: Large datasets (1000+ nodes), GPU-accelerated rendering
+# Implementation:
+#   1. Use compute shaders for force simulation
+#   2. Instance rendering for nodes
+#   3. SDF text rendering for labels
+#   4. Custom bloom and depth-of-field
+#
+# DATA EXPORT COMMANDS:
+# ─────────────────────────────────────────────────────────────────────────────
+# Jekyll JSON export (add to _config.yml):
+#   defaults:
+#     - scope: { path: "_data/ttod.yml" }
+#       values: { output: true }
+#
+# Python edge extraction:
+#   import yaml
+#   with open('ttod.yml') as f:
+#     data = yaml.safe_load(f)
+#   edges = [(q['id'], r) for q in data['quotes'] for r in q.get('related', [])]
+#
+# RECOMMENDED LIBRARIES:
+# ─────────────────────────────────────────────────────────────────────────────
+# - 3d-force-graph: https://github.com/vasturiano/3d-force-graph
+# - three.js: https://threejs.org/
+# - d3-force-3d: https://github.com/vasturiano/d3-force-3d
+# - sigma.js: https://sigmajs.org/ (2D alternative)
+# - Cosmograph: https://cosmograph.app/ (GPU WebGL graphs)
+#
+# ═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,10 @@
+{
+  "id": "arch-071",
+  "schema_version": "3.0.0",
+  "text": "Blackbox quote without human review.",
+  "section": "architecture",
+  "level": "advanced",
+  "tags": ["boundaries"],
+  "origin": "blackbox",
+  "created_at": "2026-08-18"
+}

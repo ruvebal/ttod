@@ -1,0 +1,7 @@
+{
+  "proposal": {
+    "generation_method": "human-authored",
+    "proposer_id": "human-001"
+  },
+  "observed_method": "llm-generated"
+}

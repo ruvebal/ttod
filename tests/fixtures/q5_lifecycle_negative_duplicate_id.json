@@ -1,0 +1,6 @@
+{
+  "quotes": [
+    {"id": "arch-001", "text": "First", "content_digest": "aaa"},
+    {"id": "arch-001", "text": "Duplicate", "content_digest": "bbb"}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "img-010",
+  "schema_version": "3.0.0",
+  "content_digest": "ceaa860f50191545696fa9bda7bca5ef7020ba0680f3e37c5fcfdb82f381f001",
+  "text": "Old image advice.",
+  "section": "images",
+  "subsection": "optimization",
+  "level": "beginner",
+  "tags": ["optimization"],
+  "teaches": "Deprecated image optimization advice",
+  "origin": "human",
+  "status": "deprecated",
+  "deprecated_by": "img-073",
+  "reason": "Superseded by modern format guidance",
+  "effective_at": "2026-08-18T00:00:00Z",
+  "created_at": "2025-12-06"
+}

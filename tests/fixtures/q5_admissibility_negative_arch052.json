@@ -1,0 +1,18 @@
+{
+  "claim_domain": "athanor_architecture",
+  "quote": {
+    "id": "arch-052",
+    "schema_version": "3.0.0",
+    "text": "One MCP facade for Cursor, chat, web, and CLI — no side entrance to the vault.",
+    "section": "architecture",
+    "subsection": "boundaries",
+    "level": "advanced",
+    "tags": ["architecture", "boundaries", "mcp", "athanor"],
+    "teaches": "One MCP facade for Cursor, chat, web, and CLI (Athanor Phase 2 §23).",
+    "origin": "studio",
+    "source": "athanor/docs/DEV_PLAN/PHASE-2.md",
+    "lesson": "athanor-phase-2",
+    "immediate_parent_refs": ["athanor-phase-2-plan"],
+    "created_at": "2026-08-11"
+  }
+}

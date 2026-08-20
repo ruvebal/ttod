@@ -4,6 +4,7 @@
 
 This repository follows the open [AGENTS.md format](https://github.com/agentsmd/agents.md)
 (Agentic AI Foundation / Linux Foundation). Read `AGENTS.md` first for CLI workflow, quote
-editing discipline, ttod-bridge integration, license boundaries, and Phase Q constraints.
+editing discipline, ttod-bridge integration, license boundaries, and Phase Q completion state
+(v3.0.0 live database).
 
 This stub remains so legacy tooling that still resolves `CLAUDE.md` finds the redirect.

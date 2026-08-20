@@ -5,7 +5,7 @@ Planning baseline: 2026-08-14. No live implementation performed by this document
 
 # Phase Q — TTOD contract repair and two-way Athanor bridge
 
-**Status:** READY at Q0 schema/authority freeze
+**Status:** COMPLETE (2026-08-18) — all phases Q0–Q6 filed green; see [`INDEX.md`](INDEX.md)
 
 **Owner:** TTOD product owner; Athanor owns mediation; WPL owns portable provenance semantics
 

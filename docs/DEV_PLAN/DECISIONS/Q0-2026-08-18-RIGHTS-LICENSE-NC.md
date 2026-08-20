@@ -43,11 +43,9 @@ whose author is this rights holder.
 
 ## What this does not do
 
-- It does **not** rewrite `ttod.yml` header/`AGENTS.md` in this session. Legacy `CLAUDE.md` is now
-  a redirect; both currently still
-  say `License: CC BY-NC-SA 4.0` — stale relative to both halves of this decision. Those strings
-  change in **Q6** (docs/migration) after schemas exist; `LICENSE-CODE`/`LICENSE-CONTENT` are the
-  authoritative repository-level statement in the meantime.
+- ~~It does **not** rewrite `ttod.yml` header/`AGENTS.md` in this session.~~ **Applied in Q6**
+  (2026-08-18): header, `AGENTS.md`, and migration defaults now reflect this decision.
+  `LICENSE-CODE`/`LICENSE-CONTENT` remain authoritative at repo root.
 - It does **not** claw back copies already distributed under CC BY-NC-SA 4.0.
   Prior BY-SA grants remain valid for those copies. Forward snapshots use NC.
 - It does **not** invent licenses for third-party text inside quotes. Those

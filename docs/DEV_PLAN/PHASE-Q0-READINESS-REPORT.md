@@ -2,7 +2,10 @@
 
 **Audit date:** 2026-08-14
 
-**State:** READINESS AUDIT COMPLETE · implementation NOT STARTED
+**State:** READINESS AUDIT COMPLETE · implementation completed in Phase Q (2026-08-18)
+
+> Historical audit from 2026-08-14. Programme closeout: [`INDEX.md`](INDEX.md),
+> [`PHASE-Q6-REPORT.md`](PHASE-Q6-REPORT.md).
 
 **Mutation statement:** read-only inspection of live repositories; one `add` failure probe ran
 against a disposable `/private/tmp` copy. No live TTOD file, corpus, database, export, dependency,

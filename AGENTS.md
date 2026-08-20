@@ -36,14 +36,16 @@ pip install -e .                                 # if pyproject present; else: p
 | Path | Role |
 | --- | --- |
 | `ttod.yml` | Canonical quote database (human-governed) |
-| `cli.py` | validate · stats · export · add · graph |
+| `cli.py` | validate · stats · snapshot · export · migrate · proposal · bridge · add · deprecate · erase |
 | `.cursor/rules/ttod-editing.mdc` | Strict YAML editing checklist |
-| `schema/` | v3 schema surface (Phase Q — do not claim until gate exists) |
+| `schema/` | v3 schema surface (Phase Q complete) |
 | `exports/` | Derived JSON/graph (gitignored) |
 | `sources/tao-of-ai-development/` | Parked chapter — **not merged**; read README before extracting IDs |
 
-**Do not** hand-append YAML to `ttod.yml`. **Do not** use `cli.py add` on live canonical data until
-Phase Q3 repairs the atomic accept path (Q0 audit: append can corrupt the file).
+**Do not** hand-append YAML to `ttod.yml`. Mutations go through `proposal accept`, `add`
+(requires `--reviewer-id`), or `migrate apply --approve` (one-time v2→v3 only) via
+`ttod_core/repository.py` atomic transactions. Use disposable copies (`--file`) for bridge
+self-tests and experiments.
 
 ---
 
@@ -67,7 +69,7 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
 
 1. Distill only from a **citable source** (lesson, grounded research, studio session).
 2. Call `adapter.propose_quote(...)` — writes to `~/src/.cursor/skills/ttod-bridge/pending/`.
-3. A **human** reviews, then runs the acceptance path inside `~/src/ttod/` after Q3.
+3. A **human** reviews, then `proposal import` → `proposal accept --reviewer-id …` (or ttod-bridge accept path when wired).
 4. Every `origin: blackbox` entry needs `validated_by: human` before it counts as accepted.
 
 ### Edit existing quotes (human, post-Q3)
@@ -80,10 +82,12 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
 
 ---
 
-## Quote record (current v2 shape)
+## Quote record (v3 shape)
 
 ```yaml
 - id: arch-001
+  schema_version: '3.0.0'
+  content_digest: '<sha256 via TTOD-C14N-v1>'
   text: 'The aphorism itself.'
   section: architecture
   subsection: boundaries
@@ -93,8 +97,13 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
   related: [arch-002, cc-001]
   lesson: lesson-slug
   source: source-slug
-  origin: human                   # human | studio | blackbox
-  created_at: 2025-12-06
+  origin: human                   # human | studio | blackbox | legacy-unknown
+  rights:
+    access: public
+    license: CC-BY-NC-SA-4.0
+    holder: ruvebal@crea-comm.net
+    permission_basis: rights-holder-relicense-2026-08-18
+  created_at: '2025-12-06'
 ```
 
 **Origin contract**
@@ -103,15 +112,17 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
 | --- | --- |
 | `human` | Original authorship |
 | `studio` | Distilled by the developer during work |
-| `blackbox` | Proposed by AI — requires human validation |
+| `blackbox` | Proposed by AI — requires validated human review block |
+| `legacy-unknown` | Pre-v3 records with no recorded origin (not human-by-default) |
 
 ---
 
 ## Verification before claiming done
 
 ```bash
-. .venv/bin/activate && python cli.py validate    # must exit 0
-. .venv/bin/activate && python cli.py stats       # derive counts; do not copy numbers into prose
+. .venv/bin/activate && python cli.py validate --strict --json  # must exit 0
+. .venv/bin/activate && python cli.py stats --check             # meta must match recomputed
+python -m unittest discover -s tests -p 'test_*.py'            # 161 tests (Phase Q closeout)
 ~/src/ttod/.venv/bin/python ~/src/.cursor/skills/ttod-bridge/scripts/tests/test_ttod_bridge.py
 ```
 

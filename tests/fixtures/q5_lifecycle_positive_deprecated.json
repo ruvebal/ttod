@@ -1,0 +1,10 @@
+{
+  "quotes": [
+    {
+      "id": "arch-050",
+      "text": "Retired wisdom.",
+      "status": "deprecated",
+      "deprecated_by": "arch-051"
+    }
+  ]
+}

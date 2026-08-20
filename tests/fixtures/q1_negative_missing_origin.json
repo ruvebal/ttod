@@ -1,0 +1,9 @@
+{
+  "id": "arch-077",
+  "schema_version": "3.0.0",
+  "text": "Quote with origin omitted — must not be inferred as human.",
+  "section": "architecture",
+  "level": "advanced",
+  "tags": ["provenance"],
+  "created_at": "2026-08-18"
+}

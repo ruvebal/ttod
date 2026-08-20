@@ -1,40 +1,47 @@
 ---
-description: Strict TTOD YAML editing — schema, IDs, tags, collections, validation. Agent contract AGENTS.md.
+description: Strict TTOD YAML editing — schema v3, IDs, tags, collections, validation. Agent contract AGENTS.md.
 globs: ttod.yml
 alwaysApply: false
 ---
 
 # TTOD Editing Discipline
 
-Read [`AGENTS.md`](../AGENTS.md) first. When editing `ttod.yml`, treat the CLI validator as the gate.
+Read [`AGENTS.md`](../AGENTS.md) first. **Do not hand-edit `ttod.yml`.** All writes go through the CLI
+and `ttod_core/repository.py` atomic transactions (`proposal accept`, `add`, `deprecate`, `erase`).
 
 ```bash
-. .venv/bin/activate && python cli.py validate
+. .venv/bin/activate && python cli.py validate --strict
 ```
 
 ## Quote identity
 
-- **Never delete quotes** — set `deprecated: true` if retired.
-- **IDs are immutable** once published. Format: `{section_prefix}-{NNN}` (e.g. `arch-014`, `qa-017`).
-- **ID prefix must match section** — `arch-*` → `architecture`, `dop-*` → `devops`, `wis-*` → `wisdom`, `qa-*` → `qa-tooling`, `rrp-*` → `remote-repo`. Mismatch fails validation.
-- When renaming an ID, update **every** `related` reference and any `collections.*.ids` entry across the repo.
+- **Never delete quotes** — set `status: deprecated` (or `erase` with institutional authority).
+- **IDs are immutable** once published. Format: `{section_prefix}-{NNN}` (e.g. `arch-014`, `a11y-001`).
+- **ID prefix must match section** — `arch-*` → `architecture`, `a11y-*` → `accessibility`, etc.
+- When renaming an ID (rare), update **every** `related` reference and any `collections.*.ids` entry.
 
-## Adding quotes
+## v3 required fields (mechanically enforced)
 
-1. Pick the correct section; use its `prefix` from `meta.sections`.
-2. Assign the next free number for that prefix (check `meta.last_id_by_section`).
-3. Add tags only from `tag_taxonomy` (or extend the taxonomy first).
-4. Ensure every `related` ID exists.
-5. Do not hand-edit quote counts or coverage. The acceptance path must derive `meta.total_quotes`,
-   `last_id_by_section`, section/level counts, coverage, and collection totals from the candidate
-   snapshot atomically; if it cannot, stop with a contract blocker.
-6. If the quote belongs to a named series (BWU, naming, haiku, etc.), add its ID to the matching `collections` block.
-7. Run `python cli.py validate` — zero errors before finishing.
+Every quote must include: `schema_version`, `text`, `section`, `level`, `origin`, `content_digest`.
+Pre-v3 records without origin were migrated to `legacy-unknown` — do not silently change them to `human`.
+
+`blackbox` origin requires a validated `validation` block with `reviewer_id` and `status: validated`.
+
+Default `rights` for studio content: see Q0 decision (`CC-BY-NC-SA-4.0`, holder `ruvebal@crea-comm.net`).
+
+## Adding quotes (CLI only)
+
+1. `python cli.py proposal create …` then `proposal accept --reviewer-id …`, **or**
+   `python cli.py add --reviewer-id …` (same transaction path).
+2. Pick section; CLI allocates the next ID under lock from `meta.last_id_by_section`.
+3. Tags must exist in `tag_taxonomy` (extend taxonomy first if needed).
+4. Never hand-edit `meta.total_quotes`, `last_id_by_section`, or collection counts — the repository
+   recomputes them atomically on accept.
 
 ## Collections & graph
 
 - `collections.*.ids` must reference live quote IDs only.
-- Bidirectional `related` links are preferred but not required; all targets must exist.
+- All `related` targets must exist.
 
 ## YAML formatting
 

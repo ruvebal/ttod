@@ -41,6 +41,7 @@ pip install -e .                                 # if pyproject present; else: p
 | `schema/` | v3 schema surface (Phase Q complete) |
 | `exports/` | Derived JSON/graph (gitignored) |
 | `sources/tao-of-ai-development/` | Parked chapter — **not merged**; read README before extracting IDs |
+| `sources/tao-of-human-centered-design/` | Parked HCD chapter (hc-app-design) — **not merged**; read README before extracting IDs |
 
 **Do not** hand-append YAML to `ttod.yml`. Mutations go through `proposal accept`, `add`
 (requires `--reviewer-id`), or `migrate apply --approve` (one-time v2→v3 only) via

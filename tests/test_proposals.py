@@ -125,6 +125,7 @@ class TestProposal(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "blackbox",
             "rights": {},  # Unresolved rights
             "tags": ["test"],
@@ -220,6 +221,7 @@ class TestProposal(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "blackbox",
             "rights": {},  # Unresolved - empty dict
         }
@@ -239,6 +241,7 @@ class TestProposal(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             # origin is missing - should stay missing
         }
         proposal = create_proposal(
@@ -325,6 +328,60 @@ class TestProposal(unittest.TestCase):
         self.assertIn("status", d)
         self.assertIn("human_review_activities", d)
         self.assertEqual(len(d["human_review_activities"]), 1)
+
+    def test_to_dict_omits_null_optionals_so_validate_proposal_passes(self):
+        """Fresh proposals must not serialize null into string-typed schema fields.
+
+        Regression: Proposal.to_dict() used to emit wpl_record_id=None (etc.), which
+        jsonschema rejects as TYPE_ERROR ('None is not of type string'). Absent ≠ null.
+        """
+        from pathlib import Path
+
+        from ttod_core.validation import TTODValidator
+
+        proposal = create_proposal(
+            candidate_content={
+                "text": "Boundaries are where systems learn their shape.",
+                "section": "architecture",
+                "level": "advanced",
+                "lang": "en",
+                "origin": "human",
+            },
+            proposer_kind="human",
+            proposer_id="debug-reviewer",
+            generation_method="manual",
+        )
+        payload = proposal.to_dict()
+        for key in (
+            "wpl_record_id",
+            "wpl_record_digest",
+            "evidence_snapshot_id",
+            "evidence_snapshot_digest",
+            "accepted_quote_id",
+        ):
+            self.assertNotIn(key, payload)
+            self.assertIsNone(getattr(proposal, key))
+
+        result = TTODValidator(Path(__file__).resolve().parent.parent / "schema").validate_proposal(
+            payload
+        )
+        self.assertTrue(result.is_valid, result.to_dict())
+        self.assertEqual(result.errors, [])
+
+    def test_to_dict_includes_optionals_when_set(self):
+        """When optional provenance is present, it is serialized as a string."""
+        proposal = create_proposal(
+            candidate_content={"text": "Test", "section": "architecture", "level": "advanced", "lang": "en", "origin": "human"},
+            proposer_kind="model",
+            proposer_id="gpt-local",
+            generation_method="llm",
+            wpl_record_id="wpl-123",
+            wpl_record_digest="a" * 64,
+        )
+        payload = proposal.to_dict()
+        self.assertEqual(payload["wpl_record_id"], "wpl-123")
+        self.assertEqual(payload["wpl_record_digest"], "a" * 64)
+        self.assertNotIn("accepted_quote_id", payload)
 
 
 if __name__ == "__main__":

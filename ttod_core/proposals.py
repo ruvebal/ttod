@@ -206,31 +206,46 @@ class Proposal:
         return mapping.get(activity.activity_type)
 
     def to_dict(self) -> Dict[str, Any]:
-        """Convert to JSON-serializable dict."""
-        return {
+        """Convert to JSON-serializable dict.
+
+        Optional provenance fields that are unset are omitted (absent), never
+        serialized as JSON null — proposal.schema.json types them as string,
+        so null fails validate_proposal().
+        """
+        payload: Dict[str, Any] = {
             "proposal_id": self.proposal_id,
             "status": self.status.value,
             "candidate_content": self.candidate_content,
             "proposer_kind": self.proposer_kind,
             "proposer_id": self.proposer_id,
             "generation_method": self.generation_method,
+            "human_review_activities": [
+                {
+                    key: value
+                    for key, value in {
+                        "activity_type": a.activity_type.value,
+                        "reviewer_id": a.reviewer_id,
+                        "timestamp": a.timestamp,
+                        "comment": a.comment,
+                        "decision_reason": a.decision_reason,
+                    }.items()
+                    if value is not None
+                }
+                for a in self.human_review_activities
+            ],
+            "created_at": self.created_at,
+        }
+        optional = {
             "wpl_record_id": self.wpl_record_id,
             "wpl_record_digest": self.wpl_record_digest,
             "evidence_snapshot_id": self.evidence_snapshot_id,
             "evidence_snapshot_digest": self.evidence_snapshot_digest,
-            "human_review_activities": [
-                {
-                    "activity_type": a.activity_type.value,
-                    "reviewer_id": a.reviewer_id,
-                    "timestamp": a.timestamp,
-                    "comment": a.comment,
-                    "decision_reason": a.decision_reason,
-                }
-                for a in self.human_review_activities
-            ],
             "accepted_quote_id": self.accepted_quote_id,
-            "created_at": self.created_at,
         }
+        for key, value in optional.items():
+            if value is not None:
+                payload[key] = value
+        return payload
 
 
 def create_proposal(

@@ -47,6 +47,7 @@ def field_mapping_coverage() -> Dict[str, str]:
         "section": "section",
         "subsection": "subsection",
         "level": "level",
+        "lang": "lang",
         "tags": "tags",
         "teaches": "teaches",
         "show_when": "show_when",
@@ -121,6 +122,7 @@ class QuoteOutAdapter:
         "section",
         "subsection",
         "level",
+        "lang",
         "tags",
         "teaches",
         "show_when",
@@ -160,7 +162,7 @@ class QuoteOutAdapter:
             "transfer_metadata": {
                 "transfer_id": transfer_id or str(uuid.uuid4()),
                 "exported_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                "exporter_version": "3.0.0",
+                "exporter_version": "3.1.0",
                 "contract_version": CONTRACT_VERSION,
             },
         }
@@ -240,7 +242,7 @@ class ProposalInAdapter:
 
     def to_transport(self, proposal: Proposal) -> Dict[str, Any]:
         """Serialize a TTOD Proposal to proposal-in transport (for outbox simulation)."""
-        return {
+        transport: Dict[str, Any] = {
             "proposal_id": proposal.proposal_id,
             "candidate_content": dict(proposal.candidate_content),
             "proposer": {
@@ -251,17 +253,18 @@ class ProposalInAdapter:
             "created_at": proposal.created_at,
             "human_review_activities": [
                 {
-                    "activity_type": a.activity_type.value,
-                    "reviewer_id": a.reviewer_id,
-                    "timestamp": a.timestamp,
-                    "comment": a.comment,
-                    "decision_reason": a.decision_reason,
+                    key: value
+                    for key, value in {
+                        "activity_type": a.activity_type.value,
+                        "reviewer_id": a.reviewer_id,
+                        "timestamp": a.timestamp,
+                        "comment": a.comment,
+                        "decision_reason": a.decision_reason,
+                    }.items()
+                    if value is not None
                 }
                 for a in proposal.human_review_activities
             ],
-            "wpl_record_id": proposal.wpl_record_id,
-            "wpl_record_digest": proposal.wpl_record_digest,
-            "evidence_snapshot_digest": proposal.evidence_snapshot_digest,
             "transfer_metadata": {
                 "transfer_id": str(uuid.uuid4()),
                 "received_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
@@ -269,6 +272,14 @@ class ProposalInAdapter:
                 "contract_version": CONTRACT_VERSION,
             },
         }
+        for key, value in (
+            ("wpl_record_id", proposal.wpl_record_id),
+            ("wpl_record_digest", proposal.wpl_record_digest),
+            ("evidence_snapshot_digest", proposal.evidence_snapshot_digest),
+        ):
+            if value is not None:
+                transport[key] = value
+        return transport
 
     def _validate_transport_schema(self, transport: Dict[str, Any]) -> None:
         schema_path = Path(__file__).parent.parent / "schema" / "transport_proposal_in_v1.json"

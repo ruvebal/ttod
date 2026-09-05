@@ -71,15 +71,27 @@ changed, 575 insertions, 6126 deletions. Verified: `npm run check` → 0 errors/
 files, down from 28), `npm run build` succeeded. Switched back to `main`, confirmed clean, confirmed
 the full reference build (13 `.astro` pages) intact.
 
-**This branch has not been pushed anywhere** — it exists only in this local clone. If it should
-become the actual student-facing artifact (e.g. a separate GitHub Classroom repo, or the tip
-students clone from), that is a distribution decision, not a git-safety one, and needs Rubén's
-explicit instruction. The safe next command, when ready:
-```bash
-cd /Users/ruvebal/src/ttod && git push -u origin cohort-starter
-```
-Do not run this without being asked — pushing is the one part of this objective this report does
-not do on its own authority.
+**This branch has not been pushed anywhere** — it exists only in this local clone.
+
+**Correction (2026-09-05, found during the `docs/research/` audit that followed this report):**
+the command originally suggested here — `git push -u origin cohort-starter` — was wrong and has
+been removed. `ruvebal/ttod` is a **public** repository (`AGENTS.md` line ~106: `access: public`)
+with one shared `origin`. Pushing `cohort-starter` there does not isolate it: any student (or
+anyone) with clone/fetch access to that same remote can run `git log --all` or
+`git fetch origin main` and read the finished R3b/R4/R5/R7 reference build the cohort is meant to
+build independently — the exact failure this whole objective exists to prevent, just moved from
+the engineering side (a route guard) to the distribution side (a shared remote). See
+`docs/research/GUIDE-FORGE-PLAN.md` §2 and `docs/research/PROMPT-FORGE-TTOD-GUIDES.md`'s
+non-negotiable truths for the full finding and the required verification step (a git-history
+check against whatever artifact a student would actually clone) before any distribution decision
+is acted on.
+
+**What this means for the actual next step:** distributing `cohort-starter` safely requires an
+artifact with no history reachable to `main` — e.g. an orphan/squashed export of the
+`cohort-starter` tree into a brand-new repository (`git checkout --orphan`, or `git archive` into
+a fresh `git init`), not a branch push to this repository's existing `origin`. This report does
+not perform that export on its own authority — it requires Rubén's explicit instruction, same as
+any push did before this correction.
 
 ## Objective 4 — R7, honestly advanced this pass
 

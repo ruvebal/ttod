@@ -15,6 +15,18 @@ any such document.
 
 # TTOD Research Initiative — overview
 
+> **Planning note (2026-09-05, audited and amended):** the research initiative remains pre-pitch
+> and the audience guides have not been generated. Their proposed evidence, governance, audience
+> separation, and cold-review workflow are specified in [`GUIDE-FORGE-PLAN.md`](GUIDE-FORGE-PLAN.md);
+> the paste-ready generator is [`PROMPT-FORGE-TTOD-GUIDES.md`](PROMPT-FORGE-TTOD-GUIDES.md). The
+> generator must first reconcile this older proposal narrative with the current Phase R
+> cohort-starter/R6 student-ownership decision, now recorded in
+> [`../DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`](../DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md)
+> and [`../DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](../DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md)
+> (filed 2026-09-05, was missing when this section was first drafted). This pass's audit also
+> found that no mechanism yet guarantees the reference build stays out of student hands — see
+> "What this is not" below and `GUIDE-FORGE-PLAN.md` §2 for the exact finding.
+
 **Subject:** Project Launch: TTOD Research Initiative & Advanced Front-End Pedagogy
 
 Dear Colleagues,
@@ -28,7 +40,11 @@ Rather than assigning traditional, isolated coursework, the cohort collaborates 
 production-grade "walking-skeleton" architecture — contributing components across Astro, React,
 Svelte, FastMCP, and containerized Python services — while I retain sole responsibility for the
 backend and the initial scaffold, so the cohort starts from a verified, working foundation rather
-than debugging infrastructure on day one.
+than debugging infrastructure on day one. To validate that this architecture is buildable at all
+before committing a cohort's grade to it, I have already built a complete reference
+implementation myself; it stays instructor-side and is never distributed to students, who receive
+only the walking-skeleton foundation and build the remaining components independently against the
+same task specification, not against my implementation of it.
 
 The complete research design, ethical participation framework, and system architecture are fully
 documented in this repository:
@@ -41,6 +57,11 @@ documented in this repository:
 - [`docs/DEV_PLAN/PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md`](../DEV_PLAN/PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md)
   — the engineering side: what is actually being built, by whom, and the §6.1 cold-review
   protocol and §13 research-design track referenced above.
+- [`docs/DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`](../DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md)
+  and [`docs/DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](../DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md)
+  — what the cohort actually receives (the `cohort-starter` handoff) versus what stays an
+  instructor-side reference build, and the open question of how that separation is technically
+  enforced once repository access is shared with the cohort.
 
 I welcome your review of the documentation. Please let me know if you would like to schedule a
 brief discussion regarding data collection and research outputs for this semester.
@@ -74,6 +95,13 @@ how students narrate authorship under ambient AI, relative to an unscaffolded te
 - Not live yet. No process evidence (commits, AI-use declarations, cold-review reports) is used
   as research data until the consents in `COHORT-CASE-PROPOSAL.md` §6 are administered
   independently of the instructor, and grades for the term are filed.
+- Not proof that the reference build stays out of student hands. The intent is firm — the cohort
+  builds R3b onward independently, never from a copy of my own implementation — but the technical
+  enforcement of that separation is not yet verified, because this repository is public with a
+  single shared remote. Publishing a student-facing branch to that same remote does not, by
+  itself, achieve the isolation this proposal depends on; the actual distribution mechanism will
+  be verified (git-history check against the real artifact a student clones) before any cohort
+  receives repository access, and that verification will be recorded, not assumed.
 
 ## Status
 

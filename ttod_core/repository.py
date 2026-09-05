@@ -52,6 +52,8 @@ class DerivedMetadata:
     last_id_by_section: Dict[str, int]
     origin_counts: Dict[str, int]
     section_counts: Dict[str, int]
+    language_counts: Dict[str, int]
+    languages: List[str]
 
 
 @dataclass
@@ -138,11 +140,14 @@ def compute_last_id_by_prefix(quotes: List[Dict[str, Any]]) -> Dict[str, int]:
 def compute_derived_metadata(root: Dict[str, Any]) -> DerivedMetadata:
     """Recompute all derived meta fields from quotes (never hand-patch)."""
     quotes = root.get("quotes", [])
+    language_counts = _count_field(quotes, "lang")
     return DerivedMetadata(
         total_quotes=len(quotes),
         last_id_by_section=compute_last_id_by_prefix(quotes),
         origin_counts=_count_field(quotes, "origin"),
         section_counts=_count_field(quotes, "section"),
+        language_counts=language_counts,
+        languages=sorted(language_counts.keys()),
     )
 
 
@@ -159,7 +164,7 @@ def _count_field(quotes: List[Dict[str, Any]], field_name: str) -> Dict[str, int
 class TTODRepository:
     """Atomic read/write access to a TTOD YAML file."""
 
-    SCHEMA_VERSION = "3.0.0"
+    SCHEMA_VERSION = "3.1.0"
 
     def __init__(
         self,
@@ -199,6 +204,10 @@ class TTODRepository:
         if stored_total is not None and stored_total != derived.total_quotes:
             drifts.append(StatsDrift("meta.total_quotes", stored_total, derived.total_quotes))
 
+        stored_languages = meta.get("languages")
+        if stored_languages is not None and list(stored_languages) != derived.languages:
+            drifts.append(StatsDrift("meta.languages", stored_languages, derived.languages))
+
         stored_last = meta.get("last_id_by_section", {})
         if not isinstance(stored_last, dict):
             blockers.append("meta.last_id_by_section is missing or not an object — cannot compare")
@@ -232,7 +241,7 @@ class TTODRepository:
         if "id" in candidate:
             raise RepositoryError("candidate_content must not contain a canonical 'id' field")
 
-        required = ("text", "section", "level", "origin")
+        required = ("text", "section", "level", "origin", "lang")
         for field_name in required:
             if field_name not in candidate:
                 raise RepositoryError(f"candidate missing required field '{field_name}'")
@@ -416,6 +425,7 @@ class TTODRepository:
             "text": candidate["text"],
             "section": section,
             "level": candidate["level"],
+            "lang": candidate["lang"],
             "origin": candidate["origin"],
         }
 
@@ -425,11 +435,13 @@ class TTODRepository:
             "teaches",
             "show_when",
             "related",
+            "relation_edges",
             "lesson",
             "source",
             "validation",
             "rights",
             "created_at",
+            "authorship_assertion",
         ):
             if optional in candidate:
                 quote[optional] = candidate[optional]
@@ -476,6 +488,10 @@ class TTODRepository:
         meta = root.setdefault("meta", {})
         meta["total_quotes"] = derived.total_quotes
         meta["last_id_by_section"] = dict(sorted(derived.last_id_by_section.items()))
+        meta["languages"] = list(derived.languages)
+        if derived.languages:
+            # Deprecated mirror for unmigrated tooling (S0 decision 7).
+            meta["language"] = derived.languages[0]
 
     def _find_quote(self, root: Dict[str, Any], quote_id: str) -> Dict[str, Any]:
         for quote in root.get("quotes", []):

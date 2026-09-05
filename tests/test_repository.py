@@ -21,6 +21,7 @@ CANDIDATE = {
     "text": "Boundaries are where systems learn their shape.",
     "section": "architecture",
     "level": "advanced",
+    "lang": "en",
     "origin": "human",
     "tags": ["boundaries"],
 }

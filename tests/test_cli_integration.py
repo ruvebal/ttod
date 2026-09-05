@@ -120,6 +120,7 @@ class TestCLIIntegration(unittest.TestCase):
                 "text": "No origin field.",
                 "section": "architecture",
                 "level": "beginner",
+                "lang": "en",
             }
         )
         self.path.write_text(yaml.dump(root, allow_unicode=True), encoding="utf-8")

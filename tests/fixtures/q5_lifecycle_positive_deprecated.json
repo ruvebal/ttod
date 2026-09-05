@@ -4,7 +4,8 @@
       "id": "arch-050",
       "text": "Retired wisdom.",
       "status": "deprecated",
-      "deprecated_by": "arch-051"
+      "deprecated_by": "arch-051",
+      "lang": "en"
     }
   ]
 }

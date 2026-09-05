@@ -87,15 +87,18 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
 
 ```yaml
 - id: arch-001
-  schema_version: '3.0.0'
+  schema_version: '3.1.0'         # after Phase S S2′; fixtures may still show 3.0.0+lang during S1′
   content_digest: '<sha256 via TTOD-C14N-v1>'
   text: 'The aphorism itself.'
   section: architecture
   subsection: boundaries
   level: advanced                 # beginner | intermediate | advanced | master
+  lang: en                        # ISO 639-1; required. Translations are separate IDs.
   tags: [boundaries, coupling]    # from tag_taxonomy
   teaches: 'What the student learns'
   related: [arch-002, cc-001]
+  relation_edges:                 # optional typed edges
+    - {target: arch-060, relation_type: translation_of}  # Spanish twin points here; never arch-001-es
   lesson: lesson-slug
   source: source-slug
   origin: human                   # human | studio | blackbox | legacy-unknown
@@ -106,6 +109,10 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
     permission_basis: rights-holder-relicense-2026-08-18
   created_at: '2025-12-06'
 ```
+
+**ID / language policy (Phase S):** IDs stay `{section_prefix}-{number}` — never locale suffixes
+(`arch-001-es` is invalid). A Spanish twin of `arch-001` is the next free `arch-NNN`, linked via
+`relation_edges: [{target: arch-001, relation_type: translation_of}]` with `lang: es`.
 
 **Origin contract**
 
@@ -123,7 +130,7 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
 ```bash
 . .venv/bin/activate && python cli.py validate --strict --json  # must exit 0
 . .venv/bin/activate && python cli.py stats --check             # meta must match recomputed
-python -m unittest discover -s tests -p 'test_*.py'            # 161 tests (Phase Q closeout)
+python -m unittest discover -s tests -p 'test_*.py'            # full suite must be green (count grows — do not hardcode it, this line itself went stale once already)
 ~/src/ttod/.venv/bin/python ~/src/.cursor/skills/ttod-bridge/scripts/tests/test_ttod_bridge.py
 ```
 

@@ -4,7 +4,10 @@
   "text": "Image with numeric tag bug.",
   "section": "images",
   "level": "beginner",
-  "tags": [404],
+  "lang": "en",
+  "tags": [
+    404
+  ],
   "origin": "human",
   "created_at": "2025-12-06"
 }

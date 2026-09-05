@@ -5,7 +5,11 @@
   "section": "architecture",
   "subsection": "boundaries",
   "level": "advanced",
-  "tags": ["boundaries", "coupling"],
+  "lang": "en",
+  "tags": [
+    "boundaries",
+    "coupling"
+  ],
   "teaches": "What the student learns",
   "origin": "legacy-unknown",
   "source": "legacy-source",

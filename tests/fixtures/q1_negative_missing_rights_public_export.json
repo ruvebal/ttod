@@ -4,7 +4,10 @@
   "text": "Public quote without rights decision.",
   "section": "wisdom",
   "level": "intermediate",
-  "tags": ["wisdom"],
+  "lang": "en",
+  "tags": [
+    "wisdom"
+  ],
   "origin": "human",
   "rights": {
     "access": "public"

@@ -1,12 +1,15 @@
 {
   "id": "img-010",
   "schema_version": "3.0.0",
-  "content_digest": "ceaa860f50191545696fa9bda7bca5ef7020ba0680f3e37c5fcfdb82f381f001",
+  "content_digest": "80ab4aa0f024351eb09eef5d4c03f5b568cb6458d1775e3344faec2920401cda",
   "text": "Old image advice.",
   "section": "images",
   "subsection": "optimization",
   "level": "beginner",
-  "tags": ["optimization"],
+  "lang": "en",
+  "tags": [
+    "optimization"
+  ],
   "teaches": "Deprecated image optimization advice",
   "origin": "human",
   "status": "deprecated",

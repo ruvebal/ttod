@@ -7,7 +7,7 @@ This package provides the core library modules for TTOD v3:
 - proposals: proposal and human-review workflow (Q2P)
 """
 
-__version__ = "3.0.0"
+__version__ = "3.1.0"
 
 from ttod_core.sensors import check_evidence_admissibility  # noqa: F401 — public Q5 surface
 from ttod_core.bridge import TTODBridge  # noqa: F401 — public Q4 surface

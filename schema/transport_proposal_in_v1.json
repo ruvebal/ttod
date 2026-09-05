@@ -40,7 +40,12 @@
 				},
 				"level": {
 					"type": "string",
-					"enum": ["beginner", "intermediate", "advanced", "master"]
+					"enum": [
+						"beginner",
+						"intermediate",
+						"advanced",
+						"master"
+					]
 				},
 				"tags": {
 					"type": "array",
@@ -56,7 +61,12 @@
 				},
 				"origin": {
 					"type": "string",
-					"enum": ["human", "studio", "blackbox", "mixed"]
+					"enum": [
+						"human",
+						"studio",
+						"blackbox",
+						"mixed"
+					]
 				},
 				"authorship_assertion": {
 					"type": "string"
@@ -65,7 +75,9 @@
 					"type": "array",
 					"items": {
 						"type": "object",
-						"required": ["source_id"],
+						"required": [
+							"source_id"
+						],
 						"properties": {
 							"source_id": {
 								"type": "string"
@@ -100,7 +112,11 @@
 						},
 						"access": {
 							"type": "string",
-							"enum": ["public", "restricted", "private"]
+							"enum": [
+								"public",
+								"restricted",
+								"private"
+							]
 						},
 						"restrictions": {
 							"type": "array",
@@ -123,7 +139,10 @@
 					"type": "array",
 					"items": {
 						"type": "object",
-						"required": ["target", "relation_type"],
+						"required": [
+							"target",
+							"relation_type"
+						],
 						"properties": {
 							"target": {
 								"type": "string"
@@ -145,6 +164,10 @@
 					"items": {
 						"type": "string"
 					}
+				},
+				"lang": {
+					"type": "string",
+					"pattern": "^[a-z]{2}$"
 				}
 			},
 			"additionalProperties": false
@@ -152,7 +175,9 @@
 		"proposer": {
 			"type": "object",
 			"description": "Proposer identity (may be Athanor system or human)",
-			"required": ["identity"],
+			"required": [
+				"identity"
+			],
 			"properties": {
 				"identity": {
 					"type": "string",
@@ -170,7 +195,13 @@
 		},
 		"status": {
 			"type": "string",
-			"enum": ["proposed", "needs_revision", "accepted", "rejected", "withdrawn"],
+			"enum": [
+				"proposed",
+				"needs_revision",
+				"accepted",
+				"rejected",
+				"withdrawn"
+			],
 			"description": "Proposal status (incoming proposals always 'proposed')"
 		},
 		"created_at": {
@@ -181,11 +212,20 @@
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["activity_type", "timestamp"],
+				"required": [
+					"activity_type",
+					"timestamp"
+				],
 				"properties": {
 					"activity_type": {
 						"type": "string",
-						"enum": ["comment", "revision_request", "accept", "reject", "withdraw"]
+						"enum": [
+							"comment",
+							"revision_request",
+							"accept",
+							"reject",
+							"withdraw"
+						]
 					},
 					"reviewer_id": {
 						"type": "string",

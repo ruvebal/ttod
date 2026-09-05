@@ -1,6 +1,16 @@
 {
   "quotes": [
-    {"id": "arch-001", "text": "First", "content_digest": "aaa"},
-    {"id": "arch-001", "text": "Duplicate", "content_digest": "bbb"}
+    {
+      "id": "arch-001",
+      "text": "First",
+      "content_digest": "36452b2b8fd590800080a3c7a52829737208f26f8e7c0c2476bb63e01c00a0b4",
+      "lang": "en"
+    },
+    {
+      "id": "arch-001",
+      "text": "Duplicate",
+      "content_digest": "08e0aace02888ec13b9abd9d8ea484892996f3dbc38a7d1dfe0660d9ffe8b5ee",
+      "lang": "en"
+    }
   ]
 }

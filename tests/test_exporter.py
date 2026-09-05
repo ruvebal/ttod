@@ -92,6 +92,7 @@ class TestExporter(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         target_path = self.temp_dir / "arch-001.json"
@@ -113,6 +114,7 @@ class TestExporter(unittest.TestCase):
             "tags": [404],  # Invalid: integer tag
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         target_path = self.temp_dir / "arch-001.json"
@@ -180,6 +182,7 @@ class TestExporter(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
             "content_digest": "0" * 64,
         }

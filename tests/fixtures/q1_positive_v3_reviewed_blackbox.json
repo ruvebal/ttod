@@ -1,12 +1,16 @@
 {
   "id": "arch-070",
   "schema_version": "3.0.0",
-  "content_digest": "15ad49f30d9ed081606b52763f65fd5cc03658001d783ee16fb20dd3a0d90ceb",
+  "content_digest": "0062d4e6ae0d5c439c8b5a17248ddadec1ea4f4e0e9b772d1ab744a0b98742a8",
   "text": "Let the machine slug carry lineage with a prefix.",
   "section": "architecture",
   "subsection": "boundaries",
   "level": "intermediate",
-  "tags": ["boundaries", "identity"],
+  "lang": "en",
+  "tags": [
+    "boundaries",
+    "identity"
+  ],
   "teaches": "Scope remembers ancestry; speech remembers mercy",
   "origin": "blackbox",
   "validation": {

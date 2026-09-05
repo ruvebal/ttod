@@ -4,7 +4,15 @@
 	"title": "TTOD Quote Record v3",
 	"description": "Canonical quote record with all v3 axes: Identity, Content, Authorship, Review, Source, Evidence, Rights, Relations, Lifecycle, Ancestry",
 	"type": "object",
-	"required": ["id", "schema_version", "text", "section", "level", "origin"],
+	"required": [
+		"id",
+		"schema_version",
+		"text",
+		"section",
+		"level",
+		"lang",
+		"origin"
+	],
 	"properties": {
 		"id": {
 			"type": "string",
@@ -35,8 +43,18 @@
 		},
 		"level": {
 			"type": "string",
-			"enum": ["beginner", "intermediate", "advanced", "master"],
+			"enum": [
+				"beginner",
+				"intermediate",
+				"advanced",
+				"master"
+			],
 			"description": "Pedagogical mastery level"
+		},
+		"lang": {
+			"type": "string",
+			"pattern": "^[a-z]{2}$",
+			"description": "ISO 639-1 language of this quote record (single-language; translations are separate records linked via relation_edges translation_of)"
 		},
 		"tags": {
 			"type": "array",
@@ -56,7 +74,13 @@
 		},
 		"origin": {
 			"type": "string",
-			"enum": ["human", "studio", "blackbox", "mixed", "legacy-unknown"],
+			"enum": [
+				"human",
+				"studio",
+				"blackbox",
+				"mixed",
+				"legacy-unknown"
+			],
 			"description": "Authorship assertion. No default-to-human. Missing origin must be explicit legacy-unknown, not inferred."
 		},
 		"authorship_assertion": {
@@ -69,7 +93,11 @@
 			"properties": {
 				"status": {
 					"type": "string",
-					"enum": ["pending", "validated", "rejected"]
+					"enum": [
+						"pending",
+						"validated",
+						"rejected"
+					]
 				},
 				"method": {
 					"type": "string"
@@ -93,13 +121,17 @@
 					"description": "Digest of the review record"
 				}
 			},
-			"required": ["status"]
+			"required": [
+				"status"
+			]
 		},
 		"source_refs": {
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["source_id"],
+				"required": [
+					"source_id"
+				],
 				"properties": {
 					"source_id": {
 						"type": "string",
@@ -155,7 +187,11 @@
 				},
 				"access": {
 					"type": "string",
-					"enum": ["public", "restricted", "private"]
+					"enum": [
+						"public",
+						"restricted",
+						"private"
+					]
 				},
 				"restrictions": {
 					"type": "array",
@@ -181,7 +217,10 @@
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["target", "relation_type"],
+				"required": [
+					"target",
+					"relation_type"
+				],
 				"properties": {
 					"target": {
 						"type": "string"
@@ -195,7 +234,11 @@
 		},
 		"status": {
 			"type": "string",
-			"enum": ["active", "deprecated", "erased"],
+			"enum": [
+				"active",
+				"deprecated",
+				"erased"
+			],
 			"description": "Lifecycle status"
 		},
 		"deprecated_by": {
@@ -250,21 +293,33 @@
 	"allOf": [
 		{
 			"if": {
-				"required": ["origin"],
+				"required": [
+					"origin"
+				],
 				"properties": {
 					"origin": {
-						"enum": ["blackbox", "mixed"]
+						"enum": [
+							"blackbox",
+							"mixed"
+						]
 					}
 				}
 			},
 			"then": {
-				"required": ["validation"],
+				"required": [
+					"validation"
+				],
 				"properties": {
 					"validation": {
-						"required": ["reviewer_id", "activity_id"],
+						"required": [
+							"reviewer_id",
+							"activity_id"
+						],
 						"properties": {
 							"status": {
-								"enum": ["validated"]
+								"enum": [
+									"validated"
+								]
 							}
 						}
 					}
@@ -273,10 +328,14 @@
 		},
 		{
 			"if": {
-				"required": ["rights"],
+				"required": [
+					"rights"
+				],
 				"properties": {
 					"rights": {
-						"required": ["access"],
+						"required": [
+							"access"
+						],
 						"properties": {
 							"access": {
 								"const": "public"
@@ -288,7 +347,10 @@
 			"then": {
 				"properties": {
 					"rights": {
-						"required": ["license", "holder"]
+						"required": [
+							"license",
+							"holder"
+						]
 					}
 				}
 			}

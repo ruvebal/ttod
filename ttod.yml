@@ -3,9 +3,9 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # A pedagogical wisdom database for developers walking the path
 #
-# Schema Version: 3.0.0
+# Schema Version: 3.1.0
 # Created: 2025-12-06
-# Updated: 2026-08-18
+# Updated: 2026-09-04
 # Maintainer: ruvebal
 # License: CC BY-NC-SA 4.0 (content) — see LICENSE-CONTENT; code MIT — see LICENSE-CODE
 #
@@ -65,7 +65,7 @@
 meta:
   title: The Tao of Development
   subtitle: Wisdom for the Digital Path
-  version: 3.0.0
+  version: 3.1.0
   language: en
   total_quotes: 229
   last_id_by_section:
@@ -82,6 +82,8 @@ meta:
     rrp: 15
     ux: 4
     wis: 16
+  languages:
+  - en
 audience:
 - web-designers
 - fullstack-developers
@@ -770,13 +772,14 @@ quotes:
   teaches: Image optimization is about preserving meaning while reducing weight
   show_when: Student uploads unoptimized images
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: be76e26cddff22a5b5fec7782251e48558d8d297cddc3aa0087af304a06617bb
+  content_digest: 29363b8e8fa013b8d0d81c95d84416c2221abf1957616ddb59f84aa1a1e9d6fb
+  lang: en
 - id: img-002
   text: 'A GIF that loops forever teaches us: motion without movement is still life.'
   section: images
@@ -793,13 +796,14 @@ quotes:
   - img-015
   - img-047
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 7cb17df84618611a43caf757a64a60d37fe3ffb3fccd3fbe7cdf5a58f6d4e9ca
+  content_digest: f7f159f126cb792b36624eddeb6acb6eba4ad8f844739d2e8fe21175c24440f7
+  lang: en
 - id: img-003
   text: Compress not the soul of the image, only its weight.
   section: images
@@ -814,13 +818,14 @@ quotes:
   - img-001
   - img-060
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 840ec7ee6efecddbb9afaa3dd77388f34434513e28b616380fc8f240fa7360b8
+  content_digest: 78a14f891d3a196a726a4c32f84bf1758774d3d23216394237b46265002aab8b
+  lang: en
 - id: img-004
   text: The SVG scales infinitely, yet remains exactly what it is. Be like the SVG.
   section: images
@@ -834,13 +839,14 @@ quotes:
   teaches: Vector graphics maintain integrity at any size
   show_when: Introducing SVG format
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: db858a981ae2591759ddaca8db7e9f9d842b139242246fa67972078352b939a4
+  content_digest: 5c7de9d05af8b9657a1d59f8a0a403263a1cd82731edcd3af7e7148c7a1c66f4
+  lang: en
 - id: img-005
   text: PNG clings to every pixel. JPG lets go. Know when to cling, know when to release.
   section: images
@@ -858,13 +864,14 @@ quotes:
   - img-008
   - img-046
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b42560c1d0cea6b336e2794f90f2699067c9a342d0c7192c7c55062b99a52ac6
+  content_digest: be6f9d4189b1941c88c8d002ab3b5e286e5503257d82a0b0d8aab21a1837901c
+  lang: en
 - id: img-006
   text: The developer who uses BMP in production has not yet begun to walk the path.
   section: images
@@ -879,13 +886,14 @@ quotes:
   related:
   - img-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 2ef9d52475f8ba41b5cfac40707fc267018e2c1e4c09219ec659233542451562
+  content_digest: 9c428cdb9cc49d2b8cd94bdde218a780958cd8576d43fdbddf5497511be27e03
+  lang: en
 - id: img-007
   text: 'WebP is the middle way: neither the attachment of PNG nor the loss of JPG.'
   section: images
@@ -901,13 +909,14 @@ quotes:
   - img-031
   - img-046
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 02340def0c9088f0e5b85bb77197001b1daba6f41a5211a7caea414ee09f817f
+  content_digest: fd4b644e4f54698570a07ade86ab1b6e2977acc65e838be405fd1b3dfa909cde
+  lang: en
 - id: img-008
   text: To choose the right format is wisdom. To not choose at all is a 5MB hero image.
   section: images
@@ -922,13 +931,14 @@ quotes:
   - img-062
   - img-049
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d79c4b7620a6d518b0820b2b967cca028fa4c67ff62da2dbda8f3f75479302c2
+  content_digest: e7c0b558490e3fd79be4a5f722064b3bae601c779765c9a7840fd95d960e4e3f
+  lang: en
 - id: img-009
   text: The 404 page with no image is like a garden with no flowers — technically
     complete, spiritually empty.
@@ -944,13 +954,14 @@ quotes:
   teaches: Visual assets enhance user experience
   show_when: Student creates text-only 404 page
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8b2922bf8f4992faa1e87f0a07e0d949d34b94936846ea013e88811df4a18c4b
+  content_digest: 2fb5d8366c213db81d81999e24dd43b8ee72c6e60fffd06695c66580e951b7f7
+  lang: en
 - id: img-010
   text: An image that doesn't load teaches the user patience. But patience is not
     your lesson to teach.
@@ -967,13 +978,14 @@ quotes:
   - img-051
   - img-052
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f34a1e99b163adf5f60b5ec4b5d18615bac0bd070dc60c04bd9bf28a38737c6d
+  content_digest: bce57ed30caf492992eac09e8265e61378b0c31cff3a84ac88c318f15d30666c
+  lang: en
 - id: img-011
   text: The space where the image should be is also an image. But the grader gives
     it zero points.
@@ -990,13 +1002,14 @@ quotes:
   - img-038
   - img-039
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 13b7778e5f144b4cc0ad90aaf05156e8bba73c0002419be70c46b8d6f1bf76a3
+  content_digest: cae1743378d935ed28fc008652de3a930e8ffc1d6907f5bed9e09ec55f2dd969
+  lang: en
 - id: img-012
   text: Inline the small. Externalize the large. This is the natural order.
   section: images
@@ -1012,13 +1025,14 @@ quotes:
   - img-020
   - img-021
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: afa5ac20518937220f2fad812fe0bab91cb1ae6f21e798eb3b6941a06e31fa35
+  content_digest: cab29d9436ab06530a7e219dd0a6c4d43b855da811093cde63df9e5252503033
+  lang: en
 - id: img-013
   text: 'The GIF asks: ''Am I an image or a video?'' The Tao answers: ''Yes.'' 🎉'
   section: images
@@ -1037,13 +1051,14 @@ quotes:
   - img-015
   - img-047
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 6bdc0c88c42cffdf7ceea1ad78c0390e4c924eca309b9e17a776ee5ab1357931
+  content_digest: cae5be0fc0275394f79adab95220172b3babadbebbf9d3f903add7d67679965d
+  lang: en
 - id: img-014
   text: A well-placed GIF brings joy. An autoplaying video brings rage. Know the difference.
   section: images
@@ -1059,13 +1074,14 @@ quotes:
   related:
   - img-058
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 00f7a3f10d4e39f9ad3c3f48779033949c7054a4ff85f390ff3269b9250dc7bf
+  content_digest: f186382ba78d513affb39de63db7e67d4641ef7e66e817aa01e1fd360e5ecab9
+  lang: en
 - id: img-015
   text: The GIF loops endlessly, teaching us that some mistakes we will make again
     and again until we learn.
@@ -1083,13 +1099,14 @@ quotes:
   - img-023
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 11a647d6bf09c3623b99f62ab7d8e56698712f888c6741b55bd2fc269eaac16f
+  content_digest: d24e00b6cc82d98059ed48751b9a162de690f87e8d928fd18f3298334945e48a
+  lang: en
 - id: img-016
   text: The raster image fears the zoom. The SVG welcomes it.
   section: images
@@ -1105,13 +1122,14 @@ quotes:
   - img-004
   - img-048
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 69627e5f54729f6cb199f142919dbb4cf83fa17075473db894beb84e115dfe7d
+  content_digest: 768b4e4a9a20df161dea391aaeaad5f31c632f9640cf5a176ac314bb0d7deba2
+  lang: en
 - id: img-017
   text: 'SVG: Scalable, Vector, Graphics. Also: Serenity, Virtue, Grace.'
   section: images
@@ -1126,13 +1144,14 @@ quotes:
   related:
   - img-004
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 61d448c4998d46756500183b16e29d00702ecf344ba7dc7914a54cf8ec27761c
+  content_digest: 898e866bc6538df5fe484775992e36d886f4d8ab53b586ae1305ec05ceddc4e0
+  lang: en
 - id: img-018
   text: 'The inline SVG says: ''I am one with the DOM.'' The external SVG says: ''I
     am cached for eternity.'' Both are correct.'
@@ -1150,13 +1169,14 @@ quotes:
   - img-012
   - img-020
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1757036c5ea201ce2e1b1c3eb2edce694357cc54ac752895465730b2c7afebbb
+  content_digest: 856db57d7d36612714af799248d5188fc5a96b8ff9f7a3335d056dc1d2362f1f
+  lang: en
 - id: img-019
   text: A thousand PNGs can be replaced by one SVG. This is not optimization. This
     is enlightenment.
@@ -1174,13 +1194,14 @@ quotes:
   - img-004
   - img-048
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 55a62f2c222ee318f4a06211af2cf984ab6db9930d35fa99b988bb0431688468
+  content_digest: de257579db0c174bfd33f94ee38fd1a98904a3fb4c4098ea322d7a7fd9ea2816
+  lang: en
 - id: img-020
   text: 'The data URI says: ''I need no HTTP request.'' But at what cost? At what
     cost?'
@@ -1197,13 +1218,14 @@ quotes:
   - img-012
   - img-021
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 03f976e9b9fabc3b877ac2933092c6c56521b6e40f840bdf28b6dccfa3d07fad
+  content_digest: 85cf8b13490978e3b00d3162ee72860523cd6472d6b1bc5ca87dc7f39992c896
+  lang: en
 - id: img-021
   text: Embed the icon. Never embed the hero. The Tao of Base64 is knowing when to
     stop.
@@ -1221,13 +1243,14 @@ quotes:
   - img-020
   - img-062
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: fcad167259efce56885b1e7581b9affbff0986ab3b6dbf74149c0144e59ac161
+  content_digest: 8e99ceda0036a7c172126431cfd2f9b55a56d49d504d9f03f46c27f33c03152c
+  lang: en
 - id: img-022
   text: The image served from localhost reaches one. The image served from CDN reaches
     all. Think globally, cache eternally.
@@ -1243,13 +1266,14 @@ quotes:
   related:
   - img-064
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 258f135d6657e96d20b7a7e530c5213730ed63e871240ffe7f8f8e3fe0154b15
+  content_digest: ceb13b3c1e3cbbd4baf052f5f255baf3d341f003f61e8d56f37fa9512d0f3456
+  lang: en
 - id: img-023
   text: First, the student adds images without thought. Then, the student removes
     images with fear. Finally, the student adds only the images that are needed. This
@@ -1266,13 +1290,14 @@ quotes:
   teaches: The three stages of image mastery
   show_when: End of images unit
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: e1a813cc78ffd419439a2d50adbbe88df4faaec5bde2c9e30dc3c0c9bfa5e521
+  content_digest: 8c8930c902c1191ab4d817d7581973d2beb78b1817d1955bb27585eb5bb1da0e
+  lang: en
 - id: img-024
   text: Your 404 page is a mirror. What does it reflect?
   section: images
@@ -1287,13 +1312,14 @@ quotes:
   related:
   - img-009
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 0ed35db665d74039ed14c764a1b45a7efcd132cd3c9286f3a3a780acbc1715a5
+  content_digest: cfa7e5f3cc373ce0220f4e39f0c8d8445ca3d42ccbb358b107984733e9e5eb28
+  lang: en
 - id: img-025
   text: The browser does not judge your aesthetics. Only your kilobytes.
   section: images
@@ -1310,13 +1336,14 @@ quotes:
   - img-051
   - img-068
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c0d3cc4d7e06cb75602f180c57813d89bfc85a23288c7bbbdfad5f8db0412e1d
+  content_digest: 1c553c1bd325b30224b874f8ef51603f7b73b730c8bbd32cfaa65001351a419a
+  lang: en
 - id: img-026
   text: alt='' is silence. alt='image' is noise. alt='A astronaut floating past Mars'
     is poetry.
@@ -1336,13 +1363,14 @@ quotes:
   - img-041
   - img-057
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ce8e3bfdd4fcef48e7428668ffffc7eb5312aaad70bd773f581f80c0fbd16d87
+  content_digest: b42045c70602a0dfbd652b7baca4313e55b57de540f005cd79c64d3b72af8f68
+  lang: en
 - id: img-027
   text: The lazy-loaded image waits below the fold, patient as a monk. It loads only
     when seen. This is wisdom.
@@ -1360,13 +1388,14 @@ quotes:
   - img-036
   - img-037
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 16b2bb37e0c07b996d7572e1a507e543fa05126c46aee47f5d0fc7f1038673a5
+  content_digest: 8a01e526f2652fcb8d66a5f08f3fb6644fef50f9a574042542fd8817c637e9ad
+  lang: en
 - id: img-028
   text: srcset offers choice. The browser chooses. Trust the browser. Or don't. It
     will choose anyway.
@@ -1384,13 +1413,14 @@ quotes:
   - img-044
   - img-045
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: cc48f8f53823386ac89573e238d2699534e8172c2a140ff9cfec176752449b33
+  content_digest: f9ad8b9959cf3df23c9ace7af11ddc2cd385111f5887da778044e208bebb2bde
+  lang: en
 - id: img-029
   text: The heaviest image weighs nothing when never loaded. The lightest image crushes
     the user when poorly placed.
@@ -1407,13 +1437,14 @@ quotes:
   - img-001
   - img-034
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 88e2e2e7eedecf07358036716ca9cfe811fbad6c81a8b633fe4549f25b3eb7db
+  content_digest: 6f0febe76a8298cf579c1fd3e94c02ff838a665b235c5b3fed12e041468276b1
+  lang: en
 - id: img-030
   text: 'Master Li compressed a 5MB image to 50KB. His student asked: ''Did you lose
     quality?'' Li replied: ''I lost only what the eye could not see and the network
@@ -1432,13 +1463,14 @@ quotes:
   - img-003
   - img-060
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: e000cfe76c461cdba06f30e32d90cffc5ee7de6c1f65ba11f21d9977c0acfcc2
+  content_digest: d9e30b48c101b44253bb0cdb41efa6bbd8042e9519deab0a8f8303519b6446ad
+  lang: en
 - id: img-031
   text: The wise developer serves ten image formats. The enlightened developer serves
     only what the browser requests. The master serves WebP to Chrome and JPEG to the
@@ -1457,13 +1489,14 @@ quotes:
   - img-007
   - img-046
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 85a6bdd2f4d3b4babe3a1a09be3ceb6a770d396b1894931b912521ac46307a31
+  content_digest: cfc1281c4831e2b721536a28d23c9fa6d0579624cd822da2be4defb68c26295c
+  lang: en
 - id: img-032
   text: Optimize not for the device you hold, but for the connection you cannot see.
   section: images
@@ -1479,13 +1512,14 @@ quotes:
   - img-033
   - img-042
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a3c9224885cd37c68bb163c733febf5e5e9f5065cbd5f70af329f0692242453c
+  content_digest: e673a924b8883aced79d0ef15b7d1917fbea08b6db74371c31313e284e43a84c
+  lang: en
 - id: img-033
   text: A 4K image on a 320px screen is not luxury—it is violence against the user's
     data plan.
@@ -1502,13 +1536,14 @@ quotes:
   - img-042
   - img-044
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8bf8b95704d6cb95d11edaf4cc704faddb052581c528847167258aad98dcda71
+  content_digest: cd4f01679e294d448319c8af4b9bd12de15f8cf90e37ffe55138f1f93ebf0117
+  lang: en
 - id: img-034
   text: Load what is seen. Defer what is hidden. The page that loads everything loads
     nothing fast.
@@ -1526,13 +1561,14 @@ quotes:
   - img-036
   - img-050
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: af8c9d425143a0dc60d0324d046e5f1d8dea38795f6889c3ab26f69a196dac17
+  content_digest: f43f1ef4e09985691a8ccc359c52e715b4466ccaf1d801e99da4b53ec73aabbd
+  lang: en
 - id: img-035
   text: 'The student asked: ''Should I lazy load?'' The master showed him a page that
     loaded 100 images at once. The student''s browser wept. The master said: ''You
@@ -1550,13 +1586,14 @@ quotes:
   - img-027
   - img-037
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 9b9e35eb06dfbe3f4b5011d777490260e1ab548b7f2eb4da92b5bedf7983a526
+  content_digest: 37840b1eeb7b23efb1e234afc6bb95929f0abedd43c9d799f4f97fcbd171266f
+  lang: en
 - id: img-036
   text: The image below the fold does not exist until the user scrolls. Why then do
     you make it exist at page load?
@@ -1573,13 +1610,14 @@ quotes:
   - img-027
   - img-034
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 10d024a6af03179c6446279c43f4fab82135204a8d7387ca410531559732fec8
+  content_digest: e70706f6490f9439b07487ffb2dee99933d9e64f5c41bea38a10585d3a1be1b1
+  lang: en
 - id: img-037
   text: Eager loading is greed. Lazy loading is wisdom. But loading nothing is enlightenment—question
     whether the image serves a purpose.
@@ -1597,13 +1635,14 @@ quotes:
   - img-061
   - img-065
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c6b5fc021ad48a36028f5cc41e3800e3a812f1ec0840114c6fc56a24b31e5a35
+  content_digest: c56cddf34189a6bd979ce0c8461993817b336d92faaec97e468b78608bfd5dcb
+  lang: en
 - id: img-038
   text: An image without alt text is a locked door to the blind user. You would not
     build a website with only locked doors.
@@ -1621,13 +1660,14 @@ quotes:
   - img-057
   - img-066
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 69ad44b882f4e15444a11a1019a0e69faabd375e1b55592b526a11d4d7bb9507
+  content_digest: fede3080f5f176cacaf4c0f785576cf907b6f7e4fd8a796c0cb42661ddb1425a
+  lang: en
 - id: img-039
   text: The alt text that says 'image' is worse than no alt text. It is a sign that
     points to itself.
@@ -1644,13 +1684,14 @@ quotes:
   - img-026
   - img-011
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 30f4d5caed922ae13d8eefd1f87eaf3632c84c2cc48e87351afcb448eae7b07f
+  content_digest: 798d866077de3f1187e32e12f081b808ceb8c94f712991635757ac5923ba8f30
+  lang: en
 - id: img-040
   text: Write alt text for your grandmother who cannot see. Write it for the search
     engine that cannot see. Write it for yourself when the image fails to load.
@@ -1667,13 +1708,14 @@ quotes:
   - img-026
   - img-057
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: e07e4c566a6cdfea558dbb21faa8aca76109fbe2c27c8a3ddf796cc1747e8105
+  content_digest: b9a3e15c7271a2070ea0a92a7e86aafca0597441956143056b0f1634d948a2f4
+  lang: en
 - id: img-041
   text: 'Decorative images speak in silence: alt=''''. Content images must sing their
     purpose aloud.'
@@ -1689,13 +1731,14 @@ quotes:
   related:
   - img-026
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 84381efca6a360db62487b3f857182e001a3535820d53333c8499ffdd2060603
+  content_digest: 470fa29fa43808f8e3fed51f4b9f27c4f5bc4ee57cb3fa41197fb198cc9b23f7
+  lang: en
 - id: img-042
   text: Serve a 2000px image to a 375px phone, and the gods of bandwidth will curse
     your house for seven generations.
@@ -1712,13 +1755,14 @@ quotes:
   - img-033
   - img-044
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1c47dd6ba84c846b2201e80942601eedcdb8a3cfd467bc0e5dc503073b3f2594
+  content_digest: aff8f06ab1b1db6668c0f2acd91cd3a4d392960b8a921f5712a1a86044044129
+  lang: en
 - id: img-043
   text: The srcset is not complexity—it is respect. Respect for the mobile user's
     data. Respect for the desktop user's screen. Respect for the device you have not
@@ -1736,13 +1780,14 @@ quotes:
   - img-028
   - img-045
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1dca8d8f02b99d63eb4a3abdcf3388a8371f366ae53bd5a5ccd258361577f848
+  content_digest: c1476edc0e73aa1184615deadb6299ca44d492fa495958e2482778a83a8d2610
+  lang: en
 - id: img-044
   text: One image for all screens is like one shoe size for all feet. It fits no one
     perfectly and everyone suffers.
@@ -1759,13 +1804,14 @@ quotes:
   - img-033
   - img-042
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 42a56702a70a97876f4a63efcd2c52875625c0e139288950de7ac60d1a30f770
+  content_digest: 5305aa403696825d476297ef74db26def2a6057647da84a6b97e833db7205557
+  lang: en
 - id: img-045
   text: 'The master writes: `<img srcset=''...'' sizes=''...'' />`. The novice writes:
     `<img src=''huge-image.jpg'' />`. The user pays the price.'
@@ -1782,13 +1828,14 @@ quotes:
   - img-028
   - img-043
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ca7267dd06f7a0715df711975725b11b639f0e9fcc7e183cf0d91bcc4ba22e8d
+  content_digest: 33ac2e54772e88a53aff86575d6dede93d43f4f24e3fbda3a6387b036a4dd962
+  lang: en
 - id: img-046
   text: PNG for transparency, JPEG for photos, SVG for logos, WebP for the future.
     Know the nature of each, and choose with wisdom.
@@ -1806,13 +1853,14 @@ quotes:
   - img-007
   - img-031
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 4e2cd386cd780fc21999e13fcd5d05e49bf02d7678980ef80c25eb154b99865f
+  content_digest: 51e7b341f03394833a54b4d8cc25a5790043bd7d160928195c873cd47d3f40a4
+  lang: en
 - id: img-047
   text: 'The animated GIF is the drunk uncle at the wedding: sometimes entertaining,
     often embarrassing, always taking up too much space.'
@@ -1830,13 +1878,14 @@ quotes:
   - img-002
   - img-013
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 994e52e9b27e99666f0f2d1925d8fa05194f56de3b704774ea5d05901fe4ef3e
+  content_digest: 1a01424c41210ab4c21fecc668aedc5a0b7c8cba48be2674e95a19f8c313a08b
+  lang: en
 - id: img-048
   text: SVG scales infinitely, yet weighs less than a single JPEG pixel. This is the
     paradox of vector over raster.
@@ -1854,13 +1903,14 @@ quotes:
   - img-016
   - img-019
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 768311815d21555443f8eeec30d3c27e1f7e869fa030cc7307b0efe6b8d966b2
+  content_digest: 531fc91e271be4fb3ff946c683a3598f96804962e12f11c2103cdad2315bafad
+  lang: en
 - id: img-049
   text: The fastest image to load is the image not loaded. Question whether the hero
     needs to be a hero image.
@@ -1878,13 +1928,14 @@ quotes:
   - img-037
   - img-059
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 42de1171238770af9b550e394139b1b53427fe913c201c1479215ae30dffdd1e
+  content_digest: 9eb9702764afc6b412267853281dc192e575146ce6e1e01ac6eef4fbb5099a8f
+  lang: en
 - id: img-050
   text: Preload the critical. Defer the decorative. Remove the unnecessary. This is
     the three-fold path to enlightenment.
@@ -1901,13 +1952,14 @@ quotes:
   - img-034
   - img-065
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: e34c5862c4f3cc5377a71bcd75e269e2e981ff8518a2ded2732f0e0be6f87876
+  content_digest: 92161e4a8bc2c653df71c621ba23d2bd1f7bd702c64c97a8d0e2d494a608cb5e
+  lang: en
 - id: img-051
   text: 'The student said: ''My images look beautiful!'' The master checked the Network
     tab and said: ''Your users have left before seeing them.'''
@@ -1924,13 +1976,14 @@ quotes:
   - img-025
   - img-068
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 44c7ea018555c2f87d3c8cdfc51d32062b2de57eabe76edef5c9e0cf60ec4cb5
+  content_digest: f579b06e08d39bdaf03f38f33326234c94042c1d32730e4dd6f27e94848f4639
+  lang: en
 - id: img-052
   text: A 3-second load time is not slow because of technology—it is slow because
     of your images. The server is blameless; the developer is not.
@@ -1946,13 +1999,14 @@ quotes:
   related:
   - img-010
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 16c7bcc131141e752efb4f360163a1d5d1687156295cc90c53f133b70fb1966d
+  content_digest: 38cceeaacc78497be1588fdf2121311e39224b9becceac686eb4b075769d0f7d
+  lang: en
 - id: img-053
   text: Use images to enhance the message, not to be the message. Words remain when
     images fail.
@@ -1969,13 +2023,14 @@ quotes:
   - img-063
   - img-065
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b42c7b748dc4fc888ae2a46f65c4493fc547c91003ebdcd4e36d4fdf9af767c4
+  content_digest: 6376dd1393ed41fe8032a32a343ca85d21c28db95569fc275139e23ce9f9421f
+  lang: en
 - id: img-054
   text: The background image that obscures the text is like a painting that blocks
     the door—beautiful, but fundamentally misunderstanding its purpose.
@@ -1991,13 +2046,14 @@ quotes:
   related:
   - img-053
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 863df38f7c0c070862ebba898b41bfd0908b7f4c0e3c85e6c0fdcb174536e6fd
+  content_digest: 85738199ef5642f718e50082d838bd6749ef947739facd5d4d343135447c3a6d
+  lang: en
 - id: img-055
   text: Fifteen stock photos of diverse people pointing at laptops do not make your
     website diverse. They make it a cliché.
@@ -2014,13 +2070,14 @@ quotes:
   related:
   - img-065
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 6f14d508c4b1f8ac95a0cb433cdf3276e05e04622c0fb2183e7d77031685c73e
+  content_digest: 88d9ebc54dc8f18a426f2e0455ab416479f280a00a1154ab8c817091ac1c2387
+  lang: en
 - id: img-056
   text: The logo need not be large. The sun is distant yet illuminates all.
   section: images
@@ -2035,13 +2092,14 @@ quotes:
   related:
   - img-065
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: cfeb6b04022b9738d995f9815affb7ad396b20291ff3fca73ea2032b82611df5
+  content_digest: faf7208183132fca8cbef8de0c38d8266a6ca8fc833591821990c26f744d1a0f
+  lang: en
 - id: img-057
   text: The visually impaired user cannot see your images, but they can hear them
     through alt text. Speak clearly. Speak truthfully. Do not say 'image123.jpg'.
@@ -2059,13 +2117,14 @@ quotes:
   - img-038
   - img-066
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 243a44b3f8c4e5ad9dfcc94fb8b23004b6e4f1b34a57826103d9b03aa125b035
+  content_digest: 1c2578220607c13c20b39deaf1005d363f74104a8a378b02a0e799a3250c8df3
+  lang: en
 - id: img-058
   text: Autoplay video is not engagement—it is assault. The user who does not choose
     to hear does not consent to hear.
@@ -2082,13 +2141,14 @@ quotes:
   related:
   - img-014
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1b6a3d63d23e4ac972af09e061ccd14d492455870eabb8bc457e517211057dd0
+  content_digest: f0156e6c01f01687b6d4b7997846b6d306ec1c14a2e7037241a21197cd973565
+  lang: en
 - id: img-059
   text: The perfect image is often no image at all. CSS can draw circles, gradients,
     and shadows. Why burden the network with what the browser can paint?
@@ -2105,13 +2165,14 @@ quotes:
   - img-049
   - img-061
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: dfb0694845634333bb7d7e46ad2d28366c6d905f1d17b2d644e9b3ebb25c5189
+  content_digest: db0569c5a999d5ecb3430f51cfae23c3114527de2d095fde1492ae32a6003e98
+  lang: en
 - id: img-060
   text: Compress until it hurts. Then compress more. The user will never complain
     about an image being too fast.
@@ -2128,13 +2189,14 @@ quotes:
   - img-003
   - img-030
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 934498ddd3798e74664ad610ef45d9d7da7c9a3c03242547ad15b34c9fbbc52c
+  content_digest: cf935e50239d5e2fb5deb0dafdce2dcaeaaeaa2bf9c0fbffe6cfbe78f090fdae
+  lang: en
 - id: img-061
   text: The developer who uses `<img loading='lazy'>` has learned. The developer who
     uses `loading='eager'` has understood. The developer who questions whether the
@@ -2152,13 +2214,14 @@ quotes:
   - img-037
   - img-049
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a7b57bc30d731d47d669c15f7ed957d6fad49626351a3275db871eb1a52fd3f7
+  content_digest: 7effdc466981e3dd809606be18cfef9efaa8fa414b9f8b4859c5a9350f8e4c1b
+  lang: en
 - id: img-062
   text: Your hero image is not a hero. It is a 2MB obstacle between the user and their
     goal.
@@ -2176,13 +2239,14 @@ quotes:
   - img-049
   - img-021
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a45a956b435d828f345a1e1406cad80ccd7d1b619ad96252e4a165d528a7a445
+  content_digest: f115fadee7be5a23bb984a1074226643270d8ee7c797c981e57ad7233a45b9ed
+  lang: en
 - id: img-063
   text: 'The ancient masters said: ''Content is king.'' The modern web has forgotten.
     Images have become the tyrant, and content serves at their pleasure.'
@@ -2199,13 +2263,14 @@ quotes:
   - img-053
   - img-065
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 872cc8359750ce856146ccba3a2e7fd0a4a31ed2da07e123ff1d2d7ac971071e
+  content_digest: 5896e3965871133a25070dc0a18d938177406d8884fe1836de8ed1e99fc1857d
+  lang: en
 - id: img-064
   text: Every byte you send travels thousands of miles through cables under oceans.
     Respect the journey.
@@ -2223,13 +2288,14 @@ quotes:
   - img-022
   - img-032
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d56e6813445847803d5d44b44dcea21b996f6c79483c9c0ce280319e3720cfeb
+  content_digest: 17474532a5b50819b6399e555ecef091f993b6165224cdd7ca4b4b56cf1a1173
+  lang: en
 - id: img-065
   text: An image without purpose is decoration. Decoration without restraint is clutter.
     Clutter is the enemy of meaning.
@@ -2248,13 +2314,14 @@ quotes:
   - img-055
   - img-056
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d9f06c254e7cf041d612ec1f2ad3bcbe0ca27ee5fea9e50616ff43963551e453
+  content_digest: 923ce607fc80b465d62a119cb6e188a38328ec630b79ea0f1ab4349e50e3547c
+  lang: en
 - id: img-066
   text: The website that serves only the sighted serves only the half. The website
     that serves all serves the whole.
@@ -2271,13 +2338,14 @@ quotes:
   - img-038
   - img-057
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f8468b0e1f740ecd2148dd26ac90f3cdc3e98f6cf0a4d97505206c1a42303b58
+  content_digest: 41275be4ebbd3588898cc6cf0a6bdd714698491c4ff022e2bf701963cde0eb82
+  lang: en
 - id: img-067
   text: 'A student asked the master: ''How do I know when my images are optimized?'''
   section: images
@@ -2293,13 +2361,14 @@ quotes:
   - img-068
   - img-069
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d1f26daa1bbbfc6da08b2abe4dbd8b316f06253fbaeb5a2e7cb92c1a9ff459b3
+  content_digest: 56c5396042f1c768cc2161b29688c30e005a1a5642693d24d57a38a4a35f497e
+  lang: en
 - id: img-068
   text: 'The master replied: ''Open your DevTools. Check your Network tab. If you
     see red, you have work to do. If you see green, you are learning. If you see nothing
@@ -2318,13 +2387,14 @@ quotes:
   - img-051
   - img-067
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ff786367923fb1848b27a6d36c7d755e8c2c60233e70243e17d8dcd5c25078f5
+  content_digest: 6b68cc8dc7e594b8794df3c43254190947541792027ef06105122d48f42b0ba0
+  lang: en
 - id: img-069
   text: But if your users can accomplish their goals regardless of the images, then
     you have achieved the Tao.
@@ -2341,13 +2411,14 @@ quotes:
   - img-067
   - img-070
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f9ebb94537bb6b3c16621975a3de38a7d5e54a7d5589f521f03a8498a12d1e4c
+  content_digest: 01390cc49ac0b18a752631aad90c132e27ec29a0041c50c916c95ed87e245a55
+  lang: en
 - id: img-070
   text: The way of the image is the way of balance. Too heavy, and the user departs.
     Too light, and meaning is lost. Too many, and the message drowns. Too few, and
@@ -2365,13 +2436,14 @@ quotes:
   - img-023
   - img-071
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 2603351e84baf479b3d4c74e6cc0a44d4fb7b7f4d8e824964b3feda0daef3928
+  content_digest: 755eb8d48fa5c4e6b98aaad3677c6e6b4645226e9c263f8d27c9eda66370335e
+  lang: en
 - id: img-071
   text: Seek the middle path. Optimize with compassion. Code with wisdom. Test with
     humility.
@@ -2389,13 +2461,14 @@ quotes:
   - img-070
   - qa-012
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 036864411cd0978c08f921dd908164c5183d93a1035c433ac221ebb90e2268aa
+  content_digest: c255e36ca68184005cda4bad5c5472e22156571f3bc281454234668079d9c29e
+  lang: en
 - id: img-072
   text: This is the Tao of Web Images.
   section: images
@@ -2410,13 +2483,14 @@ quotes:
   related:
   - img-073
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 7c3f9ac77b2837c8ac8439065925efbbe054c78785b1841b22746ebd598eaf52
+  content_digest: 7e518b8b57f0977d7fe735ae488bb7a304d49cbe197987e2095fddf91acb8cd8
+  lang: en
 - id: img-073
   text: May your students find enlightenment in the `<img>` tag, and may their Lighthouse
     scores be ever green.
@@ -2434,13 +2508,14 @@ quotes:
   - img-072
   - qa-012
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 66390648eca8ef5d47220ea20e25656f34794f79d64d567e32accae3f89c21bd
+  content_digest: 5502277872fefe567e8fc5163da9c73e3d82f939031a5207ae59c991a0d62472
+  lang: en
 - id: qa-001
   text: The wise instructor automates what repeats. The foolish instructor repeats
     what should be automated.
@@ -2458,13 +2533,14 @@ quotes:
   - qa-005
   - qa-014
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 6016942cebb3818d9a3277e834f14fbc301c1f25e75259fc8b65af26fb24b348
+  content_digest: 35790da1434746388c0177cedb0bca00d6af348a0a5164104a537811ab4a9df4
+  lang: en
 - id: qa-002
   text: The API that documents itself is the API that survives the next developer.
   section: qa-tooling
@@ -2480,13 +2556,14 @@ quotes:
   - qa-004
   - qa-010
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f8ce3cbd7ce5b3063058b4b60fbab3dfdf6b624419be09eddc8547a7c9e820d3
+  content_digest: 425b8b6476780930c51cdab39087eece8ae059aa5b7e5284876717f28688485f
+  lang: en
 - id: qa-003
   text: 'A system without clear layers is like a house without walls: technically
     functional, emotionally devastating.'
@@ -2503,13 +2580,14 @@ quotes:
   related:
   - qa-015
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 5f8ad051b57026e1e9e80699e39206384f9585d11b2378303f3a8d6ae6062a83
+  content_digest: 9d909f883205af9bddec61573e082177bc6afa55b597d326cae51cbcc9cab01c
+  lang: en
 - id: qa-004
   text: The tool unused is a tool unknown. The tool undocumented is a tool abandoned.
   section: qa-tooling
@@ -2525,13 +2603,14 @@ quotes:
   - qa-002
   - qa-010
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: bb8a31fa50d0c4fdd9a2b67f3e4f2ae602501e582d7b0406102219d7c1ed1d52
+  content_digest: bd973c77c59bcbcd325da86d536bd0860ad5dc99e0863f3940251effc32baa10
+  lang: en
 - id: qa-005
   text: The release that ships itself is the release that ships on time.
   section: qa-tooling
@@ -2548,13 +2627,14 @@ quotes:
   - qa-014
   - ops-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 27ea27225032080e8032dda14b68659c660906c3ad1b36b25a35d6099f27212b
+  content_digest: 46b7f82d57228693b61a664fe461994c50cd94bf20de9eabdadce81aaca495e3
+  lang: en
 - id: qa-006
   text: A dependency added is a dependency maintained. Choose wisely.
   section: qa-tooling
@@ -2569,13 +2649,14 @@ quotes:
   related:
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f009b0e26c9e0b0e19a9741b5f6210cbcfc3074211eae48d8ae07eeb1b9aa2ef
+  content_digest: fcb33f95d220db773c11c20a213489b7a880b45c6100259b2dc93fa97cb710a8
+  lang: en
 - id: qa-007
   text: The contributor who reads the style guide is the contributor whose PR gets
     merged.
@@ -2591,13 +2672,14 @@ quotes:
   related:
   - qa-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f55c112d9c25e5659b6c41a66bad9d71705a1be68453f5ddb5a4f7f8b23b421d
+  content_digest: 86756682d380c3985205f73fe6df971d898650eba96451a329295cda4a475ea8
+  lang: en
 - id: qa-008
   text: The path to mastery begins with reading. The path to enlightenment continues
     with practice.
@@ -2615,13 +2697,14 @@ quotes:
   - qa-007
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 71e65040b85ae254038efea408173cfb6fc4f85f835f510413cb31d113e901b0
+  content_digest: 1b4fe8fb6f2db6ddfa3e63ef9ea2177f9c45364ca6e0e4f47f865a39b6528ae2
+  lang: en
 - id: qa-009
   text: 'Code without quality checks is like a ship without a compass: it moves, but
     who knows where.'
@@ -2637,13 +2720,14 @@ quotes:
   related:
   - qa-016
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a4a29000de71544abf8e6e2c50c96d764b9b481dc8b676efff3c385a364d4f78
+  content_digest: 044d491bea8f1af1010e62f590284f0d3f0e177f19c3840c664a9d3e3bcb6621
+  lang: en
 - id: qa-010
   text: To understand the docs is to understand the code. To understand the code is
     to understand the mind that wrote it.
@@ -2661,13 +2745,14 @@ quotes:
   - qa-004
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1eb497c4881c76d612708112df5025c4f05923f322a2ea58f46e3e536ffaa72a
+  content_digest: 0d61d656672c74c32af0985163f190975bc262d0e011de6206de410fa983117a
+  lang: en
 - id: qa-011
   text: Free as in freedom, stable as in tested. The Tao asks not for payment, only
     for proper attribution.
@@ -2682,13 +2767,14 @@ quotes:
   source: web-qa-toolkit
   related: []
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 46ef0de1917bb8eae0068a8495536586f7874d65d1bd8270232c18ed8f178069
+  content_digest: 1e88215ef961f84198e5fcff65d5ec698a9ecfd007019c9445065f7d76d92d47
+  lang: en
 - id: qa-012
   text: The wise instructor grades with consistency. The enlightened instructor grades
     with compassion.
@@ -2706,13 +2792,14 @@ quotes:
   - img-071
   - img-073
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8b9324be9509c276e06ff3a49375912507f456efc3d2ce47c760a352b3e3f1c2
+  content_digest: 3c81099884c361aad46055641ea3b6d9d5622ab078ad8c8e3e71436fb69df82f
+  lang: en
 - id: qa-013
   text: 'To bump wisely is to keep truth in two places: the manifest and the module.'
   section: qa-tooling
@@ -2727,13 +2814,14 @@ quotes:
   related:
   - qa-015
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 27202e502cb4451175ca835d4a5e70bbbe9d68160ad0b3d66f02d92d1591864d
+  content_digest: f76f0ab7adcc903231a6456c995cc972df3b626d00f6d636f96296ab8f42d4ae
+  lang: en
 - id: qa-014
   text: The documentation that deploys itself is the documentation that stays current.
   section: qa-tooling
@@ -2750,13 +2838,14 @@ quotes:
   - qa-001
   - qa-005
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 296bba0b7751ffb825f59458f24506a4e0df65581bed8edc57e5de53b2b3e465
+  content_digest: cfafa81226e4053854dffde1064def92d3e68f9e9d0167fa7123a289393b18df
+  lang: en
 - id: qa-015
   text: 'The Tao of configuration: change once, reflect everywhere.'
   section: qa-tooling
@@ -2772,13 +2861,14 @@ quotes:
   - qa-003
   - qa-013
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 0f49c35802932c8a766433be97f2cae426e5ddbf78a4cb7c1ea724c36c960c52
+  content_digest: c0fc8ed7efa1ca18251a92b524037e9bea113fbe769ec0b510c146c6045c6ee4
+  lang: en
 - id: qa-016
   text: No bug can withstand the assault of sustained debugging.
   section: qa-tooling
@@ -2796,13 +2886,14 @@ quotes:
   - qa-009
   - dbg-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ac0859974e7bd385d6ca86de97a1754341d27a5efb7f3186532413b5ca452508
+  content_digest: b172b83febba1dcbad482450397cd4c2f0a41037067316f75a42538d20e333af
+  lang: en
 - id: ops-001
   text: Deploy in haste, repent in downtime.
   section: operations
@@ -2819,13 +2910,14 @@ quotes:
   - qa-005
   - dop-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1ac4e62a59f9fda3f303d693149ae1a5ff4bfde5f08219efe03682c2f65c0095
+  content_digest: 4ae9f41530fd2048fce06608ac00382752cf711cf74e27369388d0b8fe339746
+  lang: en
 - id: dbg-001
   text: He who codes and runs away lives to debug another day.
   section: debugging
@@ -2841,13 +2933,14 @@ quotes:
   - qa-016
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: df214e95b9b4b6ef1df445282f14734cef64bacb5c03dc95be87d7ff40a9af7a
+  content_digest: 1f05d4e3615ec7d32778bf09e7d82713446398dc0d28ea77aca05b2e3db70540
+  lang: en
 - id: dbg-002
   text: The first 90 percent of the code accounts for the first 90 percent of the
     development time. The remaining 10 percent of the code accounts for the other
@@ -2869,13 +2962,14 @@ quotes:
   - dbg-003
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 9ccf34c18b889b06e1545f31d63dcdfe20761ea3edba9a3e037a0183c78edab1
+  content_digest: 0a2e08ba0e349fbd72805c6a342a9c020bd9c5c5414cd291e3bdba9551740da3
+  lang: en
 - id: dbg-003
   text: Debugging is twice as hard as writing the code in the first place. Therefore,
     if you write the code as cleverly as possible, you are, by definition, not smart
@@ -2896,13 +2990,14 @@ quotes:
   - cc-001
   - dbg-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c87c681ecea465d7452722d309ec477dc99de483f3b99b25d2c8f457266e32ad
+  content_digest: 831631f3b56dbdfd68ad390342e4b1863b64901c8bf886f2bd1315760153448c
+  lang: en
 - id: dbg-004
   text: Every bug is a question your code could not answer.
   section: debugging
@@ -2920,13 +3015,14 @@ quotes:
   - wis-001
   - dbg-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1f0b1247a20fd5215ff112235f9788fc409531bebd2781e3fec7d0cd2a389f16
+  content_digest: fc1f61a4b6c499e59401cd93e16a5f33d6f51ee636dcdd88500dca8c52ab5354
+  lang: en
 - id: js-001
   text: The river does not push; it allows. The master developer does not force the
     scroll—they channel its flow.
@@ -2947,13 +3043,14 @@ quotes:
   - ux-001
   - cc-006
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ac4dca034ef376eb4aa9d4655f2eb893ced7b5156643571883992602685fd2cb
+  content_digest: c87d45750361355dcc9bf6c8cb6e3f66ead1f991e0f70dfda1575ad258dac2d8
+  lang: en
 - id: net-001
   text: The novice blames the code, the expert blames the network; the master knows
     it was DNS all along.
@@ -2971,13 +3068,14 @@ quotes:
   related:
   - dbg-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 460c6b4956a757caa2817e0c7e0ea946b31b4ae4700a5e3ec00b6de01d28b4c4
+  content_digest: 5f7eda4c9d6f3c6960abaea060d1e3d710f1e46edacf0d7cd0c5b8fb9c0a6db0
+  lang: en
 - id: a11y-001
   text: Accessibility is not a feature. It is the foundation upon which all features
     rest.
@@ -2997,13 +3095,14 @@ quotes:
   - img-057
   - img-066
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d51022a49e4fc68c5de8f71b26f03760fac7a1a11dd785423ad7caac137bbc94
+  content_digest: db9a13a7cfb1b5b1055c37485e653eb9135458df82a7d1c6241b2bd8df244134
+  lang: en
 - id: ux-001
   text: A user interface is like a joke; if you have to explain it, it's not that
     good.
@@ -3021,13 +3120,14 @@ quotes:
   - img-009
   - img-053
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a5a4e4c9b7ab16d26410de89d3f6ddc920e9d78f2f5bb021f4a9d71cb6280183
+  content_digest: a4ed2b6c3ab4303d3dd3e4d15c25e5b787f2ee7f178397a99a3e25cd26b45e70
+  lang: en
 - id: ux-002
   text: The best interface is no interface.
   section: ux
@@ -3047,13 +3147,14 @@ quotes:
   - cc-007
   - arch-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a13e02c2fe1be2e57415789ec2d97a36719d2b1a279054557ceabab217a081d6
+  content_digest: 9608b615109eb0094582d1a5797db82bd7009a13eae7bd9be3ff9cfcf8077465
+  lang: en
 - id: ux-003
   text: Design is not just what it looks like and feels like. Design is how it works.
   section: ux
@@ -3074,13 +3175,14 @@ quotes:
   - cc-009
   - img-053
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c38ec3ae28a0bb8f47f0e5acaf02e68d957f5a97df518fb2d68b242efa262c44
+  content_digest: 5256832584a099d87501578065aea1ddc42add42685851f2ef72360e735f7de6
+  lang: en
 - id: cc-001
   text: Write code for humans first, computers second; the Tao lies in balancing both.
   section: code-craft
@@ -3098,13 +3200,14 @@ quotes:
   - qa-010
   - qa-006
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b6e84dcc62b8ed686d2027b683229be6a3ad9ed329a2d1db42d186a6c6375532
+  content_digest: f17e1057408804e10bcc380b5640b7d3634abb6724836662dd5a6873ff33392c
+  lang: en
 - id: cc-002
   text: If you can name it too quickly, you do not understand it. If you can't name
     it at all, you do not understand yourself.
@@ -3124,13 +3227,14 @@ quotes:
   - cc-003
   - cc-004
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: fd0a22188e76949f30158447661fa7d9c9617cafa39c2758155893ec0bcc864f
+  content_digest: 0304c775f1dc036994dda848217817a2284acb1d8097326aa50c19d54c418b58
+  lang: en
 - id: cc-003
   text: All codebases beat at different tempos. Some in allegro, some in adagio, some
     in panic.
@@ -3151,13 +3255,14 @@ quotes:
   - cc-002
   - qa-009
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 37ad9a4c70d91626ae315ff168111b31b45507fca57685edef5e3a7c0463b1e5
+  content_digest: 516968bd79ccfbf0d5453e31abeb73a8780480776d07f9560afabf681b3eef02
+  lang: en
 - id: cc-004
   text: When the namespace grows too wide, its meaning becomes thin. When the namespace
     is too narrow, its future suffocates.
@@ -3179,13 +3284,14 @@ quotes:
   - arch-003
   - cc-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 107c1529a65019ffe497640f8ce7a01202007d9a58e3a9dccd4513b63b26cd4a
+  content_digest: 0702f027fd7b39b6af2c418bf51a8db31eb1a3c70692875c0ac138990a24cad9
+  lang: en
 - id: cc-005
   text: 'A council of branding experts demanded: ''Define your unique value proposition!''
     The developer, exhausted, whispered: ''It saves me from hating my students.'''
@@ -3205,13 +3311,14 @@ quotes:
   - cc-002
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: e2f8c2f9d0428c9dc046afa4d1e439dfe28ba4cfaa7ca0faa247139129135353
+  content_digest: 29527047b0c247df778aef7702935479ad938be8483c2442ccfd42c3f092d58b
+  lang: en
 - id: cc-006
   text: The wise developer does not add more code. They remove conflict.
   section: code-craft
@@ -3231,13 +3338,14 @@ quotes:
   - arch-004
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f8f8b24ee67730da0e11f97bf4dc7ae10628897c871c8840d8a3303b3062a547
+  content_digest: 1c3d9d912a8dfbbfb13772ff9fd9b1bece6435e96117a8ec6f5f1047a5557942
+  lang: en
 - id: cc-007
   text: Perfection is achieved not when there is nothing more to add, but when there
     is nothing left to take away.
@@ -3260,13 +3368,14 @@ quotes:
   - ux-002
   - cc-006
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 3f8743339bdf00aaec33a63f91aba3ac8250bf38769c863727ad65755480be1d
+  content_digest: 6da740e9d499eef6efec3bb3bfe42a8fcc1adb4a982647ebe4fb2e92f861e8d0
+  lang: en
 - id: cc-008
   text: Reuse proven patterns; avoid reinventing the wheel.
   section: code-craft
@@ -3286,13 +3395,14 @@ quotes:
   - qa-003
   - cc-007
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 3888d413d14f98af6724e669285523b42ac0b36d1c1f864a46cc8cdc6e08b663
+  content_digest: d804994c8e922b3368400b3283d3813edf9301e195f1857e6d361ebaf5e8af68
+  lang: en
 - id: cc-009
   text: Content precedes design. Design in the absence of content is not design, it
     is decoration.
@@ -3313,13 +3423,14 @@ quotes:
   - ux-001
   - img-053
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b8818e398e85caa671941c15a71252cd37f438ec735ba2aba295d70f40dcb221
+  content_digest: 095352ce2ff66c59215bbf1424f981a455180cf2343345a27128ff2907a67dbb
+  lang: en
 - id: cc-010
   text: Make everything as simple as possible, but not simpler.
   section: code-craft
@@ -3339,13 +3450,14 @@ quotes:
   - cc-007
   - arch-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: aff21c345def460a3bc3f9262f4f8a068d9f18719e95bb0aed89babc4613accd
+  content_digest: 6ba5f2a28f1aa7e2e35c10716591c2b9de214adde0dc1e7bb7730398aa2cc53e
+  lang: en
 - id: wis-001
   text: Experience is simply the name we give to our bugs after we fix them.
   section: wisdom
@@ -3364,13 +3476,14 @@ quotes:
   - qa-008
   - dbg-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 87ca04ebb4ff02159b8541035b60cde57e1953109271c8a7bb5c23e125e3b000
+  content_digest: 2a32ffc9379fdbfde665b331377bcc2100bcbcc18879b568bdbe558b36b29ce7
+  lang: en
 - id: wis-002
   text: Before fixing, understand. Before understanding, observe. Before observing,
     breathe.
@@ -3390,13 +3503,14 @@ quotes:
   - wis-001
   - qa-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 49fe4845904379e79e2e90bb602e48d8ef06b745ff44f9cae3cf1f84856ce324
+  content_digest: 8d2c5baf19a6b09f3af67752b3cea34c25f5e88f1a8482050be159232082e5b2
+  lang: en
 - id: wis-003
   text: In shipping, there is learning. In learning, there is growth. In growth, there
     is the Tao.
@@ -3417,13 +3531,14 @@ quotes:
   - wis-001
   - wis-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b6b51ec1a07d963d1dd27da87d5137d2b38973e1c01fb724dd948e3445bb97e7
+  content_digest: 828a62b532d142bceaa8c684128369792b3267ce2ecf1efd8c09f63b7bc054bc
+  lang: en
 - id: wis-004
   text: Simplicity is the ultimate sophistication.
   section: wisdom
@@ -3445,13 +3560,14 @@ quotes:
   - cc-010
   - arch-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1d1797d1b37431d238edf17771b0ef3cd08a980170ed5fdfdfaeb9eb1efa8b0c
+  content_digest: ea18d6b7a5f1f15eed254e0a4056d8e4f1eab87883ac6e136b35c077be65cac8
+  lang: en
 - id: wis-005
   text: Code is not written in text—it is written in understanding. The text is just
     the shadow of the understanding.
@@ -3473,13 +3589,14 @@ quotes:
   - wis-001
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8f2bb81fd8c753c8228c3bb140ffb8a910c240e0606363e2b982096cec86f032
+  content_digest: b2fb142485c25599196fc315b398c61ffb68fca8d1831a11ef63a0088f30ee9a
+  lang: en
 - id: wis-006
   text: These bugs were not errors—they were questions. The fixes were not corrections—they
     were answers.
@@ -3501,13 +3618,14 @@ quotes:
   - wis-001
   - wis-005
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: bb845272ba58599ed1dcbe452d18f98fc986a4cbeb87275c643ce49f7a9310e8
+  content_digest: a3e03173654f8d99a82b94df23002ae0a4258689ba5741dc802a29e5f24f5880
+  lang: en
 - id: wis-007
   text: First make it work. The path begins when the code runs, not when it is admired.
   section: wisdom
@@ -3528,13 +3646,14 @@ quotes:
   - cc-011
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 0dbe1da77cc2d49bde717fb448c025a3811feebce9078202760794bcee79ed2f
+  content_digest: 352e143df210f2f9a4fa7693a2ebda312209acb978367ad09e88ff20939da0a5
+  lang: en
 - id: wis-008
   text: Then make it readable. Maintainability is kindness to the next developer —
     often yourself.
@@ -3556,13 +3675,14 @@ quotes:
   - cc-011
   - cc-007
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 0398905b085557a90bacf27230982d79a1a0ef3737d1dca0af4ffcffca9df032
+  content_digest: 3526a05c3191d3603835fc79a5cee15cc894f411832ce5b1773f9e09469934b5
+  lang: en
 - id: wis-009
   text: The river updates the stones; it does not shatter them.
   section: wisdom
@@ -3584,13 +3704,14 @@ quotes:
   - cc-016
   - wis-010
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 199f771355d639f093a624295cb881d05a623a20228b77b850e800e3cdcbcf20
+  content_digest: 41c3cff3a69b9bc8b38ac2eda65c17c7bb4c6f767ac8920a4193b5e7e7ced915
+  lang: en
 - id: wis-010
   text: To rebuild the house, you may burn it; but where will you sleep that night?
   section: wisdom
@@ -3613,13 +3734,14 @@ quotes:
   - wis-009
   - cc-015
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b6a4d77aa7d7ce9c1ed9fcc332dc60d8a10406d6270e3a3d2b10ba0f3f53041d
+  content_digest: b716552e3e376678f8bbbc7af6c5ed7b4b6feae4de8363f81ce2a0b678d9ef37
+  lang: en
 - id: wis-011
   text: A departed member is not a bug, but a story with an ending.
   section: wisdom
@@ -3641,13 +3763,14 @@ quotes:
   - wis-009
   - cc-015
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 67d09598af26535df99ad0d725414117b5ac9afb85b19d637833b2d18aa35076
+  content_digest: f17c82064d6ba717a4bdd75bdda26bd93bca047690e721786176f56c6727e1f4
+  lang: en
 - id: wis-012
   text: The wise engineer makes danger optional.
   section: wisdom
@@ -3669,13 +3792,14 @@ quotes:
   - wis-010
   - arch-027
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 7afd6a6fb7c382a3d11fc6a221d24dddc20780b33e31fbcaa7ab7bf02a2af417
+  content_digest: 211078ef792f1821ff465e687e5026eb28cb9867b648ac38b96949314fd7a78c
+  lang: en
 - id: wis-013
   text: Practice in the dojo, perform in the arena.
   section: wisdom
@@ -3698,13 +3822,14 @@ quotes:
   - wis-012
   - dop-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: e7324d35322d198d3a98975c6f9f47662872fb06c045f8ad7e5ef2bdeef55eec
+  content_digest: 032b914c64d85cdbae3963d411e51cf98215b0eb3e0ddd4852562156f4157c5f
+  lang: en
 - id: dop-001
   text: If it works on your machine, perhaps you should ship your machine.
   section: devops
@@ -3720,13 +3845,14 @@ quotes:
   related:
   - ops-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: bc4f27261f3a66c9186440d96ca260312fea2cb065ea692f238209dd981bba30
+  content_digest: d2594f04ec395a497569581cef2ab1be24598e330c05e35bb2a2f43a17fd0aa0
+  lang: en
 - id: dop-002
   text: The journey of a thousand deploys begins with a single commit.
   section: devops
@@ -3745,13 +3871,14 @@ quotes:
   - ops-001
   - wis-003
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 0d05dc99485941a6b40e9712a3adc68c104294b010178fead7a1300b602b8d3c
+  content_digest: d283642c482dc2ea6282422cb51cf64e4ea17a0b5ef206ebb4ad3306df0943d0
+  lang: en
 - id: arch-001
   text: The module that knows its boundaries serves the whole. The module that knows
     no boundaries becomes the whole—and collapses under its own weight.
@@ -3770,13 +3897,14 @@ quotes:
   - qa-003
   - arch-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 191633b6719e80064fefdd2a19709b2c4fa822f74d541c452877ea55a8beb374
+  content_digest: 67094cfcdbc30fcca6524f8030b390f4b572149531f3c1aff7cd1371c2290105
+  lang: en
 - id: arch-002
   text: To fractalize is human. To know when to stop fractalizing is wisdom.
   section: architecture
@@ -3794,13 +3922,14 @@ quotes:
   - arch-001
   - arch-003
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c1a796a0251824688214af6372d7bc7665357c5b3e996ab00c90b13bccc604b2
+  content_digest: 4f162ef6efb45f25e3ea89bca919b33085997110c0c6fc2c9557616960ac6f1c
+  lang: en
 - id: arch-003
   text: The smallest unit of reuse is larger than you think. The largest unit of understanding
     is smaller than you hope.
@@ -3819,13 +3948,14 @@ quotes:
   - arch-002
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c4081aa889990ef63591ad03926c6e151b582d7ec58a53af0093ab4d4861b1a5
+  content_digest: eac5e04338ad32f716e67dc10ff626686d8ccf7265c0363456afe57cd2dff35b
+  lang: en
 - id: arch-004
   text: Dependencies flow inward like water seeking the center. Let nothing in the
     center know the shape of the shore.
@@ -3844,13 +3974,14 @@ quotes:
   - qa-006
   - arch-005
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: fbb41d3cdf68cc61191c5d5b51359028e6db44b779f6441e43f907d03dce7fae
+  content_digest: 4076b44f99854264880c48c86fec75b7b37d39f5341f2211ee85e5364f6ea2f2
+  lang: en
 - id: arch-005
   text: The seed that stays in the garden grows tall. The seed that travels plants
     forests.
@@ -3868,13 +3999,14 @@ quotes:
   - qa-011
   - arch-004
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 28af8e25c9b95b568b539e1076b78f425f0a532ab196cf260607dd39d853b35f
+  content_digest: ee48855b06a88f31718df0afe4628e25c314048928ec7e7ebf9a77e302b3565b
+  lang: en
 - id: arch-006
   text: A monorepo is not a monolith. A monolith is not modular. A modular system
     need not be distributed.
@@ -3892,13 +4024,14 @@ quotes:
   related:
   - arch-007
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d03fc6a55c17a4e0d796e5ecc553c910bb1f126f265d1f5ad503c3bcdad4aee2
+  content_digest: e1c59ed063de86bbbfafb910474152ebf4266a2be64c101b5a58224eb94af9a8
+  lang: en
 - id: arch-007
   text: Ship the module when it works alone. Ship the system when the modules work
     together. Ship the platform when the systems compose without speaking.
@@ -3916,13 +4049,14 @@ quotes:
   - arch-006
   - dop-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c8b89e7e317b88efb715b8cc92d6763731eacb0e235c9b4dd1e7a591ee711a2f
+  content_digest: 3b6462525edb1ff7417666f91df5dc7965c22f9ec2a6f3dfd8ede1140134b61b
+  lang: en
 - id: arch-008
   text: Tight coupling is a loan with compound interest. Loose coupling is savings
     that multiply.
@@ -3939,13 +4073,14 @@ quotes:
   - qa-006
   - arch-009
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 78f47ab83899078aa1d5104260f492ff83ea4630fc23ed080f736f4adcaadcce
+  content_digest: eba1a34bc95e299d944a9819db35e96ab6cfbb1c019da27a428152e20313466c
+  lang: en
 - id: arch-009
   text: High cohesion is a team that finishes each other sentences. Low cohesion is
     a meeting where nobody knows the agenda.
@@ -3964,13 +4099,14 @@ quotes:
   - arch-008
   - qa-003
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c5079acec8026e61d7cc1ca4d9d5aedb14799058f37757acdead04f9b1cc5f00
+  content_digest: 3d1b87b3a8de68e8138c3dc3fbcbc13f747311ca99df90dc308b6ac834e4a120
+  lang: en
 - id: arch-010
   text: Extract when the boundary is clear. Inline when the boundary was premature.
     Know the difference by the friction of change.
@@ -3988,13 +4124,14 @@ quotes:
   - arch-005
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 2388200c85370a01beed35b3a32cac99085c0b9e108e79966f456472b0c0c093
+  content_digest: a77d708dc85b8b712c018a7a14d3df27823b60a77bc6fbaccc258ef6450a1a3e
+  lang: en
 - id: arch-011
   text: The inner layer is the most reusable. The outer layer is the most disposable.
     Build value inward.
@@ -4011,13 +4148,14 @@ quotes:
   - arch-004
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 2189c3c005012c56624e1e102db8a371ba18002b31c18e78f67fdc04270f1b66
+  content_digest: 89b49a1b777cca6eb1e701d2eea49cb4968a3923e9c9a2f85a8996813d0b1f88
+  lang: en
 - id: arch-012
   text: Am I fractalizing too much? If you must ask, pause. Count the consumers. If
     fewer than three, wait. If three or more, proceed.
@@ -4036,13 +4174,14 @@ quotes:
   - arch-002
   - arch-003
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 5fb1f638531c35c0d8eea1082a99adbe5eb56ed2c1e26f197ee71e943223d6e0
+  content_digest: e8ad55b230240d911f3bb78ec9a40730fccdf2ce93793696e7c2ce115a8a5b4c
+  lang: en
 - id: arch-015
   text: When the same thing has two names, confusion reigns. When one thing serves
     two masters, both are betrayed.
@@ -4065,13 +4204,14 @@ quotes:
   - cc-002
   - dbg-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a00d793c1e3d40660f726bf79da151fe5063a50da7543e41c8e8ad79b73b6d42
+  content_digest: 66fc998e1060453935711f9b0100fe791e3f68f7fd14a09a75a5b78e3602c18d
+  lang: en
 - id: arch-016
   text: The best navigation is one you forget is there—until you need it.
   section: architecture
@@ -4091,13 +4231,14 @@ quotes:
   - arch-001
   - cc-007
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 70d328fa19460327100cbeed3dc61afc33b1c6f865310b5accf336d91fd9baee
+  content_digest: 3c728fb6c180372b22e406c8bbeecd32af1580aea17f490fd9b4643f7d06cb11
+  lang: en
 - id: arch-017
   text: In a forest, every tree must be itself. Reuse is wisdom, but identity is sacred.
   section: architecture
@@ -4116,13 +4257,14 @@ quotes:
   - arch-003
   - cc-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 80b691dcf343576a7b5cb87be6ee731d8a7cb068cc2ae9f7708822dc5e225a2e
+  content_digest: db2f3cbe8eb10889fe629b3ff124ac09d9f8a874c6a6822d12fc4da94ab01f3f
+  lang: en
 - id: arch-018
   text: Offset is not mathematics—it is empathy. You must remember what came before.
   section: architecture
@@ -4141,13 +4283,14 @@ quotes:
   - arch-011
   - ux-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 4368ac654f05a35356eed586f157d59bdffbde8803f55f9b6bef6fbfc8da29b3
+  content_digest: 93521c199e65f0d624fe0d66400b65f41aa1fe75ac69a8dd483e88f7d751c8e7
+  lang: en
 - id: arch-019
   text: An empty field is not an error—it is an incomplete promise. Code can be perfect,
     but data can be absent.
@@ -4167,13 +4310,14 @@ quotes:
   - arch-001
   - qa-009
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 61244921b1a30c56f24438edea64333a71f30fc6ddcaa4afe811f6a062670492
+  content_digest: 65227967332d07811cf61007aac98022e569ac96f6bfc65c792ea58971636ed5
+  lang: en
 - id: arch-020
   text: Not every problem is a bug. Sometimes the problem is expectation.
   section: architecture
@@ -4193,13 +4337,14 @@ quotes:
   - dbg-001
   - dbg-004
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 64ff249eed3d0a5a7a5862dde14ef4b0835d1b3b1d0c5e0297a2e3907db791ef
+  content_digest: c30626816c6115d717070ed59da9aa818ce38c8e72a27705d2c72168d6e083f9
+  lang: en
 - id: arch-013
   text: One source of truth. One place to change. One mind at peace.
   section: architecture
@@ -4219,13 +4364,14 @@ quotes:
   - arch-004
   - arch-011
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8de264078045c1b0c18e87e56f1e26fcd38eb05c7c37e2addaf40aa90fe8de88
+  content_digest: 4d4ad0250092f98a3f0394361c8907fa19f73430bb0807aafd625eb0e9d08f7e
+  lang: en
 - id: arch-014
   text: A template is not a constraint. It is a garden where a thousand flowers can
     bloom in harmony.
@@ -4247,13 +4393,14 @@ quotes:
   - arch-007
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 1cf3b1bf39f148c60b6ee10ce9720b6eb1feef88ba481cd18684a17504b1804d
+  content_digest: 2df368252443015ead9f303db9ed36023e3933b87ec1e50b2cf15dd65bb8bcd4
+  lang: en
 - id: arch-021
   text: Simplicity Is Sacred - Remove before you add.
   section: architecture
@@ -4274,13 +4421,14 @@ quotes:
   - arch-001
   - ux-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 58eaf1937820a766bdedecc08c17e7e34127238064292d4464c66c88c85735a6
+  content_digest: 6171288ae6926774b740ae79f2701c585f11c6762866dcd4feeacd2b89ea1b84
+  lang: en
 - id: arch-022
   text: Identity Is Explicit - One thing, one name, clear mappings.
   section: architecture
@@ -4302,13 +4450,14 @@ quotes:
   - cc-002
   - cc-004
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f8515ef1d28af580003783263018aad3a64cde6f51c28f487302f991579948b4
+  content_digest: d7a70ca1d4379326f53366a5070ab7eafa58008a39f5def012f036881129436e
+  lang: en
 - id: arch-023
   text: Layouts Provide Context - Every route section deserves its wrapper.
   section: architecture
@@ -4329,13 +4478,14 @@ quotes:
   - arch-001
   - ux-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f24ad80d444ea548f6dfe6d987ade750a6315426e4a85a2bd892eab54a5d037a
+  content_digest: d89cc25e520e90d1d4d7c0fdc7b9cd4c66736fa8bee101fc287abea5f0ffe85f
+  lang: en
 - id: arch-024
   text: Footer as TOC - Global navigation beats local complexity.
   section: architecture
@@ -4358,13 +4508,14 @@ quotes:
   - arch-016
   - ux-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 80704a27f673a5f4f92c92194154b8c9457d9352d04e43dddbf124249345f4f6
+  content_digest: 0fab6d45b4555f7af64fe21a071277aa302a5785e0e2a35962ae3d379acf4085
+  lang: en
 - id: arch-025
   text: CSS Variables Are Contracts - Use --header-height, --footer-height religiously.
   section: architecture
@@ -4385,13 +4536,14 @@ quotes:
   - arch-013
   - cc-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 51e5671035b04b2f102d7d791c851a9e4abaebc2c18d761f9dda87c60c999305
+  content_digest: 7b9c419d081d6b0d3da84895a0425918fbefc0925c6c506a8b1391af85c8fa5e
+  lang: en
 - id: arch-026
   text: Translations Are Not Optional - Every string must have a key.
   section: architecture
@@ -4411,13 +4563,14 @@ quotes:
   - arch-013
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a69661cf981092e0ebd1d22eb0eaa35083ac652a8a364a2f483cdcbc9d932d99
+  content_digest: 69fd9f9fb02d90e7ee539a57dc3c12608f394bd02e6dc8aa6fbab775c074da77
+  lang: en
 - id: arch-027
   text: Verify Before You Fix - Not every symptom is a disease.
   section: architecture
@@ -4439,13 +4592,14 @@ quotes:
   - arch-020
   - dbg-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ff9dc4624971541b7a56353c56339ba8c16638b4baee1ee12f4e53a54c4ba15a
+  content_digest: 4e509b3cfb74cc53ab640e4fd7229bc936f7b179d84156d9c5dd1e34844aa19c
+  lang: en
 - id: cc-011
   text: Build → Write → Understand - The three stages of code enlightenment.
   section: code-craft
@@ -4469,13 +4623,14 @@ quotes:
   - wis-007
   - wis-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b71e2c92e8a8fcca129d4bc8c3e0b2eab11b69daee39524a897a19faf3ce56f8
+  content_digest: a6839658d1b26b43966414f85367132d684b77ff86aff3acd5cf8acf128d9e46
+  lang: en
 - id: cc-012
   text: 'A student asked the master: "Should I use spaces or tabs for indentation?"
     The master replied: "Use spaces for consistency, tabs for flexibility, but never
@@ -4502,13 +4657,14 @@ quotes:
   - cc-002
   - arch-013
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a6f463417bf01fd9b52684c95fc607dc468dad3cad25651812abc6c2a6e291cb
+  content_digest: 8c24416f9c994ecb0133db3b9625cc3067df8486475969c521c0c31bbc859dc5
+  lang: en
 - id: cc-013
   text: Two spaces align, Four spaces nest deep, Tabs break the flow.
   section: code-craft
@@ -4531,13 +4687,14 @@ quotes:
   - cc-012
   - cc-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 321cc9c58251a8e83e7824aa209c3fbf274e5f6dbc1cbbbd112991d7a35cad61
+  content_digest: 36f7349ead69c63f84438c135d08238908018e339cbdb7d1bcf42d2d171e965d
+  lang: en
 - id: cc-014
   text: Data written for machines is noise. Data written for humans is music. The
     master writes data that both can read—machines parse it quickly, humans understand
@@ -4563,13 +4720,14 @@ quotes:
   - arch-013
   - cc-011
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: fc866758e5b7a3b3f0272817218312478d26c3134c33c48d7d9ac43bb2e4bf7e
+  content_digest: cbb23e88df2aac301e84c676dc43c1bae079ae4bcb630849b14d754b24a310af
+  lang: en
 - id: cc-015
   text: A gardener waters, he does not burn the field.
   section: code-craft
@@ -4594,13 +4752,14 @@ quotes:
   - arch-013
   - cc-011
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 60af9ce1667cc8c3f083f265b8eed78f84b34d78a391cfb8ea686c90a4fc541f
+  content_digest: 0c35d75dffd6e64f73dff6273715a689c3e55b68c25bd62271c7e81627a1fc92
+  lang: en
 - id: cc-016
   text: Choose a single source of truth and let your imports converge to it, not fight
     it. WP is the source. Strapi is the mirror. Upserts keep the mirror aligned without
@@ -4625,13 +4784,14 @@ quotes:
   - cc-015
   - qa-015
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 028d8060ad6df557f8a3aef1e159a7a69f715d999c378b99680de6f86340b2d0
+  content_digest: a8171a5bf31da4a7e94d5c588232a034dec4a0f226119b4213303d5eb120520b
+  lang: en
 - id: cc-017
   text: Deletion must never be the default; it must be a conscious act with a visible
     switch. Non-destructive import is the safe baseline. Pruning (removing missing
@@ -4657,13 +4817,14 @@ quotes:
   - cc-016
   - arch-027
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 7311db65201eb10da33df3138f53333995b58a78e29f81afff18a93a93db4b0b
+  content_digest: a68ae3d16c22fefff4a5e26999ee666ba460b1481f72dc58e8db0e2113d7cabb
+  lang: en
 - id: cc-018
   text: When people (or records) leave, the system should acknowledge that change,
     not erase their existence blindly. Prefer soft status changes (active → former)
@@ -4687,13 +4848,14 @@ quotes:
   - cc-017
   - wis-011
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 5ffa82cae5193b7e1e24b393bda213c3a89052a76b47c74d5641bf6edc052ff1
+  content_digest: 7df14b953368d8e6a2be808a97a44a0c98b821a0cdb4b02ad75ffdf6204f12a8
+  lang: en
 - id: cc-019
   text: Dangerous operations belong behind flags, with dry-runs and clear naming.
     --prune-missing rather than hidden behavior. --prune-strategy=soft|hard rather
@@ -4719,13 +4881,14 @@ quotes:
   - wis-012
   - arch-027
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: bf91f2b27845303d24291b132f6521990790effb201efe797588da5e75553e30
+  content_digest: 8295b6746557322e12cef548deb124365afd90a0b466c9f6b4fb4765e57e0cf0
+  lang: en
 - id: cc-020
   text: DEV and STG are where you practice deletion and pruning. PROD is where you
     perform only the drills that passed. Prototype --prune-missing in DEV. Rehearse
@@ -4750,13 +4913,14 @@ quotes:
   - wis-013
   - dop-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 72a7518bd232b81fa10b80c3e628945cfca5b7f38ac24e0f0a8c71c223e44b36
+  content_digest: 889272a7c2207af599b81efb75f2914187aa0083845ced227943a0cc9ba8aa99
+  lang: en
 - id: cc-021
   text: '"Drop and reimport" is not evil, but it is a ritual, not a routine. Use it
     where consequences are acceptable (DEV/STG). In PROD, prefer incremental convergence
@@ -4779,13 +4943,14 @@ quotes:
   - cc-017
   - cc-020
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 3dccf8b3051f8bed9ee466f46f86c96ce2c3ad107f523758990ac4f2670cb66d
+  content_digest: 8a099348b5beb3a19cc7f586f8d621cb9062443fcc149d4868433c24fdc6d478
+  lang: en
 - id: cc-022
   text: The pot once emptied, Must be filled without a spill, Backup, then pour slow.
   section: code-craft
@@ -4806,13 +4971,14 @@ quotes:
   - cc-021
   - cc-017
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f9a290071fec49f130ae9cb1c6b4930bf99204a96c656182efcc18b9884dc93d
+  content_digest: 295c73607dfd79cb94e2ff699b896709d96d29ddc84dc746f69c453f95a30e69
+  lang: en
 - id: cc-023
   text: Name your repository 'Project' and it shall be deleted with the same indifference
     you showed when naming it.
@@ -4827,13 +4993,14 @@ quotes:
   teaches: Generic names lead to lost projects and lost grades
   show_when: Student names repo "project", "my-website", or "folder"
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: cf72bcae1b59c67ca655c84c0d45656bb5c05c66f45050de6dbc2c784aad0c4f
+  content_digest: 041d041f418988c49590881878669eb36e37fceeeae5dfab0578c53295d7dde5
+  lang: en
 - id: cc-024
   text: CamelCase in URLs is like wearing a tuxedo to a mud wrestling match. You think
     you look fancy, but you are just going to get dirty.
@@ -4848,13 +5015,14 @@ quotes:
   related:
   - cc-028
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 2b93ab0cf4082fcb94bdcb9bb6db2e292bbf3adc66f4480a9545f6c6e41dc97e
+  content_digest: eb6956060eec7aaa3e8fc140ffe4d9b98a1e13d4ab70da8ad8c251e29c7b1c8c
+  lang: en
 - id: cc-025
   text: You put an 'ñ' in the URL. The browser smiled, the server cried, and the git
     remote simply ceased to exist.
@@ -4869,13 +5037,14 @@ quotes:
   teaches: Special characters in filenames are a ticking time bomb
   show_when: Student uses non-ASCII characters in filenames
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d939d7419f9a6da6a9d307d6fbc61654bd43b48bb182de1afc5e6115865498b9
+  content_digest: 3ed08e9a78e6e198547d88c6a20c4c11a3ced4ee8bc05e7b6e4dc550e3a8691c
+  lang: en
 - id: cc-026
   text: Your repository is named 'assignment-1_x7z9'. Are you a human or a captcha?
     The grader is unsure.
@@ -4889,13 +5058,14 @@ quotes:
   - identity
   teaches: Avoid auto-generated or cryptic suffixes
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: cbdc6197063c1ba007a93ff6f088f26fa18a919478627169a420eca1cb9a45c7
+  content_digest: 60a2e8b3c3e3fce914fd6548e16d9a6e7e8f4cb583d6a82e92e354aa64ce8236
+  lang: en
 - id: cc-027
   text: User 'dark_killer_69' pushes code. The hiring manager pulls code. The hiring
     manager deletes the resume. The circle of life continues.
@@ -4910,13 +5080,14 @@ quotes:
   teaches: Your username is your first impression
   show_when: Student uses unprofessional handles
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 509c83f4d96a22dd8a3cc9c276326ce1d6748d10230b9c31500fcda77e3c48d5
+  content_digest: 25a8c643d36c4c09bacb5b4e1a94a0c216fb25c7bbaa56dd01de7d01b478694d
+  lang: en
 - id: cc-028
   text: Use a space in a filename, and the command line will treat your file as two
     strangers passing in the night.
@@ -4932,13 +5103,14 @@ quotes:
   related:
   - cc-024
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d8d0c6210b6d70ce50c4f478356c4ea1f3d1ffbb3d2e28a60712eef456fb059e
+  content_digest: 206431239aa81ffbe3424d852f73075611914c4aa427496a6aec6b1e59f0e855
+  lang: en
 - id: cc-029
   text: You named the variable 'data'. I assume the function is named 'doThings'.
     We shall bury them together in the graveyard of ambiguity.
@@ -4952,13 +5124,14 @@ quotes:
   - clean-code
   teaches: Vague naming is effectively no naming at all
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: baf25139e380d35a585a80e0f3bdf5ae283455927d09149231eeb101451f7745
+  content_digest: e194e075726960f6927dfe7ddcc522f42d299aeb8b3af8fe6fb0429009c03c17
+  lang: en
 - id: cc-030
   text: A repository without a clear name is like a tombstone without an inscription.
     We know something is buried there, but we don't care who it was.
@@ -4971,13 +5144,14 @@ quotes:
   - morbidity
   teaches: Descriptive names prevent project obsolescence
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 7d63a3e7ff009a99460d0612fe42fea9a63fb0224737ad9362b929178099c017
+  content_digest: 28bfdce09f27242d3f3091a63b20e05dd87fc3b56dd610ca2417726c54ed5314
+  lang: en
 - id: cc-031
   text: Inconsistent casing is not a style. It is a ransom note written by a psychopath.
   section: code-craft
@@ -4990,13 +5164,14 @@ quotes:
   - humor
   teaches: Pick one convention and stick to it or perish
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 145886676156d830d3e48543653b2d4e048a9cc074d6da9d29b19cce26ce274c
+  content_digest: 29ac8a6f8bbc6e3407c8f5969bf26baeaeb29927df5fec98ed7c10f4582a823a
+  lang: en
 - id: cc-032
   text: '''Final_Final_v2'' implies you have looked into the future and were wrong.
     Twice.'
@@ -5011,13 +5186,14 @@ quotes:
   teaches: Git tags exist so you stop renaming files like a hoarder
   show_when: Student uses "final" in filenames
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ef98b9aa441af6fc6c15210071c9cc9985630d91a6e198898e08e61c8dbb6b1a
+  content_digest: 346a305a45a5905b4af52cd61c8b1f2fe0f736ca3b7284d560a62d03e789c4c6
+  lang: en
 - id: cc-033
   text: Before you baptise a star, grep the registry. The theme you invented at midnight
     may already orbit under another slug.
@@ -5041,13 +5217,14 @@ quotes:
   source: profield-ahmes-naming
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 32b403ad3db13537075cfb5e4d930214743b5d069356aeae63a662d9668ded25
+  content_digest: a63c068957956c18a3a8a666e89943c5b112d926808a95f36d266390ecfd3d95
+  lang: en
 - id: cc-034
   text: The path speaks to humans. The vault speaks to libraries. The scope speaks
     to machines. One string for three tongues, and at 3am the collision speaks loudest.
@@ -5072,13 +5249,14 @@ quotes:
   source: profield-ahmes-naming
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 20174bc2e8667978497ee1710b87036e0cf04e923c2799eca064ad7a7fed2f20
+  content_digest: c65c93865817e658c81a8c411da87088552313de5b17bb85e1e79b413503c552
+  lang: en
 - id: cc-035
   text: Let the machine slug carry lineage with a prefix; let the human label breathe
     without it. The scope remembers ancestry; the speech remembers mercy.
@@ -5100,13 +5278,14 @@ quotes:
   source: profield-ahmes-naming
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: dfed91f0ca1dedc35530a0a506d933091acf31c57acb2d686772d1f89cf7dcc6
+  content_digest: 586d664ac890b61ab1e40e6401b6c9ef91fe0e8dcbfc0f1bf9e548b81f9ed0c8
+  lang: en
 - id: cc-036
   text: The display name may welcome a guest. The canonical slug may not drift. Hospitality
     lives in aliases; law lives in identifiers.
@@ -5130,13 +5309,14 @@ quotes:
   source: profield-ahmes-naming
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ca7047b28696f4058b8cb1983aefcbcfd50c633bd6a744c4de9808a8fadcbc45
+  content_digest: a39b124f477a5b71cb6ba709cb91ce37af2b4fc0282260583259a99f243e7043
+  lang: en
 - id: cc-037
   text: Two filenames, one content hash, one truth. Cite once. Inject once. The duplicate
     name is costume; the hash is the face.
@@ -5157,13 +5337,14 @@ quotes:
   source: profield-ahmes-naming
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 9e6665f54d442663985872724d6287036e29472a6255aca3015668f98df7dd55
+  content_digest: bae322940e0873489023a9b6f551dfae954dc676b5624cce47d6d8a34be40005
+  lang: en
 - id: cc-038
   text: Idempotency does not begin at the upsert. It begins when you recognize what
     was already baptised and bow to that name.
@@ -5188,13 +5369,14 @@ quotes:
   source: profield-ahmes-naming
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 9f14726398f99fe94b6485a9767db8247b554012bcbd3a654a8694720cd8569d
+  content_digest: efbe39c580bb2da0f6fbae9de67e591606be4f776155a9128722e49e08cfe6ad
+  lang: en
 - id: dbg-005
   text: The debugger who debugs wisely, debugs only once; for each bug fixed in understanding
     will not return in code.
@@ -5217,13 +5399,14 @@ quotes:
   - wis-001
   - dbg-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 10067d46e7210f4fb85d566c8dd91f13510692c0aa365a1c887158f7d1f2d4e3
+  content_digest: a7b0beab35b68eac2eb36329e4a372f072c1e7642d29eac5e9437eb14e75ccc0
+  lang: en
 - id: ux-004
   text: The master teaches by example, not by perfection.
   section: ux
@@ -5245,13 +5428,14 @@ quotes:
   - cc-001
   - arch-014
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 3527eb80a26429de594ee69de4160e3484d8d7ecd520718d3eca15b7357981b6
+  content_digest: 9a42d48ce5b064d5ad643c041b7807bcbfaf79e41dd4961bf6051e194c719f4e
+  lang: en
 - id: arch-028
   text: The sovereign developer does not ask permission to think. She does not pay
     per token to reason. She does not send her code to a stranger's server to understand
@@ -5271,13 +5455,14 @@ quotes:
     cloud asked, no bill received / the thought is her own'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b8916b9b0f2024df32bdb2f2cce97c277970917725cd0a56fb61e7d88ad7f0c1
+  content_digest: fa7d14ba9d6c847eaa4622c03294ecdf79c591f9ea3ec52c5441c0295424b093
+  lang: en
 - id: arch-029
   text: The cloud model answers in milliseconds. The local model answers in seconds.
     But the cloud model's answer belongs to someone else. Speed without sovereignty
@@ -5296,13 +5481,14 @@ quotes:
     / but who read it on the way? / own your latency'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a355f7df29281e6855b6ae60101d75e1a1f18b284ec5998e5156cac5a92b0c0c
+  content_digest: 99d2f422b42e2ab5b5e5a676d0655a0c5c54f7af632a3a4d53707fc07004b12c
+  lang: en
 - id: arch-030
   text: 'A student asked: ''Why not use the cloud model? It is faster.'' The architect
     replied: ''Try asking it a thousand questions at midnight.'' The student understood.'
@@ -5318,13 +5504,14 @@ quotes:
   teaches: 'DevIAC Tao (§41): The Rate Limit'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: bc130dafa00140b29d6e5d084edbdadd0dc3cc3a41bcab95e9e336aad5625367
+  content_digest: 64135c2e0395b915183cd5e518ea91fb9c0bb61d322ee812ab32aae895cfff9b
+  lang: en
 - id: arch-031
   text: The developer's machine is the forge. The deployment host is the stage. One
     builds; the other runs. Confuse them and you will burn the audience or bore the
@@ -5343,13 +5530,14 @@ quotes:
     / Lilith bears the finished blade / each knows its own fire'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 88671fa3219cefeb0dda4d51b7825d02e6df0cb906b7705a47d5625d50436b14
+  content_digest: 5fea7b4657cde27cae509d48cc8a9543ebf2e5c06ceb7315c6993aeb77a5c2e0
+  lang: en
 - id: arch-032
   text: Domain logic is sacred; infrastructure is a detail. When Pydantic appears
     in your entity, the temple has been violated. When SQLAlchemy speaks in your value
@@ -5368,13 +5556,14 @@ quotes:
     from the outside / the domain stands pure'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 9dc9ba47477a9fa6eff4f89dd86cf58be22b19075bc8fc86f849f6ea2fa51e66
+  content_digest: 014a99e9514d3f45be1052c146f5c12e93cdc687c27cbc67484fd43d30674d40
+  lang: en
 - id: arch-033
   text: The sculptor reveals the form by removing stone. The architect reveals the
     system by removing services. ChromaDB, Redis, Terraform, Ansible — each removal
@@ -5393,13 +5582,14 @@ quotes:
     / each service stripped was a lie / Postgres is enough'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f28fd248ab38145eb6e241443eeb800f18e8756adb72c344657ae86b2d2720b9
+  content_digest: 786622c27eaa8dd93fca2f8ee81b2845f80b7b7fa686694c363772ae876cec58
+  lang: en
 - id: arch-034
   text: A protocol is a promise. An adapter is a translator. A port is a doorway.
     The domain does not know who knocks — it only knows the shape of the question.
@@ -5415,13 +5605,14 @@ quotes:
   teaches: 'DevIAC Tao (§44): The Hexagonal Garden'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 3ddf6a8b391e5737ded8965fbefbf5269c8012f3748b247d3826bceb32d95771
+  content_digest: a8d0c2ac7877ac2655bdc8a3e8df1a3dd0dd39236a45a6b786f2683075d9a1b8
+  lang: en
 - id: dop-003
   text: On Apple Silicon, the GPU and CPU drink from the same pool. 128GB unified
     is not a compromise — it is the reason a 72B model fits where no discrete GPU
@@ -5440,13 +5631,14 @@ quotes:
     billion weights / fit where none could dream'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b7ca4292be9bfec1ff6c2e72a93d968f95684de838b1819b954371ea5db66830
+  content_digest: 8a154bec722888ef0d41164b9cb423ca6d939422d6bf20d2d520703ade912890
+  lang: en
 - id: dop-004
   text: Docker on macOS runs Linux in a VM. The VM cannot see Metal. Ollama in Docker
     is Ollama without hands. Always run the model native; let containers carry the
@@ -5465,13 +5657,14 @@ quotes:
     sleeps behind the wall / run native, run free'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d48ae8692f8870c0364e74db78f081c9add198a9578685d7b6467be43f0dc5f0
+  content_digest: 072a2de40fdf023ed29bdc429abff5edb70a637c6e7e18d55bda15134252b0c7
+  lang: en
 - id: arch-037
   text: The honest AI engineer does not lie to herself about her tools. She knows
     what they can and cannot do, and she designs her workflow to amplify their strengths.
@@ -5489,13 +5682,14 @@ quotes:
     context window, tool, and prompt / compensate with care'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 2d2d66c95c484a7e279f6ecb4e6049ee5ba66e394791a9b7e5d9f7e72ff8cd39
+  content_digest: cd6a1b7a5c69f32f704104c54c29181ea291bf483ed306c1cacf068c112f9671
+  lang: en
 - id: arch-038
   text: The model without memory is a stranger in your codebase. Feed it your architecture
     and it becomes a colleague. Feed it your conventions and it becomes a partner.
@@ -5512,13 +5706,14 @@ quotes:
   teaches: 'DevIAC Tao (§45): RAG as Memory'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d1c304415a1a73bc2ef55ec3a1b28090b3b8e7cd2f01e647286b0343ac04fe6d
+  content_digest: c5b9069f746f35ed1a5b7de2af544649351f0d07ddeaba8f7493248143d3ac14
+  lang: en
 - id: arch-039
   text: Every document enters the system exactly once. The SHA-256 hash is its fingerprint.
     If you see a duplicate, your ingestor lied. Idempotency is not a feature — it
@@ -5537,13 +5732,14 @@ quotes:
     code / insert twice, exist but once / truth does not repeat'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b9e1ab46ed7e2c88611d3d8f0ae0e2c81145f86bba6840bd90495254df06c9e1
+  content_digest: 74eebef19287443fcabe76e71d2e7dc046498bf5d0e98567fcb7d42755be19b2
+  lang: en
 - id: arch-040
   text: Where on the page? Where on the earth? What does it mean? Every fragment of
     knowledge must answer all three, or it floats unmoored — useful to no one, findable
@@ -5562,13 +5758,14 @@ quotes:
     anchor completes / the triangle holds'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 10050d627150a9665406eac0b70f298ce0390f9fe3ee3936bda0c7f1a17b4bdd
+  content_digest: 66aa1fdba3c10cc5fbcf8504b8e0871636e72250987cb74d6c036733205c7d3a
+  lang: en
 - id: arch-041
   text: A mutable entity is a lie waiting to happen. Freeze the dataclass. Version
     the schema. Let the original hash testify to what was, not what someone wished
@@ -5585,13 +5782,14 @@ quotes:
   teaches: 'DevIAC Tao (§48): The Frozen Record'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 578712c9eb027bef1e2f75246a4f772c6d753d80a74b02602a3ddc34b5bf745c
+  content_digest: cde2e512ec5233b7719ecc42b7fe05f4f3853f47f2ec6c64f962c55756878609
+  lang: en
 - id: dop-005
   text: On macOS, /var/run/docker.sock is a symlink. The container follows the symlink
     and finds nothing. Mount the real path — ~/.docker/run/docker.sock — and the proxy
@@ -5610,13 +5808,14 @@ quotes:
     / mount the real path, not the ghost / the proxy then speaks'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b5ba3cd014cdf8a43b3c3b81d1d14666b5717016c355d4e1ab800343135d50c5
+  content_digest: f9d30f9fdbf7685c74cd420439979687bad12d560ca40b5532970abe70e51d5a
+  lang: en
 - id: dop-006
   text: When the Docker provider fails, do not fight the daemon. Write the route in
     a file. Traefik watches the file. The file does not crash, timeout, or require
@@ -5635,13 +5834,14 @@ quotes:
     YAML file stands unchanged / the route still resolves'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c41e9f50b48973703f1c4d3ab1a55196064a0f693f17621a7c9722cace9594c7
+  content_digest: 346556d32f338c3dd1aae667a9ca3796ce06d90bb5371bc923978eab5bd0211e
+  lang: en
 - id: dop-007
   text: hatchling refused to build. The error said 'README.md does not exist.' But
     the file was there — two COPY instructions later. Order matters. Dependencies
@@ -5658,13 +5858,14 @@ quotes:
   teaches: 'DevIAC Tao (§51): The README Lesson'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 989cda67bc21dcb9f72c9d3d796d655395e836bca348a12d5d3b280de4cfa883
+  content_digest: fa6e67a96795bd18803f00cdd24b18cc23dbfae94838e54e04e75bb2fddd92a9
+  lang: en
 - id: arch-045
   text: 'ChromaDB for vectors, Redis for cache, Postgres for relations — three engines,
     three failure modes, three sets of credentials. Replace them all with Postgres
@@ -5683,13 +5884,14 @@ quotes:
     in Postgres sleeps / one engine, one truth'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8dbd751f85883f4936d36f28229f2bac37a495671e4680c87df638745ea418fa
+  content_digest: d878b08bc67a99941a69fa762c340f468005d1230f5dd96f56ebfda32b605900
+  lang: en
 - id: wis-014
   text: Before the first line of code, prepare the forge. Before the first query,
     load the memory. Documentation is not an afterthought — it is the first act of
@@ -5708,13 +5910,14 @@ quotes:
     the plan becomes the compass / architecture lives'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 34098b765966acd72bfda0a49f454ac0a7ff6c40e619e667402e211ac01d0447
+  content_digest: 33e7961e96aed72558a673b613cf554214dbe22ea74c22c6ef1c59f529636112
+  lang: en
 - id: wis-015
   text: Write documentation as if your future self has forgotten everything. Because
     she will.
@@ -5732,13 +5935,14 @@ quotes:
     read this as a stranger / be kind to her now'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ce03575828f944b5956498437cc02fcce383a543086014e63a10f3ad50505ace
+  content_digest: 26955d4b29e304048908e9ab281df7b9d8aad83cdfc7288c50830a92c156842f
+  lang: en
 - id: wis-016
   text: A roadmap is not a promise — it is a direction. The sovereign developer adjusts
     course when the terrain reveals itself.
@@ -5754,13 +5958,14 @@ quotes:
   teaches: 'DevIAC Tao (§12): The Roadmap'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 45349c72c2d0f66f3606a8fa138780f2752573cd5d9228f50d9be204b35a7be8
+  content_digest: ddb4456aa116a4edc1ce0bb40aaf21406e202171522033f9eb65a2e638fee151
+  lang: en
 - id: arch-049
   text: Ahmes extracts. Arkadia curates. DevIAC serves. A student who understands
     this triangle understands that knowledge flows — it is never static, never finished,
@@ -5779,13 +5984,14 @@ quotes:
     three systems, one flowing stream / knowledge never rests'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 440c2580c0b5689961b8d4b31d9a3a3a700caefb391fdb735824424d0812ff36
+  content_digest: 472de64b32cb6bc408bd792cdfb934a980acf9b3d5939331fb82732652dbd5ce
+  lang: en
 - id: arch-050
   text: Each PHASE-n.md is a self-contained prompt with all context embedded. A local
     72B model following it will produce nearly identical output to a cloud model,
@@ -5803,13 +6009,14 @@ quotes:
   teaches: 'DevIAC Tao (§54): The Phase File'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d624e648edc49f55ceda7d5399fa7b68c5614d8ae419fb62a92d84a5f5b16d9c
+  content_digest: ab664a5a70f7eca9f1e5389f33d6c9462dda3d95d32c937cf0d5bce4fc58a531
+  lang: en
 - id: arch-051
   text: Before changing a domain entity, check for side effects in application use
     cases. Before trusting LLM output, parse it into a value object. The guard is
@@ -5828,13 +6035,14 @@ quotes:
     / parse before you trust the words / boundaries are love'
   source: deviac/docs/tao/ttod.yaml (merged)
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d9b4539ee81041380f0b6f243b80578ed13b1669cbd975b15fac1418e9867666
+  content_digest: cb542fc805f6996c54994717394d56e9a635e982ddcbb8f6d6df4d884dd29b44
+  lang: en
 - id: arch-052
   text: The wise architect builds one door and lets many enter. The MCP server is
     that door — Cursor, Claude, the web UI, and the CLI all walk through it. There
@@ -5864,13 +6072,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c9e311bce94c3900952d9066b64f4baf7bd7386e50504892ab6dd79ac53b21fd
+  content_digest: c5476e321482070fd569309e4160f5f4bbfd1b3c5171375a8873d293f3365949
+  lang: en
 - id: arch-053
   text: The AI engineer who builds a chat system without a single source of truth
     for retrieval will soon have two systems that disagree. Then three. Then she will
@@ -5898,13 +6107,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 8cbce3b135043a0d16d142cd23a32b480c9fc48073fa41f2be407beafdea33eb
+  content_digest: b6e78f8da8ee310118c441960f5c7e48a702c50272769744079147ec3bdc7719
+  lang: en
 - id: arch-054
   text: 'There is only one implementation of ''how to query the vault'': the MCP tools.
     The chat backend is a client, not an architect.'
@@ -5931,13 +6141,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 99d8c9e19cc8641bf2cac7c7cba1afe7f4bac58864996a233081fdf392f0f7bc
+  content_digest: c86d9173b8c2362699ae3835fa7a99db8ee9321a44a86ad9abd831c7d8732cb0
+  lang: en
 - id: arch-055
   text: If you build a second path to the vault, you will soon have two truths. And
     two truths is a lie.
@@ -5964,13 +6175,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 3acd26fbc7fe836e83085fa6bfe17bd65d6f4a392c1f7695cde994025cf9274a
+  content_digest: 1bf66eacd1ae4ddf74d2ddb029c30f19bb8645fe2e5cf2fc5ddbc65c30669721
+  lang: en
 - id: arch-056
   text: When the chat, the CLI, and the AI agent all see the same context from the
     same source — that is not redundancy. That is truth. One vault, one door, one
@@ -5999,13 +6211,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b2080dd87e2979ea61701fa000059dc42c4e9bbc7462d8f2c5760301d2d1a54f
+  content_digest: d95308ef4c0433950edc894720be68e829d17c9493b9db8039f9144692bc0fcb
+  lang: en
 - id: arch-057
   text: one door, many guests — the tool that serves the scholar serves the machine
     too
@@ -6031,13 +6244,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 683d5e61032e807383cd6e03acc6f0a74a7c46b0b64ca68ba5678b8d4e20b466
+  content_digest: 7d5dcbb5df4e3641c252eed571e93570ff9f47210157e926162c35e3664cf784
+  lang: en
 - id: arch-058
   text: 'the enricher writes ten thousand mentions — yet relations: zero'
   koan: Mentions Without Relations
@@ -6062,13 +6276,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 55a5f4e13b560c0fd6c672115daa16e27e4c17399ea1754462940def1c8e7589
+  content_digest: 2c6aff390b838aeb1f03edd8a5a075861e28c36438711e3bbedf089db610e553
+  lang: en
 - id: arch-059
   text: scholar asks the vault, machine asks the vault the same — both receive the
     truth
@@ -6095,13 +6310,14 @@ quotes:
   source: athanor/docs/DEV_PLAN/PHASE-2.md
   origin: studio
   created_at: '2026-08-11'
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: b717463869cca69ba4e3679bd4e946118d638e54f2213cdac56bcca679799fa2
+  content_digest: 586cd596584017b2214b6806c2629dd54cea2c4d2371344671a2f790d4010050
+  lang: en
 - id: rrp-001
   text: Clone not what you can discard. Keep not what clutters the path.
   section: remote-repo
@@ -6118,13 +6334,14 @@ quotes:
   - dop-001
   - wis-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 426dd8bcfaadaa617f264267b4473d49ff37db6dbe3d34b12aca04a416850b6d
+  content_digest: 2e5a39c0d459f3760f00fb6db21ad644f4c0f6808ec32292478ccd82071e067c
+  lang: en
 - id: rrp-002
   text: The master grader processes a hundred repos and leaves no trace—only wisdom
     remains.
@@ -6142,13 +6359,14 @@ quotes:
   - rrp-001
   - qa-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: ce78936465f12ba1d0f3097684f1584118e761f6e01c0a45b2946085b4af713e
+  content_digest: 85138192d1584cd16fb2c0d2371c633732f090318afe55ee4702833bbefdaa52
+  lang: en
 - id: rrp-003
   text: He who builds tools while students wait, grades neither tool nor student.
   section: remote-repo
@@ -6163,13 +6381,14 @@ quotes:
   related:
   - rrp-006
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 310a300aa3ddc82697ef26d39b4150c2b7d997a590602bc4aaa8da72f8d74f84
+  content_digest: 86ee91bb6098f4bbbdb1c7d9d01177ed4c18226c53ac4574ed419c40696fc3c6
+  lang: en
 - id: rrp-004
   text: The path reveals itself to those who follow the YAML.
   section: remote-repo
@@ -6184,13 +6403,14 @@ quotes:
   related:
   - ops-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: f498f30cef65d9e7b74e4a1637726b8ce6720b969b49ec5e5f433a85a0b9b5c7
+  content_digest: 2ae9e29df59b4795ceb309c0c6e0f71b7f61a579a26bca557dd79184d212fac3
+  lang: en
 - id: rrp-005
   text: The wise instructor grades with tools, not toil. The foolish instructor toils
     without tools.
@@ -6206,13 +6426,14 @@ quotes:
   related:
   - qa-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 920d7fe9057d26dfc4ef9f8ea358706628a1820c745a5a84bc2358600386b9c0
+  content_digest: 63fc73172c28518229bdca52222faac0eb61034384bbfb89ceb5aae5d5ab6aed
+  lang: en
 - id: rrp-006
   text: The tool that finishes is superior to the tool that is perfect.
   section: remote-repo
@@ -6227,13 +6448,14 @@ quotes:
   related:
   - rrp-003
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: d658ec724f5683309d61c5cb676645ad866cb0020e6e19e441d8bb5c87011ae7
+  content_digest: 93161ca60808a9dfb853937a9cac0e08e95a298ab4b0ab1a60097e12bfdf4613
+  lang: en
 - id: rrp-007
   text: Clone shallow, grade deep. The wise instructor needs not the full history
     to see the present.
@@ -6249,13 +6471,14 @@ quotes:
   related:
   - rrp-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: bfbd48d70d0810d339b43851eb876842386b9c1db6acb3d80a9522cedb7333e1
+  content_digest: da0ba8c123eaa318d1725cca1c84db6a699a9fd6c079fd1b8339286d23ec7653
+  lang: en
 - id: rrp-008
   text: The temporary is eternal in its purpose—it serves and vanishes, leaving only
     results.
@@ -6271,13 +6494,14 @@ quotes:
   related:
   - rrp-001
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 25ef612a013ba9cbe309d9421fe171d1d3dabc5cf6a2bf363c20c8c577113c22
+  content_digest: 41519a9c229b994393790d9aa31b0bc7de7176c95c51f6050c31529c2191cd8a
+  lang: en
 - id: rrp-009
   text: Process many, keep none. The master's disk remains empty, yet knowledge flows
     to reports.
@@ -6293,13 +6517,14 @@ quotes:
   related:
   - rrp-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: c24597247c0b02adce357292839ea45a7b05d6da852c1cfef5141b025ebac011
+  content_digest: 78605ecaad18d0cfb53df6410e8667e058112ce07214fba605c4538e3e30f3b4
+  lang: en
 - id: rrp-010
   text: The YAML already contains the path. The instructor need only read it.
   section: remote-repo
@@ -6314,13 +6539,14 @@ quotes:
   related:
   - rrp-004
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 0fd16825afa2aa8463bdb26abd45bf98773ac24b26aa1ab23ea429d6027b0dbb
+  content_digest: 47e7a2fd83a1a3b51d25927538ea27482519e4762940d5508f8367260eec66b6
+  lang: en
 - id: qa-017
   text: Documentation unread is documentation unwritten. But documentation unwritten
     is failure guaranteed.
@@ -6336,13 +6562,14 @@ quotes:
   related:
   - qa-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 5b65e935d0e5d6ece0fe32c3e49c7e02385aa06d76fff9b59b381b42e278d0f4
+  content_digest: e68b71dcf17a59dde2c2253a798b0a4866cd8c96f06f9cb1d43dd34bbc47e876
+  lang: en
 - id: qa-018
   text: The README that saves one question saves a thousand emails.
   section: qa-tooling
@@ -6357,13 +6584,14 @@ quotes:
   related:
   - qa-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: a2bad581d38ccb5e4bddd57bef68999a648ef10b20f846611df300c904bb9a70
+  content_digest: 5305eeb3754a105c1380b01e11a47558b671ec06c9deb32ec6d4a7ecc44109be
+  lang: en
 - id: qa-019
   text: Tests guard the code. Mocks stand in for the cloud. Confidence grows strong.
   section: qa-tooling
@@ -6378,13 +6606,14 @@ quotes:
   related:
   - qa-003
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 684e39349c54b45da47f4019f251764e9869fbc0cc7a889e8a3eb1772c1554cf
+  content_digest: bee32dd0b9b9009441b227d392153d204911c2d7839154966192f1b862d40394
+  lang: en
 - id: rrp-014
   text: One report to rule them all, one chart to find them. In darkness bind them,
     in HTML light.
@@ -6400,13 +6629,14 @@ quotes:
   related:
   - rrp-002
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 4320eb7c6aeb6e6cec7788a93373913013b1dfc88149cf17376ac06c6663d723
+  content_digest: 8cc66726e3ba5853a7cf4dd05827680dcba4cc6611c22ca1a36610ba70f64d3e
+  lang: en
 - id: rrp-015
   text: The repo is temporary; the grade is permanent.
   section: remote-repo
@@ -6421,13 +6651,14 @@ quotes:
   related:
   - rrp-008
   origin: legacy-unknown
-  schema_version: 3.0.0
+  schema_version: 3.1.0
   rights:
     access: public
     license: CC-BY-NC-SA-4.0
     holder: ruvebal@crea-comm.net
     permission_basis: rights-holder-relicense-2026-08-18
-  content_digest: 9609207c3b256290bc99e08912e592ae6dd48be7bb204dc22494cece6b4f10bc
+  content_digest: 7b1555ecd7f929298829cca0b3e8f947705550f87a5d042c7b6ec31aab5ec43a
+  lang: en
 collections:
   daily_wisdom:
     name: Quote of the Day

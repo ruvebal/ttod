@@ -4,12 +4,16 @@
   "source_quote": {
     "id": "arch-070",
     "schema_version": "3.0.0",
-    "content_digest": "15ad49f30d9ed081606b52763f65fd5cc03658001d783ee16fb20dd3a0d90ceb",
+    "content_digest": "ab9de892bfd266f7c4b312e85629bc3e5b03e495be3796bcb0bc16cb9e02f831",
     "text": "Let the machine slug carry lineage with a prefix.",
     "section": "architecture",
     "subsection": "boundaries",
     "level": "intermediate",
-    "tags": ["boundaries", "identity"],
+    "lang": "en",
+    "tags": [
+      "boundaries",
+      "identity"
+    ],
     "teaches": "Scope remembers ancestry; speech remembers mercy",
     "origin": "blackbox",
     "validation": {
@@ -23,7 +27,9 @@
     "wpl_record_id": "wpl-fixture-record-q4-001",
     "wpl_record_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "evidence_snapshot_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "related": ["arch-001"],
+    "related": [
+      "arch-001"
+    ],
     "created_at": "2026-08-18"
   },
   "proposal_in": {
@@ -33,10 +39,15 @@
       "section": "architecture",
       "subsection": "boundaries",
       "level": "intermediate",
-      "tags": ["boundaries"],
+      "tags": [
+        "boundaries"
+      ],
       "teaches": "Round-trip preserves digests and review lineage",
       "origin": "studio",
-      "related": ["arch-001"]
+      "related": [
+        "arch-001"
+      ],
+      "lang": "en"
     },
     "proposer": {
       "identity": "athanor-bridge-fixture",

@@ -89,6 +89,7 @@ class TestQuoteValidation(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             # origin is missing
         }
         result = self.validator.validate_quote(quote)
@@ -104,6 +105,7 @@ class TestQuoteValidation(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "invalid-origin",
         }
         result = self.validator.validate_quote(quote)
@@ -120,6 +122,7 @@ class TestQuoteValidation(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         result = self.validator.validate_quote(quote)
@@ -160,6 +163,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 }
             ]
@@ -200,6 +204,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "First quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 },
                 {
@@ -208,6 +213,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Second quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 }
             ]
@@ -243,6 +249,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 }
             ]
@@ -278,6 +285,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 }
             ]
@@ -315,6 +323,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 }
             ]
@@ -352,6 +361,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "tags": ["undeclared-tag"],  # Not in taxonomy
                     "origin": "human"
                 }
@@ -395,6 +405,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "related": ["arch-999"],  # Dangling reference
                     "origin": "human"
                 }
@@ -431,6 +442,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "immediate_parent_refs": ["arch-999"],  # Dangling reference
                     "origin": "human"
                 }
@@ -467,6 +479,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human",
                     "rights": {
                         "access": "public"
@@ -510,6 +523,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human"
                 }
             ]
@@ -545,6 +559,7 @@ class TestRootValidation(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human",
                     "status": "deprecated",
                     "deprecated_by": "arch-999"  # Dangling reference
@@ -687,6 +702,7 @@ class TestQ1FixturesThroughValidator(unittest.TestCase):
                 "text": "Has origin",
                 "section": "architecture",
                 "level": "advanced",
+                "lang": "en",
                 "origin": "human",
             },
             {
@@ -695,6 +711,7 @@ class TestQ1FixturesThroughValidator(unittest.TestCase):
                 "text": "Missing origin",
                 "section": "architecture",
                 "level": "advanced",
+                "lang": "en",
             },
         ]
         result = self.validator.validate_root(_minimal_root(quotes))
@@ -709,6 +726,7 @@ class TestQ1FixturesThroughValidator(unittest.TestCase):
                 "text": "Test",
                 "section": "architecture",
                 "level": "advanced",
+                "lang": "en",
                 "origin": "human",
             }
         ]

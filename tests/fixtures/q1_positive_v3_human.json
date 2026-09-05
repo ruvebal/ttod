@@ -1,12 +1,16 @@
 {
   "id": "wis-020",
   "schema_version": "3.0.0",
-  "content_digest": "5cad1539934845081688b78162681c41e43d6f58aa8c4219e165469780bbcac8",
+  "content_digest": "9889dfce9d3f3d6d3f4db09c175f0471ec31d171398168d1f0c56c0bd48dfb7c",
   "text": "The path walks you.",
   "section": "wisdom",
   "subsection": "contemplation",
   "level": "master",
-  "tags": ["koan", "contemplation"],
+  "lang": "en",
+  "tags": [
+    "koan",
+    "contemplation"
+  ],
   "teaches": "Mastery is when the practice becomes the practitioner",
   "origin": "human",
   "created_at": "2026-08-18"

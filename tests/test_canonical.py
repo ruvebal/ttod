@@ -107,6 +107,7 @@ class TestCanonicalizer(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         digest = self.canonicalizer.compute_content_digest(quote)
@@ -122,6 +123,7 @@ class TestCanonicalizer(unittest.TestCase):
             "content_digest": "a" * 64,
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         quote_without_digest = {
@@ -129,6 +131,7 @@ class TestCanonicalizer(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         digest1 = self.canonicalizer.compute_content_digest(quote_with_digest)
@@ -182,6 +185,7 @@ class TestCanonicalizer(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
             "content_digest": "0" * 64,
         }
@@ -195,6 +199,7 @@ class TestCanonicalizer(unittest.TestCase):
             "text": "Test quote",
             "section": "architecture",
             "level": "advanced",
+            "lang": "en",
             "origin": "human",
         }
         expected = self.canonicalizer.compute_content_digest(quote)
@@ -228,6 +233,7 @@ class TestCanonicalizer(unittest.TestCase):
             "text": "café",
             "tags": ["architecture", "boundaries"],
             "level": "advanced",
+            "lang": "en",
         }
         bytes1 = self.canonicalizer.to_canonical_json(obj)
         bytes2 = self.canonicalizer.to_canonical_json(obj)

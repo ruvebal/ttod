@@ -4,7 +4,11 @@
 	"title": "TTOD Proposal Record v3",
 	"description": "Pre-canonical proposal record. MUST reject any canonical id field being present at all.",
 	"type": "object",
-	"required": ["proposal_id", "status", "candidate_content"],
+	"required": [
+		"proposal_id",
+		"status",
+		"candidate_content"
+	],
 	"properties": {
 		"proposal_id": {
 			"type": "string",
@@ -12,13 +16,24 @@
 		},
 		"status": {
 			"type": "string",
-			"enum": ["proposed", "needs_revision", "accepted", "rejected", "withdrawn"],
+			"enum": [
+				"proposed",
+				"needs_revision",
+				"accepted",
+				"rejected",
+				"withdrawn"
+			],
 			"description": "Proposal lifecycle status"
 		},
 		"candidate_content": {
 			"type": "object",
 			"description": "Candidate quote content without canonical id",
-			"required": ["text", "section", "level", "origin"],
+			"required": [
+				"text",
+				"section",
+				"level",
+				"origin"
+			],
 			"properties": {
 				"text": {
 					"type": "string"
@@ -31,7 +46,12 @@
 				},
 				"level": {
 					"type": "string",
-					"enum": ["beginner", "intermediate", "advanced", "master"]
+					"enum": [
+						"beginner",
+						"intermediate",
+						"advanced",
+						"master"
+					]
 				},
 				"tags": {
 					"type": "array",
@@ -47,7 +67,13 @@
 				},
 				"origin": {
 					"type": "string",
-					"enum": ["human", "studio", "blackbox", "mixed", "legacy-unknown"]
+					"enum": [
+						"human",
+						"studio",
+						"blackbox",
+						"mixed",
+						"legacy-unknown"
+					]
 				},
 				"source_refs": {
 					"type": "array",
@@ -75,6 +101,30 @@
 					"items": {
 						"type": "string"
 					}
+				},
+				"lang": {
+					"type": "string",
+					"pattern": "^[a-z]{2}$",
+					"description": "ISO 639-1 language of the candidate quote"
+				},
+				"relation_edges": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": [
+							"target",
+							"relation_type"
+						],
+						"properties": {
+							"target": {
+								"type": "string"
+							},
+							"relation_type": {
+								"type": "string"
+							}
+						}
+					},
+					"description": "Typed relation edges (e.g. translation_of)"
 				}
 			}
 		},
@@ -118,6 +168,8 @@
 		}
 	},
 	"not": {
-		"required": ["id"]
+		"required": [
+			"id"
+		]
 	}
 }

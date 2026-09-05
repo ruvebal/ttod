@@ -192,6 +192,7 @@ class TestTtodSchema(unittest.TestCase):
                     "text": "Test quote",
                     "section": "architecture",
                     "level": "advanced",
+                    "lang": "en",
                     "origin": "human",
                 }
             ],

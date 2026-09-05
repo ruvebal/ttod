@@ -4,7 +4,10 @@
   "text": "Blackbox quote without human review.",
   "section": "architecture",
   "level": "advanced",
-  "tags": ["boundaries"],
+  "lang": "en",
+  "tags": [
+    "boundaries"
+  ],
   "origin": "blackbox",
   "created_at": "2026-08-18"
 }

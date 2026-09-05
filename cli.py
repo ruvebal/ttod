@@ -9,6 +9,7 @@ Read docs/DEV_PLAN/PHASES/Q3-atomic-repository-cli.md before changing write path
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any, Optional
@@ -20,7 +21,15 @@ from ttod_core.canonical import Canonicalizer
 from ttod_core.exporter import Exporter
 from ttod_core.bridge import BridgeError, TTODBridge, TEST_REVIEWER_ID
 from ttod_core.migration import migrate_root, serialize_migrated_document, write_candidate
+from ttod_core.proposals import create_proposal
 from ttod_core.repository import ProposalStore, RepositoryError, TTODRepository
+from ttod_core.translation import (
+    OLLAMA_DEFAULT_HOST,
+    TranslationError,
+    build_translation_candidate,
+    find_active_translations,
+    translate_quote,
+)
 from ttod_core.validation import TTODValidator
 
 app = typer.Typer(help="The Tao of Development — pedagogical wisdom CLI")
@@ -134,6 +143,21 @@ def stats(
         typer.echo(f"  {origin}: {count}")
     if missing_origin:
         typer.echo(f"  ({missing_origin} quotes lack origin — not counted as human)")
+
+    typer.echo("\nBy language (derived from quote lang; never hardcoded):")
+    language_counts: dict[str, int] = {}
+    missing_lang = 0
+    for q in quotes:
+        lang = q.get("lang")
+        if lang is None:
+            missing_lang += 1
+            language_counts["<missing>"] = language_counts.get("<missing>", 0) + 1
+        else:
+            language_counts[lang] = language_counts.get(lang, 0) + 1
+    for lang, count in sorted(language_counts.items(), key=lambda x: -x[1]):
+        typer.echo(f"  {lang}: {count}")
+    if missing_lang:
+        typer.echo(f"  ({missing_lang} quotes lack lang — migrate via Phase S S2′)")
 
 
 @app.command()
@@ -329,6 +353,7 @@ def add(
     section: str = typer.Option(..., help="Section ID"),
     level: str = typer.Option("intermediate", help="Level"),
     text: str = typer.Option(..., help="The wisdom text"),
+    lang: str = typer.Option("en", help="ISO 639-1 language (default en)"),
     origin: str = typer.Option("human", help="Origin: human/studio/blackbox"),
     tags: str = typer.Option("", help="Comma-separated tags"),
     reviewer_id: str = typer.Option(..., help="Human reviewer ID (required — no bypass)"),
@@ -343,11 +368,15 @@ def add(
     if level not in VALID_LEVELS:
         typer.echo(f"Invalid level: {level}")
         raise typer.Exit(1)
+    if not re.fullmatch(r"[a-z]{2}", lang):
+        typer.echo(f"Invalid lang (expect ISO 639-1): {lang}")
+        raise typer.Exit(1)
 
     candidate: dict[str, Any] = {
         "text": text,
         "section": section,
         "level": level,
+        "lang": lang,
         "origin": origin,
     }
     tag_list = [t.strip() for t in tags.split(",") if t.strip()]
@@ -365,6 +394,99 @@ def add(
         raise typer.Exit(1)
 
     typer.echo(f"Added: {result.quote_id} ({section}/{level})")
+
+
+@app.command("translate-draft")
+def translate_draft(
+    source_id: str = typer.Argument(..., help="Canonical source quote ID to translate"),
+    to: str = typer.Option(..., "--to", help="Target ISO 639-1 language (e.g. es)"),
+    model: str = typer.Option("qwen3.8:27b", "--model", help="Ollama model tag to run"),
+    host: str = typer.Option(OLLAMA_DEFAULT_HOST, "--host", help="Ollama API host"),
+    timeout: float = typer.Option(180.0, "--timeout", help="Ollama call timeout (seconds)"),
+    proposer_id: str = typer.Option("cli-translate-draft", help="Proposer identifier recorded on the proposal"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML source (default: live ttod.yml, read-only)"),
+    output: Optional[Path] = typer.Option(None, "--output", help="Write proposal JSON here in addition to the store"),
+):
+    """
+    Draft a sister-language translation of SOURCE_ID via local Ollama and save it as a
+    `status: proposed` proposal. Never touches ttod.yml and never sets `status: active` —
+    a human runs `proposal review` then `proposal accept --reviewer-id ...` separately.
+
+    Explicit command only — not a side effect of `add` or `proposal accept` (Phase S §S4').
+    """
+    if not re.fullmatch(r"[a-z]{2}", to):
+        typer.echo(f"Invalid --to (expect ISO 639-1, e.g. es): {to}")
+        raise typer.Exit(1)
+
+    root = _repo(file).load()
+    quotes = root.get("quotes", [])
+    source = next((q for q in quotes if isinstance(q, dict) and q.get("id") == source_id), None)
+    if source is None:
+        typer.echo(f"Source quote not found: {source_id}")
+        raise typer.Exit(1)
+
+    source_lang = source.get("lang")
+    if not source_lang:
+        typer.echo(f"Source quote '{source_id}' has no 'lang' field — cannot translate")
+        raise typer.Exit(1)
+
+    # Fail fast #1 (S4' 2026-09-06 addition): same-language target would trip
+    # TRANSLATION_SAME_LANGUAGE at accept time regardless — refuse before calling any model.
+    if to == source_lang:
+        typer.echo(
+            f"REFUSED: --to '{to}' equals source quote '{source_id}'s own lang '{source_lang}' "
+            f"(would trip TRANSLATION_SAME_LANGUAGE at accept time — no model call made)"
+        )
+        raise typer.Exit(2)
+
+    # Fail fast #2 (S4' 2026-09-06 addition): warn, do not hard-block — a human may
+    # deliberately want a second candidate to compare before accepting either.
+    existing = find_active_translations(quotes, source_id, to)
+    if existing:
+        typer.echo(
+            f"WARNING: an active translation of '{source_id}' into '{to}' already exists: "
+            f"{existing} — accepting a second active one would trip TRANSLATION_DUPLICATE_ACTIVE. "
+            f"Proceeding anyway (a human may want a second candidate to compare)."
+        )
+
+    try:
+        draft = translate_quote(
+            model,
+            source_lang,
+            to,
+            source.get("text", ""),
+            source.get("teaches"),
+            host=host,
+            timeout=timeout,
+        )
+    except TranslationError as exc:
+        typer.echo(f"TRANSLATE-DRAFT FAILED: {exc}")
+        raise typer.Exit(1)
+
+    candidate = build_translation_candidate(source, source_id, to, draft)
+
+    proposal = create_proposal(
+        candidate_content=candidate,
+        proposer_kind="model",
+        proposer_id=proposer_id,
+        generation_method=f"ollama:{draft.model}:translate-draft-v1",
+    )
+
+    saved_path = _proposal_store().save(proposal)
+    if output:
+        output.write_text(json.dumps(proposal.to_dict(), indent=2, ensure_ascii=False), encoding="utf-8")
+
+    typer.echo(f"Drafted translation proposal: {proposal.proposal_id}")
+    typer.echo(f"  model: {draft.model} ({draft.latency_s:.1f}s)")
+    typer.echo(f"  source: {source_id} ({source_lang}) -> target lang: {to}")
+    typer.echo(f"  text: {draft.text}")
+    if draft.teaches is not None:
+        typer.echo(f"  teaches: {draft.teaches}")
+    typer.echo(f"  saved: {saved_path}")
+    typer.echo(
+        "Status: proposed (never active). Next: `proposal review` then "
+        f"`proposal accept {proposal.proposal_id} --reviewer-id <you>` — a separate, deliberate human action."
+    )
 
 
 @migrate_app.command("prepare")

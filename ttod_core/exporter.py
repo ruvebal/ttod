@@ -115,7 +115,7 @@ class Exporter:
         )
         snapshot_digest = self.canonicalizer.compute_snapshot_digest(
             filtered_quotes,
-            data.get("meta", {}).get("version", "3.0.0"),
+            data.get("meta", {}).get("version", "3.1.0"),
             taxonomy_digest,
             collection_policy_digest,
         )
@@ -125,7 +125,7 @@ class Exporter:
             record_count=len(filtered_quotes),
             export_policy=export_policy,
             snapshot_digest=snapshot_digest,
-            schema_version=data.get("meta", {}).get("version", "3.0.0"),
+            schema_version=data.get("meta", {}).get("version", "3.1.0"),
             generated_at=generated_at if generated_at is not None else "",
         )
 
@@ -144,6 +144,7 @@ class Exporter:
                     "origin": quote.get("origin"),
                     "status": quote.get("status", "active"),
                     "text": quote.get("text"),
+                    "lang": quote.get("lang"),
                 }
             )
         return sorted(nodes, key=lambda n: n.get("id") or "")

@@ -46,3 +46,16 @@ Priority distill (the lines other artefacts are waiting on):
 - **Chapter prose:** CC BY-NC-SA 4.0 (Web Atelier teaching content) — see repo [`LICENSE-CONTENT`](../../LICENSE-CONTENT).
 - **TTOD tooling/code:** MIT — see [`LICENSE-CODE`](../../LICENSE-CODE).
 - **TTOD database quotes:** CC BY-NC-SA 4.0 per quote `rights.license`; reconcile on merge — do not silently relicense.
+
+## Addendum (Phase S, 2026-09-06) — bilingual pairing at merge time
+
+This chapter exists in both `en.md` and `es.md`. **When a future, separately-authorized session
+distills these into quotes** (this addendum does not authorize that merge — the chapter stays
+parked, per "Merge later" above, exactly as before): an English distillation and its Spanish
+counterpart of the *same* aphorism must be recorded as a **pair**, not two unrelated entries. Each
+gets its own record with its own `lang` (`en` / `es`) and its own next-free section-number ID —
+never a locale-suffixed ID like `arch-001-es` (see `AGENTS.md` and
+`.cursor/rules/ttod-editing.mdc`'s bilingual-quotes section). Link the Spanish twin to its English
+original with `relation_edges: [{target: <english-id>, relation_type: translation_of}]`. Full
+invariants and a worked example: `docs/DEV_PLAN/DECISIONS/S0-2026-09-04-BILINGUAL-CONTENT-MODEL.md`
+and `docs/DEV_PLAN/PHASE-S-TTOD-BILINGUAL-CONTENT-MODEL.md`.

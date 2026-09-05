@@ -36,7 +36,13 @@
 		},
 		"origin": {
 			"type": "string",
-			"enum": ["human", "studio", "blackbox", "mixed", "legacy-unknown"],
+			"enum": [
+				"human",
+				"studio",
+				"blackbox",
+				"mixed",
+				"legacy-unknown"
+			],
 			"description": "Authorship assertion. No default-to-human."
 		},
 		"usage_role": {
@@ -54,8 +60,18 @@
 		},
 		"level": {
 			"type": "string",
-			"enum": ["beginner", "intermediate", "advanced", "master"],
+			"enum": [
+				"beginner",
+				"intermediate",
+				"advanced",
+				"master"
+			],
 			"description": "Pedagogical mastery level"
+		},
+		"lang": {
+			"type": "string",
+			"pattern": "^[a-z]{2}$",
+			"description": "ISO 639-1 language of this quote"
 		},
 		"tags": {
 			"type": "array",
@@ -78,7 +94,11 @@
 			"properties": {
 				"status": {
 					"type": "string",
-					"enum": ["pending", "validated", "rejected"]
+					"enum": [
+						"pending",
+						"validated",
+						"rejected"
+					]
 				},
 				"method": {
 					"type": "string"
@@ -119,7 +139,11 @@
 				},
 				"access": {
 					"type": "string",
-					"enum": ["public", "restricted", "private"]
+					"enum": [
+						"public",
+						"restricted",
+						"private"
+					]
 				},
 				"restrictions": {
 					"type": "array",
@@ -143,7 +167,10 @@
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["target", "relation_type"],
+				"required": [
+					"target",
+					"relation_type"
+				],
 				"properties": {
 					"target": {
 						"type": "string"
@@ -156,7 +183,11 @@
 		},
 		"status": {
 			"type": "string",
-			"enum": ["active", "deprecated", "erased"],
+			"enum": [
+				"active",
+				"deprecated",
+				"erased"
+			],
 			"description": "Lifecycle status"
 		},
 		"deprecated_by": {
@@ -197,7 +228,9 @@
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["source_id"],
+				"required": [
+					"source_id"
+				],
 				"properties": {
 					"source_id": {
 						"type": "string"

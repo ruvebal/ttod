@@ -4,6 +4,7 @@
     "text": "Reviewed model output.",
     "section": "architecture",
     "level": "advanced",
+    "lang": "en",
     "origin": "blackbox",
     "status": "active",
     "validation": {

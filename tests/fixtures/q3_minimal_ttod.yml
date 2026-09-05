@@ -19,6 +19,7 @@ quotes:
     text: 'Minimal valid quote for Q3 transaction tests.'
     section: architecture
     level: advanced
+    lang: en
     tags:
       - boundaries
     origin: human

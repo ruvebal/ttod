@@ -20,7 +20,7 @@ import yaml
 from ttod_core.canonical import Canonicalizer
 from ttod_core.repository import compute_derived_metadata
 
-SCHEMA_VERSION = "3.0.0"
+SCHEMA_VERSION = "3.1.0"
 DEFAULT_HOLDER = "ruvebal@crea-comm.net"
 DEFAULT_LICENSE = "CC-BY-NC-SA-4.0"
 DEFAULT_PERMISSION_BASIS = "rights-holder-relicense-2026-08-18"
@@ -80,6 +80,7 @@ def migrate_root(root: Dict[str, Any]) -> Tuple[Dict[str, Any], SemanticDiffSumm
     _normalize_dates_tree(migrated, summary)
     _normalize_origins(migrated.get("quotes", []), summary)
     _apply_schema_version(migrated.get("quotes", []), summary)
+    _apply_default_lang(migrated.get("quotes", []), summary)
     _apply_default_rights(migrated.get("quotes", []), summary)
     _close_tag_taxonomy(migrated, summary)
     _compute_digests(migrated.get("quotes", []), canonicalizer, summary)
@@ -165,6 +166,21 @@ def _apply_schema_version(quotes: List[Dict[str, Any]], summary: SemanticDiffSum
             summary.schema_version_added += 1
 
 
+def _apply_default_lang(quotes: List[Dict[str, Any]], summary: SemanticDiffSummary) -> None:
+    """Phase S: backfill lang: en when absent (S1′ schema requires it; S2′ owns live file)."""
+    for quote in quotes:
+        if quote.get("lang"):
+            continue
+        quote["lang"] = "en"
+        summary.decisions.append(
+            MigrationDecision(
+                "lang_default_en",
+                quote.get("id", "<unknown>"),
+                "applied lang=en (Phase S; corpus was English-only at decision time)",
+            )
+        )
+
+
 def _apply_default_rights(quotes: List[Dict[str, Any]], summary: SemanticDiffSummary) -> None:
     """Apply Q0 frozen default rights for rights-holder records without item rights."""
     for quote in quotes:
@@ -240,6 +256,9 @@ def _recompute_meta(root: Dict[str, Any]) -> None:
     meta = root.setdefault("meta", {})
     meta["total_quotes"] = derived.total_quotes
     meta["last_id_by_section"] = dict(sorted(derived.last_id_by_section.items()))
+    meta["languages"] = list(derived.languages)
+    if derived.languages:
+        meta["language"] = derived.languages[0]
 
 
 def write_candidate(root: Dict[str, Any], path: Path) -> None:
@@ -288,7 +307,7 @@ def update_header_comment_block(original_text: str) -> str:
     out: List[str] = []
     for line in lines:
         if line.startswith("# Schema Version:"):
-            out.append("# Schema Version: 3.0.0")
+            out.append(f"# Schema Version: {SCHEMA_VERSION}")
         elif line.startswith("# License:"):
             out.append("# License: CC BY-NC-SA 4.0 (content) — see LICENSE-CONTENT; code MIT — see LICENSE-CODE")
         elif line.startswith("# Updated:"):

@@ -7,8 +7,11 @@
     "section": "architecture",
     "source": "athanor/docs/DEV_PLAN/PHASE-2.md",
     "lesson": "athanor-phase-2",
-    "immediate_parent_refs": ["athanor-phase-2-plan"],
+    "immediate_parent_refs": [
+      "athanor-phase-2-plan"
+    ],
     "origin": "studio",
-    "level": "advanced"
+    "level": "advanced",
+    "lang": "en"
   }
 }

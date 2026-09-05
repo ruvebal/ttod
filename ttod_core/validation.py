@@ -53,6 +53,15 @@ class DiagnosticCode(Enum):
     ROOT_SOURCE_TARGET_NOT_FOUND = "ROOT_SOURCE_TARGET_NOT_FOUND"
     DIGEST_MISMATCH = "DIGEST_MISMATCH"
 
+    # Phase S S1′ — translation_of semantic invariants
+    TRANSLATION_TARGET_UNRESOLVED = "TRANSLATION_TARGET_UNRESOLVED"
+    TRANSLATION_TARGET_INACTIVE = "TRANSLATION_TARGET_INACTIVE"
+    TRANSLATION_SAME_LANGUAGE = "TRANSLATION_SAME_LANGUAGE"
+    TRANSLATION_SELF_TARGET = "TRANSLATION_SELF_TARGET"
+    TRANSLATION_CHAIN = "TRANSLATION_CHAIN"
+    TRANSLATION_DUPLICATE_ACTIVE = "TRANSLATION_DUPLICATE_ACTIVE"
+    TRANSLATION_SECTION_MISMATCH = "TRANSLATION_SECTION_MISMATCH"
+
 
 @dataclass
 class Diagnostic:
@@ -193,6 +202,7 @@ class TTODValidator:
         self._validate_collection_integrity(collections, quotes, result)
         self._validate_lesson_integrity(lessons, quotes, result)
         self._validate_related_targets(quotes, result)
+        self._validate_translation_of_edges(quotes, result)
         self._validate_lifecycle_consistency(quotes, result)
         self._validate_rights_completeness(quotes, result)
         self._validate_ancestry_resolution(quotes, result)
@@ -443,6 +453,114 @@ class TTODValidator:
                         f"Quote '{quote.get('id')}' references non-existent related ID: {rid}",
                         quote_id=quote.get("id"),
                     )
+
+    @staticmethod
+    def _quote_status(quote: Dict[str, Any]) -> str:
+        status = quote.get("status")
+        return status if isinstance(status, str) and status else "active"
+
+    @staticmethod
+    def _outgoing_translation_targets(quote: Dict[str, Any]) -> List[str]:
+        edges = quote.get("relation_edges") or []
+        targets: List[str] = []
+        if not isinstance(edges, list):
+            return targets
+        for edge in edges:
+            if not isinstance(edge, dict):
+                continue
+            if edge.get("relation_type") == "translation_of" and edge.get("target"):
+                targets.append(str(edge["target"]))
+        return targets
+
+    def _validate_translation_of_edges(self, quotes: List[Dict[str, Any]], result: ValidationResult):
+        """Enforce Phase S translation_of semantic invariants (S0 decision 5)."""
+        by_id: Dict[str, Dict[str, Any]] = {
+            q["id"]: q for q in quotes if isinstance(q, dict) and q.get("id")
+        }
+        # (target_id, translator_lang) -> list of translator quote ids (active only)
+        active_pairs: Dict[tuple, List[str]] = {}
+
+        for quote in quotes:
+            if not isinstance(quote, dict):
+                continue
+            quote_id = quote.get("id")
+            for target_id in self._outgoing_translation_targets(quote):
+                if target_id == quote_id:
+                    result.add_error(
+                        DiagnosticCode.TRANSLATION_SELF_TARGET,
+                        f"Quote '{quote_id}' translation_of targets itself",
+                        quote_id=quote_id,
+                    )
+                    continue
+
+                target = by_id.get(target_id)
+                if target is None:
+                    result.add_error(
+                        DiagnosticCode.TRANSLATION_TARGET_UNRESOLVED,
+                        f"Quote '{quote_id}' translation_of references non-existent ID: {target_id}",
+                        quote_id=quote_id,
+                    )
+                    continue
+
+                if self._quote_status(target) != "active":
+                    result.add_error(
+                        DiagnosticCode.TRANSLATION_TARGET_INACTIVE,
+                        f"Quote '{quote_id}' translation_of target '{target_id}' is not active "
+                        f"(status={self._quote_status(target)!r})",
+                        quote_id=quote_id,
+                    )
+
+                source_lang = quote.get("lang")
+                target_lang = target.get("lang")
+                if (
+                    isinstance(source_lang, str)
+                    and isinstance(target_lang, str)
+                    and source_lang == target_lang
+                ):
+                    result.add_error(
+                        DiagnosticCode.TRANSLATION_SAME_LANGUAGE,
+                        f"Quote '{quote_id}' translation_of '{target_id}' has same lang={source_lang!r}",
+                        quote_id=quote_id,
+                    )
+
+                # Star, not chain: target must not itself carry an outgoing translation_of.
+                if self._outgoing_translation_targets(target):
+                    result.add_error(
+                        DiagnosticCode.TRANSLATION_CHAIN,
+                        f"Quote '{quote_id}' translation_of '{target_id}' points at a translation "
+                        f"(star topology required, not a chain)",
+                        quote_id=quote_id,
+                    )
+
+                if (
+                    self._quote_status(quote) == "active"
+                    and isinstance(source_lang, str)
+                    and source_lang
+                ):
+                    key = (target_id, source_lang)
+                    active_pairs.setdefault(key, []).append(str(quote_id))
+
+                source_section = quote.get("section")
+                target_section = target.get("section")
+                if (
+                    isinstance(source_section, str)
+                    and isinstance(target_section, str)
+                    and source_section != target_section
+                ):
+                    result.add_warning(
+                        DiagnosticCode.TRANSLATION_SECTION_MISMATCH,
+                        f"Quote '{quote_id}' section={source_section!r} differs from "
+                        f"translation_of target '{target_id}' section={target_section!r}",
+                        quote_id=quote_id,
+                    )
+
+        for (target_id, lang), translators in active_pairs.items():
+            if len(translators) > 1:
+                result.add_error(
+                    DiagnosticCode.TRANSLATION_DUPLICATE_ACTIVE,
+                    f"Multiple active translations in lang={lang!r} of '{target_id}': {translators}",
+                    quote_id=translators[0],
+                )
 
     def _validate_lifecycle_consistency(self, quotes: List[Dict[str, Any]], result: ValidationResult):
         """Validate lifecycle consistency (deprecated_by, superseded_by targets resolve)."""

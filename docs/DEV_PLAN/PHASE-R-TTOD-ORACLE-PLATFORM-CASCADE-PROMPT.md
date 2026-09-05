@@ -93,20 +93,25 @@ never hand-edit it to diverge.
      host: `qwen2.5:32b-instruct`, `qwen2.5:72b-instruct-q4_K_M`, `qwen2.5:7b`, `qwen2.5:3b`, and
      the studio's own `thessia-scholar-v3`/`thessia-coder-v3`/`thessia-sentinel-v3` fine-tunes (the
      last is reserved — see `PHASE-S-TTOD-BILINGUAL-CONTENT-MODEL.md` §S4, do not repurpose it).
-   - **Lilith (LAN shared dev/integration, confirmed reachable — `ping lilith.crea-comm.loc`,
-     `10.0.0.40`, 2026-09-04):** full containerized stack including containerized Ollama (matches
-     Hard Rule 2's "Docker Ollama = Lilith only"), running the **same light model the app tier
-     ships** (`llama3.2:1b` / `qwen2.5:1.5b`). **Neither tag is confirmed pulled anywhere yet** —
-     `ollama list` on the dev-tier host (2026-09-06) shows `qwen3.8:27b`, the `qwen2.5:{3b,7b,
-32b-instruct,72b-instruct}` family, `nomic-embed-text`, and the `thessia-*` fine-tunes, but no
-     `llama3.2:1b` and no `qwen2.5:1.5b`. R2's/R3a's compose bring-up must include an explicit
-     `ollama pull llama3.2:1b` (or `qwen2.5:1.5b`, pick one as the actual default and pull the
-     other only if a fallback is genuinely needed) step — do not treat "the tag is named in this
-     document" as equivalent to "the tag is available." This is where the cohort runs hard dev
-     sprints together and where internal test users hit the production-shaped experience before it
-     ever reaches the cloud — free, LAN-only, no public exposure.
-   - **Scaleway (cloud, public):** containerized, light model only (same tag as Lilith's app-tier
-     model, same pull-step caveat above) — see decision 3.
+   - **Lilith — corrected 2026-09-06: instructor-only, not a cohort resource.** Earlier drafts of
+     this document called Lilith "shared cohort dev/integration" — **that was wrong and is
+     retracted.** Lilith and Tanit are both Rubén's own private studio machines; **neither the 7
+     students nor anyone outside the studio can reach either one.** Lilith's real role is narrower
+     and purely instructor-facing: a second environment, parallel to Tanit, running the same
+     containerized stack (full profile, including containerized Ollama — matches Hard Rule 2's
+     "Docker Ollama = Lilith only") so Rubén can validate the reference build on Linux and prove
+     the architecture is host-portable before ever telling students it works cross-platform. Light
+     model tags there: same as the container profile generally (`llama3.2:1b`/`qwen2.5:1.5b`) —
+     **confirm pulled before relying on this**, do not assume from this document alone.
+     **What students actually get instead:** every student runs the stack on their own machine —
+     personal laptop or a university lab computer (§2.4) — using the individual-dev tier above
+     (host-mode Ollama if they have one, or `--profile container` with an explicit local
+     `ollama pull` if they don't). There is no shared LAN environment in the cohort's own path at
+     all; the only tier anyone outside the studio can ever reach is Scaleway, below, and only once
+     that deployment decision is signed.
+   - **Scaleway (cloud, public):** containerized, light model only (same tag as the container
+     profile generally, same pull-step caveat above) — see decision 3. This is the *only* tier
+     reachable by anyone other than Rubén himself.
      `.env` gains `OLLAMA_MODE=host|container` per the placement above, plus `OLLAMA_MODEL` so the
      pulled tag is never hardcoded in application code.
 3. **Public deployment target — RESOLVED.** Cloud provider is **Scaleway**, not DigitalOcean —
@@ -255,8 +260,9 @@ merge collisions, mirroring how Phase Q's Q2V/Q2E/Q2P lanes ran in parallel work
   dev default.
 - **Ollama is three-tier, not one switch** (§0.1.2): bare-metal `qwen3.8:27b`-class model for
   individual dev-sprint iteration (`OLLAMA_MODE=host`); containerized light model
-  (`llama3.2:1b`/`qwen2.5:1.5b`) on Lilith for shared cohort integration and on Scaleway for the
-  public `stg` environment (`OLLAMA_MODE=container`, `OLLAMA_CONTAINER_PORT=11435:11434`). No
+  (`llama3.2:1b`/`qwen2.5:1.5b`) on each student's own machine when host mode isn't available, on
+  Lilith for Rubén's own instructor-only Linux validation, and on Scaleway for the public `stg`
+  environment (`OLLAMA_MODE=container`, `OLLAMA_CONTAINER_PORT=11435:11434`). No
   runbook may hardcode a model tag or a single placement; both come from `.env`
   (`OLLAMA_MODE`, `OLLAMA_MODEL`, `OLLAMA_BASE_URL`).
 
@@ -299,9 +305,10 @@ laptops and, in at least some cases, shared university lab machines.**
   - Never pass a secret as a bare CLI argument — it lands in shell history and process listings
     visible to other users on a shared machine. Always via a file (`.env`), never inline, and this
     stack should never need you to anyway (previous bullet).
-- **Lilith (LAN shared dev, §0.1.2) needs no student-held credential.** It's a shared
-  `docker-compose` stack reachable on the trusted studio LAN (`lilith.crea-comm.loc`) — students
-  connect to it, they do not deploy to it with their own secrets.
+- **Lilith is not part of the student path at all — corrected 2026-09-06.** It is private studio
+  infrastructure (like Tanit); students have no network access to it and never will. Do not tell
+  students to "connect to Lilith" for anything — there is nothing there for them to connect to.
+  Every student runs the stack entirely on their own machine (§0.1.2, §2.4 above).
 - **Scaleway `stg` (R6, CI/CD, §0.1.3) secrets are instructor-only, by design, never distributed.**
   The SSH deploy key and Scaleway API token live only in the GitHub repository's Actions secrets,
   configured by Rubén. R6's runbook must not ask a student to hold, type, or even see a production
@@ -330,9 +337,9 @@ Three deployment surfaces share this same topology (§0.1.2/§0.1.3), differing 
 
 | Surface          | Reachability                         | Ollama                          | Purpose                                                                   |
 | ---------------- | ------------------------------------ | ------------------------------- | ------------------------------------------------------------------------- |
-| Individual dev   | `localhost`                          | bare-metal, `qwen3.8:27b`-class | fast iteration on oracle/RAG quality with a strong model                  |
-| Lilith (LAN)     | `lilith.crea-comm.loc` (`10.0.0.40`) | containerized, light model      | shared cohort dev sprints + internal test users, free, no public exposure |
-| Scaleway (cloud) | public `stg.` subdomain              | containerized, light model      | external test users / grading demo, single environment (§0.1.3)           |
+| Individual dev   | `localhost`, each student's own machine | bare-metal or containerized  | **the only surface every student ever touches** — personal laptop or a university lab computer (§2.4), fast iteration |
+| Lilith (LAN)     | `lilith.crea-comm.loc` (`10.0.0.40`), **instructor-only, unreachable by students** | containerized, light model | Rubén's own second environment — validates the reference build on Linux before any cross-platform claim is made to students |
+| Scaleway (cloud) | public `stg.` subdomain              | containerized, light model      | the *only* surface reachable by anyone outside the studio — external test users / grading demo, single environment (§0.1.3) |
 
 1. **`reverse-proxy` (Caddy v2).** **Let's Encrypt automatic TLS applies only to the public
    Scaleway `stg` deployment** (§0.1.3, and only after that deploy decision is signed) — it binds

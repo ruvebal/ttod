@@ -106,7 +106,8 @@ frozen as of 2026-09-04, revised 2026-09-06 — Rubén personally builds R1 (bac
 and R3a (walking-skeleton scaffold: hello-world + one live quote through the full pipeline); 7
 students start only once that cohort-start gate is green, one owner per remaining lane except
 R4/R5's natural two-role split; R7 is a continuous cross-cutting testing lane, not terminal; a
-three-tier Ollama placement (bare-metal dev, Lilith LAN, Scaleway `stg`); and a single Scaleway
+three-tier Ollama placement (bare-metal dev on each student's own machine, Lilith — instructor-only,
+never student-reachable, corrected 2026-09-06 — and Scaleway `stg`); and a single Scaleway
 staging environment (no separate prod, no blue/green). Repo placement (item 7) is treated as closed
 per §0.1.7's own text — see `PHASE-R0-REPORT.md`'s judgment-call log for a stale contradiction
 found in the master document's §11 prompt text on this exact point.

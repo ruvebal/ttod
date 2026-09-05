@@ -141,10 +141,11 @@ background reading, it is literal scope for this phase.**
   - Never pass a secret as a bare CLI argument — it lands in shell history and process listings
     visible to other users on a shared machine. Always via a file (`.env`), never inline, and this
     stack should never need you to anyway (previous bullet).
-- **Lilith (LAN shared dev) needs no student-held credential.** It's a shared `docker-compose`
-  stack reachable on the trusted studio LAN — students connect to it, they do not deploy to it with
-  their own secrets. R3a's onboarding doc should mention this distinction so a student doesn't
-  wonder whether they need Lilith access credentials for local dev (they don't).
+- **Lilith is not reachable by students at all — corrected 2026-09-06.** It is private studio
+  infrastructure, like Tanit; there is no "connect to Lilith" path for a student under any
+  circumstance. R3a's onboarding doc should say this plainly (not "no credential needed," which
+  wrongly implies a reachable-but-open resource) so nobody looks for a shared instance that was
+  never there.
 - **Scaleway `stg` secrets are instructor-only, out of scope for R3a entirely** — this phase's
   onboarding doc must not ask a student to hold, type, or even see a production deploy credential.
 

@@ -36,6 +36,10 @@ If anything asks for an API key, password, SSH private key, or other credential,
 instructor: this local stack should not need one. A university/shared lab computer can retain
 files, shell history, and cached logins for a later user. Log out of any CLI you authenticated
 (`gh auth logout` and the equivalent cloud-provider logout), use repository-local `git config`
-rather than `--global`, and never pass secrets as bare command-line arguments. Lilith is a shared
-LAN service and requires no student-held deployment credential. Scaleway staging credentials are
-instructor-only and entirely outside this setup.
+rather than `--global`, and never pass secrets as bare command-line arguments.
+
+**Corrected 2026-09-06:** you run this entirely on your own machine — there is no shared
+LAN environment in this course at all. Lilith and Tanit are private studio infrastructure, not
+reachable by students under any circumstance; don't look for a "shared instance" to connect to,
+because none exists for you. Scaleway staging credentials are instructor-only and entirely outside
+this setup, same as before.

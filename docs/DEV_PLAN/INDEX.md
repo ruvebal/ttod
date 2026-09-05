@@ -84,12 +84,18 @@ python -m unittest discover -s tests -p 'test_*.py'   # 161 tests, exit 0
   `ttod.yml`, `cli.py`, `schema/`, or `sources/` content was touched. `git init` was completed
   separately, closing the "no recoverable baseline" gap the 2026-08-14 readiness report flagged.
 
-## Proposed programme (Phase S substantially underway — see its own row; Phase R not started)
+## Proposed programme (Phase S DONE through S4; Phase R R0–R5 DONE, R7 PARTIAL, R6 deferred to students)
+
+The research-and-documentation continuation is planned separately in
+[`../research/GUIDE-FORGE-PLAN.md`](../research/GUIDE-FORGE-PLAN.md). It does not reopen Phase R,
+authorize R6, generate guides, or authorize research use of student work. Its paste-ready
+execution prompt is
+[`../research/PROMPT-FORGE-TTOD-GUIDES.md`](../research/PROMPT-FORGE-TTOD-GUIDES.md).
 
 | Phase | Purpose | Mode | State | Cascade prompt |
 | ----- | ------- | ---- | ----- | --------------- |
 | S | TTOD bilingual content model — per-quote `lang` field + `translation_of` relation (separate IDs, not locale-keyed text), with validator invariants, full read-path propagation (proposal/transport/bridge/exporter), and assisted translation drafting; prerequisite for Phase R's R1 contract freeze | single orchestrator, sequential S1′→S2′→S3′, S4′ after S1′ | S0 decision FROZEN 2026-09-04, amended 2026-09-05 and 2026-09-06; S1′ DONE 2026-09-04 (PHASE-S1-REPORT.md); S2′ DONE 2026-09-04 (PHASE-S2-REPORT.md — live `ttod.yml` migrated, `lang: en` on all 229 records, `meta.version: 3.1.0`); S3′ DONE 2026-09-04 (PHASE-S3-REPORT.md — this report); S4′ not yet reported as of this row's refresh (a parallel session owns `cli.py translate-draft`; check for `PHASE-S4-REPORT.md` before assuming either way) | [`PHASE-S-TTOD-BILINGUAL-CONTENT-MODEL.md`](PHASE-S-TTOD-BILINGUAL-CONTENT-MODEL.md) |
-| R | TTOD Oracle Platform — Astro control plane (Svelte graph + React oracle islands) over FastAPI/FastMCP/Ollama, wrapping the existing governed `ttod_core`/`cli.py` data layer read-only; Rubén personally owns R1 (backend), R2 (FastMCP), and R3a (walking-skeleton scaffold) — 7 students start only once that gate is green; R7 = continuous testing lane (Vitest/RTL/MSW + Playwright/chromium, per UDIT FE I/FE II syllabus). **R0 DONE (this row) — R1's precondition gate (Phase S's S1′ AND S2′ green) is confirmed satisfied** — see Phase R §0.1.6 and [`PHASE-R0-REPORT.md`](PHASE-R0-REPORT.md). | generator prompt → per-phase runbooks (R0–R7) | **R0 DONE** — seven self-contained runbooks generated under `PHASES/`; **no container, dependency, or app code written** (R0 is documentation-only by design). R1/R2/R3a (instructor-owned, parallel, converge at the cohort-start gate) are READY next. | [`PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md`](PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md) · [`PHASE-R0-REPORT.md`](PHASE-R0-REPORT.md) |
+| R | TTOD Oracle Platform — Astro control plane (Svelte graph + React oracle islands) over FastAPI/FastMCP/Ollama, wrapping the existing governed `ttod_core`/`cli.py` data layer read-only. **R0–R5 DONE** (R1 backend, R2 FastMCP, R3a walking skeleton — all instructor-built and cohort-start gate open; R3b content engine, R4 Svelte graph, R5 React oracle terminal — built and cold-reviewed as a **reference/architectural-validation build on `main`, not the student deliverable**). **R6 deliberately deferred, reserved for student ownership — see [`DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`](DECISIONS/R6-DEFERRED-STUDENT-OWNED.md); continued momentum on other phases is not authorization to build it.** R7 PARTIAL — continues testing the reference build; closing gates (Chromium/axe E2E, measured CI wall time) correctly wait on R6. Students receive R1/R2/R3a only via the generated `cohort-starter` branch (`scripts/generate-cohort-starter.sh`), not this reference tree — see [`PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md). | generator prompt → per-phase runbooks (R0–R7) | **R0–R5 DONE, R7 PARTIAL, R6 DEFERRED/STUDENT-OWNED** — see the closure report for the full state table and exact test evidence. | [`PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md`](PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md) · [`PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md) |
 
 Phase R's R0 (generator) pass is DONE: it produced
 [`PHASES/R1-backend-bridge.md`](PHASES/R1-backend-bridge.md),
@@ -100,21 +106,28 @@ Phase R's R0 (generator) pass is DONE: it produced
 [`PHASES/R5-react-oracle-terminal.md`](PHASES/R5-react-oracle-terminal.md),
 [`PHASES/R6-pwa-cicd-audit.md`](PHASES/R6-pwa-cicd-audit.md), and
 [`PHASES/R7-testing-strategy.md`](PHASES/R7-testing-strategy.md) — mirroring how Phase Q's
-`PHASES/` runbooks work — before any container, dependency, or app code is scaffolded (none was,
-by R0's own design; see that document §0 for the mold-vs-forge staging). §0.1's decisions are
-frozen as of 2026-09-04, revised 2026-09-06 — Rubén personally builds R1 (backend), R2 (FastMCP),
-and R3a (walking-skeleton scaffold: hello-world + one live quote through the full pipeline); 7
-students start only once that cohort-start gate is green, one owner per remaining lane except
-R4/R5's natural two-role split; R7 is a continuous cross-cutting testing lane, not terminal; a
-three-tier Ollama placement (bare-metal dev on each student's own machine, Lilith — instructor-only,
-never student-reachable, corrected 2026-09-06 — and Scaleway `stg`); and a single Scaleway
-staging environment (no separate prod, no blue/green). Repo placement (item 7) is treated as closed
-per §0.1.7's own text — see `PHASE-R0-REPORT.md`'s judgment-call log for a stale contradiction
-found in the master document's §11 prompt text on this exact point.
+`PHASES/` runbooks work. §0.1's decisions are frozen as of 2026-09-04, revised 2026-09-06 — Rubén
+personally builds R1 (backend), R2 (FastMCP), and R3a (walking-skeleton scaffold: hello-world + one
+live quote through the full pipeline); 7 students start only once that cohort-start gate is green,
+one owner per remaining lane except R4/R5's natural two-role split; R7 is a continuous
+cross-cutting testing lane, not terminal; a three-tier Ollama placement (bare-metal dev on each
+student's own machine, Lilith — instructor-only, never student-reachable, corrected 2026-09-06 —
+and Scaleway `stg`); and a single Scaleway staging environment (no separate prod, no blue/green).
+Repo placement (item 7) is treated as closed per §0.1.7's own text — see `PHASE-R0-REPORT.md`'s
+judgment-call log for a stale contradiction found in the master document's §11 prompt text on this
+exact point.
 
-**Phase R status remains PROPOSED at the platform level** — R0 produced plans and reports, not a
-running stack; no container has been built, no `docker-compose up` has succeeded, and R1/R2/R3a
-(the instructor-owned walking skeleton) have not yet been executed as of this row's refresh.
+**Phase R has since moved past the generator stage.** R1 (backend), R2 (FastMCP server), and R3a
+(walking skeleton — hello-world + one live quote through the full pipeline) are DONE and
+instructor-built, opening the cohort-start gate; see `PHASE-R1-REPORT.md`, `PHASE-R2-REPORT.md`,
+`PHASE-R3a-REPORT.md`, and the independent `PHASE-R1-R3A-CASCADE-REVIEW.md`. R3b, R4, and R5 are
+also DONE, built as a **reference/architectural-validation build on `main`** (proof the plan is
+buildable), not the artifact handed to students. R7 is PARTIAL, continuing to test that reference
+build. R6 is **deliberately not implemented** — see
+[`DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`](DECISIONS/R6-DEFERRED-STUDENT-OWNED.md). Students
+receive R1/R2/R3a only, via the generated `cohort-starter` branch
+(`scripts/generate-cohort-starter.sh`) — not the `main` reference tree. Full state table and test
+evidence: [`PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md).
 
 ## Constitutional boundary
 

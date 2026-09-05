@@ -16,7 +16,13 @@ No live implementation performed by this document.
 
 # Phase R — TTOD Oracle Platform (cascade-generator prompt)
 
-**Status:** PROPOSED — not started, no code written. Depends on Phase Q, which is DONE
+**Status (updated 2026-09-05, closure audit):** R0–R5 DONE, R7 PARTIAL, **R6 deliberately deferred
+and reserved for student ownership — not implemented, not authorized by any of this momentum** (see
+[`DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`](DECISIONS/R6-DEFERRED-STUDENT-OWNED.md)). R3b/R4/R5 exist
+as a reference/architectural-validation build on `main`, not the cohort's own starter — see
+[`PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md) and
+the generated `cohort-starter` branch (`scripts/generate-cohort-starter.sh`) for the R1/R2/R3a-only
+tree students actually receive. Depends on Phase Q, which is DONE
 (2026-08-18): see [`PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md`](PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md).
 
 **Owner:** TTOD product owner (Rubén Vega Balbás PhD)

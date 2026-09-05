@@ -9,5 +9,7 @@ const home = locale === 'es' ? 'Inicio' : 'Home';
 ---
 <Page lang={locale} title={title}>
   <nav><a href={`/${locale}/`}>{home}</a></nav>
-  <OracleTerminal locale={locale} client:load />
+  <main>
+    <OracleTerminal locale={locale} client:load />
+  </main>
 </Page>

@@ -4,7 +4,29 @@ __pycache__/
 *.pyc
 .venv/
 .DS_Store
-/tmp/* /tmp/.* /tmp/
+/tmp/*
+/tmp/.*
 _private/
 _test/
 _backup/
+.env*
+!.env.example
+.env.loc
+.env.dev
+.env.stg
+*.code-workspace
+
+# Node / Astro build artifacts and caches (services/frontend and any future Node service)
+node_modules/
+dist/
+.astro/
+.vite/
+*.tsbuildinfo
+coverage/
+.vitest-cache/
+
+# Python test/build artifacts under services/ (mirrors root __pycache__/.venv coverage above)
+.pytest_cache/
+*.egg-info/
+.coverage
+htmlcov/

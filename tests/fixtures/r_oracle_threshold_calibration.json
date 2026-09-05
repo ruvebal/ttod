@@ -1,0 +1,11 @@
+{
+  "model": "nomic-embed-text",
+  "threshold": 0.575,
+  "measured_at": "2026-09-05",
+  "cases": [
+    {"name": "architecture-grounded", "query": "How should I simplify coupled architecture?", "top_score": 0.667506770, "top_id": "arch-008", "expected": "grounded"},
+    {"name": "images-grounded", "query": "What makes image optimization meaningful?", "top_score": 0.793541377, "top_id": "img-001", "expected": "grounded"},
+    {"name": "sourdough-creative", "query": "Recipe for sourdough starter temperature?", "top_score": 0.508748309, "top_id": "cc-033", "expected": "creative"},
+    {"name": "lunar-chess-creative", "query": "Who will win the lunar chess championship?", "top_score": 0.529375182, "top_id": "cc-033", "expected": "creative"}
+  ]
+}

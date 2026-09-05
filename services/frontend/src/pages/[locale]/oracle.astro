@@ -1,0 +1,13 @@
+---
+import OracleTerminal from '../../components/oracle/OracleTerminal';
+import Page from '../../layouts/Page.astro';
+
+const locale = Astro.params.locale;
+if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 });
+const title = locale === 'es' ? 'Oráculo · El Tao del Desarrollo' : 'Oracle · The Tao of Development';
+const home = locale === 'es' ? 'Inicio' : 'Home';
+---
+<Page lang={locale} title={title}>
+  <nav><a href={`/${locale}/`}>{home}</a></nav>
+  <OracleTerminal locale={locale} client:load />
+</Page>

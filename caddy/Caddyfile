@@ -1,0 +1,17 @@
+{
+  auto_https off
+}
+
+:8080, :8443 {
+  @api path /api/* /health
+  handle @api {
+    reverse_proxy backend:8000
+  }
+
+  @serviceWorker path /sw.js
+  header @serviceWorker Cache-Control "max-age=0, no-cache"
+
+  handle {
+    reverse_proxy frontend:4321
+  }
+}

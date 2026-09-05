@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import Page from '../../../layouts/Page.astro';
+import { isLocale, labels } from '../../../content/wisdom';
+import '../../../styles/tokens.css';
+
+const locale = Astro.params.locale;
+if (!isLocale(locale)) return new Response(null, { status: 404 });
+const slug = Astro.params.slug || 'introduction';
+const entries = await getCollection('docs', ({ data }) => data.locale === locale);
+const entry = entries.find((item) => item.id === `${locale}/${slug}`);
+if (!entry) return new Response(null, { status: 404 });
+const { Content } = await render(entry);
+const copy = labels[locale];
+---
+<Page lang={locale} title={entry.data.title}>
+  <main class="ttod-shell ttod-prose prose prose-stone">
+    <nav class="ttod-nav"><a href={`/${locale}/`}>← {locale === 'es' ? 'Inicio' : 'Home'}</a><a href={`/${locale}/wisdom/`}>{copy.wisdom}</a></nav>
+    <h1>{entry.data.title}</h1>
+    <p class="ttod-meta">{entry.data.description}</p>
+    <Content />
+  </main>
+</Page>

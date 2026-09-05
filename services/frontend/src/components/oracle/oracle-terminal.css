@@ -1,0 +1,31 @@
+.oracle-shell { margin-block: 2rem; color: #eee9dc; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.oracle-toggle, .oracle-terminal button { border: 1px solid #b89a58; border-radius: .35rem; background: #1b1d1a; color: #f3d993; padding: .55rem .85rem; cursor: pointer; }
+.oracle-toggle { margin-block-end: .75rem; }
+.oracle-terminal { overflow: hidden; border: 1px solid #6d644f; border-radius: .7rem; background: #10120f; box-shadow: 0 1.5rem 4rem #0008; }
+.oracle-terminal > header { padding: 1rem 1.25rem; border-block-end: 1px solid #36382f; background: #171a16; }
+.oracle-terminal header span { color: #b9af93; font-size: .75rem; letter-spacing: .13em; text-transform: uppercase; }
+.oracle-terminal h1 { margin: .15rem 0 0; font: 600 1.35rem ui-serif, Georgia, serif; }
+.oracle-log { max-height: 30rem; overflow-y: auto; padding: 1rem 1.25rem; }
+.oracle-exchange + .oracle-exchange { border-block-start: 1px dashed #41443a; margin-block-start: 1.25rem; padding-block-start: 1.25rem; }
+.oracle-query { color: #f3d993; }
+.oracle-context, .oracle-status, .oracle-hint { color: #aaa994; font-size: .8rem; }
+.oracle-segment { margin-block: .75rem; border-inline-start: .25rem solid; padding: .8rem 1rem; }
+.oracle-segment p { margin: .35rem 0; white-space: pre-wrap; }
+.oracle-grounded { border-color: #58a88a; background: #173129; }
+.oracle-creative { border-color: #c27a58; background: #3a211b; }
+.oracle-mode { display: block; font: 700 .72rem ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.oracle-grounded .oracle-mode { color: #8de2bf; }
+.oracle-creative .oracle-mode { color: #ffb18c; }
+.oracle-citations { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0 0; padding: 0; list-style: none; }
+.oracle-citations a { color: #a8e9cf; }
+.oracle-notice { border: 1px solid #97854e; padding: .65rem; color: #f1d67f; }
+.oracle-proposal { border-block-start: 1px solid #5d4438; margin-block-start: .8rem; padding-block-start: .8rem; }
+.oracle-proposal p { color: #dcbda8; font-size: .85rem; }
+.oracle-terminal form { display: grid; grid-template-columns: 1fr auto; gap: .7rem; padding: 1rem 1.25rem .4rem; border-block-start: 1px solid #36382f; }
+.oracle-terminal textarea { width: 100%; box-sizing: border-box; resize: vertical; border: 1px solid #555848; border-radius: .35rem; background: #090a08; color: inherit; padding: .75rem; font: inherit; }
+.oracle-terminal button:disabled { cursor: not-allowed; opacity: .5; }
+.oracle-hint { margin: .2rem 1.25rem 1rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+@media (max-width: 36rem) { .oracle-terminal form { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .oracle-terminal, .oracle-exchange { scroll-behavior: auto; } }
+

@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-ttod-ink: #211c15;
+  --color-ttod-paper: #fbf8f1;
+  --color-ttod-surface: #f1eadb;
+  --color-ttod-accent: #8a651d;
+  --font-ttod-body: ui-serif, Georgia, serif;
+  --font-ttod-ui: ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --ttod-color-ink: #211c15;
+  --ttod-color-muted: #665e52;
+  --ttod-color-paper: #fbf8f1;
+  --ttod-color-surface: #f1eadb;
+  --ttod-color-accent: #8a651d;
+  --ttod-color-line: #d5c8ae;
+  --ttod-space-1: .25rem;
+  --ttod-space-2: .5rem;
+  --ttod-space-3: .75rem;
+  --ttod-space-4: 1rem;
+  --ttod-space-6: 1.5rem;
+  --ttod-space-8: 2rem;
+  --ttod-space-12: 3rem;
+  --ttod-font-body: ui-serif, Georgia, serif;
+  --ttod-font-ui: ui-sans-serif, system-ui, sans-serif;
+  --ttod-text-sm: .875rem;
+  --ttod-text-base: 1rem;
+  --ttod-text-lg: 1.25rem;
+  --ttod-text-xl: clamp(1.8rem, 5vw, 3.25rem);
+  color: var(--ttod-color-ink);
+  background: var(--ttod-color-paper);
+  font-family: var(--ttod-font-body);
+}
+
+body { margin: 0; }
+.ttod-shell { width: min(70rem, calc(100% - 2rem)); margin-inline: auto; padding-block: var(--ttod-space-8); }
+.ttod-nav, .ttod-clusters { display: flex; flex-wrap: wrap; gap: var(--ttod-space-3); }
+.ttod-nav { font-family: var(--ttod-font-ui); margin-bottom: var(--ttod-space-8); }
+.ttod-nav a, .ttod-pill { color: var(--ttod-color-accent); }
+.ttod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--ttod-space-4); }
+.ttod-card { border: 1px solid var(--ttod-color-line); border-radius: .5rem; padding: var(--ttod-space-6); background: var(--ttod-color-surface); }
+.ttod-card blockquote { margin: 0 0 var(--ttod-space-4); font-size: var(--ttod-text-lg); }
+.ttod-meta { color: var(--ttod-color-muted); font: var(--ttod-text-sm)/1.5 var(--ttod-font-ui); }
+.ttod-empty { border-inline-start: .25rem solid var(--ttod-color-accent); padding: var(--ttod-space-6); background: var(--ttod-color-surface); }
+.ttod-prose { max-width: 70ch; font-size: var(--ttod-text-lg); line-height: 1.75; }
+.ttod-prose h1 { font-size: var(--ttod-text-xl); line-height: 1.1; }
+.ttod-prose h2 { margin-top: var(--ttod-space-12); }
+.ttod-prose a { color: var(--ttod-color-accent); }

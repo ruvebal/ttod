@@ -1,0 +1,14 @@
+{
+  "request": {
+    "query": "What should this teach?",
+    "creativeAnswer": "A candidate that must remain under human review.",
+    "suggestedSection": "wisdom",
+    "suggestedTags": ["simplicity"]
+  },
+  "required": {
+    "status": "proposed",
+    "origin": "blackbox",
+    "canonical_id_absent": true,
+    "accepted_quote_id_absent": true
+  }
+}

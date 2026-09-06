@@ -12,12 +12,16 @@ services:
       - backend
 
   frontend:
-    build: ./services/frontend
+    build:
+      context: ./services/frontend
+      args:
+        BACKEND_URL: http://backend:8000
     restart: unless-stopped
     environment:
       BACKEND_URL: http://backend:8000
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
 
   backend:
     build:
@@ -39,6 +43,12 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on:
       - mcp-server
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
 
   mcp-server:
     build:

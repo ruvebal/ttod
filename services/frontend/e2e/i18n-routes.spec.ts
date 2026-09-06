@@ -25,6 +25,11 @@ for (const locale of ['en', 'es'] as const) {
 			const response = await page.goto(`/${locale}/`);
 			expect(response?.status()).toBe(200);
 			await expect(page.locator('html')).toHaveAttribute('lang', locale);
+			await expect(page.getByRole('heading', {
+				level: 2,
+				name: locale === 'en' ? 'Flagship quote' : 'Cita insignia'
+			})).toBeVisible();
+			await expect(page.getByText('img-001 · images · en')).toBeVisible();
 		});
 
 		test(`/${locale}/ has no detectable axe violations`, async ({ page }) => {

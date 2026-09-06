@@ -75,9 +75,11 @@ the full reference build (13 `.astro` pages) intact.
 
 **Correction (2026-09-05, found during the `docs/research/` audit that followed this report):**
 the command originally suggested here — `git push -u origin cohort-starter` — was wrong and has
-been removed. `ruvebal/ttod` is a **public** repository (`AGENTS.md` line ~106: `access: public`)
-with one shared `origin`. Pushing `cohort-starter` there does not isolate it: any student (or
-anyone) with clone/fetch access to that same remote can run `git log --all` or
+been removed. GitHub reports `ruvebal/ttod` as a **private** repository with `main` as its default
+branch (verified via `gh repo view` on 2026-09-05); `AGENTS.md`'s `rights.access: public` concerns
+quote publication rights, not repository visibility. Pushing `cohort-starter` to the same
+instructor/reference repository still does not isolate it: any student granted clone/fetch access
+to that remote can run `git log --all` or
 `git fetch origin main` and read the finished R3b/R4/R5/R7 reference build the cohort is meant to
 build independently — the exact failure this whole objective exists to prevent, just moved from
 the engineering side (a route guard) to the distribution side (a shared remote). See
@@ -189,3 +191,28 @@ proposal's own `acceptance.note`.
 - **`ttod.yml` not mutated.** `git status` confirms no change to it; validation/stats above ran
   against the unmodified live file; the 8 wisdom proposals are draft-only artifacts outside this
   repository, in `ttod-bridge/pending/`, never merged.
+
+## 2026-09-05 Lilith-readiness amendment
+
+A later deployment-focused audit invalidated the earlier inference that a host-side build was
+sufficient evidence for the generated starter's Linux container build. The exact
+`cohort-starter` commit failed in an Alpine container because its macOS-regenerated lockfile
+omitted Rollup's Linux-musl optional package entries. The generator and frontend manifest now make
+the x64/arm64 Linux-musl packages explicit.
+
+The same audit found `services/frontend/.env` entering the Docker build context and causing Astro
+to embed `http://localhost:8000`; every SSR page that fetched the backend consequently returned
+500 inside Compose. `.dockerignore` now excludes `.env*`, the Dockerfile accepts an explicit
+`BACKEND_URL` build argument, and Compose supplies `http://backend:8000`. A backend healthcheck now
+prevents the frontend from starting before the governed-data service is healthy.
+
+The bilingual hello-world pages now display the live governed flagship quote `img-001` directly,
+with an E2E assertion for its immutable ID. Verified on a five-container, container-Ollama profile:
+Linux-musl image build succeeds; `/health` returns TTOD 3.1.0; `/en/`, `/es/`, and `/en/quote`
+render `img-001`; no `.env*` exists in the frontend image; Vitest 6/6, Node layout 2/2, Astro check
+clean, and Playwright+axe 15/15.
+
+This does **not** yet constitute Lilith proof: SSH from Tanit returned `No route to host`. The
+existing `cohort-starter` branch also predates these amendments and must be regenerated before it
+is the deployment artifact. See [`LILITH-VALIDATION-CHECKLIST.md`](LILITH-VALIDATION-CHECKLIST.md).
+R7 remains PARTIAL and R6 remains DEFERRED/STUDENT-OWNED.

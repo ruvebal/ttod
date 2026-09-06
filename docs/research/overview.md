@@ -33,7 +33,7 @@ Dear Colleagues,
 
 I am writing to announce the formal kick-off of a research initiative built on this semester's
 Front-End II capstone: the **TTOD Oracle Platform** — a governed pedagogical wisdom database
-(`ttod.yml`, MIT/CC BY-NC-SA 4.0, already public) extended into a live, multi-framework web
+(`ttod.yml`, MIT/CC BY-NC-SA 4.0 licensing recorded; repository currently private) extended into a live, multi-framework web
 platform by a 7-student cohort, under a documented, phased, cold-review-gated development plan.
 
 Rather than assigning traditional, isolated coursework, the cohort collaborates on a single
@@ -97,8 +97,9 @@ how students narrate authorship under ambient AI, relative to an unscaffolded te
   independently of the instructor, and grades for the term are filed.
 - Not proof that the reference build stays out of student hands. The intent is firm — the cohort
   builds R3b onward independently, never from a copy of my own implementation — but the technical
-  enforcement of that separation is not yet verified, because this repository is public with a
-  single shared remote. Publishing a student-facing branch to that same remote does not, by
+  enforcement of that separation is not yet verified, because this private instructor repository
+  has a single shared remote. Granting students access to a student-facing branch on that same
+  repository also exposes `main`; branch publication does not, by
   itself, achieve the isolation this proposal depends on; the actual distribution mechanism will
   be verified (git-history check against the real artifact a student clones) before any cohort
   receives repository access, and that verification will be recorded, not assumed.

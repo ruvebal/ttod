@@ -23,6 +23,8 @@ dist/
 .vite/
 *.tsbuildinfo
 coverage/
+test-results/
+.playwright/
 .vitest-cache/
 
 # Python test/build artifacts under services/ (mirrors root __pycache__/.venv coverage above)

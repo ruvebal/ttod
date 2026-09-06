@@ -91,6 +91,15 @@ const path = "services/frontend/package.json";
 const pkg = JSON.parse(fs.readFileSync(path, "utf8"));
 const remove = ["@astrojs/mdx", "@tailwindcss/typography", "@tailwindcss/vite", "tailwindcss", "framer-motion", "gsap"];
 for (const dep of remove) delete pkg.dependencies[dep];
+// npm may omit target-platform optional packages when this lockfile is generated
+// on macOS (npm/cli#4828). The starter is built in Linux-musl containers on both
+// x64 Lilith and arm64 developer machines, so make those build dependencies
+// explicit instead of trusting an implicit transitive lockfile entry.
+pkg.optionalDependencies = {
+  ...(pkg.optionalDependencies ?? {}),
+  "@rollup/rollup-linux-arm64-musl": "4.63.1",
+  "@rollup/rollup-linux-x64-musl": "4.63.1"
+};
 fs.writeFileSync(path, JSON.stringify(pkg, null, 2) + "\n");
 '
 

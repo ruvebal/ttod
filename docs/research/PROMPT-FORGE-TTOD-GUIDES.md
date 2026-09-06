@@ -24,7 +24,7 @@ Read completely before acting:
 - `docs/DEV_PLAN/PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md`
 - `docs/DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md` (filed 2026-09-05 — read it in
   full, but verify its claims against the live repository rather than citing it as settled; its
-  own §3 proposes pushing `cohort-starter` to the shared public `origin`, which does not satisfy
+  own §3 formerly proposed pushing `cohort-starter` to the shared instructor/reference `origin`, which does not satisfy
   the git-history-isolation requirement below — treat that specific recommendation as superseded)
 - `docs/DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`
 - every Phase R report or onboarding document needed to verify a claim you repeat
@@ -43,11 +43,12 @@ do not mistake a publication query template for an institutional decision brief.
    Rubén's private studio infrastructure and are not cohort services.
 2. The reference build on `main` and the student deliverable are different artifacts. Verify the
    current handoff contract from the R6 decision and verified repository artifacts. Do not infer
-   authorization to implement R6. **`ruvebal/ttod` is a public repository with one shared
-   `origin` (verify: `git remote -v`, `AGENTS.md` line ~106 `access: public`).** Do not assume
+   authorization to implement R6. **GitHub currently reports `ruvebal/ttod` as PRIVATE with
+   default branch `main`, and the local clone has one shared `origin` (verify afresh with
+   `gh repo view ruvebal/ttod --json visibility,defaultBranchRef` and `git remote -v`).** Do not assume
    "students only receive `cohort-starter`" is true until you have run `git log --all` and
    `git branch -a` against the actual artifact a student would clone and confirmed no
-   `main`-reachable reference-build commit is present. A branch pushed to the same public
+   `main`-reachable reference-build commit is present. A branch pushed to the same instructor/reference
    `origin` as `main` does **not** satisfy this — that is the exact failure mode this truth
    exists to catch.
 3. Teaching/building may proceed without research approval. No student artifact becomes research
@@ -126,9 +127,9 @@ Then generate exactly these audience-specific documents:
   word of this guide, run `git log --all --oneline` and `git branch -a` against the actual clone a
   student would use — not the local `cohort-starter` branch inside this working repository — and
   confirm no `main`-reachable reference-build commit is present.** If the only available artifact
-  is a branch on the same public `origin` as `main`, that check will fail; report this as a
-  BLOCKED precondition for this document rather than writing reassuring language the repository
-  cannot yet back up.
+  is a branch on the same instructor/reference `origin` as `main`, that check will fail; report
+  this as a BLOCKED precondition for this document rather than writing reassuring language the
+  distribution artifact cannot yet back up.
 - `docs/guides/END-USER-GUIDE.md` — end users; task-oriented use of only real, currently available
   product surfaces, with concise AI and rights limitations.
 - `docs/research/DEPARTMENT-DECISION-BRIEF.md` — head/degree coordination; educational fit,

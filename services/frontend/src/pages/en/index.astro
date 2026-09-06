@@ -1,11 +1,26 @@
 ---
 import Page from '../../layouts/Page.astro';
+import type { WisdomEntry } from '../../types/domain';
+
+const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+const response = await fetch(`${backend}/api/v1/wisdom/sample`, {
+  headers: { accept: 'application/json' }
+});
+if (!response.ok) throw new Error(`Backend flagship quote request failed (${response.status})`);
+const entries: WisdomEntry[] = await response.json();
+const flagship = entries.find((entry) => entry.id === 'img-001');
+if (!flagship) throw new Error('Governed flagship quote img-001 is unavailable');
 ---
 <Page lang="en" title="The Tao of Development">
   <nav><a href="/en/">English</a><a href="/es/">Español</a></nav>
   <main>
     <h1>Welcome to The Tao of Development</h1>
     <p>A living collection of pedagogical wisdom for developers walking the path.</p>
+    <article aria-labelledby="flagship-quote-heading">
+      <h2 id="flagship-quote-heading">Flagship quote</h2>
+      <blockquote>{flagship.text}</blockquote>
+      <p>{flagship.id} · {flagship.section} · {flagship.lang}</p>
+    </article>
     <p><a href="/en/quote">Read a live quote</a></p>
   </main>
 </Page>

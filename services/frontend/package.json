@@ -37,5 +37,9 @@
     "jsdom": "^29.1.1",
     "msw": "^2.15.0",
     "vitest": "^5.0.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-arm64-musl": "4.63.1",
+    "@rollup/rollup-linux-x64-musl": "4.63.1"
   }
 }

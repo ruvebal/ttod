@@ -40,14 +40,15 @@ Every generated introduction must describe the same project in this order:
 The phases are linked but not mutually gating: teaching and software development may proceed
 without research approval; research use of student-produced evidence may not.
 
-**A third boundary, distinct from both and easy to miss:** `ruvebal/ttod` is a **public** GitHub
-repository (`AGENTS.md` line 106: `access: public`) with one shared `origin`. The reference build
+**A third boundary, distinct from both and easy to miss:** GitHub reports `ruvebal/ttod` as a
+**private** repository with `main` as its default branch (verified with `gh repo view` on
+2026-09-05), and the local clone has one shared `origin`. The reference build
 (R3b/R4/R5/R7, `main`) and the student handoff (`cohort-starter`) currently live as two branches
 of that same remote-to-be. Pushing `cohort-starter` to that `origin` — the exact command the
 closure report proposes — does **not** isolate it: any student with clone/fetch access to the
-same remote can run `git log --all` or `git fetch origin main` and read the finished reference
+same repository can run `git log --all` or `git fetch origin main` and read the finished reference
 implementation the cohort is meant to build themselves. This is not a hypothetical; it is true the
-moment the repo is public and both branches share history. Treat "students never see the
+moment students receive access to a repository containing both branches. Treat "students never see the
 reference build" as unmet until the actual distribution artifact is verified to carry no
 `main`-reachable commits — see T4's gate below.
 
@@ -110,7 +111,7 @@ Use the closed states `PENDING | IN_PROGRESS | PARTIAL | BLOCKED | DONE`.
   letter carry the same phrasing).
 - **Second contradiction to register, not yet resolved anywhere in this tree:** every research
   document asserts students never see the reference build, but no verified mechanism currently
-  guarantees that — see the public-repo/shared-`origin` finding in §2 above. Record this as
+  guarantees that — see the shared-`origin` finding in §2 above. Record this as
   `pending evidence`, not `verified`, until T4 tests it.
 - Produce a claim registry with `verified | interpretive | pending evidence | obsolete` labels.
 - Gate: no unresolved contradiction may enter two documents with different wording.
@@ -148,7 +149,7 @@ Use the closed states `PENDING | IN_PROGRESS | PARTIAL | BLOCKED | DONE`.
   a student will actually clone (not the local `cohort-starter` branch inside this working
   repository), run `git log --all --oneline` and `git branch -a` and confirm no commit reachable
   from `main`'s reference build (R3b/R4/R5/R7 content) appears. If the distribution plan is "push
-  `cohort-starter` to the same public `origin`," this check **fails** — that plan needs an orphan
+  `cohort-starter` to the same instructor/reference `origin`," this check **fails** — that plan needs an orphan
   export or a separate repository/template instead. Do not write "students cannot see the
   reference build" in any guide until this command has actually been run against the real
   artifact and produced a clean result.

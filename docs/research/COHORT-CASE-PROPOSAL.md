@@ -57,10 +57,11 @@ this year (affects `RESEARCH-LINE.md` RQ2's answerability, not the rest of the d
 
 ---
 
-## 4. The artifacts are already public and auditable
+## 4. The artifacts are versioned and auditable
 
-Unlike most teaching-innovation proposals, the object of study is already published and
-version-controlled:
+Unlike many teaching-innovation proposals, the object of study is already version-controlled and
+auditable in a private instructor repository. Publication or student distribution remains a
+separate, gated action:
 
 | Artifact | Where |
 | --- | --- |
@@ -69,9 +70,10 @@ version-controlled:
 | Testing-strategy deliverable | `docs/testing-strategy.md` (produced by R7, per FE II Unit 5's own required shape) |
 | Course track and grading structure | `web-atelier-udit/.../tracks/en/udit/2627-feii/` |
 
-**Consequence for coordination:** the proposal is verifiable before approval, the teaching design
-is reproducible by third parties, and the code/content license is already open — a merit path
-(open-education award nomination) independent of any research data.
+**Consequence for coordination:** authorized reviewers can verify the proposal before approval.
+The recorded code/content licenses permit a future publication path, but reproducibility by third
+parties and any open-education nomination require a sanitized artifact to be published first;
+neither is asserted as complete here.
 
 ---
 

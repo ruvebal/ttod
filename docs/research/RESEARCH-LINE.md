@@ -51,7 +51,7 @@ the documentation itself is the asset, not novelty-by-assertion.
 | **A governed data layer with its own audit trail.** | The platform's own subject (`ttod.yml`) went through a fully reported, phase-gated development programme (Phase Q, DONE 2026-08-18) before this cohort ever touched it — the cohort is extending an already-disciplined codebase, not starting from nothing, which is itself a variable worth naming rather than hiding. |
 | **Small, bounded cohort (n=7).** | Closes the door to statistical inference and opens the one that actually fits: a longitudinal, qualitative-dominant case study where every trajectory is knowable, not just aggregatable. |
 | **Reflexive subject matter.** | The platform students build *teaches developer wisdom*; they build it while narrating their own AI-assisted authorship in real time. That reflexivity is worth naming as a framing device, not a research claim in itself. |
-| **Published, versioned artifact.** | The repository, the cascade plan, and every phase report are public/auditable in git history from day one — a reproducibility artefact most practitioner CER papers cannot offer. |
+| **Versioned, publication-ready artifact.** | The private repository, cascade plan, and phase reports are auditable in git history. A sanitized artifact may later be published under the recorded licenses, but public availability is not yet established and must not be claimed as a present fact. |
 
 **To confirm before finalizing this section:** whether the 2026-27 FE II cohort spans both the
 Full-Stack and Data Science & AI degrees (as this course has in prior cycles) or Full-Stack only

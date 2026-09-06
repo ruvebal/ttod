@@ -17,9 +17,10 @@ from __future__ import annotations
 import fcntl
 import os
 import tempfile
+import uuid
 from contextlib import contextmanager
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterator, List, Optional, Set
 
@@ -285,6 +286,29 @@ class TTODRepository:
         ):
             raise RepositoryError(
                 f"proposal {proposal.proposal_id} already accepted as {proposal.accepted_quote_id}"
+            )
+
+        # blackbox/mixed-origin candidates must carry a full validation block
+        # (schema/quote.schema.json's own conditional: reviewer_id + activity_id
+        # required, status constrained to "validated" when present) before
+        # validate_candidate_content() and the strict pre-write validator below
+        # will admit them. The CLI/API caller already supplies a human
+        # reviewer_id as this method's own argument (required, never optional)
+        # — thread it in here, along with a freshly generated activity_id
+        # representing *this* acceptance event, rather than requiring a
+        # separate hand-edit of the proposal JSON. Nothing else in the object
+        # model currently tracks an activity_id (ReviewActivity has none), so
+        # this is the one place that identifier can honestly originate.
+        # Never overwrite an already-present field: if an earlier step already
+        # recorded its own reviewer_id/activity_id/status, that attribution is
+        # preserved, not silently replaced by this acceptance call's own values.
+        if proposal.candidate_content.get("origin") in ("blackbox", "mixed"):
+            validation = proposal.candidate_content.setdefault("validation", {})
+            validation.setdefault("reviewer_id", reviewer_id)
+            validation.setdefault("activity_id", f"accept-{uuid.uuid4()}")
+            validation.setdefault("status", "validated")
+            validation.setdefault(
+                "reviewed_at", datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
             )
 
         self.validate_candidate_content(

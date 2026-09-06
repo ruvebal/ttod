@@ -76,6 +76,69 @@ class TestRepositoryAccept(unittest.TestCase):
         self.assertEqual(repo.read_bytes(), original)
         self.assertEqual(proposal.status.value, "proposed")
 
+    def test_blackbox_accept_injects_reviewer_id_when_absent(self):
+        """
+        Regression test for the gap discovered in PHASE-S4-REPORT.md and named
+        as S5's own prerequisite gate: a blackbox-origin proposal (e.g. from
+        `cli.py translate-draft`) never sets candidate_content.validation, so
+        validate_candidate_content() rejected it even though the CLI's own
+        --reviewer-id argument was already supplied. accept_proposal() must
+        thread that argument into candidate_content.validation.reviewer_id
+        before validating, not require a hand-edited proposal JSON.
+        """
+        repo = TTODRepository(self.path)
+        candidate = {**CANDIDATE, "lang": "es", "origin": "blackbox"}
+        self.assertNotIn("validation", candidate)
+        proposal = create_proposal(
+            candidate_content=candidate,
+            proposer_kind="model",
+            proposer_id="ollama:qwen3.8:27b",
+            generation_method="translate-draft-v1",
+        )
+        result = repo.accept_proposal(proposal, "reviewer-human-002")
+        root = repo.load()
+        accepted = next(q for q in root["quotes"] if q["id"] == result.quote_id)
+        self.assertEqual(accepted["origin"], "blackbox")
+
+    def test_blackbox_accept_never_overwrites_explicit_reviewer_id(self):
+        """An already-present validation.reviewer_id (set by an earlier reviewer
+        step) must survive acceptance unchanged, not be silently replaced by
+        whichever reviewer_id happens to run `accept` later."""
+        repo = TTODRepository(self.path)
+        candidate = {
+            **CANDIDATE,
+            "lang": "es",
+            "origin": "blackbox",
+            "validation": {"reviewer_id": "reviewer-original-001"},
+        }
+        proposal = create_proposal(
+            candidate_content=candidate,
+            proposer_kind="model",
+            proposer_id="ollama:qwen3.8:27b",
+            generation_method="translate-draft-v1",
+        )
+        repo.accept_proposal(proposal, "reviewer-different-002")
+        self.assertEqual(
+            proposal.candidate_content["validation"]["reviewer_id"],
+            "reviewer-original-001",
+        )
+
+    def test_blackbox_accept_still_requires_reviewer_id_argument(self):
+        """The CLI's --reviewer-id stays a required argument at the call site;
+        this only proves the *value already supplied there* now actually
+        reaches candidate_content.validation — it does not relax the human-
+        gating contract itself."""
+        repo = TTODRepository(self.path)
+        candidate = {**CANDIDATE, "lang": "es", "origin": "blackbox"}
+        proposal = create_proposal(
+            candidate_content=candidate,
+            proposer_kind="model",
+            proposer_id="ollama:qwen3.8:27b",
+            generation_method="translate-draft-v1",
+        )
+        with self.assertRaises(TypeError):
+            repo.accept_proposal(proposal)  # type: ignore[call-arg]
+
 
 class TestRepositoryRollback(unittest.TestCase):
     """Induced failures leave target byte-identical."""

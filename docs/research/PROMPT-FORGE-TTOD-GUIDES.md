@@ -28,7 +28,11 @@ Read completely before acting:
   the git-history-isolation requirement below — treat that specific recommendation as superseded)
 - `docs/DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`
 - every Phase R report or onboarding document needed to verify a claim you repeat
-- the complete `SKILL.md` for `ground-with-athanor-ahmes`
+- the complete `SKILL.md` for `profield-ahmes-athanor`
+  (`~/src/ahmes/.cursor/skills/profield-ahmes-athanor/SKILL.md` — this task's own plan originally
+  named a skill, `ground-with-athanor-ahmes`, that does not exist anywhere in this workspace;
+  corrected 2026-09-06, see `GUIDE-FORGE-PLAN.md` §4 item 1 for the verified vault check and the
+  `athanor` CLI's own `PG_PASSWORD` gap)
 - the complete studio skills `cascade-forge`, `documentation-forger`, `user-guide-forger`,
   `student-ai-guide-forger`, and `pitch-forger`, plus every reference those skills require for
   this task

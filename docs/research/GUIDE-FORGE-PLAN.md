@@ -1,10 +1,21 @@
 # TTOD research and guide-forge plan
 
 **Status:** PROPOSED — planning artifact only; no guides generated  
-**Date:** 2026-09-05  
+**Date:** 2026-09-05 (audited 2026-09-05; enriched against verified Athanor evidence 2026-09-06)  
 **Owner:** Rubén Vega Balbás, PhD  
 **Engineering baseline:** Phase R reference build exists; the student handoff is R1/R2/R3a and
 R6 remains student-owned.
+
+## Launch readiness, as of 2026-09-06
+
+**T0 and T1 can start now.** T1's evidence base is real and already substantial (see §4's
+verified vault check below) — this is no longer a plan that assumes literature discovery will
+work; it has been checked. **T3–T5 are not ready to start** — they depend on T0/T2's claim
+registry and information architecture, which do not exist yet; nothing in this plan authorizes
+skipping straight to guide generation. **T6 stays correctly `BLOCKED`** — no institutional inputs
+have been supplied. **The full `PROMPT-FORGE-TTOD-GUIDES.md` generator is not yet launched** —
+launching it is Rubén's decision, this section only reports what would and would not go smoothly
+if it were.
 
 ## 1. Honest maturity verdict
 
@@ -16,7 +27,7 @@ an approved research study.
 | Governed TTOD data/tooling | operational | Phase Q reports and repository tests | maintain invariants |
 | Oracle reference architecture | validated reference implementation | Phase R R1–R5 reports and cold reviews | finish only work authorized by the R6 decision |
 | Student development task | planned as implementable from a walking skeleton | R6 decision, generator script, R3a onboarding, and `PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md` (filed 2026-09-05 — the index no longer references a missing artifact) | the closure report's own distribution advice is unverified against §2's isolation requirement below — cold-read a clean clone of whatever artifact students actually receive, not the local `cohort-starter` branch, before treating this row as closed |
-| Research design | substantial pre-protocol | `RESEARCH-LINE.md`, `COHORT-CASE-PROPOSAL.md`, Phase R §13 | evidence refresh, co-investigator, ethics/data-protection review |
+| Research design | substantial pre-protocol | `RESEARCH-LINE.md`, `COHORT-CASE-PROPOSAL.md`, Phase R §13; **verified 2026-09-06:** 46 docs / 23,798 nodes already injected in `profield-frontend-pedagogy` (§4 T1 readiness) | co-investigator, ethics/data-protection review, and one targeted literature gap (teacher-researcher-conflict/ethics cluster, confirmed empty — see T1) |
 | Research operation | not authorized | no approved consent or data-management protocol | approvals before any student artifact becomes research data |
 | Audience guides | not yet designed as a coherent set | technical and research documents exist, but not an audience-separated guide family | run this plan |
 
@@ -76,6 +87,23 @@ Use the tools in this order:
    `profield-frontend-pedagogy` project first. Read the full Ahmes page for every retained result,
    resolve its citation key, and admit it as an ordinary citation only when
    `evaluator_safe=yes`. Otherwise emit `[BIBLIO-GAP]`; do not repair metadata by intuition.
+   **Debug note (2026-09-06):** the skill this plan and its generator prompt originally named,
+   `ground-with-athanor-ahmes`, does not exist anywhere in this workspace — the real one is
+   `profield-ahmes-athanor`, at `~/src/ahmes/.cursor/skills/profield-ahmes-athanor/SKILL.md`
+   (project-scoped to `ahmes/`, not the shared studio skills directory). Read *that* file. Also:
+   `athanor project list` / `athanor search` fail in a fresh shell with
+   `fe_sendauth: no password supplied` — the CLI's `.env` (`DATABASE_URL=…${PG_PASSWORD}…`) is not
+   auto-loaded and `PG_PASSWORD` is not set anywhere in this environment. Until that's fixed
+   upstream, verify/discover directly against the running `deviac-postgres` container instead
+   (same pattern `scripts/phase_p4_preflight.sh` already uses):
+   ```bash
+   docker exec deviac-postgres psql -U deviac -d athanor -tAc \
+     "SELECT file_name, node_count FROM injections i JOIN projects p ON p.project_id = i.project_id
+      WHERE p.slug = 'profield-frontend-pedagogy' ORDER BY file_name;"
+   ```
+   This lists titles only (discovery-grade) — it is **not** a citation source; still resolve each
+   candidate through `ahmes query --cite` before treating it as evaluator-safe, per this section's
+   own rule above.
 2. **`documentation-forger`** — define one primary audience, document class, claim ownership,
    maintenance triggers, and runnable acceptance tests per document.
 3. **`user-guide-forger`** — forge maintainer, student-developer, and end-user guides from
@@ -125,6 +153,30 @@ Use the closed states `PENDING | IN_PROGRESS | PARTIAL | BLOCKED | DONE`.
 - Separate literature claims from TTOD repository observations and proposed design principles.
 - Produce an evidence ledger and `[BIBLIO-GAP]` register.
 - Gate: no submission-facing claim rests on vector-search snippets alone.
+
+**T1 readiness, verified 2026-09-06 (titles only — discovery-grade, not yet evaluator-safe
+citations; T1 must still resolve each via `ahmes query --cite` before use):**
+`profield-frontend-pedagogy` already holds **46 documents, 23,798 nodes, 31,251 entities**, all
+`status: completed`. This is not a cold start — a real, thematically strong candidate pool exists
+per §3's research episteme:
+
+| RESEARCH-LINE.md topic | Candidate title(s) already in the vault |
+| --- | --- |
+| Design-based research | "Applying the design-based learning model to foster undergrad…" (`10.1186/s41239-021-00308-4`) |
+| Studio/project-based computing education | Nelson & Ponciano, "Experiences and insights from using GitHub Classroom to support Project-Based Courses" (2021); Garcia, "Self-Coded Digital Portfolios as an Authentic Project-Based Learning Assessment in Computing" |
+| Front-end/web pedagogy under generative AI | "The Effects of GitHub Copilot on Computing Students' Programm…" (`10.1145/3702652.3744219`); Kazemitabaar et al., "CodeAid classroom deployment" (CHI 2024) |
+| Metacognitive/deferred AI scaffolding | Singh et al., "Hint-Writing with Deferred AI Assistance" (arXiv 2604.19931, 2026) — names RQ1's "deferred assistance" mechanism directly; Liu, Fan & Pan, "Tool, tutor, or crutch? A grounded theory of cognitive scaffolding and offloading" + its published correction; Phung et al., "Plan More, Debug Less" (AIED 2025) |
+| Process artifacts / AI-use disclosure / academic integrity | González-Videgaray et al., "GenAI academic integrity" (2026); Digital Education Council, "AI in Higher Education LATAM Survey" (2026) |
+| AI-resilient assessment (relevant to RQ4/oral defense) | "Designing AI-resilient assessment in higher education" (`10.3389/frai.2026.1841682`) |
+| Web-architecture framing for the platform itself (not RQ evidence, but citable context for "islands"/resumability language) | "Resumability: A New Primitive for Developing Web Applications" (`10.1109/ACCESS.2024.3352891`); "Potential of Serverless Edge-powered Islands for Web Development" (`10.13052/jwe1540-9589.2411`) |
+| Accessibility-in-teaching (ASSETS venue fit, §6 of `RESEARCH-LINE.md`) | "Teaching Digital Accessibility in Computing Education"; "Digital Accessibility Literacy: A Conceptual Framework" |
+
+**Honest gap, checked and confirmed empty, not assumed:** no injected title matches
+teacher-researcher conflict, consent, or research-ethics literature (`file_name ILIKE
+'%conflict%'/'%consent%'/'%ethic%'` against the vault returns zero rows). This is the risk register's
+own 🔴 top item (`RESEARCH-LINE.md` §5) — T1 needs either a fresh, targeted Athanor injection for
+this cluster specifically, or an explicit human literature contribution; do not let the vault's
+general richness elsewhere paper over this one real absence.
 
 ### T2 — Shared information architecture (after T0 and T1)
 

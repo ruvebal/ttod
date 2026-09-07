@@ -38,7 +38,27 @@ a:hover { color: #304e40; }
 .nav-list a:hover, .nav-list a[aria-current="page"] { color: var(--ink); }
 .nav-list a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--gold); }
 .page-shell { min-height: 68vh; padding-block: clamp(3rem, 8vw, 7rem); }
+.masthead {
+  margin: 0 0 clamp(2.5rem, 6vw, 4.5rem);
+  padding: 1.6rem 1rem 1.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgb(41 35 27 / .92);
+  color: #fffaf0;
+  text-align: center;
+}
+.masthead-mark { margin: 0; color: var(--gold); font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1; }
+.masthead-title {
+  margin: .55rem 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 3.4vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.masthead-sub { margin: .7rem 0 0; color: #d9cbb3; font-size: .92rem; letter-spacing: .06em; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(16rem, .75fr); gap: clamp(2rem, 7vw, 6rem); align-items: end; }
+.dedication { max-width: 72ch; }
 .eyebrow { margin: 0 0 .7rem; color: var(--gold); font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; text-wrap: balance; }
 h1 { max-width: 18ch; margin: 0 0 1.4rem; font-size: clamp(2.7rem, 7vw, 5.8rem); font-weight: 500; }

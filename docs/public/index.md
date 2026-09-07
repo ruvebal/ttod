@@ -5,11 +5,18 @@ permalink: /
 lang: en
 ---
 
+<header class="masthead" aria-label="Title plate">
+  <p class="masthead-mark" aria-hidden="true">道</p>
+  <p class="masthead-title">The Tao of the Development</p>
+  <p class="masthead-mark" aria-hidden="true">道</p>
+  <p class="masthead-sub">Ancestral Wisdom for the Age of Machine-Assisted Creation</p>
+</header>
+
 <section class="hero">
   <div>
     <p class="eyebrow">Pedagogy · front-end architecture · governed knowledge</p>
     <h1 class="flagship-quote">The Tao that can be prompted is not the eternal Tao. The code that can be generated without understanding is not true code.</h1>
-    <p class="flagship-cite">— <code>wis-033</code></p>
+    <p class="flagship-cite">— Lao Tzu, if he had lived to see Stack Overflow · <code>wis-033</code></p>
     <p class="lede">TTOD is a governed collection of development wisdom and a locally runnable teaching reference. It connects content, interfaces, interactive islands, retrieval, accessibility, and tests so learners can see the whole system before they extend it.</p>
     <a class="button" href="{{ '/project/' | relative_url }}">Understand the project</a>
     <a class="button" href="{{ '/guides/local-setup/' | relative_url }}">Run it locally</a>
@@ -25,6 +32,10 @@ lang: en
     </dl>
   </aside>
 </section>
+
+<blockquote class="dedication">
+  <p>In the ancient scrolls of the silicon age, there existed a sacred text known as <a href="https://www.mit.edu/~xela/tao.html">The Tao of Programming</a> — a collection of paradoxical wisdom passed down through generations of code warriors. Inspired by its timeless teachings, this book of wisdom is dedicated to the art of machine-assisted creation, revealing the eternal truths of technological intelligence in the digital realm.</p>
+</blockquote>
 
 ## Explore every developed area
 

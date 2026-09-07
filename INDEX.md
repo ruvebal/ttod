@@ -31,12 +31,13 @@ does not repeat it.
 
 ## Public guide map
 
-The independent Jekyll publication is sourced only from [`docs/public`](docs/public). Its main
-index provides a complete menu across the developed and planned teaching surfaces:
+The independent Jekyll publication is sourced only from [`docs/public`](docs/public). English
+opens at `/`; Spanish at `/es/`. The indexes provide a complete menu across the developed and
+planned teaching surfaces:
 
 - [Project](docs/public/project/index.md) — mission, governance, provenance, and licensing
 - [Product areas](docs/public/platform/index.md) — content, quotes, graph, Oracle, operations, and tests
-- [Teaching model](docs/public/teaching/index.md) — R3b–R7 at proposed hello-world depth
+- [Teaching model](docs/public/teaching/index.md) — complete spine, hello-world depth
 - [Research](docs/public/research/index.md) — questions, maturity, method, and safeguards
 - [Guides](docs/public/guides/index.md) — local setup, product use, and contribution
 - [Students](docs/public/audiences/students.md) — provided scaffold and learner-owned work
@@ -47,11 +48,19 @@ index provides a complete menu across the developed and planned teaching surface
 The documentation site may be published while the application remains local. That does not by
 itself authorize making the whole source repository public.
 
-**Programme status (2026-08-18):** Phase Q **complete** — the live canonical collection has since
-advanced to schema **v3.1.0** through the governed bilingual programme. Current phase state lives
-only in the development-plan index. Phase Q closed with the collection
-strict-valid, and writable only through the CLI/repository. Closeout report:
-[`docs/DEV_PLAN/PHASE-Q6-REPORT.md`](docs/DEV_PLAN/PHASE-Q6-REPORT.md).
+## Canonical surface
+
+The live collection is schema **v3.1.0**. English originals and Spanish sisters are separate
+records linked by `translation_of`; IDs never carry locale suffixes. The public-index flagship is
+`wis-033`; its Spanish sister is `wis-034`. Canonical writes remain CLI/repository transactions
+only. Derive counts with `python cli.py stats` — do not copy them into this file.
+
+Public documentation is the Jekyll tree above. It is a documentation-only publication lane: it
+may go online while the application stays local. GitHub Pages is configured from that tree; it
+does not implement application hosting and does not authorize changing repository visibility.
+
+Programme tables, phase reports, and runbooks remain only in
+[`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md).
 
 ## Verification
 
@@ -62,6 +71,10 @@ python cli.py stats --check              # meta must match recomputed
 python -m unittest discover -s tests -p 'test_*.py'   # full suite must pass
 ```
 
+When `docs/public` changes, also run the publication privacy watcher over that tree (and over
+rendered output after a Jekyll build). The full agent verification set, including the ttod-bridge
+suite, is listed in [`AGENTS.md`](AGENTS.md).
+
 **License:** code is MIT ([`LICENSE-CODE`](LICENSE-CODE)); content — `ttod.yml` quotes, `docs/`,
 `sources/` — is CC BY-NC-SA 4.0 ([`LICENSE-CONTENT`](LICENSE-CONTENT)), per
 [`docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md`](docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md).
@@ -69,11 +82,3 @@ python -m unittest discover -s tests -p 'test_*.py'   # full suite must pass
 **Agent contract:** [`AGENTS.md`](AGENTS.md)
 ([agentsmd standard](https://github.com/agentsmd/agents.md)).
 
-## Constitutional boundary
-
-The Athanor and WPL development processes may reference the same immutable Athanor evidence
-snapshot, including ingested research and governed field-research records. They must not quote,
-cite, or summarize each other's draft output as evidence. TTOD quotes are pedagogical material,
-not independent corroboration. A quote derived from an Athanor plan, including `arch-052`, must
-never be fed back to Athanor or WPL as support for that plan. Full contract:
-[`docs/DEV_PLAN/PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md`](docs/DEV_PLAN/PHASE-Q-TTOD-CONTRACT-REPAIR-CASCADE.md).

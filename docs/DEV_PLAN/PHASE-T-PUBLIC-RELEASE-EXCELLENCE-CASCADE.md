@@ -8,6 +8,11 @@ authorized or DONE merely because this cascade exists.
 R7 partial  
 **Does not authorize:** canonical quote mutation, proposal acceptance, public cloud deployment,
 student-owned R6 implementation, or publication of the GitHub repository
+**Step labels:** `RC0`–`RC7` ("Release Cascade"), not `T0`–`T7` — cold-audited 2026-09-07 and
+renamed from an initial `T0`–`T7` draft, which collided with `docs/research/GUIDE-FORGE-PLAN.md`'s
+own unrelated `T0`–`T7` task labels. "Phase T" is this document's own name and is unaffected;
+only its eight internal steps were renamed, mechanically, with no change to scope, order, or
+dependencies.
 
 ## 0. Mission
 
@@ -96,44 +101,44 @@ verifier. Every phase report must record:
 
 ```mermaid
 flowchart TD
-    T0["T0 — freeze release baseline"] --> T1["T1 — public front door"]
-    T0 --> T2["T2 — repository treeshake + disclosure review"]
-    T0 --> T3["T3 — application security boundary"]
-    T0 --> T4["T4 — history-isolated cohort artifact"]
-    T1 --> T5["T5 — partner demonstration kit"]
-    T2 --> T5
-    T3 --> T5
-    T4 --> T6["T6 — student readiness trial"]
-    T1 --> T6
-    T2 --> T7["T7 — independent release review"]
-    T3 --> T7
-    T5 --> T7
-    T6 --> T7
-    T7 --> G{"Human release decision"}
+    RC0["RC0 — freeze release baseline"] --> RC1["RC1 — public front door"]
+    RC0 --> RC2["RC2 — repository treeshake + disclosure review"]
+    RC0 --> RC3["RC3 — application security boundary"]
+    RC0 --> RC4["RC4 — history-isolated cohort artifact"]
+    RC1 --> RC5["RC5 — partner demonstration kit"]
+    RC2 --> RC5
+    RC3 --> RC5
+    RC4 --> RC6["RC6 — student readiness trial"]
+    RC1 --> RC6
+    RC2 --> RC7["RC7 — independent release review"]
+    RC3 --> RC7
+    RC5 --> RC7
+    RC6 --> RC7
+    RC7 --> G{"Human release decision"}
     G -->|public-source gate| P["Repository may become public"]
     G -->|partner gate| D["Partner demo may be presented"]
     G -->|student gate| S["Starter may be distributed"]
 ```
 
-T1–T4 may run in parallel after T0 only when they use separate worktrees and do not overlap
-owned files. T5 and T6 are integration trials. T7 is a cold review, not a cleanup session.
+RC1–RC4 may run in parallel after RC0 only when they use separate worktrees and do not overlap
+owned files. RC5 and RC6 are integration trials. RC7 is a cold review, not a cleanup session.
 
 ## 5. Phase table
 
 | Phase | Purpose | Owner profile | Depends on | Exit result |
 | --- | --- | --- | --- | --- |
-| T0 | Freeze facts, audiences, scope, hashes, and risks | release steward | current `main` | signed baseline and decision log |
-| T1 | Build an accurate public front door and community contract | documentation/release | T0 | newcomer can understand, install, verify, and license the project |
-| T2 | Treeshake navigation and review history/disclosure without losing provenance | repository curator + security reviewer | T0 | measured public tree and explicit archive/retention decisions |
-| T3 | Define and enforce the local/public HTTP trust boundary | application security | T0 | unsafe mutation is unavailable or protected outside local development |
-| T4 | Produce a genuinely history-isolated student starter | instructor release engineer | T0 | reference answers are unreachable from the delivered Git object graph |
-| T5 | Create and rehearse the partner demonstration | product/technical communication | T1–T3 | repeatable demo with truthful maturity and fallback paths |
-| T6 | Trial student onboarding on clean machines | instructor + independent novice testers | T1, T4 | students reach hello world/live quote without private infrastructure |
-| T7 | Re-run the cold audit and issue three independent verdicts | independent verifier | T2, T3, T5, T6 | evidence-backed GO/NO-GO per audience |
+| RC0 | Freeze facts, audiences, scope, hashes, and risks | release steward | current `main` | signed baseline and decision log |
+| RC1 | Build an accurate public front door and community contract | documentation/release | RC0 | newcomer can understand, install, verify, and license the project |
+| RC2 | Treeshake navigation and review history/disclosure without losing provenance | repository curator + security reviewer | RC0 | measured public tree and explicit archive/retention decisions |
+| RC3 | Define and enforce the local/public HTTP trust boundary | application security | RC0 | unsafe mutation is unavailable or protected outside local development |
+| RC4 | Produce a genuinely history-isolated student starter | instructor release engineer | RC0 | reference answers are unreachable from the delivered Git object graph |
+| RC5 | Create and rehearse the partner demonstration | product/technical communication | RC1–RC3 | repeatable demo with truthful maturity and fallback paths |
+| RC6 | Trial student onboarding on clean machines | instructor + independent novice testers | RC1, RC4 | students reach hello world/live quote without private infrastructure |
+| RC7 | Re-run the cold audit and issue three independent verdicts | independent verifier | RC2, RC3, RC5, RC6 | evidence-backed GO/NO-GO per audience |
 
 ## 6. Executable phase packages
 
-### T0 — Release baseline and decision freeze
+### RC0 — Release baseline and decision freeze
 
 **Objective:** turn the cold audit into a reproducible baseline without changing product code or
 canonical content.
@@ -142,21 +147,33 @@ canonical content.
 
 - Record current commit, remote visibility, tracked-file inventory, repository history size,
   largest blobs, ignored local state, and `ttod.yml` digest.
+- Record explicitly, not just generically as "remote visibility": whether the R3b/R4/R5/R7
+  reference-build commit is reachable from `origin/main` right now (`git merge-base
+  --is-ancestor <ref> origin/main`). Verified 2026-09-07: it is — `origin/main` already contains
+  the full reference build, in this private repository. This is the exact fact RC4/RC7 must treat
+  as unresolved until a genuinely isolated artifact passes the probe suite; RC0 must not let it
+  go unstated as "private, so presumably fine."
 - Run the full verification matrix in §8 and capture output without hardcoding totals into the
   public README.
 - Classify every audit item as blocker, accepted risk, later work, or false positive.
 - Freeze the three audiences and their distinct gates.
 - Resolve, in writing, whether Phase T security hardening may change backend/Caddy code while R6
-  remains student-owned. If not resolved, T3 stays BLOCKED.
+  remains student-owned. If not resolved, RC3 stays BLOCKED.
 - Resolve the intended public treatment of `proposals/`, detailed phase reports, `sources/`, and
   `private/ttod.yml.pre-q6-backup`; planning alone does not remove them.
 
-**Exit gate:** `PHASE-T0-REPORT.md` exists, contains a safe resume point, and every T1–T4 lane has
+**Exit gate:** `PHASE-RC0-REPORT.md` exists, contains a safe resume point, and every RC1–RC4 lane has
 a named owner and non-overlapping file set.
 
-### T1 — Public front door and contribution contract
+### RC1 — Public front door and contribution contract
 
 **Objective:** make the repository legible in five minutes and reproducible in thirty.
+
+**2026-09-07 candidate work:** a documentation-only Jekyll surface and workflow have been built
+ahead of RC1 promotion under the separately authorized U1 boundary. Evidence is filed in
+[`PHASE-PUBLIC-DOCS-SITE-REPORT.md`](PHASE-PUBLIC-DOCS-SITE-REPORT.md). RC1 is not `DONE`: the
+conventional root README, contribution/security contract, clean-copy trial, and independent review
+below remain required, and RC0 itself remains `VERIFYING`.
 
 **Required work**
 
@@ -177,7 +194,7 @@ a named owner and non-overlapping file set.
 **Verification:** follow every README command from a clean clone or disposable export; run a link
 checker; have a reviewer unfamiliar with TTOD state its purpose, license, and safest first command.
 
-### T2 — Repository treeshake, retention, and disclosure review
+### RC2 — Repository treeshake, retention, and disclosure review
 
 **Objective:** reduce cognitive and disclosure surface while preserving scholarly and governance
 value.
@@ -203,7 +220,7 @@ value.
 **Exit gate:** no unresolved high-severity disclosure finding; every retained unusual artifact has
 a documented reason; the public navigation surface is materially smaller and link-valid.
 
-### T3 — Application security and exposure boundary
+### RC3 — Application security and exposure boundary
 
 **Objective:** ensure local convenience cannot silently become an unsafe public service.
 
@@ -228,12 +245,12 @@ a documented reason; the public navigation surface is materially smaller and lin
 - Apply appropriate browser/security headers at Caddy or application level and test them.
 - Add negative tests proving unauthenticated mutation, oversized payloads, and exhausted limits
   fail predictably without changing canonical data.
-- Document that completing T3 still does not authorize Scaleway or any public deployment.
+- Document that completing RC3 still does not authorize Scaleway or any public deployment.
 
 **Exit gate:** a security reviewer accepts a small threat model; negative tests pass; canonical
 `ttod.yml` digest is unchanged; no public-mode write endpoint is anonymously usable.
 
-### T4 — History-isolated cohort starter
+### RC4 — History-isolated cohort starter
 
 **Objective:** deliver R1/R2/R3a and the authorized runbooks without recoverable R3b/R4/R5/R7
 reference answers.
@@ -256,7 +273,7 @@ reference answers.
 **Exit gate:** two independent reviewers cannot recover forbidden reference material using the
 documented probe suite; the starter builds and runs; its origin and license remain clear.
 
-### T5 — Partner demonstration kit
+### RC5 — Partner demonstration kit
 
 **Objective:** make the project easy to understand and hard to overclaim.
 
@@ -275,13 +292,13 @@ documented probe suite; the starter builds and runs; its origin and license rema
 **Exit gate:** a reviewer can run the demo from the kit alone; every claim maps to evidence; demo
 failure does not require exposing private infrastructure.
 
-### T6 — Student readiness trial
+### RC6 — Student readiness trial
 
 **Objective:** verify pedagogy and onboarding with real novice behavior, not maintainer memory.
 
 **Required work**
 
-- Trial the exact T4 artifact with at least two clean environments representative of the cohort;
+- Trial the exact RC4 artifact with at least two clean environments representative of the cohort;
   include Windows/WSL2 or Linux evidence before claiming that platform is supported.
 - Time clone-to-hello-world and clone-to-live-quote separately. Record downloads and hardware.
 - Test both host Ollama and container Ollama paths when both are advertised.
@@ -297,24 +314,24 @@ failure does not require exposing private infrastructure.
 **Exit gate:** representative novices reach the declared outcomes without instructor repair; all
 found friction becomes a documented fix or accepted limitation.
 
-### T7 — Independent release review and human decision
+### RC7 — Independent release review and human decision
 
 **Objective:** issue three narrow verdicts, never one blended “ready” label.
 
 **Required work**
 
 - Re-run §8 from a clean clone at the candidate commit.
-- Compare the result to T0 and explain every material delta.
-- Verify T1 links/onboarding, T2 disclosure disposition, T3 negative tests, T4 isolation evidence,
-  T5 demo rehearsal, and T6 novice trials.
+- Compare the result to RC0 and explain every material delta.
+- Verify RC1 links/onboarding, RC2 disclosure disposition, RC3 negative tests, RC4 isolation evidence,
+  RC5 demo rehearsal, and RC6 novice trials.
 - Record residual risks by severity, owner, due condition, and audience affected.
-- Produce `PHASE-T7-RELEASE-DECISION.md` with independent results:
+- Produce `PHASE-RC7-RELEASE-DECISION.md` with independent results:
   `PUBLIC_SOURCE = GO|NO-GO`, `PARTNER_DEMO = GO|NO-GO`, and
   `STUDENT_DISTRIBUTION = GO|NO-GO`.
 - The product owner signs or rejects each verdict separately. Only after that decision may GitHub
   visibility or artifact distribution change.
 
-**No self-healing rule:** T7 may correct its report, not implementation. A defect sends the
+**No self-healing rule:** RC7 may correct its report, not implementation. A defect sends the
 relevant phase back to `IN_PROGRESS`, followed by fresh verification.
 
 ## 7. Definition of excellence
@@ -378,13 +395,14 @@ Use the following prompt for Phase T execution:
 
 | Phase | State at creation | Reason |
 | --- | --- | --- |
-| T0 | READY | cold-audit evidence exists but has not been frozen into a phase report |
-| T1 | BLOCKED | waits on T0 audience/scope decisions |
-| T2 | BLOCKED | waits on T0 retention and disclosure decisions |
-| T3 | BLOCKED | waits on T0 boundary decision and confirmation of non-overlap with R6 |
-| T4 | BLOCKED | waits on T0 starter contents and delivery-boundary decision |
-| T5 | BLOCKED | waits on T1–T3 |
-| T6 | BLOCKED | waits on T1 and T4 |
-| T7 | BLOCKED | waits on T2, T3, T5, and T6 |
+| RC0 | VERIFYING | baseline and decisions filed in `PHASE-RC0-REPORT.md`; awaits independent verification and product-owner promotion |
+| RC1 | BLOCKED | waits on RC0 audience/scope decisions |
+| RC2 | BLOCKED | waits on RC0 retention and disclosure decisions |
+| RC3 | BLOCKED | waits on RC0 boundary decision and confirmation of non-overlap with R6 |
+| RC4 | BLOCKED | waits on RC0 starter contents and delivery-boundary decision |
+| RC5 | BLOCKED | waits on RC1–RC3 |
+| RC6 | BLOCKED | waits on RC1 and RC4 |
+| RC7 | BLOCKED | waits on RC2, RC3, RC5, and RC6 |
 
-The safe next action is **T0 only**.
+The safe next action is **independent verification of RC0 only**. RC1–RC4 remain blocked until the
+product owner promotes RC0 to `DONE`.

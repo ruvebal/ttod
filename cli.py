@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TTOD CLI — The Tao of Development (Q3)
+TTOD CLI — 道 The Tao of Development (TTOD)
 
 All ttod.yml mutations go through TTODRepository write transactions.
 Read docs/DEV_PLAN/PHASES/Q3-atomic-repository-cli.md before changing write paths.
@@ -34,7 +34,7 @@ from ttod_core.translation import (
 )
 from ttod_core.validation import TTODValidator
 
-app = typer.Typer(help="The Tao of Development — pedagogical wisdom CLI")
+app = typer.Typer(help="道 The Tao of Development (TTOD) — pedagogical wisdom CLI")
 proposal_app = typer.Typer(help="Proposal lifecycle (only accept touches ttod.yml)")
 bridge_app = typer.Typer(help="Athanor bridge transport (serialization only; no canonical writes)")
 app.add_typer(proposal_app, name="proposal")

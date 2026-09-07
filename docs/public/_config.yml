@@ -1,0 +1,32 @@
+title: 道 The Tao of Development (TTOD)
+short_title: TTOD
+description: A governed pedagogical knowledge base and teaching reference for front-end development.
+url: https://ruvebal.github.io
+baseurl: /ttod
+repository: ruvebal/ttod
+
+lang: en
+timezone: Europe/Madrid
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+highlighter: rouge
+permalink: pretty
+theme: null
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>{% include head.html %}</head>
+  <body class="ttod-bg-river">
+    {% include header.html %}
+    <main id="content" class="shell page-shell">
+      {% if page.eyebrow %}<p class="eyebrow">{{ page.eyebrow }}</p>{% endif %}
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

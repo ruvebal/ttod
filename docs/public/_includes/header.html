@@ -1,0 +1,17 @@
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="shell header-row">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="TTOD home">
+      <img class="brand-mark" src="{{ '/assets/visual-system/favicon.svg' | relative_url }}" alt="">
+      <span><strong>TTOD</strong><small>道 The Tao of Development (TTOD)</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        {% for item in site.data.navigation %}
+          {% assign item_url = item.url | relative_url %}
+          <li><a href="{{ item_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

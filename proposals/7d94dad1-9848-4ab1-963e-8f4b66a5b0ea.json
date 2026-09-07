@@ -1,0 +1,35 @@
+{
+  "proposal_id": "7d94dad1-9848-4ab1-963e-8f4b66a5b0ea",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El Tao que puede ser solicitado no es el Tao eterno. El código que puede ser generado sin comprensión no es verdadero código.",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-033",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-033' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Solicitar y generar no reemplazan la comprensión necesaria para juzgar, mantener y asumir la responsabilidad del código.",
+    "tags": [
+      "wisdom",
+      "understanding",
+      "learning"
+    ],
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "ttod-local-translation-review",
+  "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T14:37:55.482516Z"
+}

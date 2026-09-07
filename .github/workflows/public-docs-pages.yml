@@ -1,0 +1,109 @@
+name: Public documentation — build and deploy
+
+on:
+  pull_request:
+    paths:
+      - "docs/public/**"
+      - "shared/visual-system/**"
+      - "scripts/sync_visual_system.py"
+      - "agentic/report-steward/scripts/check_public_privacy.py"
+      - ".github/workflows/public-docs-pages.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/public/**"
+      - "shared/visual-system/**"
+      - "scripts/sync_visual_system.py"
+      - "agentic/report-steward/scripts/check_public_privacy.py"
+      - ".github/workflows/public-docs-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-docs-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  JEKYLL_ENV: production
+  BUNDLE_GEMFILE: ${{ github.workspace }}/docs/public/Gemfile
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Scan publication source
+        run: python3 agentic/report-steward/scripts/check_public_privacy.py docs/public .github/workflows/public-docs-pages.yml
+
+      - name: Check shared visual-system synchronization
+        run: python3 scripts/sync_visual_system.py --check
+
+      - name: Require private-term gate for main publication
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          PRIVATE_TERMS: ${{ secrets.TTOD_PUBLIC_PRIVATE_TERMS }}
+        run: |
+          if [ -z "$PRIVATE_TERMS" ]; then
+            echo "::error::Configure the TTOD_PUBLIC_PRIVATE_TERMS repository secret before publishing."
+            exit 1
+          fi
+          printf '%s\n' "$PRIVATE_TERMS" > "$RUNNER_TEMP/ttod-private-terms.txt"
+          echo "TTOD_PRIVATE_TERMS_FILE=$RUNNER_TEMP/ttod-private-terms.txt" >> "$GITHUB_ENV"
+
+      - name: Scan publication source with private terms
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: python3 agentic/report-steward/scripts/check_public_privacy.py docs/public .github/workflows/public-docs-pages.yml
+
+      - name: Build public Jekyll site
+        run: |
+          set -o pipefail
+          bundle exec jekyll build --source docs/public --destination _site-public 2>&1 | tee "$RUNNER_TEMP/jekyll-build.log"
+
+      - name: Fail on Liquid warnings
+        run: |
+          if grep -q "Liquid Warning" "$RUNNER_TEMP/jekyll-build.log"; then
+            grep "Liquid Warning" "$RUNNER_TEMP/jekyll-build.log"
+            exit 1
+          fi
+
+      - name: Scan rendered publication
+        run: python3 agentic/report-steward/scripts/check_public_privacy.py _site-public
+
+      - name: Check internal links
+        run: bundle exec htmlproofer _site-public --disable-external --allow-hash-href
+
+      - name: Configure GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site-public
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy public documentation
+        id: deployment
+        uses: actions/deploy-pages@v4

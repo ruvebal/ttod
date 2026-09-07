@@ -1,5 +1,17 @@
 # R6 decision — deferred and reserved for student ownership, not implemented
 
+> **2026-09-07 refinement:**
+> [`U0-2026-09-07-TEACHING-SKELETON-BOUNDARY.md`](U0-2026-09-07-TEACHING-SKELETON-BOUNDARY.md)
+> preserves student ownership of R6's assessed depth while permitting Phase U to plan a minimal,
+> instructor-provided hello-world seam. This historical decision remains authoritative for the
+> rich reference build and full R6 scope; read both records together for the future teaching
+> baseline.
+
+> **Documentation-only exception:**
+> [`U1-2026-09-07-PUBLIC-DOCS-PAGES-BOUNDARY.md`](U1-2026-09-07-PUBLIC-DOCS-PAGES-BOUNDARY.md)
+> permits a Jekyll Pages workflow rooted only at `docs/public`. It is not application CI/CD, PWA,
+> cloud application deployment, or assessed R6 work.
+
 **Status:** FROZEN (product-owner instruction, 2026-09-05)
 **Decider:** Rubén Vega Balbás (TTOD product owner)
 **Cascade:** Phase R §6 — see [`../PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md`](../PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md)

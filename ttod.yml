@@ -3,7 +3,7 @@ meta:
   subtitle: Wisdom for the Digital Path
   version: 3.1.0
   language: en
-  total_quotes: 458
+  total_quotes: 459
   last_id_by_section:
     a11y: 2
     arch: 110
@@ -17,7 +17,7 @@ meta:
     qa: 38
     rrp: 27
     ux: 8
-    wis: 32
+    wis: 33
   languages:
   - en
   - es
@@ -14354,6 +14354,29 @@ quotes:
   created_at: '2026-09-07'
   content_digest: 3133db5e7094a7dc21e3656d17e4bf8206d61a901d785c4fcaf3844cdc013b9f
   proposal_id: fea4a1ab-5c92-4f20-8df0-e9535a3c00d5
+- id: wis-033
+  schema_version: 3.1.0
+  text: The Tao that can be prompted is not the eternal Tao. The code that can be
+    generated without understanding is not true code.
+  section: wisdom
+  level: master
+  lang: en
+  origin: studio
+  tags:
+  - wisdom
+  - understanding
+  - learning
+  teaches: Prompting and generation do not replace the understanding required to judge,
+    maintain, and take responsibility for code.
+  source: studio/INDEX.md
+  rights:
+    access: public
+    license: CC-BY-NC-SA-4.0
+    holder: ruvebal@crea-comm.net
+    permission_basis: rights-holder-relicense-2026-08-18
+  created_at: '2026-09-07'
+  content_digest: 70d1b3ca0d11b9c88976e79fe474ab47be3c9f212071f2fa3d532315740db646
+  proposal_id: 87ec75c6-5511-4638-8252-bc9e4d20c0cf
 collections:
   daily_wisdom:
     name: Quote of the Day

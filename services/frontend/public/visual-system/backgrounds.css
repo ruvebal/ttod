@@ -1,0 +1,26 @@
+.ttod-bg-river {
+  background-color: var(--ttod-color-paper);
+  background-image: url("./river-contours.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: min(100rem, 130vw) auto;
+}
+
+.ttod-bg-constellation {
+  background-image: url("./knowledge-constellation.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.ttod-bg-reeds {
+  background-image:
+    repeating-linear-gradient(64deg, transparent 0 20px, rgb(72 110 91 / .09) 21px 22px, transparent 23px 42px),
+    linear-gradient(180deg, transparent, rgb(132 95 24 / .06));
+}
+
+@media (forced-colors: active), print {
+  .ttod-bg-river,
+  .ttod-bg-constellation,
+  .ttod-bg-reeds { background-image: none; }
+}

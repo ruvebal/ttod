@@ -1,7 +1,7 @@
 [project]
 name = "ttod"
 version = "3.0.0"
-description = "The Tao of Development — pedagogical wisdom database for developers walking the path"
+description = "道 The Tao of Development (TTOD) — pedagogical wisdom database for developers walking the path"
 license = {text = "MIT"}
 authors = [{name = "Rubén Vega Balbás", email = "ruvebal@crea-comm.net"}]
 requires-python = ">=3.11"

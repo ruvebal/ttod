@@ -1,20 +1,25 @@
 ---
 interface Props { lang: 'en' | 'es'; title: string }
 const { lang, title } = Astro.props;
+import '../styles/tokens.css';
 ---
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#fbf8f1" />
+    <link rel="icon" href="/visual-system/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/visual-system/tokens.css" />
+    <link rel="stylesheet" href="/visual-system/backgrounds.css" />
     <title>{title}</title>
     <style>
-      :root { color-scheme: light dark; font-family: ui-serif, Georgia, serif; }
-      body { max-width: 48rem; margin: 0 auto; padding: 4rem 1.5rem; line-height: 1.6; }
+      :root { color-scheme: light; font-family: var(--ttod-font-body); }
+      body { max-width: 48rem; margin: 0 auto; padding: 4rem 1.5rem; color: var(--ttod-color-ink); background-color: var(--ttod-color-paper); line-height: 1.6; }
       nav { display: flex; gap: 1rem; font-family: ui-sans-serif, system-ui, sans-serif; }
-      article { border-inline-start: .25rem solid #9c7a31; margin-block: 2rem; padding-inline: 1.5rem; }
+      article { border-inline-start: .25rem solid var(--ttod-color-accent); margin-block: 2rem; padding-inline: 1.5rem; }
       .meta { font-family: ui-sans-serif, system-ui, sans-serif; font-size: .9rem; opacity: .8; }
     </style>
   </head>
-  <body><slot /></body>
+  <body class="ttod-bg-river"><slot /></body>
 </html>

@@ -14,6 +14,7 @@ _backup/
 .env.dev
 .env.stg
 *.code-workspace
+.privacy-denylist
 
 # Node / Astro build artifacts and caches (services/frontend and any future Node service)
 node_modules/

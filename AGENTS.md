@@ -1,4 +1,4 @@
-# AGENTS.md — The Tao of Development (TTOD)
+# AGENTS.md — 道 The Tao of Development (TTOD)
 
 > *"Name your variables as if you were baptising stars."*
 

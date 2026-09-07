@@ -29,7 +29,7 @@ for (const locale of ['en', 'es'] as const) {
 				level: 2,
 				name: locale === 'en' ? 'Flagship quote' : 'Cita insignia — original en inglés'
 			})).toBeVisible();
-			await expect(page.getByText('img-001 · images · en')).toBeVisible();
+			await expect(page.getByText('wis-033 · wisdom · en')).toBeVisible();
 			if (locale === 'es') {
 				await expect(page.getByText(/aún no tiene una traducción gobernada al español/)).toBeVisible();
 				await expect(page.locator('blockquote')).toHaveAttribute('lang', 'en');

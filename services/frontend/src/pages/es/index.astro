@@ -8,15 +8,15 @@ const response = await fetch(`${backend}/api/v1/wisdom/sample`, {
 });
 if (!response.ok) throw new Error(`Backend flagship quote request failed (${response.status})`);
 const entries: WisdomEntry[] = await response.json();
-const flagship = entries.find((entry) => entry.id === 'img-001');
-if (!flagship) throw new Error('Governed flagship quote img-001 is unavailable');
+const flagship = entries.find((entry) => entry.id === 'wis-033');
+if (!flagship) throw new Error('Governed flagship quote wis-033 is unavailable');
 ---
-<Page lang="es" title="El Tao del Desarrollo">
+<Page lang="es" title="道 El Tao del Desarrollo (TTOD)">
   <nav><a href="/en/">English</a><a href="/es/">Español</a></nav>
   <main>
-    <h1>Bienvenido al Tao del Desarrollo</h1>
+    <h1>Bienvenido a 道 El Tao del Desarrollo (TTOD)</h1>
     <p>Una colección viva de sabiduría pedagógica para quienes recorren el camino del desarrollo.</p>
-    <article aria-labelledby="flagship-quote-heading">
+    <article class="ttod-bg-constellation" aria-labelledby="flagship-quote-heading">
       <h2 id="flagship-quote-heading">Cita insignia — original en inglés</h2>
       <p>Esta cita aún no tiene una traducción gobernada al español; mostramos el original sin presentarlo como traducción.</p>
       <blockquote lang={flagship.lang}>{flagship.text}</blockquote>

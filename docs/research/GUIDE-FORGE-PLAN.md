@@ -6,6 +6,17 @@
 **Engineering baseline:** Phase R reference build exists; the student handoff is R1/R2/R3a and
 R6 remains student-owned.
 
+## 2026-09-07 teaching-skeleton planning amendment
+
+Phase U proposes a future handoff in which R3b–R7 are all present at hello-world depth inside one
+working end-to-end product, then expanded by students as assessed work. Until Phase U is executed
+and independently verified, the current R1/R2/R3a-only handoff and history-isolation blocker remain
+the observed state. The rationale, front-end-only teaching boundary, and proposed Unit 2–7 calendar
+are maintained in
+[`TEACHING-SKELETON-RATIONALE-AND-CALENDAR.md`](TEACHING-SKELETON-RATIONALE-AND-CALENDAR.md).
+TS7 must reconcile this plan and its generated guides; TS8 later synchronizes the localized course
+track after the technical and research gates pass.
+
 ## Launch readiness, as of 2026-09-07
 
 **T0–T3 and the T5 institutional pitch lane are DONE; T4 is PARTIAL.** T0 froze commit `8e73116299d29dd78b59f1717283f39eaca5fcea`

@@ -1,0 +1,38 @@
+:root {
+  color-scheme: light;
+  --ttod-color-ink: #211c15;
+  --ttod-color-muted: #665e52;
+  --ttod-color-paper: #fbf8f1;
+  --ttod-color-surface: #f1eadb;
+  --ttod-color-surface-raised: #fffdf8;
+  --ttod-color-accent: #845f18;
+  --ttod-color-botanical: #486e5b;
+  --ttod-color-line: #8f8068;
+  --ttod-color-line-subtle: #d5c8ae;
+  --ttod-color-focus: #245d92;
+  --ttod-space-1: .25rem;
+  --ttod-space-2: .5rem;
+  --ttod-space-3: .75rem;
+  --ttod-space-4: 1rem;
+  --ttod-space-6: 1.5rem;
+  --ttod-space-8: 2rem;
+  --ttod-space-12: 3rem;
+  --ttod-font-body: ui-serif, Georgia, serif;
+  --ttod-font-ui: ui-sans-serif, system-ui, sans-serif;
+  --ttod-text-sm: .875rem;
+  --ttod-text-base: 1rem;
+  --ttod-text-lg: 1.25rem;
+  --ttod-text-xl: clamp(1.8rem, 5vw, 3.25rem);
+  --ttod-radius-sm: .5rem;
+  --ttod-radius-lg: 1rem;
+  --ttod-max-content: 74rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ttod-color-focus);
+  outline-offset: 3px;
+}
+
+@media (forced-colors: active) {
+  :root { --ttod-color-line: CanvasText; }
+}

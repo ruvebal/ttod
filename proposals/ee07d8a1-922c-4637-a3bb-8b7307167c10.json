@@ -1,0 +1,40 @@
+{
+  "proposal_id": "ee07d8a1-922c-4637-a3bb-8b7307167c10",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Para reconstruir la casa, puedes quemarla; pero \u00bfd\u00f3nde dormir\u00e1s esa noche?",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-010",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-010' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Copias de seguridad primero, fuego despu\u00e9s \u2014si acaso\u2014. La eliminaci\u00f3n nunca debe ser el valor predeterminado. Para reconstruir, puedes quemar; pero \u00bfd\u00f3nde dormir\u00e1s esa noche? Planifica la continuidad, no la destrucci\u00f3n.",
+    "tags": [
+      "wisdom",
+      "deletion",
+      "backup",
+      "safety",
+      "risk",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "philosophy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:34:00.906105Z"
+}

@@ -1,0 +1,39 @@
+{
+  "proposal_id": "7c2a56a8-df90-4a1a-95eb-0869045c1751",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "En el env\u00edo, hay aprendizaje. En el aprendizaje, hay crecimiento. En el crecimiento, hay el Tao.",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-003",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "El ciclo de entrega, reflexi\u00f3n y mejora es el camino hacia el dominio.",
+    "tags": [
+      "wisdom",
+      "learning",
+      "growth",
+      "shipping",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "learning",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:33:29.394391Z"
+}

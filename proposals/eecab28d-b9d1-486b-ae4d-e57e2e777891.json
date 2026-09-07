@@ -1,0 +1,36 @@
+{
+  "proposal_id": "eecab28d-b9d1-486b-ae4d-e57e2e777891",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El sitio que solo atiende a los videntes atiende solo la mitad. El sitio que atiende a todos atiende el todo.",
+    "section": "images",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-066",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-066' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Construye para todos abrazando pr\u00e1cticas de medios inclusivas.",
+    "tags": [
+      "laws",
+      "accessibility",
+      "tao-of-web-images"
+    ],
+    "subsection": "laws",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:30:24.773139Z"
+}

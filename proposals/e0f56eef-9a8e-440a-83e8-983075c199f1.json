@@ -1,0 +1,41 @@
+{
+  "proposal_id": "e0f56eef-9a8e-440a-83e8-983075c199f1",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Busca el camino medio. Optimiza con compasi\u00f3n. Codifica con sabidur\u00eda. Prueba con humildad.",
+    "section": "images",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-071",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-071' (lang=en) via ollama:qwen2.5:32b-instruct \u2014 human review required before acceptance",
+    "teaches": "Combina la optimizaci\u00f3n con empat\u00eda y humildad.",
+    "tags": [
+      "contemplation",
+      "compassion",
+      "tao-of-web-images"
+    ],
+    "subsection": "contemplation",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
+  "wpl_record_id": null,
+  "wpl_record_digest": null,
+  "evidence_snapshot_id": null,
+  "evidence_snapshot_digest": null,
+  "human_review_activities": [],
+  "accepted_quote_id": null,
+  "created_at": "2026-09-04T14:35:37.129739Z"
+}

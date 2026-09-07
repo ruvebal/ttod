@@ -1,0 +1,36 @@
+{
+  "proposal_id": "5fab4447-6040-4f1c-a48f-ed69917cd39c",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Precarga lo cr\u00edtico. Diferencia lo decorativo. Elimina lo innecesario. Este es el triple camino hacia la iluminaci\u00f3n.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-050",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-050' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Prioriza los activos cr\u00edticos, retrasa los dem\u00e1s y elimina el desorden.",
+    "tags": [
+      "performance",
+      "preload",
+      "tao-of-web-images"
+    ],
+    "subsection": "performance",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:29:24.544620Z"
+}

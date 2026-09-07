@@ -1,0 +1,38 @@
+{
+  "proposal_id": "ce1adba6-f80d-48b4-89f2-39c27d984d67",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El depurador que depura con sabidur\u00eda, solo lo hace una vez; pues cada error corregido en la comprensi\u00f3n no volver\u00e1 en el c\u00f3digo.",
+    "section": "debugging",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "dbg-005",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'dbg-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "No solo arregles errores, comp\u00e9ndelos. Cada error revela una brecha en la comprensi\u00f3n. Cierra la brecha y el error no volver\u00e1. Depurar no es arreglar c\u00f3digo, es arreglar la comprensi\u00f3n.",
+    "tags": [
+      "debugging",
+      "understanding",
+      "learning",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "mindset",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:39:14.112904Z"
+}

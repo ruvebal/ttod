@@ -1,0 +1,42 @@
+{
+  "proposal_id": "ff9897c4-dd34-46fd-885a-4a2176f4171b",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "'Final_Final_v2' implica que has mirado al futuro y te equivocaste. Dos veces.",
+    "section": "code-craft",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-032",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-032' (lang=en) via ollama:qwen2.5:32b-instruct \u2014 human review required before acceptance",
+    "teaches": "Las etiquetas de Git existen para que dejes de renombrar archivos como un acumulador",
+    "tags": [
+      "git",
+      "versioning",
+      "sarcasm",
+      "anti-pattern"
+    ],
+    "subsection": "versioning",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
+  "wpl_record_id": null,
+  "wpl_record_digest": null,
+  "evidence_snapshot_id": null,
+  "evidence_snapshot_digest": null,
+  "human_review_activities": [],
+  "accepted_quote_id": null,
+  "created_at": "2026-09-04T14:35:47.323714Z"
+}

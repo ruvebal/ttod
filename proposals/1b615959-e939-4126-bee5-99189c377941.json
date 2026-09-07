@@ -1,0 +1,37 @@
+{
+  "proposal_id": "1b615959-e939-4126-bee5-99189c377941",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Escribe c\u00f3digo para humanos primero, para m\u00e1quinas despu\u00e9s; el Tao reside en equilibrar ambos.",
+    "section": "code-craft",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-001",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Prioriza la legibilidad y la expresividad, luego ajusta la eficiencia sin comprometer la claridad.",
+    "tags": [
+      "codecraft",
+      "readability",
+      "balance",
+      "best-practices"
+    ],
+    "subsection": "readability",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:32:39.115545Z"
+}

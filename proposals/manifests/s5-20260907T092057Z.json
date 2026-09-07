@@ -1,0 +1,76 @@
+{
+  "run_id": "s5-20260907T092057Z",
+  "created_at": "2026-09-07T09:20:57.368221Z",
+  "ttod_file": "/Users/ruvebal/src/ttod/ttod.yml",
+  "ttod_sha256": "b663860b0b6ab4ca7e88c90661848993ae12401be69c74b801c46aa7cf957e97",
+  "model": "qwen3.8:27b",
+  "host": "http://localhost:11434",
+  "target_lang": "es",
+  "eligible_count_at_start": 219,
+  "selected_source_ids": [
+    "img-001",
+    "img-002",
+    "img-003",
+    "img-004",
+    "img-005",
+    "img-006",
+    "img-008",
+    "img-009",
+    "img-010",
+    "img-011",
+    "img-012",
+    "img-013"
+  ],
+  "created_proposals": [],
+  "failures": [
+    {
+      "source_id": "img-001",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-002",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-003",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-004",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-005",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-006",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-008",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-009",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-010",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-011",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-012",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    },
+    {
+      "source_id": "img-013",
+      "error": "cannot reach Ollama at http://localhost:11434 (model=qwen3.8:27b): <urlopen error [Errno 1] Operation not permitted>"
+    }
+  ],
+  "canonical_boundary": "proposals only; no proposal accepted; ttod.yml read-only"
+}

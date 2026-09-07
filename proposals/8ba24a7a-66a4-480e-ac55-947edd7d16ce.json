@@ -1,0 +1,37 @@
+{
+  "proposal_id": "8ba24a7a-66a4-480e-ac55-947edd7d16ce",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Extrae cuando el l\u00edmite es claro. Enl\u00ednalo cuando fue prematuro. Distingue por la fricci\u00f3n del cambio.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-010",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-010' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Deja que el dolor gu\u00ede la arquitectura: los cambios dif\u00edciles revelan el acoplamiento oculto.",
+    "tags": [
+      "architecture",
+      "extraction",
+      "refactoring",
+      "judgment"
+    ],
+    "subsection": "extraction",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:35:07.411798Z"
+}

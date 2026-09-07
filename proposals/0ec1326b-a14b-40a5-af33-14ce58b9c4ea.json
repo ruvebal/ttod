@@ -1,0 +1,37 @@
+{
+  "proposal_id": "0ec1326b-a14b-40a5-af33-14ce58b9c4ea",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "srcset ofrece elecci\u00f3n. El navegador elige. Conf\u00eda en el navegador. O no. Elegir\u00e1 de todos modos.",
+    "section": "images",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-028",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-028' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Im\u00e1genes responsivas y selecci\u00f3n del navegador",
+    "tags": [
+      "srcset",
+      "responsive",
+      "browser",
+      "control"
+    ],
+    "subsection": "responsive",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:27:51.664950Z"
+}

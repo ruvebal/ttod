@@ -1,0 +1,38 @@
+{
+  "proposal_id": "f8cfb9ad-2640-4682-a4ec-556359512d7e",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El c\u00f3digo no se escribe en texto: se escribe en comprensi\u00f3n. El texto es solo la sombra de la comprensi\u00f3n.",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-005",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Cuando corriges un error, no corriges el c\u00f3digo: corriges la comprensi\u00f3n. El c\u00f3digo se corrige solo cuando la comprensi\u00f3n es clara.",
+    "tags": [
+      "wisdom",
+      "understanding",
+      "code",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "reflection",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:33:37.481860Z"
+}

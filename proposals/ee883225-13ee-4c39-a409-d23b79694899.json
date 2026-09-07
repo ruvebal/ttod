@@ -1,0 +1,37 @@
+{
+  "proposal_id": "ee883225-13ee-4c39-a409-d23b79694899",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El SVG escala infinitamente, y aun as\u00ed permanece exactamente lo que es. S\u00e9 como el SVG.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-004",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Los gr\u00e1ficos vectoriales mantienen su integridad a cualquier tama\u00f1o",
+    "tags": [
+      "svg",
+      "scalability",
+      "identity",
+      "featured"
+    ],
+    "subsection": "svg",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:21:38.387065Z"
+}

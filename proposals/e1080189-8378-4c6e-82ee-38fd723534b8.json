@@ -1,0 +1,41 @@
+{
+  "proposal_id": "e1080189-8378-4c6e-82ee-38fd723534b8",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La supresi\u00f3n nunca debe ser el valor por defecto; debe ser un acto consciente con un interruptor visible. La importaci\u00f3n no destructiva es la l\u00ednea base segura. La poda (eliminar miembros ausentes) es un ritual opcional, no un accidente.",
+    "section": "code-craft",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-017",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-017' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La supresi\u00f3n nunca debe ser el valor por defecto. La importaci\u00f3n no destructiva es la l\u00ednea base segura. La poda es un ritual opcional, no un accidente. Copias de seguridad primero, fuego despu\u00e9s\u2014si acaso.",
+    "tags": [
+      "codecraft",
+      "non-destructive",
+      "deletion",
+      "pruning",
+      "safety",
+      "operations",
+      "patterns",
+      "featured"
+    ],
+    "subsection": "patterns",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:37:20.940858Z"
+}

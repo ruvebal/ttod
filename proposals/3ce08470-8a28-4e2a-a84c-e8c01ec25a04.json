@@ -1,0 +1,38 @@
+{
+  "proposal_id": "3ce08470-8a28-4e2a-a84c-e8c01ec25a04",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Antes de bautizar una estrella, busca en el registro. El tema que inventaste a medianoche puede ya orbitar bajo otro identificador.",
+    "section": "code-craft",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-033",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-033' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Busca en manifiestos, registros y repositorios hermanos el mismo tema bajo otro identificador antes de inventar un nuevo nombre.",
+    "tags": [
+      "naming",
+      "registry",
+      "search",
+      "idempotency",
+      "koan"
+    ],
+    "subsection": "naming",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:38:37.831488Z"
+}

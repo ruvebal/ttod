@@ -1,0 +1,37 @@
+{
+  "proposal_id": "17851a4e-3dc7-4485-bd7d-6fbdccb57c42",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Las dependencias fluyen hacia adentro como el agua que busca el centro. Que nada en el centro sepa la forma de la orilla.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-004",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Los m\u00f3dulos centrales deben permanecer ignorantes de las capas externas para mantenerse portables y probables.",
+    "tags": [
+      "architecture",
+      "dependencies",
+      "inversion",
+      "featured"
+    ],
+    "subsection": "dependencies",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:34:40.990982Z"
+}

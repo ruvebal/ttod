@@ -1,0 +1,40 @@
+{
+  "proposal_id": "6ce15f85-d4fc-40ac-8e73-f3fdba7d8196",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El camino habla a los humanos. La b\u00f3veda habla a las bibliotecas. El alcance habla a las m\u00e1quinas. Una sola cadena para tres lenguas, y a las 3 a. m. la colisi\u00f3n habla m\u00e1s fuerte.",
+    "section": "code-craft",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-034",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-034' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Mant\u00e9n separados los caminos humanos, las particiones de biblioteca y los identificadores de alcance de m\u00e1quina \u2014 colapsar las capas garantiza la colisi\u00f3n.",
+    "tags": [
+      "naming",
+      "namespace",
+      "scope",
+      "boundaries",
+      "architecture",
+      "koan",
+      "featured"
+    ],
+    "subsection": "naming",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:38:44.810430Z"
+}

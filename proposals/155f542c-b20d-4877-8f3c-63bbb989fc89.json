@@ -1,0 +1,40 @@
+{
+  "proposal_id": "155f542c-b20d-4877-8f3c-63bbb989fc89",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Cuando el chat, la CLI y el agente de IA ven el mismo contexto desde la misma fuente, eso no es redundancia. Es verdad. Un solo cofre, una sola puerta, una sola respuesta.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-056",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-056' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "El contexto MCP compartido entre chat, CLI y agentes es verdad, no desperdicio (Fase 2 de Athanor \u00a725).",
+    "tags": [
+      "architecture",
+      "single-source-of-truth",
+      "mcp",
+      "athanor",
+      "tao-of-system-architect",
+      "koan",
+      "featured"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:42:15.909542Z"
+}

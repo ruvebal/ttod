@@ -1,0 +1,38 @@
+{
+  "proposal_id": "c77ae449-6ce2-46b1-a60a-1d25d732baf0",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Docker en macOS ejecuta Linux en una VM. La VM no ve Metal. Ollama en Docker es Ollama sin manos. Ejecuta el modelo nativo; deja que los contenedores lleven los datos, no la mente.",
+    "section": "devops",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "dop-004",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'dop-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Tao de DevIAC (\u00a736): La Trampa de Docker \u2014 Haiku: la VM no tiene ojos / Metal duerme tras el muro / ejecuta nativo, libre",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured",
+      "haiku"
+    ],
+    "subsection": "automation",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:40:07.810507Z"
+}

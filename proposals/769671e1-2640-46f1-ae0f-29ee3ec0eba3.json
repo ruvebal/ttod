@@ -1,0 +1,38 @@
+{
+  "proposal_id": "769671e1-2640-46f1-ae0f-29ee3ec0eba3",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La m\u00e1quina del desarrollador es la forja. El host de despliegue es el escenario. Uno forja; el otro act\u00faa. Conf\u00fandelos y quemar\u00e1s al p\u00fablico o aburrir\u00e1s al herrero.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-031",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-031' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Tao de DevIAC (\u00a737): La Forja y el Escenario \u2014 Haiku: Tanit forja el acero / Lilith empu\u00f1a la hoja / cada una conoce su fuego",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured",
+      "haiku"
+    ],
+    "subsection": "boundaries",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:39:46.743495Z"
+}

@@ -1,0 +1,38 @@
+{
+  "proposal_id": "ae935d9e-bd3b-431f-a740-ff448a96eccc",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Todo documento entra al sistema exactamente una vez. El hash SHA-256 es su huella. Si ves un duplicado, tu ingesta minti\u00f3. La idempotencia no es una funci\u00f3n \u2014 es un contrato con la verdad.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-039",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-039' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Tao de DevIAC (\u00a746): El Hash es el Ancla \u2014 Haiku: mismos bytes, mismo c\u00f3digo hash / inserta dos veces, existe una / la verdad no se repite",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured",
+      "haiku"
+    ],
+    "subsection": "principles",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:40:28.328138Z"
+}

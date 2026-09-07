@@ -1,0 +1,100 @@
+{
+  "run_id": "s5-20260907T092117Z",
+  "created_at": "2026-09-07T09:21:17.908253Z",
+  "ttod_file": "/Users/ruvebal/src/ttod/ttod.yml",
+  "ttod_sha256": "b663860b0b6ab4ca7e88c90661848993ae12401be69c74b801c46aa7cf957e97",
+  "model": "qwen3.8:27b",
+  "host": "http://localhost:11434",
+  "target_lang": "es",
+  "eligible_count_at_start": 219,
+  "selected_source_ids": [
+    "img-001",
+    "img-002",
+    "img-003",
+    "img-004",
+    "img-005",
+    "img-006",
+    "img-008",
+    "img-009",
+    "img-010",
+    "img-011",
+    "img-012",
+    "img-013"
+  ],
+  "created_proposals": [
+    {
+      "source_id": "img-001",
+      "proposal_id": "b9036283-040c-4e96-a40a-7b419356c203",
+      "path": "/Users/ruvebal/src/ttod/proposals/b9036283-040c-4e96-a40a-7b419356c203.json",
+      "latency_s": 10.339
+    },
+    {
+      "source_id": "img-002",
+      "proposal_id": "99692763-c4a0-4db9-801b-ac47eb15b12d",
+      "path": "/Users/ruvebal/src/ttod/proposals/99692763-c4a0-4db9-801b-ac47eb15b12d.json",
+      "latency_s": 3.454
+    },
+    {
+      "source_id": "img-003",
+      "proposal_id": "58feb868-7bba-4728-b24c-7d400f6a9c7b",
+      "path": "/Users/ruvebal/src/ttod/proposals/58feb868-7bba-4728-b24c-7d400f6a9c7b.json",
+      "latency_s": 3.234
+    },
+    {
+      "source_id": "img-004",
+      "proposal_id": "ee883225-13ee-4c39-a409-d23b79694899",
+      "path": "/Users/ruvebal/src/ttod/proposals/ee883225-13ee-4c39-a409-d23b79694899.json",
+      "latency_s": 3.449
+    },
+    {
+      "source_id": "img-005",
+      "proposal_id": "d6ee3cd0-cf56-4162-9d45-285cec592d4c",
+      "path": "/Users/ruvebal/src/ttod/proposals/d6ee3cd0-cf56-4162-9d45-285cec592d4c.json",
+      "latency_s": 3.877
+    },
+    {
+      "source_id": "img-006",
+      "proposal_id": "dbe55a67-cca7-4a8e-9bdb-a280e1def788",
+      "path": "/Users/ruvebal/src/ttod/proposals/dbe55a67-cca7-4a8e-9bdb-a280e1def788.json",
+      "latency_s": 2.815
+    },
+    {
+      "source_id": "img-008",
+      "proposal_id": "9553dccb-1a25-42ad-ae34-a50267d87640",
+      "path": "/Users/ruvebal/src/ttod/proposals/9553dccb-1a25-42ad-ae34-a50267d87640.json",
+      "latency_s": 3.663
+    },
+    {
+      "source_id": "img-009",
+      "proposal_id": "7cd4a3f0-2d66-41fe-8dbd-28886f8374db",
+      "path": "/Users/ruvebal/src/ttod/proposals/7cd4a3f0-2d66-41fe-8dbd-28886f8374db.json",
+      "latency_s": 3.247
+    },
+    {
+      "source_id": "img-010",
+      "proposal_id": "f3d133bd-0d4f-48ef-a059-1e10e96798e3",
+      "path": "/Users/ruvebal/src/ttod/proposals/f3d133bd-0d4f-48ef-a059-1e10e96798e3.json",
+      "latency_s": 3.45
+    },
+    {
+      "source_id": "img-011",
+      "proposal_id": "949c9ee7-060b-4e45-a7ff-63a6eee959a7",
+      "path": "/Users/ruvebal/src/ttod/proposals/949c9ee7-060b-4e45-a7ff-63a6eee959a7.json",
+      "latency_s": 3.026
+    },
+    {
+      "source_id": "img-012",
+      "proposal_id": "eeceb254-d525-466c-a75e-73422f38d495",
+      "path": "/Users/ruvebal/src/ttod/proposals/eeceb254-d525-466c-a75e-73422f38d495.json",
+      "latency_s": 3.237
+    },
+    {
+      "source_id": "img-013",
+      "proposal_id": "db072374-2d79-476b-8b4e-ce98d95b49fc",
+      "path": "/Users/ruvebal/src/ttod/proposals/db072374-2d79-476b-8b4e-ce98d95b49fc.json",
+      "latency_s": 3.6
+    }
+  ],
+  "failures": [],
+  "canonical_boundary": "proposals only; no proposal accepted; ttod.yml read-only"
+}

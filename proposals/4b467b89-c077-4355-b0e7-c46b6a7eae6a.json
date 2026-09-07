@@ -1,0 +1,36 @@
+{
+  "proposal_id": "4b467b89-c077-4355-b0e7-c46b6a7eae6a",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Una imagen de 4K en una pantalla de 320 p\u00edxeles no es lujo, es violencia contra el plan de datos del usuario.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-033",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-033' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Escala la resoluci\u00f3n de la imagen a la pantalla para proteger los l\u00edmites de datos.",
+    "tags": [
+      "responsive",
+      "data-plan",
+      "tao-of-web-images"
+    ],
+    "subsection": "responsive",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:28:10.053572Z"
+}

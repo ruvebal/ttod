@@ -1,0 +1,38 @@
+{
+  "proposal_id": "36bccaff-0da5-4565-864e-4912210031d0",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Verifica antes de corregir - No todo s\u00edntoma es una enfermedad.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-027",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-027' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La primera herramienta del depurado: Verificar. Antes de corregir, verifica que el problema exista. La cach\u00e9 no es un error, es una funci\u00f3n mal comprendida. Conf\u00eda en el c\u00f3digo, verifica la ejecuci\u00f3n.",
+    "tags": [
+      "architecture",
+      "debugging",
+      "verification",
+      "methodology",
+      "featured"
+    ],
+    "subsection": "boundaries",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:36:30.552253Z"
+}

@@ -1,8 +1,7 @@
 # Phase S5 — complete bilingual corpus translation and scholarly edition plan
 
-**Status:** PLANNED — no translation run authorized or started  
-**Date:** 2026-09-06 (audited, debugged, and one prerequisite gate resolved same day — see §6.1
-item 5)  
+**Status:** IN_PROGRESS — first bounded Ollama drafting tranche staged as proposals only
+**Date:** 2026-09-06; first tranche triggered 2026-09-07
 **Edition direction:** English source records → Spanish sister records  
 **Execution environment:** local Ollama only  
 **Canonical boundary:** model output is always a proposal; only a named human may accept it
@@ -206,13 +205,13 @@ Before bulk drafting:
    closes item 5's own gate — it does **not** authorize bulk drafting, which still needs items
    3, 4 (as an actual rehearsal run, now trivially repeatable), 6, and §4/§5/§14's own
    authorizations.
-6. **Does not yet exist, confirmed by search — must be built before any tranche larger than one
-   record.** No fail-closed batch wrapper or manifest reader exists anywhere in this repository
-   today; `cli.py translate-draft` only operates on one `SOURCE_ID` per invocation (see its
-   `--help` in `PHASE-S4-REPORT.md`). Build one that skips completed pairs, refuses same-language
-   sources, never accepts, and can resume without redrafting successful proposals — do not run
-   §3.1's recomputed scope through repeated manual single-record calls and call that "the batch
-   process."
+6. **Resolved for bounded drafting, 2026-09-07.** `cli.py translate-batch` now provides the
+   minimum fail-closed wrapper required before any tranche larger than one record: it recomputes
+   eligible English originals, skips active `translation_of` sisters, skips already-pending
+   Spanish translation proposals, refuses unbounded operation unless `--all` is explicit, never
+   accepts proposals, writes a JSON run manifest, and verifies that `ttod.yml` remains
+   byte-identical to the source hash recorded at run start. This is a drafting wrapper only, not a
+   human-review tracker or release workflow.
 
 ### 6.2 Prompt packet
 
@@ -398,3 +397,55 @@ This document authorizes nothing by itself. It does not call Ollama, stage propo
 Execution begins only after the product owner freezes the editorial policy, selects the calibrated
 model, fixes and proves the acceptance path, and explicitly authorizes the bulk drafting scope.
 
+## 15. Execution log
+
+### 2026-09-07 — first bounded drafting tranche
+
+Rubén explicitly authorized triggering Ollama translation. A conservative first tranche was run
+through the new `translate-batch` wrapper, using local `qwen3.8:27b`, target `es`, and
+`--limit 12`.
+
+The first sandboxed attempt could not reach local Ollama and created no proposals; its failure
+manifest is retained at `proposals/manifests/s5-20260907T092057Z.json`.
+
+The authorized local-Ollama run completed with 12 proposals and 0 failures. Manifest:
+`proposals/manifests/s5-20260907T092117Z.json`.
+
+Selected source IDs:
+
+```text
+img-001, img-002, img-003, img-004, img-005, img-006,
+img-008, img-009, img-010, img-011, img-012, img-013
+```
+
+Verification after the run:
+
+- `ttod.yml` SHA-256 remained `b663860b0b6ab4ca7e88c90661848993ae12401be69c74b801c46aa7cf957e97`,
+  matching the manifest hash exactly.
+- `python cli.py validate --strict --json` returned valid with zero errors and zero warnings.
+- `python cli.py stats --check` reported clean derived metadata: `total_quotes` remains 229.
+- Each created proposal is `status: proposed`, `lang: es`, `origin: blackbox`, and contains exactly
+  one `translation_of` edge to its English source.
+
+No proposal was accepted, no canonical ID was allocated, and no publication/release claim follows
+from this drafting tranche.
+
+### 2026-09-07 — remaining corpus drafting tranche
+
+Rubén then explicitly authorized translating all remaining eligible records with no dry run. The
+same `translate-batch` wrapper was run with `--all`, local `qwen3.8:27b`, and target `es`.
+
+The run selected the 207 English originals that still had neither an active Spanish sister nor a
+pending Spanish translation proposal. It completed with 207 proposals and 0 failures. Manifest:
+`proposals/manifests/s5-20260907T092656Z.json`.
+
+Verification after the run:
+
+- `ttod.yml` SHA-256 remained `b663860b0b6ab4ca7e88c90661848993ae12401be69c74b801c46aa7cf957e97`,
+  matching the manifest hash exactly.
+- `python cli.py validate --strict --json` returned valid with zero errors and zero warnings.
+- `python cli.py stats --check` reported clean derived metadata: `total_quotes` remains 229.
+- `python cli.py translate-batch --limit 1 --dry-run` reported 0 eligible remaining sources.
+- The generated material is still only draft proposal material: no proposal was accepted, no
+  canonical ID was allocated, and the bilingual edition is not complete until human review and
+  acceptance have been performed.

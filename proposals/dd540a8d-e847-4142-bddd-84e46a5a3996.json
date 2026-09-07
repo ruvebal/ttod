@@ -1,0 +1,39 @@
+{
+  "proposal_id": "dd540a8d-e847-4142-bddd-84e46a5a3996",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Un miembro que se fue no es un error, sino una historia con final.",
+    "section": "wisdom",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-011",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-011' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Los sistemas que recuerdan los finales son m\u00e1s amables con la verdad. Un miembro que se fue no es un error: es una historia con final. Conserva la historia; cambia la visibilidad. Prefiere cambios de estado suaves a borrados duros.",
+    "tags": [
+      "wisdom",
+      "soft-delete",
+      "history",
+      "data-integrity",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "philosophy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:34:06.808746Z"
+}

@@ -1,0 +1,37 @@
+{
+  "proposal_id": "12e997d9-72a2-4b09-ac21-312bfae2c9a6",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La mejor navegaci\u00f3n es la que olvidas que existe\u2014hasta que la necesitas.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-016",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-016' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Invisible hasta que se invoca. Los buenos componentes de interfaz no compiten por la atenci\u00f3n: esperan con paciencia, listos para servir. El peso delata la importancia.",
+    "tags": [
+      "architecture",
+      "ux",
+      "invisibility",
+      "design"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:35:27.475777Z"
+}

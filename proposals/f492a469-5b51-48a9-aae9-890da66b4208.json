@@ -1,0 +1,37 @@
+{
+  "proposal_id": "f492a469-5b51-48a9-aae9-890da66b4208",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La experiencia es simplemente el nombre que damos a nuestros errores despu\u00e9s de corregirlos.",
+    "section": "wisdom",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-001",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Registra c\u00f3mo se resolvieron los fallos para que el siguiente caminante aprenda antes de tropezar.",
+    "tags": [
+      "wisdom",
+      "experience",
+      "learning",
+      "humor"
+    ],
+    "subsection": "reflection",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:33:22.478680Z"
+}

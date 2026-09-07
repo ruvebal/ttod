@@ -1,0 +1,37 @@
+{
+  "proposal_id": "1b30a9da-d837-4557-826f-f4b81750d45a",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Un sistema sin capas claras es como una casa sin muros: t\u00e9cnicamente funcional, emocionalmente devastador.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-003",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La separaci\u00f3n de preocupaciones previene el caos estructural",
+    "tags": [
+      "architecture",
+      "layers",
+      "design",
+      "featured"
+    ],
+    "subsection": "architecture",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:31:01.569885Z"
+}

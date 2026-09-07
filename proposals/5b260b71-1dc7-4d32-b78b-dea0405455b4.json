@@ -1,0 +1,41 @@
+{
+  "proposal_id": "5b260b71-1dc7-4d32-b78b-dea0405455b4",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "WebP es el camino medio: ni el apego de PNG ni la p\u00e9rdida de JPG.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-007",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-007' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Ventajas de los formatos modernos",
+    "tags": [
+      "webp",
+      "formats",
+      "balance"
+    ],
+    "subsection": "formats",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
+  "wpl_record_id": null,
+  "wpl_record_digest": null,
+  "evidence_snapshot_id": null,
+  "evidence_snapshot_digest": null,
+  "human_review_activities": [],
+  "accepted_quote_id": null,
+  "created_at": "2026-09-04T14:33:27.515620Z"
+}

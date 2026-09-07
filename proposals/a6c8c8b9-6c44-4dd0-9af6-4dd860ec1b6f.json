@@ -1,0 +1,38 @@
+{
+  "proposal_id": "a6c8c8b9-6c44-4dd0-9af6-4dd860ec1b6f",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El maestro ense\u00f1a por ejemplo, no por perfecci\u00f3n.",
+    "section": "ux",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "ux-004",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'ux-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La documentaci\u00f3n es un documento vivo, nacido de la experiencia de implementaci\u00f3n real. Evoluciona a medida que emergen nuevos patrones. El maestro ense\u00f1a a trav\u00e9s de ejemplos funcionales, no de la perfecci\u00f3n te\u00f3rica.",
+    "tags": [
+      "ux",
+      "teaching",
+      "example",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "philosophy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:39:18.865226Z"
+}

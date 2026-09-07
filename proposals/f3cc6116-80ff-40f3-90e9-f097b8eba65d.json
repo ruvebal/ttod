@@ -1,0 +1,36 @@
+{
+  "proposal_id": "f3cc6116-80ff-40f3-90e9-f097b8eba65d",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Un alumno pregunt\u00f3 al maestro: '\u00bfC\u00f3mo s\u00e9 cu\u00e1ndo mis im\u00e1genes est\u00e1n optimizadas?'",
+    "section": "images",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-067",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-067' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Usa la pregunta para activar la verificaci\u00f3n pr\u00e1ctica.",
+    "tags": [
+      "koan",
+      "reflection",
+      "tao-of-web-images"
+    ],
+    "subsection": "koan",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:30:28.016167Z"
+}

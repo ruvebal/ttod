@@ -1,0 +1,36 @@
+{
+  "proposal_id": "32f3a571-e2d0-4350-89f8-6212ef7f109f",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La imagen bajo el pliegue no existe hasta que el usuario desplaza. \u00bfPor qu\u00e9 entonces la haces existir al cargar la p\u00e1gina?",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-036",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-036' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Deja que las im\u00e1genes aparezcan solo cuando el usuario las necesite.",
+    "tags": [
+      "lazy-loading",
+      "fold",
+      "tao-of-web-images"
+    ],
+    "subsection": "lazy-loading",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:28:23.128455Z"
+}

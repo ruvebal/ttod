@@ -1,0 +1,36 @@
+{
+  "proposal_id": "8e34d2b5-c236-4d6e-89ff-76b3f312972c",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Escribe el texto alternativo para tu abuela que no puede ver. Escr\u00edbelo para el motor de b\u00fasqueda que no puede ver. Escr\u00edbelo para ti cuando la imagen falle al cargar.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-040",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-040' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Considera personas reales y estados de fallo al escribir texto alternativo.",
+    "tags": [
+      "alt-text",
+      "empathy",
+      "tao-of-web-images"
+    ],
+    "subsection": "alt-text",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:28:40.575028Z"
+}

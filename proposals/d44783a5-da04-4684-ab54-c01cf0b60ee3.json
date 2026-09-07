@@ -1,0 +1,38 @@
+{
+  "proposal_id": "d44783a5-da04-4684-ab54-c01cf0b60ee3",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Incrusta el icono. Nunca incrustes al h\u00e9roe. El Tao de Base64 es saber cu\u00e1ndo detenerse.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-021",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-021' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Casos de uso adecuados para URIs de datos",
+    "tags": [
+      "data-uri",
+      "base64",
+      "icons",
+      "hero-images",
+      "limits"
+    ],
+    "subsection": "data-uri",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:27:26.241844Z"
+}

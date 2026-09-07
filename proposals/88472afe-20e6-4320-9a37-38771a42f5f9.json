@@ -1,0 +1,38 @@
+{
+  "proposal_id": "88472afe-20e6-4320-9a37-38771a42f5f9",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El desarrollador sabio no a\u00f1ade m\u00e1s c\u00f3digo. Elimina el conflicto.",
+    "section": "code-craft",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-006",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Resuelve los conflictos eliminando implementaciones en competencia en lugar de a\u00f1adir m\u00e1s capas.",
+    "tags": [
+      "refactoring",
+      "simplicity",
+      "conflict-resolution",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "refactoring",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:33:03.064202Z"
+}

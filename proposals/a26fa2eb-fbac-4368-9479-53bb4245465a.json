@@ -1,0 +1,37 @@
+{
+  "proposal_id": "a26fa2eb-fbac-4368-9479-53bb4245465a",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "SVG: Escalable, Vectorial, Gr\u00e1ficos. Tambi\u00e9n: Serenidad, Virtud, Gracia.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-017",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-017' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Apreciaci\u00f3n de SVG y juegos de palabras",
+    "tags": [
+      "svg",
+      "acronym",
+      "philosophy",
+      "humor"
+    ],
+    "subsection": "svg",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:27:10.599921Z"
+}

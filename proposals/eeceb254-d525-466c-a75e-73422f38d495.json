@@ -1,0 +1,37 @@
+{
+  "proposal_id": "eeceb254-d525-466c-a75e-73422f38d495",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Lo peque\u00f1o, en l\u00ednea. Lo grande, fuera. Este es el orden natural.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-012",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-012' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Cu\u00e1ndo inlining vs externalizar activos",
+    "tags": [
+      "inline",
+      "external",
+      "data-uri",
+      "architecture"
+    ],
+    "subsection": "architecture",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:22:01.707916Z"
+}

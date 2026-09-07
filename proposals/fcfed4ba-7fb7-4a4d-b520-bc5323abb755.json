@@ -1,0 +1,36 @@
+{
+  "proposal_id": "fcfed4ba-7fb7-4a4d-b520-bc5323abb755",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El camino de la imagen es el camino del equilibrio. Demasiado peso, y el usuario se marcha. Demasiado ligero, y el sentido se pierde. Demasiadas, y el mensaje se ahoga. Demasiadas pocas, y la p\u00e1gina habla en mon\u00f3tono.",
+    "section": "images",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-070",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-070' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Mant\u00e9n el peso visual equilibrado para evitar la sobrecarga o el vac\u00edo.",
+    "tags": [
+      "contemplation",
+      "balance",
+      "tao-of-web-images"
+    ],
+    "subsection": "contemplation",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:30:44.303109Z"
+}

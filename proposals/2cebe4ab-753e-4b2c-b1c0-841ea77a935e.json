@@ -1,0 +1,37 @@
+{
+  "proposal_id": "2cebe4ab-753e-4b2c-b1c0-841ea77a935e",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El camino hacia el dominio comienza con la lectura. El camino hacia la iluminaci\u00f3n contin\u00faa con la pr\u00e1ctica.",
+    "section": "qa-tooling",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-008",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-008' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La documentaci\u00f3n es el inicio, la pr\u00e1ctica es el viaje",
+    "tags": [
+      "learning",
+      "documentation",
+      "practice",
+      "featured"
+    ],
+    "subsection": "learning",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:31:18.603447Z"
+}

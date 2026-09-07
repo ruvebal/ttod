@@ -1,0 +1,37 @@
+{
+  "proposal_id": "a97ba569-080c-4adb-9855-fc66be12aba0",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La documentaci\u00f3n que se despliega a s\u00ed misma es la que permanece vigente.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-014",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-014' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "El despliegue autom\u00e1tico mantiene la documentaci\u00f3n sincronizada con el c\u00f3digo.",
+    "tags": [
+      "ci-cd",
+      "documentation",
+      "automation",
+      "featured"
+    ],
+    "subsection": "ci-cd",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:31:39.318556Z"
+}

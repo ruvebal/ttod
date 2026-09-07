@@ -9,8 +9,10 @@ Read docs/DEV_PLAN/PHASES/Q3-atomic-repository-cli.md before changing write path
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
@@ -52,6 +54,73 @@ def _repo(file: Optional[Path]) -> TTODRepository:
 
 def _proposal_store() -> ProposalStore:
     return ProposalStore(DEFAULT_PROPOSALS)
+
+
+def _status(quote: dict[str, Any]) -> str:
+    return str(quote.get("status") or "active")
+
+
+def _translation_targets(candidate: dict[str, Any], target_lang: str) -> set[str]:
+    if candidate.get("lang") != target_lang:
+        return set()
+    targets: set[str] = set()
+    for edge in candidate.get("relation_edges") or []:
+        if (
+            isinstance(edge, dict)
+            and edge.get("relation_type") == "translation_of"
+            and edge.get("target")
+        ):
+            targets.add(str(edge["target"]))
+    return targets
+
+
+def _pending_translation_sources(target_lang: str) -> dict[str, list[str]]:
+    by_source: dict[str, list[str]] = {}
+    if not DEFAULT_PROPOSALS.exists():
+        return by_source
+    for path in sorted(DEFAULT_PROPOSALS.glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if data.get("status") not in {"proposed", "needs_revision"}:
+            continue
+        candidate = data.get("candidate_content") or {}
+        if not isinstance(candidate, dict):
+            continue
+        for source_id in _translation_targets(candidate, target_lang):
+            by_source.setdefault(source_id, []).append(str(data.get("proposal_id") or path.stem))
+    return by_source
+
+
+def _eligible_translation_sources(root: dict[str, Any], target_lang: str) -> list[dict[str, Any]]:
+    quotes = root.get("quotes", [])
+    pending = _pending_translation_sources(target_lang)
+    eligible: list[dict[str, Any]] = []
+    for quote in quotes:
+        if not isinstance(quote, dict):
+            continue
+        quote_id = quote.get("id")
+        if not quote_id:
+            continue
+        if quote.get("lang") != "en":
+            continue
+        if _status(quote) != "active":
+            continue
+        if any(
+            isinstance(edge, dict) and edge.get("relation_type") == "translation_of"
+            for edge in quote.get("relation_edges") or []
+        ):
+            continue
+        rights = quote.get("rights") or {}
+        if rights.get("access") not in (None, "public"):
+            continue
+        if find_active_translations(quotes, str(quote_id), target_lang):
+            continue
+        if str(quote_id) in pending:
+            continue
+        eligible.append(quote)
+    return eligible
 
 
 @app.command()
@@ -486,6 +555,134 @@ def translate_draft(
     typer.echo(
         "Status: proposed (never active). Next: `proposal review` then "
         f"`proposal accept {proposal.proposal_id} --reviewer-id <you>` — a separate, deliberate human action."
+    )
+
+
+@app.command("translate-batch")
+def translate_batch(
+    to: str = typer.Option("es", "--to", help="Target ISO 639-1 language"),
+    model: str = typer.Option("qwen3.8:27b", "--model", help="Ollama model tag to run"),
+    host: str = typer.Option(OLLAMA_DEFAULT_HOST, "--host", help="Ollama API host"),
+    timeout: float = typer.Option(180.0, "--timeout", help="Per-record Ollama timeout in seconds"),
+    proposer_id: str = typer.Option("cli-translate-batch", help="Proposer identifier recorded on proposals"),
+    limit: Optional[int] = typer.Option(
+        None,
+        "--limit",
+        min=1,
+        help="Maximum records to draft in this tranche. Required unless --all is set.",
+    ),
+    all_records: bool = typer.Option(
+        False,
+        "--all",
+        help="Draft every currently eligible record. Use only after S5 editorial gates are frozen.",
+    ),
+    dry_run: bool = typer.Option(False, "--dry-run", help="List selected source IDs without calling Ollama"),
+    file: Optional[Path] = typer.Option(None, "--file", help="TTOD YAML source (default: live ttod.yml, read-only)"),
+    manifest_dir: Path = typer.Option(
+        DEFAULT_PROPOSALS / "manifests",
+        "--manifest-dir",
+        help="Directory for batch manifests",
+    ),
+):
+    """
+    Draft a resumable tranche of translation proposals.
+
+    This command never accepts proposals and never writes ttod.yml. It recomputes
+    eligible English originals, skips completed active translations, skips
+    already-pending translation proposals for the same source/target, and writes
+    a manifest for editorial review.
+    """
+    if not re.fullmatch(r"[a-z]{2}", to):
+        typer.echo(f"Invalid --to (expect ISO 639-1, e.g. es): {to}")
+        raise typer.Exit(1)
+    if not all_records and limit is None:
+        typer.echo("REFUSED: set --limit for a bounded tranche, or pass --all explicitly.")
+        raise typer.Exit(2)
+
+    repo = _repo(file)
+    source_bytes = repo.read_bytes()
+    root = yaml.safe_load(source_bytes.decode("utf-8"))
+    eligible = _eligible_translation_sources(root, to)
+    selected = eligible if all_records else eligible[: limit or 0]
+
+    typer.echo(
+        f"Eligible sources without active/pending '{to}' translation: {len(eligible)}"
+    )
+    typer.echo(f"Selected for this tranche: {len(selected)}")
+    for quote in selected:
+        typer.echo(f"  - {quote['id']} ({quote.get('section')}/{quote.get('level')})")
+
+    if dry_run:
+        typer.echo("Dry run only — no model calls, no proposals written.")
+        return
+    if not selected:
+        typer.echo("Nothing to draft.")
+        return
+
+    run_id = datetime.now(timezone.utc).strftime("s5-%Y%m%dT%H%M%SZ")
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    store = _proposal_store()
+    manifest: dict[str, Any] = {
+        "run_id": run_id,
+        "created_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "ttod_file": str(repo.path),
+        "ttod_sha256": hashlib.sha256(source_bytes).hexdigest(),
+        "model": model,
+        "host": host,
+        "target_lang": to,
+        "eligible_count_at_start": len(eligible),
+        "selected_source_ids": [q["id"] for q in selected],
+        "created_proposals": [],
+        "failures": [],
+        "canonical_boundary": "proposals only; no proposal accepted; ttod.yml read-only",
+    }
+
+    for quote in selected:
+        source_id = str(quote["id"])
+        source_lang = quote.get("lang")
+        try:
+            if to == source_lang:
+                raise TranslationError(f"target lang equals source lang for {source_id}")
+            draft = translate_quote(
+                model,
+                str(source_lang),
+                to,
+                quote.get("text", ""),
+                quote.get("teaches"),
+                host=host,
+                timeout=timeout,
+            )
+            candidate = build_translation_candidate(quote, source_id, to, draft)
+            proposal = create_proposal(
+                candidate_content=candidate,
+                proposer_kind="model",
+                proposer_id=proposer_id,
+                generation_method=f"ollama:{draft.model}:translate-batch-v1",
+            )
+            saved_path = store.save(proposal)
+            manifest["created_proposals"].append(
+                {
+                    "source_id": source_id,
+                    "proposal_id": proposal.proposal_id,
+                    "path": str(saved_path),
+                    "latency_s": round(draft.latency_s, 3),
+                }
+            )
+            typer.echo(f"Drafted {source_id} -> {proposal.proposal_id}")
+        except Exception as exc:
+            manifest["failures"].append({"source_id": source_id, "error": str(exc)})
+            typer.echo(f"FAILED {source_id}: {exc}")
+
+    manifest_path = manifest_dir / f"{run_id}.json"
+    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    if repo.read_bytes() != source_bytes:
+        typer.echo("REFUSED: ttod.yml changed during batch run; proposals remain staged, but source snapshot moved.")
+        raise typer.Exit(3)
+
+    typer.echo(f"Manifest: {manifest_path}")
+    typer.echo(
+        f"Created proposals: {len(manifest['created_proposals'])}; failures: {len(manifest['failures'])}"
     )
 
 

@@ -1,0 +1,36 @@
+{
+  "proposal_id": "a1039ef0-2d89-4a86-b605-72c6fd9c5d19",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El usuario con discapacidad visual no puede ver tus im\u00e1genes, pero puede escucharlas a trav\u00e9s del texto alternativo. Habla con claridad. Habla con verdad. No digas 'image123.jpg'.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-057",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-057' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Escribe descriptores alternativos honestos que un lector de pantalla pueda narrar.",
+    "tags": [
+      "accessibility",
+      "alt-text",
+      "tao-of-web-images"
+    ],
+    "subsection": "accessibility",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:29:54.767155Z"
+}

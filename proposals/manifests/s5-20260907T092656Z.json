@@ -1,0 +1,1465 @@
+{
+  "run_id": "s5-20260907T092656Z",
+  "created_at": "2026-09-07T09:26:56.287347Z",
+  "ttod_file": "/Users/ruvebal/src/ttod/ttod.yml",
+  "ttod_sha256": "b663860b0b6ab4ca7e88c90661848993ae12401be69c74b801c46aa7cf957e97",
+  "model": "qwen3.8:27b",
+  "host": "http://localhost:11434",
+  "target_lang": "es",
+  "eligible_count_at_start": 207,
+  "selected_source_ids": [
+    "img-014",
+    "img-015",
+    "img-016",
+    "img-017",
+    "img-018",
+    "img-019",
+    "img-020",
+    "img-021",
+    "img-022",
+    "img-023",
+    "img-024",
+    "img-025",
+    "img-026",
+    "img-027",
+    "img-028",
+    "img-030",
+    "img-031",
+    "img-032",
+    "img-033",
+    "img-034",
+    "img-035",
+    "img-036",
+    "img-037",
+    "img-038",
+    "img-039",
+    "img-040",
+    "img-041",
+    "img-042",
+    "img-043",
+    "img-044",
+    "img-045",
+    "img-046",
+    "img-047",
+    "img-048",
+    "img-049",
+    "img-050",
+    "img-051",
+    "img-052",
+    "img-053",
+    "img-054",
+    "img-055",
+    "img-056",
+    "img-057",
+    "img-059",
+    "img-060",
+    "img-061",
+    "img-062",
+    "img-064",
+    "img-065",
+    "img-066",
+    "img-067",
+    "img-068",
+    "img-069",
+    "img-070",
+    "img-072",
+    "img-073",
+    "qa-001",
+    "qa-002",
+    "qa-003",
+    "qa-004",
+    "qa-005",
+    "qa-006",
+    "qa-007",
+    "qa-008",
+    "qa-009",
+    "qa-010",
+    "qa-011",
+    "qa-012",
+    "qa-013",
+    "qa-014",
+    "qa-015",
+    "qa-016",
+    "ops-001",
+    "dbg-001",
+    "dbg-002",
+    "dbg-003",
+    "dbg-004",
+    "js-001",
+    "net-001",
+    "a11y-001",
+    "ux-001",
+    "ux-002",
+    "ux-003",
+    "cc-001",
+    "cc-002",
+    "cc-003",
+    "cc-004",
+    "cc-005",
+    "cc-006",
+    "cc-007",
+    "cc-008",
+    "cc-009",
+    "cc-010",
+    "wis-001",
+    "wis-002",
+    "wis-003",
+    "wis-004",
+    "wis-005",
+    "wis-006",
+    "wis-007",
+    "wis-008",
+    "wis-009",
+    "wis-010",
+    "wis-011",
+    "wis-012",
+    "wis-013",
+    "dop-001",
+    "dop-002",
+    "arch-001",
+    "arch-002",
+    "arch-003",
+    "arch-004",
+    "arch-005",
+    "arch-006",
+    "arch-007",
+    "arch-008",
+    "arch-009",
+    "arch-010",
+    "arch-011",
+    "arch-012",
+    "arch-015",
+    "arch-016",
+    "arch-017",
+    "arch-018",
+    "arch-019",
+    "arch-020",
+    "arch-013",
+    "arch-014",
+    "arch-021",
+    "arch-022",
+    "arch-023",
+    "arch-024",
+    "arch-025",
+    "arch-026",
+    "arch-027",
+    "cc-011",
+    "cc-012",
+    "cc-013",
+    "cc-014",
+    "cc-015",
+    "cc-016",
+    "cc-017",
+    "cc-018",
+    "cc-019",
+    "cc-020",
+    "cc-021",
+    "cc-023",
+    "cc-024",
+    "cc-025",
+    "cc-026",
+    "cc-027",
+    "cc-028",
+    "cc-029",
+    "cc-030",
+    "cc-031",
+    "cc-033",
+    "cc-034",
+    "cc-035",
+    "cc-036",
+    "cc-037",
+    "cc-038",
+    "dbg-005",
+    "ux-004",
+    "arch-028",
+    "arch-029",
+    "arch-030",
+    "arch-031",
+    "arch-032",
+    "arch-033",
+    "dop-004",
+    "arch-037",
+    "arch-038",
+    "arch-039",
+    "arch-040",
+    "arch-041",
+    "dop-005",
+    "dop-006",
+    "dop-007",
+    "arch-045",
+    "wis-014",
+    "wis-015",
+    "wis-016",
+    "arch-049",
+    "arch-050",
+    "arch-051",
+    "arch-052",
+    "arch-053",
+    "arch-054",
+    "arch-055",
+    "arch-056",
+    "arch-057",
+    "arch-058",
+    "arch-059",
+    "rrp-001",
+    "rrp-002",
+    "rrp-003",
+    "rrp-004",
+    "rrp-005",
+    "rrp-006",
+    "rrp-007",
+    "rrp-008",
+    "rrp-009",
+    "rrp-010",
+    "qa-017",
+    "qa-018",
+    "qa-019",
+    "rrp-014"
+  ],
+  "created_proposals": [
+    {
+      "source_id": "img-014",
+      "proposal_id": "1819a62b-d6ae-4ce0-b8fb-a8946277f58e",
+      "path": "/Users/ruvebal/src/ttod/proposals/1819a62b-d6ae-4ce0-b8fb-a8946277f58e.json",
+      "latency_s": 3.803
+    },
+    {
+      "source_id": "img-015",
+      "proposal_id": "7e9c7134-fd0a-44c5-9ba8-d70c9fb0b4a3",
+      "path": "/Users/ruvebal/src/ttod/proposals/7e9c7134-fd0a-44c5-9ba8-d70c9fb0b4a3.json",
+      "latency_s": 3.704
+    },
+    {
+      "source_id": "img-016",
+      "proposal_id": "3bfc9668-0698-41fe-8949-ea64fc6f18b1",
+      "path": "/Users/ruvebal/src/ttod/proposals/3bfc9668-0698-41fe-8949-ea64fc6f18b1.json",
+      "latency_s": 3.269
+    },
+    {
+      "source_id": "img-017",
+      "proposal_id": "a26fa2eb-fbac-4368-9479-53bb4245465a",
+      "path": "/Users/ruvebal/src/ttod/proposals/a26fa2eb-fbac-4368-9479-53bb4245465a.json",
+      "latency_s": 3.534
+    },
+    {
+      "source_id": "img-018",
+      "proposal_id": "7ac88591-cf95-4dda-9ac6-c17b1380f997",
+      "path": "/Users/ruvebal/src/ttod/proposals/7ac88591-cf95-4dda-9ac6-c17b1380f997.json",
+      "latency_s": 4.192
+    },
+    {
+      "source_id": "img-019",
+      "proposal_id": "4b468c0f-026d-4c4d-aad0-c0071dba13fb",
+      "path": "/Users/ruvebal/src/ttod/proposals/4b468c0f-026d-4c4d-aad0-c0071dba13fb.json",
+      "latency_s": 3.53
+    },
+    {
+      "source_id": "img-020",
+      "proposal_id": "66f4462b-a064-4a48-8ad4-950f992eac93",
+      "path": "/Users/ruvebal/src/ttod/proposals/66f4462b-a064-4a48-8ad4-950f992eac93.json",
+      "latency_s": 3.743
+    },
+    {
+      "source_id": "img-021",
+      "proposal_id": "d44783a5-da04-4684-ab54-c01cf0b60ee3",
+      "path": "/Users/ruvebal/src/ttod/proposals/d44783a5-da04-4684-ab54-c01cf0b60ee3.json",
+      "latency_s": 4.174
+    },
+    {
+      "source_id": "img-022",
+      "proposal_id": "21e1a240-8643-45b0-81bc-1bca31965a88",
+      "path": "/Users/ruvebal/src/ttod/proposals/21e1a240-8643-45b0-81bc-1bca31965a88.json",
+      "latency_s": 3.748
+    },
+    {
+      "source_id": "img-023",
+      "proposal_id": "3b7c6055-91c4-4ba4-b5dc-052f7c81f6d2",
+      "path": "/Users/ruvebal/src/ttod/proposals/3b7c6055-91c4-4ba4-b5dc-052f7c81f6d2.json",
+      "latency_s": 4.185
+    },
+    {
+      "source_id": "img-024",
+      "proposal_id": "8da8b04c-87c5-404b-9f0e-1c27da8d6f62",
+      "path": "/Users/ruvebal/src/ttod/proposals/8da8b04c-87c5-404b-9f0e-1c27da8d6f62.json",
+      "latency_s": 2.83
+    },
+    {
+      "source_id": "img-025",
+      "proposal_id": "5e65e008-cd84-4ce0-ace9-fca322c0d344",
+      "path": "/Users/ruvebal/src/ttod/proposals/5e65e008-cd84-4ce0-ace9-fca322c0d344.json",
+      "latency_s": 3.239
+    },
+    {
+      "source_id": "img-026",
+      "proposal_id": "dff1db75-7141-4f56-a268-f70612681aab",
+      "path": "/Users/ruvebal/src/ttod/proposals/dff1db75-7141-4f56-a268-f70612681aab.json",
+      "latency_s": 3.459
+    },
+    {
+      "source_id": "img-027",
+      "proposal_id": "52a4d243-b4a0-458b-bf3a-88c5c0badd52",
+      "path": "/Users/ruvebal/src/ttod/proposals/52a4d243-b4a0-458b-bf3a-88c5c0badd52.json",
+      "latency_s": 4.091
+    },
+    {
+      "source_id": "img-028",
+      "proposal_id": "0ec1326b-a14b-40a5-af33-14ce58b9c4ea",
+      "path": "/Users/ruvebal/src/ttod/proposals/0ec1326b-a14b-40a5-af33-14ce58b9c4ea.json",
+      "latency_s": 3.868
+    },
+    {
+      "source_id": "img-030",
+      "proposal_id": "f1419981-689a-4c8b-931c-779d06a95798",
+      "path": "/Users/ruvebal/src/ttod/proposals/f1419981-689a-4c8b-931c-779d06a95798.json",
+      "latency_s": 5.684
+    },
+    {
+      "source_id": "img-031",
+      "proposal_id": "57da67c3-3b95-4715-9bc3-76406a6479dd",
+      "path": "/Users/ruvebal/src/ttod/proposals/57da67c3-3b95-4715-9bc3-76406a6479dd.json",
+      "latency_s": 4.937
+    },
+    {
+      "source_id": "img-032",
+      "proposal_id": "07065bdd-3d5c-4efc-8e00-5206c29bcc5a",
+      "path": "/Users/ruvebal/src/ttod/proposals/07065bdd-3d5c-4efc-8e00-5206c29bcc5a.json",
+      "latency_s": 3.67
+    },
+    {
+      "source_id": "img-033",
+      "proposal_id": "4b467b89-c077-4355-b0e7-c46b6a7eae6a",
+      "path": "/Users/ruvebal/src/ttod/proposals/4b467b89-c077-4355-b0e7-c46b6a7eae6a.json",
+      "latency_s": 4.096
+    },
+    {
+      "source_id": "img-034",
+      "proposal_id": "3880a1df-00fc-401c-a970-02369e68a138",
+      "path": "/Users/ruvebal/src/ttod/proposals/3880a1df-00fc-401c-a970-02369e68a138.json",
+      "latency_s": 3.882
+    },
+    {
+      "source_id": "img-035",
+      "proposal_id": "470192ec-6a4c-47ce-903d-48551018a566",
+      "path": "/Users/ruvebal/src/ttod/proposals/470192ec-6a4c-47ce-903d-48551018a566.json",
+      "latency_s": 5.276
+    },
+    {
+      "source_id": "img-036",
+      "proposal_id": "32f3a571-e2d0-4350-89f8-6212ef7f109f",
+      "path": "/Users/ruvebal/src/ttod/proposals/32f3a571-e2d0-4350-89f8-6212ef7f109f.json",
+      "latency_s": 3.915
+    },
+    {
+      "source_id": "img-037",
+      "proposal_id": "074d2120-f1e0-4cda-b58f-83e0cca0295a",
+      "path": "/Users/ruvebal/src/ttod/proposals/074d2120-f1e0-4cda-b58f-83e0cca0295a.json",
+      "latency_s": 4.753
+    },
+    {
+      "source_id": "img-038",
+      "proposal_id": "b121816a-cc57-4a58-ae30-ca6e602a077a",
+      "path": "/Users/ruvebal/src/ttod/proposals/b121816a-cc57-4a58-ae30-ca6e602a077a.json",
+      "latency_s": 3.468
+    },
+    {
+      "source_id": "img-039",
+      "proposal_id": "cf608b82-ec27-4711-8166-dbc9fc16e6b4",
+      "path": "/Users/ruvebal/src/ttod/proposals/cf608b82-ec27-4711-8166-dbc9fc16e6b4.json",
+      "latency_s": 4.294
+    },
+    {
+      "source_id": "img-040",
+      "proposal_id": "8e34d2b5-c236-4d6e-89ff-76b3f312972c",
+      "path": "/Users/ruvebal/src/ttod/proposals/8e34d2b5-c236-4d6e-89ff-76b3f312972c.json",
+      "latency_s": 4.929
+    },
+    {
+      "source_id": "img-041",
+      "proposal_id": "551939e2-6c75-441d-a667-29d4e5c09d92",
+      "path": "/Users/ruvebal/src/ttod/proposals/551939e2-6c75-441d-a667-29d4e5c09d92.json",
+      "latency_s": 3.683
+    },
+    {
+      "source_id": "img-042",
+      "proposal_id": "46d6514e-c8a3-47ed-8d4c-7c830c26885c",
+      "path": "/Users/ruvebal/src/ttod/proposals/46d6514e-c8a3-47ed-8d4c-7c830c26885c.json",
+      "latency_s": 4.727
+    },
+    {
+      "source_id": "img-043",
+      "proposal_id": "fea4a1ab-5c92-4f20-8df0-e9535a3c00d5",
+      "path": "/Users/ruvebal/src/ttod/proposals/fea4a1ab-5c92-4f20-8df0-e9535a3c00d5.json",
+      "latency_s": 5.024
+    },
+    {
+      "source_id": "img-044",
+      "proposal_id": "489bbecd-a48e-4933-b332-99de41b21ce9",
+      "path": "/Users/ruvebal/src/ttod/proposals/489bbecd-a48e-4933-b332-99de41b21ce9.json",
+      "latency_s": 4.294
+    },
+    {
+      "source_id": "img-045",
+      "proposal_id": "a4ee7f3a-226b-4e17-bc46-01283be4140c",
+      "path": "/Users/ruvebal/src/ttod/proposals/a4ee7f3a-226b-4e17-bc46-01283be4140c.json",
+      "latency_s": 4.716
+    },
+    {
+      "source_id": "img-046",
+      "proposal_id": "04413a8d-34a0-4afd-81f9-7c8e75feea4b",
+      "path": "/Users/ruvebal/src/ttod/proposals/04413a8d-34a0-4afd-81f9-7c8e75feea4b.json",
+      "latency_s": 4.516
+    },
+    {
+      "source_id": "img-047",
+      "proposal_id": "e7cec878-e168-4420-9a63-0b98afcbdd41",
+      "path": "/Users/ruvebal/src/ttod/proposals/e7cec878-e168-4420-9a63-0b98afcbdd41.json",
+      "latency_s": 4.099
+    },
+    {
+      "source_id": "img-048",
+      "proposal_id": "f2f62937-a13d-49aa-b3a4-55de0fc8cb01",
+      "path": "/Users/ruvebal/src/ttod/proposals/f2f62937-a13d-49aa-b3a4-55de0fc8cb01.json",
+      "latency_s": 4.933
+    },
+    {
+      "source_id": "img-049",
+      "proposal_id": "1866b0aa-e934-4c94-86d2-4f6399a01ed2",
+      "path": "/Users/ruvebal/src/ttod/proposals/1866b0aa-e934-4c94-86d2-4f6399a01ed2.json",
+      "latency_s": 3.878
+    },
+    {
+      "source_id": "img-050",
+      "proposal_id": "5fab4447-6040-4f1c-a48f-ed69917cd39c",
+      "path": "/Users/ruvebal/src/ttod/proposals/5fab4447-6040-4f1c-a48f-ed69917cd39c.json",
+      "latency_s": 4.093
+    },
+    {
+      "source_id": "img-051",
+      "proposal_id": "8491b929-d445-4345-8682-0864bf3f9443",
+      "path": "/Users/ruvebal/src/ttod/proposals/8491b929-d445-4345-8682-0864bf3f9443.json",
+      "latency_s": 4.304
+    },
+    {
+      "source_id": "img-052",
+      "proposal_id": "9408788c-5369-4b93-8bbb-a4f7ee6a76c8",
+      "path": "/Users/ruvebal/src/ttod/proposals/9408788c-5369-4b93-8bbb-a4f7ee6a76c8.json",
+      "latency_s": 4.519
+    },
+    {
+      "source_id": "img-053",
+      "proposal_id": "7d1a51ed-0cb4-44df-8861-196f7e96263f",
+      "path": "/Users/ruvebal/src/ttod/proposals/7d1a51ed-0cb4-44df-8861-196f7e96263f.json",
+      "latency_s": 3.451
+    },
+    {
+      "source_id": "img-054",
+      "proposal_id": "1f1c3e77-14dd-4df4-8166-e5ae603e0cc5",
+      "path": "/Users/ruvebal/src/ttod/proposals/1f1c3e77-14dd-4df4-8166-e5ae603e0cc5.json",
+      "latency_s": 4.304
+    },
+    {
+      "source_id": "img-055",
+      "proposal_id": "470c7b8d-3a91-449d-9dec-3fa4c0611f0b",
+      "path": "/Users/ruvebal/src/ttod/proposals/470c7b8d-3a91-449d-9dec-3fa4c0611f0b.json",
+      "latency_s": 4.948
+    },
+    {
+      "source_id": "img-056",
+      "proposal_id": "a5929783-707f-4735-9527-e05fd4573dc7",
+      "path": "/Users/ruvebal/src/ttod/proposals/a5929783-707f-4735-9527-e05fd4573dc7.json",
+      "latency_s": 3.661
+    },
+    {
+      "source_id": "img-057",
+      "proposal_id": "a1039ef0-2d89-4a86-b605-72c6fd9c5d19",
+      "path": "/Users/ruvebal/src/ttod/proposals/a1039ef0-2d89-4a86-b605-72c6fd9c5d19.json",
+      "latency_s": 5.031
+    },
+    {
+      "source_id": "img-059",
+      "proposal_id": "414b8e88-55ac-40f1-bb94-5f4927dec2ea",
+      "path": "/Users/ruvebal/src/ttod/proposals/414b8e88-55ac-40f1-bb94-5f4927dec2ea.json",
+      "latency_s": 4.508
+    },
+    {
+      "source_id": "img-060",
+      "proposal_id": "0eb32111-7329-4116-b681-061cf113d255",
+      "path": "/Users/ruvebal/src/ttod/proposals/0eb32111-7329-4116-b681-061cf113d255.json",
+      "latency_s": 4.099
+    },
+    {
+      "source_id": "img-061",
+      "proposal_id": "cd7acf57-53f2-407e-9794-d1cc50a672ab",
+      "path": "/Users/ruvebal/src/ttod/proposals/cd7acf57-53f2-407e-9794-d1cc50a672ab.json",
+      "latency_s": 4.623
+    },
+    {
+      "source_id": "img-062",
+      "proposal_id": "618091e1-6b17-49c5-8c8c-14e0b813b6d1",
+      "path": "/Users/ruvebal/src/ttod/proposals/618091e1-6b17-49c5-8c8c-14e0b813b6d1.json",
+      "latency_s": 3.88
+    },
+    {
+      "source_id": "img-064",
+      "proposal_id": "c462fcb5-5656-4344-9656-3dacca1c5dfc",
+      "path": "/Users/ruvebal/src/ttod/proposals/c462fcb5-5656-4344-9656-3dacca1c5dfc.json",
+      "latency_s": 4.298
+    },
+    {
+      "source_id": "img-065",
+      "proposal_id": "7c630a4e-711d-4d75-97ec-74a238a858e4",
+      "path": "/Users/ruvebal/src/ttod/proposals/7c630a4e-711d-4d75-97ec-74a238a858e4.json",
+      "latency_s": 4.081
+    },
+    {
+      "source_id": "img-066",
+      "proposal_id": "eecab28d-b9d1-486b-ae4d-e57e2e777891",
+      "path": "/Users/ruvebal/src/ttod/proposals/eecab28d-b9d1-486b-ae4d-e57e2e777891.json",
+      "latency_s": 4.513
+    },
+    {
+      "source_id": "img-067",
+      "proposal_id": "f3cc6116-80ff-40f3-90e9-f097b8eba65d",
+      "path": "/Users/ruvebal/src/ttod/proposals/f3cc6116-80ff-40f3-90e9-f097b8eba65d.json",
+      "latency_s": 3.242
+    },
+    {
+      "source_id": "img-068",
+      "proposal_id": "744f7b04-c150-4732-ab09-f2084e4cba80",
+      "path": "/Users/ruvebal/src/ttod/proposals/744f7b04-c150-4732-ab09-f2084e4cba80.json",
+      "latency_s": 6.517
+    },
+    {
+      "source_id": "img-069",
+      "proposal_id": "15cf873f-85e6-40a6-8a66-797d3f8950a4",
+      "path": "/Users/ruvebal/src/ttod/proposals/15cf873f-85e6-40a6-8a66-797d3f8950a4.json",
+      "latency_s": 3.46
+    },
+    {
+      "source_id": "img-070",
+      "proposal_id": "fcfed4ba-7fb7-4a4d-b520-bc5323abb755",
+      "path": "/Users/ruvebal/src/ttod/proposals/fcfed4ba-7fb7-4a4d-b520-bc5323abb755.json",
+      "latency_s": 6.308
+    },
+    {
+      "source_id": "img-072",
+      "proposal_id": "080af808-6140-47ea-b443-4814acee6503",
+      "path": "/Users/ruvebal/src/ttod/proposals/080af808-6140-47ea-b443-4814acee6503.json",
+      "latency_s": 3.034
+    },
+    {
+      "source_id": "img-073",
+      "proposal_id": "def3190a-6f71-43dc-a02a-3ebac0af4537",
+      "path": "/Users/ruvebal/src/ttod/proposals/def3190a-6f71-43dc-a02a-3ebac0af4537.json",
+      "latency_s": 3.664
+    },
+    {
+      "source_id": "qa-001",
+      "proposal_id": "4eddb0ff-88f2-4b0a-bc91-643c19fe0cec",
+      "path": "/Users/ruvebal/src/ttod/proposals/4eddb0ff-88f2-4b0a-bc91-643c19fe0cec.json",
+      "latency_s": 3.665
+    },
+    {
+      "source_id": "qa-002",
+      "proposal_id": "fc222020-8c6f-4aba-8818-b18898bff85e",
+      "path": "/Users/ruvebal/src/ttod/proposals/fc222020-8c6f-4aba-8818-b18898bff85e.json",
+      "latency_s": 3.662
+    },
+    {
+      "source_id": "qa-003",
+      "proposal_id": "1b30a9da-d837-4557-826f-f4b81750d45a",
+      "path": "/Users/ruvebal/src/ttod/proposals/1b30a9da-d837-4557-826f-f4b81750d45a.json",
+      "latency_s": 3.238
+    },
+    {
+      "source_id": "qa-004",
+      "proposal_id": "fbb6b241-0998-4c3e-8224-579ec729d9d5",
+      "path": "/Users/ruvebal/src/ttod/proposals/fbb6b241-0998-4c3e-8224-579ec729d9d5.json",
+      "latency_s": 3.238
+    },
+    {
+      "source_id": "qa-005",
+      "proposal_id": "cf6d5bc7-4753-443a-ac42-db51442240cc",
+      "path": "/Users/ruvebal/src/ttod/proposals/cf6d5bc7-4753-443a-ac42-db51442240cc.json",
+      "latency_s": 3.661
+    },
+    {
+      "source_id": "qa-006",
+      "proposal_id": "180c3289-2422-45fe-96a5-a082afc85a28",
+      "path": "/Users/ruvebal/src/ttod/proposals/180c3289-2422-45fe-96a5-a082afc85a28.json",
+      "latency_s": 3.444
+    },
+    {
+      "source_id": "qa-007",
+      "proposal_id": "7e4ba66e-75f2-42d9-8db5-07fc3c0703e3",
+      "path": "/Users/ruvebal/src/ttod/proposals/7e4ba66e-75f2-42d9-8db5-07fc3c0703e3.json",
+      "latency_s": 3.447
+    },
+    {
+      "source_id": "qa-008",
+      "proposal_id": "2cebe4ab-753e-4b2c-b1c0-841ea77a935e",
+      "path": "/Users/ruvebal/src/ttod/proposals/2cebe4ab-753e-4b2c-b1c0-841ea77a935e.json",
+      "latency_s": 3.239
+    },
+    {
+      "source_id": "qa-009",
+      "proposal_id": "d712178f-b70a-434c-8189-771d6640af74",
+      "path": "/Users/ruvebal/src/ttod/proposals/d712178f-b70a-434c-8189-771d6640af74.json",
+      "latency_s": 3.242
+    },
+    {
+      "source_id": "qa-010",
+      "proposal_id": "f6cbc2a1-5932-442b-b149-919e3090511c",
+      "path": "/Users/ruvebal/src/ttod/proposals/f6cbc2a1-5932-442b-b149-919e3090511c.json",
+      "latency_s": 3.239
+    },
+    {
+      "source_id": "qa-011",
+      "proposal_id": "548e009a-ac9a-47df-a34f-fb100b75bafb",
+      "path": "/Users/ruvebal/src/ttod/proposals/548e009a-ac9a-47df-a34f-fb100b75bafb.json",
+      "latency_s": 4.101
+    },
+    {
+      "source_id": "qa-012",
+      "proposal_id": "7ce888ff-60eb-4178-b83f-184952069cef",
+      "path": "/Users/ruvebal/src/ttod/proposals/7ce888ff-60eb-4178-b83f-184952069cef.json",
+      "latency_s": 3.445
+    },
+    {
+      "source_id": "qa-013",
+      "proposal_id": "50f2d5e4-8ec4-4db0-9d04-b44873855c54",
+      "path": "/Users/ruvebal/src/ttod/proposals/50f2d5e4-8ec4-4db0-9d04-b44873855c54.json",
+      "latency_s": 3.658
+    },
+    {
+      "source_id": "qa-014",
+      "proposal_id": "a97ba569-080c-4adb-9855-fc66be12aba0",
+      "path": "/Users/ruvebal/src/ttod/proposals/a97ba569-080c-4adb-9855-fc66be12aba0.json",
+      "latency_s": 3.026
+    },
+    {
+      "source_id": "qa-015",
+      "proposal_id": "5e95f720-6422-4cb5-88f0-98d837131466",
+      "path": "/Users/ruvebal/src/ttod/proposals/5e95f720-6422-4cb5-88f0-98d837131466.json",
+      "latency_s": 2.809
+    },
+    {
+      "source_id": "qa-016",
+      "proposal_id": "22dfa38f-05cd-468a-8038-9d4ea0fc9756",
+      "path": "/Users/ruvebal/src/ttod/proposals/22dfa38f-05cd-468a-8038-9d4ea0fc9756.json",
+      "latency_s": 3.652
+    },
+    {
+      "source_id": "ops-001",
+      "proposal_id": "1329b39a-4312-4d43-bfc1-ca413106657e",
+      "path": "/Users/ruvebal/src/ttod/proposals/1329b39a-4312-4d43-bfc1-ca413106657e.json",
+      "latency_s": 4.082
+    },
+    {
+      "source_id": "dbg-001",
+      "proposal_id": "a98ffcac-4fa4-431b-abd4-86c149e20557",
+      "path": "/Users/ruvebal/src/ttod/proposals/a98ffcac-4fa4-431b-abd4-86c149e20557.json",
+      "latency_s": 3.669
+    },
+    {
+      "source_id": "dbg-002",
+      "proposal_id": "68fe025a-b3c3-44eb-b52b-c0f35c1b7dcf",
+      "path": "/Users/ruvebal/src/ttod/proposals/68fe025a-b3c3-44eb-b52b-c0f35c1b7dcf.json",
+      "latency_s": 5.674
+    },
+    {
+      "source_id": "dbg-003",
+      "proposal_id": "2e9eda58-3126-43cc-affc-6edb3e57d99c",
+      "path": "/Users/ruvebal/src/ttod/proposals/2e9eda58-3126-43cc-affc-6edb3e57d99c.json",
+      "latency_s": 5.671
+    },
+    {
+      "source_id": "dbg-004",
+      "proposal_id": "20e87bb3-a23e-4353-a71c-0a354c949c9c",
+      "path": "/Users/ruvebal/src/ttod/proposals/20e87bb3-a23e-4353-a71c-0a354c949c9c.json",
+      "latency_s": 3.877
+    },
+    {
+      "source_id": "js-001",
+      "proposal_id": "f26f805b-bc3e-4978-8006-04de1b847363",
+      "path": "/Users/ruvebal/src/ttod/proposals/f26f805b-bc3e-4978-8006-04de1b847363.json",
+      "latency_s": 4.72
+    },
+    {
+      "source_id": "net-001",
+      "proposal_id": "ef233d35-283e-4735-a122-ab197074b266",
+      "path": "/Users/ruvebal/src/ttod/proposals/ef233d35-283e-4735-a122-ab197074b266.json",
+      "latency_s": 4.294
+    },
+    {
+      "source_id": "a11y-001",
+      "proposal_id": "a70f30ec-931c-4bc1-80ef-1f1ece8f6a1c",
+      "path": "/Users/ruvebal/src/ttod/proposals/a70f30ec-931c-4bc1-80ef-1f1ece8f6a1c.json",
+      "latency_s": 4.084
+    },
+    {
+      "source_id": "ux-001",
+      "proposal_id": "de39ef16-c29a-4d58-b0a9-c69c9dd1bef4",
+      "path": "/Users/ruvebal/src/ttod/proposals/de39ef16-c29a-4d58-b0a9-c69c9dd1bef4.json",
+      "latency_s": 4.076
+    },
+    {
+      "source_id": "ux-002",
+      "proposal_id": "4d28ae7c-e375-4430-ba07-d064739eee61",
+      "path": "/Users/ruvebal/src/ttod/proposals/4d28ae7c-e375-4430-ba07-d064739eee61.json",
+      "latency_s": 4.508
+    },
+    {
+      "source_id": "ux-003",
+      "proposal_id": "82b860be-b5f9-4603-b511-f895855272b5",
+      "path": "/Users/ruvebal/src/ttod/proposals/82b860be-b5f9-4603-b511-f895855272b5.json",
+      "latency_s": 4.093
+    },
+    {
+      "source_id": "cc-001",
+      "proposal_id": "1b615959-e939-4126-bee5-99189c377941",
+      "path": "/Users/ruvebal/src/ttod/proposals/1b615959-e939-4126-bee5-99189c377941.json",
+      "latency_s": 4.577
+    },
+    {
+      "source_id": "cc-002",
+      "proposal_id": "ca8843e9-7e60-4c60-8fb2-50c695436fcc",
+      "path": "/Users/ruvebal/src/ttod/proposals/ca8843e9-7e60-4c60-8fb2-50c695436fcc.json",
+      "latency_s": 5.894
+    },
+    {
+      "source_id": "cc-003",
+      "proposal_id": "198b4d17-d650-46ff-b722-8807258fc99f",
+      "path": "/Users/ruvebal/src/ttod/proposals/198b4d17-d650-46ff-b722-8807258fc99f.json",
+      "latency_s": 4.938
+    },
+    {
+      "source_id": "cc-004",
+      "proposal_id": "613194c2-21c7-476a-ad8d-98db46f7f1f0",
+      "path": "/Users/ruvebal/src/ttod/proposals/613194c2-21c7-476a-ad8d-98db46f7f1f0.json",
+      "latency_s": 4.724
+    },
+    {
+      "source_id": "cc-005",
+      "proposal_id": "307abba1-1b57-48e8-ac95-8853d6244650",
+      "path": "/Users/ruvebal/src/ttod/proposals/307abba1-1b57-48e8-ac95-8853d6244650.json",
+      "latency_s": 4.727
+    },
+    {
+      "source_id": "cc-006",
+      "proposal_id": "88472afe-20e6-4320-9a37-38771a42f5f9",
+      "path": "/Users/ruvebal/src/ttod/proposals/88472afe-20e6-4320-9a37-38771a42f5f9.json",
+      "latency_s": 3.662
+    },
+    {
+      "source_id": "cc-007",
+      "proposal_id": "b9821d2b-42a1-42c2-b123-5120a08dcfc2",
+      "path": "/Users/ruvebal/src/ttod/proposals/b9821d2b-42a1-42c2-b123-5120a08dcfc2.json",
+      "latency_s": 4.302
+    },
+    {
+      "source_id": "cc-008",
+      "proposal_id": "3c1789b2-4943-431b-aa10-a3bca39ee999",
+      "path": "/Users/ruvebal/src/ttod/proposals/3c1789b2-4943-431b-aa10-a3bca39ee999.json",
+      "latency_s": 3.664
+    },
+    {
+      "source_id": "cc-009",
+      "proposal_id": "66f0a3eb-3d7e-4938-9ee3-2b7374ebfe00",
+      "path": "/Users/ruvebal/src/ttod/proposals/66f0a3eb-3d7e-4938-9ee3-2b7374ebfe00.json",
+      "latency_s": 3.674
+    },
+    {
+      "source_id": "cc-010",
+      "proposal_id": "5b5bb3cb-6bc3-49fd-b186-c2e7be8b0f8c",
+      "path": "/Users/ruvebal/src/ttod/proposals/5b5bb3cb-6bc3-49fd-b186-c2e7be8b0f8c.json",
+      "latency_s": 3.67
+    },
+    {
+      "source_id": "wis-001",
+      "proposal_id": "f492a469-5b51-48a9-aae9-890da66b4208",
+      "path": "/Users/ruvebal/src/ttod/proposals/f492a469-5b51-48a9-aae9-890da66b4208.json",
+      "latency_s": 4.1
+    },
+    {
+      "source_id": "wis-002",
+      "proposal_id": "62e3da19-34b4-4f1a-b01a-1992cd9fce2e",
+      "path": "/Users/ruvebal/src/ttod/proposals/62e3da19-34b4-4f1a-b01a-1992cd9fce2e.json",
+      "latency_s": 3.451
+    },
+    {
+      "source_id": "wis-003",
+      "proposal_id": "7c2a56a8-df90-4a1a-95eb-0869045c1751",
+      "path": "/Users/ruvebal/src/ttod/proposals/7c2a56a8-df90-4a1a-95eb-0869045c1751.json",
+      "latency_s": 3.463
+    },
+    {
+      "source_id": "wis-004",
+      "proposal_id": "44c713df-274d-45c5-8568-5a5173c9e0cb",
+      "path": "/Users/ruvebal/src/ttod/proposals/44c713df-274d-45c5-8568-5a5173c9e0cb.json",
+      "latency_s": 3.456
+    },
+    {
+      "source_id": "wis-005",
+      "proposal_id": "f8cfb9ad-2640-4682-a4ec-556359512d7e",
+      "path": "/Users/ruvebal/src/ttod/proposals/f8cfb9ad-2640-4682-a4ec-556359512d7e.json",
+      "latency_s": 4.631
+    },
+    {
+      "source_id": "wis-006",
+      "proposal_id": "27ce277c-cf6e-43fa-8fa8-c19d8978da1f",
+      "path": "/Users/ruvebal/src/ttod/proposals/27ce277c-cf6e-43fa-8fa8-c19d8978da1f.json",
+      "latency_s": 4.787
+    },
+    {
+      "source_id": "wis-007",
+      "proposal_id": "fa77ecdb-b137-4a19-b672-53f5f1a84842",
+      "path": "/Users/ruvebal/src/ttod/proposals/fa77ecdb-b137-4a19-b672-53f5f1a84842.json",
+      "latency_s": 4.099
+    },
+    {
+      "source_id": "wis-008",
+      "proposal_id": "17ffc2d3-d084-4f1d-b3c0-03220c444b4a",
+      "path": "/Users/ruvebal/src/ttod/proposals/17ffc2d3-d084-4f1d-b3c0-03220c444b4a.json",
+      "latency_s": 4.736
+    },
+    {
+      "source_id": "wis-009",
+      "proposal_id": "ebed2e46-75a5-4532-94d9-3ca4ec4fdd49",
+      "path": "/Users/ruvebal/src/ttod/proposals/ebed2e46-75a5-4532-94d9-3ca4ec4fdd49.json",
+      "latency_s": 4.105
+    },
+    {
+      "source_id": "wis-010",
+      "proposal_id": "ee07d8a1-922c-4637-a3bb-8b7307167c10",
+      "path": "/Users/ruvebal/src/ttod/proposals/ee07d8a1-922c-4637-a3bb-8b7307167c10.json",
+      "latency_s": 5.693
+    },
+    {
+      "source_id": "wis-011",
+      "proposal_id": "dd540a8d-e847-4142-bddd-84e46a5a3996",
+      "path": "/Users/ruvebal/src/ttod/proposals/dd540a8d-e847-4142-bddd-84e46a5a3996.json",
+      "latency_s": 5.902
+    },
+    {
+      "source_id": "wis-012",
+      "proposal_id": "cd505f9f-945c-435b-a146-0aea6eb0a6db",
+      "path": "/Users/ruvebal/src/ttod/proposals/cd505f9f-945c-435b-a146-0aea6eb0a6db.json",
+      "latency_s": 5.374
+    },
+    {
+      "source_id": "wis-013",
+      "proposal_id": "6941c878-65c6-445d-8b22-85abfe18ac75",
+      "path": "/Users/ruvebal/src/ttod/proposals/6941c878-65c6-445d-8b22-85abfe18ac75.json",
+      "latency_s": 5.053
+    },
+    {
+      "source_id": "dop-001",
+      "proposal_id": "7ad9cd7e-2b48-4e41-b113-ea3a386e5e6f",
+      "path": "/Users/ruvebal/src/ttod/proposals/7ad9cd7e-2b48-4e41-b113-ea3a386e5e6f.json",
+      "latency_s": 3.89
+    },
+    {
+      "source_id": "dop-002",
+      "proposal_id": "29fa8656-150b-46b4-bd24-d3c7c6f4c7fe",
+      "path": "/Users/ruvebal/src/ttod/proposals/29fa8656-150b-46b4-bd24-d3c7c6f4c7fe.json",
+      "latency_s": 3.032
+    },
+    {
+      "source_id": "arch-001",
+      "proposal_id": "9ebc2958-d9a8-4789-9e40-8a3eea264622",
+      "path": "/Users/ruvebal/src/ttod/proposals/9ebc2958-d9a8-4789-9e40-8a3eea264622.json",
+      "latency_s": 4.314
+    },
+    {
+      "source_id": "arch-002",
+      "proposal_id": "919d2d8f-a1ac-4387-8b7e-46110caf086f",
+      "path": "/Users/ruvebal/src/ttod/proposals/919d2d8f-a1ac-4387-8b7e-46110caf086f.json",
+      "latency_s": 3.881
+    },
+    {
+      "source_id": "arch-003",
+      "proposal_id": "6383cd0a-fd8b-4ec9-b821-04fd73a38910",
+      "path": "/Users/ruvebal/src/ttod/proposals/6383cd0a-fd8b-4ec9-b821-04fd73a38910.json",
+      "latency_s": 4.108
+    },
+    {
+      "source_id": "arch-004",
+      "proposal_id": "17851a4e-3dc7-4485-bd7d-6fbdccb57c42",
+      "path": "/Users/ruvebal/src/ttod/proposals/17851a4e-3dc7-4485-bd7d-6fbdccb57c42.json",
+      "latency_s": 4.524
+    },
+    {
+      "source_id": "arch-005",
+      "proposal_id": "d2dd2323-320f-4e92-816d-c49093d46833",
+      "path": "/Users/ruvebal/src/ttod/proposals/d2dd2323-320f-4e92-816d-c49093d46833.json",
+      "latency_s": 3.908
+    },
+    {
+      "source_id": "arch-006",
+      "proposal_id": "1c2585b1-8481-401f-bfdd-03b401ec1c48",
+      "path": "/Users/ruvebal/src/ttod/proposals/1c2585b1-8481-401f-bfdd-03b401ec1c48.json",
+      "latency_s": 4.548
+    },
+    {
+      "source_id": "arch-007",
+      "proposal_id": "389810ad-3540-47c7-b4f0-f681a03a4e7f",
+      "path": "/Users/ruvebal/src/ttod/proposals/389810ad-3540-47c7-b4f0-f681a03a4e7f.json",
+      "latency_s": 4.335
+    },
+    {
+      "source_id": "arch-008",
+      "proposal_id": "013973a3-6de2-4cdf-8c1e-0460b3e81256",
+      "path": "/Users/ruvebal/src/ttod/proposals/013973a3-6de2-4cdf-8c1e-0460b3e81256.json",
+      "latency_s": 4.116
+    },
+    {
+      "source_id": "arch-009",
+      "proposal_id": "e45a83f2-3eae-4232-a5e4-bb12835cda14",
+      "path": "/Users/ruvebal/src/ttod/proposals/e45a83f2-3eae-4232-a5e4-bb12835cda14.json",
+      "latency_s": 4.329
+    },
+    {
+      "source_id": "arch-010",
+      "proposal_id": "8ba24a7a-66a4-480e-ac55-947edd7d16ce",
+      "path": "/Users/ruvebal/src/ttod/proposals/8ba24a7a-66a4-480e-ac55-947edd7d16ce.json",
+      "latency_s": 5.181
+    },
+    {
+      "source_id": "arch-011",
+      "proposal_id": "5d90f3bb-d82e-4530-bec6-ba804a5e91a5",
+      "path": "/Users/ruvebal/src/ttod/proposals/5d90f3bb-d82e-4530-bec6-ba804a5e91a5.json",
+      "latency_s": 4.328
+    },
+    {
+      "source_id": "arch-012",
+      "proposal_id": "89193e09-5e79-413a-acaa-97b91b91ab3e",
+      "path": "/Users/ruvebal/src/ttod/proposals/89193e09-5e79-413a-acaa-97b91b91ab3e.json",
+      "latency_s": 5.275
+    },
+    {
+      "source_id": "arch-015",
+      "proposal_id": "7f0f4390-6f67-4698-90c5-69d0b8e488e8",
+      "path": "/Users/ruvebal/src/ttod/proposals/7f0f4390-6f67-4698-90c5-69d0b8e488e8.json",
+      "latency_s": 5.924
+    },
+    {
+      "source_id": "arch-016",
+      "proposal_id": "12e997d9-72a2-4b09-ac21-312bfae2c9a6",
+      "path": "/Users/ruvebal/src/ttod/proposals/12e997d9-72a2-4b09-ac21-312bfae2c9a6.json",
+      "latency_s": 4.535
+    },
+    {
+      "source_id": "arch-017",
+      "proposal_id": "f3390290-22da-4a04-81c7-28a46eb12344",
+      "path": "/Users/ruvebal/src/ttod/proposals/f3390290-22da-4a04-81c7-28a46eb12344.json",
+      "latency_s": 4.638
+    },
+    {
+      "source_id": "arch-018",
+      "proposal_id": "1b94ca36-7aea-47a3-bf81-3efdb1ed6eff",
+      "path": "/Users/ruvebal/src/ttod/proposals/1b94ca36-7aea-47a3-bf81-3efdb1ed6eff.json",
+      "latency_s": 4.747
+    },
+    {
+      "source_id": "arch-019",
+      "proposal_id": "6b7163ac-a28a-4f64-901c-410b44fc8a43",
+      "path": "/Users/ruvebal/src/ttod/proposals/6b7163ac-a28a-4f64-901c-410b44fc8a43.json",
+      "latency_s": 5.916
+    },
+    {
+      "source_id": "arch-020",
+      "proposal_id": "4a35c2ff-9472-4738-b199-5f8fbaa954ed",
+      "path": "/Users/ruvebal/src/ttod/proposals/4a35c2ff-9472-4738-b199-5f8fbaa954ed.json",
+      "latency_s": 5.702
+    },
+    {
+      "source_id": "arch-013",
+      "proposal_id": "fc29b76c-7071-4cbe-9ffa-7102ac909363",
+      "path": "/Users/ruvebal/src/ttod/proposals/fc29b76c-7071-4cbe-9ffa-7102ac909363.json",
+      "latency_s": 2.825
+    },
+    {
+      "source_id": "arch-014",
+      "proposal_id": "44a4ca11-f185-49e6-b949-0a813219f07e",
+      "path": "/Users/ruvebal/src/ttod/proposals/44a4ca11-f185-49e6-b949-0a813219f07e.json",
+      "latency_s": 3.7
+    },
+    {
+      "source_id": "arch-021",
+      "proposal_id": "75cb9bd5-4f2b-4f42-a095-a8327b33a75c",
+      "path": "/Users/ruvebal/src/ttod/proposals/75cb9bd5-4f2b-4f42-a095-a8327b33a75c.json",
+      "latency_s": 3.888
+    },
+    {
+      "source_id": "arch-022",
+      "proposal_id": "d9ce4429-92d9-4173-97b9-b96ac04fcb34",
+      "path": "/Users/ruvebal/src/ttod/proposals/d9ce4429-92d9-4173-97b9-b96ac04fcb34.json",
+      "latency_s": 5.488
+    },
+    {
+      "source_id": "arch-023",
+      "proposal_id": "480030c5-cf99-4c3c-b82d-7d5562ac7125",
+      "path": "/Users/ruvebal/src/ttod/proposals/480030c5-cf99-4c3c-b82d-7d5562ac7125.json",
+      "latency_s": 5.688
+    },
+    {
+      "source_id": "arch-024",
+      "proposal_id": "37e43fa5-c064-461d-83aa-c0205f718562",
+      "path": "/Users/ruvebal/src/ttod/proposals/37e43fa5-c064-461d-83aa-c0205f718562.json",
+      "latency_s": 5.486
+    },
+    {
+      "source_id": "arch-025",
+      "proposal_id": "8043b58e-c7be-465e-b47b-f7c1f6b6a45c",
+      "path": "/Users/ruvebal/src/ttod/proposals/8043b58e-c7be-465e-b47b-f7c1f6b6a45c.json",
+      "latency_s": 4.755
+    },
+    {
+      "source_id": "arch-026",
+      "proposal_id": "cf14b393-9ef1-476c-bc57-ef3399c5eeb7",
+      "path": "/Users/ruvebal/src/ttod/proposals/cf14b393-9ef1-476c-bc57-ef3399c5eeb7.json",
+      "latency_s": 4.538
+    },
+    {
+      "source_id": "arch-027",
+      "proposal_id": "36bccaff-0da5-4565-864e-4912210031d0",
+      "path": "/Users/ruvebal/src/ttod/proposals/36bccaff-0da5-4565-864e-4912210031d0.json",
+      "latency_s": 5.699
+    },
+    {
+      "source_id": "cc-011",
+      "proposal_id": "cb3d5e8c-c22e-4eb1-93f3-b178703674b5",
+      "path": "/Users/ruvebal/src/ttod/proposals/cb3d5e8c-c22e-4eb1-93f3-b178703674b5.json",
+      "latency_s": 6.127
+    },
+    {
+      "source_id": "cc-012",
+      "proposal_id": "8ad5d44f-d86c-45b4-b605-c95dacfa9b19",
+      "path": "/Users/ruvebal/src/ttod/proposals/8ad5d44f-d86c-45b4-b605-c95dacfa9b19.json",
+      "latency_s": 9.303
+    },
+    {
+      "source_id": "cc-013",
+      "proposal_id": "5257eb7d-7ef4-4151-8c39-c1c1c312c7a1",
+      "path": "/Users/ruvebal/src/ttod/proposals/5257eb7d-7ef4-4151-8c39-c1c1c312c7a1.json",
+      "latency_s": 6.605
+    },
+    {
+      "source_id": "cc-014",
+      "proposal_id": "dcb381d5-2bec-4a6a-93c0-0b963b782c47",
+      "path": "/Users/ruvebal/src/ttod/proposals/dcb381d5-2bec-4a6a-93c0-0b963b782c47.json",
+      "latency_s": 8.478
+    },
+    {
+      "source_id": "cc-015",
+      "proposal_id": "b26f2dae-4cd5-4d74-9fc9-f6bacee635f2",
+      "path": "/Users/ruvebal/src/ttod/proposals/b26f2dae-4cd5-4d74-9fc9-f6bacee635f2.json",
+      "latency_s": 5.516
+    },
+    {
+      "source_id": "cc-016",
+      "proposal_id": "919e9c86-8a96-4729-a7f3-c4dc40425b31",
+      "path": "/Users/ruvebal/src/ttod/proposals/919e9c86-8a96-4729-a7f3-c4dc40425b31.json",
+      "latency_s": 6.975
+    },
+    {
+      "source_id": "cc-017",
+      "proposal_id": "e1080189-8378-4c6e-82ee-38fd723534b8",
+      "path": "/Users/ruvebal/src/ttod/proposals/e1080189-8378-4c6e-82ee-38fd723534b8.json",
+      "latency_s": 7.379
+    },
+    {
+      "source_id": "cc-018",
+      "proposal_id": "96982fa0-c8cf-4954-b8ae-21227f7c0665",
+      "path": "/Users/ruvebal/src/ttod/proposals/96982fa0-c8cf-4954-b8ae-21227f7c0665.json",
+      "latency_s": 8.653
+    },
+    {
+      "source_id": "cc-019",
+      "proposal_id": "37811c1c-6188-486a-9616-fa6272d2931e",
+      "path": "/Users/ruvebal/src/ttod/proposals/37811c1c-6188-486a-9616-fa6272d2931e.json",
+      "latency_s": 8.651
+    },
+    {
+      "source_id": "cc-020",
+      "proposal_id": "6f5bc0b0-b2b0-4aff-ab3b-56814b39b3d1",
+      "path": "/Users/ruvebal/src/ttod/proposals/6f5bc0b0-b2b0-4aff-ab3b-56814b39b3d1.json",
+      "latency_s": 8.443
+    },
+    {
+      "source_id": "cc-021",
+      "proposal_id": "43c26091-fe19-400f-bd85-249481087adc",
+      "path": "/Users/ruvebal/src/ttod/proposals/43c26091-fe19-400f-bd85-249481087adc.json",
+      "latency_s": 7.023
+    },
+    {
+      "source_id": "cc-023",
+      "proposal_id": "2ebf4658-5ff3-452b-ac91-f61bd3eeaa58",
+      "path": "/Users/ruvebal/src/ttod/proposals/2ebf4658-5ff3-452b-ac91-f61bd3eeaa58.json",
+      "latency_s": 3.703
+    },
+    {
+      "source_id": "cc-024",
+      "proposal_id": "892e21a2-57c4-4c1d-b619-cb16341e9565",
+      "path": "/Users/ruvebal/src/ttod/proposals/892e21a2-57c4-4c1d-b619-cb16341e9565.json",
+      "latency_s": 5.708
+    },
+    {
+      "source_id": "cc-025",
+      "proposal_id": "75b6a485-faa0-4203-8fa2-cd5e8c971fa7",
+      "path": "/Users/ruvebal/src/ttod/proposals/75b6a485-faa0-4203-8fa2-cd5e8c971fa7.json",
+      "latency_s": 4.11
+    },
+    {
+      "source_id": "cc-026",
+      "proposal_id": "d51263d8-0027-4f67-9076-8accb0563d7c",
+      "path": "/Users/ruvebal/src/ttod/proposals/d51263d8-0027-4f67-9076-8accb0563d7c.json",
+      "latency_s": 3.902
+    },
+    {
+      "source_id": "cc-027",
+      "proposal_id": "21e0ade1-c62a-4d32-b5b0-4c88acef9381",
+      "path": "/Users/ruvebal/src/ttod/proposals/21e0ade1-c62a-4d32-b5b0-4c88acef9381.json",
+      "latency_s": 4.541
+    },
+    {
+      "source_id": "cc-028",
+      "proposal_id": "f5c729d8-d332-4b1c-b35b-0857b1b0b2a7",
+      "path": "/Users/ruvebal/src/ttod/proposals/f5c729d8-d332-4b1c-b35b-0857b1b0b2a7.json",
+      "latency_s": 4.318
+    },
+    {
+      "source_id": "cc-029",
+      "proposal_id": "22aec431-e605-4b68-95d9-66086f3607d6",
+      "path": "/Users/ruvebal/src/ttod/proposals/22aec431-e605-4b68-95d9-66086f3607d6.json",
+      "latency_s": 4.115
+    },
+    {
+      "source_id": "cc-030",
+      "proposal_id": "24cc91d2-68a3-4da2-a967-76c4b4fc52f1",
+      "path": "/Users/ruvebal/src/ttod/proposals/24cc91d2-68a3-4da2-a967-76c4b4fc52f1.json",
+      "latency_s": 3.898
+    },
+    {
+      "source_id": "cc-031",
+      "proposal_id": "de0bffd5-6ff9-451d-b61e-b24c799b373c",
+      "path": "/Users/ruvebal/src/ttod/proposals/de0bffd5-6ff9-451d-b61e-b24c799b373c.json",
+      "latency_s": 4.746
+    },
+    {
+      "source_id": "cc-033",
+      "proposal_id": "3ce08470-8a28-4e2a-a84c-e8c01ec25a04",
+      "path": "/Users/ruvebal/src/ttod/proposals/3ce08470-8a28-4e2a-a84c-e8c01ec25a04.json",
+      "latency_s": 5.071
+    },
+    {
+      "source_id": "cc-034",
+      "proposal_id": "6ce15f85-d4fc-40ac-8e73-f3fdba7d8196",
+      "path": "/Users/ruvebal/src/ttod/proposals/6ce15f85-d4fc-40ac-8e73-f3fdba7d8196.json",
+      "latency_s": 6.978
+    },
+    {
+      "source_id": "cc-035",
+      "proposal_id": "96857bc7-929d-4812-ac55-fa264cc38642",
+      "path": "/Users/ruvebal/src/ttod/proposals/96857bc7-929d-4812-ac55-fa264cc38642.json",
+      "latency_s": 6.345
+    },
+    {
+      "source_id": "cc-036",
+      "proposal_id": "55be8730-4894-4bee-bd5d-05f123fb00db",
+      "path": "/Users/ruvebal/src/ttod/proposals/55be8730-4894-4bee-bd5d-05f123fb00db.json",
+      "latency_s": 5.6
+    },
+    {
+      "source_id": "cc-037",
+      "proposal_id": "ca4df8ef-7a3d-4a82-83d5-35f4d90e30a4",
+      "path": "/Users/ruvebal/src/ttod/proposals/ca4df8ef-7a3d-4a82-83d5-35f4d90e30a4.json",
+      "latency_s": 5.708
+    },
+    {
+      "source_id": "cc-038",
+      "proposal_id": "55af16d5-e8e1-4872-bffc-c6d211913adb",
+      "path": "/Users/ruvebal/src/ttod/proposals/55af16d5-e8e1-4872-bffc-c6d211913adb.json",
+      "latency_s": 4.652
+    },
+    {
+      "source_id": "dbg-005",
+      "proposal_id": "ce1adba6-f80d-48b4-89f2-39c27d984d67",
+      "path": "/Users/ruvebal/src/ttod/proposals/ce1adba6-f80d-48b4-89f2-39c27d984d67.json",
+      "latency_s": 6.995
+    },
+    {
+      "source_id": "ux-004",
+      "proposal_id": "a6c8c8b9-6c44-4dd0-9af6-4dd860ec1b6f",
+      "path": "/Users/ruvebal/src/ttod/proposals/a6c8c8b9-6c44-4dd0-9af6-4dd860ec1b6f.json",
+      "latency_s": 4.752
+    },
+    {
+      "source_id": "arch-028",
+      "proposal_id": "83a42394-b49e-4cae-a968-9211af958ba8",
+      "path": "/Users/ruvebal/src/ttod/proposals/83a42394-b49e-4cae-a968-9211af958ba8.json",
+      "latency_s": 8.648
+    },
+    {
+      "source_id": "arch-029",
+      "proposal_id": "e0eb1be1-c130-41ca-922b-0eb3cb098311",
+      "path": "/Users/ruvebal/src/ttod/proposals/e0eb1be1-c130-41ca-922b-0eb3cb098311.json",
+      "latency_s": 6.81
+    },
+    {
+      "source_id": "arch-030",
+      "proposal_id": "dd4b6bca-0c66-4166-a2b4-14d68330d3c4",
+      "path": "/Users/ruvebal/src/ttod/proposals/dd4b6bca-0c66-4166-a2b4-14d68330d3c4.json",
+      "latency_s": 4.793
+    },
+    {
+      "source_id": "arch-031",
+      "proposal_id": "769671e1-2640-46f1-ae0f-29ee3ec0eba3",
+      "path": "/Users/ruvebal/src/ttod/proposals/769671e1-2640-46f1-ae0f-29ee3ec0eba3.json",
+      "latency_s": 7.625
+    },
+    {
+      "source_id": "arch-032",
+      "proposal_id": "f92854a5-6f86-4d29-bb74-c6a6c9563422",
+      "path": "/Users/ruvebal/src/ttod/proposals/f92854a5-6f86-4d29-bb74-c6a6c9563422.json",
+      "latency_s": 7.012
+    },
+    {
+      "source_id": "arch-033",
+      "proposal_id": "cf6baf84-a329-47b7-9139-12325d1758e8",
+      "path": "/Users/ruvebal/src/ttod/proposals/cf6baf84-a329-47b7-9139-12325d1758e8.json",
+      "latency_s": 6.826
+    },
+    {
+      "source_id": "dop-004",
+      "proposal_id": "c77ae449-6ce2-46b1-a60a-1d25d732baf0",
+      "path": "/Users/ruvebal/src/ttod/proposals/c77ae449-6ce2-46b1-a60a-1d25d732baf0.json",
+      "latency_s": 7.228
+    },
+    {
+      "source_id": "arch-037",
+      "proposal_id": "2b00b1d6-3c00-4ac8-9f95-71f5679ae2df",
+      "path": "/Users/ruvebal/src/ttod/proposals/2b00b1d6-3c00-4ac8-9f95-71f5679ae2df.json",
+      "latency_s": 6.809
+    },
+    {
+      "source_id": "arch-038",
+      "proposal_id": "5236087e-713f-42f7-9a27-21d248395cb0",
+      "path": "/Users/ruvebal/src/ttod/proposals/5236087e-713f-42f7-9a27-21d248395cb0.json",
+      "latency_s": 6.137
+    },
+    {
+      "source_id": "arch-039",
+      "proposal_id": "ae935d9e-bd3b-431f-a740-ff448a96eccc",
+      "path": "/Users/ruvebal/src/ttod/proposals/ae935d9e-bd3b-431f-a740-ff448a96eccc.json",
+      "latency_s": 7.57
+    },
+    {
+      "source_id": "arch-040",
+      "proposal_id": "25aad29c-0fbd-449d-b77b-7ac4b8806d0a",
+      "path": "/Users/ruvebal/src/ttod/proposals/25aad29c-0fbd-449d-b77b-7ac4b8806d0a.json",
+      "latency_s": 8.24
+    },
+    {
+      "source_id": "arch-041",
+      "proposal_id": "2c06d7bd-f277-41af-a7fb-401a8918de8a",
+      "path": "/Users/ruvebal/src/ttod/proposals/2c06d7bd-f277-41af-a7fb-401a8918de8a.json",
+      "latency_s": 6.131
+    },
+    {
+      "source_id": "dop-005",
+      "proposal_id": "019707e0-fa80-4d8a-86dd-9ffac625a7a0",
+      "path": "/Users/ruvebal/src/ttod/proposals/019707e0-fa80-4d8a-86dd-9ffac625a7a0.json",
+      "latency_s": 6.567
+    },
+    {
+      "source_id": "dop-006",
+      "proposal_id": "fa1c85ef-afa5-4fbb-a9ef-35a39a6e023c",
+      "path": "/Users/ruvebal/src/ttod/proposals/fa1c85ef-afa5-4fbb-a9ef-35a39a6e023c.json",
+      "latency_s": 7.676
+    },
+    {
+      "source_id": "dop-007",
+      "proposal_id": "577b92e0-b4d7-4fae-8a22-2bb6a2518470",
+      "path": "/Users/ruvebal/src/ttod/proposals/577b92e0-b4d7-4fae-8a22-2bb6a2518470.json",
+      "latency_s": 5.538
+    },
+    {
+      "source_id": "arch-045",
+      "proposal_id": "d3fc5669-cdda-48a9-b1ca-39923a84ba50",
+      "path": "/Users/ruvebal/src/ttod/proposals/d3fc5669-cdda-48a9-b1ca-39923a84ba50.json",
+      "latency_s": 6.937
+    },
+    {
+      "source_id": "wis-014",
+      "proposal_id": "99949731-0abe-4cba-ab35-b517e0a42d17",
+      "path": "/Users/ruvebal/src/ttod/proposals/99949731-0abe-4cba-ab35-b517e0a42d17.json",
+      "latency_s": 5.962
+    },
+    {
+      "source_id": "wis-015",
+      "proposal_id": "db34b4a5-019a-4605-a3b7-16fe574d7f31",
+      "path": "/Users/ruvebal/src/ttod/proposals/db34b4a5-019a-4605-a3b7-16fe574d7f31.json",
+      "latency_s": 5.708
+    },
+    {
+      "source_id": "wis-016",
+      "proposal_id": "88787720-861d-4854-97f1-c8dd213faad5",
+      "path": "/Users/ruvebal/src/ttod/proposals/88787720-861d-4854-97f1-c8dd213faad5.json",
+      "latency_s": 3.899
+    },
+    {
+      "source_id": "arch-049",
+      "proposal_id": "8b682fd9-e319-40be-a6ef-6575a22bb661",
+      "path": "/Users/ruvebal/src/ttod/proposals/8b682fd9-e319-40be-a6ef-6575a22bb661.json",
+      "latency_s": 6.997
+    },
+    {
+      "source_id": "arch-050",
+      "proposal_id": "2d483bb8-1f08-405b-938d-98e56c18474f",
+      "path": "/Users/ruvebal/src/ttod/proposals/2d483bb8-1f08-405b-938d-98e56c18474f.json",
+      "latency_s": 6.584
+    },
+    {
+      "source_id": "arch-051",
+      "proposal_id": "711dacea-eea4-4dc5-b480-515b4de0ff67",
+      "path": "/Users/ruvebal/src/ttod/proposals/711dacea-eea4-4dc5-b480-515b4de0ff67.json",
+      "latency_s": 7.647
+    },
+    {
+      "source_id": "arch-052",
+      "proposal_id": "10538e31-9cb1-4a64-9b61-ac305921c929",
+      "path": "/Users/ruvebal/src/ttod/proposals/10538e31-9cb1-4a64-9b61-ac305921c929.json",
+      "latency_s": 7.242
+    },
+    {
+      "source_id": "arch-053",
+      "proposal_id": "44561b3b-e2ee-4f22-9ab8-6885257ce608",
+      "path": "/Users/ruvebal/src/ttod/proposals/44561b3b-e2ee-4f22-9ab8-6885257ce608.json",
+      "latency_s": 5.725
+    },
+    {
+      "source_id": "arch-054",
+      "proposal_id": "e517226c-6e38-47c5-987b-a164b14934e8",
+      "path": "/Users/ruvebal/src/ttod/proposals/e517226c-6e38-47c5-987b-a164b14934e8.json",
+      "latency_s": 5.289
+    },
+    {
+      "source_id": "arch-055",
+      "proposal_id": "5051fe78-ead6-43e9-8baf-17828769cde7",
+      "path": "/Users/ruvebal/src/ttod/proposals/5051fe78-ead6-43e9-8baf-17828769cde7.json",
+      "latency_s": 5.073
+    },
+    {
+      "source_id": "arch-056",
+      "proposal_id": "155f542c-b20d-4877-8f3c-63bbb989fc89",
+      "path": "/Users/ruvebal/src/ttod/proposals/155f542c-b20d-4877-8f3c-63bbb989fc89.json",
+      "latency_s": 6.356
+    },
+    {
+      "source_id": "arch-057",
+      "proposal_id": "157fce90-8ac6-4619-965f-df7798ff5d6f",
+      "path": "/Users/ruvebal/src/ttod/proposals/157fce90-8ac6-4619-965f-df7798ff5d6f.json",
+      "latency_s": 3.914
+    },
+    {
+      "source_id": "arch-058",
+      "proposal_id": "a8270583-37ca-40a1-9d2a-4576f684ad91",
+      "path": "/Users/ruvebal/src/ttod/proposals/a8270583-37ca-40a1-9d2a-4576f684ad91.json",
+      "latency_s": 5.192
+    },
+    {
+      "source_id": "arch-059",
+      "proposal_id": "cdb72868-cdb2-489b-a92c-e9956fcd2dd5",
+      "path": "/Users/ruvebal/src/ttod/proposals/cdb72868-cdb2-489b-a92c-e9956fcd2dd5.json",
+      "latency_s": 4.76
+    },
+    {
+      "source_id": "rrp-001",
+      "proposal_id": "68faad27-10e9-4834-a824-971594e7672a",
+      "path": "/Users/ruvebal/src/ttod/proposals/68faad27-10e9-4834-a824-971594e7672a.json",
+      "latency_s": 3.687
+    },
+    {
+      "source_id": "rrp-002",
+      "proposal_id": "c54fdf7a-9c40-4c15-9979-85b36fbc04f3",
+      "path": "/Users/ruvebal/src/ttod/proposals/c54fdf7a-9c40-4c15-9979-85b36fbc04f3.json",
+      "latency_s": 3.901
+    },
+    {
+      "source_id": "rrp-003",
+      "proposal_id": "0bba95ac-def2-41dc-ba7a-ae055ecea1b0",
+      "path": "/Users/ruvebal/src/ttod/proposals/0bba95ac-def2-41dc-ba7a-ae055ecea1b0.json",
+      "latency_s": 3.681
+    },
+    {
+      "source_id": "rrp-004",
+      "proposal_id": "65c589a0-6b8c-4aec-9039-983c22b08676",
+      "path": "/Users/ruvebal/src/ttod/proposals/65c589a0-6b8c-4aec-9039-983c22b08676.json",
+      "latency_s": 2.838
+    },
+    {
+      "source_id": "rrp-005",
+      "proposal_id": "1630ce0c-d55e-4588-9f7a-31fe27e30991",
+      "path": "/Users/ruvebal/src/ttod/proposals/1630ce0c-d55e-4588-9f7a-31fe27e30991.json",
+      "latency_s": 4.326
+    },
+    {
+      "source_id": "rrp-006",
+      "proposal_id": "39f146c6-c07b-482a-8933-0413378d0050",
+      "path": "/Users/ruvebal/src/ttod/proposals/39f146c6-c07b-482a-8933-0413378d0050.json",
+      "latency_s": 3.03
+    },
+    {
+      "source_id": "rrp-007",
+      "proposal_id": "4b371c4c-3187-4f39-9266-f0f17eb4f69b",
+      "path": "/Users/ruvebal/src/ttod/proposals/4b371c4c-3187-4f39-9266-f0f17eb4f69b.json",
+      "latency_s": 4.298
+    },
+    {
+      "source_id": "rrp-008",
+      "proposal_id": "58c4a3c3-573d-466b-8f92-a09ef237a891",
+      "path": "/Users/ruvebal/src/ttod/proposals/58c4a3c3-573d-466b-8f92-a09ef237a891.json",
+      "latency_s": 3.458
+    },
+    {
+      "source_id": "rrp-009",
+      "proposal_id": "a891c911-7eda-422c-8f53-a784fa7a9064",
+      "path": "/Users/ruvebal/src/ttod/proposals/a891c911-7eda-422c-8f53-a784fa7a9064.json",
+      "latency_s": 3.883
+    },
+    {
+      "source_id": "rrp-010",
+      "proposal_id": "e9f8cd0c-0d9f-4472-9862-19ff5a3ad8aa",
+      "path": "/Users/ruvebal/src/ttod/proposals/e9f8cd0c-0d9f-4472-9862-19ff5a3ad8aa.json",
+      "latency_s": 3.035
+    },
+    {
+      "source_id": "qa-017",
+      "proposal_id": "0810f69c-0ded-476b-bab9-3b08afedbdb3",
+      "path": "/Users/ruvebal/src/ttod/proposals/0810f69c-0ded-476b-bab9-3b08afedbdb3.json",
+      "latency_s": 4.087
+    },
+    {
+      "source_id": "qa-018",
+      "proposal_id": "5998473c-ed21-42d3-9b63-1eebfba9c530",
+      "path": "/Users/ruvebal/src/ttod/proposals/5998473c-ed21-42d3-9b63-1eebfba9c530.json",
+      "latency_s": 2.605
+    },
+    {
+      "source_id": "qa-019",
+      "proposal_id": "4ce06c30-c547-4689-8cc7-2064a90bb770",
+      "path": "/Users/ruvebal/src/ttod/proposals/4ce06c30-c547-4689-8cc7-2064a90bb770.json",
+      "latency_s": 3.667
+    },
+    {
+      "source_id": "rrp-014",
+      "proposal_id": "2dd0e69f-3c52-4962-89b5-a5bcb72e3fa2",
+      "path": "/Users/ruvebal/src/ttod/proposals/2dd0e69f-3c52-4962-89b5-a5bcb72e3fa2.json",
+      "latency_s": 5.15
+    }
+  ],
+  "failures": [],
+  "canonical_boundary": "proposals only; no proposal accepted; ttod.yml read-only"
+}

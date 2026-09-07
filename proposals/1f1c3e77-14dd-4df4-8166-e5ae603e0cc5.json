@@ -1,0 +1,36 @@
+{
+  "proposal_id": "1f1c3e77-14dd-4df4-8166-e5ae603e0cc5",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La imagen de fondo que oscurece el texto es como un cuadro que bloquea la puerta: bello, pero un malentendido fundamental de su prop\u00f3sito.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-054",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-054' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Aseg\u00farate de que el arte de fondo nunca oculte el contenido.",
+    "tags": [
+      "design",
+      "contrast",
+      "tao-of-web-images"
+    ],
+    "subsection": "philosophy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:29:41.125526Z"
+}

@@ -1,0 +1,40 @@
+{
+  "proposal_id": "dcb381d5-2bec-4a6a-93c0-0b963b782c47",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Los datos escritos para m\u00e1quinas son ruido. Los datos escritos para humanos son m\u00fasica. El maestro escribe datos que ambos pueden leer: las m\u00e1quinas los analizan con rapidez, los humanos los comprenden al instante.",
+    "section": "code-craft",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-014",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-014' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La forma m\u00e1s alta de estructuraci\u00f3n de datos sirve a la m\u00e1quina y al humano. YAML con sangr\u00eda consistente, JSON con espaciado adecuado, XML con estructura clara. Cuando los datos se leen como prosa, el parser y el programador se regocijan.",
+    "tags": [
+      "codecraft",
+      "formatting",
+      "readability",
+      "philosophy",
+      "data",
+      "human-readable",
+      "featured"
+    ],
+    "subsection": "readability",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:37:01.068553Z"
+}

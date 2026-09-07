@@ -1,0 +1,37 @@
+{
+  "proposal_id": "22aec431-e605-4b68-95d9-66086f3607d6",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Llamaste a la variable 'data'. Asumo que la funci\u00f3n se llama 'doThings'. Los enterraremos juntos en el cementerio de la ambig\u00fcedad.",
+    "section": "code-craft",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-029",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-029' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Nombrar vagamente es, en efecto, no nombrar",
+    "tags": [
+      "naming",
+      "variables",
+      "ambiguity",
+      "clean-code"
+    ],
+    "subsection": "naming",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:38:24.114970Z"
+}

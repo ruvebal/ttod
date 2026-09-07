@@ -1,0 +1,38 @@
+{
+  "proposal_id": "68fe025a-b3c3-44eb-b52b-c0f35c1b7dcf",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El primer 90 por ciento del c\u00f3digo representa el primer 90 por ciento del tiempo de desarrollo. El 10 por ciento restante del c\u00f3digo representa el otro 90 por ciento del tiempo de desarrollo.",
+    "section": "debugging",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "dbg-002",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'dbg-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Planifica para el \u00faltimo 10%; ah\u00ed ocurre la iluminaci\u00f3n. Las soluciones m\u00e1s elegantes ocultan la mayor complejidad.",
+    "tags": [
+      "debugging",
+      "estimation",
+      "reality",
+      "humor",
+      "featured"
+    ],
+    "subsection": "methodology",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:31:59.207986Z"
+}

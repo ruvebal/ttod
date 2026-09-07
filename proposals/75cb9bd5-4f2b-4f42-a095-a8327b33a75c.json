@@ -1,0 +1,38 @@
+{
+  "proposal_id": "75cb9bd5-4f2b-4f42-a095-a8327b33a75c",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La simplicidad es sagrada - Quita antes de a\u00f1adir.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-021",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-021' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La primera pregunta antes de a\u00f1adir c\u00f3digo: \u00bfQu\u00e9 puedo quitar? La simplicidad no es la ausencia de complejidad, sino la presencia de comprensi\u00f3n.",
+    "tags": [
+      "architecture",
+      "simplicity",
+      "refactoring",
+      "sacred",
+      "featured"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:35:58.894165Z"
+}

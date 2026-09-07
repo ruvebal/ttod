@@ -1,0 +1,39 @@
+{
+  "proposal_id": "ebed2e46-75a5-4532-94d9-3ca4ec4fdd49",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El r\u00edo actualiza las piedras; no las rompe.",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-009",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Los upserts son el r\u00edo; el esquema es el lecho. El r\u00edo actualiza las piedras sin romperlas. Elige operaciones que preserven lo que existe mientras permiten el crecimiento.",
+    "tags": [
+      "wisdom",
+      "upsert",
+      "non-destructive",
+      "operations",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "philosophy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:33:55.212585Z"
+}

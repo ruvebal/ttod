@@ -1,0 +1,37 @@
+{
+  "proposal_id": "b9036283-040c-4e96-a40a-7b419356c203",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El desarrollador sabio sabe: la imagen m\u00e1s peque\u00f1a carga el sentido m\u00e1s pesado.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-001",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La optimizaci\u00f3n de im\u00e1genes consiste en preservar el significado mientras se reduce el peso",
+    "tags": [
+      "optimization",
+      "file-size",
+      "meaning",
+      "featured"
+    ],
+    "subsection": "optimization",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:21:28.248007Z"
+}

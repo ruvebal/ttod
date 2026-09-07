@@ -1,0 +1,42 @@
+{
+  "proposal_id": "dbc4566a-e20e-4c51-9fec-8368da311d67",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Un protocolo es una promesa. Un adaptador es un traductor. Un puerto es una puerta. El dominio no sabe qui\u00e9n llama: solo conoce la forma de la pregunta.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-034",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-034' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Tao de DevIAC (\u00a744): El jard\u00edn hexagonal",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured"
+    ],
+    "subsection": "boundaries",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
+  "wpl_record_id": null,
+  "wpl_record_digest": null,
+  "evidence_snapshot_id": null,
+  "evidence_snapshot_digest": null,
+  "human_review_activities": [],
+  "accepted_quote_id": null,
+  "created_at": "2026-09-04T14:33:42.362796Z"
+}

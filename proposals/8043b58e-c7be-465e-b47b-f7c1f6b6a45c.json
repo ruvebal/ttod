@@ -1,0 +1,38 @@
+{
+  "proposal_id": "8043b58e-c7be-465e-b47b-f7c1f6b6a45c",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Las variables de CSS son contratos - Usa --header-height, --footer-height con devoci\u00f3n.",
+    "section": "architecture",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-025",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-025' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Las variables de CSS son contratos entre componentes. \u00dasalas para todas las dimensiones de dise\u00f1o. Responden a los cambios de tema, evitan los n\u00fameros m\u00e1gicos y mantienen la consistencia.",
+    "tags": [
+      "architecture",
+      "css",
+      "variables",
+      "contracts",
+      "maintainability"
+    ],
+    "subsection": "boundaries",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:36:20.313778Z"
+}

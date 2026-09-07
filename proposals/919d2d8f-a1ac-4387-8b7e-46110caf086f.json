@@ -1,0 +1,37 @@
+{
+  "proposal_id": "919d2d8f-a1ac-4387-8b7e-46110caf086f",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Fractalizar es humano. Saber cu\u00e1ndo dejar de fractalizar es sabidur\u00eda.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-002",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "La descomposici\u00f3n infinita crea complejidad infinita; encuentra el nivel donde el valor supera al costo.",
+    "tags": [
+      "architecture",
+      "fractals",
+      "abstraction",
+      "balance"
+    ],
+    "subsection": "fractals",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:34:32.357294Z"
+}

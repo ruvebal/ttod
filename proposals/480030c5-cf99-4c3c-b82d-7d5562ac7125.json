@@ -1,0 +1,38 @@
+{
+  "proposal_id": "480030c5-cf99-4c3c-b82d-7d5562ac7125",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Los dise\u00f1os proporcionan contexto: cada secci\u00f3n de ruta merece su envoltura.",
+    "section": "architecture",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-023",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-023' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "En la red de la vida necesitamos un dise\u00f1o como la gota de lluvia necesita la nube: el dise\u00f1o otorga estructura y contexto a la p\u00e1gina, sin pesar sobre el contenido que transporta.",
+    "tags": [
+      "architecture",
+      "layout",
+      "context",
+      "structure",
+      "routing"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:36:10.071517Z"
+}

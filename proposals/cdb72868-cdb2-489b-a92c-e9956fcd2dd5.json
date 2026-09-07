@@ -1,0 +1,40 @@
+{
+  "proposal_id": "cdb72868-cdb2-489b-a92c-e9956fcd2dd5",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "el erudito pregunta al cofre, la m\u00e1quina pregunta al cofre lo mismo \u2014 ambos reciben la verdad",
+    "section": "architecture",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-059",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-059' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Haiku: el erudito pregunta al cofre, / la m\u00e1quina pregunta al cofre lo mismo \u2014 / ambos reciben la verdad",
+    "tags": [
+      "architecture",
+      "single-source-of-truth",
+      "mcp",
+      "athanor",
+      "haiku",
+      "poetry",
+      "featured"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:42:29.778159Z"
+}

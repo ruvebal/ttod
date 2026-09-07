@@ -1,5 +1,4 @@
 exports/
-proposals/
 __pycache__/
 *.pyc
 .venv/

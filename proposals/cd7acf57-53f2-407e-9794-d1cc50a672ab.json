@@ -1,0 +1,36 @@
+{
+  "proposal_id": "cd7acf57-53f2-407e-9794-d1cc50a672ab",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "El desarrollador que usa `<img loading='lazy'>` ha aprendido. El desarrollador que usa `loading='eager'` ha comprendido. El desarrollador que cuestiona si la imagen debe existir ha alcanzado la iluminaci\u00f3n.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-061",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-061' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Cuestiona cada activo; solo carga lo que gana su lugar.",
+    "tags": [
+      "loading",
+      "philosophy",
+      "tao-of-web-images"
+    ],
+    "subsection": "paradox",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:30:07.999057Z"
+}

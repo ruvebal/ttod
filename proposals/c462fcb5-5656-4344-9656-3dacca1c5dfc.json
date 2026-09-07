@@ -1,0 +1,37 @@
+{
+  "proposal_id": "c462fcb5-5656-4344-9656-3dacca1c5dfc",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Cada byte que env\u00edas viaja miles de millas por cables bajo los oc\u00e9anos. Respeta el viaje.",
+    "section": "images",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-064",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-064' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "teaches": "Honra la ruta global de los datos enviando solo lo necesario.",
+    "tags": [
+      "laws",
+      "performance",
+      "ethics",
+      "tao-of-web-images"
+    ],
+    "subsection": "laws",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-07T09:30:16.178015Z"
+}

@@ -42,6 +42,10 @@ a:hover { color: #304e40; }
 .eyebrow { margin: 0 0 .7rem; color: var(--gold); font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; text-wrap: balance; }
 h1 { max-width: 18ch; margin: 0 0 1.4rem; font-size: clamp(2.7rem, 7vw, 5.8rem); font-weight: 500; }
+.hero h1.flagship-quote { max-width: 36ch; margin-bottom: .55rem; font-size: clamp(1.85rem, 4.4vw, 3.35rem); line-height: 1.22; }
+.flagship-cite { margin: 0 0 1.4rem; color: var(--muted); font-size: .95rem; }
+.lang-switch { display: inline-flex; align-items: center; gap: .45rem; margin-left: .4rem; padding-left: .75rem; border-left: 1px solid var(--line); }
+.lang-switch span[aria-current="true"] { color: var(--ink); font-size: .86rem; font-weight: 700; }
 h2 { margin-top: 3.5rem; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; }
 h3 { font-size: 1.35rem; }
 .lede { max-width: 62ch; color: var(--muted); font-size: clamp(1.12rem, 2.2vw, 1.4rem); }

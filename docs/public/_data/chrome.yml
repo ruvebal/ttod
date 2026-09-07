@@ -1,0 +1,24 @@
+en:
+  skip: Skip to content
+  home_aria: TTOD home
+  nav_label: Primary navigation
+  lang_label: Language
+  lang_en: English
+  lang_es: Español
+  footer_blurb: A governed teaching reference for development practice.
+  stewardship: Stewardship
+  studio: "Research studio: "
+  licensing: Licensing
+  licenses: "Code: MIT. Content: CC BY-NC-SA 4.0 unless noted otherwise."
+es:
+  skip: Saltar al contenido
+  home_aria: Inicio de TTOD
+  nav_label: Navegación principal
+  lang_label: Idioma
+  lang_en: English
+  lang_es: Español
+  footer_blurb: Una referencia docente gobernada para la práctica del desarrollo.
+  stewardship: Custodia
+  studio: "Estudio de investigación: "
+  licensing: Licencias
+  licenses: "Código: MIT. Contenido: CC BY-NC-SA 4.0 salvo indicación contraria."

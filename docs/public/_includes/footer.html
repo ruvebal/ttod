@@ -1,16 +1,18 @@
+{% assign lang = page.lang | default: site.lang | default: "en" %}
+{% assign chrome = site.data.chrome[lang] %}
 <footer class="site-footer ttod-bg-reeds">
   <div class="shell footer-grid">
     <div>
       <strong>道 The Tao of Development (TTOD)</strong>
-      <p>A governed teaching reference for development practice.</p>
+      <p>{{ chrome.footer_blurb }}</p>
     </div>
     <div>
-      <strong>Stewardship</strong>
-      <p>Research studio: <span class="domain">@crea-comm.net</span></p>
+      <strong>{{ chrome.stewardship }}</strong>
+      <p>{{ chrome.studio }}<span class="domain">@crea-comm.net</span></p>
     </div>
     <div>
-      <strong>Licensing</strong>
-      <p>Code: MIT. Content: CC BY-NC-SA 4.0 unless noted otherwise.</p>
+      <strong>{{ chrome.licensing }}</strong>
+      <p>{{ chrome.licenses }}</p>
     </div>
   </div>
 </footer>

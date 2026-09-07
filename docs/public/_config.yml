@@ -30,3 +30,9 @@ defaults:
       path: ""
     values:
       layout: default
+      lang: en
+  - scope:
+      path: es
+    values:
+      layout: default
+      lang: es

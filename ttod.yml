@@ -3,7 +3,7 @@ meta:
   subtitle: Wisdom for the Digital Path
   version: 3.1.0
   language: en
-  total_quotes: 459
+  total_quotes: 460
   last_id_by_section:
     a11y: 2
     arch: 110
@@ -17,7 +17,7 @@ meta:
     qa: 38
     rrp: 27
     ux: 8
-    wis: 33
+    wis: 34
   languages:
   - en
   - es
@@ -14377,6 +14377,38 @@ quotes:
   created_at: '2026-09-07'
   content_digest: 70d1b3ca0d11b9c88976e79fe474ab47be3c9f212071f2fa3d532315740db646
   proposal_id: 87ec75c6-5511-4638-8252-bc9e4d20c0cf
+- id: wis-034
+  schema_version: 3.1.0
+  text: El Tao que puede expresarse en un prompt no es el Tao eterno. El código que
+    puede generarse sin comprensión no es verdadero código.
+  section: wisdom
+  level: master
+  lang: es
+  origin: blackbox
+  tags:
+  - wisdom
+  - understanding
+  - learning
+  teaches: El prompt y la generación no sustituyen la comprensión necesaria para juzgar,
+    mantener y asumir la responsabilidad del código.
+  relation_edges:
+  - target: wis-033
+    relation_type: translation_of
+  validation:
+    reviewer_id: ruvebal
+    activity_id: accept-b547bd7f-63ae-4e62-a9b0-52cc171eeec9
+    status: validated
+    reviewed_at: '2026-09-07T16:11:50.628578Z'
+  rights:
+    access: public
+    license: CC-BY-NC-SA-4.0
+    holder: ruvebal@crea-comm.net
+    permission_basis: rights-holder-relicense-2026-08-18
+  authorship_assertion: machine-translated from 'wis-033' (lang=en) via ollama:qwen3.8:27b
+    — human review required before acceptance
+  created_at: '2026-09-07'
+  content_digest: 386641cc748226e44ccdf7323b5c4d3e824927a17909fd4af27bd7f6615338b0
+  proposal_id: 932f36fa-9aa5-45fd-8460-815b462f76ed
 collections:
   daily_wisdom:
     name: Quote of the Day

@@ -4,3 +4,21 @@
 {% seo %}
 <link rel="icon" href="{{ '/assets/visual-system/favicon.svg' | relative_url }}" type="image/svg+xml">
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+{% assign lang = page.lang | default: site.lang | default: "en" %}
+{% if page.alternate_url %}
+  {% assign alt_url = page.alternate_url %}
+{% elsif lang == "es" %}
+  {% if page.url == "/es/" %}
+    {% assign alt_url = "/" %}
+  {% else %}
+    {% assign alt_url = page.url | replace: "/es", "" %}
+  {% endif %}
+{% else %}
+  {% if page.url == "/" %}
+    {% assign alt_url = "/es/" %}
+  {% else %}
+    {% assign alt_url = "/es" | append: page.url %}
+  {% endif %}
+{% endif %}
+<link rel="alternate" hreflang="en" href="{{ site.url }}{% if lang == 'es' %}{{ alt_url | relative_url }}{% else %}{{ page.url | relative_url }}{% endif %}">
+<link rel="alternate" hreflang="es" href="{{ site.url }}{% if lang == 'es' %}{{ page.url | relative_url }}{% else %}{{ alt_url | relative_url }}{% endif %}">

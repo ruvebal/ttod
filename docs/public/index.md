@@ -2,12 +2,14 @@
 title: 道 The Tao of Development (TTOD)
 description: A public window into TTOD's governed knowledge base, front-end teaching platform, and research programme.
 permalink: /
+lang: en
 ---
 
 <section class="hero">
   <div>
     <p class="eyebrow">Pedagogy · front-end architecture · governed knowledge</p>
-    <h1>A complete path, kept deliberately open.</h1>
+    <h1 class="flagship-quote">The Tao that can be prompted is not the eternal Tao. The code that can be generated without understanding is not true code.</h1>
+    <p class="flagship-cite">— <code>wis-033</code></p>
     <p class="lede">TTOD is a governed collection of development wisdom and a locally runnable teaching reference. It connects content, interfaces, interactive islands, retrieval, accessibility, and tests so learners can see the whole system before they extend it.</p>
     <a class="button" href="{{ '/project/' | relative_url }}">Understand the project</a>
     <a class="button" href="{{ '/guides/local-setup/' | relative_url }}">Run it locally</a>
@@ -23,8 +25,6 @@ permalink: /
     </dl>
   </aside>
 </section>
-
-<blockquote class="flag-quote">“The Tao that can be prompted is not the eternal Tao. The code that can be generated without understanding is not true code.” <small>— <code>wis-033</code></small></blockquote>
 
 ## Explore every developed area
 

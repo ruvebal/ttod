@@ -1,20 +1,42 @@
-- title: Home
-  url: /
-- title: Project
-  url: /project/
-- title: Product areas
-  url: /platform/
-- title: Teaching model
-  url: /teaching/
-- title: Research
-  url: /research/
-- title: Guides
-  url: /guides/
-- title: Students
-  url: /audiences/students/
-- title: University partners
-  url: /audiences/partners/
-- title: Research & venture
-  url: /audiences/research-funders/
-- title: Roadmap
-  url: /roadmap/
+en:
+  - title: Home
+    url: /
+  - title: Project
+    url: /project/
+  - title: Product areas
+    url: /platform/
+  - title: Teaching model
+    url: /teaching/
+  - title: Research
+    url: /research/
+  - title: Guides
+    url: /guides/
+  - title: Students
+    url: /audiences/students/
+  - title: University partners
+    url: /audiences/partners/
+  - title: Research & venture
+    url: /audiences/research-funders/
+  - title: Roadmap
+    url: /roadmap/
+es:
+  - title: Inicio
+    url: /es/
+  - title: Proyecto
+    url: /es/project/
+  - title: Áreas de producto
+    url: /es/platform/
+  - title: Modelo docente
+    url: /es/teaching/
+  - title: Investigación
+    url: /es/research/
+  - title: Guías
+    url: /es/guides/
+  - title: Estudiantes
+    url: /es/audiences/students/
+  - title: Socios universitarios
+    url: /es/audiences/partners/
+  - title: Investigación e iniciativa
+    url: /es/audiences/research-funders/
+  - title: Hoja de ruta
+    url: /es/roadmap/

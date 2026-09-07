@@ -1,0 +1,41 @@
+---
+title: Áreas de producto
+eyebrow: La referencia implementada
+description: Las áreas visibles y los límites de front-end en la referencia docente de TTOD.
+permalink: /es/platform/
+lang: es
+---
+
+# Un producto, varios límites enseñables
+
+La referencia del profesorado es ejecutable en local de extremo a extremo. Sus áreas no son demostraciones separadas: comparten localización, contratos de contenido, límites de API, estados accesibles en el navegador y la misma fuente gobernada de citas.
+
+| Área | Propósito visible para quien usa | Idea de front-end que se hace observable |
+| --- | --- | --- |
+| Bienvenida | entrar en inglés o en español | enrutado localizado e idioma del documento |
+| Cita | inspeccionar una entrada gobernada | datos tipados, procedencia, derechos y presentación semántica |
+| Sabiduría | recorrer la colección | arquitectura de información, filtros y estados vacíos |
+| Documentación | aprender el sistema en contexto | colecciones de contenido y navegación editorial |
+| Grafo | explorar entradas relacionadas | una isla Svelte hidratada con estado textual accesible |
+| Oracle | preguntar y recibir una respuesta en flujo | una isla React, estado en streaming, fundamentación y recuperación |
+| Operación local | arrancar y observar el conjunto | el límite navegador/servicio, no un temario de operaciones |
+| Pruebas | situar la evidencia en capas útiles | razonamiento unitario, de componente, de contrato, de ruta y de accesibilidad |
+
+## Arquitectura a escala docente
+
+```text
+localized route
+  → Astro document and content contract
+  → bounded Svelte or React island
+  → HTTP or streamed request
+  → application and retrieval contracts
+  → governed quote snapshot
+  → accessible browser state
+  → test at the cheapest useful layer
+```
+
+Astro posee el documento y las rutas orientadas al contenido. Las islas interactivas se usan donde el estado local o el streaming lo justifican. El backend se explica solo lo bastante para trazar la petición y el límite de confianza; el énfasis docente permanece en la arquitectura front-end.
+
+## Madurez honesta
+
+La referencia rica demuestra contenido localizado, exploración de grafo y un Oracle en flujo. La operación en el navegador, el comportamiento sin conexión y la superficie de pruebas todavía no constituyen una implementación completa lista para el alumnado. Una futura línea de base docente mantendrá cada área mayor presente a profundidad de hello world; esa resta está prevista, no concluida.

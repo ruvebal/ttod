@@ -80,7 +80,11 @@ jobs:
         run: python3 agentic/report-steward/scripts/check_public_privacy.py _site-public
 
       - name: Check internal links
-        run: bundle exec htmlproofer _site-public --disable-external --allow-hash-href
+        run: |
+          bundle exec htmlproofer _site-public \
+            --disable-external \
+            --allow-hash-href \
+            --swap-urls '^/ttod/:/'
 
       - name: Configure GitHub Pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

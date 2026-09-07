@@ -1,6 +1,6 @@
 {
   "proposal_id": "ebed2e46-75a5-4532-94d9-3ca4ec4fdd49",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El río actualiza las piedras; no las rompe.",
     "section": "wisdom",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c887e76c-5880-4ef9-bebb-7a6e224066ee",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:15.304954Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:33:55.212585Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:16.329979Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:55.212585Z",
+  "accepted_quote_id": "wis-028"
 }

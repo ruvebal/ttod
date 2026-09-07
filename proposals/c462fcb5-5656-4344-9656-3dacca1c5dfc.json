@@ -1,6 +1,6 @@
 {
   "proposal_id": "c462fcb5-5656-4344-9656-3dacca1c5dfc",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Cada byte que envías viaja miles de millas por cables bajo los océanos. Respeta el viaje.",
     "section": "images",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b5659412-c757-4e68-9b27-4bdc4d49ffc8",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:26.150914Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:30:16.178015Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:27.067813Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:16.178015Z",
+  "accepted_quote_id": "img-128"
 }

@@ -1,6 +1,6 @@
 {
   "proposal_id": "074d2120-f1e0-4cda-b58f-83e0cca0295a",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La carga anticipada es avaricia. La carga perezosa es sabiduría. Pero no cargar nada es iluminación: cuestiona si la imagen sirve a un propósito.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-f7ebdcc4-72e5-4353-ab96-bb04d483026d",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:18.653995Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:27.882354Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:19.157460Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:27.882354Z",
+  "accepted_quote_id": "img-077"
 }

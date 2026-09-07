@@ -1,6 +1,6 @@
 {
   "proposal_id": "7d1a51ed-0cb4-44df-8861-196f7e96263f",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Usa imágenes para realzar el mensaje, no para serlo. Las palabras permanecen cuando las imágenes fallan.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-55b778ac-74db-4f9c-979a-e90ef0079736",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:33.685582Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:29:36.820683Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:34.525792Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:36.820683Z",
+  "accepted_quote_id": "img-113"
 }

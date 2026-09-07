@@ -1,6 +1,6 @@
 {
   "proposal_id": "1866b0aa-e934-4c94-86d2-4f6399a01ed2",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La imagen más rápida de cargar es la que no se carga. Cuestiona si el héroe debe ser una imagen de héroe.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-a45f37f0-9b3f-4f3a-9e69-65414e57ed4d",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:29.764206Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:29:20.451077Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:30.306489Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:20.451077Z",
+  "accepted_quote_id": "img-083"
 }

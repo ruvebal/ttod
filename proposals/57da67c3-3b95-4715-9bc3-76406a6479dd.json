@@ -1,6 +1,6 @@
 {
   "proposal_id": "57da67c3-3b95-4715-9bc3-76406a6479dd",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El desarrollador sabio sirve diez formatos de imagen. El desarrollador iluminado sirve solo lo que el navegador pide. El maestro sirve WebP a Chrome y JPEG al pasado.",
     "section": "images",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d247eb35-6c55-40c9-8a88-f89714096f43",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:19.425861Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:02.286370Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:20.155118Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:02.286370Z",
+  "accepted_quote_id": "img-102"
 }

@@ -1,6 +1,6 @@
 {
   "proposal_id": "d2dd2323-320f-4e92-816d-c49093d46833",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La semilla que permanece en el jardín crece alta. La que viaja planta bosques.",
     "section": "architecture",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-cef70b4e-d8e4-4745-ab8e-46c3c36166c3",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:44.134312Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:34:44.899399Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:45.087278Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:44.899399Z",
+  "accepted_quote_id": "arch-101"
 }

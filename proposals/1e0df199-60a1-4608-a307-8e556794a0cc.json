@@ -1,6 +1,6 @@
 {
   "proposal_id": "1e0df199-60a1-4608-a307-8e556794a0cc",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El repositorio es temporal; la calificación, permanente.",
     "section": "remote-repo",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d5850f2c-34b4-43af-b436-e9ebe2353f40",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:33.611954Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-04T14:35:49.496270Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:34.166909Z"
+    }
+  ],
+  "created_at": "2026-09-04T14:35:49.496270Z",
+  "accepted_quote_id": "rrp-018"
 }

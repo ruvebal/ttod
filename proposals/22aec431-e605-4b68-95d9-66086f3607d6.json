@@ -1,6 +1,6 @@
 {
   "proposal_id": "22aec431-e605-4b68-95d9-66086f3607d6",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Llamaste a la variable 'data'. Asumo que la función se llama 'doThings'. Los enterraremos juntos en el cementerio de la ambigüedad.",
     "section": "code-craft",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d156bdda-b46f-4d27-9fa5-dd3c6ee3ce7a",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:37.581964Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:38:24.114970Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:38.151587Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:38:24.114970Z",
+  "accepted_quote_id": "cc-043"
 }

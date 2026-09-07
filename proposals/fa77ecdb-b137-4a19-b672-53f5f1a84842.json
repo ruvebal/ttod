@@ -1,6 +1,6 @@
 {
   "proposal_id": "fa77ecdb-b137-4a19-b672-53f5f1a84842",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Primero haz que funcione. El camino comienza cuando el código corre, no cuando es admirado.",
     "section": "wisdom",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c20edac4-4a08-44d3-b277-e3b7d0fcd2d1",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:40.684840Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:33:46.370179Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:41.755435Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:46.370179Z",
+  "accepted_quote_id": "wis-032"
 }

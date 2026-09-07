@@ -1,6 +1,6 @@
 {
   "proposal_id": "489bbecd-a48e-4933-b332-99de41b21ce9",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Una sola imagen para todas las pantallas es como un solo número de zapato para todos los pies. No le queda bien a nadie y todos sufren.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b71bf91c-169c-49a0-8804-f1caadfb71a8",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:02.808427Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:58.305661Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:03.477109Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:58.305661Z",
+  "accepted_quote_id": "img-095"
 }

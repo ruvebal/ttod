@@ -1,6 +1,6 @@
 {
   "proposal_id": "2cebe4ab-753e-4b2c-b1c0-841ea77a935e",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El camino hacia el dominio comienza con la lectura. El camino hacia la iluminación continúa con la práctica.",
     "section": "qa-tooling",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-01a76da4-30de-4090-920e-ea5177977dd6",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:43.155906Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:31:18.603447Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:43.748164Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:18.603447Z",
+  "accepted_quote_id": "qa-024"
 }

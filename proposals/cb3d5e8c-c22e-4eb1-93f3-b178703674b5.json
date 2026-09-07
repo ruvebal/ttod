@@ -1,6 +1,6 @@
 {
   "proposal_id": "cb3d5e8c-c22e-4eb1-93f3-b178703674b5",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Construir → Escribir → Comprender - Las tres etapas de la iluminación del código.",
     "section": "code-craft",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-be7ed999-b874-4a2d-8524-27533b71b020",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:32.464041Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:36:36.679799Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:33.415585Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:36:36.679799Z",
+  "accepted_quote_id": "cc-071"
 }

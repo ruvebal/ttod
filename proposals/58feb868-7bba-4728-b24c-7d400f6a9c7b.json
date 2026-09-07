@@ -1,6 +1,6 @@
 {
   "proposal_id": "58feb868-7bba-4728-b24c-7d400f6a9c7b",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "No comprimas el alma de la imagen, solo su peso.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-37e7dca1-fb4f-4392-8e25-cedbd81e8235",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:21.094060Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:21:34.937305Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:21.818746Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:21:34.937305Z",
+  "accepted_quote_id": "img-103"
 }

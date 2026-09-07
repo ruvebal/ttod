@@ -1,6 +1,6 @@
 {
   "proposal_id": "8e34d2b5-c236-4d6e-89ff-76b3f312972c",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Escribe el texto alternativo para tu abuela que no puede ver. Escríbelo para el motor de búsqueda que no puede ver. Escríbelo para ti cuando la imagen falle al cargar.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c5182d8d-a792-4099-bded-05e6c435e0d4",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:53.818507Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:40.575028Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:54.722164Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:40.575028Z",
+  "accepted_quote_id": "img-117"
 }

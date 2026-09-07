@@ -1,6 +1,6 @@
 {
   "proposal_id": "44a4ca11-f185-49e6-b949-0a813219f07e",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Una plantilla no es una restricción. Es un jardín donde mil flores pueden florecer en armonía.",
     "section": "architecture",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-cdc0f7ab-8bc5-4e4b-bb48-e3f59509caab",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:58.277853Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:35:55.005697Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:58.931374Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:35:55.005697Z",
+  "accepted_quote_id": "arch-076"
 }

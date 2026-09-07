@@ -1,6 +1,6 @@
 {
   "proposal_id": "f92854a5-6f86-4d29-bb74-c6a6c9563422",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La lógica de dominio es sagrada; la infraestructura, un detalle. Cuando Pydantic aparece en tu entidad, el templo ha sido profanado. Cuando SQLAlchemy habla en tu objeto de valor, el sacerdote se ha vuelto mercader.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b3d2d94e-71f9-4317-a801-489071241a3d",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:37.711150Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:39:53.755741Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:38.779230Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:39:53.755741Z",
+  "accepted_quote_id": "arch-109"
 }

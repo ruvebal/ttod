@@ -1,6 +1,6 @@
 {
   "proposal_id": "88787720-861d-4854-97f1-c8dd213faad5",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Un mapa no es una promesa — es una dirección. El desarrollador soberano ajusta el rumbo cuando el terreno se revela.",
     "section": "wisdom",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e18e7510-46ce-4658-a3eb-c3da26d63013",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:44.127964Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:41:24.991921Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:44.973894Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:41:24.991921Z",
+  "accepted_quote_id": "wis-023"
 }

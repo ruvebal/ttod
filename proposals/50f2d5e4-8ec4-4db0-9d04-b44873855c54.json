@@ -1,6 +1,6 @@
 {
   "proposal_id": "50f2d5e4-8ec4-4db0-9d04-b44873855c54",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Chocar con sabiduría es mantener la verdad en dos lugares: el manifiesto y el módulo.",
     "section": "qa-tooling",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-9a7841e1-108b-470c-9a28-ec87b5cbdc43",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:12.151433Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:31:36.291675Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:12.852553Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:36.291675Z",
+  "accepted_quote_id": "qa-027"
 }

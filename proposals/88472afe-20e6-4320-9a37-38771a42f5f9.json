@@ -1,6 +1,6 @@
 {
   "proposal_id": "88472afe-20e6-4320-9a37-38771a42f5f9",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El desarrollador sabio no añade más código. Elimina el conflicto.",
     "section": "code-craft",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-55d5fdfd-58c4-442e-8b66-a4140532da84",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:42.946027Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:33:03.064202Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:43.802791Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:03.064202Z",
+  "accepted_quote_id": "cc-061"
 }

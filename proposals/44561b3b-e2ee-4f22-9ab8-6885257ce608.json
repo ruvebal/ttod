@@ -1,6 +1,6 @@
 {
   "proposal_id": "44561b3b-e2ee-4f22-9ab8-6885257ce608",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La ingeniera de IA que construye un sistema de chat sin una única fuente de verdad para la recuperación pronto tendrá dos sistemas que discrepan. Luego tres. Y pasará su carrera depurando las brechas entre ellos.",
     "section": "architecture",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e7450013-1b42-4f36-ba8a-991c5b0d14bd",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:57.537002Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:41:59.189527Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:58.184668Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:41:59.189527Z",
+  "accepted_quote_id": "arch-075"
 }

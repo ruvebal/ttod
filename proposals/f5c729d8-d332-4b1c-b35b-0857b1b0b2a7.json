@@ -1,6 +1,6 @@
 {
   "proposal_id": "f5c729d8-d332-4b1c-b35b-0857b1b0b2a7",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Usa un espacio en un nombre de archivo, y la línea de comandos tratará tu archivo como dos desconocidos que se cruzan en la noche.",
     "section": "code-craft",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-4830b68c-af3c-4dd1-938b-8d979e9b6bf7",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:33.455817Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:38:19.999505Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:34.507614Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:38:19.999505Z",
+  "accepted_quote_id": "cc-076"
 }

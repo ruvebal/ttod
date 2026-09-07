@@ -1,6 +1,6 @@
 {
   "proposal_id": "66f4462b-a064-4a48-8ad4-950f992eac93",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El URI de datos dice: 'No necesito ninguna petición HTTP.' ¿Pero a qué precio? ¿A qué precio?",
     "section": "images",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d0bcbbdd-0e05-4a8f-bc68-54fc256d9152",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:14.092358Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:27:22.067135Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:14.864456Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:22.067135Z",
+  "accepted_quote_id": "img-108"
 }

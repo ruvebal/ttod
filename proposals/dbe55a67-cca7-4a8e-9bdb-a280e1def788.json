@@ -1,6 +1,6 @@
 {
   "proposal_id": "dbe55a67-cca7-4a8e-9bdb-a280e1def788",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El desarrollador que usa BMP en producción aún no ha comenzado a caminar el camino.",
     "section": "images",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-cfb30b86-e6f6-42ed-a64a-d14650fbfaad",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:56.119364Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:21:45.080399Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:57.125207Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:21:45.080399Z",
+  "accepted_quote_id": "img-134"
 }

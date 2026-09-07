@@ -1,6 +1,6 @@
 {
   "proposal_id": "fea4a1ab-5c92-4f20-8df0-e9535a3c00d5",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El srcset no es complejidad, es respeto. Respeto por los datos del usuario móvil. Respeto por la pantalla del usuario de escritorio. Respeto por el dispositivo que aún no has imaginado.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b7a2dbe2-233a-4642-8326-05099a2cc539",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:47.951091Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:54.011104Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:49.015295Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:54.011104Z",
+  "accepted_quote_id": "img-146"
 }

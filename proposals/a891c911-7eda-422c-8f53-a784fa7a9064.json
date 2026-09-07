@@ -1,6 +1,6 @@
 {
   "proposal_id": "a891c911-7eda-422c-8f53-a784fa7a9064",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Procesa muchos, no conserves ninguno. El disco del maestro permanece vacío, y aun así el conocimiento fluye hacia los informes.",
     "section": "remote-repo",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b4fcd9ff-de1f-4260-9cd1-ebe78248405a",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:16.199882Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:43:02.884642Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:17.105985Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:43:02.884642Z",
+  "accepted_quote_id": "rrp-025"
 }

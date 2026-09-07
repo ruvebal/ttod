@@ -1,6 +1,6 @@
 {
   "proposal_id": "46d6514e-c8a3-47ed-8d4c-7c830c26885c",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Sirve una imagen de 2000px a un teléfono de 375px, y los dioses del ancho de banda maldecirán tu casa por siete generaciones.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-ee677dab-01b4-4476-848c-3b58bd9a6f56",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:59.781440Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:48.986036Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:00.428006Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:48.986036Z",
+  "accepted_quote_id": "img-092"
 }

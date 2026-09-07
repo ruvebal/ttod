@@ -1,6 +1,6 @@
 {
   "proposal_id": "4ce1e1e2-b89f-45d4-bf60-02e89c9cc7ef",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "En Silicon de Apple, la GPU y la CPU beben del mismo estanque. 128GB unificados no es una concesión — es la razón por la que un modelo de 72 mil millones cabe donde ninguna GPU discreta podría albergarlo.",
     "section": "devops",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-0ee88332-6882-4b9a-b9a5-ad9f2cddaf47",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:08.988448Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-04T14:35:29.339175Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:09.681016Z"
+    }
+  ],
+  "created_at": "2026-09-04T14:35:29.339175Z",
+  "accepted_quote_id": "dop-010"
 }

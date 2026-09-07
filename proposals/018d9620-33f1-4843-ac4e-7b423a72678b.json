@@ -1,6 +1,6 @@
 {
   "proposal_id": "018d9620-33f1-4843-ac4e-7b423a72678b",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La reproducción automática no es engagement—es asalto. El usuario que no elige escuchar no consiente escuchar.",
     "section": "images",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-f54810f7-ca75-4d7f-a240-3c4fe67aaef0",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:16.294803Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-04T14:35:52.290381Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:16.784332Z"
+    }
+  ],
+  "created_at": "2026-09-04T14:35:52.290381Z",
+  "accepted_quote_id": "img-074"
 }

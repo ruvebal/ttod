@@ -1,6 +1,6 @@
 {
   "proposal_id": "892e21a2-57c4-4c1d-b619-cb16341e9565",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "CamelCase en URLs es como llevar un esmoquin a una lucha de lodo. Crees que luces elegante, pero solo te vas a ensuciar.",
     "section": "code-craft",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-3d4c1d1b-3046-43a3-8626-5f7f1053ac44",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:46.477395Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:38:03.126539Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:47.328474Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:38:03.126539Z",
+  "accepted_quote_id": "cc-062"
 }

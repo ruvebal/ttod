@@ -1,6 +1,6 @@
 {
   "proposal_id": "e517226c-6e38-47c5-987b-a164b14934e8",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Solo existe una implementación de «cómo consultar el cofre»: las herramientas MCP. El backend del chat es un cliente, no un arquitecto.",
     "section": "architecture",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6a058348-0dbd-4407-88fb-4c76d2f645cc",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:11.220057Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:42:04.478985Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:12.233620Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:42:04.478985Z",
+  "accepted_quote_id": "arch-107"
 }

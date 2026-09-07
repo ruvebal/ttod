@@ -1,6 +1,6 @@
 {
   "proposal_id": "4b468c0f-026d-4c4d-aad0-c0071dba13fb",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Mil PNGs pueden ser reemplazados por un solo SVG. Esto no es optimización. Esto es iluminación.",
     "section": "images",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b1c2e46a-5714-48d5-a4bf-6b05dfd17371",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:06.655117Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:27:18.322841Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:07.336491Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:18.322841Z",
+  "accepted_quote_id": "img-098"
 }

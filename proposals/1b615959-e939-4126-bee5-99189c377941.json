@@ -1,6 +1,6 @@
 {
   "proposal_id": "1b615959-e939-4126-bee5-99189c377941",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Escribe código para humanos primero, para máquinas después; el Tao reside en equilibrar ambos.",
     "section": "code-craft",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d66d6954-80ec-4d9b-b692-d005f1d84767",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:31.682345Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:32:39.115545Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:32.237610Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:39.115545Z",
+  "accepted_quote_id": "cc-041"
 }

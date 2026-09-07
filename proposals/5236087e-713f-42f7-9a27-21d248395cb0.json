@@ -1,6 +1,6 @@
 {
   "proposal_id": "5236087e-713f-42f7-9a27-21d248395cb0",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El modelo sin memoria es un extraño en tu base de código. Aliméntalo con tu arquitectura y se vuelve un colega. Aliméntalo con tus convenciones y se vuelve un socio. Pero nunca confundas su fluidez con comprensión.",
     "section": "architecture",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-8f447075-a21c-40c5-b43c-ab77825ebbcd",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:12.949685Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:40:20.757768Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:13.646505Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:40:20.757768Z",
+  "accepted_quote_id": "arch-080"
 }

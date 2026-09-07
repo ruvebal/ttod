@@ -1,6 +1,6 @@
 {
   "proposal_id": "618091e1-6b17-49c5-8c8c-14e0b813b6d1",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Tu imagen de héroe no es un héroe. Es un obstáculo de 2 MB entre el usuario y su meta.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-a2676f62-6531-4f8b-81a1-92150a6a68cc",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:07.897509Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:30:11.879590Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:08.636798Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:11.879590Z",
+  "accepted_quote_id": "img-106"
 }

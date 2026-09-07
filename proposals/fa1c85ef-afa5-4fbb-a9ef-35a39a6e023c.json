@@ -1,6 +1,6 @@
 {
   "proposal_id": "fa1c85ef-afa5-4fbb-a9ef-35a39a6e023c",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Cuando el proveedor Docker falla, no pelees con el demonio. Escribe la ruta en un archivo. Traefik observa el archivo. El archivo no se cae, no expira ni requiere acceso a la API. La simplicidad es la fiabilidad suprema.",
     "section": "devops",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-2c9adc3d-10a2-460a-bda1-0219b975fce7",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:39.173109Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:40:56.945287Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:40.288453Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:40:56.945287Z",
+  "accepted_quote_id": "dop-014"
 }

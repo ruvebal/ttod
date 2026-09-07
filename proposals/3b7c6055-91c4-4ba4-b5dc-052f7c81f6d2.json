@@ -1,6 +1,6 @@
 {
   "proposal_id": "3b7c6055-91c4-4ba4-b5dc-052f7c81f6d2",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Primero, el alumno añade imágenes sin pensamiento. Luego, las quita con miedo. Por fin, añade solo las necesarias. Este es el camino.",
     "section": "images",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-60088e1a-5301-42df-b60b-5177f1c48b39",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:53.149374Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:27:34.176010Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:53.777446Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:34.176010Z",
+  "accepted_quote_id": "img-089"
 }

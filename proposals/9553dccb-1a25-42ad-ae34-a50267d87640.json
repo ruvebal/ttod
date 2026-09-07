@@ -1,6 +1,6 @@
 {
   "proposal_id": "9553dccb-1a25-42ad-ae34-a50267d87640",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Elegir el formato adecuado es sabiduría. No elegirlo es una imagen heroica de 5 MB.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-2fe0ee6c-5216-4a2d-8fcc-96b18959f8cc",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:59.997218Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:21:48.744449Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:00.912450Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:21:48.744449Z",
+  "accepted_quote_id": "img-120"
 }

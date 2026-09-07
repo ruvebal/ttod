@@ -1,6 +1,6 @@
 {
   "proposal_id": "ae935d9e-bd3b-431f-a740-ff448a96eccc",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Todo documento entra al sistema exactamente una vez. El hash SHA-256 es su huella. Si ves un duplicado, tu ingesta mintió. La idempotencia no es una función — es un contrato con la verdad.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-cc5ab61e-80c0-4578-90ae-7e5677b409f2",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:19.941904Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:40:28.328138Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:20.864484Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:40:28.328138Z",
+  "accepted_quote_id": "arch-097"
 }

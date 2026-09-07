@@ -1,6 +1,6 @@
 {
   "proposal_id": "eecab28d-b9d1-486b-ae4d-e57e2e777891",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El sitio que solo atiende a los videntes atiende solo la mitad. El sitio que atiende a todos atiende el todo.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-1d28442c-917b-4edc-a8ec-af288b5a3af4",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:19.437658Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:30:24.773139Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:20.457457Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:24.773139Z",
+  "accepted_quote_id": "img-139"
 }

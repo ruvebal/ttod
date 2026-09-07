@@ -1,6 +1,6 @@
 {
   "proposal_id": "f3cc6116-80ff-40f3-90e9-f097b8eba65d",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Un alumno preguntó al maestro: '¿Cómo sé cuándo mis imágenes están optimizadas?'",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c5ff58b4-be50-4bb0-bf78-08bf752769c5",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:29.264783Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:30:28.016167Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:30.296753Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:28.016167Z",
+  "accepted_quote_id": "img-143"
 }

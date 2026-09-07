@@ -1,6 +1,6 @@
 {
   "proposal_id": "613194c2-21c7-476a-ad8d-98db46f7f1f0",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Cuando el espacio de nombres se ensancha demasiado, su significado se vuelve delgado. Cuando es demasiado estrecho, su futuro se asfixia.",
     "section": "code-craft",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-cefc0bdd-2c17-4db2-9127-3cf75b225658",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:06.874806Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:32:54.673113Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:07.617078Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:54.673113Z",
+  "accepted_quote_id": "cc-056"
 }

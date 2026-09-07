@@ -1,7 +1,7 @@
 # Phase S5 — complete bilingual corpus translation and scholarly edition plan
 
-**Status:** IN_PROGRESS — first bounded Ollama drafting tranche staged as proposals only
-**Date:** 2026-09-06; first tranche triggered 2026-09-07
+**Status:** CANONICAL PROMOTION COMPLETE — post-acceptance editorial audit still required
+**Date:** 2026-09-06; drafting and promotion completed 2026-09-07
 **Edition direction:** English source records → Spanish sister records  
 **Execution environment:** local Ollama only  
 **Canonical boundary:** model output is always a proposal; only a named human may accept it
@@ -449,3 +449,46 @@ Verification after the run:
 - The generated material is still only draft proposal material: no proposal was accepted, no
   canonical ID was allocated, and the bilingual edition is not complete until human review and
   acceptance have been performed.
+
+### 2026-09-07 — canonical promotion
+
+Rubén then explicitly authorized promoting all Spanish drafts. The proposal store contained 239
+pending Spanish translation proposals and no other proposal type. Promotion was run with
+`reviewer_id=ruvebal`.
+
+The first straight-through pass accepted 95 proposals, then correctly stopped on
+`TRANSLATION_DUPLICATE_ACTIVE`. The stop was a valid schema invariant, not data corruption: ten
+proposal files were duplicate translation variants for English sources that already had an active
+Spanish sister by the time the validator reached them.
+
+The promotion was resumed with a stricter loop that accepted only still-proposed translations whose
+English source did not yet have an active Spanish sister. That second pass accepted 134 more
+proposals and left the ten duplicate variants as `status: proposed`.
+
+Verification after promotion:
+
+- 229 active English originals exist in the edition scope.
+- 229 English originals now have an active Spanish `translation_of` sister.
+- 0 English originals are missing an active Spanish sister.
+- 0 English originals have duplicate active Spanish sisters.
+- `python cli.py validate --strict --json` returned valid with zero errors and zero warnings.
+- `python cli.py stats --check` reported clean derived metadata: `total_quotes` is now 458.
+
+The ten retained duplicate variants remain proposal material only:
+
+```text
+arch-034 -> dbc4566a-e20e-4c51-9fec-8368da311d67
+cc-022   -> 97fa3753-c4d5-4cc1-8e1d-4c91680f92a6
+cc-032   -> ff9897c4-dd34-46fd-885a-4a2176f4171b
+dop-003  -> 6dce302d-aa9b-4f2c-bf10-f3d9c8f9df96
+img-007  -> 5b260b71-1dc7-4d32-b78b-dea0405455b4
+img-029  -> ceb00ef5-03f6-414e-9837-296e0e880b44
+img-058  -> 77c56cfe-7853-4f82-b98a-a5ab2a9ae1f1
+img-063  -> 8f8ccc7c-a820-451a-b088-a089a6ec8ced
+img-071  -> e0f56eef-9a8e-440a-83e8-983075c199f1
+rrp-015  -> 970cd579-7500-4d7f-bf85-892282d677f7
+```
+
+This closes the mechanical bilingual-coverage gate. It does not close the scholarly-edition release
+gate: the accepted translations still need post-acceptance editorial sampling, terminology review,
+and final edition-statement approval before publication claims should be made.

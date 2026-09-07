@@ -1,6 +1,6 @@
 {
   "proposal_id": "5b5bb3cb-6bc3-49fd-b186-c2e7be8b0f8c",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Hazlo todo tan simple como sea posible, pero no más.",
     "section": "code-craft",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b185769a-e951-4cfe-94f4-ca2c3bd111a6",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:01.789719Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:33:18.377936Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:02.514301Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:18.377936Z",
+  "accepted_quote_id": "cc-055"
 }

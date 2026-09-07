@@ -1,6 +1,6 @@
 {
   "proposal_id": "cdb72868-cdb2-489b-a92c-e9956fcd2dd5",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "el erudito pregunta al cofre, la máquina pregunta al cofre lo mismo — ambos reciben la verdad",
     "section": "architecture",
@@ -30,11 +30,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-be6c1211-3b0a-4a42-8435-fb9eec87f9c3",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:36.369135Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:42:29.778159Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:37.331710Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:42:29.778159Z",
+  "accepted_quote_id": "arch-098"
 }

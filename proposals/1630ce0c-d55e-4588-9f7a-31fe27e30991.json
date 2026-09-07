@@ -1,6 +1,6 @@
 {
   "proposal_id": "1630ce0c-d55e-4588-9f7a-31fe27e30991",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El instructor sabio califica con herramientas, no con esfuerzo. El instructor necio se afana sin herramientas.",
     "section": "remote-repo",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-63ab2266-589a-4470-80b8-12ad8d5d456c",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:26.616001Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:42:48.213837Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:27.151693Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:42:48.213837Z",
+  "accepted_quote_id": "rrp-017"
 }

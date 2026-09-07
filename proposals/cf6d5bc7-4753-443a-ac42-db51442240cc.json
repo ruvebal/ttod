@@ -1,6 +1,6 @@
 {
   "proposal_id": "cf6d5bc7-4753-443a-ac42-db51442240cc",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La versión que se lanza a sí misma es la que llega a tiempo.",
     "section": "qa-tooling",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-3457511d-42b4-4e04-be07-5c701ac05266",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:42.804073Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:31:08.470373Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:43.784505Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:08.470373Z",
+  "accepted_quote_id": "qa-034"
 }

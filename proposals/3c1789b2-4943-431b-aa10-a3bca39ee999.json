@@ -1,6 +1,6 @@
 {
   "proposal_id": "3c1789b2-4943-431b-aa10-a3bca39ee999",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Reutiliza patrones probados; evita reinventar la rueda.",
     "section": "code-craft",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-4416e36d-0e39-4ca2-9752-9a11ca43e86a",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:54.612465Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:33:11.032213Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:55.249335Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:11.032213Z",
+  "accepted_quote_id": "cc-049"
 }

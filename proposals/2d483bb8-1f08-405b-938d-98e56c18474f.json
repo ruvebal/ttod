@@ -1,6 +1,6 @@
 {
   "proposal_id": "2d483bb8-1f08-405b-938d-98e56c18474f",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Cada PHASE-n.md es un prompt autosuficiente con todo el contexto incrustado. Un modelo local de 72B que lo siga producirá una salida casi idéntica a la de un modelo en la nube, porque el prompt hace el trabajo pesado. La inteligencia está en la especificación, no en el conteo de parámetros.",
     "section": "architecture",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e4b348f6-dff0-4742-b496-5a6630f3c0cf",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:43.841637Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:41:38.574093Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:44.446760Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:41:38.574093Z",
+  "accepted_quote_id": "arch-071"
 }

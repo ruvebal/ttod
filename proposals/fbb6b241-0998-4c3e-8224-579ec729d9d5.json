@@ -1,6 +1,6 @@
 {
   "proposal_id": "fbb6b241-0998-4c3e-8224-579ec729d9d5",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La herramienta sin usar es una herramienta desconocida. La herramienta sin documentar es una herramienta abandonada.",
     "section": "qa-tooling",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6bc42460-078b-4f3b-867c-d14046c3d45c",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:42.132583Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:31:04.808195Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:43.192240Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:04.808195Z",
+  "accepted_quote_id": "qa-037"
 }

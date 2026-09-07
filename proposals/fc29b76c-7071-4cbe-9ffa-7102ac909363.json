@@ -1,6 +1,6 @@
 {
   "proposal_id": "fc29b76c-7071-4cbe-9ffa-7102ac909363",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Una fuente de verdad. Un lugar para cambiar. Una mente en paz.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-7c9ff8b0-5ce3-4691-82c0-d1a30acb34db",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:44.987520Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:35:51.305320Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:46.061645Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:35:51.305320Z",
+  "accepted_quote_id": "arch-110"
 }

@@ -1,6 +1,6 @@
 {
   "proposal_id": "dd540a8d-e847-4142-bddd-84e46a5a3996",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Un miembro que se fue no es un error, sino una historia con final.",
     "section": "wisdom",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-7f60ddf3-ef26-44e1-8041-94e2bb16d324",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:00.210215Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:34:06.808746Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:01.207053Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:06.808746Z",
+  "accepted_quote_id": "wis-027"
 }

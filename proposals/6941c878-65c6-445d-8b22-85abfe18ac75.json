@@ -1,6 +1,6 @@
 {
   "proposal_id": "6941c878-65c6-445d-8b22-85abfe18ac75",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Practica en el dojo, ejecuta en la arena.",
     "section": "wisdom",
@@ -30,11 +30,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e8169e4a-8823-45ee-99f0-1a2b4e83b251",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:17.284953Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:34:17.236698Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:18.057936Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:17.236698Z",
+  "accepted_quote_id": "wis-021"
 }

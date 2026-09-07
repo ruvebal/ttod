@@ -1,6 +1,6 @@
 {
   "proposal_id": "db34b4a5-019a-4605-a3b7-16fe574d7f31",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Escribe la documentación como si tu yo del futuro lo hubiera olvidado todo. Porque lo hará.",
     "section": "wisdom",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-ab66b008-cfdb-42af-ae02-b063596a8fd8",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:54.742664Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:41:21.092440Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:55.753015Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:41:21.092440Z",
+  "accepted_quote_id": "wis-026"
 }

@@ -1,6 +1,6 @@
 {
   "proposal_id": "cf608b82-ec27-4711-8166-dbc9fc16e6b4",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El texto alternativo que dice 'imagen' es peor que no tener ninguno. Es una señal que apunta a sí misma.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-9fd733b0-a8c5-4911-bc02-5f9aa1553b4c",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:40.232748Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:28:35.645372Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:41.175261Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:35.645372Z",
+  "accepted_quote_id": "img-130"
 }

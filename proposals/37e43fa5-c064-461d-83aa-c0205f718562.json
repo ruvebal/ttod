@@ -1,6 +1,6 @@
 {
   "proposal_id": "37e43fa5-c064-461d-83aa-c0205f718562",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Pie de página como índice - La navegación global supera la complejidad local.",
     "section": "architecture",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-495fca25-dd40-4bdd-a08b-8f23694c092b",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:50.286924Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:36:15.557709Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:50.905490Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:36:15.557709Z",
+  "accepted_quote_id": "arch-073"
 }

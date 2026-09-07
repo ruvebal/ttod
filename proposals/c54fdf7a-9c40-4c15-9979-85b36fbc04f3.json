@@ -1,6 +1,6 @@
 {
   "proposal_id": "c54fdf7a-9c40-4c15-9979-85b36fbc04f3",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El maestro calificador procesa cien repositorios y no deja rastro; solo queda la sabiduría.",
     "section": "remote-repo",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6160a1a9-73d0-4124-aae6-adea458d7a23",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:27.399194Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:42:37.367445Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:28.318536Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:42:37.367445Z",
+  "accepted_quote_id": "rrp-026"
 }

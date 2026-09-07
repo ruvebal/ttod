@@ -1,6 +1,6 @@
 {
   "proposal_id": "20e87bb3-a23e-4353-a71c-0a354c949c9c",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Cada bug es una pregunta que tu código no pudo responder.",
     "section": "debugging",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-dd880eac-b6d7-477b-b538-3308652da01e",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:34.915065Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:32:08.757098Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:35.471655Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:08.757098Z",
+  "accepted_quote_id": "dbg-006"
 }

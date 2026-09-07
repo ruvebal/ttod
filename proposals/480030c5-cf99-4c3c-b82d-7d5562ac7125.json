@@ -1,6 +1,6 @@
 {
   "proposal_id": "480030c5-cf99-4c3c-b82d-7d5562ac7125",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Los diseños proporcionan contexto: cada sección de ruta merece su envoltura.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-fc75a358-89bf-4c08-86a8-0f762e0c2792",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:02.043612Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:36:10.071517Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:02.713248Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:36:10.071517Z",
+  "accepted_quote_id": "arch-077"
 }

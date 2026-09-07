@@ -1,6 +1,6 @@
 {
   "proposal_id": "0ec1326b-a14b-40a5-af33-14ce58b9c4ea",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "srcset ofrece elección. El navegador elige. Confía en el navegador. O no. Elegirá de todos modos.",
     "section": "images",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-017e6733-8aaf-4fca-ba3e-d0b349237d07",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:22.262468Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:27:51.664950Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:22.777030Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:51.664950Z",
+  "accepted_quote_id": "img-080"
 }

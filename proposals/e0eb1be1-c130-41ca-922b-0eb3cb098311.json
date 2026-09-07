@@ -1,6 +1,6 @@
 {
   "proposal_id": "e0eb1be1-c130-41ca-922b-0eb3cb098311",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El modelo en la nube responde en milisegundos. El local, en segundos. Pero la respuesta de la nube le pertenece a otro. La velocidad sin soberanía es una correa usada a voluntad.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-8c614721-d79a-4d46-9a22-f097c73abcc1",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:07.141825Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:39:34.324048Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:08.139981Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:39:34.324048Z",
+  "accepted_quote_id": "arch-105"
 }

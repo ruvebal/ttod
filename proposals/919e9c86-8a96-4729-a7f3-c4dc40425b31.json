@@ -1,6 +1,6 @@
 {
   "proposal_id": "919e9c86-8a96-4729-a7f3-c4dc40425b31",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Elige una única fuente de verdad y deja que tus importaciones converjan en ella, no que la combatan. WP es la fuente. Strapi es el espejo. Los upserts mantienen el espejo alineado sin romperlo.",
     "section": "code-craft",
@@ -30,11 +30,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-8b470243-3948-4218-8d23-06d1923060aa",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:56.290481Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:37:13.561364Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:57.184747Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:37:13.561364Z",
+  "accepted_quote_id": "cc-064"
 }

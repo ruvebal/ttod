@@ -1,6 +1,6 @@
 {
   "proposal_id": "ca4df8ef-7a3d-4a82-83d5-35f4d90e30a4",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Dos nombres de archivo, una huella de contenido, una verdad. Cita una vez. Inyecta una vez. El nombre duplicado es disfraz; la huella es el rostro.",
     "section": "code-craft",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-3d9f864e-415f-428e-8ad7-1a980e20fe53",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:29.912085Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:39:02.465678Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:30.832358Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:39:02.465678Z",
+  "accepted_quote_id": "cc-069"
 }

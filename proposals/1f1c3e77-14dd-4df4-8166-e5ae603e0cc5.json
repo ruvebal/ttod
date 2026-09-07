@@ -1,6 +1,6 @@
 {
   "proposal_id": "1f1c3e77-14dd-4df4-8166-e5ae603e0cc5",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "La imagen de fondo que oscurece el texto es como un cuadro que bloquea la puerta: bello, pero un malentendido fundamental de su propósito.",
     "section": "images",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-33a833d6-0889-44a0-bfdc-dba22c325b7f",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:34.268647Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:29:41.125526Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:34.824524Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:41.125526Z",
+  "accepted_quote_id": "img-084"
 }

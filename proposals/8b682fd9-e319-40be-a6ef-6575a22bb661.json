@@ -1,6 +1,6 @@
 {
   "proposal_id": "8b682fd9-e319-40be-a6ef-6575a22bb661",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Ahmes extrae. Arkadia curatea. DevIAC sirve. Quien comprende este triángulo entiende que el conocimiento fluye: nunca es estático, nunca terminado, nunca propiedad de un solo sistema.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-aefb83fd-8f23-4520-9b00-cf5043ea7c76",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:48.908110Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:41:31.989734Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:49.790671Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:41:31.989734Z",
+  "accepted_quote_id": "arch-091"
 }

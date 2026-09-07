@@ -1,6 +1,6 @@
 {
   "proposal_id": "0810f69c-0ded-476b-bab9-3b08afedbdb3",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Documentación no leída es documentación no escrita. Pero documentación no escrita es fracaso asegurado.",
     "section": "qa-tooling",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c37cf6a1-5d9b-4249-893e-b5636adfca8d",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:19.858256Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:43:10.007819Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:20.364343Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:43:10.007819Z",
+  "accepted_quote_id": "qa-020"
 }

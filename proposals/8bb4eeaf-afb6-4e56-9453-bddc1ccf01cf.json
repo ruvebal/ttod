@@ -1,6 +1,6 @@
 {
   "proposal_id": "8bb4eeaf-afb6-4e56-9453-bddc1ccf01cf",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Un protocolo es una promesa. Un adaptador es un traductor. Un puerto es una puerta. El dominio no conoce quién llama — solo conoce la forma de la pregunta.",
     "section": "architecture",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-8d2f55e6-1cf1-44f9-824a-239e50941cd6",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:51.355428Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-04T14:35:44.397275Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:52.243170Z"
+    }
+  ],
+  "created_at": "2026-09-04T14:35:44.397275Z",
+  "accepted_quote_id": "arch-093"
 }

@@ -1,6 +1,6 @@
 {
   "proposal_id": "7c2a56a8-df90-4a1a-95eb-0869045c1751",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "En el envío, hay aprendizaje. En el aprendizaje, hay crecimiento. En el crecimiento, hay el Tao.",
     "section": "wisdom",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-55efa68c-7d30-424e-9ce9-c844cfdcde85",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:29.223654Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:33:29.394391Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:30.016096Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:29.394391Z",
+  "accepted_quote_id": "wis-022"
 }

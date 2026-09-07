@@ -1,6 +1,6 @@
 {
   "proposal_id": "4eddb0ff-88f2-4b0a-bc91-643c19fe0cec",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El instructor sabio automatiza lo que se repite. El instructor necio repite lo que debería automatizarse.",
     "section": "qa-tooling",
@@ -27,11 +27,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d6023407-b5b5-41c2-8481-8742408551fa",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:10.571052Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:30:54.668103Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:11.263682Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:54.668103Z",
+  "accepted_quote_id": "qa-026"
 }

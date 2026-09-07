@@ -1,6 +1,6 @@
 {
   "proposal_id": "013973a3-6de2-4cdf-8c1e-0460b3e81256",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El acoplamiento fuerte es un préstamo con interés compuesto. El acoplamiento flojo es un ahorro que se multiplica.",
     "section": "architecture",
@@ -26,11 +26,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c12cd22f-7172-42e4-9ad6-6c4fbd2c87b7",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:15.715200Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:34:57.900763Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:16.201976Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:57.900763Z",
+  "accepted_quote_id": "arch-060"
 }

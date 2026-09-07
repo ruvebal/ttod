@@ -1,6 +1,6 @@
 {
   "proposal_id": "25aad29c-0fbd-449d-b77b-7ac4b8806d0a",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "¿Dónde en la página? ¿Dónde en la tierra? ¿Qué significa? Todo fragmento de saber debe responder a las tres, o flota a la deriva: inútil para nadie, intrascendible por nada.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-7d070b73-3fe6-43fe-b356-23c77112dd8f",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:39.634054Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:40:36.569061Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:40.240279Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:40:36.569061Z",
+  "accepted_quote_id": "arch-068"
 }

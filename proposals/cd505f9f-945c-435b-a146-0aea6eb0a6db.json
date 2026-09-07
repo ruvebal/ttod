@@ -1,6 +1,6 @@
 {
   "proposal_id": "cd505f9f-945c-435b-a146-0aea6eb0a6db",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "El ingeniero sabio hace el peligro opcional.",
     "section": "wisdom",
@@ -29,11 +29,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-8a65c6e3-1e9f-4e3b-8fbf-e2fdff77c73c",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:33.762716Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:34:12.182973Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:34.715182Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:12.182973Z",
+  "accepted_quote_id": "wis-025"
 }

@@ -1,6 +1,6 @@
 {
   "proposal_id": "cf14b393-9ef1-476c-bc57-ef3399c5eeb7",
-  "status": "proposed",
+  "status": "accepted",
   "candidate_content": {
     "text": "Las traducciones no son opcionales. Cada cadena debe tener una clave.",
     "section": "architecture",
@@ -28,11 +28,24 @@
       "license": "CC-BY-NC-SA-4.0",
       "holder": "ruvebal@crea-comm.net",
       "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-1ab2588c-3518-4d80-acd4-91014ac96dad",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:38.957280Z"
     }
   },
   "proposer_kind": "model",
   "proposer_id": "cli-translate-batch",
   "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
-  "human_review_activities": [],
-  "created_at": "2026-09-07T09:36:24.852004Z"
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:39.894904Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:36:24.852004Z",
+  "accepted_quote_id": "arch-099"
 }

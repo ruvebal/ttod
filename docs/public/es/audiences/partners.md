@@ -8,14 +8,16 @@ lang: es
 
 # Un sistema enseñable con límites explícitos
 
-TTOD ofrece una referencia ejecutable en local para enseñar la arquitectura front-end contemporánea como un sistema conectado. Su forma estudiantil propuesta usa un andamiaje de ejemplo-completo-primero: quien aprende traza primero un producto pequeño que funciona y asume después la responsabilidad de tareas de diseño e implementación cada vez más abiertas.
+TTOD ofrece una referencia ejecutable en local para enseñar la arquitectura front-end contemporánea como un sistema conectado. En el [track Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) publicado, es el **primer entregable** (Entrega 1, Unidades 2–6) y el producto que el alumnado debe usar y defender en el parcial de las Unidades 1–7 — aproximadamente la primera mitad del semestre antes de 3D, IoT y el capstone.
+
+Su forma estudiantil propuesta usa un andamiaje de ejemplo-completo-primero: quien aprende traza primero un producto pequeño que funciona y asume después la responsabilidad de tareas de diseño e implementación cada vez más abiertas.
 
 ## Valor académico potencial
 
-- Un artefacto coherente conecta localización, contenido, islas, interfaz en flujo, comportamiento sin conexión, accesibilidad, pruebas y rendimiento.
+- Un artefacto coherente conecta localización, contenido, islas, interfaz en flujo, comportamiento sin conexión, accesibilidad, pruebas y rendimiento — alineado con las Unidades 1–7 de FE II.
 - El contenido canónico expone procedencia, derechos, idioma y decisiones de revisión humana.
 - Las costuras de la tarea pueden exigir diseño auténtico sin forzar al alumnado a inventar de una vez todo el camino de integración.
-- La evidencia de proceso y la explicación oral pueden complementar el comportamiento del producto en un entorno asistido por IA.
+- La evidencia de proceso y la defensa de la comprensión en el parcial pueden complementar el comportamiento del producto en un entorno asistido por IA.
 
 Estas son asequibilidades de diseño, no efectos de aprendizaje demostrados.
 

@@ -27,7 +27,7 @@ La hoja de ruta usa las palabras de estado con cuidado. «Implementado» signifi
 5. **Ensamblar una línea de base de historial fresco:** no distribuir una respuesta oculta a través de objetos, historial, remotos, paquetes o metadatos.
 6. **Ensayar la teoría:** enseñar y probar el artefacto exacto antes de abrir la colaboración.
 7. **Conciliar investigación y calendario:** mantener alineados identidad del artefacto, pretensiones, evaluación y consentimiento.
-8. **Sincronizar las pistas localizadas del curso:** actualizar los materiales en inglés y en español solo cuando los umbrales anteriores se hayan superado.
+8. **Sincronizar las pistas localizadas del curso:** actualizar los materiales [FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) en inglés y en español para que la Entrega 1 y el parcial de las Unidades 1–7 nombren la misma línea de base TTOD, solo cuando los umbrales anteriores se hayan superado.
 
 ## Carril independiente de publicación
 

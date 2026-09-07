@@ -39,3 +39,5 @@ Astro posee el documento y las rutas orientadas al contenido. Las islas interact
 ## Madurez honesta
 
 La referencia rica demuestra contenido localizado, exploración de grafo y un Oracle en flujo. La operación en el navegador, el comportamiento sin conexión y la superficie de pruebas todavía no constituyen una implementación completa lista para el alumnado. Una futura línea de base docente mantendrá cada área mayor presente a profundidad de hello world; esa resta está prevista, no concluida.
+
+En el [curso FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), esa línea de base es la **Entrega 1** y el producto que se defiende en el parcial de las Unidades 1–7. Ver el [modelo docente]({{ '/es/teaching/' | relative_url }}).

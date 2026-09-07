@@ -43,10 +43,10 @@ lang: en
 <div class="grid">
   <a class="card" href="{{ '/project/' | relative_url }}"><h3>Project</h3><p>Purpose, governance, provenance, human review, and licensing.</p></a>
   <a class="card" href="{{ '/platform/' | relative_url }}"><h3>Product areas</h3><p>Localized content, quotes, graph, Oracle, docs, operations, and tests.</p></a>
-  <a class="card" href="{{ '/teaching/' | relative_url }}"><h3>Teaching model</h3><p>The complete-spine, hello-world-depth progression for Front-end II.</p></a>
+  <a class="card" href="{{ '/teaching/' | relative_url }}"><h3>Teaching model</h3><p>FE II Units 1–7: Entrega 1, mid-term defence of process, and the hello-world spine.</p></a>
   <a class="card" href="{{ '/research/' | relative_url }}"><h3>Research</h3><p>Questions, evidence boundaries, methodology, ethics, and open work.</p></a>
   <a class="card" href="{{ '/guides/' | relative_url }}"><h3>Guides</h3><p>Local setup, product orientation, and contribution governance.</p></a>
-  <a class="card" href="{{ '/audiences/students/' | relative_url }}"><h3>Students</h3><p>What is provided, what remains yours, and how learning is evidenced.</p></a>
+  <a class="card" href="{{ '/audiences/students/' | relative_url }}"><h3>Students</h3><p>Entrega 1 as your product; mid-term as declarative use and defence of understanding.</p></a>
   <a class="card" href="{{ '/audiences/partners/' | relative_url }}"><h3>University partners</h3><p>Academic value, safeguards, decisions, and collaboration gates.</p></a>
   <a class="card" href="{{ '/audiences/research-funders/' | relative_url }}"><h3>Research & venture</h3><p>Assets, readiness, open questions, and responsible partnership.</p></a>
   <a class="card" href="{{ '/roadmap/' | relative_url }}"><h3>Roadmap</h3><p>Verified now, proposed next, and the gates between them.</p></a>

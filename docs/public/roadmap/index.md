@@ -26,7 +26,7 @@ The roadmap uses state words carefully. “Implemented” means code exists; “
 5. **Assemble a fresh-history baseline:** distribute no hidden answer through objects, history, remotes, bundles, or metadata.
 6. **Rehearse the theory:** teach and test the exact artifact before collaboration opens.
 7. **Reconcile research and calendar:** keep artifact identity, claims, assessment, and consent aligned.
-8. **Synchronize localized course tracks:** update English and Spanish materials only after the preceding gates pass.
+8. **Synchronize localized course tracks:** update English and Spanish [FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) materials so Entrega 1 and the Units 1–7 mid-term name the same TTOD baseline, only after the preceding gates pass.
 
 ## Independent publication lane
 

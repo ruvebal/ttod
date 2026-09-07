@@ -24,10 +24,9 @@ TTOD is a pedagogical wisdom database — aphorisms for developers walking the p
 section and mastery level, and served outward as content-addressed, human-governed quotes. See
 [`AGENTS.md`](AGENTS.md) for the agent contract, data model, and CLI.
 
-**Development status, contract, and phase runbooks** live in one place so they never drift into
-two tellings: [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md). That file is the canonical
-source for programme state, the active-phase table, and links to every phase report. This README
-does not repeat it.
+**Development status, contract, and engineering runbooks** live in one place so they never drift
+into two tellings: [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md). That file is the canonical
+source for programme state and links to the evidence reports. This README does not repeat it.
 
 ## Public guide map
 
@@ -37,10 +36,10 @@ planned teaching surfaces:
 
 - [Project](docs/public/project/index.md) — mission, governance, provenance, and licensing
 - [Product areas](docs/public/platform/index.md) — content, quotes, graph, Oracle, operations, and tests
-- [Teaching model](docs/public/teaching/index.md) — complete spine, hello-world depth
+- [Teaching model](docs/public/teaching/index.md) — FE II Units 1–7, Entrega 1, mid-term defence
 - [Research](docs/public/research/index.md) — questions, maturity, method, and safeguards
 - [Guides](docs/public/guides/index.md) — local setup, product use, and contribution
-- [Students](docs/public/audiences/students.md) — provided scaffold and learner-owned work
+- [Students](docs/public/audiences/students.md) — Entrega 1 product and Units 1–7 mid-term
 - [University partners](docs/public/audiences/partners.md) — academic value and release gates
 - [Research and venture partners](docs/public/audiences/research-funders.md) — assets, risk, and diligence
 - [Roadmap](docs/public/roadmap/index.md) — evidence-backed current and proposed states
@@ -59,7 +58,7 @@ Public documentation is the Jekyll tree above. It is a documentation-only public
 may go online while the application stays local. GitHub Pages is configured from that tree; it
 does not implement application hosting and does not authorize changing repository visibility.
 
-Programme tables, phase reports, and runbooks remain only in
+Programme tables, engineering reports, and runbooks remain only in
 [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md).
 
 ## Verification
@@ -81,4 +80,3 @@ suite, is listed in [`AGENTS.md`](AGENTS.md).
 
 **Agent contract:** [`AGENTS.md`](AGENTS.md)
 ([agentsmd standard](https://github.com/agentsmd/agents.md)).
-

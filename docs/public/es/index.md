@@ -5,23 +5,24 @@ permalink: /es/
 lang: es
 ---
 
-<header class="masthead" aria-label="Placa de título">
-  <p class="masthead-mark" aria-hidden="true">道</p>
-  <p class="masthead-title">The Tao of the Development</p>
-  <p class="masthead-mark" aria-hidden="true">道</p>
-  <p class="masthead-sub">Sabiduría ancestral para la era de la creación asistida por máquina</p>
-</header>
-
-<section class="hero">
-  <div>
+<section class="intro">
+  <div class="intro-copy">
     <p class="eyebrow">Pedagogía · arquitectura front-end · conocimiento gobernado</p>
-    <h1 class="flagship-quote">El Tao que puede expresarse en un prompt no es el Tao eterno. El código que puede generarse sin comprensión no es verdadero código.</h1>
-    <p class="flagship-cite">— Lao Tse, si hubiera vivido para ver Stack Overflow · <code>wis-034</code> · traducción de <code>wis-033</code></p>
-    <p class="lede">TTOD es una colección gobernada de sabiduría para el desarrollo y una referencia docente que se ejecuta en local. Conecta contenido, interfaces, islas interactivas, recuperación, accesibilidad y pruebas para que quien aprende vea el sistema entero antes de ampliarlo.</p>
-    <a class="button" href="{{ '/es/project/' | relative_url }}">Comprender el proyecto</a>
-    <a class="button" href="{{ '/es/guides/local-setup/' | relative_url }}">Ejecutarlo en local</a>
+    <h1>道 The Tao of the Development</h1>
+    <p class="lede">Sabiduría ancestral para la era de la creación asistida por máquina</p>
+    <blockquote class="tao-development-quote">
+      <p><em>“El Tao que puede expresarse en un prompt no es el Tao eterno. El código que puede generarse sin comprensión no es verdadero código.”</em>
+— Tao of Development, <code>wis-034</code></p>
+      <footer>Lao Tse, si hubiera vivido para ver Stack Overflow · traducción de <code>wis-033</code></footer>
+    </blockquote>
+    <p>TTOD es una colección gobernada de sabiduría para el desarrollo y una referencia docente que se ejecuta en local. Conecta contenido, interfaces, islas interactivas, recuperación, accesibilidad y pruebas para que quien aprende vea el sistema entero antes de ampliarlo.</p>
+    <p class="intro-actions">
+      <a class="button" href="{{ '/es/project/' | relative_url }}">Comprender el proyecto</a>
+      <a class="button" href="{{ '/es/guides/local-setup/' | relative_url }}">Ejecutarlo en local</a>
+    </p>
   </div>
-  <aside class="status-card ttod-bg-constellation" aria-label="Madurez del proyecto">
+  <aside class="status-card ttod-bg-constellation">
+    <h2 class="visually-hidden">Madurez del proyecto</h2>
     <dl>
       <div><dt>Núcleo gobernado</dt><dd>implementado</dd></div>
       <div><dt>Referencia del profesorado</dt><dd>local</dd></div>
@@ -51,9 +52,9 @@ lang: es
   <a class="card" href="{{ '/es/roadmap/' | relative_url }}"><h3>Hoja de ruta</h3><p>Lo verificado ahora, lo propuesto a continuación y los umbrales entre ambos.</p></a>
 </div>
 
-<div class="callout">
-  <strong>Dos publicaciones, dos decisiones.</strong> Este sitio de documentación pública puede publicarse con independencia de la aplicación. El repositorio fuente público sigue exigiendo revisión continua de revelación, secretos e historial alcanzable.
-</div>
+<aside class="callout">
+  <p><strong>Dos publicaciones, dos decisiones.</strong> Este sitio de documentación pública puede publicarse con independencia de la aplicación. El repositorio fuente público sigue exigiendo revisión continua de revelación, secretos e historial alcanzable.</p>
+</aside>
 
 ## El recorrido del producto
 

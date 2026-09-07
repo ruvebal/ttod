@@ -5,23 +5,24 @@ permalink: /
 lang: en
 ---
 
-<header class="masthead" aria-label="Title plate">
-  <p class="masthead-mark" aria-hidden="true">道</p>
-  <p class="masthead-title">The Tao of the Development</p>
-  <p class="masthead-mark" aria-hidden="true">道</p>
-  <p class="masthead-sub">Ancestral Wisdom for the Age of Machine-Assisted Creation</p>
-</header>
-
-<section class="hero">
-  <div>
+<section class="intro">
+  <div class="intro-copy">
     <p class="eyebrow">Pedagogy · front-end architecture · governed knowledge</p>
-    <h1 class="flagship-quote">The Tao that can be prompted is not the eternal Tao. The code that can be generated without understanding is not true code.</h1>
-    <p class="flagship-cite">— Lao Tzu, if he had lived to see Stack Overflow · <code>wis-033</code></p>
-    <p class="lede">TTOD is a governed collection of development wisdom and a locally runnable teaching reference. It connects content, interfaces, interactive islands, retrieval, accessibility, and tests so learners can see the whole system before they extend it.</p>
-    <a class="button" href="{{ '/project/' | relative_url }}">Understand the project</a>
-    <a class="button" href="{{ '/guides/local-setup/' | relative_url }}">Run it locally</a>
+    <h1>道 The Tao of the Development</h1>
+    <p class="lede">Ancestral Wisdom for the Age of Machine-Assisted Creation</p>
+    <blockquote class="tao-development-quote">
+      <p><em>“The Tao that can be prompted is not the eternal Tao. The code that can be generated without understanding is not true code.”</em>
+— Tao of Development, <code>wis-033</code></p>
+      <footer>Lao Tzu, if he had lived to see Stack Overflow</footer>
+    </blockquote>
+    <p>TTOD is a governed collection of development wisdom and a locally runnable teaching reference. It connects content, interfaces, interactive islands, retrieval, accessibility, and tests so learners can see the whole system before they extend it.</p>
+    <p class="intro-actions">
+      <a class="button" href="{{ '/project/' | relative_url }}">Understand the project</a>
+      <a class="button" href="{{ '/guides/local-setup/' | relative_url }}">Run it locally</a>
+    </p>
   </div>
-  <aside class="status-card ttod-bg-constellation" aria-label="Project maturity">
+  <aside class="status-card ttod-bg-constellation">
+    <h2 class="visually-hidden">Project maturity</h2>
     <dl>
       <div><dt>Governed core</dt><dd>implemented</dd></div>
       <div><dt>Instructor reference</dt><dd>local</dd></div>
@@ -51,9 +52,9 @@ lang: en
   <a class="card" href="{{ '/roadmap/' | relative_url }}"><h3>Roadmap</h3><p>Verified now, proposed next, and the gates between them.</p></a>
 </div>
 
-<div class="callout">
-  <strong>Two releases, two decisions.</strong> This public documentation site can be published independently of the application. The public source repository still requires continuing disclosure and security review of tracked files and history.
-</div>
+<aside class="callout">
+  <p><strong>Two releases, two decisions.</strong> This public documentation site can be published independently of the application. The public source repository still requires continuing disclosure and security review of tracked files and history.</p>
+</aside>
 
 ## The product journey
 

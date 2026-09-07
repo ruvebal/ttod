@@ -63,12 +63,12 @@ Unlike many teaching-innovation proposals, the object of study is already versio
 auditable in a private instructor repository. Publication or student distribution remains a
 separate, gated action:
 
-| Artifact | Where |
-| --- | --- |
-| TTOD repository (code + governed quote database) | this repository, MIT (code) / CC BY-NC-SA 4.0 (content) |
+| Artifact                                                 | Where                                                                                                                              |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| TTOD repository (code + governed quote database)         | this repository, MIT (code) / CC BY-NC-SA 4.0 (content)                                                                            |
 | Development cascade plan, all phase runbooks and reports | `docs/DEV_PLAN/PHASE-R-TTOD-ORACLE-PLATFORM-CASCADE-PROMPT.md` and `docs/DEV_PLAN/PHASES/R*.md` (generated per that document's §0) |
-| Testing-strategy deliverable | `docs/testing-strategy.md` (produced by R7, per FE II Unit 5's own required shape) |
-| Course track and grading structure | `web-atelier-udit/.../tracks/en/udit/2627-feii/` |
+| Testing-strategy deliverable                             | `docs/testing-strategy.md` (produced by R7, per FE II Unit 5's own required shape)                                                 |
+| Course track and grading structure                       | `web-atelier-udit/.../tracks/en/udit/2627-feii/`                                                                                   |
 
 **Consequence for coordination:** authorized reviewers can verify the proposal before approval.
 The recorded code/content licenses permit a future publication path, but reproducibility by third
@@ -104,12 +104,12 @@ the cohort, no grade conditioned on research participation.
 Four distinct consents, each with different legal weight — administered by the co-investigator,
 never by the instructor:
 
-| # | Consent | Object | Nature and safeguard |
-| --- | --- | --- | --- |
+| #      | Consent                                                         | Object                                                                                                                              | Nature and safeguard                                                                                            |
+| ------ | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | **C1** | Secondary research use of evidence already produced for grading | Commits/PRs, AI-use declarations, `PHASE-Rx-REPORT.md` cold-review findings, `docs/testing-strategy.md`, oral-defence rubric scores | Opt-in. These artifacts are produced regardless, to be graded; consent covers pseudonymised reuse for research. |
-| **C2** | New instruments | Survey, interview, focus-group data | Independent opt-in from C1. Voluntary, no grade effect, revocable at any time. |
-| **C3** | Recording | Oral defence / interviews (voice, possibly image) | Separate, stricter consent; participation without recording remains possible; explicit retention period. |
-| **C4** | Diffusion of student artifacts | Repository screenshots, code excerpts, direct quotes | Per-artifact consent, attribution-or-anonymity choice retained by the student author. |
+| **C2** | New instruments                                                 | Survey, interview, focus-group data                                                                                                 | Independent opt-in from C1. Voluntary, no grade effect, revocable at any time.                                  |
+| **C3** | Recording                                                       | Oral defence / interviews (voice, possibly image)                                                                                   | Separate, stricter consent; participation without recording remains possible; explicit retention period.        |
+| **C4** | Diffusion of student artifacts                                  | Repository screenshots, code excerpts, direct quotes                                                                                | Per-artifact consent, attribution-or-anonymity choice retained by the student author.                           |
 
 **Non-negotiable safeguards:** administered by the co-investigator, not the instructor; the
 instructor is blind to who has and has not consented until grades are filed; pseudonymisation at
@@ -126,12 +126,12 @@ composition (minors, vulnerable students).
 
 Anchored to Phase R's own build calendar (`PHASE-R-...-CASCADE-PROMPT.md` §0.1.6, §9):
 
-| Window | Work |
-| --- | --- |
-| Sep 2026 | Consent instruments frozen, data-protection sign-off sought, cohort start gate opens (R1/R2/R3a green) |
-| Sep–Oct 2026 | From the isolated `cohort-starter` handoff, the cohort independently implements its assessed R3b–R7 scope; this is distinct from the instructor's already-built R3b/R4/R5 reference implementation on `main`. Student cold-review reports accumulate as their own phases close; Entrega 1 is due Week 7/October 2026. R6 remains student-owned and the reference R7 remains PARTIAL. |
-| Oct–Dec 2026 | Analysis of consented process evidence begins only after grades for the relevant components are filed |
-| per `RESEARCH-LINE.md` §6 | Venue submissions, once a draft or dataset exists — not before |
+| Window                    | Work                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Sep 2026                  | Consent instruments frozen, data-protection sign-off sought, cohort start gate opens (R1/R2/R3a green)                                                                                                                                                                                                                                                                               |
+| Sep–Oct 2026              | From the isolated `cohort-starter` handoff, the cohort independently implements its assessed R3b–R7 scope; this is distinct from the instructor's already-built R3b/R4/R5 reference implementation on `main`. Student cold-review reports accumulate as their own phases close; Entrega 1 is due Week 7/October 2026. R6 remains student-owned and the reference R7 remains PARTIAL. |
+| Oct–Dec 2026              | Analysis of consented process evidence begins only after grades for the relevant components are filed                                                                                                                                                                                                                                                                                |
+| per `RESEARCH-LINE.md` §6 | Venue submissions, once a draft or dataset exists — not before                                                                                                                                                                                                                                                                                                                       |
 
 ---
 

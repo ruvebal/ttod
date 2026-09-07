@@ -15,11 +15,18 @@ any such document.
 
 # TTOD Research Initiative — overview
 
-> **Planning note (2026-09-05, audited and amended):** the research initiative remains pre-pitch
-> and the audience guides have not been generated. Their proposed evidence, governance, audience
-> separation, and cold-review workflow are specified in [`GUIDE-FORGE-PLAN.md`](GUIDE-FORGE-PLAN.md);
-> the paste-ready generator is [`PROMPT-FORGE-TTOD-GUIDES.md`](PROMPT-FORGE-TTOD-GUIDES.md). The
-> generator must first reconcile this older proposal narrative with the current Phase R
+> **Control note (2026-09-07):** this research initiative remains pre-pitch and pre-protocol.
+> T0–T2 established its claim, evidence and information-architecture controls; T5 produced only
+> decision-facing drafts. The operational audience guides T3/T4 have not been generated. Use
+> [`guides/CLAIM-REGISTRY.md`](guides/CLAIM-REGISTRY.md) and
+> [`guides/EVIDENCE-LEDGER.md`](guides/EVIDENCE-LEDGER.md) as the controlling basis whenever this
+> older narrative is more specific than verified evidence allows. The institutional entry points
+> are the Spanish [pitch](PITCH-INVESTIGACION-TTOD-ES.md), the
+> [Department brief](DEPARTMENT-DECISION-BRIEF.md), and the
+> [PI brief](PI-RESEARCH-BRIEF.md). Their proposed evidence, governance, audience separation, and
+> cold-review workflow are specified in [`GUIDE-FORGE-PLAN.md`](GUIDE-FORGE-PLAN.md); the
+> paste-ready generator is [`PROMPT-FORGE-TTOD-GUIDES.md`](PROMPT-FORGE-TTOD-GUIDES.md). The
+> generator must reconcile this older proposal narrative with the current Phase R
 > cohort-starter/R6 student-ownership decision, now recorded in
 > [`../DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`](../DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md)
 > and [`../DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md`](../DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md)
@@ -27,24 +34,27 @@ any such document.
 > found that no mechanism yet guarantees the reference build stays out of student hands — see
 > "What this is not" below and `GUIDE-FORGE-PLAN.md` §2 for the exact finding.
 
-**Subject:** Project Launch: TTOD Research Initiative & Advanced Front-End Pedagogy
+**Subject:** Proposal for review: TTOD Research Initiative & Advanced Front-End Pedagogy
 
 Dear Colleagues,
 
-I am writing to announce the formal kick-off of a research initiative built on this semester's
+I am writing to propose for institutional and research-group review a research initiative built around a proposed
 Front-End II capstone: the **TTOD Oracle Platform** — a governed pedagogical wisdom database
 (`ttod.yml`, MIT/CC BY-NC-SA 4.0 licensing recorded; repository currently private) extended into a live, multi-framework web
-platform by a 7-student cohort, under a documented, phased, cold-review-gated development plan.
+platform under a documented, phased, cold-review-gated development plan. Cohort size and course
+facts must be confirmed from the competent institutional source before they enter a submission.
 
 Rather than assigning traditional, isolated coursework, the cohort collaborates on a single
 production-grade "walking-skeleton" architecture — contributing components across Astro, React,
 Svelte, FastMCP, and containerized Python services — while I retain sole responsibility for the
 backend and the initial scaffold, so the cohort starts from a verified, working foundation rather
 than debugging infrastructure on day one. To validate that this architecture is buildable at all
-before committing a cohort's grade to it, I have already built a complete reference
-implementation myself; it stays instructor-side and is never distributed to students, who receive
-only the walking-skeleton foundation and build the remaining components independently against the
-same task specification, not against my implementation of it.
+before committing a cohort's grade to it, I have already built an R3b/R4/R5 reference
+implementation myself; R6 is deliberately absent and R7 remains PARTIAL. The reference is intended
+to stay instructor-side. Students will receive only an independently distributed walking-skeleton
+foundation and build their assessed R3b–R7 scope against the same task specification, not against
+my implementation. That distribution claim remains pending until the actual student artifact
+passes the git-history-isolation test described below.
 
 The complete research design, ethical participation framework, and system architecture are fully
 documented in this repository:

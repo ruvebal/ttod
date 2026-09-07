@@ -129,7 +129,7 @@ Anchored to Phase R's own build calendar (`PHASE-R-...-CASCADE-PROMPT.md` §0.1.
 | Window | Work |
 | --- | --- |
 | Sep 2026 | Consent instruments frozen, data-protection sign-off sought, cohort start gate opens (R1/R2/R3a green) |
-| Sep–Oct 2026 | Cohort builds R3b–R7; cold-review reports accumulate as they close; Entrega 1 due Week 7/October 2026 |
+| Sep–Oct 2026 | From the isolated `cohort-starter` handoff, the cohort independently implements its assessed R3b–R7 scope; this is distinct from the instructor's already-built R3b/R4/R5 reference implementation on `main`. Student cold-review reports accumulate as their own phases close; Entrega 1 is due Week 7/October 2026. R6 remains student-owned and the reference R7 remains PARTIAL. |
 | Oct–Dec 2026 | Analysis of consented process evidence begins only after grades for the relevant components are filed |
 | per `RESEARCH-LINE.md` §6 | Venue submissions, once a draft or dataset exists — not before |
 

@@ -82,6 +82,34 @@ without R6, and the interaction-level R4/R5 tests above remain unwritten. Promot
 require either those tests plus a genuine CI measurement (which needs R6) — this report does not
 pretend otherwise.
 
+## 2026-09-06 flagship-language verification pass
+
+A post-closeout feature added the governed flagship quote `img-001` to both localized home pages.
+Cold inspection found that the Spanish heading initially presented it simply as “Cita insignia”
+even though `img-001` is English and the canonical corpus currently contains 229 English records,
+zero Spanish records, and zero accepted `translation_of` edges. There was therefore no governed
+Spanish twin that the UI could select without inventing content or bypassing Phase S's proposal
+and human-review contract.
+
+The Spanish page now says **“Cita insignia — original en inglés”**, explains that no governed
+Spanish translation exists yet, renders the quotation with `lang="en"`, and retains the immutable
+ID/language metadata. The E2E home-page assertion now verifies the disclosure text and language
+attribute in addition to `img-001` itself.
+
+Verification used a fresh five-container Compose stack with the container Ollama profile, not a
+fixture or mocked response:
+
+- `npm run check` — 30 files, 0 errors, 0 warnings, 0 hints.
+- `npm run build` — success.
+- `GET /health` — `{"status":"ok","ttod_version":"3.1.0"}`.
+- Live `/es/` HTML — Spanish disclosure present, `<blockquote lang="en">`, and `img-001` present.
+- `E2E_BASE_URL=http://localhost:18081 npx playwright test --project=chromium` — **15/15 passed
+  in 4.0s**, including axe checks on both localized home pages and every previously covered route.
+
+The isolated stack was removed after verification. R7 remains **PARTIAL** for exactly the same
+remaining interaction and R6-dependent CI gates listed above; this pass closes the flagship
+translation-presentation defect, not the entire phase.
+
 ## Files touched
 
 - `tests/fixtures/r_oracle_threshold_calibration.json`
@@ -90,7 +118,8 @@ pretend otherwise.
 - `docs/testing-strategy.md`
 - `docs/DEV_PLAN/PHASE-R7-REPORT.md`
 - `services/frontend/playwright.config.ts` (new)
-- `services/frontend/e2e/i18n-routes.spec.ts` (new)
+- `services/frontend/e2e/i18n-routes.spec.ts` (new; later extended with flagship ID and
+  untranslated-language disclosure assertions)
 - `services/frontend/src/pages/en/index.astro`, `es/index.astro`,
   `[locale]/quote.astro`, `[locale]/graph.astro`, `[locale]/oracle.astro` (added `<main>` landmark)
 

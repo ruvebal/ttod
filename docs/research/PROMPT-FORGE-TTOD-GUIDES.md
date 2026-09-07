@@ -28,14 +28,23 @@ Read completely before acting:
   the git-history-isolation requirement below — treat that specific recommendation as superseded)
 - `docs/DEV_PLAN/DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`
 - every Phase R report or onboarding document needed to verify a claim you repeat
+- the complete `SKILL.md` for `ground-with-athanor-ahmes`
+  (`~/.codex/skills/ground-with-athanor-ahmes/SKILL.md`) for claim grounding, page-level
+  verification, evaluator-safe citation resolution, and `[BIBLIO-GAP]` discipline
 - the complete `SKILL.md` for `profield-ahmes-athanor`
-  (`~/src/ahmes/.cursor/skills/profield-ahmes-athanor/SKILL.md` — this task's own plan originally
-  named a skill, `ground-with-athanor-ahmes`, that does not exist anywhere in this workspace;
-  corrected 2026-09-06, see `GUIDE-FORGE-PLAN.md` §4 item 1 for the verified vault check and the
-  `athanor` CLI's own `PG_PASSWORD` gap)
+  (`~/src/ahmes/.cursor/skills/profield-ahmes-athanor/SKILL.md`) only if operating the
+  Profield→Ahmes→Athanor ingestion pipeline; it complements rather than replaces the grounding
+  skill. See `GUIDE-FORGE-PLAN.md` §4 item 1 for the verified vault check and the `athanor` CLI's
+  own `PG_PASSWORD` gap.
 - the complete studio skills `cascade-forge`, `documentation-forger`, `user-guide-forger`,
   `student-ai-guide-forger`, and `pitch-forger`, plus every reference those skills require for
   this task
+- for the Spanish MSCA-structured pitch only:
+  `/Users/ruvebal/src/MSCA/SVCM/.cursor/skills/msca-proposal-forge/SKILL.md` and its declared
+  “holy trinity,” including the canonical 2026 Part B template at
+  `/Users/ruvebal/src/MSCA/SVCM/reference/horizon-europe/part-b-template.md`; use these as
+  structural/evaluator guidance and never import PROVENARCH content, identities, confidential
+  material, host facts, or fellowship claims
 
 Apply the skills in that order of responsibility. State when a skill changes or blocks your work.
 Use `pitch-forger` only for factual accuracy, disclosure, non-invention, and current-venue checks;
@@ -141,6 +150,15 @@ Then generate exactly these audience-specific documents:
 - `docs/research/PI-RESEARCH-BRIEF.md` — PI/co-investigator; research contribution, evidence
   ledger, methodological critique points, roles, ethics/data custody, analysis, limits, and a
   conditional publication path.
+- `docs/research/PITCH-INVESTIGACION-TTOD-ES.md` — Spanish-speaking research
+  evaluators/department/PI; an evaluator-facing research pitch organized as **1 Excelencia**,
+  **2 Impacto**, and **3 Calidad y eficiencia de la implementación**, using the current local
+  MSCA Part B structure and its 50/30/20 weighting as an editorial allocation guide. State
+  prominently that it is an MSCA-structured pitch, not an MSCA application or an eligibility,
+  funding, host, budget, duration, partner, ethics-approval, or submission claim. Adapt only
+  verified TTOD analogues; omit or mark inapplicable all fellowship-specific requirements.
+  End with the institutional decision requested: support to mature and review the protocol, not
+  retroactive authorization of research activity.
 
 Do not generate `PARTICIPANT-INFORMATION-SHEET.md` unless the institution's required template,
 controller/contact details, lawful basis, retention schedule, withdrawal process, independent
@@ -152,6 +170,8 @@ list only the missing inputs—never invent them.
 - Put a FORGE META block at the top of every guide: primary audience, reader goal, document class,
   confidence, verified date/revision, and maintenance triggers.
 - One primary audience per document. Link rather than duplicating deep explanations.
+- Write the MSCA-structured pitch in publication-quality Spanish; retain official programme or
+  template terminology in its established Spanish form and define unavoidable English acronyms.
 - State audience, goal, prerequisites, and “not for” boundaries early.
 - Verify every command, route, port, environment variable, screenshot state, and recovery step.
 - Prefer observable outcomes over vague reassurance. Mark platform-specific steps.
@@ -167,7 +187,9 @@ list only the missing inputs—never invent them.
 
 Test links, commands, clean-clone onboarding, routes, terminology, citations, licenses,
 privacy leakage, git-history isolation of the actual student distribution artifact, and
-cross-document status concordance. Have independent cold reviewers execute the primary task of
+cross-document status concordance. For the Spanish pitch, also test coverage of Excellence,
+Impact, and Implementation; claim-label fidelity; absence of imported MSCA-project identities;
+and absence of invented fellowship/application facts. Have independent cold reviewers execute the primary task of
 each guide. Reconcile all findings or leave the affected lane PARTIAL.
 
 Produce:

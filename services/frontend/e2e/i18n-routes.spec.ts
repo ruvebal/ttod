@@ -27,9 +27,13 @@ for (const locale of ['en', 'es'] as const) {
 			await expect(page.locator('html')).toHaveAttribute('lang', locale);
 			await expect(page.getByRole('heading', {
 				level: 2,
-				name: locale === 'en' ? 'Flagship quote' : 'Cita insignia'
+				name: locale === 'en' ? 'Flagship quote' : 'Cita insignia — original en inglés'
 			})).toBeVisible();
 			await expect(page.getByText('img-001 · images · en')).toBeVisible();
+			if (locale === 'es') {
+				await expect(page.getByText(/aún no tiene una traducción gobernada al español/)).toBeVisible();
+				await expect(page.locator('blockquote')).toHaveAttribute('lang', 'en');
+			}
 		});
 
 		test(`/${locale}/ has no detectable axe violations`, async ({ page }) => {

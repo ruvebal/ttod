@@ -6,16 +6,18 @@
 **Engineering baseline:** Phase R reference build exists; the student handoff is R1/R2/R3a and
 R6 remains student-owned.
 
-## Launch readiness, as of 2026-09-06
+## Launch readiness, as of 2026-09-07
 
-**T0 and T1 can start now.** T1's evidence base is real and already substantial (see §4's
+**T0–T3 and the T5 institutional pitch lane are DONE; T4 is PARTIAL.** T0 froze commit `8e73116299d29dd78b59f1717283f39eaca5fcea`
+and produced the claim registry, contradiction register, and cold-audited report under
+`docs/research/guides/`. T1's evidence base is real and already substantial (see §4's
 verified vault check below) — this is no longer a plan that assumes literature discovery will
-work; it has been checked. **T3–T5 are not ready to start** — they depend on T0/T2's claim
-registry and information architecture, which do not exist yet; nothing in this plan authorizes
-skipping straight to guide generation. **T6 stays correctly `BLOCKED`** — no institutional inputs
-have been supplied. **The full `PROMPT-FORGE-TTOD-GUIDES.md` generator is not yet launched** —
-launching it is Rubén's decision, this section only reports what would and would not go smoothly
-if it were.
+work; it has been checked. **T3 is closed as documentation; T4 has a drafted guide but remains
+partial until the final distribution artifact passes the history-isolation test.** T5 was launched
+only for decision-facing drafts, after T0/T2 supplied their contracts.
+**T6 stays correctly `BLOCKED`** — no institutional inputs have been supplied. **The full
+`PROMPT-FORGE-TTOD-GUIDES.md` generator is not yet launched** — launching it is Rubén's decision,
+this section only reports what would and would not go smoothly if it were.
 
 ## 1. Honest maturity verdict
 
@@ -74,6 +76,7 @@ Do not make one omnibus manual. Generate a shared claim registry first, then the
 | `END-USER-GUIDE.md` | person using TTOD Oracle | navigate quotes, languages, graph, docs, and oracle safely | no methodology dump; concise AI/rights limitations |
 | `DEPARTMENT-DECISION-BRIEF.md` | head/degree coordination | decide educational fit, workload, resources, and authorization path | bounded case-study proposal and risk/benefit summary |
 | `PI-RESEARCH-BRIEF.md` | principal investigator / co-investigator | assess contribution, design validity, evidence, roles, ethics, and publication path | full research design with claim-strength labels |
+| `PITCH-INVESTIGACION-TTOD-ES.md` | Spanish-speaking research evaluators, department leadership, and research-group PI | evaluate the project through an Excellence–Impact–Implementation argument and decide whether to sponsor protocol development | Spanish evaluator-facing synthesis; no call, funding, or eligibility claim |
 | `PARTICIPANT-INFORMATION-SHEET.md` | potential student participant | understand voluntary participation and data use | **HOLD:** generate only after institutional and data-protection requirements are supplied and independently reviewed |
 
 “Student developer” and “research participant” are different roles. Course access, assessment,
@@ -87,10 +90,12 @@ Use the tools in this order:
    `profield-frontend-pedagogy` project first. Read the full Ahmes page for every retained result,
    resolve its citation key, and admit it as an ordinary citation only when
    `evaluator_safe=yes`. Otherwise emit `[BIBLIO-GAP]`; do not repair metadata by intuition.
-   **Debug note (2026-09-06):** the skill this plan and its generator prompt originally named,
-   `ground-with-athanor-ahmes`, does not exist anywhere in this workspace — the real one is
-   `profield-ahmes-athanor`, at `~/src/ahmes/.cursor/skills/profield-ahmes-athanor/SKILL.md`
-   (project-scoped to `ahmes/`, not the shared studio skills directory). Read *that* file. Also:
+   **T0 correction (2026-09-06):** both relevant skills exist and their responsibilities differ.
+   Use the shared `~/.codex/skills/ground-with-athanor-ahmes/SKILL.md` for claim grounding,
+   page-level verification, evaluator-safe citation resolution, and `[BIBLIO-GAP]` discipline.
+   Consult `~/src/ahmes/.cursor/skills/profield-ahmes-athanor/SKILL.md` only when operating the
+   Profield→Ahmes→Athanor ingestion pipeline. Do not substitute the ingestion skill for the
+   grounding skill. Also:
    `athanor project list` / `athanor search` fail in a fresh shell with
    `fe_sendauth: no password supplied` — the CLI's `.env` (`DATABASE_URL=…${PG_PASSWORD}…`) is not
    auto-loaded and `PG_PASSWORD` is not set anywhere in this environment. Until that's fixed
@@ -114,7 +119,14 @@ Use the tools in this order:
 5. **`pitch-forger`** — borrow only its accuracy, disclosure, venue-currentness, and
    non-invention discipline for institutional briefs. It is not itself a department-approval
    template.
-6. **`cascade-forge`** — orchestrate the work as gated, resumable lanes with reports and cold
+6. **MSCA structural source** — for the Spanish research pitch, read the local
+   `/Users/ruvebal/src/MSCA/SVCM/.cursor/skills/msca-proposal-forge/SKILL.md`, its “holy trinity,”
+   and the canonical 2026 Part B template at
+   `/Users/ruvebal/src/MSCA/SVCM/reference/horizon-europe/part-b-template.md`. Reuse its
+   evaluator logic, not PROVENARCH content, identities, confidential material, host facts, or
+   fellowship claims. Preserve the official weighting as an editorial allocation guide:
+   Excellence 50%, Impact 30%, Implementation 20%. Record the template version and access date.
+7. **`cascade-forge`** — orchestrate the work as gated, resumable lanes with reports and cold
    review. It generates documents; it does not change research status by writing `DONE` in prose.
 
 No guide may expose Athanor/Ahmes database paths, node identifiers, internal project metadata, or
@@ -124,12 +136,16 @@ studio credentials. Public and student outputs contain resolved citations only.
 
 Use the closed states `PENDING | IN_PROGRESS | PARTIAL | BLOCKED | DONE`.
 
-### T0 — Baseline and contradiction register (sequential blocker)
+### T0 — Baseline and contradiction register — `DONE` (2026-09-06)
+
+Outputs: [`guides/CLAIM-REGISTRY.md`](guides/CLAIM-REGISTRY.md),
+[`guides/CONTRADICTION-REGISTER.md`](guides/CONTRADICTION-REGISTER.md), and
+[`guides/T0-REPORT.md`](guides/T0-REPORT.md).
 
 - Freeze git revision and read Phase Q, Phase R, the R6 decision,
   `PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md` (now filed), and all `docs/research/` files.
   Record a referenced-but-missing report as a gap; never silently treat its link text as evidence.
-- Reconcile current facts before drafting. **Known contradiction, exact location:**
+- Reconcile current facts before drafting. **Resolved by T0, retained here as audit history:**
   `COHORT-CASE-PROPOSAL.md` §7's calendar row — "Sep–Oct 2026 | Cohort builds R3b–R7" — reads as
   the cohort producing R3b/R4/R5/R7 as fresh work, but those phases already exist as a
   reference/architectural-validation build on `main`, completed before any cohort start. The
@@ -137,14 +153,18 @@ Use the closed states `PENDING | IN_PROGRESS | PARTIAL | BLOCKED | DONE`.
   not a continuation of the reference build — reword, don't just cross-reference, everywhere this
   ambiguity recurs (`RESEARCH-LINE.md` §1's "asset inventory" row and `overview.md`'s kickoff
   letter carry the same phrasing).
-- **Second contradiction to register, not yet resolved anywhere in this tree:** every research
+- **Second contradiction, wording resolved but evidence gate still open:** research
   document asserts students never see the reference build, but no verified mechanism currently
   guarantees that — see the shared-`origin` finding in §2 above. Record this as
   `pending evidence`, not `verified`, until T4 tests it.
 - Produce a claim registry with `verified | interpretive | pending evidence | obsolete` labels.
 - Gate: no unresolved contradiction may enter two documents with different wording.
 
-### T1 — Evidence and protocol maturity audit (after T0)
+### T1 — Evidence and protocol maturity audit — `DONE` (2026-09-07)
+
+Outputs: [`guides/EVIDENCE-LEDGER.md`](guides/EVIDENCE-LEDGER.md),
+[`guides/BIBLIO-GAPS.md`](guides/BIBLIO-GAPS.md), and
+[`guides/T1-REPORT.md`](guides/T1-REPORT.md).
 
 - Refresh the Athanor literature discovery for DBR, studio/project-based computing education,
   metacognitive AI scaffolding, process artifacts, oral defense, authorship, and small-cohort case
@@ -154,8 +174,8 @@ Use the closed states `PENDING | IN_PROGRESS | PARTIAL | BLOCKED | DONE`.
 - Produce an evidence ledger and `[BIBLIO-GAP]` register.
 - Gate: no submission-facing claim rests on vector-search snippets alone.
 
-**T1 readiness, verified 2026-09-06 (titles only — discovery-grade, not yet evaluator-safe
-citations; T1 must still resolve each via `ahmes query --cite` before use):**
+**T1 discovery baseline, verified 2026-09-06 (titles only — discovery-grade, not yet
+evaluator-safe citations):**
 `profield-frontend-pedagogy` already holds **46 documents, 23,798 nodes, 31,251 entities**, all
 `status: completed`. This is not a cold start — a real, thematically strong candidate pool exists
 per §3's research episteme:
@@ -176,24 +196,29 @@ teacher-researcher conflict, consent, or research-ethics literature (`file_name 
 '%conflict%'/'%consent%'/'%ethic%'` against the vault returns zero rows). This is the risk register's
 own 🔴 top item (`RESEARCH-LINE.md` §5) — T1 needs either a fresh, targeted Athanor injection for
 this cluster specifically, or an explicit human literature contribution; do not let the vault's
-general richness elsewhere paper over this one real absence.
+general richness elsewhere paper over this one real absence. T1 retained only sources that later
+passed `ahmes query --cite --require-evaluator-safe`; see the evidence ledger and gap register.
 
-### T2 — Shared information architecture (after T0 and T1)
+### T2 — Shared information architecture — `DONE` (2026-09-07)
+
+Output: [`guides/INFORMATION-ARCHITECTURE.md`](guides/INFORMATION-ARCHITECTURE.md).
 
 - Define the canonical two-phase introduction, vocabulary, audience matrix, link graph, claim
   homes, and maintenance triggers.
 - Specify what each audience needs, what it must not receive, and the reading order.
 - Gate: every claim has one canonical home; all other occurrences link or summarize consistently.
 
-### T3 — Operational guide lane (parallel after T2)
+### T3 — Operational guide lane — `DONE` (2026-09-07)
 
+- Outputs: [`MAINTAINER-GUIDE.md`](MAINTAINER-GUIDE.md), [`END-USER-GUIDE.md`](END-USER-GUIDE.md), and [`guides/T3-T4-REPORT.md`](guides/T3-T4-REPORT.md).
 - Forge `MAINTAINER-GUIDE.md` and `END-USER-GUIDE.md`.
 - Verify every command, route, port, environment variable, failure mode, and recovery instruction
   against the checked-out repository or a clearly labelled fixture.
 - Gate: a cold reader can complete the guide goal without hidden studio knowledge.
 
-### T4 — Student developer lane (parallel after T2)
+### T4 — Student developer lane — `PARTIAL` (2026-09-07)
 
+- Output: [`STUDENT-DEVELOPER-GUIDE.md`](STUDENT-DEVELOPER-GUIDE.md), with the state report in [`guides/T3-T4-REPORT.md`](guides/T3-T4-REPORT.md).
 - Forge `STUDENT-DEVELOPER-GUIDE.md` from a clean generated cohort-starter checkout, not `main`.
 - Explain the hello-world-to-live-quote path before assigning later work.
 - Add explicit AI-use declarations, decision/process evidence, review protocol, and oral defense.
@@ -209,12 +234,37 @@ general richness elsewhere paper over this one real absence.
   clarification; research participation is never a condition of coursework; git-history isolation
   is verified, not assumed.
 
-### T5 — Institutional lane (parallel after T2)
+### T5 — Institutional lane — `DONE` for initial briefs and Spanish pitch (2026-09-07)
+
+Outputs: [`DEPARTMENT-DECISION-BRIEF.md`](DEPARTMENT-DECISION-BRIEF.md),
+[`PI-RESEARCH-BRIEF.md`](PI-RESEARCH-BRIEF.md),
+[`PITCH-INVESTIGACION-TTOD-ES.md`](PITCH-INVESTIGACION-TTOD-ES.md), and
+[`guides/T5-REPORT.md`](guides/T5-REPORT.md). This is a draft-and-audit state only; no
+institutional approval is implied.
 
 - Forge separate department and PI briefs; never collapse their decision needs into one pitch.
 - The department brief asks for an educational/operational decision. The PI brief asks for
   methodological critique, co-investigator roles, evidence refinement, and ethics/data custody.
-- Gate: documents say “proposal” until real approvals exist and include explicit non-claims.
+- Forge `PITCH-INVESTIGACION-TTOD-ES.md` in Spanish as a third, distinct artifact.
+  It must begin with a short evaluator-oriented synopsis and follow this adapted structure:
+  **1 Excelencia** (problem, objectives, state of the art, ambition, methodology,
+  interdisciplinarity, diversity relevance, open science); **2 Impacto** (scientific,
+  educational/institutional and societal outcomes; target groups; dissemination, exploitation,
+  communication and intellectual-property/rights posture); **3 Calidad y eficiencia de la
+  implementación** (work packages, tasks, deliverables, milestones, dependencies, effort, risks,
+  governance, ethics/data custody, and institutional capacity still to be confirmed).
+- Translate the evaluation logic, not the MSCA application fiction. Sections specific to a
+  Postdoctoral Fellowship—fellow eligibility, researcher career development, two-way knowledge
+  transfer, named host capacity, supervisor track record, secondments and placements—must be
+  omitted, explicitly marked not applicable, or reframed only where TTOD has verified analogous
+  facts. Never invent a host, call, budget, duration, TRL, partner, approval, or funding status.
+- Use the T0 claim IDs and T1 evidence ledger. Spanish prose may translate a verified claim but
+  may not strengthen it. Keep `[BIBLIO-GAP]` material out of evaluator-facing assertions.
+- Include a final **decisión solicitada**: authorization/support to mature the protocol and its
+  institutional safeguards, not retroactive approval of research already conducted.
+- Gate: all three documents say “proposal” until real approvals exist, include explicit
+  non-claims, serve distinct reader decisions, and pass an MSCA-structure compliance check plus
+  native-quality Spanish editorial review.
 
 ### T6 — Participant-information hold (downstream, conditional)
 
@@ -242,6 +292,8 @@ The guide programme is ready to execute when:
 - the actual student-facing distribution artifact has been checked for reference-build git
   history (§2, T4) and found clean — not merely planned to be clean;
 - institutional documents contain requests, risks, responsible roles, and non-claims;
+- the Spanish MSCA-structured pitch covers Excellence, Impact, and Implementation without
+  presenting TTOD as an MSCA submission or inventing fellowship-specific facts;
 - no private studio endpoint is offered to students;
 - no guide invents approval, consent, evidence, commands, routes, or capabilities; and
 - reports preserve `PARTIAL` or `BLOCKED` honestly when a gate is unmet.
@@ -249,6 +301,8 @@ The guide programme is ready to execute when:
 ## 7. What this plan does not authorize
 
 - It does not generate or publish the guides.
+- It does not create an MSCA application, assert MSCA eligibility, or transfer content or
+  confidential facts from `/Users/ruvebal/src/MSCA`; that repository supplies structure only.
 - It does not collect, classify, or analyze student data.
 - It does not request consent or imply institutional approval.
 - It does not implement R6.

@@ -2,7 +2,7 @@
   "proposal_id": "7e4ba66e-75f2-42d9-8db5-07fc3c0703e3",
   "status": "proposed",
   "candidate_content": {
-    "text": "El contribuyente que lee la gu\u00eda de estilo es el contribuyente cuyo PR se fusiona.",
+    "text": "El contribuyente que lee la guía de estilo es el contribuyente cuyo PR se fusiona.",
     "section": "qa-tooling",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-007' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Seguir las convenciones acelera la colaboraci\u00f3n",
+    "authorship_assertion": "machine-translated from 'qa-007' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Seguir las convenciones acelera la colaboración",
     "tags": [
       "contributing",
       "style-guide",

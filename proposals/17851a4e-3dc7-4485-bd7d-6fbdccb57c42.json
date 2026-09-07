@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los m\u00f3dulos centrales deben permanecer ignorantes de las capas externas para mantenerse portables y probables.",
+    "authorship_assertion": "machine-translated from 'arch-004' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los módulos centrales deben permanecer ignorantes de las capas externas para mantenerse portables y probables.",
     "tags": [
       "architecture",
       "dependencies",

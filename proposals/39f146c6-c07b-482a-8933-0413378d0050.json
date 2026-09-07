@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La finalizaci\u00f3n supera a la perfecci\u00f3n en contextos operativos.",
+    "authorship_assertion": "machine-translated from 'rrp-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La finalización supera a la perfección en contextos operativos.",
     "tags": [
       "pragmatism",
       "shipping",

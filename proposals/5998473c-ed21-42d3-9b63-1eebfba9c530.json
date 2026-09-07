@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-018' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Una buena documentaci\u00f3n escala tu tiempo.",
+    "authorship_assertion": "machine-translated from 'qa-018' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Una buena documentación escala tu tiempo.",
     "tags": [
       "documentation",
       "efficiency",

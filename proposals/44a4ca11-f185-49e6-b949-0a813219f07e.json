@@ -2,7 +2,7 @@
   "proposal_id": "44a4ca11-f185-49e6-b949-0a813219f07e",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una plantilla no es una restricci\u00f3n. Es un jard\u00edn donde mil flores pueden florecer en armon\u00eda.",
+    "text": "Una plantilla no es una restricción. Es un jardín donde mil flores pueden florecer en armonía.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-014' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'arch-014' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Las plantillas ofrecen una estructura que habilita la creatividad en lugar de limitarla.",
     "tags": [
       "architecture",

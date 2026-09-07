@@ -2,7 +2,7 @@
   "proposal_id": "22dfa38f-05cd-468a-8038-9d4ea0fc9756",
   "status": "proposed",
   "candidate_content": {
-    "text": "Ning\u00fan bug resiste el asalto de la depuraci\u00f3n sostenida.",
+    "text": "Ningún bug resiste el asalto de la depuración sostenida.",
     "section": "qa-tooling",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-016' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Combina suites automatizadas con investigaci\u00f3n disciplinada para presionar las regresiones obstinadas.",
+    "authorship_assertion": "machine-translated from 'qa-016' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Combina suites automatizadas con investigación disciplinada para presionar las regresiones obstinadas.",
     "tags": [
       "qa",
       "testing",

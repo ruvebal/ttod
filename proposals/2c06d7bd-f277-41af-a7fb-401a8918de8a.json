@@ -2,7 +2,7 @@
   "proposal_id": "2c06d7bd-f277-41af-a7fb-401a8918de8a",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una entidad mutable es una mentira a punto de ocurrir. Congela la dataclass. Versiona el esquema. Deja que el hash original testifique lo que fue, no lo que alguien dese\u00f3 que hubiera sido.",
+    "text": "Una entidad mutable es una mentira a punto de ocurrir. Congela la dataclass. Versiona el esquema. Deja que el hash original testifique lo que fue, no lo que alguien deseó que hubiera sido.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-041' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a748): El Registro Congelado",
+    "authorship_assertion": "machine-translated from 'arch-041' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§48): El Registro Congelado",
     "tags": [
       "deviac",
       "tao-of-system-architect",

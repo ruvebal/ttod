@@ -2,7 +2,7 @@
   "proposal_id": "7c630a4e-711d-4d75-97ec-74a238a858e4",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una imagen sin prop\u00f3sito es decoraci\u00f3n. La decoraci\u00f3n sin medida es desorden. El desorden es el enemigo del sentido.",
+    "text": "Una imagen sin propósito es decoración. La decoración sin medida es desorden. El desorden es el enemigo del sentido.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-065' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-065' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Otorga a cada imagen un significado intencional y un contexto.",
     "tags": [
       "laws",

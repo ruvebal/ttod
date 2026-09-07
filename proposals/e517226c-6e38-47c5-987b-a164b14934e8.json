@@ -2,7 +2,7 @@
   "proposal_id": "e517226c-6e38-47c5-987b-a164b14934e8",
   "status": "proposed",
   "candidate_content": {
-    "text": "Solo existe una implementaci\u00f3n de \u00abc\u00f3mo consultar el cofre\u00bb: las herramientas MCP. El backend del chat es un cliente, no un arquitecto.",
+    "text": "Solo existe una implementación de «cómo consultar el cofre»: las herramientas MCP. El backend del chat es un cliente, no un arquitecto.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-054' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El chat es un cliente MCP; la l\u00f3gica de consulta del cofre reside solo en las herramientas MCP (Ko\u00e1n de la Puerta \u00danica).",
+    "authorship_assertion": "machine-translated from 'arch-054' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El chat es un cliente MCP; la lógica de consulta del cofre reside solo en las herramientas MCP (Koán de la Puerta Única).",
     "tags": [
       "architecture",
       "boundaries",

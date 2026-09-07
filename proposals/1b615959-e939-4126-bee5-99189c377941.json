@@ -2,7 +2,7 @@
   "proposal_id": "1b615959-e939-4126-bee5-99189c377941",
   "status": "proposed",
   "candidate_content": {
-    "text": "Escribe c\u00f3digo para humanos primero, para m\u00e1quinas despu\u00e9s; el Tao reside en equilibrar ambos.",
+    "text": "Escribe código para humanos primero, para máquinas después; el Tao reside en equilibrar ambos.",
     "section": "code-craft",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Prioriza la legibilidad y la expresividad, luego ajusta la eficiencia sin comprometer la claridad.",
     "tags": [
       "codecraft",

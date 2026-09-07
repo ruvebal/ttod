@@ -2,7 +2,7 @@
   "proposal_id": "e45a83f2-3eae-4232-a5e4-bb12835cda14",
   "status": "proposed",
   "candidate_content": {
-    "text": "Alta cohesi\u00f3n es un equipo que completa las frases del otro. Baja cohesi\u00f3n es una reuni\u00f3n donde nadie conoce la agenda.",
+    "text": "Alta cohesión es un equipo que completa las frases del otro. Baja cohesión es una reunión donde nadie conoce la agenda.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Lo que pertenece juntos debe vivir juntos; las preocupaciones ajenas fragmentan la comprensi\u00f3n.",
+    "authorship_assertion": "machine-translated from 'arch-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Lo que pertenece juntos debe vivir juntos; las preocupaciones ajenas fragmentan la comprensión.",
     "tags": [
       "architecture",
       "cohesion",

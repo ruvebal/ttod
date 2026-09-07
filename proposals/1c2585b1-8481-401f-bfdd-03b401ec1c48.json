@@ -2,7 +2,7 @@
   "proposal_id": "1c2585b1-8481-401f-bfdd-03b401ec1c48",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un monorepo no es un monolito. Un monolito no es modular. Un sistema modular no tiene por qu\u00e9 ser distribuido.",
+    "text": "Un monorepo no es un monolito. Un monolito no es modular. Un sistema modular no tiene por qué ser distribuido.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La estructura del repositorio, la topolog\u00eda de despliegue y la organizaci\u00f3n del c\u00f3digo son preocupaciones ortogonales.",
+    "authorship_assertion": "machine-translated from 'arch-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La estructura del repositorio, la topología de despliegue y la organización del código son preocupaciones ortogonales.",
     "tags": [
       "architecture",
       "monorepo",

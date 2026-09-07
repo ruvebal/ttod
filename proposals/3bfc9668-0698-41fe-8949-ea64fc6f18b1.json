@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-016' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Vectorial frente a r\u00e1ster en distintas escalas",
+    "authorship_assertion": "machine-translated from 'img-016' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Vectorial frente a ráster en distintas escalas",
     "tags": [
       "svg",
       "raster",

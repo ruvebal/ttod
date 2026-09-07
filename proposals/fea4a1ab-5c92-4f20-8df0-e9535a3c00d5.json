@@ -2,7 +2,7 @@
   "proposal_id": "fea4a1ab-5c92-4f20-8df0-e9535a3c00d5",
   "status": "proposed",
   "candidate_content": {
-    "text": "El srcset no es complejidad, es respeto. Respeto por los datos del usuario m\u00f3vil. Respeto por la pantalla del usuario de escritorio. Respeto por el dispositivo que a\u00fan no has imaginado.",
+    "text": "El srcset no es complejidad, es respeto. Respeto por los datos del usuario móvil. Respeto por la pantalla del usuario de escritorio. Respeto por el dispositivo que aún no has imaginado.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-043' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-043' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Deja que srcset y sizes permitan a los navegadores elegir sabiamente.",
     "tags": [
       "srcset",

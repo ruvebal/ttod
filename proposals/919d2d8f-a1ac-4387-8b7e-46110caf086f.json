@@ -2,7 +2,7 @@
   "proposal_id": "919d2d8f-a1ac-4387-8b7e-46110caf086f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Fractalizar es humano. Saber cu\u00e1ndo dejar de fractalizar es sabidur\u00eda.",
+    "text": "Fractalizar es humano. Saber cuándo dejar de fractalizar es sabiduría.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La descomposici\u00f3n infinita crea complejidad infinita; encuentra el nivel donde el valor supera al costo.",
+    "authorship_assertion": "machine-translated from 'arch-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La descomposición infinita crea complejidad infinita; encuentra el nivel donde el valor supera al costo.",
     "tags": [
       "architecture",
       "fractals",

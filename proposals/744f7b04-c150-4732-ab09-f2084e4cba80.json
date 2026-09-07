@@ -2,7 +2,7 @@
   "proposal_id": "744f7b04-c150-4732-ab09-f2084e4cba80",
   "status": "proposed",
   "candidate_content": {
-    "text": "El maestro respondi\u00f3: \u00abAbre tus DevTools. Revisa la pesta\u00f1a de Red. Si ves rojo, tienes trabajo que hacer. Si ves verde, est\u00e1s aprendiendo. Si no ves nada porque eliminaste las im\u00e1genes por completo y usaste CSS, has entendido.\u00bb",
+    "text": "El maestro respondió: «Abre tus DevTools. Revisa la pestaña de Red. Si ves rojo, tienes trabajo que hacer. Si ves verde, estás aprendiendo. Si no ves nada porque eliminaste las imágenes por completo y usaste CSS, has entendido.»",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-068' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Aprovecha los colores de DevTools para medir el impacto de las im\u00e1genes.",
+    "authorship_assertion": "machine-translated from 'img-068' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Aprovecha los colores de DevTools para medir el impacto de las imágenes.",
     "tags": [
       "koan",
       "devtools",

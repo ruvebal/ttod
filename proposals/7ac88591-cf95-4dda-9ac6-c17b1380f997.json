@@ -2,7 +2,7 @@
   "proposal_id": "7ac88591-cf95-4dda-9ac6-c17b1380f997",
   "status": "proposed",
   "candidate_content": {
-    "text": "El SVG en l\u00ednea dice: 'Soy uno con el DOM.' El SVG externo dice: 'Estoy en cach\u00e9 para la eternidad.' Ambos son correctos.",
+    "text": "El SVG en línea dice: 'Soy uno con el DOM.' El SVG externo dice: 'Estoy en caché para la eternidad.' Ambos son correctos.",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-018' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Compromisos entre SVG en l\u00ednea y SVG externo",
+    "authorship_assertion": "machine-translated from 'img-018' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Compromisos entre SVG en línea y SVG externo",
     "tags": [
       "svg",
       "inline",

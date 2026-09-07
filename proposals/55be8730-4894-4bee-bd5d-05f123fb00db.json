@@ -2,7 +2,7 @@
   "proposal_id": "55be8730-4894-4bee-bd5d-05f123fb00db",
   "status": "proposed",
   "candidate_content": {
-    "text": "El nombre de visualizaci\u00f3n puede dar la bienvenida al hu\u00e9sped. El slug can\u00f3nico no debe derivar. La hospitalidad reside en los alias; la ley, en los identificadores.",
+    "text": "El nombre de visualización puede dar la bienvenida al huésped. El slug canónico no debe derivar. La hospitalidad reside en los alias; la ley, en los identificadores.",
     "section": "code-craft",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-036' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los alias y los nombres de visualizaci\u00f3n pueden diferir para los humanos; los slugs can\u00f3nicos y los identificadores no deben derivar.",
+    "authorship_assertion": "machine-translated from 'cc-036' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los alias y los nombres de visualización pueden diferir para los humanos; los slugs canónicos y los identificadores no deben derivar.",
     "tags": [
       "naming",
       "alias",

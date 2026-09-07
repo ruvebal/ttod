@@ -2,7 +2,7 @@
   "proposal_id": "949c9ee7-060b-4e45-a7ff-63a6eee959a7",
   "status": "proposed",
   "candidate_content": {
-    "text": "El espacio donde deber\u00eda estar la imagen tambi\u00e9n es una imagen. Pero el corrector le da cero puntos.",
+    "text": "El espacio donde debería estar la imagen también es una imagen. Pero el corrector le da cero puntos.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-011' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Las im\u00e1genes rotas son fracasos visibles",
+    "authorship_assertion": "machine-translated from 'img-011' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las imágenes rotas son fracasos visibles",
     "tags": [
       "broken-images",
       "grading",

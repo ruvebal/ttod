@@ -2,7 +2,7 @@
   "proposal_id": "769671e1-2640-46f1-ae0f-29ee3ec0eba3",
   "status": "proposed",
   "candidate_content": {
-    "text": "La m\u00e1quina del desarrollador es la forja. El host de despliegue es el escenario. Uno forja; el otro act\u00faa. Conf\u00fandelos y quemar\u00e1s al p\u00fablico o aburrir\u00e1s al herrero.",
+    "text": "La máquina del desarrollador es la forja. El host de despliegue es el escenario. Uno forja; el otro actúa. Confúndelos y quemarás al público o aburrirás al herrero.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-031' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a737): La Forja y el Escenario \u2014 Haiku: Tanit forja el acero / Lilith empu\u00f1a la hoja / cada una conoce su fuego",
+    "authorship_assertion": "machine-translated from 'arch-031' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§37): La Forja y el Escenario — Haiku: Tanit forja el acero / Lilith empuña la hoja / cada una conoce su fuego",
     "tags": [
       "deviac",
       "tao-of-system-architect",

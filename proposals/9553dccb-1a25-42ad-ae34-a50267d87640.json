@@ -2,7 +2,7 @@
   "proposal_id": "9553dccb-1a25-42ad-ae34-a50267d87640",
   "status": "proposed",
   "candidate_content": {
-    "text": "Elegir el formato adecuado es sabidur\u00eda. No elegirlo es una imagen heroica de 5 MB.",
+    "text": "Elegir el formato adecuado es sabiduría. No elegirlo es una imagen heroica de 5 MB.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-008' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La selecci\u00f3n consciente de formato previene la hinchaz\u00f3n",
+    "authorship_assertion": "machine-translated from 'img-008' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La selección consciente de formato previene la hinchazón",
     "tags": [
       "formats",
       "decision-making",

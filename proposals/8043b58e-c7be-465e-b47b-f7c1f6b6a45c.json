@@ -2,7 +2,7 @@
   "proposal_id": "8043b58e-c7be-465e-b47b-f7c1f6b6a45c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Las variables de CSS son contratos - Usa --header-height, --footer-height con devoci\u00f3n.",
+    "text": "Las variables de CSS son contratos - Usa --header-height, --footer-height con devoción.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-025' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Las variables de CSS son contratos entre componentes. \u00dasalas para todas las dimensiones de dise\u00f1o. Responden a los cambios de tema, evitan los n\u00fameros m\u00e1gicos y mantienen la consistencia.",
+    "authorship_assertion": "machine-translated from 'arch-025' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las variables de CSS son contratos entre componentes. Úsalas para todas las dimensiones de diseño. Responden a los cambios de tema, evitan los números mágicos y mantienen la consistencia.",
     "tags": [
       "architecture",
       "css",

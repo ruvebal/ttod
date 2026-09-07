@@ -2,7 +2,7 @@
   "proposal_id": "9408788c-5369-4b93-8bbb-a4f7ee6a76c8",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un tiempo de carga de 3 segundos no es lento por la tecnolog\u00eda, es lento por tus im\u00e1genes. El servidor es inocente; el desarrollador no.",
+    "text": "Un tiempo de carga de 3 segundos no es lento por la tecnología, es lento por tus imágenes. El servidor es inocente; el desarrollador no.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-052' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Asume la responsabilidad cuando las im\u00e1genes arrastran los tiempos de carga.",
+    "authorship_assertion": "machine-translated from 'img-052' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Asume la responsabilidad cuando las imágenes arrastran los tiempos de carga.",
     "tags": [
       "performance",
       "accountability",

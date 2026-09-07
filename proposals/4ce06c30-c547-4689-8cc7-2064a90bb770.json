@@ -2,7 +2,7 @@
   "proposal_id": "4ce06c30-c547-4689-8cc7-2064a90bb770",
   "status": "proposed",
   "candidate_content": {
-    "text": "Las pruebas custodian el c\u00f3digo. Los mocks sustituyen a la nube. La confianza se fortalece.",
+    "text": "Las pruebas custodian el código. Los mocks sustituyen a la nube. La confianza se fortalece.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-019' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'qa-019' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Estrategias de pruebas para dependencias en la nube.",
     "tags": [
       "testing",

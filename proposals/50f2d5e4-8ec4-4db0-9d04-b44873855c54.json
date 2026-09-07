@@ -2,7 +2,7 @@
   "proposal_id": "50f2d5e4-8ec4-4db0-9d04-b44873855c54",
   "status": "proposed",
   "candidate_content": {
-    "text": "Chocar con sabidur\u00eda es mantener la verdad en dos lugares: el manifiesto y el m\u00f3dulo.",
+    "text": "Chocar con sabiduría es mantener la verdad en dos lugares: el manifiesto y el módulo.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-013' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La versi\u00f3n debe estar sincronizada entre todas las fuentes de verdad",
+    "authorship_assertion": "machine-translated from 'qa-013' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La versión debe estar sincronizada entre todas las fuentes de verdad",
     "tags": [
       "versioning",
       "semver",

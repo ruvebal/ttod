@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La investigaci\u00f3n met\u00f3dica requiere paciencia y observaci\u00f3n antes de la acci\u00f3n.",
+    "authorship_assertion": "machine-translated from 'wis-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La investigación metódica requiere paciencia y observación antes de la acción.",
     "tags": [
       "reflection",
       "methodology",

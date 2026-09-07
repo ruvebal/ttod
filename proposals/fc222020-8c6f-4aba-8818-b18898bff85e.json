@@ -2,7 +2,7 @@
   "proposal_id": "fc222020-8c6f-4aba-8818-b18898bff85e",
   "status": "proposed",
   "candidate_content": {
-    "text": "La API que se documenta a s\u00ed misma es la API que sobrevive al pr\u00f3ximo desarrollador.",
+    "text": "La API que se documenta a sí misma es la API que sobrevive al próximo desarrollador.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El c\u00f3digo autodocumentado y las APIs claras aseguran la longevidad",
+    "authorship_assertion": "machine-translated from 'qa-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El código autodocumentado y las APIs claras aseguran la longevidad",
     "tags": [
       "api",
       "documentation",

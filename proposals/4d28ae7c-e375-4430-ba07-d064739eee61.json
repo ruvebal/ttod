@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'ux-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Elimina las transiciones de p\u00e1gina innecesarias; deja que el contenido fluya con naturalidad. La mejor navegaci\u00f3n es aquella que olvidas que existe\u2014hasta que la necesitas.",
+    "authorship_assertion": "machine-translated from 'ux-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elimina las transiciones de página innecesarias; deja que el contenido fluya con naturalidad. La mejor navegación es aquella que olvidas que existe—hasta que la necesitas.",
     "tags": [
       "ux",
       "minimalism",

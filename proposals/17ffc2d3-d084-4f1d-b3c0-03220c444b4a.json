@@ -2,7 +2,7 @@
   "proposal_id": "17ffc2d3-d084-4f1d-b3c0-03220c444b4a",
   "status": "proposed",
   "candidate_content": {
-    "text": "Luego hazlo legible. La mantenibilidad es amabilidad con el siguiente desarrollador \u2014 a menudo, t\u00fa mismo.",
+    "text": "Luego hazlo legible. La mantenibilidad es amabilidad con el siguiente desarrollador — a menudo, tú mismo.",
     "section": "wisdom",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-008' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Etapa 2 (Escribir / \u6587): Es mantenible. Estructura, nombra y documenta para que otros puedan recorrer el camino.",
+    "authorship_assertion": "machine-translated from 'wis-008' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Etapa 2 (Escribir / 文): Es mantenible. Estructura, nombra y documenta para que otros puedan recorrer el camino.",
     "tags": [
       "wisdom",
       "bwu",

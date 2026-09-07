@@ -2,7 +2,7 @@
   "proposal_id": "080af808-6140-47ea-b443-4814acee6503",
   "status": "proposed",
   "candidate_content": {
-    "text": "Este es el Tao de las im\u00e1genes web.",
+    "text": "Este es el Tao de las imágenes web.",
     "section": "images",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-072' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Recuerda la lecci\u00f3n al crear futuros medios.",
+    "authorship_assertion": "machine-translated from 'img-072' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Recuerda la lección al crear futuros medios.",
     "tags": [
       "contemplation",
       "identity",

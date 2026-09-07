@@ -2,7 +2,7 @@
   "proposal_id": "1866b0aa-e934-4c94-86d2-4f6399a01ed2",
   "status": "proposed",
   "candidate_content": {
-    "text": "La imagen m\u00e1s r\u00e1pida de cargar es la que no se carga. Cuestiona si el h\u00e9roe debe ser una imagen de h\u00e9roe.",
+    "text": "La imagen más rápida de cargar es la que no se carga. Cuestiona si el héroe debe ser una imagen de héroe.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-049' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Examina si una imagen de h\u00e9roe es esencial para la experiencia.",
+    "authorship_assertion": "machine-translated from 'img-049' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Examina si una imagen de héroe es esencial para la experiencia.",
     "tags": [
       "performance",
       "hero",

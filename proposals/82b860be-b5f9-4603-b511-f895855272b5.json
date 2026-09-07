@@ -2,7 +2,7 @@
   "proposal_id": "82b860be-b5f9-4603-b511-f895855272b5",
   "status": "proposed",
   "candidate_content": {
-    "text": "El dise\u00f1o no es solo lo que se ve y lo que se siente. El dise\u00f1o es c\u00f3mo funciona.",
+    "text": "El diseño no es solo lo que se ve y lo que se siente. El diseño es cómo funciona.",
     "section": "ux",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'ux-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Un mejor dise\u00f1o equivale a una mejor funci\u00f3n. La est\u00e9tica visual sirve a la usabilidad, no la reemplaza.",
+    "authorship_assertion": "machine-translated from 'ux-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Un mejor diseño equivale a una mejor función. La estética visual sirve a la usabilidad, no la reemplaza.",
     "tags": [
       "ux",
       "design",

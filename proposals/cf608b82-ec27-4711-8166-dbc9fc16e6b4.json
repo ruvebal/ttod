@@ -2,7 +2,7 @@
   "proposal_id": "cf608b82-ec27-4711-8166-dbc9fc16e6b4",
   "status": "proposed",
   "candidate_content": {
-    "text": "El texto alternativo que dice 'imagen' es peor que no tener ninguno. Es una se\u00f1al que apunta a s\u00ed misma.",
+    "text": "El texto alternativo que dice 'imagen' es peor que no tener ninguno. Es una señal que apunta a sí misma.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-039' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-039' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Evita el texto alternativo de relleno; habla del significado de la imagen.",
     "tags": [
       "alt-text",

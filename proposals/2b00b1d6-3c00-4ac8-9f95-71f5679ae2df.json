@@ -2,7 +2,7 @@
   "proposal_id": "2b00b1d6-3c00-4ac8-9f95-71f5679ae2df",
   "status": "proposed",
   "candidate_content": {
-    "text": "La ingeniera de IA honesta no se miente a s\u00ed misma sobre sus herramientas. Sabe lo que pueden y no pueden hacer, y dise\u00f1a su flujo de trabajo para amplificar sus fortalezas.",
+    "text": "La ingeniera de IA honesta no se miente a sí misma sobre sus herramientas. Sabe lo que pueden y no pueden hacer, y diseña su flujo de trabajo para amplificar sus fortalezas.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-037' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao DevIAC (\u00a722): La Evaluaci\u00f3n Honesta \u2014 Haiku: la brecha no es tama\u00f1o / ventana de contexto, herramienta, prompt / compensa con cuidado",
+    "authorship_assertion": "machine-translated from 'arch-037' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao DevIAC (§22): La Evaluación Honesta — Haiku: la brecha no es tamaño / ventana de contexto, herramienta, prompt / compensa con cuidado",
     "tags": [
       "deviac",
       "tao-of-system-architect",

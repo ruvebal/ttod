@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-013' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La configuraci\u00f3n centralizada elimina la inconsistencia y reduce la carga cognitiva.",
+    "authorship_assertion": "machine-translated from 'arch-013' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La configuración centralizada elimina la inconsistencia y reduce la carga cognitiva.",
     "tags": [
       "architecture",
       "single-source-of-truth",

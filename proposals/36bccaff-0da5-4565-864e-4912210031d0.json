@@ -2,7 +2,7 @@
   "proposal_id": "36bccaff-0da5-4565-864e-4912210031d0",
   "status": "proposed",
   "candidate_content": {
-    "text": "Verifica antes de corregir - No todo s\u00edntoma es una enfermedad.",
+    "text": "Verifica antes de corregir - No todo síntoma es una enfermedad.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-027' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La primera herramienta del depurado: Verificar. Antes de corregir, verifica que el problema exista. La cach\u00e9 no es un error, es una funci\u00f3n mal comprendida. Conf\u00eda en el c\u00f3digo, verifica la ejecuci\u00f3n.",
+    "authorship_assertion": "machine-translated from 'arch-027' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La primera herramienta del depurado: Verificar. Antes de corregir, verifica que el problema exista. La caché no es un error, es una función mal comprendida. Confía en el código, verifica la ejecución.",
     "tags": [
       "architecture",
       "debugging",

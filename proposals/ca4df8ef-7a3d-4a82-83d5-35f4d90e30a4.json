@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-037' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Contenido id\u00e9ntico bajo nombres de archivo distintos comparte una identidad de documento: deduplica por huella, no por nombre.",
+    "authorship_assertion": "machine-translated from 'cc-037' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Contenido idéntico bajo nombres de archivo distintos comparte una identidad de documento: deduplica por huella, no por nombre.",
     "tags": [
       "naming",
       "idempotency",

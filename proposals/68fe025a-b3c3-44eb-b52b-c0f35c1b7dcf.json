@@ -2,7 +2,7 @@
   "proposal_id": "68fe025a-b3c3-44eb-b52b-c0f35c1b7dcf",
   "status": "proposed",
   "candidate_content": {
-    "text": "El primer 90 por ciento del c\u00f3digo representa el primer 90 por ciento del tiempo de desarrollo. El 10 por ciento restante del c\u00f3digo representa el otro 90 por ciento del tiempo de desarrollo.",
+    "text": "El primer 90 por ciento del código representa el primer 90 por ciento del tiempo de desarrollo. El 10 por ciento restante del código representa el otro 90 por ciento del tiempo de desarrollo.",
     "section": "debugging",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dbg-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Planifica para el \u00faltimo 10%; ah\u00ed ocurre la iluminaci\u00f3n. Las soluciones m\u00e1s elegantes ocultan la mayor complejidad.",
+    "authorship_assertion": "machine-translated from 'dbg-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Planifica para el último 10%; ahí ocurre la iluminación. Las soluciones más elegantes ocultan la mayor complejidad.",
     "tags": [
       "debugging",
       "estimation",

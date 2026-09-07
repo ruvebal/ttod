@@ -2,7 +2,7 @@
   "proposal_id": "919e9c86-8a96-4729-a7f3-c4dc40425b31",
   "status": "proposed",
   "candidate_content": {
-    "text": "Elige una \u00fanica fuente de verdad y deja que tus importaciones converjan en ella, no que la combatan. WP es la fuente. Strapi es el espejo. Los upserts mantienen el espejo alineado sin romperlo.",
+    "text": "Elige una única fuente de verdad y deja que tus importaciones converjan en ella, no que la combatan. WP es la fuente. Strapi es el espejo. Los upserts mantienen el espejo alineado sin romperlo.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-016' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los upserts mantienen el espejo alineado sin romperlo. Elige una \u00fanica fuente de verdad y deja que todos los sistemas converjan en ella. La fuente define la realidad; los espejos la reflejan. Los upserts actualizan sin destruir.",
+    "authorship_assertion": "machine-translated from 'cc-016' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los upserts mantienen el espejo alineado sin romperlo. Elige una única fuente de verdad y deja que todos los sistemas converjan en ella. La fuente define la realidad; los espejos la reflejan. Los upserts actualizan sin destruir.",
     "tags": [
       "codecraft",
       "single-source-of-truth",

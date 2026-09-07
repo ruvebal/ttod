@@ -2,7 +2,7 @@
   "proposal_id": "074d2120-f1e0-4cda-b58f-83e0cca0295a",
   "status": "proposed",
   "candidate_content": {
-    "text": "La carga anticipada es avaricia. La carga perezosa es sabidur\u00eda. Pero no cargar nada es iluminaci\u00f3n: cuestiona si la imagen sirve a un prop\u00f3sito.",
+    "text": "La carga anticipada es avaricia. La carga perezosa es sabiduría. Pero no cargar nada es iluminación: cuestiona si la imagen sirve a un propósito.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-037' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Eval\u00faa el prop\u00f3sito de cada activo antes de cargarlo.",
+    "authorship_assertion": "machine-translated from 'img-037' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Evalúa el propósito de cada activo antes de cargarlo.",
     "tags": [
       "lazy-loading",
       "purpose",

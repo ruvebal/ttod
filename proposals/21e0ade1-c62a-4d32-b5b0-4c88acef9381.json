@@ -2,7 +2,7 @@
   "proposal_id": "21e0ade1-c62a-4d32-b5b0-4c88acef9381",
   "status": "proposed",
   "candidate_content": {
-    "text": "El usuario 'dark_killer_69' empuja c\u00f3digo. El reclutador tira del c\u00f3digo. El reclutador borra el curr\u00edculum. El ciclo de la vida contin\u00faa.",
+    "text": "El usuario 'dark_killer_69' empuja código. El reclutador tira del código. El reclutador borra el currículum. El ciclo de la vida continúa.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-027' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tu nombre de usuario es tu primera impresi\u00f3n",
+    "authorship_assertion": "machine-translated from 'cc-027' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tu nombre de usuario es tu primera impresión",
     "tags": [
       "identity",
       "professionalism",

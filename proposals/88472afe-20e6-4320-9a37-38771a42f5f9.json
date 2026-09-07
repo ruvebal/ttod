@@ -2,7 +2,7 @@
   "proposal_id": "88472afe-20e6-4320-9a37-38771a42f5f9",
   "status": "proposed",
   "candidate_content": {
-    "text": "El desarrollador sabio no a\u00f1ade m\u00e1s c\u00f3digo. Elimina el conflicto.",
+    "text": "El desarrollador sabio no añade más código. Elimina el conflicto.",
     "section": "code-craft",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Resuelve los conflictos eliminando implementaciones en competencia en lugar de a\u00f1adir m\u00e1s capas.",
+    "authorship_assertion": "machine-translated from 'cc-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Resuelve los conflictos eliminando implementaciones en competencia en lugar de añadir más capas.",
     "tags": [
       "refactoring",
       "simplicity",

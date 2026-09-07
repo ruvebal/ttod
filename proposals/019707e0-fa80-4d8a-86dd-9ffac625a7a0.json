@@ -2,7 +2,7 @@
   "proposal_id": "019707e0-fa80-4d8a-86dd-9ffac625a7a0",
   "status": "proposed",
   "candidate_content": {
-    "text": "En macOS, /var/run/docker.sock es un enlace simb\u00f3lico. El contenedor sigue el enlace y no encuentra nada. Monta la ruta real \u2014 ~/.docker/run/docker.sock \u2014 y el proxy encuentra su voz.",
+    "text": "En macOS, /var/run/docker.sock es un enlace simbólico. El contenedor sigue el enlace y no encuentra nada. Monta la ruta real — ~/.docker/run/docker.sock — y el proxy encuentra su voz.",
     "section": "devops",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dop-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a749): El Socket No Habla \u2014 Haiku: el enlace enga\u00f1a a todos / monta la ruta real, no el fantasma / el proxy entonces habla",
+    "authorship_assertion": "machine-translated from 'dop-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§49): El Socket No Habla — Haiku: el enlace engaña a todos / monta la ruta real, no el fantasma / el proxy entonces habla",
     "tags": [
       "deviac",
       "tao-of-system-architect",

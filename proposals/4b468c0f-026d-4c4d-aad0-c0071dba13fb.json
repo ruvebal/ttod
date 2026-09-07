@@ -2,7 +2,7 @@
   "proposal_id": "4b468c0f-026d-4c4d-aad0-c0071dba13fb",
   "status": "proposed",
   "candidate_content": {
-    "text": "Mil PNGs pueden ser reemplazados por un solo SVG. Esto no es optimizaci\u00f3n. Esto es iluminaci\u00f3n.",
+    "text": "Mil PNGs pueden ser reemplazados por un solo SVG. Esto no es optimización. Esto es iluminación.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-019' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Sistemas de iconos SVG frente a m\u00faltiples archivos r\u00e1ster",
+    "authorship_assertion": "machine-translated from 'img-019' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Sistemas de iconos SVG frente a múltiples archivos ráster",
     "tags": [
       "svg",
       "png",

@@ -2,7 +2,7 @@
   "proposal_id": "018d9620-33f1-4843-ac4e-7b423a72678b",
   "status": "proposed",
   "candidate_content": {
-    "text": "La reproducci\u00f3n autom\u00e1tica no es engagement\u2014es asalto. El usuario que no elige escuchar no consiente escuchar.",
+    "text": "La reproducción automática no es engagement—es asalto. El usuario que no elige escuchar no consiente escuchar.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-058' (lang=en) via ollama:qwen2.5:32b-instruct \u2014 human review required before acceptance",
-    "teaches": "Respeta la autonom\u00eda evitando audio o movimiento no solicitado.",
+    "authorship_assertion": "machine-translated from 'img-058' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "Respeta la autonomía evitando audio o movimiento no solicitado.",
     "tags": [
       "ethics",
       "video",
@@ -32,11 +32,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:35:52.290381Z"
 }

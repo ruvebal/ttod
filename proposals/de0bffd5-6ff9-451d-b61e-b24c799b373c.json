@@ -2,7 +2,7 @@
   "proposal_id": "de0bffd5-6ff9-451d-b61e-b24c799b373c",
   "status": "proposed",
   "candidate_content": {
-    "text": "La inconsistencia en may\u00fasculas no es un estilo. Es una carta de rescate escrita por un psic\u00f3pata.",
+    "text": "La inconsistencia en mayúsculas no es un estilo. Es una carta de rescate escrita por un psicópata.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-031' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Elige una convenci\u00f3n y ci\u00f1ete a ella o perece",
+    "authorship_assertion": "machine-translated from 'cc-031' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elige una convención y ciñete a ella o perece",
     "tags": [
       "consistency",
       "naming",

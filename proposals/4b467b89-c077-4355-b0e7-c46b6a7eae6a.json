@@ -2,7 +2,7 @@
   "proposal_id": "4b467b89-c077-4355-b0e7-c46b6a7eae6a",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una imagen de 4K en una pantalla de 320 p\u00edxeles no es lujo, es violencia contra el plan de datos del usuario.",
+    "text": "Una imagen de 4K en una pantalla de 320 píxeles no es lujo, es violencia contra el plan de datos del usuario.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-033' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Escala la resoluci\u00f3n de la imagen a la pantalla para proteger los l\u00edmites de datos.",
+    "authorship_assertion": "machine-translated from 'img-033' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Escala la resolución de la imagen a la pantalla para proteger los límites de datos.",
     "tags": [
       "responsive",
       "data-plan",

@@ -2,7 +2,7 @@
   "proposal_id": "3b7c6055-91c4-4ba4-b5dc-052f7c81f6d2",
   "status": "proposed",
   "candidate_content": {
-    "text": "Primero, el alumno a\u00f1ade im\u00e1genes sin pensamiento. Luego, las quita con miedo. Por fin, a\u00f1ade solo las necesarias. Este es el camino.",
+    "text": "Primero, el alumno añade imágenes sin pensamiento. Luego, las quita con miedo. Por fin, añade solo las necesarias. Este es el camino.",
     "section": "images",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-023' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-023' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Las tres etapas del dominio de la imagen",
     "tags": [
       "learning",

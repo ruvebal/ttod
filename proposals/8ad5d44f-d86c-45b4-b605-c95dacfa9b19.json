@@ -2,7 +2,7 @@
   "proposal_id": "8ad5d44f-d86c-45b4-b605-c95dacfa9b19",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un estudiante pregunt\u00f3 al maestro: \"\u00bfDebo usar espacios o tabulaciones para la indentaci\u00f3n?\" El maestro respondi\u00f3: \"Usa espacios por consistencia, tabulaciones por flexibilidad, pero nunca los mezcles. La verdadera pregunta es: \u00bfPuede un humano leer tus datos a las 3 a. m. sin llorar?\"",
+    "text": "Un estudiante preguntó al maestro: \"¿Debo usar espacios o tabulaciones para la indentación?\" El maestro respondió: \"Usa espacios por consistencia, tabulaciones por flexibilidad, pero nunca los mezcles. La verdadera pregunta es: ¿Puede un humano leer tus datos a las 3 a. m. sin llorar?\"",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-012' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El formato de datos no es para las m\u00e1quinas, es para los humanos. Elige la consistencia sobre la preferencia personal. El mejor formato es el que sigue siendo legible cuando est\u00e1s cansado, cuando depuras, cuando ense\u00f1as.",
+    "authorship_assertion": "machine-translated from 'cc-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El formato de datos no es para las máquinas, es para los humanos. Elige la consistencia sobre la preferencia personal. El mejor formato es el que sigue siendo legible cuando estás cansado, cuando depuras, cuando enseñas.",
     "tags": [
       "codecraft",
       "formatting",

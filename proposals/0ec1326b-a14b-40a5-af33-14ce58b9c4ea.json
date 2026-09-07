@@ -2,7 +2,7 @@
   "proposal_id": "0ec1326b-a14b-40a5-af33-14ce58b9c4ea",
   "status": "proposed",
   "candidate_content": {
-    "text": "srcset ofrece elecci\u00f3n. El navegador elige. Conf\u00eda en el navegador. O no. Elegir\u00e1 de todos modos.",
+    "text": "srcset ofrece elección. El navegador elige. Confía en el navegador. O no. Elegirá de todos modos.",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-028' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Im\u00e1genes responsivas y selecci\u00f3n del navegador",
+    "authorship_assertion": "machine-translated from 'img-028' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Imágenes responsivas y selección del navegador",
     "tags": [
       "srcset",
       "responsive",

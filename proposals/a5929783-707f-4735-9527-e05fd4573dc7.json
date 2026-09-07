@@ -2,7 +2,7 @@
   "proposal_id": "a5929783-707f-4735-9527-e05fd4573dc7",
   "status": "proposed",
   "candidate_content": {
-    "text": "El logotipo no necesita ser grande. El sol est\u00e1 lejano, pero ilumina todo.",
+    "text": "El logotipo no necesita ser grande. El sol está lejano, pero ilumina todo.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-056' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Dale espacio al logotipo; el tama\u00f1o por s\u00ed solo no se\u00f1ala importancia.",
+    "authorship_assertion": "machine-translated from 'img-056' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Dale espacio al logotipo; el tamaño por sí solo no señala importancia.",
     "tags": [
       "design",
       "branding",

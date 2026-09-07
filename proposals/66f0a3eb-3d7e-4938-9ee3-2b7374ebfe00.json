@@ -2,7 +2,7 @@
   "proposal_id": "66f0a3eb-3d7e-4938-9ee3-2b7374ebfe00",
   "status": "proposed",
   "candidate_content": {
-    "text": "El contenido precede al dise\u00f1o. El dise\u00f1o sin contenido no es dise\u00f1o, es decoraci\u00f3n.",
+    "text": "El contenido precede al diseño. El diseño sin contenido no es diseño, es decoración.",
     "section": "code-craft",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Estructura sem\u00e1ntica primero, pulido visual despu\u00e9s. Construye el significado antes que la belleza.",
+    "authorship_assertion": "machine-translated from 'cc-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Estructura semántica primero, pulido visual después. Construye el significado antes que la belleza.",
     "tags": [
       "codecraft",
       "content",

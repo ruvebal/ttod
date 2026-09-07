@@ -2,7 +2,7 @@
   "proposal_id": "ef233d35-283e-4735-a122-ab197074b266",
   "status": "proposed",
   "candidate_content": {
-    "text": "El novato culpa al c\u00f3digo, el experto a la red; el maestro sabe que siempre fue DNS.",
+    "text": "El novato culpa al código, el experto a la red; el maestro sabe que siempre fue DNS.",
     "section": "networking",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'net-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La depuraci\u00f3n por capas comienza con las suposiciones; honra los fundamentos de la red.",
+    "authorship_assertion": "machine-translated from 'net-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La depuración por capas comienza con las suposiciones; honra los fundamentos de la red.",
     "tags": [
       "networking",
       "dns",

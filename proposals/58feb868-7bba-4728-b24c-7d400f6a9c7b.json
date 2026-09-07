@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Conciencia del equilibrio entre calidad y tama\u00f1o de archivo",
+    "authorship_assertion": "machine-translated from 'img-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Conciencia del equilibrio entre calidad y tamaño de archivo",
     "tags": [
       "compression",
       "quality",

@@ -2,7 +2,7 @@
   "proposal_id": "3880a1df-00fc-401c-a970-02369e68a138",
   "status": "proposed",
   "candidate_content": {
-    "text": "Carga lo que se ve. Diferencia lo oculto. La p\u00e1gina que carga todo, no carga nada r\u00e1pido.",
+    "text": "Carga lo que se ve. Diferencia lo oculto. La página que carga todo, no carga nada rápido.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-034' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Carga primero los activos visibles y posp\u00f3n el resto.",
+    "authorship_assertion": "machine-translated from 'img-034' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Carga primero los activos visibles y pospón el resto.",
     "tags": [
       "lazy-loading",
       "priority",

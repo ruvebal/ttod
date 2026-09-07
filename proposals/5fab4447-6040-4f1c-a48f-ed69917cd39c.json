@@ -2,7 +2,7 @@
   "proposal_id": "5fab4447-6040-4f1c-a48f-ed69917cd39c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Precarga lo cr\u00edtico. Diferencia lo decorativo. Elimina lo innecesario. Este es el triple camino hacia la iluminaci\u00f3n.",
+    "text": "Precarga lo crítico. Diferencia lo decorativo. Elimina lo innecesario. Este es el triple camino hacia la iluminación.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-050' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Prioriza los activos cr\u00edticos, retrasa los dem\u00e1s y elimina el desorden.",
+    "authorship_assertion": "machine-translated from 'img-050' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Prioriza los activos críticos, retrasa los demás y elimina el desorden.",
     "tags": [
       "performance",
       "preload",

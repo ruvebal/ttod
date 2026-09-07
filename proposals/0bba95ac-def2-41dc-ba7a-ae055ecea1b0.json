@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Prioriza la entrega sobre la perfecci\u00f3n cuando otros esperan.",
+    "authorship_assertion": "machine-translated from 'rrp-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Prioriza la entrega sobre la perfección cuando otros esperan.",
     "tags": [
       "urgency",
       "priorities",

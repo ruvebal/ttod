@@ -2,7 +2,7 @@
   "proposal_id": "43c26091-fe19-400f-bd85-249481087adc",
   "status": "proposed",
   "candidate_content": {
-    "text": "\"Eliminar y reimportar\" no es maldad, pero es un ritual, no una rutina. \u00dasalo donde las consecuencias sean aceptables (DEV/STG). En PROD, prefiere convergencia incremental + poda opcional.",
+    "text": "\"Eliminar y reimportar\" no es maldad, pero es un ritual, no una rutina. Úsalo donde las consecuencias sean aceptables (DEV/STG). En PROD, prefiere convergencia incremental + poda opcional.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-021' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "\"Eliminar y reimportar\" es un ritual, no una rutina. \u00dasalo donde las consecuencias sean aceptables. En PROD, prefiere convergencia incremental. Copia de seguridad, luego vierte lento.",
+    "authorship_assertion": "machine-translated from 'cc-021' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "\"Eliminar y reimportar\" es un ritual, no una rutina. Úsalo donde las consecuencias sean aceptables. En PROD, prefiere convergencia incremental. Copia de seguridad, luego vierte lento.",
     "tags": [
       "codecraft",
       "migration",

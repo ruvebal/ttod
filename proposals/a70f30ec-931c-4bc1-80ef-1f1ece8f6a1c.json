@@ -2,7 +2,7 @@
   "proposal_id": "a70f30ec-931c-4bc1-80ef-1f1ece8f6a1c",
   "status": "proposed",
   "candidate_content": {
-    "text": "La accesibilidad no es una funci\u00f3n. Es el cimiento sobre el que descansan todas las funciones.",
+    "text": "La accesibilidad no es una función. Es el cimiento sobre el que descansan todas las funciones.",
     "section": "accessibility",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'a11y-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La accesibilidad debe construirse en la arquitectura central, no a\u00f1adirse como un a\u00f1adido tard\u00edo.",
+    "authorship_assertion": "machine-translated from 'a11y-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La accesibilidad debe construirse en la arquitectura central, no añadirse como un añadido tardío.",
     "tags": [
       "accessibility",
       "philosophy",

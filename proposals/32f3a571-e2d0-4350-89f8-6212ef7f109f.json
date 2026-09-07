@@ -2,7 +2,7 @@
   "proposal_id": "32f3a571-e2d0-4350-89f8-6212ef7f109f",
   "status": "proposed",
   "candidate_content": {
-    "text": "La imagen bajo el pliegue no existe hasta que el usuario desplaza. \u00bfPor qu\u00e9 entonces la haces existir al cargar la p\u00e1gina?",
+    "text": "La imagen bajo el pliegue no existe hasta que el usuario desplaza. ¿Por qué entonces la haces existir al cargar la página?",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-036' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Deja que las im\u00e1genes aparezcan solo cuando el usuario las necesite.",
+    "authorship_assertion": "machine-translated from 'img-036' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Deja que las imágenes aparezcan solo cuando el usuario las necesite.",
     "tags": [
       "lazy-loading",
       "fold",

@@ -2,7 +2,7 @@
   "proposal_id": "d712178f-b70a-434c-8189-771d6640af74",
   "status": "proposed",
   "candidate_content": {
-    "text": "El c\u00f3digo sin controles de calidad es como un barco sin br\u00fajula: se mueve, pero qui\u00e9n sabe a d\u00f3nde.",
+    "text": "El código sin controles de calidad es como un barco sin brújula: se mueve, pero quién sabe a dónde.",
     "section": "qa-tooling",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los controles de calidad brindan direcci\u00f3n y confianza",
+    "authorship_assertion": "machine-translated from 'qa-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los controles de calidad brindan dirección y confianza",
     "tags": [
       "quality",
       "testing",

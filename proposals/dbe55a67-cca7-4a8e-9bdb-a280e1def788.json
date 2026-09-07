@@ -2,7 +2,7 @@
   "proposal_id": "dbe55a67-cca7-4a8e-9bdb-a280e1def788",
   "status": "proposed",
   "candidate_content": {
-    "text": "El desarrollador que usa BMP en producci\u00f3n a\u00fan no ha comenzado a caminar el camino.",
+    "text": "El desarrollador que usa BMP en producción aún no ha comenzado a caminar el camino.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Algunos formatos no est\u00e1n destinados a la web.",
+    "authorship_assertion": "machine-translated from 'img-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Algunos formatos no están destinados a la web.",
     "tags": [
       "bmp",
       "formats",

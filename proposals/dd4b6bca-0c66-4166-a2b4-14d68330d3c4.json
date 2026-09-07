@@ -2,7 +2,7 @@
   "proposal_id": "dd4b6bca-0c66-4166-a2b4-14d68330d3c4",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un estudiante pregunt\u00f3: '\u00bfPor qu\u00e9 no usar el modelo en la nube? Es m\u00e1s r\u00e1pido.' El arquitecto respondi\u00f3: 'Prueba a hacerle mil preguntas a medianoche.' El estudiante entendi\u00f3.",
+    "text": "Un estudiante preguntó: '¿Por qué no usar el modelo en la nube? Es más rápido.' El arquitecto respondió: 'Prueba a hacerle mil preguntas a medianoche.' El estudiante entendió.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-030' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a741): El L\u00edmite de Tasa",
+    "authorship_assertion": "machine-translated from 'arch-030' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§41): El Límite de Tasa",
     "tags": [
       "deviac",
       "tao-of-system-architect",

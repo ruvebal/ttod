@@ -2,7 +2,7 @@
   "proposal_id": "db34b4a5-019a-4605-a3b7-16fe574d7f31",
   "status": "proposed",
   "candidate_content": {
-    "text": "Escribe la documentaci\u00f3n como si tu yo del futuro lo hubiera olvidado todo. Porque lo har\u00e1.",
+    "text": "Escribe la documentación como si tu yo del futuro lo hubiera olvidado todo. Porque lo hará.",
     "section": "wisdom",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-015' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a78): Yo del futuro \u2014 Haiku: dentro de seis meses / leer\u00e1s esto como una desconocida / s\u00e9 amable con ella ahora",
+    "authorship_assertion": "machine-translated from 'wis-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§8): Yo del futuro — Haiku: dentro de seis meses / leerás esto como una desconocida / sé amable con ella ahora",
     "tags": [
       "deviac",
       "tao-of-system-architect",

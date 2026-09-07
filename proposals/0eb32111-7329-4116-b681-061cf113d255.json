@@ -2,7 +2,7 @@
   "proposal_id": "0eb32111-7329-4116-b681-061cf113d255",
   "status": "proposed",
   "candidate_content": {
-    "text": "Comprime hasta que duela. Luego comprime m\u00e1s. El usuario nunca se quejar\u00e1 de que una imagen sea demasiado r\u00e1pida.",
+    "text": "Comprime hasta que duela. Luego comprime más. El usuario nunca se quejará de que una imagen sea demasiado rápida.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-060' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Empuja la compresi\u00f3n m\u00e1s all\u00e1 de la comodidad manteniendo la calidad aceptable.",
+    "authorship_assertion": "machine-translated from 'img-060' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Empuja la compresión más allá de la comodidad manteniendo la calidad aceptable.",
     "tags": [
       "compression",
       "performance",

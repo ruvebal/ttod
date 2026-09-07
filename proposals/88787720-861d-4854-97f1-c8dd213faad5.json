@@ -2,7 +2,7 @@
   "proposal_id": "88787720-861d-4854-97f1-c8dd213faad5",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un mapa no es una promesa \u2014 es una direcci\u00f3n. El desarrollador soberano ajusta el rumbo cuando el terreno se revela.",
+    "text": "Un mapa no es una promesa — es una dirección. El desarrollador soberano ajusta el rumbo cuando el terreno se revela.",
     "section": "wisdom",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-016' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a712): El Mapa",
+    "authorship_assertion": "machine-translated from 'wis-016' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§12): El Mapa",
     "tags": [
       "deviac",
       "tao-of-system-architect",

@@ -2,7 +2,7 @@
   "proposal_id": "83a42394-b49e-4cae-a968-9211af958ba8",
   "status": "proposed",
   "candidate_content": {
-    "text": "La desarrolladora soberana no pide permiso para pensar. No paga por token para razonar. No env\u00eda su c\u00f3digo al servidor de un desconocido para entenderlo. Sus herramientas corren sobre su propio metal, impulsadas por su propio silicio, regidas por sus propias reglas. Esto no es ideolog\u00eda \u2014 es independencia de ingenier\u00eda.",
+    "text": "La desarrolladora soberana no pide permiso para pensar. No paga por token para razonar. No envía su código al servidor de un desconocido para entenderlo. Sus herramientas corren sobre su propio metal, impulsadas por su propio silicio, regidas por sus propias reglas. Esto no es ideología — es independencia de ingeniería.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-028' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a739): El Yunque Soberano \u2014 Haiku: el silicio se cala en silencio / sin nube pedida, sin factura recibida / el pensamiento es suyo",
+    "authorship_assertion": "machine-translated from 'arch-028' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§39): El Yunque Soberano — Haiku: el silicio se cala en silencio / sin nube pedida, sin factura recibida / el pensamiento es suyo",
     "tags": [
       "deviac",
       "tao-of-system-architect",

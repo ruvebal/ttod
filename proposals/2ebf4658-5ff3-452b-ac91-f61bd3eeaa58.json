@@ -2,7 +2,7 @@
   "proposal_id": "2ebf4658-5ff3-452b-ac91-f61bd3eeaa58",
   "status": "proposed",
   "candidate_content": {
-    "text": "Nombra tu repositorio 'Proyecto' y ser\u00e1 borrado con la misma indiferencia que mostraste al nombrarlo.",
+    "text": "Nombra tu repositorio 'Proyecto' y será borrado con la misma indiferencia que mostraste al nombrarlo.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-023' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los nombres gen\u00e9ricos conducen a proyectos y calificaciones perdidos",
+    "authorship_assertion": "machine-translated from 'cc-023' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los nombres genéricos conducen a proyectos y calificaciones perdidos",
     "tags": [
       "naming",
       "git",

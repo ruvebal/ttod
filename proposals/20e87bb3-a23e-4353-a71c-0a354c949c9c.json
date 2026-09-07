@@ -2,7 +2,7 @@
   "proposal_id": "20e87bb3-a23e-4353-a71c-0a354c949c9c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Cada bug es una pregunta que tu c\u00f3digo no pudo responder.",
+    "text": "Cada bug es una pregunta que tu código no pudo responder.",
     "section": "debugging",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dbg-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "No solo arregles los bugs: aprende de ellos. Cada bug revela una brecha en la comprensi\u00f3n. Rell\u00e9nala.",
+    "authorship_assertion": "machine-translated from 'dbg-004' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "No solo arregles los bugs: aprende de ellos. Cada bug revela una brecha en la comprensión. Rellénala.",
     "tags": [
       "debugging",
       "learning",

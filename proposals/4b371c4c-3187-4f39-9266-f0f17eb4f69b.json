@@ -2,7 +2,7 @@
   "proposal_id": "4b371c4c-3187-4f39-9266-f0f17eb4f69b",
   "status": "proposed",
   "candidate_content": {
-    "text": "Clona en superficie, eval\u00faa en profundidad. El maestro sabio no necesita el historial completo para ver el presente.",
+    "text": "Clona en superficie, evalúa en profundidad. El maestro sabio no necesita el historial completo para ver el presente.",
     "section": "remote-repo",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-007' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'rrp-007' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Usa clonaciones superficiales para ahorrar ancho de banda y tiempo cuando el historial es irrelevante.",
     "tags": [
       "git",

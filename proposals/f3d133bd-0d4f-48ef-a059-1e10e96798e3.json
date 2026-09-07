@@ -2,7 +2,7 @@
   "proposal_id": "f3d133bd-0d4f-48ef-a059-1e10e96798e3",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una imagen que no carga ense\u00f1a al usuario paciencia. Pero la paciencia no es tu lecci\u00f3n.",
+    "text": "Una imagen que no carga enseña al usuario paciencia. Pero la paciencia no es tu lección.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-010' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-010' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Responsabilidad del desarrollador ante la experiencia del usuario",
     "tags": [
       "loading",

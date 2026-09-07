@@ -2,7 +2,7 @@
   "proposal_id": "711dacea-eea4-4dc5-b480-515b4de0ff67",
   "status": "proposed",
   "candidate_content": {
-    "text": "Antes de cambiar una entidad de dominio, busca efectos secundarios en los casos de uso de la aplicaci\u00f3n. Antes de confiar en la salida de un LLM, anal\u00edzala en un objeto de valor. La guardia no es desconfianza \u2014 es respeto por el l\u00edmite.",
+    "text": "Antes de cambiar una entidad de dominio, busca efectos secundarios en los casos de uso de la aplicación. Antes de confiar en la salida de un LLM, analízala en un objeto de valor. La guardia no es desconfianza — es respeto por el límite.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-051' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a755): La Guardia de Prueba-Primero \u2014 Haiku: prueba antes de cambiar / analiza antes de confiar en las palabras / los l\u00edmites son amor",
+    "authorship_assertion": "machine-translated from 'arch-051' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§55): La Guardia de Prueba-Primero — Haiku: prueba antes de cambiar / analiza antes de confiar en las palabras / los límites son amor",
     "tags": [
       "deviac",
       "tao-of-system-architect",

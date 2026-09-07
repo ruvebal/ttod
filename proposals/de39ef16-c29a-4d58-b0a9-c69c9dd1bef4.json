@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'ux-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Las interfaces deben revelar la intenci\u00f3n de inmediato; las explicaciones pertenecen a la documentaci\u00f3n.",
+    "authorship_assertion": "machine-translated from 'ux-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las interfaces deben revelar la intención de inmediato; las explicaciones pertenecen a la documentación.",
     "tags": [
       "ux",
       "clarity",

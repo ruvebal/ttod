@@ -2,7 +2,7 @@
   "proposal_id": "7c2a56a8-df90-4a1a-95eb-0869045c1751",
   "status": "proposed",
   "candidate_content": {
-    "text": "En el env\u00edo, hay aprendizaje. En el aprendizaje, hay crecimiento. En el crecimiento, hay el Tao.",
+    "text": "En el envío, hay aprendizaje. En el aprendizaje, hay crecimiento. En el crecimiento, hay el Tao.",
     "section": "wisdom",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El ciclo de entrega, reflexi\u00f3n y mejora es el camino hacia el dominio.",
+    "authorship_assertion": "machine-translated from 'wis-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El ciclo de entrega, reflexión y mejora es el camino hacia el dominio.",
     "tags": [
       "wisdom",
       "learning",

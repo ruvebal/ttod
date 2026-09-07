@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-022' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Beneficios de las redes de distribuci\u00f3n de contenido",
+    "authorship_assertion": "machine-translated from 'img-022' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Beneficios de las redes de distribución de contenido",
     "tags": [
       "cdn",
       "caching",

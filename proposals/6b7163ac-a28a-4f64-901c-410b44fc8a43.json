@@ -2,7 +2,7 @@
   "proposal_id": "6b7163ac-a28a-4f64-901c-410b44fc8a43",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un campo vac\u00edo no es un error: es una promesa incompleta. El c\u00f3digo puede ser perfecto, pero los datos pueden estar ausentes.",
+    "text": "Un campo vacío no es un error: es una promesa incompleta. El código puede ser perfecto, pero los datos pueden estar ausentes.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-019' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "C\u00f3digo perfecto, datos imperfectos. Puedes escribir c\u00f3digo impecable, pero si los datos no existen, tu p\u00e1gina queda incompleta. Dise\u00f1a para la ausencia de datos con gracia.",
+    "authorship_assertion": "machine-translated from 'arch-019' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Código perfecto, datos imperfectos. Puedes escribir código impecable, pero si los datos no existen, tu página queda incompleta. Diseña para la ausencia de datos con gracia.",
     "tags": [
       "architecture",
       "data",

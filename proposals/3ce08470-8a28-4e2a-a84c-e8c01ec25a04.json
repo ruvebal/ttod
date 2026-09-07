@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-033' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-033' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Busca en manifiestos, registros y repositorios hermanos el mismo tema bajo otro identificador antes de inventar un nuevo nombre.",
     "tags": [
       "naming",

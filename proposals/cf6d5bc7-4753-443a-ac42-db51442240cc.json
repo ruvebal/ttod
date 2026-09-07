@@ -2,7 +2,7 @@
   "proposal_id": "cf6d5bc7-4753-443a-ac42-db51442240cc",
   "status": "proposed",
   "candidate_content": {
-    "text": "La versi\u00f3n que se lanza a s\u00ed misma es la que llega a tiempo.",
+    "text": "La versión que se lanza a sí misma es la que llega a tiempo.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'qa-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Las versiones automatizadas reducen el error humano y la demora.",
     "tags": [
       "release",

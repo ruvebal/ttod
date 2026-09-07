@@ -2,7 +2,7 @@
   "proposal_id": "2fa8db44-bac0-49d8-a3cb-411f087201d5",
   "status": "proposed",
   "candidate_content": {
-    "text": "Vac\u00eda la olla, Debe llenarse sin derrame, Respalda, luego vierte lento.",
+    "text": "Vacía la olla, Debe llenarse sin derrame, Respalda, luego vierte lento.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-022' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La migraci\u00f3n exige cuidado. Vac\u00eda la olla, debe llenarse sin derrame. Respalda primero, luego vierte lento. La convergencia incremental supera al reemplazo temerario.",
+    "authorship_assertion": "machine-translated from 'cc-022' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La migración exige cuidado. Vacía la olla, debe llenarse sin derrame. Respalda primero, luego vierte lento. La convergencia incremental supera al reemplazo temerario.",
     "tags": [
       "codecraft",
       "migration",
@@ -35,11 +35,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:33:11.342550Z"
 }

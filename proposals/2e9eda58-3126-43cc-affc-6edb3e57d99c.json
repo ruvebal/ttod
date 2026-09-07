@@ -2,7 +2,7 @@
   "proposal_id": "2e9eda58-3126-43cc-affc-6edb3e57d99c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Depurar es el doble de dif\u00edcil que escribir el c\u00f3digo por primera vez. Por tanto, si escribes el c\u00f3digo con la mayor astucia posible, por definici\u00f3n, no eres lo suficientemente inteligente para depurarlo.",
+    "text": "Depurar es el doble de difícil que escribir el código por primera vez. Por tanto, si escribes el código con la mayor astucia posible, por definición, no eres lo suficientemente inteligente para depurarlo.",
     "section": "debugging",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dbg-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Escribe c\u00f3digo f\u00e1cil de depurar, no astuto. La astucia es enemiga del mantenimiento.",
+    "authorship_assertion": "machine-translated from 'dbg-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Escribe código fácil de depurar, no astuto. La astucia es enemiga del mantenimiento.",
     "tags": [
       "debugging",
       "clarity",

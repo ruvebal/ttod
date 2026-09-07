@@ -2,7 +2,7 @@
   "proposal_id": "5d90f3bb-d82e-4530-bec6-ba804a5e91a5",
   "status": "proposed",
   "candidate_content": {
-    "text": "La capa interior es la m\u00e1s reutilizable. La capa exterior es la m\u00e1s desechable. Construye el valor hacia adentro.",
+    "text": "La capa interior es la más reutilizable. La capa exterior es la más desechable. Construye el valor hacia adentro.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-011' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los adaptadores de marco cambian con frecuencia; la l\u00f3gica de negocio debe perdurar m\u00e1s que ellos.",
+    "authorship_assertion": "machine-translated from 'arch-011' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los adaptadores de marco cambian con frecuencia; la lógica de negocio debe perdurar más que ellos.",
     "tags": [
       "architecture",
       "layers",

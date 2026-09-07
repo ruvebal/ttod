@@ -2,7 +2,7 @@
   "proposal_id": "a26fa2eb-fbac-4368-9479-53bb4245465a",
   "status": "proposed",
   "candidate_content": {
-    "text": "SVG: Escalable, Vectorial, Gr\u00e1ficos. Tambi\u00e9n: Serenidad, Virtud, Gracia.",
+    "text": "SVG: Escalable, Vectorial, Gráficos. También: Serenidad, Virtud, Gracia.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-017' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Apreciaci\u00f3n de SVG y juegos de palabras",
+    "authorship_assertion": "machine-translated from 'img-017' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Apreciación de SVG y juegos de palabras",
     "tags": [
       "svg",
       "acronym",

@@ -2,7 +2,7 @@
   "proposal_id": "d6ee3cd0-cf56-4162-9d45-285cec592d4c",
   "status": "proposed",
   "candidate_content": {
-    "text": "PNG se aferra a cada p\u00edxel. JPG suelta. Sabe cu\u00e1ndo aferrarse, sabe cu\u00e1ndo soltar.",
+    "text": "PNG se aferra a cada píxel. JPG suelta. Sabe cuándo aferrarse, sabe cuándo soltar.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Toma de decisiones entre compresi\u00f3n sin p\u00e9rdida y con p\u00e9rdida",
+    "authorship_assertion": "machine-translated from 'img-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Toma de decisiones entre compresión sin pérdida y con pérdida",
     "tags": [
       "png",
       "jpg",

@@ -2,7 +2,7 @@
   "proposal_id": "489bbecd-a48e-4933-b332-99de41b21ce9",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una sola imagen para todas las pantallas es como un solo n\u00famero de zapato para todos los pies. No le queda bien a nadie y todos sufren.",
+    "text": "Una sola imagen para todas las pantallas es como un solo número de zapato para todos los pies. No le queda bien a nadie y todos sufren.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-044' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Proporciona varios tama\u00f1os de recursos para servir a cada dispositivo.",
+    "authorship_assertion": "machine-translated from 'img-044' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Proporciona varios tamaños de recursos para servir a cada dispositivo.",
     "tags": [
       "responsive",
       "design",

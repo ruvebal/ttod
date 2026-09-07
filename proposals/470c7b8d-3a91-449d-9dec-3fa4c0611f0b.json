@@ -2,7 +2,7 @@
   "proposal_id": "470c7b8d-3a91-449d-9dec-3fa4c0611f0b",
   "status": "proposed",
   "candidate_content": {
-    "text": "Quince fotos de stock de personas diversas se\u00f1alando laptops no hacen diverso tu sitio. Lo convierten en un clich\u00e9.",
+    "text": "Quince fotos de stock de personas diversas señalando laptops no hacen diverso tu sitio. Lo convierten en un cliché.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-055' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Elige im\u00e1genes \u00fanicas en lugar de clich\u00e9s copiados y pegados.",
+    "authorship_assertion": "machine-translated from 'img-055' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elige imágenes únicas en lugar de clichés copiados y pegados.",
     "tags": [
       "design",
       "authenticity",

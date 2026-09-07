@@ -2,7 +2,7 @@
   "proposal_id": "a891c911-7eda-422c-8f53-a784fa7a9064",
   "status": "proposed",
   "candidate_content": {
-    "text": "Procesa muchos, no conserves ninguno. El disco del maestro permanece vac\u00edo, y aun as\u00ed el conocimiento fluye hacia los informes.",
+    "text": "Procesa muchos, no conserves ninguno. El disco del maestro permanece vacío, y aun así el conocimiento fluye hacia los informes.",
     "section": "remote-repo",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los datos deben fluir a trav\u00e9s del sistema, no estancarse en el disco.",
+    "authorship_assertion": "machine-translated from 'rrp-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los datos deben fluir a través del sistema, no estancarse en el disco.",
     "tags": [
       "batch",
       "storage",

@@ -2,7 +2,7 @@
   "proposal_id": "618091e1-6b17-49c5-8c8c-14e0b813b6d1",
   "status": "proposed",
   "candidate_content": {
-    "text": "Tu imagen de h\u00e9roe no es un h\u00e9roe. Es un obst\u00e1culo de 2 MB entre el usuario y su meta.",
+    "text": "Tu imagen de héroe no es un héroe. Es un obstáculo de 2 MB entre el usuario y su meta.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-062' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-062' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Deja que las metas del usuario triunfen sobre la extravagancia decorativa.",
     "tags": [
       "hero",

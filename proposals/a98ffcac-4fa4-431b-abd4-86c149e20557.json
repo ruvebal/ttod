@@ -2,7 +2,7 @@
   "proposal_id": "a98ffcac-4fa4-431b-abd4-86c149e20557",
   "status": "proposed",
   "candidate_content": {
-    "text": "Quien codifica y huye vive para depurar otro d\u00eda.",
+    "text": "Quien codifica y huye vive para depurar otro día.",
     "section": "debugging",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dbg-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Enfrenta los s\u00edntomas en lugar de huir; el error a\u00fan requerir\u00e1 atenci\u00f3n.",
+    "authorship_assertion": "machine-translated from 'dbg-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Enfrenta los síntomas en lugar de huir; el error aún requerirá atención.",
     "tags": [
       "debugging",
       "persistence",

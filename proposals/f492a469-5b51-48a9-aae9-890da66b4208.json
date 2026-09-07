@@ -2,7 +2,7 @@
   "proposal_id": "f492a469-5b51-48a9-aae9-890da66b4208",
   "status": "proposed",
   "candidate_content": {
-    "text": "La experiencia es simplemente el nombre que damos a nuestros errores despu\u00e9s de corregirlos.",
+    "text": "La experiencia es simplemente el nombre que damos a nuestros errores después de corregirlos.",
     "section": "wisdom",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Registra c\u00f3mo se resolvieron los fallos para que el siguiente caminante aprenda antes de tropezar.",
+    "authorship_assertion": "machine-translated from 'wis-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Registra cómo se resolvieron los fallos para que el siguiente caminante aprenda antes de tropezar.",
     "tags": [
       "wisdom",
       "experience",

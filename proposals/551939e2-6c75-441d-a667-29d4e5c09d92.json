@@ -2,7 +2,7 @@
   "proposal_id": "551939e2-6c75-441d-a667-29d4e5c09d92",
   "status": "proposed",
   "candidate_content": {
-    "text": "Las im\u00e1genes decorativas hablan en silencio: alt=''. Las im\u00e1genes de contenido deben cantar su prop\u00f3sito en voz alta.",
+    "text": "Las imágenes decorativas hablan en silencio: alt=''. Las imágenes de contenido deben cantar su propósito en voz alta.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-041' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Usa alt vac\u00edo para las decorativas y alt descriptivo para las de contenido.",
+    "authorship_assertion": "machine-translated from 'img-041' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Usa alt vacío para las decorativas y alt descriptivo para las de contenido.",
     "tags": [
       "alt-text",
       "decorative",

@@ -2,7 +2,7 @@
   "proposal_id": "75b6a485-faa0-4203-8fa2-cd5e8c971fa7",
   "status": "proposed",
   "candidate_content": {
-    "text": "Pusiste una '\u00f1' en la URL. El navegador sonri\u00f3, el servidor llor\u00f3, y el git remote simplemente dej\u00f3 de existir.",
+    "text": "Pusiste una 'ñ' en la URL. El navegador sonrió, el servidor lloró, y el git remote simplemente dejó de existir.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-025' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los caracteres especiales en nombres de archivos son una bomba de relojer\u00eda",
+    "authorship_assertion": "machine-translated from 'cc-025' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los caracteres especiales en nombres de archivos son una bomba de relojería",
     "tags": [
       "naming",
       "encoding",

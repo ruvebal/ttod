@@ -2,7 +2,7 @@
   "proposal_id": "f3cc6116-80ff-40f3-90e9-f097b8eba65d",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un alumno pregunt\u00f3 al maestro: '\u00bfC\u00f3mo s\u00e9 cu\u00e1ndo mis im\u00e1genes est\u00e1n optimizadas?'",
+    "text": "Un alumno preguntó al maestro: '¿Cómo sé cuándo mis imágenes están optimizadas?'",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-067' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Usa la pregunta para activar la verificaci\u00f3n pr\u00e1ctica.",
+    "authorship_assertion": "machine-translated from 'img-067' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Usa la pregunta para activar la verificación práctica.",
     "tags": [
       "koan",
       "reflection",

@@ -2,7 +2,7 @@
   "proposal_id": "f5c729d8-d332-4b1c-b35b-0857b1b0b2a7",
   "status": "proposed",
   "candidate_content": {
-    "text": "Usa un espacio en un nombre de archivo, y la l\u00ednea de comandos tratar\u00e1 tu archivo como dos desconocidos que se cruzan en la noche.",
+    "text": "Usa un espacio en un nombre de archivo, y la línea de comandos tratará tu archivo como dos desconocidos que se cruzan en la noche.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-028' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los espacios en nombres de archivo rompen scripts y argumentos de l\u00ednea de comandos",
+    "authorship_assertion": "machine-translated from 'cc-028' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los espacios en nombres de archivo rompen scripts y argumentos de línea de comandos",
     "tags": [
       "cli",
       "naming",

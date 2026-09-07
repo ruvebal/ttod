@@ -2,7 +2,7 @@
   "proposal_id": "fa77ecdb-b137-4a19-b672-53f5f1a84842",
   "status": "proposed",
   "candidate_content": {
-    "text": "Primero haz que funcione. El camino comienza cuando el c\u00f3digo corre, no cuando es admirado.",
+    "text": "Primero haz que funcione. El camino comienza cuando el código corre, no cuando es admirado.",
     "section": "wisdom",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-007' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Etapa 1 (Construir / \u529f): Funciona. Lanza lo que funciona antes de pulir la prosa.",
+    "authorship_assertion": "machine-translated from 'wis-007' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Etapa 1 (Construir / 功): Funciona. Lanza lo que funciona antes de pulir la prosa.",
     "tags": [
       "wisdom",
       "bwu",

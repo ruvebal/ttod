@@ -2,7 +2,7 @@
   "proposal_id": "1819a62b-d6ae-4ce0-b8fb-a8946277f58e",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un GIF bien colocado trae alegr\u00eda. Un video en reproducci\u00f3n autom\u00e1tica trae ira. Conoce la diferencia.",
+    "text": "Un GIF bien colocado trae alegría. Un video en reproducción automática trae ira. Conoce la diferencia.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-014' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-014' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Control y consentimiento del usuario en los medios",
     "tags": [
       "gif",

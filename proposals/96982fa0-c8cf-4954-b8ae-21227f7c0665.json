@@ -2,7 +2,7 @@
   "proposal_id": "96982fa0-c8cf-4954-b8ae-21227f7c0665",
   "status": "proposed",
   "candidate_content": {
-    "text": "Cuando las personas (o registros) se van, el sistema debe reconocer ese cambio, no borrar su existencia a ciegas. Prefiere cambios de estado suaves (activo \u2192 ex) a borrados duros. Conserva la historia; cambia la visibilidad.",
+    "text": "Cuando las personas (o registros) se van, el sistema debe reconocer ese cambio, no borrar su existencia a ciegas. Prefiere cambios de estado suaves (activo → ex) a borrados duros. Conserva la historia; cambia la visibilidad.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-018' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Un miembro que se va no es un error, sino una historia con un final. Los sistemas que recuerdan los finales son m\u00e1s amables con la verdad. Prefiere cambios de estado suaves a borrados duros. Conserva la historia; cambia la visibilidad.",
+    "authorship_assertion": "machine-translated from 'cc-018' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Un miembro que se va no es un error, sino una historia con un final. Los sistemas que recuerdan los finales son más amables con la verdad. Prefiere cambios de estado suaves a borrados duros. Conserva la historia; cambia la visibilidad.",
     "tags": [
       "codecraft",
       "soft-delete",

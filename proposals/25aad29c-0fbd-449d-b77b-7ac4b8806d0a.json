@@ -2,7 +2,7 @@
   "proposal_id": "25aad29c-0fbd-449d-b77b-7ac4b8806d0a",
   "status": "proposed",
   "candidate_content": {
-    "text": "\u00bfD\u00f3nde en la p\u00e1gina? \u00bfD\u00f3nde en la tierra? \u00bfQu\u00e9 significa? Todo fragmento de saber debe responder a las tres, o flota a la deriva: in\u00fatil para nadie, intrascendible por nada.",
+    "text": "¿Dónde en la página? ¿Dónde en la tierra? ¿Qué significa? Todo fragmento de saber debe responder a las tres, o flota a la deriva: inútil para nadie, intrascendible por nada.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-040' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a747): El Triple Ancla \u2014 Haiku: ancla espacial, geogr\u00e1fica / ancla sem\u00e1ntica completa / el tri\u00e1ngulo se sostiene",
+    "authorship_assertion": "machine-translated from 'arch-040' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§47): El Triple Ancla — Haiku: ancla espacial, geográfica / ancla semántica completa / el triángulo se sostiene",
     "tags": [
       "deviac",
       "tao-of-system-architect",

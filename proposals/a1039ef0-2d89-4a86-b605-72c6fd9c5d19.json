@@ -2,7 +2,7 @@
   "proposal_id": "a1039ef0-2d89-4a86-b605-72c6fd9c5d19",
   "status": "proposed",
   "candidate_content": {
-    "text": "El usuario con discapacidad visual no puede ver tus im\u00e1genes, pero puede escucharlas a trav\u00e9s del texto alternativo. Habla con claridad. Habla con verdad. No digas 'image123.jpg'.",
+    "text": "El usuario con discapacidad visual no puede ver tus imágenes, pero puede escucharlas a través del texto alternativo. Habla con claridad. Habla con verdad. No digas 'image123.jpg'.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-057' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-057' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Escribe descriptores alternativos honestos que un lector de pantalla pueda narrar.",
     "tags": [
       "accessibility",

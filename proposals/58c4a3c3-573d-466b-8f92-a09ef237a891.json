@@ -2,7 +2,7 @@
   "proposal_id": "58c4a3c3-573d-466b-8f92-a09ef237a891",
   "status": "proposed",
   "candidate_content": {
-    "text": "Lo temporal es eterno en su prop\u00f3sito: sirve y se desvanece, dejando solo resultados.",
+    "text": "Lo temporal es eterno en su propósito: sirve y se desvanece, dejando solo resultados.",
     "section": "remote-repo",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-008' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Respeta los recursos ef\u00edmeros limpi\u00e1ndolos.",
+    "authorship_assertion": "machine-translated from 'rrp-008' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Respeta los recursos efímeros limpiándolos.",
     "tags": [
       "ephemeral",
       "cleanup",

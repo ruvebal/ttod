@@ -2,7 +2,7 @@
   "proposal_id": "d44783a5-da04-4684-ab54-c01cf0b60ee3",
   "status": "proposed",
   "candidate_content": {
-    "text": "Incrusta el icono. Nunca incrustes al h\u00e9roe. El Tao de Base64 es saber cu\u00e1ndo detenerse.",
+    "text": "Incrusta el icono. Nunca incrustes al héroe. El Tao de Base64 es saber cuándo detenerse.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-021' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-021' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Casos de uso adecuados para URIs de datos",
     "tags": [
       "data-uri",

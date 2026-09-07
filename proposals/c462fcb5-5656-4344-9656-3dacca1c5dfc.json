@@ -2,7 +2,7 @@
   "proposal_id": "c462fcb5-5656-4344-9656-3dacca1c5dfc",
   "status": "proposed",
   "candidate_content": {
-    "text": "Cada byte que env\u00edas viaja miles de millas por cables bajo los oc\u00e9anos. Respeta el viaje.",
+    "text": "Cada byte que envías viaja miles de millas por cables bajo los océanos. Respeta el viaje.",
     "section": "images",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-064' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-064' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Honra la ruta global de los datos enviando solo lo necesario.",
     "tags": [
       "laws",

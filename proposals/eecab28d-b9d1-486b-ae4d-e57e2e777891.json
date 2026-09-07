@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-066' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Construye para todos abrazando pr\u00e1cticas de medios inclusivas.",
+    "authorship_assertion": "machine-translated from 'img-066' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Construye para todos abrazando prácticas de medios inclusivas.",
     "tags": [
       "laws",
       "accessibility",

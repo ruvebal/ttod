@@ -2,7 +2,7 @@
   "proposal_id": "37811c1c-6188-486a-9616-fa6272d2931e",
   "status": "proposed",
   "candidate_content": {
-    "text": "Las operaciones peligrosas pertenecen tras banderas, con ejecuciones en seco y una nomenclatura clara. --prune-missing en lugar de comportamiento oculto. --prune-strategy=soft|hard en lugar de \"adivinar qu\u00e9 hice\". --dry-run para ensayar antes de actuar.",
+    "text": "Las operaciones peligrosas pertenecen tras banderas, con ejecuciones en seco y una nomenclatura clara. --prune-missing en lugar de comportamiento oculto. --prune-strategy=soft|hard en lugar de \"adivinar qué hice\". --dry-run para ensayar antes de actuar.",
     "section": "code-craft",
     "level": "advanced",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-019' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-019' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "El ingeniero sabio hace que el peligro sea opcional. Una buena CLI ofrece un camino seguro por defecto y una hoja afilada solo cuando se pide. Las operaciones peligrosas pertenecen tras banderas, con ejecuciones en seco y una nomenclatura clara.",
     "tags": [
       "codecraft",

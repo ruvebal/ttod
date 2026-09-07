@@ -2,7 +2,7 @@
   "proposal_id": "f26f805b-bc3e-4978-8006-04de1b847363",
   "status": "proposed",
   "candidate_content": {
-    "text": "El r\u00edo no empuja; permite. El maestro desarrollador no fuerza el desplazamiento: canaliza su flujo.",
+    "text": "El río no empuja; permite. El maestro desarrollador no fuerza el desplazamiento: canaliza su flujo.",
     "section": "javascript",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'js-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'js-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Trabaja con los patrones del marco en lugar de luchar contra ellos; comprende la veta de la herramienta.",
     "tags": [
       "dom",

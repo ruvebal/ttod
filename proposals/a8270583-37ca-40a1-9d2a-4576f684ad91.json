@@ -2,7 +2,7 @@
   "proposal_id": "a8270583-37ca-40a1-9d2a-4576f684ad91",
   "status": "proposed",
   "candidate_content": {
-    "text": "el enriquecedor escribe diez mil menciones \u2014 sin embargo, relaciones: cero",
+    "text": "el enriquecedor escribe diez mil menciones — sin embargo, relaciones: cero",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-058' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Haiku de la lecci\u00f3n de campo de Ahmes: volumen del enriquecedor \u2260 grafo de relaciones; Athanor debe construir co-ocurrencia en el momento de inyecci\u00f3n/consulta.",
+    "authorship_assertion": "machine-translated from 'arch-058' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Haiku de la lección de campo de Ahmes: volumen del enriquecedor ≠ grafo de relaciones; Athanor debe construir co-ocurrencia en el momento de inyección/consulta.",
     "tags": [
       "architecture",
       "athanor",

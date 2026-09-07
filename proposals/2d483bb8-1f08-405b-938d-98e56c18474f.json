@@ -2,7 +2,7 @@
   "proposal_id": "2d483bb8-1f08-405b-938d-98e56c18474f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Cada PHASE-n.md es un prompt autosuficiente con todo el contexto incrustado. Un modelo local de 72B que lo siga producir\u00e1 una salida casi id\u00e9ntica a la de un modelo en la nube, porque el prompt hace el trabajo pesado. La inteligencia est\u00e1 en la especificaci\u00f3n, no en el conteo de par\u00e1metros.",
+    "text": "Cada PHASE-n.md es un prompt autosuficiente con todo el contexto incrustado. Un modelo local de 72B que lo siga producirá una salida casi idéntica a la de un modelo en la nube, porque el prompt hace el trabajo pesado. La inteligencia está en la especificación, no en el conteo de parámetros.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-050' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a754): El Archivo de Fase",
+    "authorship_assertion": "machine-translated from 'arch-050' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§54): El Archivo de Fase",
     "tags": [
       "deviac",
       "tao-of-system-architect",

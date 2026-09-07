@@ -2,7 +2,7 @@
   "proposal_id": "ce1adba6-f80d-48b4-89f2-39c27d984d67",
   "status": "proposed",
   "candidate_content": {
-    "text": "El depurador que depura con sabidur\u00eda, solo lo hace una vez; pues cada error corregido en la comprensi\u00f3n no volver\u00e1 en el c\u00f3digo.",
+    "text": "El depurador que depura con sabiduría, solo lo hace una vez; pues cada error corregido en la comprensión no volverá en el código.",
     "section": "debugging",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dbg-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "No solo arregles errores, comp\u00e9ndelos. Cada error revela una brecha en la comprensi\u00f3n. Cierra la brecha y el error no volver\u00e1. Depurar no es arreglar c\u00f3digo, es arreglar la comprensi\u00f3n.",
+    "authorship_assertion": "machine-translated from 'dbg-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "No solo arregles errores, compéndelos. Cada error revela una brecha en la comprensión. Cierra la brecha y el error no volverá. Depurar no es arreglar código, es arreglar la comprensión.",
     "tags": [
       "debugging",
       "understanding",

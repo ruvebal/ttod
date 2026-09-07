@@ -2,7 +2,7 @@
   "proposal_id": "8491b929-d445-4345-8682-0864bf3f9443",
   "status": "proposed",
   "candidate_content": {
-    "text": "El alumno dijo: '\u00a1Mis im\u00e1genes se ven hermosas!' El maestro revis\u00f3 la pesta\u00f1a de Red y dijo: 'Tus usuarios se fueron antes de verlas.'",
+    "text": "El alumno dijo: '¡Mis imágenes se ven hermosas!' El maestro revisó la pestaña de Red y dijo: 'Tus usuarios se fueron antes de verlas.'",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-051' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Valida la belleza con m\u00e9tricas de rendimiento de red.",
+    "authorship_assertion": "machine-translated from 'img-051' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Valida la belleza con métricas de rendimiento de red.",
     "tags": [
       "performance",
       "network",

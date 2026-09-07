@@ -2,7 +2,7 @@
   "proposal_id": "f2f62937-a13d-49aa-b3a4-55de0fc8cb01",
   "status": "proposed",
   "candidate_content": {
-    "text": "SVG escala infinitamente, y sin embargo pesa menos que un solo p\u00edxel JPEG. Esta es la paradoja del vector sobre el r\u00e1ster.",
+    "text": "SVG escala infinitamente, y sin embargo pesa menos que un solo píxel JPEG. Esta es la paradoja del vector sobre el ráster.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-048' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Usa vectores para logotipos e iconos para mantenerlos n\u00edtidos y ligeros.",
+    "authorship_assertion": "machine-translated from 'img-048' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Usa vectores para logotipos e iconos para mantenerlos nítidos y ligeros.",
     "tags": [
       "svg",
       "vector",

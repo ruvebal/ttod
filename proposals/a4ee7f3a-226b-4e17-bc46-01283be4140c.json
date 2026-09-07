@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-045' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Usa marcado moderno y en lugar de archivos gigantes \u00fanicos.",
+    "authorship_assertion": "machine-translated from 'img-045' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Usa marcado moderno y en lugar de archivos gigantes únicos.",
     "tags": [
       "img",
       "srcset",

@@ -2,7 +2,7 @@
   "proposal_id": "5257eb7d-7ef4-4151-8c39-c1c1c312c7a1",
   "status": "proposed",
   "candidate_content": {
-    "text": "Dos espacios al\u00ednean, cuatro anidan hondo, las tabulaciones rompen el flujo.",
+    "text": "Dos espacios alínean, cuatro anidan hondo, las tabulaciones rompen el flujo.",
     "section": "code-craft",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-013' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La consistencia en la indentaci\u00f3n crea armon\u00eda visual. Dos espacios para listas, cuatro para anidamiento. Las tabulaciones introducen caos al mezclarse con espacios. Elige uno y honra a lo largo.",
+    "authorship_assertion": "machine-translated from 'cc-013' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La consistencia en la indentación crea armonía visual. Dos espacios para listas, cuatro para anidamiento. Las tabulaciones introducen caos al mezclarse con espacios. Elige uno y honra a lo largo.",
     "tags": [
       "codecraft",
       "formatting",

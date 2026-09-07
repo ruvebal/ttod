@@ -2,7 +2,7 @@
   "proposal_id": "7ce888ff-60eb-4178-b83f-184952069cef",
   "status": "proposed",
   "candidate_content": {
-    "text": "El instructor sabio califica con consistencia. El instructor iluminado califica con compasi\u00f3n.",
+    "text": "El instructor sabio califica con consistencia. El instructor iluminado califica con compasión.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-012' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Equilibra los criterios objetivos con la comprensi\u00f3n humana",
+    "authorship_assertion": "machine-translated from 'qa-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Equilibra los criterios objetivos con la comprensión humana",
     "tags": [
       "grading",
       "teaching",

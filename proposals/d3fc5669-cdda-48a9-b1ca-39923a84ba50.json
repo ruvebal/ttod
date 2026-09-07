@@ -2,7 +2,7 @@
   "proposal_id": "d3fc5669-cdda-48a9-b1ca-39923a84ba50",
   "status": "proposed",
   "candidate_content": {
-    "text": "ChromaDB para vectores, Redis para cach\u00e9, Postgres para relaciones \u2014 tres motores, tres modos de fallo, tres conjuntos de credenciales. Reempl\u00e1zalos todos con Postgres + pgvector: un motor, una copia de seguridad, una verdad.",
+    "text": "ChromaDB para vectores, Redis para caché, Postgres para relaciones — tres motores, tres modos de fallo, tres conjuntos de credenciales. Reemplázalos todos con Postgres + pgvector: un motor, una copia de seguridad, una verdad.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-045' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a752): Un Motor \u2014 Haiku: tres almacenes, tres fallos / pgvector en Postgres duerme / un motor, una verdad",
+    "authorship_assertion": "machine-translated from 'arch-045' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§52): Un Motor — Haiku: tres almacenes, tres fallos / pgvector en Postgres duerme / un motor, una verdad",
     "tags": [
       "deviac",
       "tao-of-system-architect",

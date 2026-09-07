@@ -2,7 +2,7 @@
   "proposal_id": "7cd4a3f0-2d66-41fe-8dbd-28886f8374db",
   "status": "proposed",
   "candidate_content": {
-    "text": "La p\u00e1gina 404 sin imagen es como un jard\u00edn sin flores: t\u00e9cnicamente completa, espiritualmente vac\u00eda.",
+    "text": "La página 404 sin imagen es como un jardín sin flores: técnicamente completa, espiritualmente vacía.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Los activos visuales enriquecen la experiencia del usuario",
     "tags": [
       "404",

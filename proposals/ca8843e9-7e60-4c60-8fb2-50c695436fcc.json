@@ -2,7 +2,7 @@
   "proposal_id": "ca8843e9-7e60-4c60-8fb2-50c695436fcc",
   "status": "proposed",
   "candidate_content": {
-    "text": "Si lo nombras demasiado r\u00e1pido, no lo entiendes. Si no puedes nombrarlo en absoluto, no te entiendes a ti mismo.",
+    "text": "Si lo nombras demasiado rápido, no lo entiendes. Si no puedes nombrarlo en absoluto, no te entiendes a ti mismo.",
     "section": "code-craft",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Un nombre debe servir tanto a la cosa como al necio que lo teclear\u00e1 a las 3 a. m.",
+    "authorship_assertion": "machine-translated from 'cc-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Un nombre debe servir tanto a la cosa como al necio que lo tecleará a las 3 a. m.",
     "tags": [
       "naming",
       "understanding",

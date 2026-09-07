@@ -2,7 +2,7 @@
   "proposal_id": "ebed2e46-75a5-4532-94d9-3ca4ec4fdd49",
   "status": "proposed",
   "candidate_content": {
-    "text": "El r\u00edo actualiza las piedras; no las rompe.",
+    "text": "El río actualiza las piedras; no las rompe.",
     "section": "wisdom",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-009' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los upserts son el r\u00edo; el esquema es el lecho. El r\u00edo actualiza las piedras sin romperlas. Elige operaciones que preserven lo que existe mientras permiten el crecimiento.",
+    "authorship_assertion": "machine-translated from 'wis-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los upserts son el río; el esquema es el lecho. El río actualiza las piedras sin romperlas. Elige operaciones que preserven lo que existe mientras permiten el crecimiento.",
     "tags": [
       "wisdom",
       "upsert",

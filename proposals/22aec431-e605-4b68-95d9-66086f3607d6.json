@@ -2,7 +2,7 @@
   "proposal_id": "22aec431-e605-4b68-95d9-66086f3607d6",
   "status": "proposed",
   "candidate_content": {
-    "text": "Llamaste a la variable 'data'. Asumo que la funci\u00f3n se llama 'doThings'. Los enterraremos juntos en el cementerio de la ambig\u00fcedad.",
+    "text": "Llamaste a la variable 'data'. Asumo que la función se llama 'doThings'. Los enterraremos juntos en el cementerio de la ambigüedad.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-029' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-029' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Nombrar vagamente es, en efecto, no nombrar",
     "tags": [
       "naming",

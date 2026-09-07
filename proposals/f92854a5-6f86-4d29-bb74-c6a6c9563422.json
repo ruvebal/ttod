@@ -2,7 +2,7 @@
   "proposal_id": "f92854a5-6f86-4d29-bb74-c6a6c9563422",
   "status": "proposed",
   "candidate_content": {
-    "text": "La l\u00f3gica de dominio es sagrada; la infraestructura, un detalle. Cuando Pydantic aparece en tu entidad, el templo ha sido profanado. Cuando SQLAlchemy habla en tu objeto de valor, el sacerdote se ha vuelto mercader.",
+    "text": "La lógica de dominio es sagrada; la infraestructura, un detalle. Cuando Pydantic aparece en tu entidad, el templo ha sido profanado. Cuando SQLAlchemy habla en tu objeto de valor, el sacerdote se ha vuelto mercader.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-032' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a742): El Dominio Sagrado \u2014 Haiku: dataclass congelada / sin importaciones del exterior / el dominio permanece puro",
+    "authorship_assertion": "machine-translated from 'arch-032' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§42): El Dominio Sagrado — Haiku: dataclass congelada / sin importaciones del exterior / el dominio permanece puro",
     "tags": [
       "deviac",
       "tao-of-system-architect",

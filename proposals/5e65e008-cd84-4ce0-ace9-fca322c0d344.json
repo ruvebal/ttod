@@ -2,7 +2,7 @@
   "proposal_id": "5e65e008-cd84-4ce0-ace9-fca322c0d344",
   "status": "proposed",
   "candidate_content": {
-    "text": "El navegador no juzga tu est\u00e9tica. Solo tus kilobytes.",
+    "text": "El navegador no juzga tu estética. Solo tus kilobytes.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-025' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Las m\u00e9tricas de rendimiento son objetivas; el dise\u00f1o es subjetivo",
+    "authorship_assertion": "machine-translated from 'img-025' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las métricas de rendimiento son objetivas; el diseño es subjetivo",
     "tags": [
       "performance",
       "browser",

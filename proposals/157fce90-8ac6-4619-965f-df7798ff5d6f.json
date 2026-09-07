@@ -2,7 +2,7 @@
   "proposal_id": "157fce90-8ac6-4619-965f-df7798ff5d6f",
   "status": "proposed",
   "candidate_content": {
-    "text": "una puerta, muchos hu\u00e9spedes \u2014 la herramienta que sirve al erudito tambi\u00e9n sirve a la m\u00e1quina",
+    "text": "una puerta, muchos huéspedes — la herramienta que sirve al erudito también sirve a la máquina",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-057' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Haiku: una puerta, muchos hu\u00e9spedes \u2014 / la herramienta que sirve al erudito / tambi\u00e9n sirve a la m\u00e1quina",
+    "authorship_assertion": "machine-translated from 'arch-057' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Haiku: una puerta, muchos huéspedes — / la herramienta que sirve al erudito / también sirve a la máquina",
     "tags": [
       "architecture",
       "mcp",

@@ -2,7 +2,7 @@
   "proposal_id": "db072374-2d79-476b-8b4e-ce98d95b49fc",
   "status": "proposed",
   "candidate_content": {
-    "text": "El GIF pregunta: '\u00bfSoy una imagen o un video?' El Tao responde: 'S\u00ed.' \ud83c\udf89",
+    "text": "El GIF pregunta: '¿Soy una imagen o un video?' El Tao responde: 'Sí.' 🎉",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-013' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los GIFs ocupan un espacio \u00fanico en los medios web",
+    "authorship_assertion": "machine-translated from 'img-013' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los GIFs ocupan un espacio único en los medios web",
     "tags": [
       "gif",
       "animation",

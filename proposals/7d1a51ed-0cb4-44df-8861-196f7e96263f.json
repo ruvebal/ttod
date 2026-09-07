@@ -2,7 +2,7 @@
   "proposal_id": "7d1a51ed-0cb4-44df-8861-196f7e96263f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Usa im\u00e1genes para realzar el mensaje, no para serlo. Las palabras permanecen cuando las im\u00e1genes fallan.",
+    "text": "Usa imágenes para realzar el mensaje, no para serlo. Las palabras permanecen cuando las imágenes fallan.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-053' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Deja que la imagen apoye, no reemplace, la comunicaci\u00f3n clara.",
+    "authorship_assertion": "machine-translated from 'img-053' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Deja que la imagen apoye, no reemplace, la comunicación clara.",
     "tags": [
       "design",
       "message",

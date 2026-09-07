@@ -2,7 +2,7 @@
   "proposal_id": "b121816a-cc57-4a58-ae30-ca6e602a077a",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una imagen sin texto alternativo es una puerta cerrada para el usuario ciego. No construir\u00edas un sitio web con solo puertas cerradas.",
+    "text": "Una imagen sin texto alternativo es una puerta cerrada para el usuario ciego. No construirías un sitio web con solo puertas cerradas.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-038' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Proporciona siempre texto alternativo descriptivo para las im\u00e1genes de contenido.",
+    "authorship_assertion": "machine-translated from 'img-038' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Proporciona siempre texto alternativo descriptivo para las imágenes de contenido.",
     "tags": [
       "alt-text",
       "accessibility",

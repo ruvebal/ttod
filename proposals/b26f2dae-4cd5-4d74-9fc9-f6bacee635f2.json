@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-015' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los upserts hacen crecer el jard\u00edn; la supresi\u00f3n es fuego. Prefiere operaciones no destructivas por defecto. Crear y actualizar preservan lo que existe; borrar destruye lo que fue. El jardinero nutre el crecimiento, no la destrucci\u00f3n.",
+    "authorship_assertion": "machine-translated from 'cc-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los upserts hacen crecer el jardín; la supresión es fuego. Prefiere operaciones no destructivas por defecto. Crear y actualizar preservan lo que existe; borrar destruye lo que fue. El jardinero nutre el crecimiento, no la destrucción.",
     "tags": [
       "codecraft",
       "non-destructive",

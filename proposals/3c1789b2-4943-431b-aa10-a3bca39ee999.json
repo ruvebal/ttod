@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-008' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-008' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "La simplicidad es requisito de la fiabilidad. Reutiliza lo que funciona; inventa solo cuando sea necesario.",
     "tags": [
       "codecraft",

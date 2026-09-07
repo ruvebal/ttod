@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-038' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-038' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Reconoce los nombres bautizados existentes en el registro antes de crear nuevos: la idempotencia comienza con el reconocimiento.",
     "tags": [
       "naming",

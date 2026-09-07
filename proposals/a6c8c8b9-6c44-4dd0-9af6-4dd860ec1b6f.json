@@ -2,7 +2,7 @@
   "proposal_id": "a6c8c8b9-6c44-4dd0-9af6-4dd860ec1b6f",
   "status": "proposed",
   "candidate_content": {
-    "text": "El maestro ense\u00f1a por ejemplo, no por perfecci\u00f3n.",
+    "text": "El maestro enseña por ejemplo, no por perfección.",
     "section": "ux",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'ux-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La documentaci\u00f3n es un documento vivo, nacido de la experiencia de implementaci\u00f3n real. Evoluciona a medida que emergen nuevos patrones. El maestro ense\u00f1a a trav\u00e9s de ejemplos funcionales, no de la perfecci\u00f3n te\u00f3rica.",
+    "authorship_assertion": "machine-translated from 'ux-004' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La documentación es un documento vivo, nacido de la experiencia de implementación real. Evoluciona a medida que emergen nuevos patrones. El maestro enseña a través de ejemplos funcionales, no de la perfección teórica.",
     "tags": [
       "ux",
       "teaching",

@@ -2,7 +2,7 @@
   "proposal_id": "12e997d9-72a2-4b09-ac21-312bfae2c9a6",
   "status": "proposed",
   "candidate_content": {
-    "text": "La mejor navegaci\u00f3n es la que olvidas que existe\u2014hasta que la necesitas.",
+    "text": "La mejor navegación es la que olvidas que existe—hasta que la necesitas.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-016' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Invisible hasta que se invoca. Los buenos componentes de interfaz no compiten por la atenci\u00f3n: esperan con paciencia, listos para servir. El peso delata la importancia.",
+    "authorship_assertion": "machine-translated from 'arch-016' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Invisible hasta que se invoca. Los buenos componentes de interfaz no compiten por la atención: esperan con paciencia, listos para servir. El peso delata la importancia.",
     "tags": [
       "architecture",
       "ux",

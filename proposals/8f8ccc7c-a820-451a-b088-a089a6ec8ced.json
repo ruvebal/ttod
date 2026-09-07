@@ -2,7 +2,7 @@
   "proposal_id": "8f8ccc7c-a820-451a-b088-a089a6ec8ced",
   "status": "proposed",
   "candidate_content": {
-    "text": "Los antiguos maestros dijeron: 'El contenido es rey.' La web moderna lo ha olvidado. Las im\u00e1genes se han vuelto tiranas, y el contenido sirve a su gusto.",
+    "text": "Los antiguos maestros dijeron: 'El contenido es rey.' La web moderna lo ha olvidado. Las imágenes se han vuelto tiranas, y el contenido sirve a su gusto.",
     "section": "images",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-063' (lang=en) via ollama:qwen2.5:32b-instruct \u2014 human review required before acceptance",
-    "teaches": "Aseg\u00farate de que la imagen apoye un mensaje central fuerte.",
+    "authorship_assertion": "machine-translated from 'img-063' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "Asegúrate de que la imagen apoye un mensaje central fuerte.",
     "tags": [
       "content",
       "philosophy",
@@ -31,11 +31,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:35:40.909138Z"
 }

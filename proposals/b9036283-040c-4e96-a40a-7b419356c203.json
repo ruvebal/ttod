@@ -2,7 +2,7 @@
   "proposal_id": "b9036283-040c-4e96-a40a-7b419356c203",
   "status": "proposed",
   "candidate_content": {
-    "text": "El desarrollador sabio sabe: la imagen m\u00e1s peque\u00f1a carga el sentido m\u00e1s pesado.",
+    "text": "El desarrollador sabio sabe: la imagen más pequeña carga el sentido más pesado.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La optimizaci\u00f3n de im\u00e1genes consiste en preservar el significado mientras se reduce el peso",
+    "authorship_assertion": "machine-translated from 'img-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La optimización de imágenes consiste en preservar el significado mientras se reduce el peso",
     "tags": [
       "optimization",
       "file-size",

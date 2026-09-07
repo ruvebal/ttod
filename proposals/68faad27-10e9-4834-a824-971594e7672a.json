@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'rrp-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "No acumules artefactos temporales; procesa y libera.",
     "tags": [
       "minimalism",

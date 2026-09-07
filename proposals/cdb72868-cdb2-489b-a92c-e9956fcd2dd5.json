@@ -2,7 +2,7 @@
   "proposal_id": "cdb72868-cdb2-489b-a92c-e9956fcd2dd5",
   "status": "proposed",
   "candidate_content": {
-    "text": "el erudito pregunta al cofre, la m\u00e1quina pregunta al cofre lo mismo \u2014 ambos reciben la verdad",
+    "text": "el erudito pregunta al cofre, la máquina pregunta al cofre lo mismo — ambos reciben la verdad",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-059' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Haiku: el erudito pregunta al cofre, / la m\u00e1quina pregunta al cofre lo mismo \u2014 / ambos reciben la verdad",
+    "authorship_assertion": "machine-translated from 'arch-059' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Haiku: el erudito pregunta al cofre, / la máquina pregunta al cofre lo mismo — / ambos reciben la verdad",
     "tags": [
       "architecture",
       "single-source-of-truth",

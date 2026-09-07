@@ -2,7 +2,7 @@
   "proposal_id": "6ce15f85-d4fc-40ac-8e73-f3fdba7d8196",
   "status": "proposed",
   "candidate_content": {
-    "text": "El camino habla a los humanos. La b\u00f3veda habla a las bibliotecas. El alcance habla a las m\u00e1quinas. Una sola cadena para tres lenguas, y a las 3 a. m. la colisi\u00f3n habla m\u00e1s fuerte.",
+    "text": "El camino habla a los humanos. La bóveda habla a las bibliotecas. El alcance habla a las máquinas. Una sola cadena para tres lenguas, y a las 3 a. m. la colisión habla más fuerte.",
     "section": "code-craft",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-034' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Mant\u00e9n separados los caminos humanos, las particiones de biblioteca y los identificadores de alcance de m\u00e1quina \u2014 colapsar las capas garantiza la colisi\u00f3n.",
+    "authorship_assertion": "machine-translated from 'cc-034' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Mantén separados los caminos humanos, las particiones de biblioteca y los identificadores de alcance de máquina — colapsar las capas garantiza la colisión.",
     "tags": [
       "naming",
       "namespace",

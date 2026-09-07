@@ -2,7 +2,7 @@
   "proposal_id": "f1419981-689a-4c8b-931c-779d06a95798",
   "status": "proposed",
   "candidate_content": {
-    "text": "El maestro Li comprimi\u00f3 una imagen de 5 MB a 50 KB. Su alumno pregunt\u00f3: '\u00bfPerdiste calidad?' Li respondi\u00f3: 'Solo perd\u00ed lo que el ojo no ve\u00eda y la red no soportaba.'",
+    "text": "El maestro Li comprimió una imagen de 5 MB a 50 KB. Su alumno preguntó: '¿Perdiste calidad?' Li respondió: 'Solo perdí lo que el ojo no veía y la red no soportaba.'",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-030' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Compromete el detalle imperceptible por ganancias dram\u00e1ticas de velocidad.",
+    "authorship_assertion": "machine-translated from 'img-030' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Compromete el detalle imperceptible por ganancias dramáticas de velocidad.",
     "tags": [
       "compression",
       "quality",

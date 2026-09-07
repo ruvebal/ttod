@@ -2,7 +2,7 @@
   "proposal_id": "46d6514e-c8a3-47ed-8d4c-7c830c26885c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Sirve una imagen de 2000px a un tel\u00e9fono de 375px, y los dioses del ancho de banda maldecir\u00e1n tu casa por siete generaciones.",
+    "text": "Sirve una imagen de 2000px a un teléfono de 375px, y los dioses del ancho de banda maldecirán tu casa por siete generaciones.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-042' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Respeta las pantallas m\u00f3viles entregando activos de tama\u00f1o adecuado.",
+    "authorship_assertion": "machine-translated from 'img-042' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Respeta las pantallas móviles entregando activos de tamaño adecuado.",
     "tags": [
       "responsive",
       "bandwidth",

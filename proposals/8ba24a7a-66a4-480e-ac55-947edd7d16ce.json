@@ -2,7 +2,7 @@
   "proposal_id": "8ba24a7a-66a4-480e-ac55-947edd7d16ce",
   "status": "proposed",
   "candidate_content": {
-    "text": "Extrae cuando el l\u00edmite es claro. Enl\u00ednalo cuando fue prematuro. Distingue por la fricci\u00f3n del cambio.",
+    "text": "Extrae cuando el límite es claro. Enlínalo cuando fue prematuro. Distingue por la fricción del cambio.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-010' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Deja que el dolor gu\u00ede la arquitectura: los cambios dif\u00edciles revelan el acoplamiento oculto.",
+    "authorship_assertion": "machine-translated from 'arch-010' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Deja que el dolor guíe la arquitectura: los cambios difíciles revelan el acoplamiento oculto.",
     "tags": [
       "architecture",
       "extraction",

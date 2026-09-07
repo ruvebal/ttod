@@ -2,7 +2,7 @@
   "proposal_id": "44c713df-274d-45c5-8568-5a5173c9e0cb",
   "status": "proposed",
   "candidate_content": {
-    "text": "La simplicidad es la sofisticaci\u00f3n suprema.",
+    "text": "La simplicidad es la sofisticación suprema.",
     "section": "wisdom",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El mejor refactor elimina c\u00f3digo. La elegancia no es complejidad, es la simplicidad perfeccionada.",
+    "authorship_assertion": "machine-translated from 'wis-004' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El mejor refactor elimina código. La elegancia no es complejidad, es la simplicidad perfeccionada.",
     "tags": [
       "wisdom",
       "simplicity",

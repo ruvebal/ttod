@@ -2,7 +2,7 @@
   "proposal_id": "37e43fa5-c064-461d-83aa-c0205f718562",
   "status": "proposed",
   "candidate_content": {
-    "text": "Pie de p\u00e1gina como \u00edndice - La navegaci\u00f3n global supera la complejidad local.",
+    "text": "Pie de página como índice - La navegación global supera la complejidad local.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-024' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Elimina transiciones innecesarias; deja que el contenido fluya con naturalidad. La mejor navegaci\u00f3n es la que olvidas\u2014hasta que la necesitas. Usa el pie de p\u00e1gina para navegaci\u00f3n interna en lugar de \u00edndices locales.",
+    "authorship_assertion": "machine-translated from 'arch-024' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elimina transiciones innecesarias; deja que el contenido fluya con naturalidad. La mejor navegación es la que olvidas—hasta que la necesitas. Usa el pie de página para navegación interna en lugar de índices locales.",
     "tags": [
       "architecture",
       "navigation",

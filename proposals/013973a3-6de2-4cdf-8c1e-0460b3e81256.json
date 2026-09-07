@@ -2,7 +2,7 @@
   "proposal_id": "013973a3-6de2-4cdf-8c1e-0460b3e81256",
   "status": "proposed",
   "candidate_content": {
-    "text": "El acoplamiento fuerte es un pr\u00e9stamo con inter\u00e9s compuesto. El acoplamiento flojo es un ahorro que se multiplica.",
+    "text": "El acoplamiento fuerte es un préstamo con interés compuesto. El acoplamiento flojo es un ahorro que se multiplica.",
     "section": "architecture",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-008' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Las decisiones tempranas de entrelazar m\u00f3dulos crean cargas de mantenimiento crecientes.",
+    "authorship_assertion": "machine-translated from 'arch-008' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las decisiones tempranas de entrelazar módulos crean cargas de mantenimiento crecientes.",
     "tags": [
       "architecture",
       "coupling",

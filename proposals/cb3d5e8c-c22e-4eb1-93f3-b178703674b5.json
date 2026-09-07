@@ -2,7 +2,7 @@
   "proposal_id": "cb3d5e8c-c22e-4eb1-93f3-b178703674b5",
   "status": "proposed",
   "candidate_content": {
-    "text": "Construir \u2192 Escribir \u2192 Comprender - Las tres etapas de la iluminaci\u00f3n del c\u00f3digo.",
+    "text": "Construir → Escribir → Comprender - Las tres etapas de la iluminación del código.",
     "section": "code-craft",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-011' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Etapa 1 (Construir): Funciona. Etapa 2 (Escribir): Es mantenible. Etapa 3 (Comprender): Es simple. La dicha del c\u00f3digo llega al alcanzar la Etapa 3: el c\u00f3digo se lee como prosa, la intenci\u00f3n es clara, los cambios son f\u00e1ciles.",
+    "authorship_assertion": "machine-translated from 'cc-011' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Etapa 1 (Construir): Funciona. Etapa 2 (Escribir): Es mantenible. Etapa 3 (Comprender): Es simple. La dicha del código llega al alcanzar la Etapa 3: el código se lee como prosa, la intención es clara, los cambios son fáciles.",
     "tags": [
       "codecraft",
       "refactoring",

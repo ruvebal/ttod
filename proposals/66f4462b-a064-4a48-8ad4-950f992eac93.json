@@ -2,7 +2,7 @@
   "proposal_id": "66f4462b-a064-4a48-8ad4-950f992eac93",
   "status": "proposed",
   "candidate_content": {
-    "text": "El URI de datos dice: 'No necesito ninguna petici\u00f3n HTTP.' \u00bfPero a qu\u00e9 precio? \u00bfA qu\u00e9 precio?",
+    "text": "El URI de datos dice: 'No necesito ninguna petición HTTP.' ¿Pero a qué precio? ¿A qué precio?",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-020' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Compromisos del URI de datos (sin cach\u00e9, CSS m\u00e1s grande)",
+    "authorship_assertion": "machine-translated from 'img-020' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Compromisos del URI de datos (sin caché, CSS más grande)",
     "tags": [
       "data-uri",
       "base64",

@@ -2,7 +2,7 @@
   "proposal_id": "99692763-c4a0-4db9-801b-ac47eb15b12d",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un GIF que se repite eternamente nos ense\u00f1a: el movimiento sin desplazamiento sigue siendo vida.",
+    "text": "Un GIF que se repite eternamente nos enseña: el movimiento sin desplazamiento sigue siendo vida.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La animaci\u00f3n debe servir a un prop\u00f3sito, no solo existir",
+    "authorship_assertion": "machine-translated from 'img-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La animación debe servir a un propósito, no solo existir",
     "tags": [
       "gif",
       "animation",

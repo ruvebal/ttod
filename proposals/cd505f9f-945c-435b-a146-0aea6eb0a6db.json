@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-012' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Una buena CLI ofrece un camino seguro por defecto y una hoja afilada solo cuando se pide. El ingeniero sabio hace el peligro opcional. Las operaciones peligrosas pertenecen detr\u00e1s de banderas, con ejecuciones de prueba y nombres claros.",
+    "authorship_assertion": "machine-translated from 'wis-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Una buena CLI ofrece un camino seguro por defecto y una hoja afilada solo cuando se pide. El ingeniero sabio hace el peligro opcional. Las operaciones peligrosas pertenecen detrás de banderas, con ejecuciones de prueba y nombres claros.",
     "tags": [
       "wisdom",
       "cli-design",

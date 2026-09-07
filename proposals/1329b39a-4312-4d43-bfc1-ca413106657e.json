@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'ops-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Planifica lanzamientos con capacidad de reversi\u00f3n; un ritmo constante vence al p\u00e1nico.",
+    "authorship_assertion": "machine-translated from 'ops-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Planifica lanzamientos con capacidad de reversión; un ritmo constante vence al pánico.",
     "tags": [
       "operations",
       "deployment",

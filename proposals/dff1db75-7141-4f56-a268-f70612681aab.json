@@ -2,7 +2,7 @@
   "proposal_id": "dff1db75-7141-4f56-a268-f70612681aab",
   "status": "proposed",
   "candidate_content": {
-    "text": "alt='' es silencio. alt='imagen' es ruido. alt='Un astronauta flotando junto a Marte' es poes\u00eda.",
+    "text": "alt='' es silencio. alt='imagen' es ruido. alt='Un astronauta flotando junto a Marte' es poesía.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-026' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-026' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Escribir texto alternativo significativo",
     "tags": [
       "alt-text",

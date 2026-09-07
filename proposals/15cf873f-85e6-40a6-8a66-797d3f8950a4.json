@@ -2,7 +2,7 @@
   "proposal_id": "15cf873f-85e6-40a6-8a66-797d3f8950a4",
   "status": "proposed",
   "candidate_content": {
-    "text": "Pero si tus usuarios logran sus objetivos sin importar las im\u00e1genes, has alcanzado el Tao.",
+    "text": "Pero si tus usuarios logran sus objetivos sin importar las imágenes, has alcanzado el Tao.",
     "section": "images",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-069' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El verdadero \u00e9xito se mide por el viaje del usuario, no por los p\u00edxeles.",
+    "authorship_assertion": "machine-translated from 'img-069' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El verdadero éxito se mide por el viaje del usuario, no por los píxeles.",
     "tags": [
       "koan",
       "goals",

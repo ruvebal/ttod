@@ -2,7 +2,7 @@
   "proposal_id": "1b94ca36-7aea-47a3-bf81-3efdb1ed6eff",
   "status": "proposed",
   "candidate_content": {
-    "text": "El desplazamiento no es matem\u00e1tica: es empat\u00eda. Debes recordar lo que vino antes.",
+    "text": "El desplazamiento no es matemática: es empatía. Debes recordar lo que vino antes.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-018' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'arch-018' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Apilar contexto es contexto humano. Cada elemento que precede afecta lo que sigue. Debes considerar todas las capas. Las variables CSS son recuerdos.",
     "tags": [
       "architecture",

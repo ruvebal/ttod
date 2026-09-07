@@ -2,7 +2,7 @@
   "proposal_id": "8bb4eeaf-afb6-4e56-9453-bddc1ccf01cf",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un protocolo es una promesa. Un adaptador es un traductor. Un puerto es una puerta. El dominio no conoce qui\u00e9n llama \u2014 solo conoce la forma de la pregunta.",
+    "text": "Un protocolo es una promesa. Un adaptador es un traductor. Un puerto es una puerta. El dominio no conoce quién llama — solo conoce la forma de la pregunta.",
     "section": "architecture",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-034' (lang=en) via ollama:qwen2.5:32b-instruct \u2014 human review required before acceptance",
-    "teaches": "DevIAC Tao (\u00a744): El Jard\u00edn Hexagonal",
+    "authorship_assertion": "machine-translated from 'arch-034' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "DevIAC Tao (§44): El Jardín Hexagonal",
     "tags": [
       "deviac",
       "tao-of-system-architect",
@@ -32,11 +32,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:35:44.397275Z"
 }

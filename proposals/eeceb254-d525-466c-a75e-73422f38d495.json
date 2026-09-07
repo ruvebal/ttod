@@ -2,7 +2,7 @@
   "proposal_id": "eeceb254-d525-466c-a75e-73422f38d495",
   "status": "proposed",
   "candidate_content": {
-    "text": "Lo peque\u00f1o, en l\u00ednea. Lo grande, fuera. Este es el orden natural.",
+    "text": "Lo pequeño, en línea. Lo grande, fuera. Este es el orden natural.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-012' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Cu\u00e1ndo inlining vs externalizar activos",
+    "authorship_assertion": "machine-translated from 'img-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Cuándo inlining vs externalizar activos",
     "tags": [
       "inline",
       "external",

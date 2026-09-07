@@ -2,7 +2,7 @@
   "proposal_id": "07065bdd-3d5c-4efc-8e00-5206c29bcc5a",
   "status": "proposed",
   "candidate_content": {
-    "text": "No optimices para el dispositivo que sostienes, sino para la conexi\u00f3n que no puedes ver.",
+    "text": "No optimices para el dispositivo que sostienes, sino para la conexión que no puedes ver.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-032' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Dise\u00f1a para las condiciones de red, no solo para los tama\u00f1os de pantalla.",
+    "authorship_assertion": "machine-translated from 'img-032' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Diseña para las condiciones de red, no solo para los tamaños de pantalla.",
     "tags": [
       "connection",
       "bandwidth",

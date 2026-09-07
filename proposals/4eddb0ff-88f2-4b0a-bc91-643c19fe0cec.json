@@ -2,7 +2,7 @@
   "proposal_id": "4eddb0ff-88f2-4b0a-bc91-643c19fe0cec",
   "status": "proposed",
   "candidate_content": {
-    "text": "El instructor sabio automatiza lo que se repite. El instructor necio repite lo que deber\u00eda automatizarse.",
+    "text": "El instructor sabio automatiza lo que se repite. El instructor necio repite lo que debería automatizarse.",
     "section": "qa-tooling",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'qa-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Identificar tareas repetitivas y construir herramientas para manejarlas",
     "tags": [
       "automation",

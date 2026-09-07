@@ -2,7 +2,7 @@
   "proposal_id": "89193e09-5e79-413a-acaa-97b91b91ab3e",
   "status": "proposed",
   "candidate_content": {
-    "text": "\u00bfMe estoy fractalizando demasiado? Si te preguntas, detente. Cuenta a los consumidores. Si son menos de tres, espera. Si son tres o m\u00e1s, contin\u00faa.",
+    "text": "¿Me estoy fractalizando demasiado? Si te preguntas, detente. Cuenta a los consumidores. Si son menos de tres, espera. Si son tres o más, continúa.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-012' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'arch-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "La regla de tres: abstraer cuando los patrones se repiten tres veces, no antes.",
     "tags": [
       "architecture",

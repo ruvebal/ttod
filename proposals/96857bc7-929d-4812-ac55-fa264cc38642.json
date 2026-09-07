@@ -2,7 +2,7 @@
   "proposal_id": "96857bc7-929d-4812-ac55-fa264cc38642",
   "status": "proposed",
   "candidate_content": {
-    "text": "Deja que el slug de la m\u00e1quina arrastre el linaje con un prefijo; deja que la etiqueta humana respire sin \u00e9l. El alcance recuerda la ascendencia; el habla recuerda la misericordia.",
+    "text": "Deja que el slug de la máquina arrastre el linaje con un prefijo; deja que la etiqueta humana respire sin él. El alcance recuerda la ascendencia; el habla recuerda la misericordia.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-035' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Prefija los slugs de alcance de m\u00e1quina con el linaje; mant\u00e9n las etiquetas para humanos cortas y desprovistas de carga.",
+    "authorship_assertion": "machine-translated from 'cc-035' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Prefija los slugs de alcance de máquina con el linaje; mantén las etiquetas para humanos cortas y desprovistas de carga.",
     "tags": [
       "naming",
       "scope",

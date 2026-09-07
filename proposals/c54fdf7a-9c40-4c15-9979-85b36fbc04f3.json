@@ -2,7 +2,7 @@
   "proposal_id": "c54fdf7a-9c40-4c15-9979-85b36fbc04f3",
   "status": "proposed",
   "candidate_content": {
-    "text": "El maestro calificador procesa cien repositorios y no deja rastro; solo queda la sabidur\u00eda.",
+    "text": "El maestro calificador procesa cien repositorios y no deja rastro; solo queda la sabiduría.",
     "section": "remote-repo",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-002' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La verdadera automatizaci\u00f3n es limpia y no deja efectos secundarios.",
+    "authorship_assertion": "machine-translated from 'rrp-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La verdadera automatización es limpia y no deja efectos secundarios.",
     "tags": [
       "batch",
       "automation",

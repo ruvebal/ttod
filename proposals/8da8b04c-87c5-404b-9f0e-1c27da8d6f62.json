@@ -2,7 +2,7 @@
   "proposal_id": "8da8b04c-87c5-404b-9f0e-1c27da8d6f62",
   "status": "proposed",
   "candidate_content": {
-    "text": "Tu p\u00e1gina 404 es un espejo. \u00bfQu\u00e9 refleja?",
+    "text": "Tu página 404 es un espejo. ¿Qué refleja?",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-024' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Las p\u00e1ginas de error revelan el cuidado y la personalidad del desarrollador",
+    "authorship_assertion": "machine-translated from 'img-024' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las páginas de error revelan el cuidado y la personalidad del desarrollador",
     "tags": [
       "404",
       "reflection",

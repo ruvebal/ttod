@@ -2,7 +2,7 @@
   "proposal_id": "414b8e88-55ac-40f1-bb94-5f4927dec2ea",
   "status": "proposed",
   "candidate_content": {
-    "text": "La imagen perfecta a menudo no es imagen alguna. CSS puede trazar c\u00edrculos, degradados y sombras. \u00bfPor qu\u00e9 cargar la red con lo que el navegador puede pintar?",
+    "text": "La imagen perfecta a menudo no es imagen alguna. CSS puede trazar círculos, degradados y sombras. ¿Por qué cargar la red con lo que el navegador puede pintar?",
     "section": "images",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-059' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-059' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Considera el arte en CSS antes de enviar cargas rasterizadas.",
     "tags": [
       "paradox",

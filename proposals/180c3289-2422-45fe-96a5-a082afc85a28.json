@@ -2,7 +2,7 @@
   "proposal_id": "180c3289-2422-45fe-96a5-a082afc85a28",
   "status": "proposed",
   "candidate_content": {
-    "text": "Una dependencia a\u00f1adida es una dependencia mantenida. Elige con sabidur\u00eda.",
+    "text": "Una dependencia añadida es una dependencia mantenida. Elige con sabiduría.",
     "section": "qa-tooling",
     "level": "beginner",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'qa-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Cada dependencia es una carga de mantenimiento futura",
     "tags": [
       "dependencies",

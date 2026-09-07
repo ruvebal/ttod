@@ -2,7 +2,7 @@
   "proposal_id": "d51263d8-0027-4f67-9076-8accb0563d7c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Tu repositorio se llama 'assignment-1_x7z9'. \u00bfEres humano o una captcha? El corrector no est\u00e1 seguro.",
+    "text": "Tu repositorio se llama 'assignment-1_x7z9'. ¿Eres humano o una captcha? El corrector no está seguro.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-026' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Evita sufijos autogenerados o criptogr\u00e1ficos",
+    "authorship_assertion": "machine-translated from 'cc-026' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Evita sufijos autogenerados o criptográficos",
     "tags": [
       "naming",
       "clarity",

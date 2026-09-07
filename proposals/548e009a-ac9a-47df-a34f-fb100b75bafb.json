@@ -2,7 +2,7 @@
   "proposal_id": "548e009a-ac9a-47df-a34f-fb100b75bafb",
   "status": "proposed",
   "candidate_content": {
-    "text": "Libre como la libertad, estable como lo probado. El Tao no pide pago, solo la atribuci\u00f3n debida.",
+    "text": "Libre como la libertad, estable como lo probado. El Tao no pide pago, solo la atribución debida.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-011' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "El c\u00f3digo abierto florece con el cr\u00e9dito y la contribuci\u00f3n",
+    "authorship_assertion": "machine-translated from 'qa-011' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El código abierto florece con el crédito y la contribución",
     "tags": [
       "open-source",
       "licensing",

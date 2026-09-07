@@ -2,7 +2,7 @@
   "proposal_id": "e0eb1be1-c130-41ca-922b-0eb3cb098311",
   "status": "proposed",
   "candidate_content": {
-    "text": "El modelo en la nube responde en milisegundos. El local, en segundos. Pero la respuesta de la nube le pertenece a otro. La velocidad sin soberan\u00eda es una correa usada a voluntad.",
+    "text": "El modelo en la nube responde en milisegundos. El local, en segundos. Pero la respuesta de la nube le pertenece a otro. La velocidad sin soberanía es una correa usada a voluntad.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-029' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a740): El costo de la conveniencia \u2014 Haiku: llega la respuesta veloz / \u00bfqui\u00e9n la ley\u00f3 por el camino? / posee tu latencia",
+    "authorship_assertion": "machine-translated from 'arch-029' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§40): El costo de la conveniencia — Haiku: llega la respuesta veloz / ¿quién la leyó por el camino? / posee tu latencia",
     "tags": [
       "deviac",
       "tao-of-system-architect",

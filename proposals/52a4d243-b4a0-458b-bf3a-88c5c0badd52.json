@@ -2,7 +2,7 @@
   "proposal_id": "52a4d243-b4a0-458b-bf3a-88c5c0badd52",
   "status": "proposed",
   "candidate_content": {
-    "text": "La imagen cargada con pereza espera bajo el pliegue, paciente como un monje. Solo se carga cuando es vista. Esta es la sabidur\u00eda.",
+    "text": "La imagen cargada con pereza espera bajo el pliegue, paciente como un monje. Solo se carga cuando es vista. Esta es la sabiduría.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-027' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-027' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Estrategia de carga diferida",
     "tags": [
       "lazy-loading",

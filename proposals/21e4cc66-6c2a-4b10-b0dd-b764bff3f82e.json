@@ -2,7 +2,7 @@
   "proposal_id": "21e4cc66-6c2a-4b10-b0dd-b764bff3f82e",
   "status": "proposed",
   "candidate_content": {
-    "text": "Busca el camino medio. Optimiza con compasi\u00f3n. Coda con sabidur\u00eda. Prueba con humildad.",
+    "text": "Busca el camino medio. Optimiza con compasión. Coda con sabiduría. Prueba con humildad.",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-071' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Empareja la optimizaci\u00f3n con la empat\u00eda y la humildad.",
+    "authorship_assertion": "machine-translated from 'img-071' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Empareja la optimización con la empatía y la humildad.",
     "tags": [
       "contemplation",
       "compassion",
@@ -31,11 +31,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:33:31.701945Z"
 }

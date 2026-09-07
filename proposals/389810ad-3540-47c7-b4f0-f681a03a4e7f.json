@@ -2,7 +2,7 @@
   "proposal_id": "389810ad-3540-47c7-b4f0-f681a03a4e7f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Publica el m\u00f3dulo cuando funciona solo. Publica el sistema cuando los m\u00f3dulos funcionan juntos. Publica la plataforma cuando los sistemas se componen sin hablar.",
+    "text": "Publica el módulo cuando funciona solo. Publica el sistema cuando los módulos funcionan juntos. Publica la plataforma cuando los sistemas se componen sin hablar.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-007' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La madurez avanza de la unidad a la integraci\u00f3n hasta el comportamiento emergente.",
+    "authorship_assertion": "machine-translated from 'arch-007' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La madurez avanza de la unidad a la integración hasta el comportamiento emergente.",
     "tags": [
       "architecture",
       "composition",

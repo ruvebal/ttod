@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-022' (lang=en) via ollama:qwen2.5:32b-instruct \u2014 human review required before acceptance",
-    "teaches": "La migraci\u00f3n requiere cuidado. La olla vaciada debe llenarse sin derramar. Respalda primero, luego vierte despacio. La convergencia incremental supera el reemplazo temerario.",
+    "authorship_assertion": "machine-translated from 'cc-022' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "La migración requiere cuidado. La olla vaciada debe llenarse sin derramar. Respalda primero, luego vierte despacio. La convergencia incremental supera el reemplazo temerario.",
     "tags": [
       "codecraft",
       "migration",
@@ -35,11 +35,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:35:23.754503Z"
 }

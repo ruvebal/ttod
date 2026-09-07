@@ -2,7 +2,7 @@
   "proposal_id": "307abba1-1b57-48e8-ac95-8853d6244650",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un consejo de expertos en marca exigi\u00f3: '\u00a1Define tu propuesta de valor \u00fanica!' El desarrollador, exhausto, susurr\u00f3: 'Me salva de odiar a mis estudiantes.'",
+    "text": "Un consejo de expertos en marca exigió: '¡Define tu propuesta de valor única!' El desarrollador, exhausto, susurró: 'Me salva de odiar a mis estudiantes.'",
     "section": "code-craft",
     "level": "advanced",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "La autenticidad es la mejor estrategia de marca.",
     "tags": [
       "naming",

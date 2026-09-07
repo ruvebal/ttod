@@ -2,7 +2,7 @@
   "proposal_id": "7ad9cd7e-2b48-4e41-b113-ea3a386e5e6f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Si funciona en tu m\u00e1quina, quiz\u00e1s deber\u00edas enviar tu m\u00e1quina.",
+    "text": "Si funciona en tu máquina, quizás deberías enviar tu máquina.",
     "section": "devops",
     "level": "advanced",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dop-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'dop-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Invierte en infraestructura reproducible para que los sistemas se comporten igual dondequiera que se desplieguen.",
     "tags": [
       "devops",

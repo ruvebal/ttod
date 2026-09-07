@@ -2,7 +2,7 @@
   "proposal_id": "7e9c7134-fd0a-44c5-9ba8-d70c9fb0b4a3",
   "status": "proposed",
   "candidate_content": {
-    "text": "El GIF se repite sin fin, ense\u00f1\u00e1ndonos que algunos errores los cometeremos una y otra vez hasta que aprendamos.",
+    "text": "El GIF se repite sin fin, enseñándonos que algunos errores los cometeremos una y otra vez hasta que aprendamos.",
     "section": "images",
     "level": "advanced",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-015' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Iteraci\u00f3n y aprendizaje de la repetici\u00f3n",
+    "authorship_assertion": "machine-translated from 'img-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Iteración y aprendizaje de la repetición",
     "tags": [
       "gif",
       "loops",

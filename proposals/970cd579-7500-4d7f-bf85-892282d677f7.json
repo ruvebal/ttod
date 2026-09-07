@@ -2,7 +2,7 @@
   "proposal_id": "970cd579-7500-4d7f-bf85-892282d677f7",
   "status": "proposed",
   "candidate_content": {
-    "text": "El repositorio es temporal; la calificaci\u00f3n, permanente.",
+    "text": "El repositorio es temporal; la calificación, permanente.",
     "section": "remote-repo",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-015' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Distingue entre el artefacto y el valor derivado de \u00e9l.",
+    "authorship_assertion": "machine-translated from 'rrp-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Distingue entre el artefacto y el valor derivado de él.",
     "tags": [
       "persistence",
       "ephemeral",
@@ -31,11 +31,6 @@
   "proposer_kind": "model",
   "proposer_id": "cli-translate-draft",
   "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
-  "wpl_record_id": null,
-  "wpl_record_digest": null,
-  "evidence_snapshot_id": null,
-  "evidence_snapshot_digest": null,
   "human_review_activities": [],
-  "accepted_quote_id": null,
   "created_at": "2026-09-04T14:33:50.547592Z"
 }

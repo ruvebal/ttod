@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'rrp-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Conf\u00eda en la configuraci\u00f3n como fuente de verdad.",
+    "authorship_assertion": "machine-translated from 'rrp-004' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Confía en la configuración como fuente de verdad.",
     "tags": [
       "yaml",
       "configuration",

@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-026' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Cada cadena visible al usuario debe tener una clave de traducci\u00f3n. Sin texto duro. Sin excepciones. Las traducciones no son opcionales: son contratos con tus usuarios.",
+    "authorship_assertion": "machine-translated from 'arch-026' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Cada cadena visible al usuario debe tener una clave de traducción. Sin texto duro. Sin excepciones. Las traducciones no son opcionales: son contratos con tus usuarios.",
     "tags": [
       "architecture",
       "i18n",

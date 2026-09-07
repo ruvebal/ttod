@@ -2,7 +2,7 @@
   "proposal_id": "f8cfb9ad-2640-4682-a4ec-556359512d7e",
   "status": "proposed",
   "candidate_content": {
-    "text": "El c\u00f3digo no se escribe en texto: se escribe en comprensi\u00f3n. El texto es solo la sombra de la comprensi\u00f3n.",
+    "text": "El código no se escribe en texto: se escribe en comprensión. El texto es solo la sombra de la comprensión.",
     "section": "wisdom",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-005' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Cuando corriges un error, no corriges el c\u00f3digo: corriges la comprensi\u00f3n. El c\u00f3digo se corrige solo cuando la comprensi\u00f3n es clara.",
+    "authorship_assertion": "machine-translated from 'wis-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Cuando corriges un error, no corriges el código: corriges la comprensión. El código se corrige solo cuando la comprensión es clara.",
     "tags": [
       "wisdom",
       "understanding",

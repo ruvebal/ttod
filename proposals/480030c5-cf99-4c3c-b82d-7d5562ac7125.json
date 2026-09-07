@@ -2,7 +2,7 @@
   "proposal_id": "480030c5-cf99-4c3c-b82d-7d5562ac7125",
   "status": "proposed",
   "candidate_content": {
-    "text": "Los dise\u00f1os proporcionan contexto: cada secci\u00f3n de ruta merece su envoltura.",
+    "text": "Los diseños proporcionan contexto: cada sección de ruta merece su envoltura.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-023' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "En la red de la vida necesitamos un dise\u00f1o como la gota de lluvia necesita la nube: el dise\u00f1o otorga estructura y contexto a la p\u00e1gina, sin pesar sobre el contenido que transporta.",
+    "authorship_assertion": "machine-translated from 'arch-023' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "En la red de la vida necesitamos un diseño como la gota de lluvia necesita la nube: el diseño otorga estructura y contexto a la página, sin pesar sobre el contenido que transporta.",
     "tags": [
       "architecture",
       "layout",

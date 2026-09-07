@@ -2,7 +2,7 @@
   "proposal_id": "04413a8d-34a0-4afd-81f9-7c8e75feea4b",
   "status": "proposed",
   "candidate_content": {
-    "text": "PNG para la transparencia, JPEG para las fotos, SVG para los logotipos, WebP para el futuro. Conoce la naturaleza de cada uno y elige con sabidur\u00eda.",
+    "text": "PNG para la transparencia, JPEG para las fotos, SVG para los logotipos, WebP para el futuro. Conoce la naturaleza de cada uno y elige con sabiduría.",
     "section": "images",
     "level": "beginner",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-046' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Elige un formato seg\u00fan la transparencia, la riqueza y la compatibilidad.",
+    "authorship_assertion": "machine-translated from 'img-046' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elige un formato según la transparencia, la riqueza y la compatibilidad.",
     "tags": [
       "formats",
       "decision",

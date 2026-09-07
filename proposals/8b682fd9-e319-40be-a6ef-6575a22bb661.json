@@ -2,7 +2,7 @@
   "proposal_id": "8b682fd9-e319-40be-a6ef-6575a22bb661",
   "status": "proposed",
   "candidate_content": {
-    "text": "Ahmes extrae. Arkadia curatea. DevIAC sirve. Quien comprende este tri\u00e1ngulo entiende que el conocimiento fluye: nunca es est\u00e1tico, nunca terminado, nunca propiedad de un solo sistema.",
+    "text": "Ahmes extrae. Arkadia curatea. DevIAC sirve. Quien comprende este triángulo entiende que el conocimiento fluye: nunca es estático, nunca terminado, nunca propiedad de un solo sistema.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-049' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a753): Los Tres Sistemas \u2014 Haiku: extraer, curar, servir / tres sistemas, un cauce fluido / el conocimiento no descansa",
+    "authorship_assertion": "machine-translated from 'arch-049' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§53): Los Tres Sistemas — Haiku: extraer, curar, servir / tres sistemas, un cauce fluido / el conocimiento no descansa",
     "tags": [
       "deviac",
       "tao-of-system-architect",

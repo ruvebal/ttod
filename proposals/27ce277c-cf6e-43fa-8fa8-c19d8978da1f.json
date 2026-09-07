@@ -2,7 +2,7 @@
   "proposal_id": "27ce277c-cf6e-43fa-8fa8-c19d8978da1f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Estos errores no eran fallos\u2014eran preguntas. Las correcciones no eran arreglos\u2014eran respuestas.",
+    "text": "Estos errores no eran fallos—eran preguntas. Las correcciones no eran arreglos—eran respuestas.",
     "section": "wisdom",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Cada error revela un vac\u00edo en la comprensi\u00f3n. Llenarlo. Documentar no solo qu\u00e9 se rompi\u00f3, sino por qu\u00e9.",
+    "authorship_assertion": "machine-translated from 'wis-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Cada error revela un vacío en la comprensión. Llenarlo. Documentar no solo qué se rompió, sino por qué.",
     "tags": [
       "wisdom",
       "bugs",

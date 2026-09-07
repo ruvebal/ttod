@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dop-006' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a750): El archivo vence a Docker \u2014 Haiku: el proveedor se rompe / un archivo YAML permanece / la ruta a\u00fan resuelve",
+    "authorship_assertion": "machine-translated from 'dop-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§50): El archivo vence a Docker — Haiku: el proveedor se rompe / un archivo YAML permanece / la ruta aún resuelve",
     "tags": [
       "deviac",
       "tao-of-system-architect",

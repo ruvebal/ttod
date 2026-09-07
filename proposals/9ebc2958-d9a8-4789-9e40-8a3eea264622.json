@@ -2,7 +2,7 @@
   "proposal_id": "9ebc2958-d9a8-4789-9e40-8a3eea264622",
   "status": "proposed",
   "candidate_content": {
-    "text": "El m\u00f3dulo que conoce sus l\u00edmites sirve al todo. El m\u00f3dulo que no conoce l\u00edmites se vuelve el todo\u2014y colapsa bajo su propio peso.",
+    "text": "El módulo que conoce sus límites sirve al todo. El módulo que no conoce límites se vuelve el todo—y colapsa bajo su propio peso.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-001' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Interfaces claras impiden que los m\u00f3dulos absorban responsabilidades que no les pertenecen.",
+    "authorship_assertion": "machine-translated from 'arch-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Interfaces claras impiden que los módulos absorban responsabilidades que no les pertenecen.",
     "tags": [
       "architecture",
       "boundaries",

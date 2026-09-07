@@ -2,7 +2,7 @@
   "proposal_id": "f3390290-22da-4a04-81c7-28a46eb12344",
   "status": "proposed",
   "candidate_content": {
-    "text": "En un bosque, cada \u00e1rbol debe ser s\u00ed mismo. Reutilizar es sabidur\u00eda, pero la identidad es sagrada.",
+    "text": "En un bosque, cada árbol debe ser sí mismo. Reutilizar es sabiduría, pero la identidad es sagrada.",
     "section": "architecture",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-017' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Reutiliza patrones, no identidades. Puedes reutilizar c\u00f3digo, pero cada p\u00e1gina debe tener su propia firma visual. Variaci\u00f3n dentro de la consistencia.",
+    "authorship_assertion": "machine-translated from 'arch-017' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Reutiliza patrones, no identidades. Puedes reutilizar código, pero cada página debe tener su propia firma visual. Variación dentro de la consistencia.",
     "tags": [
       "architecture",
       "reuse",

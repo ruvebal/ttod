@@ -2,7 +2,7 @@
   "proposal_id": "5b5bb3cb-6bc3-49fd-b186-c2e7be8b0f8c",
   "status": "proposed",
   "candidate_content": {
-    "text": "Hazlo todo tan simple como sea posible, pero no m\u00e1s.",
+    "text": "Hazlo todo tan simple como sea posible, pero no más.",
     "section": "code-craft",
     "level": "master",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-010' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-010' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Simplicidad sin perder funcionalidad. La elegancia no es complejidad, es la simplicidad perfeccionada.",
     "tags": [
       "codecraft",

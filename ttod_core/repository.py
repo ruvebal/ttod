@@ -644,7 +644,10 @@ class ProposalStore:
         path = self.directory / f"{proposal.proposal_id}.json"
         import json
 
-        path.write_text(json.dumps(proposal.to_dict(), indent=2), encoding="utf-8")
+        path.write_text(
+            json.dumps(proposal.to_dict(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
         return path
 
     def load(self, proposal_id: str) -> Proposal:

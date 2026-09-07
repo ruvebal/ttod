@@ -2,7 +2,7 @@
   "proposal_id": "198b4d17-d650-46ff-b722-8807258fc99f",
   "status": "proposed",
   "candidate_content": {
-    "text": "Todos los repositorios laten a distintos tempos. Algunos en allegro, otros en adagio, otros en p\u00e1nico.",
+    "text": "Todos los repositorios laten a distintos tempos. Algunos en allegro, otros en adagio, otros en pánico.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-003' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La calidad es ritmo; el an\u00e1lisis, escucha. Tu herramienta debe escuchar el ritmo oculto.",
+    "authorship_assertion": "machine-translated from 'cc-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La calidad es ritmo; el análisis, escucha. Tu herramienta debe escuchar el ritmo oculto.",
     "tags": [
       "naming",
       "rhythm",

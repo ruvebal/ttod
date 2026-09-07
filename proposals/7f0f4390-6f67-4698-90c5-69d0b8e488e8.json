@@ -2,7 +2,7 @@
   "proposal_id": "7f0f4390-6f67-4698-90c5-69d0b8e488e8",
   "status": "proposed",
   "candidate_content": {
-    "text": "Cuando lo mismo tiene dos nombres, reina la confusi\u00f3n. Cuando una cosa sirve a dos amos, ambos son traicionados.",
+    "text": "Cuando lo mismo tiene dos nombres, reina la confusión. Cuando una cosa sirve a dos amos, ambos son traicionados.",
     "section": "architecture",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'arch-015' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Una entidad, una identidad. Si tu modelo l\u00f3gico usa un nombre, tu DOM debe usar el mismo. Si las restricciones externas fuerzan un nombre distinto, haz la correspondencia expl\u00edcita y visible.",
+    "authorship_assertion": "machine-translated from 'arch-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Una entidad, una identidad. Si tu modelo lógico usa un nombre, tu DOM debe usar el mismo. Si las restricciones externas fuerzan un nombre distinto, haz la correspondencia explícita y visible.",
     "tags": [
       "architecture",
       "identity",

@@ -2,7 +2,7 @@
   "proposal_id": "5e95f720-6422-4cb5-88f0-98d837131466",
   "status": "proposed",
   "candidate_content": {
-    "text": "El Tao de la configuraci\u00f3n: cambia una vez, refleja en todas partes.",
+    "text": "El Tao de la configuración: cambia una vez, refleja en todas partes.",
     "section": "qa-tooling",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'qa-015' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "La configuraci\u00f3n centralizada previene la inconsistencia",
+    "authorship_assertion": "machine-translated from 'qa-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La configuración centralizada previene la inconsistencia",
     "tags": [
       "configuration",
       "dry",

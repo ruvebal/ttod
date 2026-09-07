@@ -2,7 +2,7 @@
   "proposal_id": "577b92e0-b4d7-4fae-8a22-2bb6a2518470",
   "status": "proposed",
   "candidate_content": {
-    "text": "El polluelo se neg\u00f3 a construir. El error dec\u00eda 'README.md no existe.' Pero el archivo estaba ah\u00ed \u2014 dos instrucciones COPY despu\u00e9s. El orden importa. Las dependencias no son solo entre servicios; existen entre l\u00edneas de un Dockerfile.",
+    "text": "El polluelo se negó a construir. El error decía 'README.md no existe.' Pero el archivo estaba ahí — dos instrucciones COPY después. El orden importa. Las dependencias no son solo entre servicios; existen entre líneas de un Dockerfile.",
     "section": "devops",
     "level": "intermediate",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'dop-007' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a751): La lecci\u00f3n del README",
+    "authorship_assertion": "machine-translated from 'dop-007' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§51): La lección del README",
     "tags": [
       "deviac",
       "tao-of-system-architect",

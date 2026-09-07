@@ -2,7 +2,7 @@
   "proposal_id": "99949731-0abe-4cba-ab35-b517e0a42d17",
   "status": "proposed",
   "candidate_content": {
-    "text": "Antes de la primera l\u00ednea de c\u00f3digo, prepara la fragua. Antes de la primera consulta, carga la memoria. La documentaci\u00f3n no es un pensamiento posterior: es el primer acto de la arquitectura.",
+    "text": "Antes de la primera línea de código, prepara la fragua. Antes de la primera consulta, carga la memoria. La documentación no es un pensamiento posterior: es el primer acto de la arquitectura.",
     "section": "wisdom",
     "level": "master",
     "lang": "es",
@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-014' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Tao de DevIAC (\u00a71): El Documento Vivo \u2014 Haiku: escribe antes de codificar / el plan se vuelve br\u00fajula / la arquitectura vive",
+    "authorship_assertion": "machine-translated from 'wis-014' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§1): El Documento Vivo — Haiku: escribe antes de codificar / el plan se vuelve brújula / la arquitectura vive",
     "tags": [
       "deviac",
       "tao-of-system-architect",

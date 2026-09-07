@@ -2,7 +2,7 @@
   "proposal_id": "24cc91d2-68a3-4da2-a967-76c4b4fc52f1",
   "status": "proposed",
   "candidate_content": {
-    "text": "Un repositorio sin nombre claro es como una l\u00e1pida sin inscripci\u00f3n. Sabemos que algo est\u00e1 enterrado all\u00ed, pero no nos importa qui\u00e9n era.",
+    "text": "Un repositorio sin nombre claro es como una lápida sin inscripción. Sabemos que algo está enterrado allí, pero no nos importa quién era.",
     "section": "code-craft",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-030' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-030' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Los nombres descriptivos previenen la obsolescencia del proyecto",
     "tags": [
       "naming",

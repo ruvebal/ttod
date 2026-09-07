@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'cc-004' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'cc-004' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Nombra el tambor, no al tamborilero. Luego deja que cada tamborilero improvise.",
     "tags": [
       "naming",

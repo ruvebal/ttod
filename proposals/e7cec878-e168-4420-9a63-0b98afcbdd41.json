@@ -2,7 +2,7 @@
   "proposal_id": "e7cec878-e168-4420-9a63-0b98afcbdd41",
   "status": "proposed",
   "candidate_content": {
-    "text": "El GIF animado es el t\u00edo borracho en la boda: a veces entretenido, a menudo vergonzoso, siempre ocupando demasiado espacio.",
+    "text": "El GIF animado es el tío borracho en la boda: a veces entretenido, a menudo vergonzoso, siempre ocupando demasiado espacio.",
     "section": "images",
     "level": "intermediate",
     "lang": "es",
@@ -13,7 +13,7 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'img-047' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
+    "authorship_assertion": "machine-translated from 'img-047' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
     "teaches": "Reserva los GIF para momentos que justifiquen su peso.",
     "tags": [
       "gif",

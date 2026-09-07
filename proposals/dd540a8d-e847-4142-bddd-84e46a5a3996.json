@@ -13,8 +13,8 @@
         "relation_type": "translation_of"
       }
     ],
-    "authorship_assertion": "machine-translated from 'wis-011' (lang=en) via ollama:qwen3.8:27b \u2014 human review required before acceptance",
-    "teaches": "Los sistemas que recuerdan los finales son m\u00e1s amables con la verdad. Un miembro que se fue no es un error: es una historia con final. Conserva la historia; cambia la visibilidad. Prefiere cambios de estado suaves a borrados duros.",
+    "authorship_assertion": "machine-translated from 'wis-011' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los sistemas que recuerdan los finales son más amables con la verdad. Un miembro que se fue no es un error: es una historia con final. Conserva la historia; cambia la visibilidad. Prefiere cambios de estado suaves a borrados duros.",
     "tags": [
       "wisdom",
       "soft-delete",

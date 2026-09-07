@@ -8,7 +8,7 @@ lang: es
 
 # Un producto, varios límites enseñables
 
-La referencia del profesorado es ejecutable en local de extremo a extremo. Sus áreas no son demostraciones separadas: comparten localización, contratos de contenido, límites de API, estados accesibles en el navegador y la misma fuente gobernada de citas.
+La referencia del profesorado se puede ejecutar de extremo a extremo en local. Sus áreas no son demostraciones separadas: comparten localización, contratos de contenido, límites de API, estados accesibles en el navegador y la misma fuente de citas, sujeta a gobernanza humana.
 
 | Área | Propósito visible para quien usa | Idea de front-end que se hace observable |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ La referencia del profesorado es ejecutable en local de extremo a extremo. Sus �
 | Sabiduría | recorrer la colección | arquitectura de información, filtros y estados vacíos |
 | Documentación | aprender el sistema en contexto | colecciones de contenido y navegación editorial |
 | Grafo | explorar entradas relacionadas | una isla Svelte hidratada con estado textual accesible |
-| Oracle | preguntar y recibir una respuesta en flujo | una isla React, estado en streaming, fundamentación y recuperación |
+| Oracle | preguntar y recibir una respuesta en flujo | una isla React, estado en streaming, fuentes y recuperación |
 | Operación local | arrancar y observar el conjunto | el límite navegador/servicio, no un temario de operaciones |
 | Pruebas | situar la evidencia en capas útiles | razonamiento unitario, de componente, de contrato, de ruta y de accesibilidad |
 
@@ -38,6 +38,6 @@ Astro posee el documento y las rutas orientadas al contenido. Las islas interact
 
 ## Madurez honesta
 
-La referencia rica demuestra contenido localizado, exploración de grafo y un Oracle en flujo. La operación en el navegador, el comportamiento sin conexión y la superficie de pruebas todavía no constituyen una implementación completa lista para el alumnado. Una futura línea de base docente mantendrá cada área mayor presente a profundidad de hello world; esa resta está prevista, no concluida.
+La referencia rica demuestra contenido localizado, exploración del grafo y un Oracle en flujo. La operación en el navegador, el comportamiento sin conexión y la superficie de pruebas todavía no constituyen una implementación completa lista para el alumnado. Una futura base docente mantendrá cada área principal a profundidad de hello world; esa reducción está prevista, no concluida.
 
-En el [curso FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), esa línea de base es la **Entrega 1** y el producto que se defiende en el parcial de las Unidades 1–7. Ver el [modelo docente]({{ '/es/teaching/' | relative_url }}).
+En el [curso FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), esa base es la **Entrega 1** y el producto que se defiende en el parcial de las Unidades 1–7. Consulta el [modelo docente]({{ '/es/teaching/' | relative_url }}).

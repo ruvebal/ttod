@@ -14,7 +14,7 @@ Las contribuciones son bienvenidas cuando se abre el canal de colaboración pert
 
 - Nunca añadas de forma directa a la colección YAML canónica.
 - Propón material nuevo por el camino gobernado de propuestas.
-- Conserva identificadores estables; depreca en lugar de borrar.
+- Conserva identificadores estables; marca el material sustituido como obsoleto en lugar de borrarlo.
 - Usa la taxonomía de etiquetas definida, el modelo de origen, la política de idioma y los campos de derechos.
 - No cites propuestas pendientes como entradas aceptadas.
 
@@ -32,4 +32,4 @@ Las contribuciones son bienvenidas cuando se abre el canal de colaboración pert
 - No expongas rutas locales, anfitriones internos, coordenadas de red, nombres de infraestructura privada, secretos ni utillaje privado del estudio.
 - Usa referencias relativas al repositorio en los artefactos públicos y la identidad de estudio `@crea-comm.net`.
 
-La colaboración estudiantil todavía no está abierta sobre la línea de base reducida prevista. La hoja de ruta nombra los umbrales de publicación que deben cerrarse primero.
+La colaboración estudiantil todavía no está abierta sobre la base reducida prevista. La hoja de ruta nombra los umbrales de publicación que deben cerrarse primero.

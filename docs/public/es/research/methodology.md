@@ -14,13 +14,17 @@ El trabajo actual prepara un sistema docente investigable. No autoriza un estudi
 
 El trabajo de ingeniería sigue una lógica de indagación de diseño: articular un problema pedagógico, construir una intervención trazable, exponer sus supuestos y conservar evidencia de la iteración. Eso sostiene decisiones de diseño disciplinadas, pero no convierte el desarrollo de producto en investigación educativa.
 
-Un estudio futuro podría usar un diseño de caso acotado para examinar el artefacto en contexto. Si el foco es cómo el alumnado negocia el apoyo de la IA, un enfoque de teoría fundamentada constructivista con comparación constante puede ser apropiado; Liu, Fan y Pan ofrecen un ejemplo reciente en educación de la programación, no un protocolo que copiar sin cambio. Quien investiga debe declarar posicionalidad, muestreo, codificación, tratamiento de casos negativos y el límite entre hallazgos inductivos y conceptos sensibilizadores previos.
+Un estudio futuro podría usar un diseño de caso acotado para examinar el artefacto en contexto. Si el foco es cómo el alumnado negocia el apoyo de la IA, un enfoque de teoría fundamentada constructivista con comparación constante puede ser apropiado; [Liu, Fan y Pan 2026](#ref-liu-fan-pan-2026) ofrecen un ejemplo reciente en educación de la programación, no un protocolo que copiar sin cambio. Quien investiga debe declarar posicionalidad, muestreo, codificación, tratamiento de casos negativos y el límite entre hallazgos inductivos y conceptos sensibilizadores previos.
+
+La autorregulación bajo asistencia de IA es en sí un objeto empírico. [López-Pernas et al. 2025](#ref-lopez-pernas-et-al-2025) codificaron miles de interacciones de estudiantado de grado con ChatGPT en un curso de programación web para estudiar colaboración, dependencia y delegación en el tiempo — evidencia de que los registros de proceso y la codificación de interacción pueden ser instrumentos de investigación cuando están autorizados, no de que los registros de TTOD ya lo sean.
 
 ## Posible diseño empírico
 
 Un caso educativo acotado podría combinar la auditoría técnica del artefacto con el análisis cualitativo de registros de decisión versionados y una explicación oral breve. Las preguntas, los criterios de inclusión, el libro de códigos y el plan de análisis deberían registrarse o versionarse antes del análisis. Cualquier comparación debería centrarse en el razonamiento y la trazabilidad observables, salvo que el diseño sostenga una inferencia más fuerte.
 
-Los artefactos potenciales incluyen un repositorio estudiantil, notas de decisión, uso declarado de IA, comprobaciones automatizadas y una defensa de cambios seleccionados. La triangulación puede comparar lo que hace el producto, lo que dice el registro y lo que quien aprende puede explicar; el desacuerdo entre esas fuentes es evidencia que analizar, no ruido que borrar. Nada de ello debería recogerse para investigación sin la autorización y la comunicación exigidas.
+Los artefactos potenciales incluyen un repositorio estudiantil, notas de decisión, uso declarado de IA, comprobaciones automatizadas y una defensa de cambios seleccionados. La triangulación puede comparar lo que hace el producto, lo que dice el registro y lo que el alumnado puede explicar; el desacuerdo entre esas fuentes es evidencia que analizar, no ruido que borrar. Nada de ello debería recogerse para investigación sin la autorización y la comunicación exigidas.
+
+Los diseños de evaluación en educación de la computación ya tratan productos web construidos por el alumnado como evidencia auténtica. [Garcia 2025](#ref-garcia-2025) estudia portfolios digitales auto-codificados en un curso de diseño y desarrollo web bajo un marco basado en proyectos, lo que motiva mantener juntas la autoría técnica y la reflexión — sin pretender los mismos resultados para TTOD. Estudios de proceso brownfield como [Shihab et al. 2025](#ref-shihab-et-al-2025) motivan preguntas sobre cómo el alumnado acepta, rechaza y depura sugerencias de IA dentro de un código base heredado — la situación que la columna docente crea de propósito.
 
 ## Salvaguardas
 
@@ -33,12 +37,15 @@ Los artefactos potenciales incluyen un repositorio estudiantil, notas de decisi�
 
 ## Anclajes de evidencia
 
-Las fuentes siguientes motivan, pero no validan, el diseño propuesto:
+Las fuentes siguientes motivan, pero no validan, el diseño propuesto. Las formas autor–año del texto enlazan a la lista Chicago inferior.
 
-- Shihab et al. (2025), “The Effects of GitHub Copilot on Computing Students’ Programming Effectiveness, Efficiency, and Processes in Brownfield Coding Tasks.” [DOI](https://doi.org/10.1145/3702652.3744219)
-- Nikolić and Basta Nikolić (2026), “Designing AI-Resilient Assessment in Higher Education: A Four-Pillar Conceptual Framework.” [DOI](https://doi.org/10.3389/frai.2026.1841682)
-- Liu, Fan, and Pan (2026), “Tool, Tutor, or Crutch?: A Grounded Theory of Cognitive Scaffolding and Offloading in AI-Assisted Programming Education.” [DOI](https://doi.org/10.1186/s40594-025-00592-w)
-- Kumar et al. (2023), *Computer Science Curricula 2023*, que trata la IA generativa, la sociedad, la ética y la responsabilidad profesional como preocupaciones de todo el currículo, no como una lección de herramienta desgajada. [DOI](https://doi.org/10.1145/3664191)
+- [Shihab et al. 2025](#ref-shihab-et-al-2025) sobre efectos y procesos de Copilot en tareas de codificación brownfield.
+- [Nikolić y Basta Nikolić 2026](#ref-nikolic-basta-nikolic-2026) sobre un marco de cuatro pilares de evaluación resiliente a la IA (conceptual; sin datos de validación).
+- [Liu, Fan y Pan 2026](#ref-liu-fan-pan-2026) sobre andamiaje frente a descarga cognitiva en educación de la programación asistida por IA.
+- [López-Pernas et al. 2025](#ref-lopez-pernas-et-al-2025) sobre dinámicas de autorregulación en la resolución de problemas de programación estudiante–IA.
+- [Garcia 2025](#ref-garcia-2025) sobre portfolios auto-codificados como evaluación auténtica en diseño y desarrollo web.
+- [Davalos y Zhang 2026](#ref-davalos-zhang-2026) sobre la visibilidad del aprendizaje cuando la IA entra en el bucle de evaluación.
+- [*Computer Science Curricula 2023*](#ref-cs2023) sobre IA generativa, ética y responsabilidad profesional a escala de currículo.
 
 Estas fuentes sostienen el estudio del proceso y del diseño de la evaluación. No establecen eficacia para esta plataforma, este curso o esta cohorte. El marco de evaluación resiliente a la IA es explícitamente conceptual; sus indicadores e instrumentos requieren validación empírica. El estudio cualitativo de programación construye teoría y está acotado al contexto. Esos límites se trasladan al lenguaje de pretensión de TTOD.
 
@@ -46,11 +53,21 @@ Estas fuentes sostienen el estudio del proceso y del diseño de la evaluación. 
 
 - Versionar las preguntas de investigación, las definiciones de artefacto, las consignas de entrevista o defensa y el plan de análisis antes de examinar resultados.
 - Mantener la telemetría de ingeniería, el trabajo de curso evaluado y los registros de investigación consentidos como conjuntos de datos distintos, con reglas de acceso distintas.
-- Usar al menos dos formas de evidencia para pretensiones sobre el razonamiento; no inferir comprensión solo a partir de la actividad del repositorio.
+- Usar al menos dos formas de evidencia para pretensiones sobre el razonamiento; no inferir comprensión solo a partir de la actividad del repositorio. [Davalos y Zhang 2026](#ref-davalos-zhang-2026) argumentan que conservar salidas finales mientras se pierde la visibilidad del proceso es un fallo de medición — no solo un problema de detección.
 - Registrar casos que desmienten, cambios de codificación, memorandos de quien investiga e interpretaciones no resueltas.
 - Informar el entorno de aprendizaje, la política de IA, el acceso a herramientas, la experiencia previa, el contexto lingüístico y la profundidad del código de partida para que quien lee pueda juzgar la transferibilidad.
 - Tratar la accesibilidad, la carga de trabajo y la participación diferencial como preguntas de investigación y posibles daños, no meros detalles de implementación.
 
 ## Evidencia que aún falta
 
-La preparación de la investigación debe profundizar su evidencia sobre el desvanecimiento del ejemplo trabajado, el trazado de sistemas, la carga cognitiva, el aprendizaje de estudio, la transferencia conceptual de front-end, la autorregulación estudiante–IA y el doble rol docente–investigador. Los requisitos legales o institucionales vigentes deben verificarse contra fuentes autorizadas cuando se redacte un protocolo.
+La preparación de la investigación debe profundizar su evidencia sobre el desvanecimiento del ejemplo trabajado, el trazado de sistemas, la carga cognitiva, el aprendizaje de estudio, la transferencia conceptual de front-end, la autorregulación estudiante–IA más allá de casos de un solo curso y el doble rol docente–investigador. Los clásicos primarios sobre carga cognitiva al aprender software y sobre aprendizaje cognitivo están incompletos o sin metadatos bibliográficos verificados para la cita pública; el lenguaje de pretensión los mantiene por ello como necesidades abiertas de evidencia, no como justificación citada. Los requisitos legales o institucionales vigentes deben verificarse contra fuentes autorizadas cuando se redacte un protocolo.
+
+## Referencias
+
+- <a id="ref-cs2023"></a>*Computer Science Curricula 2023*. Association for Computing Machinery, IEEE Computer Society, and AAAI. [https://doi.org/10.1145/3664191](https://doi.org/10.1145/3664191).
+- <a id="ref-davalos-zhang-2026"></a>Davalos, Eduardo, and Yike Zhang. 2026. “AI Misuse in Education Is a Measurement Problem: Toward a Learning Visibility Framework.” arXiv. [https://doi.org/10.48550/arxiv.2603.07834](https://doi.org/10.48550/arxiv.2603.07834).
+- <a id="ref-garcia-2025"></a>Garcia, Manuel B. 2025. “Self-Coded Digital Portfolios as an Authentic Project-Based Learning Assessment in Computing Education: Evidence from a Web Design and Development Course.” *Education Sciences* 15 (9): 1150. [https://doi.org/10.3390/educsci15091150](https://doi.org/10.3390/educsci15091150).
+- <a id="ref-liu-fan-pan-2026"></a>Liu, Dandan, Guangrui Fan, and Lihu Pan. 2026. “Tool, Tutor, or Crutch?: A Grounded Theory of Cognitive Scaffolding and Offloading in AI-Assisted Programming Education.” *International Journal of STEM Education* 13: 10. [https://doi.org/10.1186/s40594-025-00592-w](https://doi.org/10.1186/s40594-025-00592-w).
+- <a id="ref-lopez-pernas-et-al-2025"></a>López-Pernas, Sonsoles, Kamila Misiejuk, Eduardo Oliveira, and Mohammed Saqr. 2025. “The Dynamics of the Self-Regulation Process in Student-AI Interactions: The Case of Problem-Solving in Programming Education.” In *Proceedings of the 25th Koli Calling International Conference on Computing Education Research*. [https://doi.org/10.1145/3769994.3770043](https://doi.org/10.1145/3769994.3770043).
+- <a id="ref-nikolic-basta-nikolic-2026"></a>Nikolić, Dragan, and Marijana Basta Nikolić. 2026. “Designing AI-Resilient Assessment in Higher Education: A Four-Pillar Conceptual Framework.” *Frontiers in Artificial Intelligence* 9. [https://doi.org/10.3389/frai.2026.1841682](https://doi.org/10.3389/frai.2026.1841682).
+- <a id="ref-shihab-et-al-2025"></a>Shihab, Md Istiak Hossain, Christopher Hundhausen, Ahsun Tariq, Summit Haque, Yunhan Qiao, and Brian Wise Mulanda. 2025. “The Effects of GitHub Copilot on Computing Students’ Programming Effectiveness, Efficiency, and Processes in Brownfield Coding Tasks.” In *Proceedings of the 2025 ACM Conference on International Computing Education Research V.1*. [https://doi.org/10.1145/3702652.3744219](https://doi.org/10.1145/3702652.3744219).

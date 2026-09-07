@@ -10,19 +10,19 @@ lang: es
 
 En [Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), **TTOD es la Entrega 1**: el primer producto evaluado (25 %, Semana 7 indicativa). Cubre el proyecto arquitectónico Astro de las Unidades 2–6 —colecciones de contenido, enrutado obligatorio en inglés y español, islas, integración multi-framework, pruebas y flujo de revisión asistida por IA—, según [Cómo aprobar Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/).
 
-El **examen parcial** (15 %, misma ventana) cubre las Unidades 1–7. No es un segundo producto. Comprueba que puedes usar el sistema de forma declarativa, defender tu proceso y explicar el código que poses — de Astro a PWA, pruebas y revisión con IA, y rendimiento.
+El **examen parcial** (15 %, en la misma ventana) cubre las Unidades 1–7. No es un segundo producto. Comprueba que puedes usar el sistema de forma declarativa, defender tu proceso y explicar el código que has hecho tuyo: desde Astro hasta PWA, pruebas, revisión con IA y rendimiento.
 
-En conjunto, las Unidades 1–7 son aproximadamente **la mitad del semestre**. Las Unidades 8–12 (3D, IoT, capstone) llegan después y no son este entregable.
+En conjunto, las Unidades 1–7 son aproximadamente **la mitad del semestre**. Las Unidades 8–12 (3D, IoT, proyecto final) llegan después y no son este entregable.
 
-## Qué te da la línea de base
+## Qué te proporciona la base docente
 
-La línea de base estudiantil propuesta se ejecutará de extremo a extremo: el contenido localizado llega a una página Astro, interacciones seleccionadas cruzan islas Svelte o React, las peticiones siguen contratos nombrados, las citas gobernadas vuelven a estados accesibles del navegador, y pruebas representativas muestran dónde pertenece la evidencia.
+La base estudiantil propuesta se ejecutará de extremo a extremo: el contenido localizado llega a una página Astro, algunas interacciones cruzan islas Svelte o React, las peticiones siguen contratos claros, las citas gobernadas vuelven a estados accesibles del navegador y unas pruebas representativas muestran dónde debe situarse la evidencia.
 
 El contenido, el grafo, el Oracle, la operación del navegador y las pruebas estarán presentes solo a profundidad de hello world. Tu tarea es hacer esas áreas útiles, resilientes, accesibles y explicables mediante tus propias decisiones de diseño.
 
 ## Qué podrás hacer
 
-- Trazar renderizado, estado, datos, confianza y titularidad de las pruebas a través de un producto real.
+- Localizar el renderizado, el estado, los datos, la confianza y la responsabilidad sobre las pruebas en un producto real.
 - Ampliar el contenido Astro localizado y la arquitectura de información.
 - Diseñar interacciones significativas de grafo Svelte y de streaming React.
 - Definir el comportamiento del navegador sin conexión y elecciones de rendimiento medibles.

@@ -7,7 +7,7 @@ permalink: /guides/product/
 
 # Read the system, not only the screen
 
-Begin at a localized welcome page, then follow one quote through the collection, its relationships, and any grounded Oracle response. Language routes do not imply that every entry has a translation.
+Begin at a localized welcome page, then follow one quote through the collection, its relationships, and any grounded Oracle response. A language route does not imply that every entry has a translation.
 
 ## Reading a quote
 
@@ -19,7 +19,6 @@ The graph is a navigational and teaching view over canonical records. Filters sh
 
 ## Using the Oracle
 
-Ask a focused question and compare the response with its cited quote and documentation. Grounded mode should expose its source path; creative mode must be visibly distinguishable. Do not provide personal data, credentials, private coursework, or material you are not allowed to share.
+Ask a focused question and compare the response with its cited quote and documentation. Grounded mode should show its sources; creative mode must be clearly marked. Do not provide personal data, credentials, private coursework, or material you are not allowed to share.
 
 Generated language can sound confident while being wrong. The canonical record and human review boundary remain authoritative.
-

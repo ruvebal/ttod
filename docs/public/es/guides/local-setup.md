@@ -6,9 +6,9 @@ permalink: /es/guides/local-setup/
 lang: es
 ---
 
-# Del clon a un hello world visible
+# Del clon a un hello world que se ve
 
-La aplicación está pensada para ejecutarse en local mediante Docker Compose. Esta guía explica el camino operativo solo lo bastante para sostener la docencia y la evaluación de front-end.
+La aplicación está pensada para ejecutarse en local mediante Docker Compose. Esta guía cubre solo las operaciones necesarias para la docencia y la evaluación de front-end.
 
 ## Requisitos previos
 
@@ -33,7 +33,7 @@ Usa el mapeo de puertos que informe `docker compose ps` para abrir el servicio w
 1. Abre la página de bienvenida localizada.
 2. Visita una cita y confirma que se ven el texto, el idioma, el origen y los derechos.
 3. Abre la documentación y una relación del grafo.
-4. Si el modelo local del Oracle está listo, envía una pregunta pequeña e inspecciona su fundamentación o la revelación del modo creativo.
+4. Si el modelo local del Oracle está listo, envía una pregunta breve y comprueba sus fuentes o la indicación de modo creativo.
 5. Confirma el foco de teclado y la retroalimentación de estado o de error en los controles interactivos.
 
 El contenido y el grafo siguen siendo útiles cuando el modelo opcional del Oracle no está disponible. Una respuesta generada plausible no es la fuente canónica y puede ser incompleta o errónea.

@@ -6,19 +6,19 @@ permalink: /es/teaching/
 lang: es
 ---
 
-# Columna completa, órganos poco profundos
+# Columna completa a profundidad hello world
 
 TTOD es el producto docente de la **primera mitad** de [Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) en UDIT: arquitectura de producción con Astro, comportamiento del navegador sin conexión, pruebas y revisión asistida por IA, y rendimiento medido. El [índice del track](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) nombra el semestre de doce unidades; TTOD concentra las Unidades 1–7 en un solo artefacto coherente.
 
-La línea de base docente propuesta ofrece a quien aprende un recorrido de producto pequeño pero completo. Las áreas avanzadas están presentes como hello worlds operativos, no como respuestas acabadas de la tarea. El profesorado puede explicar primero cómo encaja el sistema; el alumnado amplía después las mismas costuras mediante diseño e implementación evaluados.
+La base docente propuesta ofrece al alumnado un recorrido de producto pequeño pero completo: cada costura mayor está presente, pero ninguna se entrega como respuesta acabada de la tarea. Las áreas avanzadas aparecen como ejemplos hello world operativos. El profesorado puede explicar primero cómo encaja el sistema; después, el alumnado amplía esas mismas costuras mediante diseño e implementación evaluados.
 
 ## Conexión con el curso
 
 | Superficie del curso | Papel de TTOD | Peso oficial (indicativo) |
 | --- | --- | --- |
-| [Entrega 1 — Arquitectura Astro (Unidades 2–6)](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/) | Primer entregable: el producto Astro de titularidad estudiantil con colecciones de contenido, enrutado obligatorio `es` + `en`, islas, integración multi-framework, suite de pruebas y flujo de revisión asistida por IA | 25 % · Semana 7 |
+| [Entrega 1 — Arquitectura Astro (Unidades 2–6)](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/) | Primer entregable: el producto Astro del alumnado, con colecciones de contenido, rutas obligatorias `es` + `en`, islas, integración de varios frameworks, suite de pruebas y flujo de revisión asistida por IA | 25 % · Semana 7 |
 | Examen parcial (Unidades 1–7) | Comprobación escrita y práctica del **uso declarativo del sistema**, de la defensa del proceso y de la comprensión del código — no una demo de caja negra pulida | 15 % · Semana 7 |
-| Unidades 1–7 en conjunto | Aproximadamente la mitad del semestre antes de 3D, IoT y el capstone | — |
+| Unidades 1–7 en conjunto | Aproximadamente la mitad del semestre, antes de 3D, IoT y el proyecto final | — |
 
 Las reglas autoritativas de calificación, calendario y recuperación viven en el sitio del curso: [Cómo aprobar Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) (guía de aprobación enlazada desde el track) y el [track FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/). Este sitio de documentación describe el producto y la pedagogía; no sustituye la guía oficial.
 
@@ -26,21 +26,21 @@ Las reglas autoritativas de calificación, calendario y recuperación viven en e
 
 | Unidades | Foco del curso | Qué hace observable TTOD |
 | --- | --- | --- |
-| 1–3 | Arquitectura de producción con Astro (SSR, islas, micro-frontends) | Rutas localizadas, contratos de contenido, titularidad del documento Astro, islas Svelte/React acotadas |
+| 1–3 | Arquitectura de producción con Astro (SSR, islas, micro-frontends) | Rutas localizadas, contratos de contenido, responsabilidad sobre el documento Astro, islas Svelte/React acotadas |
 | 4 | PWA y capacidades offline | Un límite local/offline observable que el alumnado debe diseñar y defender |
 | 5–6 | Estrategia de testing y revisión de código asistida por IA | Aserciones representativas en capas útiles; uso de IA declarado con evidencia humana de aceptar/rechazar/escalar |
 | 7 | Ingeniería de rendimiento | Presupuestos medidos y coste de paquete o de ejecución antes de afirmar una optimización |
 
-Las Unidades 8–12 (3D, IoT/Python, defensa del capstone) siguen siendo trabajo posterior del curso. Quedan fuera de esta línea de base docente de TTOD.
+Las Unidades 8–12 (3D, IoT/Python y defensa del proyecto final) son trabajo posterior del curso. Quedan fuera de esta base docente de TTOD.
 
 ## Las cinco áreas de ampliación
 
-| Área | Hello world entregado | Profundidad de titularidad estudiantil (Entrega 1) |
+| Área | Hello world entregado | Profundidad a cargo del alumnado (Entrega 1) |
 | --- | --- | --- |
 | Contenido Astro | una colección localizada y un recorrido índice/detalle | taxonomía, amplitud editorial, política de respaldo y arquitectura de información |
 | Grafo Svelte | un vecindario real pequeño y una selección accesible | exploración, filtros, disposición, estado de URL y rendimiento a escala de corpus |
-| Oracle React | un prompt, un modo de respuesta en flujo y una cita | estado robusto, sesiones, recuperación, revelación, propuestas sin conexión y diseño de interacción |
-| Operación del navegador y comportamiento sin conexión | un límite local/offline observable | caché, instalabilidad, colas, presupuestos y evidencia operativa |
+| Oracle React | una pregunta, un modo de respuesta en flujo y una cita | estado robusto, sesiones, recuperación, transparencia, propuestas sin conexión y diseño de interacción |
+| Operación del navegador y comportamiento sin conexión | un límite local/offline observable | caché, instalación, colas, presupuestos y evidencia operativa |
 | Pruebas | una aserción representativa en cada capa útil | estrategia de riesgo, E2E de interacción, amplitud de contrato, accesibilidad, rendimiento y control de inestabilidad |
 
 ## Secuencia pedagógica
@@ -51,21 +51,21 @@ Las Unidades 8–12 (3D, IoT/Python, defensa del capstone) siguen siendo trabajo
 4. Convertir los comportamientos deliberadamente ausentes en criterios explícitos de la Entrega 1.
 5. Exigir que el alumnado explique decisiones de diseño y evidencia — comportamiento del producto, registro de proceso y defensa de la comprensión en el parcial — no que se limite a presentar una interfaz acabada.
 
-Esto es una racionalidad de diseño, no la pretensión de que TTOD mejore el aprendizaje. El esqueleto debe construirse primero, ensayarse, revisarse de forma independiente y sincronizarse con los materiales localizados del curso.
+Esto es una justificación de diseño, no la afirmación de que TTOD mejore el aprendizaje. La base debe construirse primero, ensayarse, revisarse de forma independiente y sincronizarse con los materiales localizados del curso.
 
 ## Por qué el andamiaje debe desvanecerse
 
-El patrón docente se apoya en el aprendizaje cognitivo: primero hacer visible el pensamiento experto mediante modelado y acompañamiento, después desvanecer el apoyo a medida que quien aprende asume la responsabilidad. Un estudio cualitativo reciente, de un semestre, sobre programación asistida por IA agudiza el riesgo: el apoyo se comporta como andamiaje cuando quien aprende sigue modificando, probando y explicando las salidas, pero puede convertirse en descarga cognitiva cuando esas actividades de dar sentido desaparecen. El estudio propone un modelo de proceso, no un resultado universal de eficacia, de modo que TTOD lo trata como una racionalidad de diseño que hay que poner a prueba, no como prueba de aprendizaje (Liu, Fan y Pan 2026).
+El patrón docente se apoya en el aprendizaje cognitivo: primero hacer visible el pensamiento experto mediante modelado y acompañamiento, y después retirar gradualmente el apoyo a medida que el alumnado asume la responsabilidad. Un estudio cualitativo reciente sobre programación asistida por IA agudiza el riesgo: el apoyo funciona como andamiaje cuando el alumnado sigue modificando, probando y explicando los resultados, pero puede convertirse en descarga cognitiva cuando desaparecen esas actividades de comprensión. El estudio propone un modelo de proceso, no un resultado universal de eficacia; por eso TTOD lo trata como una justificación que hay que poner a prueba, no como una prueba de aprendizaje ([Liu, Fan y Pan 2026](#ref-liu-fan-pan-2026)).
 
-La consecuencia práctica es una incompletud deliberada. El alumnado hereda un sistema trazable, pero las decisiones valiosas —arquitectura de información, comportamiento de interacción, accesibilidad, recuperación, rendimiento y estrategia de prueba— siguen siendo suyas. El uso de IA es visible y discutible; la salida generada nunca se acepta como sustituto de explicar o cambiar el código.
+La consecuencia práctica es una incompletud deliberada. El alumnado recibe un sistema trazable, pero las decisiones valiosas —arquitectura de información, comportamiento de interacción, accesibilidad, recuperación, rendimiento y estrategia de pruebas— siguen siendo suyas. El uso de IA es visible y discutible; una salida generada nunca sustituye explicar o cambiar el código. Los estudios sobre autorregulación en la interacción estudiante–IA durante la programación web motivan además vigilar la dependencia y la delegación a lo largo del tiempo, no solo los commits finales ([López-Pernas et al. 2025](#ref-lopez-pernas-et-al-2025)).
 
-La evaluación, por tanto, triangula el comportamiento del producto con evidencia de proceso y una defensa breve, oral o escrita, de la comprensión. El marco de cuatro pilares de Nikolić y Basta Nikolić motiva esta estructura, pero es conceptual y explícitamente no validado; es un recurso de diseño de la evaluación, no evidencia de que este diseño de curso funcione (Nikolić y Basta Nikolić 2026).
+La evaluación, por tanto, triangula el comportamiento del producto con evidencia de proceso y una defensa breve, oral o escrita, de la comprensión. El marco de cuatro pilares de [Nikolić y Basta Nikolić 2026](#ref-nikolic-basta-nikolic-2026) motiva esta estructura, pero es conceptual y explícitamente no validado; es un recurso de diseño de la evaluación, no evidencia de que este diseño de curso funcione. Mantener el proceso visible responde también a una preocupación de medición: cuando la IA entra en el bucle, el profesorado puede conservar productos y perder cómo se produjo el trabajo ([Davalos y Zhang 2026](#ref-davalos-zhang-2026)). La evaluación auténtica de portfolios en cursos web que exige al alumnado codificar el artefacto sostiene asimismo la responsabilidad compartida entre producto y proceso, sin pretender resultados idénticos aquí ([Garcia 2025](#ref-garcia-2025)).
 
 ## Alcance de la teoría
 
-La teoría cubre renderizado, sistemas de contenido, localización, islas, estado, interfaces en flujo, comportamiento del navegador sin conexión, accesibilidad, pruebas y rendimiento medido — la mitad del FE II correspondiente a las Unidades 1–7. Los contenedores son solo un medio para ejecutar el sistema local. Las operaciones en la nube y la administración de servidores quedan fuera de este alcance docente de front-end.
+La teoría cubre renderizado, sistemas de contenido, localización, islas, estado, interfaces en flujo, comportamiento del navegador sin conexión, accesibilidad, pruebas y rendimiento medido: la mitad de FE II correspondiente a las Unidades 1–7. Los contenedores son solo un medio para ejecutar el sistema local. Las operaciones en la nube y la administración de servidores quedan fuera de este alcance docente de front-end.
 
-La accesibilidad forma parte de la arquitectura y de la evaluación desde el primer hello world. La línea de base compartida apunta a estructura semántica, operación por teclado, foco visible, estado legible y pistas que no dependan solo del color, en la dirección comprobable de WCAG 2.2; la conformidad sigue siendo una pretensión de verificación aparte ([W3C 2024](https://www.w3.org/TR/WCAG22/)).
+La accesibilidad forma parte de la arquitectura y de la evaluación desde el primer hello world. La base compartida apunta a una estructura semántica, uso por teclado, foco visible, estados legibles y señales que no dependan solo del color, en línea con los criterios comprobables de WCAG 2.2; la conformidad sigue siendo una cuestión de verificación independiente ([W3C 2024](https://www.w3.org/TR/WCAG22/)).
 
 ## Páginas relacionadas del curso
 
@@ -73,3 +73,11 @@ La accesibilidad forma parte de la arquitectura y de la evaluación desde el pri
 - [Índice del track en inglés](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/)
 - [Cómo aprobar Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/)
 - [Para estudiantes]({{ '/es/audiences/students/' | relative_url }})
+
+## Referencias
+
+- <a id="ref-davalos-zhang-2026"></a>Davalos, Eduardo, and Yike Zhang. 2026. “AI Misuse in Education Is a Measurement Problem: Toward a Learning Visibility Framework.” arXiv. [https://doi.org/10.48550/arxiv.2603.07834](https://doi.org/10.48550/arxiv.2603.07834).
+- <a id="ref-garcia-2025"></a>Garcia, Manuel B. 2025. “Self-Coded Digital Portfolios as an Authentic Project-Based Learning Assessment in Computing Education: Evidence from a Web Design and Development Course.” *Education Sciences* 15 (9): 1150. [https://doi.org/10.3390/educsci15091150](https://doi.org/10.3390/educsci15091150).
+- <a id="ref-liu-fan-pan-2026"></a>Liu, Dandan, Guangrui Fan, and Lihu Pan. 2026. “Tool, Tutor, or Crutch?: A Grounded Theory of Cognitive Scaffolding and Offloading in AI-Assisted Programming Education.” *International Journal of STEM Education* 13: 10. [https://doi.org/10.1186/s40594-025-00592-w](https://doi.org/10.1186/s40594-025-00592-w).
+- <a id="ref-lopez-pernas-et-al-2025"></a>López-Pernas, Sonsoles, Kamila Misiejuk, Eduardo Oliveira, and Mohammed Saqr. 2025. “The Dynamics of the Self-Regulation Process in Student-AI Interactions: The Case of Problem-Solving in Programming Education.” In *Proceedings of the 25th Koli Calling International Conference on Computing Education Research*. [https://doi.org/10.1145/3769994.3770043](https://doi.org/10.1145/3769994.3770043).
+- <a id="ref-nikolic-basta-nikolic-2026"></a>Nikolić, Dragan, and Marijana Basta Nikolić. 2026. “Designing AI-Resilient Assessment in Higher Education: A Four-Pillar Conceptual Framework.” *Frontiers in Artificial Intelligence* 9. [https://doi.org/10.3389/frai.2026.1841682](https://doi.org/10.3389/frai.2026.1841682).

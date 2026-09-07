@@ -7,7 +7,7 @@ permalink: /guides/local-setup/
 
 # From clone to a visible hello world
 
-The application is designed to run locally through Docker Compose. This guide explains the operational path only far enough to support front-end teaching and evaluation.
+The application is designed to run locally through Docker Compose. This guide covers only the operations needed for front-end teaching and evaluation.
 
 ## Prerequisites
 
@@ -54,4 +54,3 @@ Stopping containers should not remove named data volumes. Delete volumes only wh
 - **A route renders but data is empty:** inspect the browser network response and service logs without pasting secrets into an issue.
 
 For support, report the command, route, operating system, and exact error. Replace personal paths, usernames, hostnames, addresses, tokens, and environment values with safe placeholders.
-

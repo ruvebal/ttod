@@ -7,9 +7,9 @@ permalink: /audiences/partners/
 
 # A teachable system with explicit boundaries
 
-TTOD offers a locally runnable reference for teaching modern front-end architecture as one connected system. In the published [Front-end II track](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), it is the **first deliverable** (Entrega 1, Units 2–6) and the product students must use and defend for the Units 1–7 mid-term—roughly the first half of the semester before 3D, IoT, and the capstone.
+TTOD offers a local reference for teaching modern front-end architecture as one connected system. In the published [Front-end II track](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), it is the **first deliverable** (Entrega 1, Units 2–6) and the product students must use and defend in the Units 1–7 mid-term—roughly the first half of the semester, before 3D, IoT, and the capstone.
 
-Its proposed student form uses complete-example-first scaffolding: learners first trace a small working product, then assume responsibility for increasingly open design and implementation tasks.
+Its proposed student form uses complete-example-first scaffolding: learners first trace a small working product, then take responsibility for increasingly open design and implementation tasks.
 
 ## Potential academic value
 
@@ -31,4 +31,3 @@ These are design affordances, not demonstrated learning effects.
 ## Decisions invited
 
 Partners can review curricular fit, accessibility expectations, workload, assessment validity, bilingual parity, ethics readiness, and whether a later research protocol merits development. No institutional endorsement or approval is implied by the current prototype.
-

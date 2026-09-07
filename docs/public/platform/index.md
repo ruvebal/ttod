@@ -7,7 +7,7 @@ permalink: /platform/
 
 # One product, several teachable boundaries
 
-The instructor reference is locally runnable end to end. Its areas are not separate demonstrations: they share localization, content contracts, API boundaries, accessible browser states, and the same governed quote source.
+The instructor reference runs end to end on a local machine. Its areas are not separate demonstrations: they share localization, content contracts, API boundaries, accessible browser states, and the same governed quote source.
 
 | Area | User-visible purpose | Front-end idea made observable |
 | --- | --- | --- |
@@ -37,6 +37,6 @@ Astro owns the document and content-oriented routes. Interactive islands are use
 
 ## Honest maturity
 
-The rich reference demonstrates localized content, graph exploration, and a streamed Oracle. Browser operations, offline behavior, and the testing surface are not yet a complete student-ready implementation. A future teaching baseline will keep every major area present at hello-world depth; that subtraction refactor is planned, not complete.
+The rich reference demonstrates localized content, graph exploration, and a streamed Oracle. Browser operations, offline behavior, and the testing surface are not yet a complete student-ready implementation. A future teaching baseline will keep every major area present at hello-world depth; that reduction is planned, not complete.
 
 In the [FE II course](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), that baseline is **Entrega 1** and the product defended in the Units 1–7 mid-term. See the [teaching model]({{ '/teaching/' | relative_url }}).

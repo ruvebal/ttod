@@ -13,5 +13,4 @@ permalink: /guides/
   <a class="card" href="{{ '/guides/contributing/' | relative_url }}"><h3>Contribute</h3><p>Respect canonical data, provenance, review, licensing, tests, and publication privacy.</p></a>
 </div>
 
-The local guide targets an instructor or collaborator evaluating the current reference. The future student starter will receive its own reduced guide after the teaching skeleton passes its release gates.
-
+The local guide is for instructors and collaborators evaluating the current reference. The future student starter will receive its own reduced guide after the teaching baseline passes its release gates.

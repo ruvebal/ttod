@@ -8,14 +8,15 @@ lang: es
 <section class="intro">
   <div class="intro-copy">
     <p class="eyebrow">Pedagogía · arquitectura front-end · conocimiento gobernado</p>
-    <h1>道 The Tao of the Development</h1>
+    <h1>道 The Tao of Development</h1>
     <p class="lede">Sabiduría ancestral para la era de la creación asistida por máquina</p>
-    <blockquote class="tao-development-quote">
-      <p><em>“El Tao que puede expresarse en un prompt no es el Tao eterno. El código que puede generarse sin comprensión no es verdadero código.”</em>
-— Tao of Development, <code>wis-034</code></p>
-      <footer>Lao Tse, si hubiera vivido para ver Stack Overflow · traducción de <code>wis-033</code></footer>
+    <p class="notice">La traducción española de esta cita está pendiente de revisión humana; mostramos el original para no presentar una propuesta como traducción aprobada.</p>
+    <blockquote class="tao-development-quote" lang="en">
+      <p><em>“The Tao that can be prompted is not the eternal Tao. The code that can be generated without understanding is not true code.”</em>
+— 道 The Tao of Development, <code>wis-033</code></p>
+      <footer>Lao Tzu, if he had lived to see Stack Overflow</footer>
     </blockquote>
-    <p>TTOD es una colección gobernada de sabiduría para el desarrollo y una referencia docente que se ejecuta en local. Conecta contenido, interfaces, islas interactivas, recuperación, accesibilidad y pruebas para que quien aprende vea el sistema entero antes de ampliarlo.</p>
+    <p>TTOD es una colección de sabiduría para el desarrollo, con gobernanza humana, y una referencia docente que se ejecuta en local. Conecta contenido, interfaces, islas interactivas, recuperación, accesibilidad y pruebas para que el alumnado entienda el sistema completo antes de ampliarlo.</p>
     <p class="intro-actions">
       <a class="button" href="{{ '/es/project/' | relative_url }}">Comprender el proyecto</a>
       <a class="button" href="{{ '/es/guides/local-setup/' | relative_url }}">Ejecutarlo en local</a>
@@ -48,16 +49,16 @@ lang: es
   <a class="card" href="{{ '/es/guides/' | relative_url }}"><h3>Guías</h3><p>Puesta en marcha local, orientación de producto y gobernanza de la contribución.</p></a>
   <a class="card" href="{{ '/es/audiences/students/' | relative_url }}"><h3>Estudiantes</h3><p>La Entrega 1 como tu producto; el parcial como uso declarativo y defensa de la comprensión.</p></a>
   <a class="card" href="{{ '/es/audiences/partners/' | relative_url }}"><h3>Socios universitarios</h3><p>Valor académico, salvaguardas, decisiones y umbrales de colaboración.</p></a>
-  <a class="card" href="{{ '/es/audiences/research-funders/' | relative_url }}"><h3>Investigación e iniciativa</h3><p>Activos, preparación, preguntas abiertas y colaboración responsable.</p></a>
+  <a class="card" href="{{ '/es/audiences/research-funders/' | relative_url }}"><h3>Investigación y financiación</h3><p>Activos, preparación, preguntas abiertas y colaboración responsable.</p></a>
   <a class="card" href="{{ '/es/roadmap/' | relative_url }}"><h3>Hoja de ruta</h3><p>Lo verificado ahora, lo propuesto a continuación y los umbrales entre ambos.</p></a>
 </div>
 
 <aside class="callout">
-  <p><strong>Dos publicaciones, dos decisiones.</strong> Este sitio de documentación pública puede publicarse con independencia de la aplicación. El repositorio fuente público sigue exigiendo revisión continua de revelación, secretos e historial alcanzable.</p>
+  <p><strong>Dos vías de publicación, dos decisiones.</strong> Este sitio de documentación puede publicarse con independencia de la aplicación. El repositorio público sigue exigiendo una revisión continua de la información que expone, de los secretos y de su historial alcanzable.</p>
 </aside>
 
 ## El recorrido del producto
 
 La referencia sigue un camino visible: una ruta localizada renderiza contenido gobernado; una página Astro establece el documento; Svelte o React añade interacción acotada; una petición cruza un contrato de API explícito; la recuperación devuelve una cita canónica; el navegador expone un estado accesible; y una prueba cubre cada riesgo significativo.
 
-Ese camino está completo en la referencia del profesorado. La línea de base estudiantil propuesta conserva el mismo recorrido, pero reduce las áreas avanzadas a ejemplos pequeños y operativos que el alumnado debe diseñar y ampliar de forma sustancial.
+Ese camino está completo en la referencia del profesorado. La base docente propuesta conserva el mismo recorrido, pero reduce las áreas avanzadas a ejemplos pequeños y operativos que el alumnado debe diseñar y ampliar.

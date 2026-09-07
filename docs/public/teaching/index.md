@@ -6,11 +6,11 @@ permalink: /teaching/
 lang: en
 ---
 
-# Complete spine, shallow organs
+# Complete spine at hello-world depth
 
 TTOD is the teaching product for the **first half** of [Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) at UDIT: production architecture with Astro, offline browser behaviour, testing and AI-assisted review, and measured performance. The [English track index](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/) names the twelve-unit semester; TTOD owns Units 1–7 as one coherent artifact.
 
-The proposed teaching baseline gives learners a small but complete product journey. Advanced areas are present as working hello worlds, not as finished assignment answers. The instructor can first explain how the system fits together; students then expand the same seams through assessed design and implementation.
+The proposed teaching baseline gives learners a small but complete product journey—every major seam is present, but none is finished as an assignment answer. Advanced areas appear as working hello-world examples. The instructor can first explain how the system fits together; students then expand the same seams through assessed design and implementation.
 
 ## Course connection
 
@@ -51,15 +51,15 @@ Units 8–12 (3D, IoT/Python, capstone defence) remain later course work. They a
 4. Convert deliberately absent behaviors into explicit Entrega 1 criteria.
 5. Require students to explain design choices and evidence—product behaviour, process record, and mid-term defence of understanding—not merely present a finished interface.
 
-This is a design rationale, not a claim that TTOD improves learning. The skeleton must first be built, rehearsed, independently reviewed, and synchronized with the localized course materials.
+This is a design rationale, not a claim that TTOD improves learning. The baseline must first be built, rehearsed, independently reviewed, and synchronized with the localized course materials.
 
 ## Why the support must fade
 
-The teaching pattern draws on cognitive apprenticeship: first make expert thinking visible through modeling and coaching, then fade support as learners assume responsibility. A recent semester-long qualitative study of AI-assisted programming sharpens the risk: support behaves as scaffolding when learners still modify, test, and explain outputs, but can become cognitive offloading when those meaning-making activities disappear. The study proposes a process model rather than a universal effectiveness result, so TTOD treats this as a design rationale to test—not as proof of learning (Liu, Fan, and Pan 2026).
+The teaching pattern draws on cognitive apprenticeship: first make expert thinking visible through modeling and coaching, then fade support as learners assume responsibility. A recent semester-long qualitative study of AI-assisted programming sharpens the risk: support behaves as scaffolding when learners still modify, test, and explain outputs, but can become cognitive offloading when those meaning-making activities disappear. The study proposes a process model rather than a universal effectiveness result, so TTOD treats this as a design rationale to test—not as proof of learning ([Liu, Fan, and Pan 2026](#ref-liu-fan-pan-2026)).
 
-The practical consequence is deliberate incompleteness. Students inherit a traceable system, but the valuable decisions—information architecture, interaction behavior, accessibility, recovery, performance, and test strategy—remain theirs. AI use is visible and discussable; generated output is never accepted as a substitute for explaining or changing the code.
+The practical consequence is deliberate incompleteness. Students inherit a traceable system, but the valuable decisions—information architecture, interaction behavior, accessibility, recovery, performance, and test strategy—remain theirs. AI use is visible and discussable; generated output is never accepted as a substitute for explaining or changing the code. Self-regulation studies of student–AI interaction in web programming further motivate watching dependence and delegation over time, not only final commits ([López-Pernas et al. 2025](#ref-lopez-pernas-et-al-2025)).
 
-Assessment therefore triangulates product behavior with process evidence and a short oral or written defence of understanding. Nikolić and Basta Nikolić’s four-pillar framework motivates this structure, but is itself conceptual and explicitly unvalidated; it is an assessment-design resource, not evidence that this course design works (Nikolić and Basta Nikolić 2026).
+Assessment therefore triangulates product behavior with process evidence and a short oral or written defence of understanding. [Nikolić and Basta Nikolić 2026](#ref-nikolic-basta-nikolic-2026)’s four-pillar framework motivates this structure, but is itself conceptual and explicitly unvalidated; it is an assessment-design resource, not evidence that this course design works. Keeping process visible also answers a measurement concern: when AI enters the loop, educators may retain products while losing how work was produced ([Davalos and Zhang 2026](#ref-davalos-zhang-2026)). Authentic web-course portfolio assessment that requires students to code the artifact themselves likewise supports product-plus-process ownership without claiming identical outcomes here ([Garcia 2025](#ref-garcia-2025)).
 
 ## Scope of theory
 
@@ -73,3 +73,11 @@ Accessibility is part of the architecture and assessment from the first hello wo
 - [English track index](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/)
 - [How to Pass Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/)
 - [For students]({{ '/audiences/students/' | relative_url }})
+
+## References
+
+- <a id="ref-davalos-zhang-2026"></a>Davalos, Eduardo, and Yike Zhang. 2026. “AI Misuse in Education Is a Measurement Problem: Toward a Learning Visibility Framework.” arXiv. [https://doi.org/10.48550/arxiv.2603.07834](https://doi.org/10.48550/arxiv.2603.07834).
+- <a id="ref-garcia-2025"></a>Garcia, Manuel B. 2025. “Self-Coded Digital Portfolios as an Authentic Project-Based Learning Assessment in Computing Education: Evidence from a Web Design and Development Course.” *Education Sciences* 15 (9): 1150. [https://doi.org/10.3390/educsci15091150](https://doi.org/10.3390/educsci15091150).
+- <a id="ref-liu-fan-pan-2026"></a>Liu, Dandan, Guangrui Fan, and Lihu Pan. 2026. “Tool, Tutor, or Crutch?: A Grounded Theory of Cognitive Scaffolding and Offloading in AI-Assisted Programming Education.” *International Journal of STEM Education* 13: 10. [https://doi.org/10.1186/s40594-025-00592-w](https://doi.org/10.1186/s40594-025-00592-w).
+- <a id="ref-lopez-pernas-et-al-2025"></a>López-Pernas, Sonsoles, Kamila Misiejuk, Eduardo Oliveira, and Mohammed Saqr. 2025. “The Dynamics of the Self-Regulation Process in Student-AI Interactions: The Case of Problem-Solving in Programming Education.” In *Proceedings of the 25th Koli Calling International Conference on Computing Education Research*. [https://doi.org/10.1145/3769994.3770043](https://doi.org/10.1145/3769994.3770043).
+- <a id="ref-nikolic-basta-nikolic-2026"></a>Nikolić, Dragan, and Marijana Basta Nikolić. 2026. “Designing AI-Resilient Assessment in Higher Education: A Four-Pillar Conceptual Framework.” *Frontiers in Artificial Intelligence* 9. [https://doi.org/10.3389/frai.2026.1841682](https://doi.org/10.3389/frai.2026.1841682).

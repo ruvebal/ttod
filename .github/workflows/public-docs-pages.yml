@@ -76,7 +76,7 @@ jobs:
             exit 1
           fi
 
-      - name: Scan rendered publication
+      - name: Scan rendered publication (privacy + empty anchors)
         run: python3 agentic/report-steward/scripts/check_public_privacy.py _site-public
 
       - name: Check internal links

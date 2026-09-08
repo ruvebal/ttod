@@ -38,3 +38,7 @@ docs/public/_site/
 docs/public/.bundle/
 docs/public/vendor/
 docs/public/Gemfile.lock
+
+# CI's ephemeral Jekyll build destination (see .github/workflows/public-docs-pages.yml) —
+# built fresh, checked, uploaded to Pages, and torn down every run; never meant to be tracked
+/_site-public/

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fbf8f1">
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Product areas | 道 The Tao of Development (TTOD)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Product areas" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="The visible areas and front-end boundaries in the TTOD instructor reference." />
+<meta name="twitter:description" property="og:description" content="The visible areas and front-end boundaries in the TTOD instructor reference." />
+<link rel="canonical" href="https://ruvebal.github.io/ttod/platform/" />
+<meta property="og:url" content="https://ruvebal.github.io/ttod/platform/" />
+<meta property="og:site_name" content="道 The Tao of Development (TTOD)" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Product areas" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"The visible areas and front-end boundaries in the TTOD instructor reference.","headline":"Product areas","url":"https://ruvebal.github.io/ttod/platform/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link rel="icon" href="/ttod/assets/visual-system/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/ttod/assets/css/site.css">
+
+
+<link rel="alternate" hreflang="en" href="https://ruvebal.github.io/ttod/platform/">
+<link rel="alternate" hreflang="es" href="https://ruvebal.github.io/ttod/es/platform/">
+</head>
+  <body class="ttod-bg-river">
+    
+
+
+
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="shell header-row">
+    <a class="brand" href="/ttod/" aria-label="TTOD home">
+      <img class="brand-mark" src="/ttod/assets/visual-system/favicon.svg" alt="">
+      <span><strong>TTOD</strong><small>道 The Tao of Development (TTOD)</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        
+          
+          <li><a href="/ttod/">Home</a></li>
+        
+          
+          <li><a href="/ttod/project/">Project</a></li>
+        
+          
+          <li><a href="/ttod/platform/" aria-current="page">Product areas</a></li>
+        
+          
+          <li><a href="/ttod/teaching/">Teaching model</a></li>
+        
+          
+          <li><a href="/ttod/research/">Research</a></li>
+        
+          
+          <li><a href="/ttod/guides/">Guides</a></li>
+        
+          
+          <li><a href="/ttod/audiences/students/">Students</a></li>
+        
+          
+          <li><a href="/ttod/audiences/partners/">University partners</a></li>
+        
+          
+          <li><a href="/ttod/audiences/research-funders/">Research & venture</a></li>
+        
+          
+          <li><a href="/ttod/roadmap/">Roadmap</a></li>
+        
+        <li class="lang-switch" aria-label="Language">
+          
+            <span aria-current="true">English</span>
+            <a href="/ttod/es/platform/" lang="es" hreflang="es">Español</a>
+          
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <main id="content" class="shell page-shell">
+      <p class="eyebrow">The implemented reference</p>
+      <h1 id="one-product-several-teachable-boundaries">One product, several teachable boundaries</h1>
+
+<p>The instructor reference runs end to end on a local machine. Its areas are not separate demonstrations: they share localization, content contracts, API boundaries, accessible browser states, and the same governed quote source.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>User-visible purpose</th>
+      <th>Front-end idea made observable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Welcome</td>
+      <td>enter in English or Spanish</td>
+      <td>localized routing and document language</td>
+    </tr>
+    <tr>
+      <td>Quote</td>
+      <td>inspect one governed entry</td>
+      <td>typed data, provenance, rights, and semantic presentation</td>
+    </tr>
+    <tr>
+      <td>Wisdom</td>
+      <td>browse the collection</td>
+      <td>information architecture, filters, and empty states</td>
+    </tr>
+    <tr>
+      <td>Documentation</td>
+      <td>learn the system in context</td>
+      <td>content collections and editorial navigation</td>
+    </tr>
+    <tr>
+      <td>Graph</td>
+      <td>explore related entries</td>
+      <td>a hydrated Svelte island with accessible textual state</td>
+    </tr>
+    <tr>
+      <td>Oracle</td>
+      <td>ask and receive a streamed response</td>
+      <td>a React island, streaming state, grounding, and recovery</td>
+    </tr>
+    <tr>
+      <td>Local operations</td>
+      <td>start and observe the stack</td>
+      <td>the browser/service boundary, not a DevOps syllabus</td>
+    </tr>
+    <tr>
+      <td>Tests</td>
+      <td>locate evidence at useful layers</td>
+      <td>unit, component, contract, route, and accessibility reasoning</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="architecture-at-teaching-scale">Architecture at teaching scale</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>localized route
+  → Astro document and content contract
+  → bounded Svelte or React island
+  → HTTP or streamed request
+  → application and retrieval contracts
+  → governed quote snapshot
+  → accessible browser state
+  → test at the cheapest useful layer
+</code></pre></div></div>
+
+<p>Astro owns the document and content-oriented routes. Interactive islands are used where local state or streaming warrants them. The backend is explained only far enough to trace the request and trust boundary; the teaching emphasis remains front-end architecture.</p>
+
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="/ttod/assets/diagrams/ttod-system-overview.html">
+    <img src="/ttod/assets/diagrams/ttod-system-overview.png" alt="System diagram showing IDE agents and ttod-bridge staging proposals, a human reviewer accepting into the canonical ttod.yml store, the read-only Astro, Oracle API, and MCP runtime inside the Docker Compose network, and Ollama shown twice: the app's own container (the make up default) and a personal Ollama borrowed manually from the host." loading="lazy" />
+  </a>
+  <figcaption><a href="/ttod/assets/diagrams/ttod-system-overview.html">Open the interactive system-overview diagram ↗</a> — the same path above, as a full component map with trust boundaries and guided views.</figcaption>
+</figure>
+
+<h2 id="honest-maturity">Honest maturity</h2>
+
+<p>The rich reference demonstrates localized content, graph exploration, and a streamed Oracle. Browser operations, offline behavior, and the testing surface are not yet a complete student-ready implementation. A future teaching baseline will keep every major area present at hello-world depth; that reduction is planned, not complete.</p>
+
+<p>In the <a href="https://ruvebal.github.io/web-atelier-udit/tracks/feii/">FE II course</a>, that baseline is <strong>Entrega 1</strong> and the product defended in the Units 1–7 mid-term. See the <a href="/ttod/teaching/">teaching model</a>.</p>
+
+    </main>
+    
+
+<footer class="site-footer ttod-bg-reeds">
+  <div class="shell footer-grid">
+    <div>
+      <strong>道 The Tao of Development (TTOD)</strong>
+      <p>A governed teaching reference for development practice.</p>
+    </div>
+    <div>
+      <strong>Stewardship</strong>
+      <p>Research studio: <span class="domain">@crea-comm.net</span></p>
+    </div>
+    <div>
+      <strong>Licensing</strong>
+      <p>Code: MIT. Content: CC BY-NC-SA 4.0 unless noted otherwise.</p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

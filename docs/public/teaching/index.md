@@ -22,6 +22,13 @@ The proposed teaching baseline gives learners a small but complete product journ
 
 Authoritative grading, calendar, and recovery rules live on the course site: [How to Pass Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/) and the [FE II track](https://ruvebal.github.io/web-atelier-udit/tracks/feii/). This documentation site describes the product and pedagogy; it does not replace the official guide.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-feii-architecture.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-feii-architecture.png' | relative_url }}" alt="Front-end architecture diagram in FE II vocabulary: browser to Astro document to page shell to a Svelte or React island, HTTP/SSE to the Oracle API and governed quote snapshot, with document, island, and service-boundary ownership marked, plus Ollama shown as infrastructure the app owns in its own container." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-feii-architecture.html' | relative_url }}">Open the interactive Units 1–7 diagram ↗</a> — the same request path in course vocabulary: document vs. island ownership, the Unit 4 offline design, and the seams Entrega 1 and the mid-term ask you to defend.</figcaption>
+</figure>
+
 ## Units 1–7 on the TTOD spine
 
 | Units | Course focus | What TTOD makes observable |

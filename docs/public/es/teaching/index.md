@@ -22,6 +22,13 @@ La base docente propuesta ofrece al alumnado un recorrido de producto pequeño p
 
 Las reglas autoritativas de calificación, calendario y recuperación viven en el sitio del curso: [Cómo aprobar Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) (guía de aprobación enlazada desde el track) y el [track FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/). Este sitio de documentación describe el producto y la pedagogía; no sustituye la guía oficial.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-feii-architecture.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-feii-architecture.png' | relative_url }}" alt="Diagrama de arquitectura front-end en el vocabulario de FE II: del navegador al documento Astro, al shell de página, a una isla Svelte o React, HTTP/SSE hacia la API Oracle y la instantánea gobernada de citas, con la propiedad del documento, la isla y el límite de servicio señalados, más Ollama mostrado como infraestructura propia de la aplicación en su propio contenedor." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-feii-architecture.html' | relative_url }}">Abrir el diagrama interactivo de las Unidades 1–7 ↗</a> — el mismo recorrido de petición en vocabulario del curso: propiedad del documento frente a la isla, el diseño offline de la Unidad 4, y las costuras que la Entrega 1 y el parcial piden defender. (Interfaz en inglés.)</figcaption>
+</figure>
+
 ## Unidades 1–7 en la columna TTOD
 
 | Unidades | Foco del curso | Qué hace observable TTOD |

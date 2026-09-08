@@ -36,6 +36,13 @@ localized route
 
 Astro posee el documento y las rutas orientadas al contenido. Las islas interactivas se usan donde el estado local o el streaming lo justifican. El backend se explica solo lo bastante para trazar la petición y el límite de confianza; el énfasis docente permanece en la arquitectura front-end.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-system-overview.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-system-overview.png' | relative_url }}" alt="Diagrama del sistema: agentes IDE y ttod-bridge proponen cambios, una persona revisora acepta hacia el almacén canónico ttod.yml, el entorno de solo lectura de Astro, la API Oracle y el servidor MCP dentro de la red Docker Compose, y Ollama mostrado dos veces: el contenedor propio de la aplicación (el valor por defecto de make up) y un Ollama personal tomado manualmente del host." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-system-overview.html' | relative_url }}">Abrir el diagrama interactivo del sistema ↗</a> — el mismo recorrido de arriba, como mapa completo de componentes con límites de confianza y vistas guiadas. (Interfaz en inglés.)</figcaption>
+</figure>
+
 ## Madurez honesta
 
 La referencia rica demuestra contenido localizado, exploración del grafo y un Oracle en flujo. La operación en el navegador, el comportamiento sin conexión y la superficie de pruebas todavía no constituyen una implementación completa lista para el alumnado. Una futura base docente mantendrá cada área principal a profundidad de hello world; esa reducción está prevista, no concluida.

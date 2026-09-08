@@ -35,6 +35,13 @@ localized route
 
 Astro owns the document and content-oriented routes. Interactive islands are used where local state or streaming warrants them. The backend is explained only far enough to trace the request and trust boundary; the teaching emphasis remains front-end architecture.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-system-overview.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-system-overview.png' | relative_url }}" alt="System diagram showing IDE agents and ttod-bridge staging proposals, a human reviewer accepting into the canonical ttod.yml store, the read-only Astro, Oracle API, and MCP runtime inside the Docker Compose network, and Ollama shown twice: the app's own container (the make up default) and a personal Ollama borrowed manually from the host." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-system-overview.html' | relative_url }}">Open the interactive system-overview diagram ↗</a> — the same path above, as a full component map with trust boundaries and guided views.</figcaption>
+</figure>
+
 ## Honest maturity
 
 The rich reference demonstrates localized content, graph exploration, and a streamed Oracle. Browser operations, offline behavior, and the testing surface are not yet a complete student-ready implementation. A future teaching baseline will keep every major area present at hello-world depth; that reduction is planned, not complete.

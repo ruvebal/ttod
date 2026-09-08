@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "TTOD Research Maturity",
+    "locale": "en",
+    "output": "ttod-research-maturity.html",
+    "quality_profile": "showcase",
+    "viewBox": [1030, 566],
+    "views": [
+      {
+        "id": "current-position",
+        "label": "Where research sits today",
+        "focus": ["enquiry", "here", "gate"],
+        "note": "Design enquiry is active; empirical research is pre-protocol, parked before the ethics/data/consent gate."
+      },
+      {
+        "id": "after-authorization",
+        "label": "If the gate clears",
+        "focus": ["gate", "collection", "analysis", "validated", "mixed"],
+        "note": "Authorized collection feeds triangulated analysis. Validated and negative/mixed findings are equally valid outcomes."
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "main", "label": "Research pathway" },
+    { "id": "status", "label": "Current position" },
+    { "id": "terminal", "label": "Valid outcomes" }
+  ],
+  "states": [
+    { "id": "enquiry", "type": "active", "label": "Design enquiry", "sublabel": "engineering, in progress", "lane": "main", "col": 0, "step": "01" },
+    { "id": "protocol", "type": "neutral", "label": "Protocol drafting", "sublabel": "questions, artifacts, plan", "lane": "main", "col": 1, "step": "02" },
+    { "id": "gate", "type": "decision", "label": "Ethics & data review", "sublabel": "the required gate", "lane": "main", "col": 2, "step": "03" },
+    { "id": "collection", "type": "waiting", "label": "Collection", "sublabel": "authorized, not yet begun", "lane": "main", "col": 3, "step": "04" },
+    { "id": "analysis", "type": "waiting", "label": "Analysis", "sublabel": "record + defence", "lane": "main", "col": 4, "step": "05" },
+    { "id": "here", "type": "waiting", "label": "Pre-protocol, pre-collection", "sublabel": "current position", "lane": "status", "col": 0, "tag": "you are here", "width": 190, "yOffset": -50 },
+    { "id": "validated", "type": "success", "label": "Validated findings", "sublabel": "supports the design", "lane": "terminal", "col": 1, "yOffset": -80 },
+    { "id": "mixed", "type": "success", "label": "Negative / mixed findings", "sublabel": "equally valid outcome", "lane": "terminal", "col": 2, "width": 170, "yOffset": -80 }
+  ],
+  "transitions": [
+    { "id": "to-protocol", "from": "enquiry", "to": "protocol", "variant": "default" },
+    { "id": "to-gate", "from": "protocol", "to": "gate", "variant": "default" },
+    { "id": "gate-cleared", "from": "gate", "to": "collection", "variant": "emphasis" },
+    { "id": "to-analysis", "from": "collection", "to": "analysis", "variant": "default" },
+    { "id": "here-blocks", "from": "here", "to": "gate", "label": "not yet cleared", "variant": "security", "fromSide": "top", "toSide": "bottom", "route": "straight" },
+    { "id": "analysis-validated", "from": "analysis", "to": "validated", "variant": "emphasis", "route": "drop" },
+    { "id": "analysis-mixed", "from": "analysis", "to": "mixed", "variant": "emphasis", "route": "drop" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Four artifacts, never confused",
+      "items": [
+        "Rich instructor reference: feasibility evidence only",
+        "Teaching/student products are assessed work, not research data",
+        "Research records: only under an approved protocol"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Safeguards before any data flows",
+      "items": [
+        "Course access and grading never depend on research participation",
+        "Teaching and research datasets keep separate identities",
+        "Minimization, retention, pseudonymization — settled first"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Other maturity layers (parallel, not on this path)",
+      "items": [
+        "Engineering: locally observed, verification open",
+        "Teaching skeleton: planned; contracts not yet frozen",
+        "Curriculum: scheduled later, pending parity review"
+      ]
+    }
+  ]
+}

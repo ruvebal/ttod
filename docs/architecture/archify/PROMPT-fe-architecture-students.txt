@@ -1,0 +1,75 @@
+Create a showcase Archify architecture diagram that teaches Front-end II students how the TTOD instructor reference maps onto the published Web Atelier FE II track — same vocabulary, same seams, same assessment surfaces.
+
+## Course sync (authoritative — do not invent alternate names)
+
+Pin the diagram to Web Foundations / Web Atelier UDIT, academic year **2026-27**:
+
+| Course surface | Exact published name | Weight / timing | Diagram duty |
+| --- | --- | --- | --- |
+| Subject | Front-End II · Grado en Desarrollo Full-Stack · 6 ECTS | — | Audience label in `meta.title` or one card |
+| Teaching product | TTOD = instructor reference for **Units 1–7 only** (first half of semester) | — | Scope the whole diagram to this half |
+| Deliverable | **Entrega 1 — Astro Architecture (Units 2–6)** | 25% · Week 7 | Cards + boundaries must name Entrega 1 expansion seams |
+| Mid-term | Mid-Term Written Test covering **Units 1–7** (Astro, PWA, testing, performance) | 15% · Week 7 | Learning goal = defend seams orally/in writing |
+| Later work | Entrega 2 (Units 8–10 · R3F/IoT), Entrega 3 / Final (Units 11–12), Final Written Test | out of scope | Do not draw 3D, shaders, Python WebSocket, or capstone boxes |
+
+**Unit titles to echo (EN, as published):**
+1. Kickoff — From FE I React to Production Architecture
+2. Astro Meta-Framework — Islands Architecture & SSR
+3. Advanced Astro Architecture & Multi-Framework Integration
+4. Progressive Web Apps & Offline Capabilities
+5. Testing Strategy — Designing a Suite That Earns Its Cost
+6. AI-assisted code review (Unit 6)
+7. Performance (Unit 7)
+
+**Canonical track URLs (cite in a card, do not invent hosts):**
+- `/tracks/en/feii/` — English FE II track index
+- `/tracks/en/udit/2627-feii/how-to-pass-this-track/` — How to Pass Front-End II (UDIT 2026-27)
+- `/lessons/en/feii/` — unit lesson index
+- TTOD public teaching page mirrors this spine: Units 1–7, Entrega 1, mid-term defence of process and understanding
+
+**FE I → FE II boundary (must appear in a card):** FE I owns tool literacy (React/JSX/hooks/routing/Vitest basics). FE II owns engineering judgement — architecture seams, multi-framework islands, PWA boundary, test strategy cost, AI disclosure, measured performance. Do not re-teach FE I React fundamentals as nodes.
+
+**Entrega 1 requirements to make observable (not as clutter edges):** Astro setup; mandatory i18n routing (`es` + `en`); content collections; islands + multi-framework integration; testing suite (**Vitest + RTL + Playwright**); AI-assisted code review workflow with human accept/reject/escalate evidence.
+
+Site tagline is exactly **"Critical Coding for a Better Living"** — never extend it.
+
+---
+
+## Diagram brief
+
+**Audience:** UDIT Front-End II students preparing Entrega 1 and the Units 1–7 mid-term.  
+**Learning goal:** Name where document rendering, content/i18n, islands, streaming UI state, the browser↔service boundary, offline hello-world, a11y, and test layers live — then defend those seams like the mid-term asks.
+
+**Question to answer:** What does the browser own, what does Astro own, what do islands own, and where does trust cross into HTTP?
+
+**Hard constraints:**
+- `diagram_type: architecture`; `meta.quality_profile: showcase`; `meta.locale: en`
+- Title: `TTOD ↔ FE II — Front-end Architecture (Units 1–7)`
+- 8–11 components only — FE-track vocabulary on every label
+- Exactly **one primary path** (`emphasis`): Browser → Astro document (SSR/routes + content collections + `es`/`en`) → page shell → multi-framework island (Svelte Graph **or** React Oracle — one on the main path) → HTTP/SSE → Oracle FastAPI → governed quote snapshot → accessible UI state
+- Side branches only from the nearest main-path node:
+  - Astro → content collections / i18n contract (Units 2–3)
+  - Content collections + page shell → Service worker **Cache-First** (Unit 4 / Entrega 1): built wisdom/docs pages are the offline corpus — not an Oracle-only stub
+  - React Oracle → IndexedDB offline queue when API is unreachable (Network-First API); Ollama remains online-path only
+  - Honest card: R6 full `public/sw.js` is student-owned; reference `main` may only expose Caddy `/sw.js` headers + `db.ts` queue until the cohort ships the SW
+- Ownership boundaries (student-readable; map to Entrega 1 defence language):
+  1. **Document ownership (U2–U3)** — Astro owns HTML, SSR/islands shell, localization, content-oriented routes
+  2. **Island ownership (U3)** — Svelte/React own interactive state; they do not own the document
+  3. **Service boundary** — browser may call `/api/*`; it never writes `ttod.yml`
+- **Cards (no extra edges)** — one card per concern, FE II–synced wording:
+  - Entrega 1 expansion areas (content IA, graph exploration, Oracle recovery, offline ops, test strategy)
+  - Testing stack: Vitest + RTL + Playwright; layers unit → component → contract → route → a11y (U5)
+  - Performance: measure before claiming (U7); containers only run the stack — not the syllabus
+  - Assessment sync: Entrega 1 25% + Mid-term U1–7 15%; process + understanding > black-box demo; AI disclosure required
+- Exact names: `services/frontend` (Astro), content collections, Svelte Graph island, React Oracle island, Caddy `:8080`, `/api/v1/oracle/stream`, `ttod.yml` snapshot, Ollama `localhost:11434`, Vitest, RTL, Playwright
+- Student language: `document`, `island`, `SSE`, `snapshot`, `es`/`en` — avoid studio jargon (`ttod-bridge`, blackbox, C14N, pgvector) unless one card glosses “governed snapshot”
+- Guided views (≤3), titled like course seams:
+  1. Primary request path (browser → snapshot → UI state)
+  2. Document vs island ownership (Entrega 1 architecture defence)
+  3. Streaming Oracle + recovery / offline boundary (U3–U4)
+- Pin repository evidence from `~/src/ttod` when paths exist; sparse edges; omit `via`/`labelAt` until the validator demands one
+
+**Do not invent:** CDN, cloud auth, multi-tenant SaaS, Kubernetes, MCP as a student deliverable, or a second primary path.  
+**Do not draw:** Entrega 2 (R3F / shaders / IoT / Python WebSocket), Entrega 3 / oral defence capstone, CLI quote mutations, or proposal inbox — those are other diagrams or later units.
+
+**Optional companion sequence (separate file):** one Oracle ask — Browser → React island → `POST /api/v1/oracle/stream` → SSE chunks → cited quote UI → empty/error recovery — ≤6 participants; label the view “Mid-term defence: explain this path.”

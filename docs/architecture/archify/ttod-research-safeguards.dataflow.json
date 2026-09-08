@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "TTOD Research Evidence Safeguards",
+    "locale": "en",
+    "output": "ttod-research-safeguards.html",
+    "quality_profile": "showcase",
+    "viewBox": [1080, 520],
+    "views": [
+      {
+        "id": "gated-sources",
+        "label": "Nothing flows without consent",
+        "focus": ["sources", "gate"],
+        "note": "Telemetry, coursework, and oral explanation stay candidate evidence until consent and ethics/data review clear them."
+      },
+      {
+        "id": "separated-datasets",
+        "label": "Distinct datasets, triangulated",
+        "focus": ["gate", "datasets", "triangulation", "validated", "mixed"],
+        "note": "Teaching and research datasets never share an identity. Validated and negative/mixed findings are equally valid outputs."
+      }
+    ]
+  },
+  "stages": [
+    { "label": "Candidate" },
+    { "label": "Gate" },
+    { "label": "Separated" },
+    { "label": "Triangulate" },
+    { "label": "Findings" }
+  ],
+  "nodes": [
+    {
+      "id": "sources",
+      "type": "external",
+      "label": "Candidate evidence",
+      "sublabel": "logs · grades · defence",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "gate",
+      "type": "security",
+      "label": "Ethics review",
+      "sublabel": "consent required",
+      "stage": 1,
+      "row": 1,
+      "tag": "not yet cleared"
+    },
+    {
+      "id": "datasets",
+      "type": "database",
+      "label": "Distinct datasets",
+      "sublabel": "teaching ≠ research",
+      "stage": 2,
+      "row": 1,
+      "tag": "separate identities"
+    },
+    {
+      "id": "triangulation",
+      "type": "backend",
+      "label": "Triangulation",
+      "sublabel": "3 evidence forms",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "validated",
+      "type": "database",
+      "label": "Validated findings",
+      "sublabel": "supports the design",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "mixed",
+      "type": "database",
+      "label": "Mixed findings",
+      "sublabel": "equally valid",
+      "stage": 4,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "sources-gate",
+      "from": "sources",
+      "to": "gate",
+      "label": "with consent only",
+      "classification": "gated",
+      "variant": "dashed"
+    },
+    {
+      "id": "gate-datasets",
+      "from": "gate",
+      "to": "datasets",
+      "label": "authorize",
+      "classification": "governed",
+      "variant": "emphasis"
+    },
+    {
+      "id": "datasets-triangulation",
+      "from": "datasets",
+      "to": "triangulation",
+      "label": "distinct access",
+      "classification": "governed",
+      "variant": "emphasis"
+    },
+    {
+      "id": "triangulation-validated",
+      "from": "triangulation",
+      "to": "validated",
+      "label": "converges",
+      "classification": "derived",
+      "variant": "emphasis"
+    },
+    {
+      "id": "triangulation-mixed",
+      "from": "triangulation",
+      "to": "mixed",
+      "label": "diverges",
+      "classification": "derived",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Nothing flows without authorization",
+      "items": [
+        "Course access and grading never depend on research participation",
+        "Consent and ethics/data review gate every source before it counts as data",
+        "Today: pre-protocol — no source has been authorized yet"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Distinct identities, distinct access",
+      "items": [
+        "Teaching repository and any research dataset never share a store",
+        "Minimization, retention, pseudonymization, withdrawal — settled first",
+        "Reviewer access is defined before any collection begins"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Two evidence forms per claim",
+      "items": [
+        "Never infer understanding from repository activity alone",
+        "Triangulate product behavior, versioned record, and oral defence",
+        "Negative or mixed findings are valid outcomes, not noise"
+      ]
+    }
+  ]
+}

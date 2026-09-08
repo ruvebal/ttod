@@ -42,6 +42,13 @@ pip install -e .                                 # if pyproject present; else: p
 . .venv/bin/activate && python cli.py stats
 ```
 
+**Running the stack (`make up`):** starts the full application, including its own Ollama
+container — nothing to install first, no host dependency. This is the one supported path,
+and what students use. Borrowing an Ollama you already run yourself (e.g. for Metal GPU
+speed outside Docker on macOS) is a personal, manual override, not a `make` target — set
+`OLLAMA_MODE=host` and `OLLAMA_BASE_URL` in your own `.env` if you want it. See the `ollama`
+service in `docker-compose.yml` and the comments in `.env.example` for both paths.
+
 | Path | Role |
 | --- | --- |
 | `ttod.yml` | Canonical quote database (human-governed) |

@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "TTOD System Overview",
+    "locale": "en",
+    "output": "ttod-system-overview.html",
+    "quality_profile": "showcase",
+    "engineering_profile": "deployment-ownership",
+    "viewBox": [1340, 620],
+    "repository": {
+      "url": "https://github.com/ruvebal/ttod",
+      "provider": "github",
+      "revision": "dadacc936d7f050fae66913324c983afe587582d"
+    },
+    "views": [
+      {
+        "id": "governance-path",
+        "label": "Human-governed write path",
+        "focus": ["agents", "bridge", "human", "cli", "yaml", "export"],
+        "note": "Proposals never write the canonical store; only a human-reviewed accept mutates ttod.yml."
+      },
+      {
+        "id": "read-surfaces",
+        "label": "Read-only runtime surfaces",
+        "focus": ["frontend", "oracle", "mcp", "yaml", "export"],
+        "note": "Astro, Oracle, and MCP consume snapshots or exports; they do not own quote identity."
+      },
+      {
+        "id": "local-ai-yours",
+        "label": "Local AI — your own Ollama",
+        "focus": ["oracle", "ollama_host"],
+        "note": "A personal, manual override: Oracle borrows an Ollama you already run via host.docker.internal. Not a make target — set it in .env yourself."
+      },
+      {
+        "id": "local-ai-owned",
+        "label": "Local AI — the app's own Ollama",
+        "focus": ["oracle", "ollama_container"],
+        "note": "The default (make up): Ollama runs inside the Compose network as a component this stack owns — nothing to install."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "agents",
+      "type": "external",
+      "label": "IDE agents",
+      "pos": [36, 400],
+      "size": [120, 56],
+      "sources": [{ "path": "AGENTS.md", "line": 21, "label": "bridge proposals" }]
+    },
+    {
+      "id": "bridge",
+      "type": "backend",
+      "label": "ttod-bridge",
+      "sublabel": "pending/",
+      "pos": [210, 400],
+      "size": [128, 56],
+      "tag": "no write",
+      "sources": [
+        { "path": "ttod_core/bridge.py", "line": 1, "label": "Q4 transport" },
+        { "path": "ttod_core/proposals.py", "line": 1, "label": "proposal model" }
+      ]
+    },
+    {
+      "id": "human",
+      "type": "security",
+      "label": "Human review",
+      "pos": [392, 400],
+      "size": [128, 56],
+      "tag": "authority",
+      "sources": [{ "path": "AGENTS.md", "line": 73, "label": "human accept" }]
+    },
+    {
+      "id": "cli",
+      "type": "backend",
+      "label": "CLI + core",
+      "sublabel": "accept · add",
+      "pos": [574, 400],
+      "size": [132, 56],
+      "tag": "atomic writer",
+      "sources": [
+        { "path": "cli.py", "line": 1, "label": "CLI surface" },
+        { "path": "ttod_core/repository.py", "line": 1, "label": "atomic repo" }
+      ]
+    },
+    {
+      "id": "yaml",
+      "type": "database",
+      "label": "ttod.yml",
+      "sublabel": "canonical",
+      "pos": [760, 400],
+      "size": [128, 56],
+      "tag": "SoT",
+      "sources": [{ "path": "ttod.yml", "line": 1, "label": "quote DB" }]
+    },
+    {
+      "id": "export",
+      "type": "database",
+      "label": "exports/",
+      "sublabel": "JSON · graph",
+      "pos": [942, 400],
+      "size": [120, 56],
+      "tag": "derived · public",
+      "sources": [{ "path": "ttod_core/exporter.py", "line": 1, "label": "C14N export" }]
+    },
+    {
+      "id": "frontend",
+      "type": "frontend",
+      "label": "Astro UI",
+      "pos": [574, 168],
+      "size": [132, 56],
+      "tag": "SSR",
+      "sources": [{ "path": "services/frontend/src/pages/index.astro", "label": "routes" }]
+    },
+    {
+      "id": "oracle",
+      "type": "backend",
+      "label": "Oracle API",
+      "sublabel": "FastAPI",
+      "pos": [760, 168],
+      "size": [128, 56],
+      "tag": "streaming",
+      "sources": [{ "path": "services/backend/app/main.py", "line": 12, "label": "create_app" }]
+    },
+    {
+      "id": "mcp",
+      "type": "backend",
+      "label": "MCP server",
+      "sublabel": "read-only",
+      "pos": [942, 168],
+      "size": [120, 56],
+      "tag": "rights-gated",
+      "sources": [{ "path": "services/mcp/server.py", "line": 1, "label": "FastMCP" }]
+    },
+    {
+      "id": "ollama_host",
+      "type": "external",
+      "label": "Ollama (yours)",
+      "sublabel": ":11434 · your own, manual",
+      "pos": [754, 36],
+      "size": [140, 52],
+      "sources": [{ "path": ".env.example", "line": 14, "label": "manual override" }]
+    },
+    {
+      "id": "ollama_container",
+      "type": "backend",
+      "label": "Ollama (app-owned)",
+      "sublabel": ":11434 · make up default",
+      "pos": [1116, 168],
+      "size": [140, 56],
+      "tag": "owned by this stack",
+      "sources": [{ "path": "docker-compose.yml", "line": 73, "label": "ollama service" }]
+    },
+    {
+      "id": "consumers",
+      "type": "external",
+      "label": "Consumers",
+      "sublabel": "Atelier · DevIAC",
+      "pos": [1116, 400],
+      "size": [128, 56],
+      "sources": [{ "path": "AGENTS.md", "line": 153, "label": "integration" }]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Studio host / repo checkout",
+      "wraps": ["agents", "bridge", "human", "cli", "yaml", "export"],
+      "pad": 18
+    },
+    {
+      "kind": "region",
+      "label": "Docker Compose network",
+      "wraps": ["frontend", "oracle", "mcp", "ollama_container"],
+      "pad": 18
+    },
+    {
+      "kind": "security-group",
+      "label": "Proposal staging",
+      "wraps": ["agents", "bridge"],
+      "pad": 12
+    },
+    {
+      "kind": "security-group",
+      "label": "Human write authority",
+      "wraps": ["human", "cli", "yaml", "export"],
+      "pad": 12
+    }
+  ],
+  "connections": [
+    {
+      "id": "propose",
+      "from": "agents",
+      "to": "bridge",
+      "label": "propose",
+      "variant": "emphasis",
+      "labelDy": 58
+    },
+    {
+      "id": "review",
+      "from": "bridge",
+      "to": "human",
+      "label": "inbox",
+      "variant": "emphasis",
+      "labelDy": 58
+    },
+    {
+      "id": "accept",
+      "from": "human",
+      "to": "cli",
+      "label": "accept",
+      "variant": "security",
+      "labelDy": 58
+    },
+    {
+      "id": "atomic-write",
+      "from": "cli",
+      "to": "yaml",
+      "label": "write",
+      "variant": "emphasis",
+      "labelDy": 58
+    },
+    {
+      "id": "derive-export",
+      "from": "yaml",
+      "to": "export",
+      "label": "export",
+      "variant": "emphasis",
+      "labelDy": 58
+    },
+    {
+      "id": "serve-ui",
+      "from": "frontend",
+      "to": "oracle",
+      "label": "HTTP / SSE",
+      "labelDy": 58
+    },
+    {
+      "id": "oracle-read",
+      "from": "oracle",
+      "to": "yaml",
+      "label": "snapshot",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24,
+      "labelDx": 36
+    },
+    {
+      "id": "oracle-llm-host",
+      "from": "oracle",
+      "to": "ollama_host",
+      "label": "chat · host.docker.internal",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDx": -44
+    },
+    {
+      "id": "oracle-llm-container",
+      "from": "oracle",
+      "to": "ollama_container",
+      "label": "chat · compose DNS",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [[824, 260], [1186, 260]]
+    },
+    {
+      "id": "out-to-studio",
+      "from": "export",
+      "to": "consumers",
+      "label": "JSON",
+      "variant": "dashed",
+      "labelDy": 58
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Trust boundaries",
+      "items": [
+        "Agents and Oracle may stage proposals; they never own quote IDs",
+        "Canonical writes require human review (blackbox → validated_by human)",
+        "MCP and exports are rights-gated public surfaces"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Ownership & licenses",
+      "items": [
+        "TTOD owns ttod.yml identity & CLI mutations",
+        "Code MIT · content CC BY-NC-SA 4.0 — pedagogical, not Athanor/WPL evidence",
+        "Deprecate; never delete. Cite by accepted ID only"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Whose Ollama is it?",
+      "items": [
+        "make up: the app owns its Ollama — a dedicated container, nothing to install, the supported default",
+        "Yours (manual, personal): borrow an Ollama you already run — e.g. Metal GPU speed outside Docker on macOS",
+        "Same Oracle/MCP code either way — only OLLAMA_BASE_URL changes; still no cloud LLM"
+      ]
+    }
+  ]
+}

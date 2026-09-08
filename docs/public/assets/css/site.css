@@ -210,6 +210,26 @@ th { color: var(--ttod-color-accent); }
   text-decoration: none;
 }
 .button:hover { background: var(--ttod-color-botanical); color: var(--ttod-color-paper); }
+.diagram-teaser {
+  margin-block: var(--ttod-space-8);
+  border: 1px solid var(--ttod-color-line-subtle);
+  border-radius: var(--ttod-radius-lg);
+  background: var(--ttod-color-surface-raised);
+  overflow: hidden;
+}
+.diagram-teaser a.diagram-teaser-link { display: block; line-height: 0; }
+.diagram-teaser img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--ttod-color-line-subtle);
+}
+.diagram-teaser figcaption {
+  padding: var(--ttod-space-4) var(--ttod-space-6);
+  color: var(--ttod-color-muted);
+  font-size: var(--ttod-text-sm);
+}
+.diagram-teaser figcaption a { font-weight: 700; }
 .site-footer {
   border-top: 1px solid var(--ttod-color-line-subtle);
   color: var(--ttod-color-muted);

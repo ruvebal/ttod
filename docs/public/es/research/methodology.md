@@ -58,6 +58,13 @@ Estas fuentes sostienen el estudio del proceso y del diseño de la evaluación. 
 - Informar el entorno de aprendizaje, la política de IA, el acceso a herramientas, la experiencia previa, el contexto lingüístico y la profundidad del código de partida para que quien lee pueda juzgar la transferibilidad.
 - Tratar la accesibilidad, la carga de trabajo y la participación diferencial como preguntas de investigación y posibles daños, no meros detalles de implementación.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-research-safeguards.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-research-safeguards.png' | relative_url }}" alt="Diagrama de flujo de datos: evidencia candidata — registros, calificaciones y defensa — filtrada por consentimiento y revisión ética y de datos, autorizada hacia conjuntos de datos docentes y de investigación distintos, y triangulada en hallazgos validados o en hallazgos negativos/mixtos igualmente válidos." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-research-safeguards.html' | relative_url }}">Abrir el diagrama interactivo de salvaguardas ↗</a> — cómo se filtraría la evidencia, cómo se mantendría en conjuntos de datos de acceso distinto, y cómo se triangularía una vez autorizada. (Interfaz en inglés.)</figcaption>
+</figure>
+
 ## Evidencia que aún falta
 
 La preparación de la investigación debe profundizar su evidencia sobre el desvanecimiento del ejemplo trabajado, el trazado de sistemas, la carga cognitiva, el aprendizaje de estudio, la transferencia conceptual de front-end, la autorregulación estudiante–IA más allá de casos de un solo curso y el doble rol docente–investigador. Los clásicos primarios sobre carga cognitiva al aprender software y sobre aprendizaje cognitivo están incompletos o sin metadatos bibliográficos verificados para la cita pública; el lenguaje de pretensión los mantiene por ello como necesidades abiertas de evidencia, no como justificación citada. Los requisitos legales o institucionales vigentes deben verificarse contra fuentes autorizadas cuando se redacte un protocolo.

@@ -1,0 +1,21 @@
+Create a showcase Archify architecture diagram that explains The Tao of Development (TTOD) to instructors and studio partners.
+
+Question to answer: What exists, who owns it, and how is it connected?
+
+Hard constraints:
+- diagram_type: architecture; meta.quality_profile: showcase; meta.locale: en
+- 8–12 core components only (runtime + governance)
+- Exactly one primary path (emphasis): IDE agents → ttod-bridge pending → Human reviewer → CLI + ttod_core → ttod.yml → exports/
+- Side branches only from the nearest main-path node: Astro UI → Oracle API → ttod.yml snapshot; Oracle → Ollama; exports → studio consumers
+- Trust boundaries as regions/security-groups:
+  1) Proposal staging (agents + bridge — no canonical write)
+  2) Human write authority (human + CLI + ttod.yml)
+  3) Read-only runtime (Astro + Oracle + MCP behind Caddy)
+- External dependencies: Ollama (localhost:11434, no cloud LLM); Web Atelier; DevIAC
+- Put licenses (MIT code / CC BY-NC-SA content), rights gating, MCP embed details, and “quotes are pedagogical not WPL evidence” in cards — do not add more edges for those facts
+- Preserve exact names: ttod.yml, cli.py, ttod_core, ttod-bridge, exports/, services/frontend (Astro), services/backend (Oracle FastAPI), services/mcp, Ollama
+- Pin repository evidence from the live checkout (sources on components; --repo-root ~/src/ttod)
+- Sparse labels; prefer short semantic edge labels; omit low-value edges before adding via/labelAt
+- Guided views (≤3): governance path, read surfaces, local AI
+
+Do not invent cloud services, multi-tenant auth, or direct agent writes to ttod.yml.

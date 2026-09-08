@@ -52,6 +52,13 @@ Read the [method and safeguards]({{ '/research/methodology/' | relative_url }}) 
 | Curriculum alignment | scheduled later | bilingual semantic-parity review |
 | Empirical research | pre-protocol, pre-collection | ethics, data, consent or legal-basis review |
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-research-maturity.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-research-maturity.png' | relative_url }}" alt="Lifecycle diagram of the research pathway: design enquiry, protocol drafting, and an ethics and data review gate, with the current position parked before that gate, leading to authorized collection and analysis that converges on validated findings or diverges to equally valid negative or mixed findings." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-research-maturity.html' | relative_url }}">Open the interactive maturity diagram ↗</a> — where empirical research sits today, the gate it must clear next, and why negative or mixed findings count as valid outcomes, not failures.</figcaption>
+</figure>
+
 ## References
 
 - <a id="ref-cs2023"></a>*Computer Science Curricula 2023*. Association for Computing Machinery, IEEE Computer Society, and AAAI. [https://doi.org/10.1145/3664191](https://doi.org/10.1145/3664191).

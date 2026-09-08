@@ -1,0 +1,54 @@
+Create a two-diagram Archify set that shows the TTOD research programme honestly: what
+exists today (pre-protocol design enquiry), what must happen before any data collection is
+authorized, and how evidence would be triangulated afterward without ever letting research
+access depend on course participation.
+
+Source of truth (do not invent beyond these): docs/public/research/index.md,
+docs/public/research/methodology.md, docs/public/audiences/research-funders.md.
+
+Hard constraints (both diagrams):
+- Never claim a study is running, approved, or has collected data. Current state is
+  "pre-protocol, pre-collection" — every diagram must show this as *not yet cleared*,
+  not as achieved.
+- Preserve the epistemic-integrity claim: negative, mixed, or inconclusive findings are
+  explicitly valid outcomes, not failures. Render this as two equally weighted terminal/
+  destination nodes, never one "success" and one "failure".
+- Preserve the safeguard: course access and grading must never depend on research
+  participation. Keep coursework/telemetry/explanation as candidate evidence that only
+  becomes research data after consent + ethics/data-protection review.
+- Preserve: teaching repository and any research dataset must have different identities
+  and access rules (no shared store).
+- Do not name real people, IRB names, institutions, or dates — none are established yet.
+- Cards carry citations/nuance; do not add edges just to attach a reference.
+
+## Diagram 1 — `ttod-research-maturity.lifecycle.json` (diagram_type: lifecycle)
+Question: where does empirical research sit today, and what gate must it clear next?
+- One main rail (5 cols): design enquiry (active, now) → protocol drafting → ethics/data/
+  consent review (decision gate) → authorized collection (waiting) → triangulated analysis
+  (waiting).
+- One event-band state "Pre-protocol, pre-collection — current position" placed under the
+  gate column, connected to the gate with a dashed "not yet cleared" edge — the diagram's
+  single most important honesty signal.
+- Two terminal states from the analysis step, both type `success`: "Validated findings" and
+  "Negative / mixed findings" (equally valid, per the safeguards page).
+- Cards (3, one row): the four artifacts that must not be confused; safeguards that gate
+  any data flow; the other three maturity layers (engineering feasibility, teaching
+  skeleton, curriculum alignment) for context, since they are independent tracks, not
+  phases of this one pathway.
+
+## Diagram 2 — `ttod-research-safeguards.dataflow.json` (diagram_type: dataflow)
+Question: once authorized, how does evidence triangulate without merging datasets?
+- Sources (stage 0, external, gated by consent): engineering telemetry, assessed
+  coursework, oral explanation — each dashed into the gate, labeled "with consent only".
+- Ethics & data review (stage 1, security) → distinct-access datasets (stage 2, security,
+  "teaching ≠ research") → triangulated analysis (stage 3, backend).
+- Two destination nodes (stage 4, database), equally weighted: validated findings and
+  negative/mixed findings.
+- Cards (3, one row): nothing flows without authorization; distinct identities/distinct
+  access; two evidence forms per claim (no inferring understanding from repo activity
+  alone).
+
+Both: quality_profile showcase, locale en, ≤3 cards per row at 1440–1920 reader widths
+(learned from the system-overview/feii-architecture overflow fix — 4 cards wrap to a
+second row and fail visual-check). Validate, deliver, and visual-check at 1440×900,
+1600×1000, 1920×1080, 2048×1320 before treating either as done.

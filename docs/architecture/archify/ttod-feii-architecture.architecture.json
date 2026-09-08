@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "TTOD ↔ FE II — Front-end Architecture (Units 1–7)",
+    "locale": "en",
+    "output": "ttod-feii-architecture.html",
+    "quality_profile": "showcase",
+    "engineering_profile": "deployment-ownership",
+    "viewBox": [
+      1320,
+      640
+    ],
+    "repository": {
+      "url": "https://github.com/ruvebal/ttod",
+      "provider": "github",
+      "revision": "dadacc936d7f050fae66913324c983afe587582d"
+    },
+    "views": [
+      {
+        "id": "request-path",
+        "label": "Primary request path",
+        "focus": [
+          "browser",
+          "caddy",
+          "astro",
+          "shell",
+          "oracle",
+          "api",
+          "snapshot"
+        ],
+        "note": "Browser → document → island → SSE → snapshot → accessible UI state."
+      },
+      {
+        "id": "doc-vs-island",
+        "label": "Document vs island (Entrega 1)",
+        "focus": [
+          "astro",
+          "content",
+          "shell",
+          "oracle",
+          "graph"
+        ],
+        "note": "Astro owns the document; Svelte/React own interactive state only."
+      },
+      {
+        "id": "offline-u4",
+        "label": "Unit 4 offline — content + queue",
+        "focus": [
+          "content",
+          "sw",
+          "shell",
+          "oracle",
+          "queue",
+          "api"
+        ],
+        "note": "Cache-First for built content/shell; Network-First API with IndexedDB queue when Oracle is unreachable."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "Browser",
+      "sublabel": "student client",
+      "pos": [
+        16,
+        240
+      ],
+      "size": [
+        112,
+        56
+      ]
+    },
+    {
+      "id": "caddy",
+      "type": "cloud",
+      "label": "Caddy",
+      "sublabel": ":8080 · /sw.js",
+      "pos": [
+        160,
+        240
+      ],
+      "size": [
+        120,
+        56
+      ],
+      "tag": "infra",
+      "sources": [
+        {
+          "path": "caddy/Caddyfile",
+          "line": 11,
+          "label": "sw header"
+        }
+      ]
+    },
+    {
+      "id": "astro",
+      "type": "frontend",
+      "label": "Astro document",
+      "sublabel": "SSR · routes",
+      "pos": [
+        380,
+        240
+      ],
+      "size": [
+        132,
+        56
+      ],
+      "tag": "U2–U3",
+      "sources": [
+        {
+          "path": "services/frontend/src/pages/[locale]/wisdom/index.astro",
+          "label": "wisdom route"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "type": "database",
+      "label": "Content collections",
+      "sublabel": "es + en build",
+      "pos": [
+        380,
+        140
+      ],
+      "size": [
+        132,
+        56
+      ],
+      "tag": "i18n",
+      "sources": [
+        {
+          "path": "services/frontend/src/content.config.ts",
+          "label": "collections"
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "Page shell",
+      "sublabel": "layouts",
+      "pos": [
+        560,
+        240
+      ],
+      "size": [
+        120,
+        56
+      ],
+      "tag": "U2–U3",
+      "sources": [
+        {
+          "path": "services/frontend/src/layouts/Page.astro",
+          "label": "Page.astro"
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "Oracle API",
+      "sublabel": "Network-First",
+      "pos": [
+        740,
+        240
+      ],
+      "size": [
+        120,
+        56
+      ],
+      "tag": "infra",
+      "sources": [
+        {
+          "path": "services/backend/app/main.py",
+          "line": 37,
+          "label": "oracle stream"
+        }
+      ]
+    },
+    {
+      "id": "snapshot",
+      "type": "database",
+      "label": "Quote snapshot",
+      "sublabel": "ttod.yml read",
+      "pos": [
+        920,
+        240
+      ],
+      "size": [
+        128,
+        56
+      ],
+      "tag": "governed",
+      "sources": [
+        {
+          "path": "services/backend/app/storage.py",
+          "line": 34,
+          "label": "SnapshotService"
+        }
+      ]
+    },
+    {
+      "id": "ollama",
+      "type": "backend",
+      "label": "Ollama",
+      "sublabel": ":11434 · app-owned",
+      "pos": [
+        1090,
+        240
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "infra",
+      "sources": [
+        {
+          "path": "docker-compose.yml",
+          "line": 73,
+          "label": "ollama service"
+        }
+      ]
+    },
+    {
+      "id": "sw",
+      "type": "cloud",
+      "label": "Service worker",
+      "sublabel": "Cache-First",
+      "pos": [
+        160,
+        420
+      ],
+      "size": [
+        120,
+        56
+      ],
+      "tag": "U4 · Entrega 1",
+      "sources": [
+        {
+          "path": "caddy/Caddyfile",
+          "line": 11,
+          "label": "sw.js route"
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "type": "database",
+      "label": "IDB offline queue",
+      "sublabel": "oracle proposals",
+      "pos": [
+        320,
+        420
+      ],
+      "size": [
+        128,
+        56
+      ],
+      "tag": "U4",
+      "sources": [
+        {
+          "path": "services/frontend/src/lib/db.ts",
+          "line": 58,
+          "label": "enqueueOracleQuery"
+        }
+      ]
+    },
+    {
+      "id": "oracle",
+      "type": "frontend",
+      "label": "React Oracle",
+      "sublabel": "island · SSE",
+      "pos": [
+        700,
+        420
+      ],
+      "size": [
+        128,
+        56
+      ],
+      "tag": "U3",
+      "sources": [
+        {
+          "path": "services/frontend/src/components/oracle/OracleTerminal.tsx",
+          "label": "OracleTerminal"
+        },
+        {
+          "path": "services/frontend/src/components/oracle/sse.ts",
+          "label": "sse"
+        }
+      ]
+    },
+    {
+      "id": "graph",
+      "type": "frontend",
+      "label": "Svelte Graph",
+      "sublabel": "island",
+      "pos": [
+        540,
+        420
+      ],
+      "size": [
+        128,
+        56
+      ],
+      "tag": "U3",
+      "sources": [
+        {
+          "path": "services/frontend/src/components/graph/GraphIsland.svelte",
+          "label": "GraphIsland"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Docker Compose network",
+      "wraps": [
+        "caddy",
+        "astro",
+        "content",
+        "shell",
+        "api",
+        "snapshot",
+        "ollama"
+      ],
+      "pad": 18
+    },
+    {
+      "kind": "region",
+      "label": "Browser (client)",
+      "wraps": [
+        "sw",
+        "queue",
+        "oracle",
+        "graph"
+      ],
+      "pad": 18
+    },
+    {
+      "kind": "security-group",
+      "label": "Document ownership (U2–U3)",
+      "wraps": [
+        "astro",
+        "content",
+        "shell"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "security-group",
+      "label": "Service boundary",
+      "wraps": [
+        "api",
+        "snapshot"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "security-group",
+      "label": "U4 offline design",
+      "wraps": [
+        "sw",
+        "queue"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "security-group",
+      "label": "Island ownership (U3)",
+      "wraps": [
+        "oracle",
+        "graph"
+      ],
+      "pad": 12
+    }
+  ],
+  "connections": [
+    {
+      "id": "browse",
+      "from": "browser",
+      "to": "caddy",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "proxy",
+      "from": "caddy",
+      "to": "astro",
+      "label": "document",
+      "variant": "emphasis",
+      "labelDy": 58
+    },
+    {
+      "id": "i18n",
+      "from": "astro",
+      "to": "content",
+      "label": "es / en",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDx": 48
+    },
+    {
+      "id": "register",
+      "from": "browser",
+      "to": "sw",
+      "label": "register",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "precache",
+      "from": "content",
+      "to": "sw",
+      "label": "precache",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "left",
+      "via": [[446, 90], [8, 90], [8, 448]]
+    },
+    {
+      "id": "shell-path",
+      "from": "astro",
+      "to": "shell",
+      "label": "SSR shell",
+      "variant": "emphasis",
+      "labelDy": 58,
+      "labelDx": -60
+    },
+    {
+      "id": "hydrate",
+      "from": "shell",
+      "to": "oracle",
+      "label": "hydrate island",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDx": -20,
+      "labelDy": -38
+    },
+    {
+      "id": "graph-mount",
+      "from": "shell",
+      "to": "graph",
+      "label": "mount",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDx": -40,
+      "labelDy": 30
+    },
+    {
+      "id": "sse",
+      "from": "oracle",
+      "to": "api",
+      "label": "SSE",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDx": -70,
+      "labelDy": 30
+    },
+    {
+      "id": "snap",
+      "from": "api",
+      "to": "snapshot",
+      "label": "snapshot",
+      "variant": "emphasis",
+      "labelDy": 58
+    },
+    {
+      "id": "enqueue",
+      "from": "oracle",
+      "to": "queue",
+      "label": "enqueue",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [[764, 494], [384, 494]]
+    },
+    {
+      "id": "api-llm",
+      "from": "api",
+      "to": "ollama",
+      "label": "chat",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          800,
+          340
+        ],
+        [
+          1160,
+          340
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "Unit 4 offline model (defend this)",
+      "items": [
+        "Astro pages + SW Cache-First serve the built corpus offline",
+        "Oracle failures queue in IndexedDB when API is unreachable",
+        "R6 ships public/sw.js; main only reserves Caddy's /sw.js route"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Entrega 1 expansion (U2–U6)",
+      "items": [
+        "Content IA, mandatory es/en, graph exploration, Oracle recovery",
+        "PWA: installability, cache policy, queue evidence",
+        "Critical Coding for a Better Living"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Testing, performance & assessment (2026-27)",
+      "items": [
+        "Vitest + RTL + Playwright: unit → component → contract → a11y",
+        "Entrega 1 (U2–U6) 25% · Week 7 — Mid-term U1–7 15%",
+        "Ollama runs in its own container, owned by this stack — provided infra, not built by students"
+      ]
+    }
+  ]
+}

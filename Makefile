@@ -19,7 +19,7 @@ HTTP_PORT ?= 8080
 NPM := npm --prefix $(FE)
 
 .PHONY: help env venv \
-	up down rebuild ps logs \
+	up down rebuild ps logs ollama-pull \
 	validate stats snapshot export test check \
 	docs docs-serve docs-clean docs-setup \
 	fe-dev fe-build fe-check \
@@ -51,6 +51,7 @@ env: ## Show toolchain resolutions (python, ruby, docker, bundle, npm)
 	@command -v bundle >/dev/null && bundle --version || echo 'bundle: (not on PATH — run make docs-setup)'
 	@command -v npm >/dev/null && npm --version || echo 'npm: missing'
 	@test -f $(ROOT)/.env && echo 'env: .env present' || echo 'env: copy .env.example → .env'
+	@grep -E '^OLLAMA_MODE=' $(ROOT)/.env 2>/dev/null || echo 'OLLAMA_MODE: (.env missing)'
 
 venv: ## Create .venv (idempotent) and install the editable CLI + service deps
 	@test -d $(ROOT)/.venv || python3 -m venv $(ROOT)/.venv
@@ -64,12 +65,13 @@ venv: ## Create .venv (idempotent) and install the editable CLI + service deps
 # Stack (Docker Compose)
 # ─────────────────────────────────────────────────────────
 
-up: ## Start the instructor reference (build + detach)
+up: ## Start the app — its own Ollama included, nothing to install first
 	@test -f $(ROOT)/.env || cp $(ROOT)/.env.example $(ROOT)/.env
 	@$(COMPOSE) up --build -d
 	@$(COMPOSE) ps
 	@port=$$(grep -E '^HTTP_PORT=' $(ROOT)/.env | tail -1 | cut -d= -f2); \
 	printf 'Open http://localhost:%s (see compose ps for mapped ports)\n' "$${port:-$(HTTP_PORT)}"
+	@printf 'First run on an empty Ollama volume? Pull a model: make ollama-pull\n'
 
 down: ## Stop containers (keeps named volumes)
 	@$(COMPOSE) down
@@ -83,6 +85,9 @@ ps: ## Show compose service status
 
 logs: ## Tail recent compose logs (n=100)
 	@$(COMPOSE) logs --tail=$${n:-100}
+
+ollama-pull: ## Pull a model into the app's own Ollama (model=llama3.2:1b)
+	@$(COMPOSE) exec ollama ollama pull $${model:-llama3.2:1b}
 
 # ─────────────────────────────────────────────────────────
 # Corpus (ttod.yml · cli.py)

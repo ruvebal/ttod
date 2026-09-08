@@ -20,6 +20,13 @@ The project is designed around a distinction that matters in education: a memora
 - Derived JSON and graph views never outrank the canonical source.
 - Pedagogical aphorisms do not independently substantiate research claims.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-wisdom-dataflow.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-wisdom-dataflow.png' | relative_url }}" alt="Diagram of the governed write path: a citable work moves through agent distillation into a pending inbox, a human accept step, the canonical ttod.yml store, and a C14N export read by Web Atelier, DevIAC MCP, and fine-tuning." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-wisdom-dataflow.html' | relative_url }}">Open the interactive data-path diagram ↗</a> — the governed write path from a citable source to canonical acceptance, and the read-only exports every consumer shares.</figcaption>
+</figure>
+
 ## What the platform adds
 
 The application makes those governance choices observable through localized routes, individual quote views, related-content navigation, a graph island, a streaming Oracle island, documentation, and representative quality checks. The platform is currently a local teaching reference, not a public cloud service.

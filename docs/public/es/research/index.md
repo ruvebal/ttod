@@ -53,6 +53,13 @@ Leer el [método y las salvaguardas]({{ '/es/research/methodology/' | relative_u
 | Alineación curricular | programada más adelante | revisión bilingüe de paridad semántica |
 | Investigación empírica | pre-protocolo, pre-recogida | ética, datos, consentimiento o revisión de base jurídica |
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-research-maturity.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-research-maturity.png' | relative_url }}" alt="Diagrama de ciclo de vida de la ruta de investigación: indagación de diseño, redacción del protocolo y una revisión ética y de datos, con la posición actual detenida antes de ese umbral, hacia una recogida autorizada y un análisis que converge en hallazgos validados o diverge en hallazgos negativos o mixtos igualmente válidos." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-research-maturity.html' | relative_url }}">Abrir el diagrama interactivo de madurez ↗</a> — dónde está hoy la investigación empírica, el umbral que debe superar a continuación, y por qué los hallazgos negativos o mixtos cuentan como resultados válidos, no como fracasos. (Interfaz en inglés.)</figcaption>
+</figure>
+
 ## Referencias
 
 - <a id="ref-cs2023"></a>*Computer Science Curricula 2023*. Association for Computing Machinery, IEEE Computer Society, and AAAI. [https://doi.org/10.1145/3664191](https://doi.org/10.1145/3664191).

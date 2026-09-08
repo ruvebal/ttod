@@ -21,6 +21,13 @@ El proyecto se articula en torno a una distinción que importa en educación: un
 - Las vistas JSON y de grafo derivadas nunca prevalecen sobre la fuente canónica.
 - Los aforismos pedagógicos no sustentan por sí solos pretensiones de investigación.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-wisdom-dataflow.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-wisdom-dataflow.png' | relative_url }}" alt="Diagrama del camino gobernado de escritura: una fuente citable pasa por la destilación de un agente hacia una bandeja pendiente, un paso de aceptación humana, el almacén canónico ttod.yml y una exportación C14N que leen Web Atelier, DevIAC MCP y el ajuste fino." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-wisdom-dataflow.html' | relative_url }}">Abrir el diagrama interactivo del flujo de datos ↗</a> — el camino gobernado desde una fuente citable hasta la aceptación canónica, y las exportaciones de solo lectura que comparte cada consumidor. (Interfaz en inglés.)</figcaption>
+</figure>
+
 ## Lo que añade la plataforma
 
 La aplicación hace observables esas decisiones mediante rutas localizadas, vistas de citas individuales, navegación de contenido relacionado, una isla de grafo, una isla Oracle en flujo, documentación y comprobaciones de calidad representativas. Por ahora, la plataforma es una referencia docente local, no un servicio público en la nube.

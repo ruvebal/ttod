@@ -57,6 +57,13 @@ These sources support studying process and assessment design. They do not establ
 - Report the learning setting, AI policy, tool access, prior experience, language context, and starter-code depth so readers can judge transferability.
 - Treat accessibility, workload, and differential participation as research questions and possible harms—not merely implementation details.
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-research-safeguards.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-research-safeguards.png' | relative_url }}" alt="Data-flow diagram showing candidate evidence — logs, grades, and defence — gated by consent and ethics/data review, authorized into distinct teaching and research datasets, and triangulated into either validated findings or equally valid negative/mixed findings." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-research-safeguards.html' | relative_url }}">Open the interactive safeguards diagram ↗</a> — how evidence would be gated, kept in distinct-access datasets, and triangulated once authorized.</figcaption>
+</figure>
+
 ## Evidence still needed
 
 The research preparation must deepen its evidence on worked-example fading, system tracing, cognitive load, studio learning, front-end conceptual transfer, student–AI self-regulation beyond single-course cases, and the dual teacher–researcher role. Primary classics on cognitive load while learning software and on cognitive apprenticeship are present incompletely or without verified bibliographic metadata for public citation; claim language therefore keeps them as open evidence needs rather than cited warrants. Current legal or institutional requirements must be verified against authoritative sources when a protocol is drafted.

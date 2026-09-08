@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "TTOD Wisdom Data Path",
+    "locale": "en",
+    "output": "ttod-wisdom-dataflow.html",
+    "quality_profile": "showcase",
+    "viewBox": [1080, 520],
+    "views": [
+      {
+        "id": "governed-write",
+        "label": "Governed write path",
+        "focus": ["source", "distill", "pending", "review", "canonical"],
+        "note": "Aphorisms enter only through human-reviewed acceptance into ttod.yml."
+      },
+      {
+        "id": "derived-read",
+        "label": "Derived read surfaces",
+        "focus": ["canonical", "export", "consumers"],
+        "note": "Exports feed Atelier, DevIAC/MCP, and fine-tuning — never reverse-write the SoT."
+      }
+    ]
+  },
+  "stages": [
+    { "label": "Source" },
+    { "label": "Propose" },
+    { "label": "Govern" },
+    { "label": "Canonical" },
+    { "label": "Consume" }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "type": "external",
+      "label": "Citable work",
+      "sublabel": "lesson · session",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "distill",
+      "type": "backend",
+      "label": "Agent distill",
+      "sublabel": "ttod-bridge",
+      "stage": 1,
+      "row": 1,
+      "tag": "blackbox"
+    },
+    {
+      "id": "pending",
+      "type": "security",
+      "label": "Pending inbox",
+      "sublabel": "proposals/",
+      "stage": 2,
+      "row": 0,
+      "tag": "no write"
+    },
+    {
+      "id": "review",
+      "type": "security",
+      "label": "Human accept",
+      "sublabel": "reviewer-id",
+      "stage": 2,
+      "row": 2,
+      "tag": "authority"
+    },
+    {
+      "id": "canonical",
+      "type": "database",
+      "label": "ttod.yml",
+      "sublabel": "quote SoT",
+      "stage": 3,
+      "row": 1,
+      "tag": "v3"
+    },
+    {
+      "id": "export",
+      "type": "database",
+      "label": "exports/",
+      "sublabel": "JSON · graph",
+      "stage": 4,
+      "row": 0,
+      "tag": "C14N"
+    },
+    {
+      "id": "consumers",
+      "type": "external",
+      "label": "Studio consumers",
+      "sublabel": "Atelier · DevIAC",
+      "stage": 4,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "cite",
+      "from": "source",
+      "to": "distill",
+      "label": "grounded insight",
+      "classification": "pedagogical",
+      "variant": "emphasis"
+    },
+    {
+      "id": "stage",
+      "from": "distill",
+      "to": "pending",
+      "label": "propose",
+      "classification": "blackbox",
+      "variant": "dashed"
+    },
+    {
+      "id": "handoff",
+      "from": "pending",
+      "to": "review",
+      "label": "review",
+      "classification": "human gate",
+      "variant": "security",
+      "labelDy": 24
+    },
+    {
+      "id": "commit",
+      "from": "review",
+      "to": "canonical",
+      "label": "accept",
+      "classification": "canonical",
+      "variant": "emphasis"
+    },
+    {
+      "id": "derive",
+      "from": "canonical",
+      "to": "export",
+      "label": "C14N export",
+      "classification": "derived",
+      "variant": "emphasis"
+    },
+    {
+      "id": "out",
+      "from": "export",
+      "to": "consumers",
+      "label": "JSON / graph",
+      "classification": "public",
+      "variant": "dashed",
+      "labelDy": 24
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Primary data path",
+      "items": [
+        "Citable work → agent propose → pending → human accept → ttod.yml → C14N export",
+        "Consumers read exports or public snapshots only",
+        "Pending proposals never allocate canonical IDs"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Studio consumers",
+      "items": [
+        "Web Atelier: site.data.ttod and lesson cites by accepted ID",
+        "DevIAC MCP / pgvector: rights-gated public JSON ingest",
+        "Fine-tuning: prepare_data.py reads the governed corpus"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Governance gate",
+      "items": [
+        "origin: blackbox requires validated_by: human",
+        "CLI accept / add needs --reviewer-id",
+        "Quotes are pedagogical — not Athanor/WPL evidence; CC BY-NC-SA 4.0 content"
+      ]
+    }
+  ]
+}

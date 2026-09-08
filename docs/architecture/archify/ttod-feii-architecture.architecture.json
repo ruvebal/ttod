@@ -511,7 +511,7 @@
       "items": [
         "Astro pages + SW Cache-First serve the built corpus offline",
         "Oracle failures queue in IndexedDB when API is unreachable",
-        "R6 ships public/sw.js; main only reserves Caddy's /sw.js route"
+        "Entrega 1 ships public/sw.js; main only reserves Caddy's /sw.js route"
       ]
     },
     {

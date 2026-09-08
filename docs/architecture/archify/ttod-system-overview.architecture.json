@@ -30,7 +30,7 @@
         "id": "local-ai-yours",
         "label": "Local AI — your own Ollama",
         "focus": ["oracle", "ollama_host"],
-        "note": "A personal, manual override: Oracle borrows an Ollama you already run via host.docker.internal. Not a make target — set it in .env yourself."
+        "note": "A personal, manual override: Oracle borrows an Ollama you already run via Docker host gateway. Not a make target — set it in .env yourself."
       },
       {
         "id": "local-ai-owned",
@@ -58,7 +58,7 @@
       "size": [128, 56],
       "tag": "no write",
       "sources": [
-        { "path": "ttod_core/bridge.py", "line": 1, "label": "Q4 transport" },
+        { "path": "ttod_core/bridge.py", "line": 1, "label": "bridge transport" },
         { "path": "ttod_core/proposals.py", "line": 1, "label": "proposal model" }
       ]
     },
@@ -251,7 +251,7 @@
       "id": "oracle-llm-host",
       "from": "oracle",
       "to": "ollama_host",
-      "label": "chat · host.docker.internal",
+      "label": "chat · Docker host gateway",
       "variant": "dashed",
       "fromSide": "top",
       "toSide": "bottom",

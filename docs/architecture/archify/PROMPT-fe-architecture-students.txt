@@ -51,7 +51,7 @@ Site tagline is exactly **"Critical Coding for a Better Living"** — never exte
   - Astro → content collections / i18n contract (Units 2–3)
   - Content collections + page shell → Service worker **Cache-First** (Unit 4 / Entrega 1): built wisdom/docs pages are the offline corpus — not an Oracle-only stub
   - React Oracle → IndexedDB offline queue when API is unreachable (Network-First API); Ollama remains online-path only
-  - Honest card: R6 full `public/sw.js` is student-owned; reference `main` may only expose Caddy `/sw.js` headers + `db.ts` queue until the cohort ships the SW
+  - Honest card: the PWA/`public/sw.js` milestone is student-owned; reference `main` may only expose Caddy `/sw.js` headers + `db.ts` queue until the cohort ships the SW
 - Ownership boundaries (student-readable; map to Entrega 1 defence language):
   1. **Document ownership (U2–U3)** — Astro owns HTML, SSR/islands shell, localization, content-oriented routes
   2. **Island ownership (U3)** — Svelte/React own interactive state; they do not own the document

@@ -27,6 +27,15 @@ After every development iteration, distilled insights may flow back through the 
 
 ```bash
 cd ~/src/ttod
+make help                                        # root task surface (Compose · CLI · Jekyll · Astro)
+make venv                                        # once — .venv + editable install
+make validate                                    # or: .venv/bin/python cli.py validate
+make stats
+```
+
+Legacy one-liner (same corpus tools without Make):
+
+```bash
 python3 -m venv .venv && . .venv/bin/activate   # once
 pip install -e .                                 # if pyproject present; else: pip install typer pyyaml
 . .venv/bin/activate && python cli.py validate
@@ -128,6 +137,8 @@ Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml`
 ## Verification before claiming done
 
 ```bash
+make check                                                  # validate --strict + stats --check + unittest
+# or without Make:
 . .venv/bin/activate && python cli.py validate --strict --json  # must exit 0
 . .venv/bin/activate && python cli.py stats --check             # meta must match recomputed
 python -m unittest discover -s tests -p 'test_*.py'            # full suite must be green (count grows — do not hardcode it, this line itself went stale once already)

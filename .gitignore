@@ -32,3 +32,9 @@ test-results/
 *.egg-info/
 .coverage
 htmlcov/
+
+# Jekyll / Bundler build artifacts under docs/public (ruby-version is pinned and tracked)
+docs/public/_site/
+docs/public/.bundle/
+docs/public/vendor/
+docs/public/Gemfile.lock

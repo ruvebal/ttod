@@ -39,6 +39,14 @@ services:
       ORACLE_RETRIEVAL_THRESHOLD: ${ORACLE_RETRIEVAL_THRESHOLD:-0.575}
       ORACLE_RETRIEVAL_TOP_K: ${ORACLE_RETRIEVAL_TOP_K:-5}
       MCP_SERVER_URL: http://mcp-server:3001
+      TTOD_SESSION_SECRET: ${TTOD_SESSION_SECRET:-dev-insecure-session-secret-not-for-production}
+      TTOD_PAT_SECRET: ${TTOD_PAT_SECRET:-dev-insecure-pat-secret-not-for-production}
+      TTOD_SESSION_COOKIE_NAME: ${TTOD_SESSION_COOKIE_NAME:-ttod_session}
+      TTOD_SEED_USER_EMAIL: ${TTOD_SEED_USER_EMAIL:-student@ttod.local}
+      TTOD_SEED_USER_PASSWORD: ${TTOD_SEED_USER_PASSWORD:-ttod-teaching-only-not-a-real-password}
+      TTOD_SEED_USER_DISPLAY_NAME: ${TTOD_SEED_USER_DISPLAY_NAME:-Cohort Student}
+      TTOD_SEED_USER_ROLE: ${TTOD_SEED_USER_ROLE:-student}
+      TTOD_SEED_USER_ID: ${TTOD_SEED_USER_ID:-user-seed-student}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:

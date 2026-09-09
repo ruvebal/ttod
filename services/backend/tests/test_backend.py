@@ -131,6 +131,51 @@ class BackendTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "MCP semantic retrieval unavailable"):
             asyncio.run(client.semantic_retrieval("query", top_k=5, context_tag=None, section=None))
 
+    def test_auth_login_me_token_logout_are_separate_credentials(self):
+        settings = self.settings
+        email = settings.seed_user_email
+        password = settings.seed_user_password
+        self.assertEqual(self.client.get("/api/v1/auth/me").status_code, 401)
+        self.assertEqual(self.client.post("/api/v1/auth/token").status_code, 401)
+        bad = self.client.post("/api/v1/auth/login", json={"email": email, "password": "wrong-password"})
+        self.assertEqual(bad.status_code, 401)
+        self.assertNotIn("wrong-password", bad.text)
+        self.assertNotIn(password, bad.text)
+        login = self.client.post("/api/v1/auth/login", json={"email": email, "password": password})
+        self.assertEqual(login.status_code, 200)
+        body = login.json()
+        self.assertEqual(body["email"], email)
+        self.assertNotIn(password, login.text)
+        set_cookie = login.headers.get("set-cookie", "")
+        self.assertIn(settings.session_cookie_name, set_cookie.lower())
+        self.assertIn("httponly", set_cookie.lower())
+        me = self.client.get("/api/v1/auth/me")
+        self.assertEqual(me.status_code, 200)
+        self.assertEqual(me.json()["email"], email)
+        token_res = self.client.post("/api/v1/auth/token")
+        self.assertEqual(token_res.status_code, 200)
+        token_body = token_res.json()
+        token = token_body["token"]
+        self.assertEqual(token_body["token_type"], "Bearer")
+        self.assertTrue(token_body["shown_once"])
+        session_cookie = self.client.cookies.get(settings.session_cookie_name)
+        self.assertIsNotNone(session_cookie)
+        self.assertNotEqual(token, session_cookie)
+        issued = self.client.app.state.auth.read_pat(token)
+        self.assertIsNotNone(issued)
+        self.assertEqual(issued.id, body["id"])
+        logout = self.client.post("/api/v1/auth/logout")
+        self.assertEqual(logout.status_code, 204)
+        self.assertEqual(self.client.get("/api/v1/auth/me").status_code, 401)
+        self.assertEqual(self.client.post("/api/v1/auth/token").status_code, 401)
+
+    def test_auth_does_not_import_ttod_core_repository(self):
+        import inspect
+        from services.backend.app import auth as auth_mod
+        source = inspect.getsource(auth_mod)
+        self.assertNotIn("from ttod_core", source)
+        self.assertNotIn("import ttod_core", source)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -51,6 +51,13 @@ copy cli.py
 copy pyproject.toml
 copy tests
 copy proposals
+# proposals/manifests/ holds internal batch-run audit records (Phase S5 translation runs) full of
+# instructor machine paths — not proposal content, not something a student needs.
+rm -rf "$DEST/proposals/manifests"
+# This one test file exercises agentic/report-steward's own tooling (the privacy watcher itself),
+# not TTOD's domain logic — its fixtures necessarily contain an internal-hostname example string
+# to verify detection works, which is not a real leak but does trip this exact check.
+rm -f "$DEST/tests/test_public_privacy_watcher.py"
 
 # The working app: backend (R1), MCP (R2), frontend (R3a shell + TS3/TS4 hello-world slices +
 # every module's ASSIGNMENT.md, already embedded under services/frontend/**)
@@ -66,6 +73,8 @@ copy CLAUDE.md
 copy LICENSE-CODE
 copy LICENSE-CONTENT
 copy Makefile
+mkdir -p "$DEST/.cursor/rules"
+copy .cursor/rules/ttod-editing.mdc
 
 # Reviewer/student PR workflow — the same CI gate and rubric-as-checklist students' own PRs run
 # against. These three postdate skeleton/ts5-hello-world's fork point (it forked from
@@ -81,9 +90,137 @@ copy docs/public/audiences/students.md
 copy docs/public/es/teaching
 copy docs/public/es/audiences/students.md
 
-echo "== Patching AGENTS.md: drop the instructor's absolute repository path =="
-sed -i.bak "s#\`/Users/ruvebal/src/ttod\`#the repository root#" "$DEST/AGENTS.md"
-rm -f "$DEST/AGENTS.md.bak"
+echo "== Rewriting AGENTS.md's studio-specific sections for the standalone student repo =="
+# Not a cosmetic patch: the source AGENTS.md references ttod-bridge (a skill in a *sibling* studio
+# repo students don't have), docs/DEV_PLAN (excluded from this artifact), and an Integration table
+# of other studio repos (Web Atelier, DevIAC, Arkadia) with zero relevance to a standalone student
+# clone. Left as-is, every one of those is a broken link or a pointer into nothing. Rewritten here
+# to describe the mechanisms this artifact actually ships: cli.py directly, and the propose-form
+# to PR to CI-accept pipeline (.github/workflows/proposal-accept.yml).
+python3 - "$DEST/AGENTS.md" <<'PYEOF'
+import re, sys
+path = sys.argv[1]
+text = open(path).read()
+
+text = text.replace(
+    "**Repository:** `/Users/ruvebal/src/ttod`",
+    "**Repository:** the repository root",
+)
+
+text = text.replace(
+    "Read this file before editing quotes, running the CLI, or proposing new aphorisms. Phase Q contract:\n[`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md).",
+    "Read this file before editing quotes, running the CLI, or proposing new aphorisms.",
+)
+
+text = text.replace("\ncd ~/src/ttod\n", "\ncd <repository root>\n")
+
+text = text.replace(
+    "\nAfter every development iteration, distilled insights may flow back through the **ttod-bridge**\n(`~/src/.cursor/skills/ttod-bridge/`) as **proposals**, not direct YAML edits.\n",
+    "",
+)
+
+text = text.replace(
+    "make help                                        # root task surface (Compose · CLI · Jekyll · Astro)",
+    "make help                                        # root task surface (Compose · CLI · Astro)",
+)
+
+text = text.replace(
+    "| `sources/tao-of-ai-development/` | Parked chapter — **not merged**; read README before extracting IDs |\n"
+    "| `sources/tao-of-human-centered-design/` | Parked HCD chapter (hc-app-design) — **not merged**; read README before extracting IDs |\n",
+    "",
+)
+
+text = text.replace(
+    '''### Read or search (any agent)
+
+```bash
+~/src/ttod/.venv/bin/python -c "
+import sys; sys.path.insert(0, '$HOME/src/.cursor/skills/ttod-bridge/scripts')
+from ttod_cli_adapter import TTODCliAdapter
+a = TTODCliAdapter()
+print(a.read_quote('arch-001'))
+print(a.search_quotes(section='wisdom', theme='simplicity', limit=3))
+"
+```
+
+Use the **ttod-bridge** skill for propose/search/read — never parse `ttod.yml` ad hoc in forge skills.
+
+### Propose a new quote (never merge)
+
+1. Distill only from a **citable source** (lesson, grounded research, studio session).
+2. Call `adapter.propose_quote(...)` — writes to `~/src/.cursor/skills/ttod-bridge/pending/`.
+3. A **human** reviews, then `proposal import` → `proposal accept --reviewer-id …` (or ttod-bridge accept path when wired).
+4. Every `origin: blackbox` entry needs `validated_by: human` before it counts as accepted.''',
+    '''### Read or search
+
+```bash
+python cli.py export --format json          # full corpus as JSON
+python cli.py stats                          # section/level/tag breakdown
+```
+
+Never parse `ttod.yml` ad hoc — go through `cli.py` or `ttod_core` so schema and digest logic stay
+in one place.
+
+### Propose a new quote (never merge)
+
+1. Distill only from a **citable source** (a lesson, grounded research, your own session notes).
+2. `python cli.py proposal create --section <id> --text "..." --proposer-id <you>` — or, once
+   logged in, the web propose form, which calls the same primitive.
+3. Either opens/updates a PR under `proposals/` for a human reviewer. On approval,
+   `.github/workflows/proposal-accept.yml` computes the `ttod.yml` diff — a second human approval
+   and merge is what actually lands it (see that workflow's own comments for why).
+4. Every `origin: blackbox` entry needs a human-reviewed acceptance before it counts.''',
+)
+
+text = text.replace(
+    "schema_version: '3.1.0'         # after Phase S S2′; fixtures may still show 3.0.0+lang during S1′",
+    "schema_version: '3.1.0'",
+)
+
+text = text.replace("**ID / language policy (Phase S):**", "**ID / language policy:**")
+
+text = text.replace(
+    "\n. .venv/bin/activate && python cli.py stats --check             # meta must match recomputed\n"
+    "python -m unittest discover -s tests -p 'test_*.py'            # full suite must be green (count grows — do not hardcode it, this line itself went stale once already)\n"
+    "~/src/ttod/.venv/bin/python ~/src/.cursor/skills/ttod-bridge/scripts/tests/test_ttod_bridge.py\n",
+    "\n. .venv/bin/activate && python cli.py stats --check             # meta must match recomputed\n"
+    "python -m unittest discover -s tests -p 'test_*.py'            # full suite must be green (count grows — do not hardcode it)\n",
+)
+
+text = text.replace(
+    "4. NC content default: see [`docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md`](docs/DEV_PLAN/DECISIONS/Q0-2026-08-18-RIGHTS-LICENSE-NC.md). Do not silently relicense.",
+    "4. NC content default: unresolved/new quotes default to `rights.license: CC-BY-NC-SA-4.0`. Do not silently relicense.",
+)
+
+text = re.sub(
+    r"\n---\n\n## Integration\n\n\|.*?\n\n---\n",
+    "\n---\n",
+    text,
+    flags=re.S,
+)
+
+text = text.replace(
+    '''| Doc | When |
+| --- | --- |
+| [`INDEX.md`](INDEX.md) | Public readme + constitutional boundary |
+| [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md) | Phase Q programme state |
+| [`~/src/.cursor/skills/ttod-bridge/SKILL.md`](../../.cursor/skills/ttod-bridge/SKILL.md) | Propose/read contract |
+| [`.cursor/rules/ttod-editing.mdc`](.cursor/rules/ttod-editing.mdc) | YAML editing gate |''',
+    '''| Doc | When |
+| --- | --- |
+| [`README.md`](README.md) | Start here — how to run the app locally, where each module's assignment lives |
+| [`docs/public/teaching/index.md`](docs/public/teaching/index.md) | How this maps to FE II Units 1–7 |
+| [`docs/public/audiences/students.md`](docs/public/audiences/students.md) | What you're expected to build and defend |
+| [`.cursor/rules/ttod-editing.mdc`](.cursor/rules/ttod-editing.mdc) | YAML editing gate |''',
+)
+
+open(path, "w").write(text)
+PYEOF
+
+echo "== Stripping internal phase-code jargon from student-facing PWA files =="
+sed -i.bak "s/# Assignment — PWA \/ local operations (R6)/# Assignment — PWA \/ local operations/" "$DEST/services/frontend/public/ASSIGNMENT.md"
+sed -i.bak "s/TTOD FE II — PWA hello-world stub (Phase U TS4a)\./TTOD FE II — PWA hello-world stub./" "$DEST/services/frontend/public/sw.js"
+rm -f "$DEST/services/frontend/public/ASSIGNMENT.md.bak" "$DEST/services/frontend/public/sw.js.bak"
 
 echo "== Trimming Makefile: docs-* targets assume the full docs/public Jekyll scaffold, which this artifact does not carry =="
 python3 - "$DEST/Makefile" <<'PYEOF'

@@ -9,6 +9,7 @@ import '../styles/tokens.css';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#fbf8f1" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/visual-system/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/visual-system/tokens.css" />
     <link rel="stylesheet" href="/visual-system/backgrounds.css" />
@@ -19,7 +20,54 @@ import '../styles/tokens.css';
       nav { display: flex; gap: 1rem; font-family: ui-sans-serif, system-ui, sans-serif; }
       article { border-inline-start: .25rem solid var(--ttod-color-accent); margin-block: 2rem; padding-inline: 1.5rem; }
       .meta { font-family: ui-sans-serif, system-ui, sans-serif; font-size: .9rem; opacity: .8; }
+      .ttod-network-boundary {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        margin: 0 0 1.5rem;
+        padding: 0.5rem 0.75rem;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.9rem;
+        border: 1px solid var(--ttod-color-line, #8f8068);
+        background: var(--ttod-color-surface, #f1eadb);
+      }
+      .ttod-network-boundary[data-state="offline"] {
+        background: #211c15;
+        color: #fbf8f1;
+        border-color: #211c15;
+      }
     </style>
   </head>
-  <body class="ttod-bg-river"><slot /></body>
+  <body class="ttod-bg-river">
+    <p id="ttod-network-boundary" class="ttod-network-boundary" role="status" aria-live="polite">
+      Network: checking…
+    </p>
+    <slot />
+    <script is:inline>
+      (function registerServiceWorkerStub() {
+        if (!('serviceWorker' in navigator)) {
+          return;
+        }
+        navigator.serviceWorker.register('/sw.js').catch(function (error) {
+          console.warn('[ttod-sw] registration failed', error);
+        });
+      })();
+      (function observeNetworkBoundary() {
+        var banner = document.getElementById('ttod-network-boundary');
+        if (!banner) {
+          return;
+        }
+        function renderNetworkBoundary() {
+          var online = navigator.onLine;
+          banner.dataset.state = online ? 'online' : 'offline';
+          banner.textContent = online
+            ? 'Network: online — hello-world stub; toggle DevTools Network → Offline to see this change.'
+            : 'Network: offline — local/offline boundary is visible. This stub does not serve the whole app from cache.';
+        }
+        renderNetworkBoundary();
+        window.addEventListener('online', renderNetworkBoundary);
+        window.addEventListener('offline', renderNetworkBoundary);
+      })();
+    </script>
+  </body>
 </html>

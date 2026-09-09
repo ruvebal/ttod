@@ -1,13 +1,18 @@
 import type { OracleResponseChunk } from '../../types/domain';
 
+function isStringList(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === 'string');
+}
+
 function isChunk(value: unknown): value is OracleResponseChunk {
   if (!value || typeof value !== 'object') return false;
   const candidate = value as Partial<OracleResponseChunk>;
   return (
     (candidate.mode === 'grounded' || candidate.mode === 'creative') &&
     typeof candidate.text === 'string' &&
-    (candidate.citedQuoteIds === undefined ||
-      (Array.isArray(candidate.citedQuoteIds) && candidate.citedQuoteIds.every((id) => typeof id === 'string')))
+    (candidate.citedQuoteIds === undefined || isStringList(candidate.citedQuoteIds)) &&
+    (candidate.themes === undefined || isStringList(candidate.themes)) &&
+    (candidate.tags === undefined || isStringList(candidate.tags))
   );
 }
 

@@ -13,9 +13,12 @@
 .oracle-segment p { margin: .35rem 0; white-space: pre-wrap; }
 .oracle-grounded { border-color: #58a88a; background: #173129; }
 .oracle-creative { border-color: #c27a58; background: #3a211b; }
-.oracle-mode { display: block; font: 700 .72rem ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.oracle-mode { display: block; margin-bottom: 0.35rem; font: 700 .72rem ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
 .oracle-grounded .oracle-mode { color: #8de2bf; }
 .oracle-creative .oracle-mode { color: #ffb18c; }
+.oracle-anchors { margin: 0 0 0.65rem; color: #c9b8a8; font-size: 0.85rem; line-height: 1.5; }
+.oracle-anchors span { margin-right: 0.35rem; opacity: 0.8; }
+.oracle-anchors code { display: inline-block; margin: 0.1rem 0.35rem 0.1rem 0; padding: 0.05rem 0.35rem; border: 1px solid #6d5b4e; border-radius: 0.25rem; color: #f0e6dc; }
 .oracle-citations { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0 0; padding: 0; list-style: none; }
 .oracle-citations a { color: #a8e9cf; }
 .oracle-notice { border: 1px solid #97854e; padding: .65rem; color: #f1d67f; }

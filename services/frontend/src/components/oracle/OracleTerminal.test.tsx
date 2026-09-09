@@ -38,33 +38,43 @@ describe('OracleTerminal governance and URL context', () => {
 
   it('discloses creative mode, reads tag at submission, and proposes only after an explicit click', async () => {
     const fetchMock = vi.fn()
-      .mockResolvedValueOnce(sseResponse([{ mode: 'creative', text: 'A new reflection.' }]))
+      .mockResolvedValueOnce(sseResponse([{
+        mode: 'creative', text: 'A new reflection.', themes: ['wisdom'], tags: ['simplicity'],
+      }]))
       .mockResolvedValueOnce(new Response(JSON.stringify({ status: 'proposed' }), { status: 201 }));
     vi.stubGlobal('fetch', fetchMock);
     render(<OracleTerminal locale="en" />);
 
-    fireEvent.change(screen.getByPlaceholderText(/Ask about/), { target: { value: 'How should I simplify?' } });
+    fireEvent.change(screen.getByPlaceholderText(/practice question/), { target: { value: 'How should I simplify?' } });
     fireEvent.click(screen.getByRole('button', { name: 'Ask' }));
 
-    expect(await screen.findByText('Creative reflection — not sourced from a TTOD quote')).toBeVisible();
+    expect(await screen.findByText('Oracular voice — no strong TTOD match')).toBeVisible();
+    expect(screen.getByText(/Thematic anchors/)).toBeVisible();
+    expect(screen.getByText('wisdom')).toBeVisible();
     expect(screen.queryByLabelText('Grounded in the TTOD corpus')).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({ contextTag: 'simplicity' });
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      contextTag: 'simplicity', locale: 'en',
+    });
 
     fireEvent.click(screen.getByRole('button', { name: 'Save as a draft proposal' }));
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
     expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({
-      query: 'How should I simplify?', creativeAnswer: 'A new reflection.',
+      query: 'How should I simplify?',
+      creativeAnswer: 'A new reflection.',
+      locale: 'en',
+      suggestedTags: ['simplicity'],
+      suggestedSection: 'wisdom',
     });
     expect(await screen.findByText(/Saved as a draft proposal/)).toHaveTextContent('acceptance path is not yet operational');
   });
 
   it('renders grounded citations without exposing the proposal action', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(sseResponse([
-      { mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'Grounded answer.' },
+      { mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'Grounded answer.', themes: ['wisdom'], tags: ['simplicity'] },
     ])));
     render(<OracleTerminal locale="en" />);
-    fireEvent.change(screen.getByPlaceholderText(/Ask about/), { target: { value: 'A grounded question' } });
+    fireEvent.change(screen.getByPlaceholderText(/practice question/), { target: { value: 'A grounded question' } });
     fireEvent.click(screen.getByRole('button', { name: 'Ask' }));
     expect(await screen.findByText('Grounded in the TTOD corpus')).toBeVisible();
     expect(screen.getByRole('link', { name: 'wis-001' })).toHaveAttribute('href', '/en/wisdom/wis-001');
@@ -74,11 +84,11 @@ describe('OracleTerminal governance and URL context', () => {
   it('queues an unreachable query instead of using an alternate inference path', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('network unavailable')));
     render(<OracleTerminal locale="en" />);
-    fireEvent.change(screen.getByPlaceholderText(/Ask about/), { target: { value: 'Queue this' } });
+    fireEvent.change(screen.getByPlaceholderText(/practice question/), { target: { value: 'Queue this' } });
     fireEvent.click(screen.getByRole('button', { name: 'Ask' }));
     expect(await screen.findByText(/safely queued on this device/)).toBeVisible();
     expect(queueMocks.enqueueOracleQuery).toHaveBeenCalledWith(expect.objectContaining({
-      query: 'Queue this', contextTag: 'simplicity', sessionHistory: [],
+      query: 'Queue this', contextTag: 'simplicity', sessionHistory: [], locale: 'en',
     }));
   });
 });

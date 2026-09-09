@@ -34,11 +34,14 @@ export interface OracleQueryPayload {
   query: string;
   contextTag?: string;
   sessionHistory: string[];
+  locale?: 'en' | 'es';
 }
 
 export interface OracleResponseChunk {
   mode: 'grounded' | 'creative';
   citedQuoteIds?: string[];
+  themes?: string[];
+  tags?: string[];
   text: string;
 }
 
@@ -47,6 +50,7 @@ export interface OracleProposeRequest {
   creativeAnswer: string;
   suggestedSection?: string;
   suggestedTags?: string[];
+  locale?: 'en' | 'es';
 }
 
 export interface OfflineLogEntry {

@@ -149,6 +149,10 @@ Per this document's own §0 status, **do not start TS1** until the product owner
    §12 agent-prompt is written to be pasted into a fresh session with no other file open, so
    lanes can be delegated independently once TS1 is confirmed).--> Use local ollama qwen3.8:27b as much as posible (delegate workload)
 
+**Unblocked 2026-09-09 (product owner):** proceed to TS5. Working teaching tree:
+`skeleton/ts5-hello-world` — see [`PHASE-U-TS5-REPORT.md`](PHASE-U-TS5-REPORT.md)
+(`PARTIAL`: hello-world integration green; fresh-history / TS2 / privacy still open).
+
 **Note (added when TS4c was introduced, after the above was answered):** item 1's approval was
 given against six runbooks; TS4c (Auth, §2/§4 above) is a seventh, added in the same
 `PHASE-V-FEII-COHORT-COLLABORATION-AND-ASSESSMENT.md` revision that corrected the cohort to 8
@@ -197,7 +201,9 @@ mutation) — it only routes TS0's findings to the specific lanes that must act 
 
 ## 7. What this document does not do
 
-It does not implement TS5 (fresh-history assembly), TS6 (instructor rehearsal), TS7 (research
-rationale), or TS8 (course-repository sync) — those remain Phase U's own later gates, unchanged.
-It does not touch `main`. It does not authorize deleting the rich reference's code — subtraction
-happens on isolated branches; `main` is read from, never written to, by any TS1/TS3/TS4/TS4c lane.
+It does not finish full TS5 (fresh-history / privacy / TS2 isolation) — the **minimum** TS5
+assembly is filed as `PARTIAL` on `skeleton/ts5-hello-world`
+([`PHASE-U-TS5-REPORT.md`](PHASE-U-TS5-REPORT.md)). It does not implement TS6 (instructor
+rehearsal), TS7 (research rationale), or TS8 (course-repository sync). It does not touch `main`
+as the student product. Subtraction happens on isolated branches; `main` is the rich instructor
+reference.

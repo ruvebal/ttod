@@ -68,11 +68,12 @@ copy LICENSE-CONTENT
 copy Makefile
 
 # Reviewer/student PR workflow — the same CI gate and rubric-as-checklist students' own PRs run
-# against, not instructor-only tooling
+# against. These three postdate skeleton/ts5-hello-world's fork point (it forked from
+# skeleton/ts1-contracts, before the agentic pack merged into main) — pull from main, not $SRC_BRANCH.
 mkdir -p "$DEST/.github/workflows"
-copy .github/workflows/ci.yml
-copy .github/workflows/proposal-accept.yml
-copy .github/pull_request_template.md
+git show main:.github/workflows/ci.yml > "$DEST/.github/workflows/ci.yml"
+git show main:.github/workflows/proposal-accept.yml > "$DEST/.github/workflows/proposal-accept.yml"
+git show main:.github/pull_request_template.md > "$DEST/.github/pull_request_template.md"
 
 # Curated, already privacy-reviewed student-facing documentation (not the internal dev plan)
 copy docs/public/teaching

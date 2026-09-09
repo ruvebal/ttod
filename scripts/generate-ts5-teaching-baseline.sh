@@ -133,6 +133,36 @@ for path in sys.argv[1:]:
     open(path, "w", encoding="utf-8").write(text)
 PYEOF
 
+echo "== Recomputing content_digest for the two edited quotes (arch-031, arch-086) =="
+# Editing quote text without updating its digest is exactly the drift `cli.py validate --strict`
+# exists to catch (correctly: DIGEST_MISMATCH). Recompute via the real canonicalizer so this
+# artifact's own ttod.yml stays internally consistent — reads the pre-edit stored digest straight
+# out of the loaded record, so this needs no hardcoded values and stays correct if upstream content
+# ever shifts.
+PYTHONPATH="$DEST" python3 - "$DEST/ttod.yml" <<'PYEOF'
+import sys
+import yaml
+from ttod_core.canonical import TTODCanonicalizer
+
+path = sys.argv[1]
+text = open(path, encoding="utf-8").read()
+data = yaml.safe_load(text)
+canonicalizer = TTODCanonicalizer()
+
+for quote in data["quotes"]:
+    if quote["id"] not in {"arch-031", "arch-086"}:
+        continue
+    old_digest = quote["content_digest"]
+    new_digest = canonicalizer.compute_content_digest(quote)
+    if old_digest == new_digest:
+        continue
+    assert text.count(old_digest) == 1, f"{quote['id']}: digest {old_digest!r} not uniquely present"
+    text = text.replace(old_digest, new_digest)
+    print(f"{quote['id']}: {old_digest} -> {new_digest}")
+
+open(path, "w", encoding="utf-8").write(text)
+PYEOF
+
 echo "== Rewriting AGENTS.md's studio-specific sections for the standalone student repo =="
 # Not a cosmetic patch: the source AGENTS.md references ttod-bridge (a skill in a *sibling* studio
 # repo students don't have), docs/DEV_PLAN (excluded from this artifact), and an Integration table

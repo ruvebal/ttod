@@ -1,3 +1,4 @@
+// Wisdom & graph — the governed corpus and its relations
 export interface WisdomEntry {
   id: string;
   section: string;
@@ -30,11 +31,14 @@ export interface GraphLink {
   rel: 'related' | 'immediate_parent' | 'root_source' | 'deprecated_by' | 'superseded_by' | 'translation_of';
 }
 
+// Oracle — streamed retrieval-grounded chat
+export type Locale = 'en' | 'es';
+
 export interface OracleQueryPayload {
   query: string;
   contextTag?: string;
   sessionHistory: string[];
-  locale?: 'en' | 'es';
+  locale?: Locale;
 }
 
 export interface OracleResponseChunk {
@@ -50,9 +54,10 @@ export interface OracleProposeRequest {
   creativeAnswer: string;
   suggestedSection?: string;
   suggestedTags?: string[];
-  locale?: 'en' | 'es';
+  locale?: Locale;
 }
 
+// Offline — the local operations queue
 export interface OfflineLogEntry {
   id: string;
   timestamp: string;

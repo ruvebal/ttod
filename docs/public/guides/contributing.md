@@ -79,4 +79,4 @@ approves the idea, the second approves the exact change.
 - Separate design rationale from evidence of learning.
 - Use authoritative sources for current legal or institutional requirements.
 - Do not expose local paths, internal hosts, network coordinates, private infrastructure names, secrets, or private studio tooling.
-- Use repository-relative references in public artifacts and the studio identity `@crea-comm.net`.
+- Use repository-relative references in public artifacts.

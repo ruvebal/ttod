@@ -1,0 +1,16 @@
+{
+  "name": "The Tao of Development (TTOD)",
+  "short_name": "TTOD",
+  "start_url": "/en/",
+  "display": "standalone",
+  "background_color": "#fbf8f1",
+  "theme_color": "#fbf8f1",
+  "icons": [
+    {
+      "src": "/visual-system/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}

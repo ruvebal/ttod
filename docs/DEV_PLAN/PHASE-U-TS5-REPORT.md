@@ -24,7 +24,7 @@ Every merge was clean (ort, no conflict resolution). Tip after assembly + Oracle
 | --- | --- |
 | Merge tip (pre-test fix) | `5acd0e5e` |
 | Runbook commit | `528092c4` |
-| Final tip | _(this report's commit)_ |
+| Final tip | `3144f1c7` |
 
 ### Leftover resolutions
 

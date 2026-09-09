@@ -1,6 +1,9 @@
-import { defineConfig } from 'vitest/config';
+/// <reference types="vitest/config" />
+import { getViteConfig } from 'astro/config';
 
-export default defineConfig({
+// getViteConfig so Page.astro can render through AstroContainer in the hello-world
+// component test. layout.test.mjs stays on node:test (existing convention).
+export default getViteConfig({
   test: {
     exclude: [
       'node_modules/**',
@@ -10,3 +13,4 @@ export default defineConfig({
     ]
   }
 });
+

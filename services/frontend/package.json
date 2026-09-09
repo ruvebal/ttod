@@ -6,7 +6,9 @@
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "start": "node ./dist/server/entry.mjs",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "vitest run",
+    "test:e2e:hello-world": "playwright test --project=chromium e2e/wisdom-sample.contract.spec.ts e2e/a11y-docs.spec.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",

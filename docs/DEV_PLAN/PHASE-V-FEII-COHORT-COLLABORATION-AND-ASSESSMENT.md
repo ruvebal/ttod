@@ -1,13 +1,15 @@
 # Phase V — FE II Cohort Collaboration, PR Workflow & Assessment Rubric
 
-**Status:** PROPOSED — awaiting product-owner (professor) sign-off; nothing in this document is
-implemented or authorized by its existence alone.
+**Status:** ACTIVE — the plan is complete and its own prerequisite gate (§1) is green. Week 1
+starts 2026-09-10. Three genuinely open items remain, all professor-only decisions with no
+engineering dependency (§10: rubric point totals, research framing, the early-finisher policy) —
+everything else this document originally gated on has since executed and is verified (§1).
 
 **Owner:** `@crea-comm.net` teaching studio (professor as product owner)
 
-**Depends on:** Phase U (`PHASE-U-FEII-TEACHING-SKELETON-CASCADE.md`) reaching at least TS4
-before Week 1 of student collaboration — see §1. Also depends on Phase R's frozen R6 boundary
-(`DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`, refined by `DECISIONS/U0-2026-09-07-TEACHING-SKELETON-BOUNDARY.md`).
+**Depends on:** Phase U reaching TS4 (now TS4c) before Week 1 — **satisfied**, see §1 for evidence.
+Also depends on Phase R's frozen R6 boundary (`DECISIONS/R6-DEFERRED-STUDENT-OWNED.md`, refined by
+`DECISIONS/U0-2026-09-07-TEACHING-SKELETON-BOUNDARY.md`) — unaffected, still holds.
 
 **Does not authorize:** treating this course activity as an approved empirical research study
 (see `docs/public/research/methodology.md` — pre-protocol; §9 below is aspirational framing
@@ -51,6 +53,18 @@ task pull-list per session sourced from the backlog document's epics.
 Everything below this point is the original document, revised in place; §0 (below) and §1–§10
 are the first-pass reasoning this revision builds on, not replaced by it.
 
+## 0.β Completion pass (2026-09-09, later the same day) — the gate closed
+
+Between the second-pass revision above and this pass, Phase U's Week-0 actually executed — seven
+lanes, cold-audited independently rather than taken on faith (§1 now carries the evidence, not a
+projection). This pass closes the document out accordingly: the header status moved from PROPOSED
+to ACTIVE, §1's prerequisite gate is rewritten from "must be true" to "verified true, here's how,"
+and §10 dropped from five open questions to three — the two that were really about *whether Week-0
+would happen* are closed, the three that remain are pedagogical/administrative calls with no
+engineering dependency, safe to leave until they're actually load-bearing (grading time, not
+Week 1). Nothing in §§2–9's actual plan content changed — this pass is status and evidence, not a
+third redesign.
+
 ---
 
 ## 0. What this document reconciles
@@ -85,42 +99,53 @@ evaluated, and defended*. That is this document's job.
 
 ---
 
-## 1. Prerequisite gate — must be true before Week 1 of student collaboration
+## 1. Prerequisite gate — GREEN, verified 2026-09-09
 
-Phase U's own status line is honest: **PROPOSED, TS0 VERIFYING, TS1–TS8 BLOCKED.** The five
-hello-world seams this plan assigns students to extend **do not exist yet** as a buildable
-artifact. Before any student opens a branch:
+**Status when this section was first written:** Phase U was PROPOSED, TS0 VERIFYING, TS1–TS8
+BLOCKED — the five hello-world seams this plan assigns students to extend did not exist as a
+buildable artifact. **That is no longer true.** All seven lanes (TS1 plus the new TS4c) executed
+2026-09-09, each independently cold-audited against the live repo (not just claimed) before Week 1:
 
-| Gate | What it means | Phase U reference |
+| Gate | What it means | Evidence |
 | --- | --- | --- |
-| TS1 frozen | Subtraction contract exists: what's kept as hello-world proof vs. removed vs. converted into an assignment acceptance criterion, for all five seams | §5 TS1 |
-| TS3 done | R3b/R4/R5 reduced to hello-world depth, each with its own `ASSIGNMENT.md` | §5 TS3 |
-| TS4 done | R6/R7 hello-world seams added (minimal SW registration stub, one representative test per layer) | §5 TS4 |
-| Shared contract published | `src/types/domain.ts` exists on the baseline branch students fork from | matches TS1's "expansion seams are contracts" invariant |
-| CI skeleton live | At minimum a lint/build gate and branch protection on the repo students will PR into | new for this document; see §4 |
+| TS1 frozen | Subtraction contract exists for all six seams | `PHASE-U-TS1-REPORT.md` — subtraction table grounded live; `domain.ts` frozen at 67 lines on `skeleton/ts1-contracts` |
+| TS3 done | R3b/R4/R5 reduced to hello-world depth, each with its own `ASSIGNMENT.md` | `skeleton/ts3a-r3b` (`955198fc`), `skeleton/ts3b-r4` (`bfea9da7`), `skeleton/ts3c-r5` (`5a16a98f`) — facet-route cuts, GSAP/filter cuts, and offline-queue/propose cuts all independently verified live, not just claimed |
+| TS4 done | R6/R7 hello-world seams added, TS4c (Auth) built new | `skeleton/ts4a-r6` (`4b2db64e`, `sw.js`+manifest), `skeleton/ts4b-r7` (`bcdd5438`, four test layers), `skeleton/ts4c-auth` (`445f3257`, `auth.py`+`User`/`FavoriteEntry` types) |
+| Shared contract published | `src/types/domain.ts` exists on the baseline branch students fork from | Frozen on `skeleton/ts1-contracts`; every TS3/TS4 lane forks from that branch, not `main` |
+| CI skeleton live | Lint/build gate and branch protection on the repo students will PR into | [PR #1](https://github.com/ruvebal/ttod/pull/1) `typecheck-and-build` green; branch protection on `main` confirmed live via `gh api` (1 review + required check, no force-push) |
 
-**If this work has not happened yet, it is Week 0, not Week 1.** Naming it here rather than
-silently assuming a skeleton exists is the point — say explicitly to the class that Week 1 starts
-when this gate is green, not on the calendar date alone.
+**The three leftovers named above are now resolved**, not just tracked — `PHASE-U-TS5-REPORT.md`
+(status `PARTIAL`, `skeleton/ts5-hello-world`, all seven lane tips merge-assembled cleanly) records
+the actual decisions: TS4c's `User`/`FavoriteEntry`/`UserRole` types **accepted** into the frozen
+contract; the 460-node graph **deliberately left uncapped** — performance is R4's assignment
+depth, not a bug to fix in the skeleton; `OracleTerminal.test.tsx` **rewritten** for hello-world
+depth, the queue/propose assertions removed rather than papered over. TS5 itself remains `PARTIAL`
+— fresh orphan history, the privacy watcher, and the TS2 rich-reference tag are still open, and
+`main` was not touched by any of it — but the specific leftovers this document once deferred to
+TS5 are closed.
 
-**This gate now has a complete, executable plan, not just a description.**
-[`PHASE-U-WEEK0-ORCHESTRATION.md`](PHASE-U-WEEK0-ORCHESTRATION.md) turns the five rows above into
-six self-contained runbooks — one sequential contract-freezing lane
-([`PHASES/U-TS1-subtraction-and-contracts.md`](PHASES/U-TS1-subtraction-and-contracts.md)) and five
-lane runbooks that can be delegated to five different sessions/TAs in parallel once TS1 is green
+**Two infra bugs found and fixed in the same pass** (`PHASE-U-TS1-REPORT.md` §5's addenda): the
+required `typecheck-and-build` check didn't exist on `main` at all, and once added, its
+`pull_request` trigger was path-filtered — either gap would have silently blocked *any* future PR
+into `main` from merging. Both fixed; confirmed live on two independent PRs.
+
+**The plan each lane executed against** (for reference — this is now historical, not pending):
+one sequential contract-freezing lane
+([`PHASES/U-TS1-subtraction-and-contracts.md`](PHASES/U-TS1-subtraction-and-contracts.md)) and six
+lane runbooks delegated in parallel once TS1 went green
 ([`PHASES/U-TS3a-r3b-content-hello-world.md`](PHASES/U-TS3a-r3b-content-hello-world.md),
 [`U-TS3b-r4-graph-hello-world.md`](PHASES/U-TS3b-r4-graph-hello-world.md),
 [`U-TS3c-r5-oracle-hello-world.md`](PHASES/U-TS3c-r5-oracle-hello-world.md),
 [`U-TS4a-r6-pwa-hello-world.md`](PHASES/U-TS4a-r6-pwa-hello-world.md),
-[`U-TS4b-r7-testing-hello-world.md`](PHASES/U-TS4b-r7-testing-hello-world.md)). Each names the
-exact file, exact lines, and exact keep/cut decision — grounded against the live code, not
-hand-waved — plus a paste-ready agent prompt. Executing them is the concrete answer to this
-section's open question.
-
-**A seventh runbook, added this revision, for the new Auth module (§2.5):**
-[`PHASES/U-TS4c-auth-hello-world.md`](PHASES/U-TS4c-auth-hello-world.md) — unlike the other six,
-this is not a reduction of existing code (none exists); it is a genuinely new hello-world build,
-and the one lane permitted to touch `services/backend/**`.
+[`U-TS4b-r7-testing-hello-world.md`](PHASES/U-TS4b-r7-testing-hello-world.md),
+[`U-TS4c-auth-hello-world.md`](PHASES/U-TS4c-auth-hello-world.md) — the new Auth module, §2.5,
+the one lane with no existing code to reduce and the only one permitted to touch
+`services/backend/**`). Each runbook's own report (`PHASE-U-TS*-REPORT.md`) is the actual evidence
+cited in the table above, not the runbook's prose. **Delegation note:** the orchestration's own §5
+answer asked for local Ollama `qwen3.8:27b` where possible; in practice the six lanes ran as
+Cursor agent sessions (the tooling available at execution time could not target Ollama directly) —
+worth recording honestly rather than silently letting the plan's stated intent stand as if it
+were what happened.
 
 **One re-scoping this document makes to R6 specifically:** `PHASES/R6-pwa-cicd-audit.md` as
 written targets the *rich instructor reference* — it includes a Scaleway `stg` deploy workflow,
@@ -530,28 +555,33 @@ research dataset must never be the same store as the graded coursework record.
 
 ---
 
-## 10. Open questions — yours to confirm
+## 10. Open questions — three left, all yours, none engineering
 
-**Resolved since the first pass** (kept here for the record, not as open items): Week-0 execution
-is approved and dated — Week 1 starts 2026-09-10 (`PHASE-U-WEEK0-ORCHESTRATION.md` §5, answered on
-disk); lane execution is to be delegated to local Ollama `qwen3.8:27b` where possible, per the same
-§5 answer — this is consistent with the studio's local-only-AI rule (`/src/CLAUDE.md`) and means
-TS1 through TS4c (§1's new seventh runbook) should be run as delegated agent sessions against that
-model, not by the professor by hand. Cohort size is 8, not 10 (§2's 2+1+2+1+2 table).
+**Closed since the last pass** (kept here for the record):
 
-1. **TS1 execution owner.** §5's answer confirms *how* (local Ollama, delegated) but not *who*
-   kicks off TS1 itself — since Week-0 must land before 2026-09-10 and TS1 blocks every other
-   lane (§1, `PHASE-U-WEEK0-ORCHESTRATION.md` §2), this is now urgent rather than open-ended. I can
-   start TS1 now if you confirm.
-2. **CI trigger for §2.7's proposal pipeline: PR approval vs. PR merge.** §2.7 recommends
-   *approval* (the unambiguous named-human-accepted event `AGENTS.md` requires) but merge is a
-   one-line alternative if your workflow prefers it — confirm which.
-3. **Rubric point totals.** §7 proposes an internal split within the existing 25%/15% lines —
+- **Week-0 timeline & execution.** Approved, dated (Week 1 = 2026-09-10), and *done* — all seven
+  lanes executed and cold-audited (§1). Delegation happened via Cursor agent sessions rather than
+  local Ollama, since the tooling at hand couldn't target it directly — noted honestly in §1
+  rather than silently treating the plan's stated intent as what occurred.
+- **Cohort size.** 8, not 10 — §2's 2+1+2+1+2 table.
+- **CI trigger for §2.7's proposal pipeline.** Built as *approval*-triggered
+  (`.github/workflows/proposal-accept.yml`), refined during implementation into a two-touchpoint
+  design (§2.7) once GitHub's real `dismiss_stale_reviews` behavior ruled out literal auto-merge.
+  If you'd still prefer merge-as-trigger over this two-approval flow, that's a real redesign now
+  (not the one-line change it would have been before implementation) — flag it if so, otherwise
+  this is decided.
+
+**Still open — three items, no engineering dependency, safe to leave until they're actually
+needed** (none block Week 1; §7's split only needs to be final before grades are entered, §9 only
+matters if you want to pursue research framing, §8.6 only bites the first time a pair visibly
+finishes early):
+
+1. **Rubric point totals.** §7 proposes an internal split within the existing 25%/15% lines —
    confirm or adjust the exact numbers before it becomes the official grading document.
-4. **Research framing.** Confirm whether §9 stays aspirational-only for this cohort, or whether
+2. **Research framing.** Confirm whether §9 stays aspirational-only for this cohort, or whether
    you want to start drafting an actual ethics/consent protocol in parallel — that is a separate,
    larger undertaking this document does not start on its own.
-5. **§8.6's early-finisher policy.** Confirm the "reward depth used, not hours spent" framing is
+3. **§8.6's early-finisher policy.** Confirm the "reward depth used, not hours spent" framing is
    how you want to grade a pair that visibly one-shots their baseline — an alternative is a hard
    floor (no credit for work landed before a named week), which is simpler to enforce but does not
    reward the redirected-breadth behavior §8.6 is trying to encourage.

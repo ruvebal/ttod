@@ -237,3 +237,18 @@ All seven isolated branches exist; none were merged to `main`. TS5 (fresh-histor
 **TS5 inputs (named, not decided):** (1) cherry-pick or reject TS4c's `domain.ts` types; (2) backend sample cap vs. 460-node graph; (3) drop or rewrite `OracleTerminal.test.tsx` (still expects queue/themes UI that TS3c cut); (4) merge `Page.astro` (TS4a registration) with TS4b's shell test.
 
 Lane sessions used Cursor inherit, not local `qwen3.8:27b`.
+
+---
+
+## Addendum — 2026-09-09, TS5 minimum assembly
+
+Product owner unblocked §5 → proceed. Leftovers resolved on
+`skeleton/ts5-hello-world` (see [`PHASE-U-TS5-REPORT.md`](PHASE-U-TS5-REPORT.md)):
+
+1. **Accept** TS4c auth types on `domain.ts`.
+2. **No** client-side graph cap (full 460/665 sample stays).
+3. **Rewrite** `OracleTerminal.test.tsx` for hello-world (no queue/propose).
+4. **Keep** TS4a `Page.astro` + TS4b `Page.shell.test.ts`.
+
+Status: **PARTIAL** — check/build/vitest/backend auth green; fresh-history, TS2, and privacy
+probes not opened.

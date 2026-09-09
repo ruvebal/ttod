@@ -1,0 +1,25 @@
+meta:
+  title: 'Q3 Minimal Fixture'
+  version: '3.0.0'
+  total_quotes: 1
+  last_id_by_section:
+    arch: 1
+sections:
+  - id: architecture
+    prefix: arch
+    name: Architecture
+tag_taxonomy:
+  architecture:
+    - boundaries
+collections: {}
+lessons: []
+quotes:
+  - id: arch-001
+    schema_version: '3.0.0'
+    text: 'Minimal valid quote for Q3 transaction tests.'
+    section: architecture
+    level: advanced
+    lang: en
+    tags:
+      - boundaries
+    origin: human

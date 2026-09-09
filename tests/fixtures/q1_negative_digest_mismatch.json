@@ -1,0 +1,14 @@
+{
+  "id": "arch-075",
+  "schema_version": "3.0.0",
+  "content_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "text": "Quote with mismatched digest.",
+  "section": "architecture",
+  "level": "advanced",
+  "lang": "en",
+  "tags": [
+    "digest"
+  ],
+  "origin": "human",
+  "created_at": "2026-08-18"
+}

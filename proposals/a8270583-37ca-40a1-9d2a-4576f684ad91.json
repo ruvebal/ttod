@@ -1,0 +1,51 @@
+{
+  "proposal_id": "a8270583-37ca-40a1-9d2a-4576f684ad91",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "el enriquecedor escribe diez mil menciones — sin embargo, relaciones: cero",
+    "section": "architecture",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-058",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-058' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Haiku de la lección de campo de Ahmes: volumen del enriquecedor ≠ grafo de relaciones; Athanor debe construir co-ocurrencia en el momento de inyección/consulta.",
+    "tags": [
+      "architecture",
+      "athanor",
+      "haiku",
+      "poetry",
+      "featured"
+    ],
+    "subsection": "extraction",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-ec740664-e20e-4a32-8512-233f488985e3",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:14.968722Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:15.870662Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:42:25.018099Z",
+  "accepted_quote_id": "arch-096"
+}

@@ -1,0 +1,134 @@
+---
+interface Props { lang: 'en' | 'es'; title: string }
+const { lang, title } = Astro.props;
+import '../styles/tokens.css';
+
+const nav = {
+  en: {
+    home: 'Home', wisdom: 'Wisdom', graph: 'Graph', oracle: 'Oracle', docs: 'Docs',
+    account: 'Account', skip: 'Skip to content', switchTo: 'Español',
+    footer: 'A pedagogical wisdom database — hello-world teaching skeleton.',
+  },
+  es: {
+    home: 'Inicio', wisdom: 'Sabiduría', graph: 'Grafo', oracle: 'Oráculo', docs: 'Docs',
+    account: 'Cuenta', skip: 'Saltar al contenido', switchTo: 'English',
+    footer: 'Una base de datos de sabiduría pedagógica — esqueleto docente hello-world.',
+  },
+}[lang];
+
+const otherLocale = lang === 'en' ? 'es' : 'en';
+const switchPath = '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
+
+const links: Array<{ href: string; label: string }> = [
+  { href: `/${lang}/`, label: nav.home },
+  { href: `/${lang}/wisdom/`, label: nav.wisdom },
+  { href: `/${lang}/graph`, label: nav.graph },
+  { href: `/${lang}/oracle`, label: nav.oracle },
+  { href: `/${lang}/docs/`, label: nav.docs },
+  { href: `/${lang}/account`, label: nav.account },
+];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#fbf8f1" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/visual-system/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/visual-system/tokens.css" />
+    <link rel="stylesheet" href="/visual-system/backgrounds.css" />
+    <title>{title}</title>
+    <style>
+      :root { color-scheme: light; font-family: var(--ttod-font-body); }
+      body { margin: 0; color: var(--ttod-color-ink); background-color: var(--ttod-color-paper); line-height: 1.6; }
+      .ttod-skip-link {
+        position: absolute; left: -999px; top: 0; z-index: 30;
+        padding: 0.5rem 1rem; background: var(--ttod-color-accent, #b0522d); color: #fff;
+      }
+      .ttod-skip-link:focus { left: 0.5rem; top: 0.5rem; }
+      .ttod-site-header {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+        gap: 1rem; padding: 1rem 1.5rem; font-family: ui-sans-serif, system-ui, sans-serif;
+        border-bottom: 1px solid var(--ttod-color-line, #8f8068);
+      }
+      .ttod-site-header a { color: inherit; }
+      .ttod-brand { font-weight: 700; text-decoration: none; }
+      .ttod-site-nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+      .ttod-site-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }
+      .ttod-lang-switch { font-size: 0.9rem; }
+      main { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem; }
+      nav { display: flex; gap: 1rem; font-family: ui-sans-serif, system-ui, sans-serif; }
+      article { border-inline-start: .25rem solid var(--ttod-color-accent); margin-block: 2rem; padding-inline: 1.5rem; }
+      .meta { font-family: ui-sans-serif, system-ui, sans-serif; font-size: .9rem; opacity: .8; }
+      .ttod-site-footer {
+        margin-top: 3rem; padding: 1.5rem; font-family: ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.85rem; opacity: 0.8; border-top: 1px solid var(--ttod-color-line, #8f8068);
+        max-width: 48rem; margin-inline: auto;
+      }
+      .ttod-network-boundary {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        margin: 0;
+        padding: 0.5rem 0.75rem;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.9rem;
+        border-block-end: 1px solid var(--ttod-color-line, #8f8068);
+        background: var(--ttod-color-surface, #f1eadb);
+      }
+      .ttod-network-boundary[data-state="offline"] {
+        background: #211c15;
+        color: #fbf8f1;
+        border-color: #211c15;
+      }
+    </style>
+  </head>
+  <body class="ttod-bg-river">
+    <a class="ttod-skip-link" href="#ttod-main">{nav.skip}</a>
+    <p id="ttod-network-boundary" class="ttod-network-boundary" role="status" aria-live="polite">
+      Network: checking…
+    </p>
+    <header class="ttod-site-header">
+      <a class="ttod-brand" href={`/${lang}/`}>道 TTOD</a>
+      <nav class="ttod-site-nav" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
+        {links.map((link) => (
+          <a href={link.href} aria-current={Astro.url.pathname === link.href ? 'page' : undefined}>{link.label}</a>
+        ))}
+      </nav>
+      <a class="ttod-lang-switch" href={switchPath} hreflang={otherLocale}>{nav.switchTo}</a>
+    </header>
+    <div id="ttod-main">
+      <slot />
+    </div>
+    <footer class="ttod-site-footer">
+      <p>{nav.footer} © Rubén Vega Balbás · CC BY-NC-SA 4.0 (content) · MIT (code)</p>
+    </footer>
+    <script is:inline>
+      (function registerServiceWorkerStub() {
+        if (!('serviceWorker' in navigator)) {
+          return;
+        }
+        navigator.serviceWorker.register('/sw.js').catch(function (error) {
+          console.warn('[ttod-sw] registration failed', error);
+        });
+      })();
+      (function observeNetworkBoundary() {
+        var banner = document.getElementById('ttod-network-boundary');
+        if (!banner) {
+          return;
+        }
+        function renderNetworkBoundary() {
+          var online = navigator.onLine;
+          banner.dataset.state = online ? 'online' : 'offline';
+          banner.textContent = online
+            ? 'Network: online — hello-world stub; toggle DevTools Network → Offline to see this change.'
+            : 'Network: offline — local/offline boundary is visible. This stub does not serve the whole app from cache.';
+        }
+        renderNetworkBoundary();
+        window.addEventListener('online', renderNetworkBoundary);
+        window.addEventListener('offline', renderNetworkBoundary);
+      })();
+    </script>
+  </body>
+</html>

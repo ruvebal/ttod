@@ -1,0 +1,50 @@
+{
+  "proposal_id": "de39ef16-c29a-4d58-b0a9-c69c9dd1bef4",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Una interfaz es como un chiste; si tienes que explicarla, no es tan buena.",
+    "section": "ux",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "ux-001",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'ux-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Las interfaces deben revelar la intención de inmediato; las explicaciones pertenecen a la documentación.",
+    "tags": [
+      "ux",
+      "clarity",
+      "communication",
+      "humor"
+    ],
+    "subsection": "clarity",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-aaa41807-7134-4a31-a8cf-dfb21da44b91",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:02.932628Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:03.957924Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:25.935027Z",
+  "accepted_quote_id": "ux-008"
+}

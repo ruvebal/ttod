@@ -1,0 +1,51 @@
+{
+  "proposal_id": "7ac88591-cf95-4dda-9ac6-c17b1380f997",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El SVG en línea dice: 'Soy uno con el DOM.' El SVG externo dice: 'Estoy en caché para la eternidad.' Ambos son correctos.",
+    "section": "images",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-018",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-018' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Compromisos entre SVG en línea y SVG externo",
+    "tags": [
+      "svg",
+      "inline",
+      "external",
+      "caching",
+      "dom"
+    ],
+    "subsection": "svg",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-611be5cb-0f92-4090-8222-9997188cb8ca",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:27.030252Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:27.833706Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:14.792367Z",
+  "accepted_quote_id": "img-110"
+}

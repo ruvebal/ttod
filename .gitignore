@@ -1,0 +1,44 @@
+exports/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+/tmp/*
+/tmp/.*
+_private/
+_test/
+_backup/
+.env*
+!.env.example
+.env.loc
+.env.dev
+.env.stg
+*.code-workspace
+.privacy-denylist
+
+# Node / Astro build artifacts and caches (services/frontend and any future Node service)
+node_modules/
+dist/
+.astro/
+.vite/
+*.tsbuildinfo
+coverage/
+test-results/
+.playwright/
+.vitest-cache/
+
+# Python test/build artifacts under services/ (mirrors root __pycache__/.venv coverage above)
+.pytest_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Jekyll / Bundler build artifacts under docs/public (ruby-version is pinned and tracked)
+docs/public/_site/
+docs/public/.bundle/
+docs/public/vendor/
+docs/public/Gemfile.lock
+
+# CI's ephemeral Jekyll build destination (see .github/workflows/public-docs-pages.yml) —
+# built fresh, checked, uploaded to Pages, and torn down every run; never meant to be tracked
+/_site-public/

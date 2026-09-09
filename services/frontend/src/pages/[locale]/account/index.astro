@@ -1,0 +1,41 @@
+---
+export const prerender = false;
+import Page from '../../../layouts/Page.astro';
+import { logoutSession, requireUser } from '../../../lib/auth.server';
+import { isLocale } from '../../../content/wisdom';
+import '../../../styles/tokens.css';
+
+const locale = Astro.params.locale;
+if (!isLocale(locale)) return new Response(null, { status: 404 });
+
+async function maybeLogout(): Promise<Response | null> {
+  if (Astro.request.method !== 'POST') return null;
+  const form = await Astro.request.formData();
+  if (form.get('intent') !== 'logout') return null;
+  return logoutSession(Astro.request, `/${locale}/account/login`);
+}
+
+const loggedOut = await maybeLogout();
+if (loggedOut) return loggedOut;
+
+const session = await requireUser(Astro.request, { loginPath: `/${locale}/account/login` });
+if (session instanceof Response) return session;
+const user = session;
+const copy = locale === 'es'
+  ? { title: 'Cuenta', home: 'Inicio', signedIn: 'Sesión iniciada como', logout: 'Cerrar sesión' }
+  : { title: 'Account', home: 'Home', signedIn: 'Signed in as', logout: 'Log out' };
+---
+<Page lang={locale} title={copy.title}>
+  <nav>
+    <a href={`/${locale}/`}>{copy.home}</a>
+  </nav>
+  <main>
+    <h1>{copy.title}</h1>
+    <p>{copy.signedIn} {user.email}</p>
+    <p class="meta">{user.displayName} · {user.role}</p>
+    <form method="post">
+      <input type="hidden" name="intent" value="logout" />
+      <button type="submit">{copy.logout}</button>
+    </form>
+  </main>
+</Page>

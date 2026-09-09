@@ -1,0 +1,49 @@
+{
+  "proposal_id": "fc222020-8c6f-4aba-8818-b18898bff85e",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "La API que se documenta a sí misma es la API que sobrevive al próximo desarrollador.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-002",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El código autodocumentado y las APIs claras aseguran la longevidad",
+    "tags": [
+      "api",
+      "documentation",
+      "sustainability"
+    ],
+    "subsection": "documentation",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-9b08e12c-51ef-4752-bdbc-c7d57321bac8",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:43.556619Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:44.610145Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:58.331274Z",
+  "accepted_quote_id": "qa-038"
+}

@@ -1,0 +1,49 @@
+{
+  "proposal_id": "b121816a-cc57-4a58-ae30-ca6e602a077a",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Una imagen sin texto alternativo es una puerta cerrada para el usuario ciego. No construirías un sitio web con solo puertas cerradas.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-038",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-038' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Proporciona siempre texto alternativo descriptivo para las imágenes de contenido.",
+    "tags": [
+      "alt-text",
+      "accessibility",
+      "tao-of-web-images"
+    ],
+    "subsection": "alt-text",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-7318aeed-ff1a-4bc6-aa42-de7869e33ebb",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:21.192098Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:22.102181Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:31.350982Z",
+  "accepted_quote_id": "img-126"
+}

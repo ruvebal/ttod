@@ -1,0 +1,9 @@
+{
+  "subject_kind": "AhmesExtraction",
+  "predicate": "supports",
+  "object_kind": "WPLClaim",
+  "evidence_resolution": {
+    "resolves_to": "primary_source",
+    "source_id": "ahmes-node-001"
+  }
+}

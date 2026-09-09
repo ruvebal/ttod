@@ -1,0 +1,51 @@
+{
+  "proposal_id": "ce1adba6-f80d-48b4-89f2-39c27d984d67",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El depurador que depura con sabiduría, solo lo hace una vez; pues cada error corregido en la comprensión no volverá en el código.",
+    "section": "debugging",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "dbg-005",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'dbg-005' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "No solo arregles errores, compéndelos. Cada error revela una brecha en la comprensión. Cierra la brecha y el error no volverá. Depurar no es arreglar código, es arreglar la comprensión.",
+    "tags": [
+      "debugging",
+      "understanding",
+      "learning",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "mindset",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-01e9c498-99f3-45dd-90c7-07ed34c178fb",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:37.666298Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:38.613745Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:39:14.112904Z",
+  "accepted_quote_id": "dbg-010"
+}

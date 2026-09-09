@@ -1,0 +1,50 @@
+{
+  "proposal_id": "4a35c2ff-9472-4738-b199-5f8fbaa954ed",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "No todo problema es un error. A veces el problema es la expectativa.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-020",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-020' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La primera herramienta del depurado: verificar. Antes de corregir, verifica que el problema exista. La caché no es un error, es una función mal comprendida. Confía en el código, verifica la ejecución.",
+    "tags": [
+      "architecture",
+      "debugging",
+      "verification",
+      "discernment"
+    ],
+    "subsection": "boundaries",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6fc25ece-4ca9-4e99-9cbd-ac3895f80c48",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:03.570872Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:04.238626Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:35:48.480132Z",
+  "accepted_quote_id": "arch-078"
+}

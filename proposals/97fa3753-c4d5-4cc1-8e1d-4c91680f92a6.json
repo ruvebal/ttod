@@ -1,0 +1,40 @@
+{
+  "proposal_id": "97fa3753-c4d5-4cc1-8e1d-4c91680f92a6",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "La olla vaciada, Debe llenarse sin derramar, Respalda, luego lento.",
+    "section": "code-craft",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-022",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-022' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "La migración requiere cuidado. La olla vaciada debe llenarse sin derramar. Respalda primero, luego vierte despacio. La convergencia incremental supera el reemplazo temerario.",
+    "tags": [
+      "codecraft",
+      "migration",
+      "backup",
+      "haiku",
+      "poetry",
+      "safety",
+      "patterns"
+    ],
+    "subsection": "patterns",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-04T14:35:23.754503Z"
+}

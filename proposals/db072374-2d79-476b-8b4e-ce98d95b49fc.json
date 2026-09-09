@@ -1,0 +1,51 @@
+{
+  "proposal_id": "db072374-2d79-476b-8b4e-ce98d95b49fc",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El GIF pregunta: '¿Soy una imagen o un video?' El Tao responde: 'Sí.' 🎉",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-013",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-013' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los GIFs ocupan un espacio único en los medios web",
+    "tags": [
+      "gif",
+      "animation",
+      "duality",
+      "humor",
+      "featured"
+    ],
+    "subsection": "gif",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e5d187b8-61bf-4a5b-a193-245fb7ba1836",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:53.401270Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:54.383396Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:22:05.308947Z",
+  "accepted_quote_id": "img-133"
+}

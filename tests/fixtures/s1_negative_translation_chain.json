@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "title": "S1 fixture",
+    "version": "3.1.0",
+    "total_quotes": 3,
+    "last_id_by_section": {
+      "arch": 907
+    },
+    "languages": [
+      "en",
+      "es",
+      "fr"
+    ]
+  },
+  "sections": [
+    {
+      "id": "architecture",
+      "prefix": "arch",
+      "name": "Architecture"
+    },
+    {
+      "id": "wisdom",
+      "prefix": "wis",
+      "name": "Wisdom"
+    }
+  ],
+  "tag_taxonomy": {
+    "architecture": [
+      "boundaries"
+    ],
+    "wisdom": [
+      "koan"
+    ]
+  },
+  "collections": {},
+  "lessons": [],
+  "quotes": [
+    {
+      "id": "arch-901",
+      "schema_version": "3.1.0",
+      "text": "Boundaries are where systems learn their shape.",
+      "section": "architecture",
+      "level": "advanced",
+      "lang": "en",
+      "tags": [
+        "boundaries"
+      ],
+      "teaches": "Respect the edge.",
+      "origin": "human",
+      "status": "active",
+      "created_at": "2026-09-04"
+    },
+    {
+      "id": "arch-902",
+      "schema_version": "3.1.0",
+      "text": "Los límites son donde los sistemas aprenden su forma.",
+      "section": "architecture",
+      "level": "advanced",
+      "lang": "es",
+      "tags": [
+        "boundaries"
+      ],
+      "teaches": "Respeta el borde.",
+      "origin": "human",
+      "status": "active",
+      "relation_edges": [
+        {
+          "target": "arch-901",
+          "relation_type": "translation_of"
+        }
+      ],
+      "created_at": "2026-09-04"
+    },
+    {
+      "id": "arch-907",
+      "schema_version": "3.1.0",
+      "text": "Les limites sont où les systèmes apprennent leur forme.",
+      "section": "architecture",
+      "level": "advanced",
+      "lang": "fr",
+      "tags": [
+        "boundaries"
+      ],
+      "teaches": "Respecte le bord.",
+      "origin": "human",
+      "status": "active",
+      "relation_edges": [
+        {
+          "target": "arch-902",
+          "relation_type": "translation_of"
+        }
+      ],
+      "created_at": "2026-09-04"
+    }
+  ]
+}

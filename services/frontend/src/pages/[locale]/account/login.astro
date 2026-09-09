@@ -1,0 +1,73 @@
+---
+export const prerender = false;
+import Page from '../../../layouts/Page.astro';
+import { getOptionalUser, loginWithPassword, safeNext } from '../../../lib/auth.server';
+import { isLocale } from '../../../content/wisdom';
+import '../../../styles/tokens.css';
+
+const locale = Astro.params.locale;
+if (!isLocale(locale)) return new Response(null, { status: 404 });
+
+const existing = await getOptionalUser(Astro.request);
+if (existing) {
+  return Astro.redirect(safeNext(Astro.url.searchParams.get('from'), `/${locale}/account`));
+}
+
+let invalid = false;
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const result = await loginWithPassword(form, { fallbackNext: `/${locale}/account` });
+  if (result.status === 401) {
+    invalid = true;
+  } else {
+    return result;
+  }
+}
+
+const from = safeNext(Astro.url.searchParams.get('from'), `/${locale}/account`);
+const copy = locale === 'es'
+  ? {
+      title: 'Iniciar sesión',
+      home: 'Inicio',
+      email: 'Correo',
+      password: 'Contraseña',
+      submit: 'Entrar',
+      error: 'Correo o contraseña no válidos.',
+      teaching: 'Usuario de enseñanza (no reutilices una contraseña real).',
+    }
+  : {
+      title: 'Sign in',
+      home: 'Home',
+      email: 'Email',
+      password: 'Password',
+      submit: 'Sign in',
+      error: 'Invalid email or password.',
+      teaching: 'Teaching-only seed user — never reuse a real password.',
+    };
+---
+<Page lang={locale} title={copy.title}>
+  <nav>
+    <a href={`/${locale}/`}>{copy.home}</a>
+  </nav>
+  <main>
+    <h1>{copy.title}</h1>
+    <p class="meta">{copy.teaching}</p>
+    {invalid ? <p role="alert">{copy.error}</p> : null}
+    <form method="post">
+      <input type="hidden" name="next" value={from} />
+      <p>
+        <label>
+          {copy.email}
+          <input type="email" name="email" autocomplete="username" required />
+        </label>
+      </p>
+      <p>
+        <label>
+          {copy.password}
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+      </p>
+      <button type="submit">{copy.submit}</button>
+    </form>
+  </main>
+</Page>

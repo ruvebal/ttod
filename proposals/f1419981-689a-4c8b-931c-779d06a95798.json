@@ -1,0 +1,50 @@
+{
+  "proposal_id": "f1419981-689a-4c8b-931c-779d06a95798",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El maestro Li comprimió una imagen de 5 MB a 50 KB. Su alumno preguntó: '¿Perdiste calidad?' Li respondió: 'Solo perdí lo que el ojo no veía y la red no soportaba.'",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-030",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-030' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Compromete el detalle imperceptible por ganancias dramáticas de velocidad.",
+    "tags": [
+      "compression",
+      "quality",
+      "teaching",
+      "tao-of-web-images"
+    ],
+    "subsection": "optimization",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-7dcf08d6-0c72-45e5-b237-8881694325ab",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:23.622587Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:24.666737Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:57.349311Z",
+  "accepted_quote_id": "img-141"
+}

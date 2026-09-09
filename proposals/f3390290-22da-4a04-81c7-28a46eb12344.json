@@ -1,0 +1,50 @@
+{
+  "proposal_id": "f3390290-22da-4a04-81c7-28a46eb12344",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "En un bosque, cada árbol debe ser sí mismo. Reutilizar es sabiduría, pero la identidad es sagrada.",
+    "section": "architecture",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-017",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-017' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Reutiliza patrones, no identidades. Puedes reutilizar código, pero cada página debe tener su propia firma visual. Variación dentro de la consistencia.",
+    "tags": [
+      "architecture",
+      "reuse",
+      "identity",
+      "design-system"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6a85f0db-e9cb-43d5-8109-77f2e47acd94",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:27.877678Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:28.907928Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:35:32.113929Z",
+  "accepted_quote_id": "arch-108"
+}

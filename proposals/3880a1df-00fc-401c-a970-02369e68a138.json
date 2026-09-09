@@ -1,0 +1,49 @@
+{
+  "proposal_id": "3880a1df-00fc-401c-a970-02369e68a138",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Carga lo que se ve. Diferencia lo oculto. La página que carga todo, no carga nada rápido.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-034",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-034' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Carga primero los activos visibles y pospón el resto.",
+    "tags": [
+      "lazy-loading",
+      "priority",
+      "tao-of-web-images"
+    ],
+    "subsection": "lazy-loading",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-3fd9d222-1b0a-4dda-a0d9-2cbe45d80f64",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:51.008783Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:51.624797Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:13.935987Z",
+  "accepted_quote_id": "img-088"
+}

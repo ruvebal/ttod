@@ -1,0 +1,52 @@
+{
+  "proposal_id": "f26f805b-bc3e-4978-8006-04de1b847363",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El río no empuja; permite. El maestro desarrollador no fuerza el desplazamiento: canaliza su flujo.",
+    "section": "javascript",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "js-001",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'js-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Trabaja con los patrones del marco en lugar de luchar contra ellos; comprende la veta de la herramienta.",
+    "tags": [
+      "dom",
+      "scroll",
+      "framework",
+      "react-router",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "dom",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-379ad30b-3a3c-4e08-8e61-8ca6f2664445",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:25.050313Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:26.096911Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:13.478295Z",
+  "accepted_quote_id": "js-002"
+}

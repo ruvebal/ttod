@@ -1,0 +1,51 @@
+{
+  "proposal_id": "27ce277c-cf6e-43fa-8fa8-c19d8978da1f",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Estos errores no eran fallos—eran preguntas. Las correcciones no eran arreglos—eran respuestas.",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-006",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-006' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Cada error revela un vacío en la comprensión. Llenarlo. Documentar no solo qué se rompió, sino por qué.",
+    "tags": [
+      "wisdom",
+      "bugs",
+      "learning",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "reflection",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d512a64c-86b4-4056-b0e4-6b19bb739080",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:40.344489Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:40.948989Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:42.270128Z",
+  "accepted_quote_id": "wis-018"
+}

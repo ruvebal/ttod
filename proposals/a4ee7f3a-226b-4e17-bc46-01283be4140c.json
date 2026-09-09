@@ -1,0 +1,49 @@
+{
+  "proposal_id": "a4ee7f3a-226b-4e17-bc46-01283be4140c",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El maestro escribe: `<img srcset='...' sizes='...' />`. El novato escribe: `<img src='huge-image.jpg' />`. El usuario paga el precio.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-045",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-045' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Usa marcado moderno y en lugar de archivos gigantes únicos.",
+    "tags": [
+      "img",
+      "srcset",
+      "tao-of-web-images"
+    ],
+    "subsection": "responsive",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-cca5bbd8-7751-43de-9b55-3432c994dc1c",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:09.998803Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:10.916054Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:03.022207Z",
+  "accepted_quote_id": "img-124"
+}

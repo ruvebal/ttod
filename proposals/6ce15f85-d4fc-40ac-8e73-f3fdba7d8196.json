@@ -1,0 +1,53 @@
+{
+  "proposal_id": "6ce15f85-d4fc-40ac-8e73-f3fdba7d8196",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El camino habla a los humanos. La bóveda habla a las bibliotecas. El alcance habla a las máquinas. Una sola cadena para tres lenguas, y a las 3 a. m. la colisión habla más fuerte.",
+    "section": "code-craft",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-034",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-034' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Mantén separados los caminos humanos, las particiones de biblioteca y los identificadores de alcance de máquina — colapsar las capas garantiza la colisión.",
+    "tags": [
+      "naming",
+      "namespace",
+      "scope",
+      "boundaries",
+      "architecture",
+      "koan",
+      "featured"
+    ],
+    "subsection": "naming",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-77cf03a7-ab4b-4d96-bafe-14db9719e1f0",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:19.416860Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:20.198365Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:38:44.810430Z",
+  "accepted_quote_id": "cc-058"
+}

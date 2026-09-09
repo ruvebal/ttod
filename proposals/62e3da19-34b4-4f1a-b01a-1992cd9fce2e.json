@@ -1,0 +1,51 @@
+{
+  "proposal_id": "62e3da19-34b4-4f1a-b01a-1992cd9fce2e",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Antes de corregir, comprende. Antes de comprender, observa. Antes de observar, respira.",
+    "section": "wisdom",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-002",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La investigación metódica requiere paciencia y observación antes de la acción.",
+    "tags": [
+      "reflection",
+      "methodology",
+      "debugging",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "reflection",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-47d0852d-3358-4bb9-9006-1ebde08efcc3",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:08.916884Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:09.658364Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:25.930454Z",
+  "accepted_quote_id": "wis-020"
+}

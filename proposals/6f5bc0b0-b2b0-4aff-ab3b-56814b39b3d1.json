@@ -1,0 +1,53 @@
+{
+  "proposal_id": "6f5bc0b0-b2b0-4aff-ab3b-56814b39b3d1",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "DEV y STG son donde practicas la eliminación y la poda. PROD es donde solo ejecutas los ejercicios que aprobaron. Prototipa --prune-missing en DEV. Ensaya en STG con datos reales. Úsalo en PROD solo cuando se haya vuelto aburrido.",
+    "section": "code-craft",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-020",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-020' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Practica en el dojo, ejecuta en la arena. Si un comando te sorprende en PROD, no estaba lo suficientemente entrenado. DEV y STG son donde practicas; PROD es donde solo ejecutas los ejercicios que aprobaron.",
+    "tags": [
+      "codecraft",
+      "environments",
+      "dev-stg-prod",
+      "practice",
+      "safety",
+      "operations",
+      "patterns"
+    ],
+    "subsection": "patterns",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-ec28801b-809c-40e8-b0c8-1e3415097598",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:20.497530Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:21.282624Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:37:46.690527Z",
+  "accepted_quote_id": "cc-059"
+}

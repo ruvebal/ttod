@@ -1,0 +1,51 @@
+{
+  "proposal_id": "29fa8656-150b-46b4-bd24-d3c7c6f4c7fe",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El viaje de mil despliegues comienza con un solo commit.",
+    "section": "devops",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "dop-002",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'dop-002' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Todo despliegue importante comienza con un cambio pequeño e incremental.",
+    "tags": [
+      "devops",
+      "deployment",
+      "journey",
+      "humor",
+      "featured"
+    ],
+    "subsection": "pipelines",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-1f11acef-d2b5-4363-b2a3-6d8358de6a6d",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:41.061800Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:41.669787Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:24.160532Z",
+  "accepted_quote_id": "dop-009"
+}

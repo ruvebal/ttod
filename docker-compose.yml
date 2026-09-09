@@ -1,0 +1,90 @@
+services:
+  reverse-proxy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-8080}:8080"
+      - "${ALT_HTTP_PORT:-8443}:8443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    build:
+      context: ./services/frontend
+      args:
+        BACKEND_URL: http://backend:8000
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  backend:
+    build:
+      context: .
+      dockerfile: services/backend/Dockerfile
+    restart: unless-stopped
+    environment:
+      OLLAMA_MODE: ${OLLAMA_MODE:-container}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:1b}
+      OLLAMA_EMBED_MODEL: ${OLLAMA_EMBED_MODEL:-nomic-embed-text}
+      TTOD_PATH: ${TTOD_PATH:-/workspace/ttod.yml}
+      TTOD_SCHEMA_DIR: ${TTOD_SCHEMA_DIR:-/workspace/schema}
+      TTOD_PROPOSAL_DIR: ${TTOD_PROPOSAL_DIR:-/workspace/services/backend/data/proposals}
+      ORACLE_RETRIEVAL_THRESHOLD: ${ORACLE_RETRIEVAL_THRESHOLD:-0.575}
+      ORACLE_RETRIEVAL_TOP_K: ${ORACLE_RETRIEVAL_TOP_K:-5}
+      MCP_SERVER_URL: http://mcp-server:3001
+      TTOD_SESSION_SECRET: ${TTOD_SESSION_SECRET:-dev-insecure-session-secret-not-for-production}
+      TTOD_PAT_SECRET: ${TTOD_PAT_SECRET:-dev-insecure-pat-secret-not-for-production}
+      TTOD_SESSION_COOKIE_NAME: ${TTOD_SESSION_COOKIE_NAME:-ttod_session}
+      TTOD_SEED_USER_EMAIL: ${TTOD_SEED_USER_EMAIL:-student@ttod.local}
+      TTOD_SEED_USER_PASSWORD: ${TTOD_SEED_USER_PASSWORD:-ttod-teaching-only-not-a-real-password}
+      TTOD_SEED_USER_DISPLAY_NAME: ${TTOD_SEED_USER_DISPLAY_NAME:-Cohort Student}
+      TTOD_SEED_USER_ROLE: ${TTOD_SEED_USER_ROLE:-student}
+      TTOD_SEED_USER_ID: ${TTOD_SEED_USER_ID:-user-seed-student}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - mcp-server
+      - ollama
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
+
+  mcp-server:
+    build:
+      context: .
+      dockerfile: services/mcp/Dockerfile
+    restart: unless-stopped
+    environment:
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      OLLAMA_EMBED_MODEL: ${OLLAMA_EMBED_MODEL:-nomic-embed-text}
+      TTOD_PATH: /app/ttod.yml
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - ollama
+
+  # The app's own Ollama — owned by this stack, not borrowed from the host.
+  # This is the supported default for everyone (students included). Pointing
+  # the app at an Ollama you already run yourself is a personal, manual
+  # override (set OLLAMA_MODE=host + OLLAMA_BASE_URL yourself) — not a
+  # documented project path, so it stays outside this file's defaults.
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "${OLLAMA_CONTAINER_PORT:-11435}:11434"
+    volumes:
+      - ttod_ollama_data:/root/.ollama
+
+volumes:
+  ttod_ollama_data:

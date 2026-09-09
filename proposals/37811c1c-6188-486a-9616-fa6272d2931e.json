@@ -1,0 +1,54 @@
+{
+  "proposal_id": "37811c1c-6188-486a-9616-fa6272d2931e",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Las operaciones peligrosas pertenecen tras banderas, con ejecuciones en seco y una nomenclatura clara. --prune-missing en lugar de comportamiento oculto. --prune-strategy=soft|hard en lugar de \"adivinar qué hice\". --dry-run para ensayar antes de actuar.",
+    "section": "code-craft",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-019",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-019' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El ingeniero sabio hace que el peligro sea opcional. Una buena CLI ofrece un camino seguro por defecto y una hoja afilada solo cuando se pide. Las operaciones peligrosas pertenecen tras banderas, con ejecuciones en seco y una nomenclatura clara.",
+    "tags": [
+      "codecraft",
+      "cli-design",
+      "safety",
+      "flags",
+      "dry-run",
+      "dangerous-operations",
+      "patterns",
+      "featured"
+    ],
+    "subsection": "patterns",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-5b65f56f-1670-4ae6-9f45-7353cb360b60",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:49.561490Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:50.186939Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:37:38.246522Z",
+  "accepted_quote_id": "cc-048"
+}

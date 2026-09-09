@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../../layouts/Page.astro';
+import { isLocale, labels } from '../../../content/wisdom';
+import '../../../styles/tokens.css';
+const locale = Astro.params.locale;
+if (!isLocale(locale)) return new Response(null, { status: 404 });
+const entries = (await getCollection('docs', ({ data }) => data.locale === locale)).sort((a, b) => a.data.order - b.data.order);
+const copy = labels[locale];
+---
+<Page lang={locale} title={copy.docs}>
+  <main class="ttod-shell">
+    <nav class="ttod-nav"><a href={`/${locale}/`}>← {locale === 'es' ? 'Inicio' : 'Home'}</a><a href={`/${locale}/wisdom/`}>{copy.wisdom}</a></nav>
+    <h1>{copy.docs}</h1>
+    <div class="ttod-grid">{entries.map((entry) => <article class="ttod-card"><h2><a href={`/${locale}/docs/${entry.id.split('/').slice(1).join('/')}/`}>{entry.data.title}</a></h2><p>{entry.data.description}</p></article>)}</div>
+  </main>
+</Page>
+

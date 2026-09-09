@@ -1,0 +1,51 @@
+{
+  "proposal_id": "2b00b1d6-3c00-4ac8-9f95-71f5679ae2df",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "La ingeniera de IA honesta no se miente a sí misma sobre sus herramientas. Sabe lo que pueden y no pueden hacer, y diseña su flujo de trabajo para amplificar sus fortalezas.",
+    "section": "architecture",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-037",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-037' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao DevIAC (§22): La Evaluación Honesta — Haiku: la brecha no es tamaño / ventana de contexto, herramienta, prompt / compensa con cuidado",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured",
+      "haiku"
+    ],
+    "subsection": "principles",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-2923b4d0-f14c-46e5-b322-a53cce9f5e42",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:41.769351Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:42.370048Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:40:14.620087Z",
+  "accepted_quote_id": "arch-069"
+}

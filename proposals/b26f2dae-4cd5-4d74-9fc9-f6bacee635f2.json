@@ -1,0 +1,54 @@
+{
+  "proposal_id": "b26f2dae-4cd5-4d74-9fc9-f6bacee635f2",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El jardinero riega, no quema el campo.",
+    "section": "code-craft",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-015",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-015' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los upserts hacen crecer el jardín; la supresión es fuego. Prefiere operaciones no destructivas por defecto. Crear y actualizar preservan lo que existe; borrar destruye lo que fue. El jardinero nutre el crecimiento, no la destrucción.",
+    "tags": [
+      "codecraft",
+      "non-destructive",
+      "upsert",
+      "deletion",
+      "operations",
+      "patterns",
+      "koan",
+      "featured"
+    ],
+    "subsection": "patterns",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-f13ceb7b-4d64-4659-8e26-35335bc46a26",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:22.435805Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:23.346294Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:37:06.585395Z",
+  "accepted_quote_id": "cc-067"
+}

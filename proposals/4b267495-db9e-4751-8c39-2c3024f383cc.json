@@ -1,0 +1,49 @@
+{
+  "proposal_id": "4b267495-db9e-4751-8c39-2c3024f383cc",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "La imagen más pesada pesa nada cuando nunca se carga. La imagen más ligera aplasta al usuario cuando mal colocada.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-029",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-029' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "Evita cargar activos sobredimensionados y respeta la banda ancha del usuario.",
+    "tags": [
+      "optimization",
+      "weight",
+      "tao-of-web-images"
+    ],
+    "subsection": "optimization",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-92efa4e6-dba4-4f27-aea8-ae3f04423b08",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:04.339017Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:05.013669Z"
+    }
+  ],
+  "created_at": "2026-09-04T14:35:32.373309Z",
+  "accepted_quote_id": "img-096"
+}

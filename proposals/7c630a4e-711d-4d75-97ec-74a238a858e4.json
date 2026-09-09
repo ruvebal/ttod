@@ -1,0 +1,49 @@
+{
+  "proposal_id": "7c630a4e-711d-4d75-97ec-74a238a858e4",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Una imagen sin propósito es decoración. La decoración sin medida es desorden. El desorden es el enemigo del sentido.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-065",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-065' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Otorga a cada imagen un significado intencional y un contexto.",
+    "tags": [
+      "laws",
+      "purpose",
+      "tao-of-web-images"
+    ],
+    "subsection": "laws",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-7dd838a5-f5bc-4642-ad86-7494e0fbd911",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:30.317646Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:31.122838Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:30:20.259982Z",
+  "accepted_quote_id": "img-111"
+}

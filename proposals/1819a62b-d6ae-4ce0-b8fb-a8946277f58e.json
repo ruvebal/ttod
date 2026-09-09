@@ -1,0 +1,51 @@
+{
+  "proposal_id": "1819a62b-d6ae-4ce0-b8fb-a8946277f58e",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Un GIF bien colocado trae alegría. Un video en reproducción automática trae ira. Conoce la diferencia.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-014",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-014' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Control y consentimiento del usuario en los medios",
+    "tags": [
+      "gif",
+      "video",
+      "ux",
+      "autoplay",
+      "emotion"
+    ],
+    "subsection": "gif",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-f65e7a89-7c48-46d1-8aff-c13df85e66b3",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:29.136888Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:29.669466Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:00.091193Z",
+  "accepted_quote_id": "img-082"
+}

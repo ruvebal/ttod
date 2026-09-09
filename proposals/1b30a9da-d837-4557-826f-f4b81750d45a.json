@@ -1,0 +1,50 @@
+{
+  "proposal_id": "1b30a9da-d837-4557-826f-f4b81750d45a",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Un sistema sin capas claras es como una casa sin muros: técnicamente funcional, emocionalmente devastador.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-003",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La separación de preocupaciones previene el caos estructural",
+    "tags": [
+      "architecture",
+      "layers",
+      "design",
+      "featured"
+    ],
+    "subsection": "architecture",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-3c323e56-9f0f-4d95-a943-ae91e1150dbb",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:31.034542Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:31.584730Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:01.569885Z",
+  "accepted_quote_id": "qa-022"
+}

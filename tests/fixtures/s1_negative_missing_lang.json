@@ -1,0 +1,14 @@
+{
+  "id": "arch-910",
+  "schema_version": "3.1.0",
+  "text": "Boundaries are where systems learn their shape.",
+  "section": "architecture",
+  "level": "advanced",
+  "tags": [
+    "boundaries"
+  ],
+  "teaches": "Respect the edge.",
+  "origin": "human",
+  "status": "active",
+  "created_at": "2026-09-04"
+}

@@ -1,0 +1,51 @@
+{
+  "proposal_id": "ef233d35-283e-4735-a122-ab197074b266",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El novato culpa al código, el experto a la red; el maestro sabe que siempre fue DNS.",
+    "section": "networking",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "net-001",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'net-001' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La depuración por capas comienza con las suposiciones; honra los fundamentos de la red.",
+    "tags": [
+      "networking",
+      "dns",
+      "diagnosis",
+      "mastery",
+      "humor"
+    ],
+    "subsection": "diagnosis",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-2e901898-c8fc-4529-8476-5f6709c75fc0",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:22.215559Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:23.259227Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:17.773401Z",
+  "accepted_quote_id": "net-002"
+}

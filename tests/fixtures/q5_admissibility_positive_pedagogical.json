@@ -1,0 +1,17 @@
+{
+  "claim_domain": "pedagogical",
+  "quote": {
+    "id": "arch-052",
+    "schema_version": "3.0.0",
+    "text": "One MCP facade for Cursor, chat, web, and CLI — no side entrance to the vault.",
+    "section": "architecture",
+    "source": "athanor/docs/DEV_PLAN/PHASE-2.md",
+    "lesson": "athanor-phase-2",
+    "immediate_parent_refs": [
+      "athanor-phase-2-plan"
+    ],
+    "origin": "studio",
+    "level": "advanced",
+    "lang": "en"
+  }
+}

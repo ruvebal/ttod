@@ -1,0 +1,15 @@
+{
+  "quote": {
+    "id": "wis-001",
+    "text": "Public wisdom.",
+    "section": "wisdom",
+    "level": "beginner",
+    "lang": "en",
+    "origin": "human",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net"
+    }
+  }
+}

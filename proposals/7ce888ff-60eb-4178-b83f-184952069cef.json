@@ -1,0 +1,50 @@
+{
+  "proposal_id": "7ce888ff-60eb-4178-b83f-184952069cef",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El instructor sabio califica con consistencia. El instructor iluminado califica con compasión.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-012",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Equilibra los criterios objetivos con la comprensión humana",
+    "tags": [
+      "grading",
+      "teaching",
+      "compassion",
+      "featured"
+    ],
+    "subsection": "grading",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-96729e5e-0ec8-4671-ba11-5a952a7b2719",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:32.535171Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:33.360082Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:32.632496Z",
+  "accepted_quote_id": "qa-031"
+}

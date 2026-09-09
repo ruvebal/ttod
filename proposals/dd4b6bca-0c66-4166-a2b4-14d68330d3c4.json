@@ -1,0 +1,50 @@
+{
+  "proposal_id": "dd4b6bca-0c66-4166-a2b4-14d68330d3c4",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Un estudiante preguntó: '¿Por qué no usar el modelo en la nube? Es más rápido.' El arquitecto respondió: 'Prueba a hacerle mil preguntas a medianoche.' El estudiante entendió.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-030",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-030' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§41): El Límite de Tasa",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured"
+    ],
+    "subsection": "principles",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-43658a84-7f13-4172-9532-5896c7d5a5df",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:58.845602Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:59.852956Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:39:39.118114Z",
+  "accepted_quote_id": "arch-104"
+}

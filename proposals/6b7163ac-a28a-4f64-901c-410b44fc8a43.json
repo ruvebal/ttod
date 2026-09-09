@@ -1,0 +1,50 @@
+{
+  "proposal_id": "6b7163ac-a28a-4f64-901c-410b44fc8a43",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Un campo vacío no es un error: es una promesa incompleta. El código puede ser perfecto, pero los datos pueden estar ausentes.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-019",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-019' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Código perfecto, datos imperfectos. Puedes escribir código impecable, pero si los datos no existen, tu página queda incompleta. Diseña para la ausencia de datos con gracia.",
+    "tags": [
+      "architecture",
+      "data",
+      "completeness",
+      "error-handling"
+    ],
+    "subsection": "boundaries",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-85d0a654-0af4-469e-b34f-90d635acfaaa",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:18.353953Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:19.125503Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:35:42.777841Z",
+  "accepted_quote_id": "arch-083"
+}

@@ -1,0 +1,52 @@
+{
+  "proposal_id": "37e43fa5-c064-461d-83aa-c0205f718562",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Pie de página como índice - La navegación global supera la complejidad local.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-024",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-024' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elimina transiciones innecesarias; deja que el contenido fluya con naturalidad. La mejor navegación es la que olvidas—hasta que la necesitas. Usa el pie de página para navegación interna en lugar de índices locales.",
+    "tags": [
+      "architecture",
+      "navigation",
+      "footer",
+      "simplicity",
+      "ux",
+      "featured"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-495fca25-dd40-4bdd-a08b-8f23694c092b",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:50.286924Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:50.905490Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:36:15.557709Z",
+  "accepted_quote_id": "arch-073"
+}

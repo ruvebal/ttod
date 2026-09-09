@@ -1,0 +1,49 @@
+{
+  "proposal_id": "9408788c-5369-4b93-8bbb-a4f7ee6a76c8",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Un tiempo de carga de 3 segundos no es lento por la tecnología, es lento por tus imágenes. El servidor es inocente; el desarrollador no.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-052",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-052' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Asume la responsabilidad cuando las imágenes arrastran los tiempos de carga.",
+    "tags": [
+      "performance",
+      "accountability",
+      "tao-of-web-images"
+    ],
+    "subsection": "performance",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-0ddc9e09-d274-4063-95e5-c22d0517877a",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:57.516761Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:58.409978Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:33.368708Z",
+  "accepted_quote_id": "img-118"
+}

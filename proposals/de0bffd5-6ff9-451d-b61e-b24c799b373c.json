@@ -1,0 +1,50 @@
+{
+  "proposal_id": "de0bffd5-6ff9-451d-b61e-b24c799b373c",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "La inconsistencia en mayúsculas no es un estilo. Es una carta de rescate escrita por un psicópata.",
+    "section": "code-craft",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-031",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-031' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Elige una convención y ciñete a ella o perece",
+    "tags": [
+      "consistency",
+      "naming",
+      "discipline",
+      "humor"
+    ],
+    "subsection": "naming",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-c846ec21-f12a-479e-9222-ed07cf91f7c1",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:01.565976Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:02.562442Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:38:32.760248Z",
+  "accepted_quote_id": "cc-074"
+}

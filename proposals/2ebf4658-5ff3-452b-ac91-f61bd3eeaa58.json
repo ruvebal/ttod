@@ -1,0 +1,50 @@
+{
+  "proposal_id": "2ebf4658-5ff3-452b-ac91-f61bd3eeaa58",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Nombra tu repositorio 'Proyecto' y será borrado con la misma indiferencia que mostraste al nombrarlo.",
+    "section": "code-craft",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-023",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-023' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Los nombres genéricos conducen a proyectos y calificaciones perdidos",
+    "tags": [
+      "naming",
+      "git",
+      "humor",
+      "anti-pattern"
+    ],
+    "subsection": "naming",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-50c11365-d3da-4171-b0bc-abe1b84476f6",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:45.956719Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:46.577342Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:37:57.418085Z",
+  "accepted_quote_id": "cc-045"
+}

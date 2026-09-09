@@ -1,0 +1,12 @@
+---
+import GraphIsland from '../../components/graph/GraphIsland.svelte';
+import Page from '../../layouts/Page.astro';
+const locale = Astro.params.locale;
+if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 });
+---
+<Page lang={locale} title="TTOD knowledge graph">
+  <nav><a href={`/${locale}/`}>{locale === 'es' ? 'Inicio' : 'Home'}</a></nav>
+  <main>
+    <GraphIsland client:load />
+  </main>
+</Page>

@@ -1,0 +1,290 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "transport_proposal_in_v1.json",
+	"title": "TTOD Proposal-In Transport v1",
+	"description": "Proposal payload from Athanor → TTOD. Carries Q2P proposal shape without canonical ID, preserving WPL generation record and evidence snapshot digests.",
+	"version": "1.0.0",
+	"type": "object",
+	"required": [
+		"proposal_id",
+		"candidate_content",
+		"proposer",
+		"status"
+	],
+	"properties": {
+		"proposal_id": {
+			"type": "string",
+			"description": "UUID/URN proposal identifier (never a canonical section-number ID)"
+		},
+		"candidate_content": {
+			"type": "object",
+			"description": "Proposed quote content (no canonical id field)",
+			"required": [
+				"text",
+				"section",
+				"level",
+				"origin"
+			],
+			"properties": {
+				"text": {
+					"type": "string",
+					"description": "The aphorism text"
+				},
+				"section": {
+					"type": "string",
+					"description": "Section identifier"
+				},
+				"subsection": {
+					"type": "string",
+					"description": "Subsection within section"
+				},
+				"level": {
+					"type": "string",
+					"enum": [
+						"beginner",
+						"intermediate",
+						"advanced",
+						"master"
+					]
+				},
+				"tags": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"teaches": {
+					"type": "string"
+				},
+				"show_when": {
+					"type": "string"
+				},
+				"origin": {
+					"type": "string",
+					"enum": [
+						"human",
+						"studio",
+						"blackbox",
+						"mixed"
+					]
+				},
+				"authorship_assertion": {
+					"type": "string"
+				},
+				"source_refs": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": [
+							"source_id"
+						],
+						"properties": {
+							"source_id": {
+								"type": "string"
+							},
+							"locator": {
+								"type": "string"
+							},
+							"content_digest": {
+								"type": "string",
+								"pattern": "^[a-f0-9]{64}$"
+							},
+							"role": {
+								"type": "string"
+							},
+							"derivation_method": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"rights": {
+					"type": "object",
+					"properties": {
+						"license": {
+							"type": "string"
+						},
+						"holder": {
+							"type": "string"
+						},
+						"permission_basis": {
+							"type": "string"
+						},
+						"access": {
+							"type": "string",
+							"enum": [
+								"public",
+								"restricted",
+								"private"
+							]
+						},
+						"restrictions": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"decision_ref": {
+							"type": "string"
+						}
+					}
+				},
+				"related": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"relation_edges": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": [
+							"target",
+							"relation_type"
+						],
+						"properties": {
+							"target": {
+								"type": "string"
+							},
+							"relation_type": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"immediate_parent_refs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"root_source_refs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"lang": {
+					"type": "string",
+					"pattern": "^[a-z]{2}$"
+				}
+			},
+			"additionalProperties": false
+		},
+		"proposer": {
+			"type": "object",
+			"description": "Proposer identity (may be Athanor system or human)",
+			"required": [
+				"identity"
+			],
+			"properties": {
+				"identity": {
+					"type": "string",
+					"description": "Proposer identifier (e.g., 'athanor-system' or human ID)"
+				},
+				"system": {
+					"type": "string",
+					"description": "System name if proposer is automated (e.g., 'athanor')"
+				},
+				"version": {
+					"type": "string",
+					"description": "System version if proposer is automated"
+				}
+			}
+		},
+		"status": {
+			"type": "string",
+			"enum": [
+				"proposed",
+				"needs_revision",
+				"accepted",
+				"rejected",
+				"withdrawn"
+			],
+			"description": "Proposal status (incoming proposals always 'proposed')"
+		},
+		"created_at": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"human_review_activities": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"activity_type",
+					"timestamp"
+				],
+				"properties": {
+					"activity_type": {
+						"type": "string",
+						"enum": [
+							"comment",
+							"revision_request",
+							"accept",
+							"reject",
+							"withdraw"
+						]
+					},
+					"reviewer_id": {
+						"type": "string",
+						"description": "Identifier of human reviewer (required for accept)"
+					},
+					"comment": {
+						"type": "string"
+					},
+					"decision_reason": {
+						"type": "string"
+					},
+					"timestamp": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"description": "Append-only review activities list"
+		},
+		"accepted_quote_id": {
+			"type": "string",
+			"description": "Canonical TTOD ID assigned on acceptance (null until accepted)"
+		},
+		"wpl_record_id": {
+			"type": "string",
+			"description": "WPL generation record identifier (preserved exactly as received)"
+		},
+		"wpl_record_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of WPL generation record (preserved exactly as received)"
+		},
+		"evidence_snapshot_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of shared Athanor evidence snapshot (preserved exactly as received)"
+		},
+		"transfer_metadata": {
+			"type": "object",
+			"description": "Transfer-level metadata from Athanor",
+			"properties": {
+				"transfer_id": {
+					"type": "string"
+				},
+				"received_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"source_system": {
+					"type": "string",
+					"description": "Source system (e.g., 'athanor')"
+				},
+				"source_version": {
+					"type": "string"
+				},
+				"contract_version": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

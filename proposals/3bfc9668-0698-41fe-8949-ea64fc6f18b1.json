@@ -1,0 +1,50 @@
+{
+  "proposal_id": "3bfc9668-0698-41fe-8949-ea64fc6f18b1",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "La imagen rasterizada teme al zoom. El SVG lo acoge.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-016",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-016' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Vectorial frente a ráster en distintas escalas",
+    "tags": [
+      "svg",
+      "raster",
+      "responsive",
+      "zoom"
+    ],
+    "subsection": "svg",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-a687d557-c029-41b4-9c6e-e5160ecc03a8",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:53.875071Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:54.517321Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:27:07.065621Z",
+  "accepted_quote_id": "img-090"
+}

@@ -1,0 +1,122 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "ttod.schema.json",
+	"title": "TTOD Root Document v3",
+	"description": "Root TTOD document with meta, sections, tag_taxonomy, collections, lessons, and quotes array",
+	"type": "object",
+	"required": [
+		"meta",
+		"sections",
+		"quotes"
+	],
+	"properties": {
+		"meta": {
+			"type": "object",
+			"required": [
+				"title",
+				"version",
+				"total_quotes",
+				"last_id_by_section"
+			],
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"subtitle": {
+					"type": "string"
+				},
+				"version": {
+					"type": "string",
+					"pattern": "^3\\."
+				},
+				"language": {
+					"type": "string",
+					"description": "DEPRECATED mirror of meta.languages[0] for unmigrated tooling. Not authoritative after Phase S S2′; use meta.languages."
+				},
+				"total_quotes": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"last_id_by_section": {
+					"type": "object",
+					"description": "Last used ID number per section prefix"
+				},
+				"languages": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^[a-z]{2}$"
+					},
+					"description": "Derived list of every lang value present in quotes (never hand-edited; drift-checked by stats --check). Authoritative after S2′; meta.language is a deprecated mirror."
+				}
+			}
+		},
+		"audience": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"levels": {
+			"type": "object",
+			"description": "Pedagogical level definitions"
+		},
+		"sections": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"id",
+					"prefix",
+					"name"
+				],
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"prefix": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"icon": {
+						"type": "string"
+					},
+					"color": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"subsections": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"tag_taxonomy": {
+			"type": "object",
+			"description": "Controlled tag vocabulary"
+		},
+		"collections": {
+			"type": "object",
+			"description": "Named quote collections"
+		},
+		"lessons": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			}
+		},
+		"quotes": {
+			"type": "array",
+			"items": {
+				"$ref": "quote.schema.json"
+			}
+		}
+	}
+}

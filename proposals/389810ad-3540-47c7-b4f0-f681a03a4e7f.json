@@ -1,0 +1,50 @@
+{
+  "proposal_id": "389810ad-3540-47c7-b4f0-f681a03a4e7f",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Publica el módulo cuando funciona solo. Publica el sistema cuando los módulos funcionan juntos. Publica la plataforma cuando los sistemas se componen sin hablar.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-007",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-007' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La madurez avanza de la unidad a la integración hasta el comportamiento emergente.",
+    "tags": [
+      "architecture",
+      "composition",
+      "evolution",
+      "featured"
+    ],
+    "subsection": "composition",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6da2e4b7-0a4d-473f-a104-99144f17d9d4",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:55:51.716004Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:55:52.342587Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:34:53.784355Z",
+  "accepted_quote_id": "arch-074"
+}

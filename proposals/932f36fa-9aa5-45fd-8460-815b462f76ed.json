@@ -1,0 +1,54 @@
+{
+  "proposal_id": "932f36fa-9aa5-45fd-8460-815b462f76ed",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El Tao que puede expresarse en un prompt no es el Tao eterno. El código que puede generarse sin comprensión no es verdadero código.",
+    "section": "wisdom",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "wis-033",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'wis-033' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El prompt y la generación no sustituyen la comprensión necesaria para juzgar, mantener y asumir la responsabilidad del código.",
+    "tags": [
+      "wisdom",
+      "understanding",
+      "learning"
+    ],
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b547bd7f-63ae-4e62-a9b0-52cc171eeec9",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T16:11:50.628578Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "comment",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T16:11:50.530002Z",
+      "comment": "accept-after-edit: qwen3.8:27b rendered prompted as solicitado (lost LLM prompt sense, same class as S4 Coda/Code). Human replaced text and teaches to keep prompt as established technical loanword and restore DDJ parallel."
+    },
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T16:11:51.713641Z"
+    }
+  ],
+  "created_at": "2026-09-07T16:11:00.794895Z",
+  "accepted_quote_id": "wis-034"
+}

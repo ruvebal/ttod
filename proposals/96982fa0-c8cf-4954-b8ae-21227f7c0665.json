@@ -1,0 +1,52 @@
+{
+  "proposal_id": "96982fa0-c8cf-4954-b8ae-21227f7c0665",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Cuando las personas (o registros) se van, el sistema debe reconocer ese cambio, no borrar su existencia a ciegas. Prefiere cambios de estado suaves (activo → ex) a borrados duros. Conserva la historia; cambia la visibilidad.",
+    "section": "code-craft",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-018",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-018' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Un miembro que se va no es un error, sino una historia con un final. Los sistemas que recuerdan los finales son más amables con la verdad. Prefiere cambios de estado suaves a borrados duros. Conserva la historia; cambia la visibilidad.",
+    "tags": [
+      "codecraft",
+      "soft-delete",
+      "status-changes",
+      "history",
+      "data-integrity",
+      "patterns"
+    ],
+    "subsection": "patterns",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e307badc-2d27-4b85-a3c9-0c96d95f90ae",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:02.483215Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:03.384557Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:37:29.594402Z",
+  "accepted_quote_id": "cc-066"
+}

@@ -1,0 +1,38 @@
+{
+  "proposal_id": "6dce302d-aa9b-4f2c-bf10-f3d9c8f9df96",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "En Apple Silicon, la GPU y la CPU beben del mismo pozo. 128 GB unificados no son un compromiso: son la razón por la que un modelo de 72B cabe donde ninguna GPU discreta podría sostenerlo.",
+    "section": "devops",
+    "level": "advanced",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "dop-003",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'dop-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§35): Metal y Memoria — Haiku: pozo de memoria compartido / setenta y dos mil millones de pesos / caben donde nadie soñó",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured",
+      "haiku"
+    ],
+    "subsection": "automation",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen3.8:27b:translate-draft-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-04T14:33:19.105175Z"
+}

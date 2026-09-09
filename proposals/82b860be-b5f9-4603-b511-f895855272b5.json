@@ -1,0 +1,51 @@
+{
+  "proposal_id": "82b860be-b5f9-4603-b511-f895855272b5",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El diseño no es solo lo que se ve y lo que se siente. El diseño es cómo funciona.",
+    "section": "ux",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "ux-003",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'ux-003' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Un mejor diseño equivale a una mejor función. La estética visual sirve a la usabilidad, no la reemplaza.",
+    "tags": [
+      "ux",
+      "design",
+      "function",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "philosophy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-1f5ca767-97f4-42d7-b982-64087366ead8",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:39.483948Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:40.316597Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:32:34.537662Z",
+  "accepted_quote_id": "ux-006"
+}

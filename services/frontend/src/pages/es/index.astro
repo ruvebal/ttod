@@ -1,0 +1,27 @@
+---
+import Page from '../../layouts/Page.astro';
+import type { WisdomEntry } from '../../types/domain';
+
+const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+const response = await fetch(`${backend}/api/v1/wisdom/sample`, {
+  headers: { accept: 'application/json' }
+});
+if (!response.ok) throw new Error(`Backend flagship quote request failed (${response.status})`);
+const entries: WisdomEntry[] = await response.json();
+const flagship = entries.find((entry) => entry.id === 'wis-033');
+if (!flagship) throw new Error('Governed flagship quote wis-033 is unavailable');
+---
+<Page lang="es" title="道 El Tao del Desarrollo (TTOD)">
+  <nav><a href="/en/">English</a><a href="/es/">Español</a></nav>
+  <main>
+    <h1>Bienvenido a 道 El Tao del Desarrollo (TTOD)</h1>
+    <p>Una colección viva de sabiduría pedagógica para quienes recorren el camino del desarrollo.</p>
+    <article class="ttod-bg-constellation" aria-labelledby="flagship-quote-heading">
+      <h2 id="flagship-quote-heading">Cita insignia — original en inglés</h2>
+      <p>Esta cita aún no tiene una traducción gobernada al español; mostramos el original sin presentarlo como traducción.</p>
+      <blockquote lang={flagship.lang}>{flagship.text}</blockquote>
+      <p>{flagship.id} · {flagship.section} · {flagship.lang}</p>
+    </article>
+    <p><a href="/es/quote">Lee una cita en directo</a></p>
+  </main>
+</Page>

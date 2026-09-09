@@ -1,0 +1,49 @@
+{
+  "proposal_id": "548e009a-ac9a-47df-a34f-fb100b75bafb",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Libre como la libertad, estable como lo probado. El Tao no pide pago, solo la atribución debida.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-011",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-011' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El código abierto florece con el crédito y la contribución",
+    "tags": [
+      "open-source",
+      "licensing",
+      "attribution"
+    ],
+    "subsection": "open-source",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-6aa3a7d1-ea62-4f9e-b482-306063ae7805",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:15.332643Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:16.040416Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:29.187348Z",
+  "accepted_quote_id": "qa-028"
+}

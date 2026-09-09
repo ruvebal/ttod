@@ -1,0 +1,295 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "transport_quote_out_v1.json",
+	"title": "TTOD Quote-Out Transport v1",
+	"description": "Canonical quote projection for TTOD → Athanor transfer. Carries all protected fields with usage_role=pedagogical to prevent misuse as WPL evidence.",
+	"version": "1.0.0",
+	"type": "object",
+	"required": [
+		"quote_id",
+		"text",
+		"content_digest",
+		"snapshot_digest",
+		"origin",
+		"usage_role",
+		"section",
+		"level"
+	],
+	"properties": {
+		"quote_id": {
+			"type": "string",
+			"description": "Canonical immutable TTOD quote ID (format: {section_prefix}-{number})"
+		},
+		"text": {
+			"type": "string",
+			"description": "The aphorism text (Unicode NFC normalized)"
+		},
+		"content_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "SHA-256 digest computed via TTOD-C14N-v1 canonical projection"
+		},
+		"snapshot_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of the TTOD snapshot this quote was exported from"
+		},
+		"origin": {
+			"type": "string",
+			"enum": [
+				"human",
+				"studio",
+				"blackbox",
+				"mixed",
+				"legacy-unknown"
+			],
+			"description": "Authorship assertion. No default-to-human."
+		},
+		"usage_role": {
+			"type": "string",
+			"const": "pedagogical",
+			"description": "Mandatory field marking this as pedagogical content, not WPL/Athanor evidence"
+		},
+		"section": {
+			"type": "string",
+			"description": "Section identifier"
+		},
+		"subsection": {
+			"type": "string",
+			"description": "Subsection within section"
+		},
+		"level": {
+			"type": "string",
+			"enum": [
+				"beginner",
+				"intermediate",
+				"advanced",
+				"master"
+			],
+			"description": "Pedagogical mastery level"
+		},
+		"lang": {
+			"type": "string",
+			"pattern": "^[a-z]{2}$",
+			"description": "ISO 639-1 language of this quote"
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"description": "Controlled vocabulary tags"
+		},
+		"teaches": {
+			"type": "string",
+			"description": "What the student learns from this quote"
+		},
+		"show_when": {
+			"type": "string",
+			"description": "When to surface this quote"
+		},
+		"validation": {
+			"type": "object",
+			"description": "Review and validation status",
+			"properties": {
+				"status": {
+					"type": "string",
+					"enum": [
+						"pending",
+						"validated",
+						"rejected"
+					]
+				},
+				"method": {
+					"type": "string"
+				},
+				"reviewer_id": {
+					"type": "string",
+					"description": "Identifier of human reviewer"
+				},
+				"activity_id": {
+					"type": "string",
+					"description": "Human acceptance activity identifier"
+				},
+				"reviewed_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"record_digest": {
+					"type": "string",
+					"pattern": "^[a-f0-9]{64}$"
+				}
+			}
+		},
+		"rights": {
+			"type": "object",
+			"description": "Item-level rights and license terms",
+			"properties": {
+				"license": {
+					"type": "string",
+					"description": "License identifier (e.g., CC-BY-NC-SA-4.0)"
+				},
+				"holder": {
+					"type": "string",
+					"description": "Rights holder identity"
+				},
+				"permission_basis": {
+					"type": "string",
+					"description": "Basis for permission"
+				},
+				"access": {
+					"type": "string",
+					"enum": [
+						"public",
+						"restricted",
+						"private"
+					]
+				},
+				"restrictions": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"decision_ref": {
+					"type": "string"
+				}
+			}
+		},
+		"related": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"description": "Related quote IDs (directed edges)"
+		},
+		"relation_edges": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"target",
+					"relation_type"
+				],
+				"properties": {
+					"target": {
+						"type": "string"
+					},
+					"relation_type": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"status": {
+			"type": "string",
+			"enum": [
+				"active",
+				"deprecated",
+				"erased"
+			],
+			"description": "Lifecycle status"
+		},
+		"deprecated_by": {
+			"type": "string",
+			"description": "ID of quote that deprecates this one"
+		},
+		"superseded_by": {
+			"type": "string",
+			"description": "ID of quote that supersedes this one"
+		},
+		"reason": {
+			"type": "string",
+			"description": "Reason for deprecation or erasure"
+		},
+		"effective_at": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"immediate_parent_refs": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"description": "Immediate parent quote IDs in derivation path"
+		},
+		"root_source_refs": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"description": "Root source quote IDs in derivation path"
+		},
+		"proposal_id": {
+			"type": "string",
+			"description": "Proposal ID if this quote was accepted from a proposal"
+		},
+		"source_refs": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"source_id"
+				],
+				"properties": {
+					"source_id": {
+						"type": "string"
+					},
+					"locator": {
+						"type": "string"
+					},
+					"content_digest": {
+						"type": "string",
+						"pattern": "^[a-f0-9]{64}$"
+					},
+					"role": {
+						"type": "string"
+					},
+					"derivation_method": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"evidence_snapshot_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of shared Athanor evidence snapshot"
+		},
+		"wpl_record_id": {
+			"type": "string",
+			"description": "Optional WPL generation record identifier"
+		},
+		"wpl_record_digest": {
+			"type": "string",
+			"pattern": "^[a-f0-9]{64}$",
+			"description": "Digest of WPL generation record"
+		},
+		"created_at": {
+			"type": "string",
+			"format": "date"
+		},
+		"transfer_metadata": {
+			"type": "object",
+			"description": "Transfer-level metadata (not part of canonical quote)",
+			"properties": {
+				"transfer_id": {
+					"type": "string",
+					"description": "Unique transfer identifier"
+				},
+				"exported_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"exporter_version": {
+					"type": "string",
+					"description": "TTOD version that performed the export"
+				},
+				"contract_version": {
+					"type": "string",
+					"description": "Bridge contract version"
+				}
+			}
+		}
+	}
+}

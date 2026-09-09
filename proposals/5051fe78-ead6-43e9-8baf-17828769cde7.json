@@ -1,0 +1,52 @@
+{
+  "proposal_id": "5051fe78-ead6-43e9-8baf-17828769cde7",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Si construyes un segundo camino al cofre, pronto tendrás dos verdades. Y dos verdades es una mentira.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-055",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-055' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "No hay Retriever/ContextAssembler paralelo — un segundo camino produce dos verdades (Koán de la Consulta Redundante).",
+    "tags": [
+      "architecture",
+      "single-source-of-truth",
+      "paradox",
+      "athanor",
+      "koan",
+      "featured"
+    ],
+    "subsection": "coupling",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-d74083ae-9ce0-4b72-9a77-cb33c26f6202",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:11.361351Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:12.052712Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:42:09.552882Z",
+  "accepted_quote_id": "arch-079"
+}

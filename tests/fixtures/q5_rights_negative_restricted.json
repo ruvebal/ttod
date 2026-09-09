@@ -1,0 +1,15 @@
+{
+  "quote": {
+    "id": "arch-200",
+    "text": "Restricted insight.",
+    "section": "architecture",
+    "level": "advanced",
+    "lang": "en",
+    "origin": "human",
+    "rights": {
+      "access": "restricted",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net"
+    }
+  }
+}

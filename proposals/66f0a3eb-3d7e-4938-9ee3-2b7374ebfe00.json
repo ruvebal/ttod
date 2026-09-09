@@ -1,0 +1,51 @@
+{
+  "proposal_id": "66f0a3eb-3d7e-4938-9ee3-2b7374ebfe00",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El contenido precede al diseño. El diseño sin contenido no es diseño, es decoración.",
+    "section": "code-craft",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "cc-009",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'cc-009' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Estructura semántica primero, pulido visual después. Construye el significado antes que la belleza.",
+    "tags": [
+      "codecraft",
+      "content",
+      "design",
+      "philosophy",
+      "featured"
+    ],
+    "subsection": "readability",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-35329e6d-6ff4-4701-b240-a3e345ec660a",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:13.044101Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:13.803457Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:33:14.706912Z",
+  "accepted_quote_id": "cc-057"
+}

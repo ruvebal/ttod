@@ -1,0 +1,51 @@
+{
+  "proposal_id": "89193e09-5e79-413a-acaa-97b91b91ab3e",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "¿Me estoy fractalizando demasiado? Si te preguntas, detente. Cuenta a los consumidores. Si son menos de tres, espera. Si son tres o más, continúa.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-012",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-012' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "La regla de tres: abstraer cuando los patrones se repiten tres veces, no antes.",
+    "tags": [
+      "architecture",
+      "fractals",
+      "rule-of-three",
+      "wisdom",
+      "featured"
+    ],
+    "subsection": "fractals",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-09eaaf6d-2f67-4170-aca9-2890d110cc39",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:45.299385Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:46.154509Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:35:17.016138Z",
+  "accepted_quote_id": "arch-090"
+}

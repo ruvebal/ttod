@@ -1,0 +1,49 @@
+{
+  "proposal_id": "4b467b89-c077-4355-b0e7-c46b6a7eae6a",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Una imagen de 4K en una pantalla de 320 píxeles no es lujo, es violencia contra el plan de datos del usuario.",
+    "section": "images",
+    "level": "beginner",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-033",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-033' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Escala la resolución de la imagen a la pantalla para proteger los límites de datos.",
+    "tags": [
+      "responsive",
+      "data-plan",
+      "tao-of-web-images"
+    ],
+    "subsection": "responsive",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-e2318235-e6d4-454c-bedb-77fa33339660",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:05.878568Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:06.559800Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:10.053572Z",
+  "accepted_quote_id": "img-097"
+}

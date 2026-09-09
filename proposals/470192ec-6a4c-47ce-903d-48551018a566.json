@@ -1,0 +1,49 @@
+{
+  "proposal_id": "470192ec-6a4c-47ce-903d-48551018a566",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El alumno preguntó: '¿Debo cargar perezosamente?' El maestro le mostró una página que cargó 100 imágenes a la vez. El navegador del alumno lloró. El maestro dijo: 'Tienes tu respuesta.'",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-035",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-035' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Demuestra el coste emocional de la carga anticipada.",
+    "tags": [
+      "lazy-loading",
+      "experiment",
+      "tao-of-web-images"
+    ],
+    "subsection": "lazy-loading",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-dd558c43-7146-421b-aab8-d05a92082678",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:56:00.525321Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:56:01.191383Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:28:19.212510Z",
+  "accepted_quote_id": "img-093"
+}

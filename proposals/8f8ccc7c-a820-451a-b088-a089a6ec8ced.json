@@ -1,0 +1,36 @@
+{
+  "proposal_id": "8f8ccc7c-a820-451a-b088-a089a6ec8ced",
+  "status": "proposed",
+  "candidate_content": {
+    "text": "Los antiguos maestros dijeron: 'El contenido es rey.' La web moderna lo ha olvidado. Las imágenes se han vuelto tiranas, y el contenido sirve a su gusto.",
+    "section": "images",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-063",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-063' (lang=en) via ollama:qwen2.5:32b-instruct — human review required before acceptance",
+    "teaches": "Asegúrate de que la imagen apoye un mensaje central fuerte.",
+    "tags": [
+      "content",
+      "philosophy",
+      "tao-of-web-images"
+    ],
+    "subsection": "paradox",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-draft",
+  "generation_method": "ollama:qwen2.5:32b-instruct:translate-draft-v1",
+  "human_review_activities": [],
+  "created_at": "2026-09-04T14:35:40.909138Z"
+}

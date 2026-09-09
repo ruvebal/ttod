@@ -1,0 +1,49 @@
+{
+  "proposal_id": "5fab4447-6040-4f1c-a48f-ed69917cd39c",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "Precarga lo crítico. Diferencia lo decorativo. Elimina lo innecesario. Este es el triple camino hacia la iluminación.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-050",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-050' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Prioriza los activos críticos, retrasa los demás y elimina el desorden.",
+    "tags": [
+      "performance",
+      "preload",
+      "tao-of-web-images"
+    ],
+    "subsection": "performance",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-352a9aa4-29b6-4bee-9081-e65463ff26e3",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:57:05.848188Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:57:06.593362Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:24.544620Z",
+  "accepted_quote_id": "img-105"
+}

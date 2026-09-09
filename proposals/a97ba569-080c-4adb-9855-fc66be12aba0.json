@@ -1,0 +1,50 @@
+{
+  "proposal_id": "a97ba569-080c-4adb-9855-fc66be12aba0",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "La documentación que se despliega a sí misma es la que permanece vigente.",
+    "section": "qa-tooling",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "qa-014",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'qa-014' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "El despliegue automático mantiene la documentación sincronizada con el código.",
+    "tags": [
+      "ci-cd",
+      "documentation",
+      "automation",
+      "featured"
+    ],
+    "subsection": "ci-cd",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-b4e2ab98-a6c7-476b-b913-11072875f172",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:17.437095Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:18.351973Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:31:39.318556Z",
+  "accepted_quote_id": "qa-033"
+}

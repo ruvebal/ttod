@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ttod"
+version = "3.0.0"
+description = "道 The Tao of Development (TTOD) — pedagogical wisdom database for developers walking the path"
+license = "MIT"
+authors = [{name = "Rubén Vega Balbás", email = "ruvebal@crea-comm.net"}]
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.9.0",
+    "pyyaml>=6.0",
+    "jsonschema>=4.0",
+]
+
+[project.scripts]
+ttod = "cli:app"
+
+[tool.setuptools]
+py-modules = ["cli"]
+packages = ["ttod_core", "ttod_core.sensors"]

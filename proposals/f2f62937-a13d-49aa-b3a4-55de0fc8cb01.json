@@ -1,0 +1,49 @@
+{
+  "proposal_id": "f2f62937-a13d-49aa-b3a4-55de0fc8cb01",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "SVG escala infinitamente, y sin embargo pesa menos que un solo píxel JPEG. Esta es la paradoja del vector sobre el ráster.",
+    "section": "images",
+    "level": "intermediate",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "img-048",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'img-048' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Usa vectores para logotipos e iconos para mantenerlos nítidos y ligeros.",
+    "tags": [
+      "svg",
+      "vector",
+      "tao-of-web-images"
+    ],
+    "subsection": "formats",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-4a071287-b1fd-4733-a827-2257ad5c5889",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:59:26.469584Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:59:27.512367Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:29:16.572175Z",
+  "accepted_quote_id": "img-142"
+}

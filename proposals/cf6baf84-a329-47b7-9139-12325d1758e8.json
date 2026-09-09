@@ -1,0 +1,51 @@
+{
+  "proposal_id": "cf6baf84-a329-47b7-9139-12325d1758e8",
+  "status": "accepted",
+  "candidate_content": {
+    "text": "El escultor revela la forma al quitar piedra. El arquitecto revela el sistema al quitar servicios. ChromaDB, Redis, Terraform, Ansible — cada quiebra fue una aclaración.",
+    "section": "architecture",
+    "level": "master",
+    "lang": "es",
+    "origin": "blackbox",
+    "relation_edges": [
+      {
+        "target": "arch-033",
+        "relation_type": "translation_of"
+      }
+    ],
+    "authorship_assertion": "machine-translated from 'arch-033' (lang=en) via ollama:qwen3.8:27b — human review required before acceptance",
+    "teaches": "Tao de DevIAC (§43): La Sabiduría del Escultor — Haiku: menos no es falta / cada servicio arrancado era una mentira / Postgres basta",
+    "tags": [
+      "deviac",
+      "tao-of-system-architect",
+      "koan",
+      "featured",
+      "haiku"
+    ],
+    "subsection": "entropy",
+    "rights": {
+      "access": "public",
+      "license": "CC-BY-NC-SA-4.0",
+      "holder": "ruvebal@crea-comm.net",
+      "permission_basis": "rights-holder-relicense-2026-08-18"
+    },
+    "validation": {
+      "reviewer_id": "ruvebal",
+      "activity_id": "accept-36c886f2-fb91-4845-b5ab-0d528dd04b1a",
+      "status": "validated",
+      "reviewed_at": "2026-09-07T10:58:41.520719Z"
+    }
+  },
+  "proposer_kind": "model",
+  "proposer_id": "cli-translate-batch",
+  "generation_method": "ollama:qwen3.8:27b:translate-batch-v1",
+  "human_review_activities": [
+    {
+      "activity_type": "accept",
+      "reviewer_id": "ruvebal",
+      "timestamp": "2026-09-07T10:58:42.467061Z"
+    }
+  ],
+  "created_at": "2026-09-07T09:40:00.581899Z",
+  "accepted_quote_id": "arch-100"
+}

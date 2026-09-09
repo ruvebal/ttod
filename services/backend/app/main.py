@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import Response, StreamingResponse
 
+from .auth import mount_auth
 from .config import Settings
 from .models import OracleProposeRequest, OracleQueryPayload
 from .oracle import OracleService
@@ -14,6 +15,7 @@ def create_app(settings: Settings | None = None, oracle: OracleService | None = 
     snapshots = SnapshotService(settings.ttod_path, settings.schema_dir)
     oracle = oracle or OracleService(settings, snapshots)
     app = FastAPI(title="TTOD Oracle Backend", version="1.0.0")
+    mount_auth(app, settings)
 
     @app.get("/health")
     def health():

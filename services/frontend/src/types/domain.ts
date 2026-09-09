@@ -65,3 +65,20 @@ export interface OfflineLogEntry {
   payload: OracleQueryPayload | { errorLog: string };
   synced: boolean;
 }
+
+// Auth — public identity only (TS4c amendment; confirm with TS1's owner before treating as frozen).
+// The session cookie itself is server-only and must never become a domain.ts type.
+export type UserRole = 'student' | 'reviewer' | 'instructor';
+
+export interface User {
+  id: string;
+  email: string;
+  displayName: string;
+  role: UserRole;
+}
+
+export interface FavoriteEntry {
+  userId: string;
+  quoteId: string;
+  savedAt: string; // ISO-8601
+}

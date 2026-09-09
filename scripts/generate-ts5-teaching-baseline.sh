@@ -58,6 +58,16 @@ rm -rf "$DEST/proposals/manifests"
 # not TTOD's domain logic — its fixtures necessarily contain an internal-hostname example string
 # to verify detection works, which is not a real leak but does trip this exact check.
 rm -f "$DEST/tests/test_public_privacy_watcher.py"
+# test_r7_platform.py exercises the rich-reference build's full feature set (same reasoning
+# scripts/generate-cohort-starter.sh already established for excluding it there) — it cannot even
+# import against a hello-world-reduced services/ tree.
+rm -f "$DEST/tests/test_r7_platform.py"
+# test_q6_migration.py tests a completed, one-time v2->v3 historical migration event against a
+# frozen 229-quote pre-migration backup (private/ttod.yml.pre-q6-backup, itself excluded above as
+# instructor history) — students never run `cli.py migrate`, and the test's own fallback path
+# (live ttod.yml when the backup is absent) produces a false failure, not a real bug: it re-runs
+# the migration transform against already-migrated v3 data and gets today's quote count, not 229.
+rm -f "$DEST/tests/test_q6_migration.py"
 
 # The working app: backend (R1), MCP (R2), frontend (R3a shell + TS3/TS4 hello-world slices +
 # every module's ASSIGNMENT.md, already embedded under services/frontend/**)

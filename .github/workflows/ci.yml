@@ -1,4 +1,4 @@
-name: Frontend — typecheck and build
+name: Frontend — typecheck, build, and hello-world tests
 
 on:
   pull_request:
@@ -35,3 +35,29 @@ jobs:
       - run: npm run check
 
       - run: npm run build
+
+      - name: Unit and component tests
+        run: npx vitest run
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Route contract and a11y (chromium)
+        env:
+          HOST: 127.0.0.1
+          PORT: 4321
+          E2E_BASE_URL: http://127.0.0.1:4321
+          E2E_BACKEND_URL: http://127.0.0.1:8000
+        run: |
+          node ./dist/server/entry.mjs &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for _ in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:4321/en/docs/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          npx playwright test --project=chromium \
+            e2e/wisdom-sample.contract.spec.ts \
+            e2e/a11y-docs.spec.ts

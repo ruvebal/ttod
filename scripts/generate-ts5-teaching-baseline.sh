@@ -142,12 +142,12 @@ echo "== Recomputing content_digest for the two edited quotes (arch-031, arch-08
 PYTHONPATH="$DEST" python3 - "$DEST/ttod.yml" <<'PYEOF'
 import sys
 import yaml
-from ttod_core.canonical import TTODCanonicalizer
+from ttod_core.canonical import Canonicalizer
 
 path = sys.argv[1]
 text = open(path, encoding="utf-8").read()
 data = yaml.safe_load(text)
-canonicalizer = TTODCanonicalizer()
+canonicalizer = Canonicalizer()
 
 for quote in data["quotes"]:
     if quote["id"] not in {"arch-031", "arch-086"}:

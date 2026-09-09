@@ -100,6 +100,39 @@ copy docs/public/audiences/students.md
 copy docs/public/es/teaching
 copy docs/public/es/audiences/students.md
 
+echo "== Rewriting the arch-031 haiku (English + Spanish) to drop Tanit/Lilith as characters =="
+# Real, accepted quote content, not leaked infra info — but .privacy-denylist is written as an
+# absolute rule ("must never enter ... student ... artifacts"), and the product-owner's call was to
+# honor it literally for this distributed copy: replace the two machine names with the same
+# code-alchemist/forge/system vocabulary already used elsewhere in this repo's own studio
+# metaphor, keeping the haiku's actual teaching point (dev machine vs. deploy host) intact. This
+# never touches canonical main — only this artifact's own copies of ttod.yml and the proposal JSON
+# that originated it.
+python3 - "$DEST/ttod.yml" "$DEST/proposals/769671e1-2640-46f1-ae0f-29ee3ec0eba3.json" <<'PYEOF'
+import sys
+
+replacements = [
+    (
+        "Tanit shapes the steel\n    / Lilith bears the finished blade / each knows its own fire",
+        "The alchemist shapes the steel\n    / the system bears the finished blade / each knows its own fire",
+    ),
+    (
+        "Tanit forja el acero\n    / Lilith empuña la hoja / cada una conoce su fuego",
+        "El alquimista forja el acero\n    / el sistema empuña la hoja / cada una conoce su fuego",
+    ),
+    (
+        "Tanit forja el acero / Lilith empuña la hoja / cada una conoce su fuego",
+        "El alquimista forja el acero / el sistema empuña la hoja / cada una conoce su fuego",
+    ),
+]
+
+for path in sys.argv[1:]:
+    text = open(path, encoding="utf-8").read()
+    for old, new in replacements:
+        text = text.replace(old, new)
+    open(path, "w", encoding="utf-8").write(text)
+PYEOF
+
 echo "== Rewriting AGENTS.md's studio-specific sections for the standalone student repo =="
 # Not a cosmetic patch: the source AGENTS.md references ttod-bridge (a skill in a *sibling* studio
 # repo students don't have), docs/DEV_PLAN (excluded from this artifact), and an Integration table

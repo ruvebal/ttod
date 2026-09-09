@@ -38,3 +38,19 @@ Code is licensed under MIT. Curated content is licensed under CC BY-NC-SA 4.0 un
 ## Stewardship
 
 The project is stewarded through the research studio domain `@crea-comm.net`. Public documents deliberately omit workstation paths, internal infrastructure names, network coordinates, and private studio tooling.
+
+## Where TTOD sits in the studio
+
+TTOD is one project inside a small sovereign-AI development studio built on one non-negotiable
+rule: every model call runs on locally-hosted infrastructure, never a cloud AI provider. TTOD's
+own Oracle and any proposal-drafting assistance follow that rule the same way every other studio
+project does.
+
+Two sibling projects are worth naming so the boundary is explicit, not just asserted: **Athanor**,
+the studio's own knowledge platform, may consume a read-only snapshot of TTOD's governed
+collection and may surface candidate quotes back into TTOD's normal human-review inbox — it never
+writes a canonical record directly, the same rule that governs every other path into TTOD's data.
+**Ahmes**, the studio's general-purpose document-extraction engine, is unrelated to TTOD's own
+pipeline; it feeds Athanor from other source material and has no direct connection to TTOD's
+quote governance. Naming both here is about precision, not affiliation-by-proximity: TTOD's
+governance rules apply regardless of which other studio tool is asking.

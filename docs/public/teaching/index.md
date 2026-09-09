@@ -10,7 +10,12 @@ lang: en
 
 TTOD is the teaching product for the **first half** of [Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) at UDIT: production architecture with Astro, offline browser behaviour, testing and AI-assisted review, and measured performance. The [English track index](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/) names the twelve-unit semester; TTOD owns Units 1–7 as one coherent artifact.
 
-The proposed teaching baseline gives learners a small but complete product journey—every major seam is present, but none is finished as an assignment answer. Advanced areas appear as working hello-world examples. The instructor can first explain how the system fits together; students then expand the same seams through assessed design and implementation.
+The teaching baseline is built: a small but complete product journey where every major seam is
+present, but none is finished as an assignment answer. Advanced areas appear as working
+hello-world examples. The instructor can first explain how the system fits together; students then
+expand the same seams through assessed design and implementation. Instructor rehearsal against
+this exact baseline is the remaining gate before collaboration opens — see
+[Before collaboration opens]({{ '/audiences/students/#before-collaboration-opens' | relative_url }}).
 
 ## Course connection
 
@@ -40,7 +45,7 @@ Authoritative grading, calendar, and recovery rules live on the course site: [Ho
 
 Units 8–12 (3D, IoT/Python, capstone defence) remain later course work. They are outside this TTOD teaching baseline.
 
-## The five expansion areas
+## The six expansion areas
 
 | Area | Provided hello world | Student-owned depth (Entrega 1) |
 | --- | --- | --- |
@@ -48,7 +53,14 @@ Units 8–12 (3D, IoT/Python, capstone defence) remain later course work. They a
 | Svelte graph | one small real neighborhood and accessible selection | exploration, filters, layout, URL state, and corpus-scale performance |
 | React Oracle | one prompt, streamed response mode, and cited quote | robust state, sessions, recovery, disclosure, offline proposals, and interaction design |
 | Browser operations and offline behavior | one observable local/offline boundary | caching, installability, queues, budgets, and operational evidence |
+| Accounts, a personal library, and community proposals | login/session, one protected route, one token-authenticated endpoint | a favorites library, a logged-in "propose a quote" flow, and the reviewed path a proposal takes into the governed collection |
 | Testing | one representative assertion at each useful layer | risk strategy, interaction E2E, contract breadth, accessibility, performance, and flake control |
+
+The sixth area has no existing reference to reduce — it is genuinely new, built on the same
+server-verified session and bearer-token patterns already covered in the prerequisite Front-end I
+authentication unit, so the cohort extends a pattern it already has rather than learning one from
+scratch. See [assignments and backlog]({{ '/teaching/assignments/' | relative_url }}) for the full
+epic-by-epic breakdown, personas, and journeys behind all six areas.
 
 ## Pedagogical sequence
 
@@ -58,7 +70,20 @@ Units 8–12 (3D, IoT/Python, capstone defence) remain later course work. They a
 4. Convert deliberately absent behaviors into explicit Entrega 1 criteria.
 5. Require students to explain design choices and evidence—product behaviour, process record, and mid-term defence of understanding—not merely present a finished interface.
 
-This is a design rationale, not a claim that TTOD improves learning. The baseline must first be built, rehearsed, independently reviewed, and synchronized with the localized course materials.
+This is a design rationale, not a claim that TTOD improves learning. The baseline is built and
+independently verified against a clean checkout; instructor rehearsal against that exact artifact
+and synchronization with the localized course materials remain before collaboration opens.
+
+## How a session runs
+
+Every session follows the same three-part rhythm, sized to that session's real class time (a
+shorter first session, then a consistent weekly block): a brief lesson straight from that unit's
+own curriculum content, a short team check-in (what shipped, what's blocked, what's next), then
+the remainder as hands-on lab time. The lesson stays brief by design — new-framework units earn a
+real teaching block; once the pattern is familiar, most of the session is lab time, matching this
+track's own official hour split between lecture and laboratory. The check-in is also where a
+change in one area's shared contract (a route name, a data shape) gets caught before it silently
+breaks another area's work.
 
 ## Why the support must fade
 

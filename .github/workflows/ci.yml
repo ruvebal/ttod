@@ -1,10 +1,11 @@
 name: Frontend — typecheck and build
 
 on:
+  # No `paths:` filter on pull_request: this is main's *required* status check, so it must run
+  # on every PR regardless of what changed — a path-filtered required check simply never reports
+  # for a PR outside those paths, and GitHub then blocks the merge on a check stuck at "Expected"
+  # forever (found live via PR #3, an infra-only change with no services/frontend touch).
   pull_request:
-    paths:
-      - "services/frontend/**"
-      - ".github/workflows/ci.yml"
   push:
     branches: [main, "skeleton/**"]
     paths:

@@ -92,6 +92,96 @@ colección gobernada — ninguna automatización, IA incluida, lo hace nunca en 
 token, y un pequeño cliente de ejemplo que funciona, prueba de que la API funciona fuera del
 navegador, no solo dentro de la interfaz de esta aplicación.
 
+## Tablero de tareas por equipo
+
+Ocho estudiantes, cinco equipos — tres parejas en las áreas más ricas y con más contrato; dos
+personas en solitario en las dos más acotadas. La lista de cada equipo tiene ~10 tareas, etiquetadas
+según cuál de las seis áreas toca realmente cada una: tu propia área es profundidad, las demás son
+la amplitud que este curso evalúa explícitamente (ver [Por qué la accesibilidad es un
+compromiso](#por-qué-la-accesibilidad-es-un-compromiso-no-una-lista-de-verificación) para saber
+por qué la etiqueta de pruebas/accesibilidad se aplica a cada fila, de cada equipo, no solo a uno).
+
+### Equipo 1 — Contenido, i18n y UI de propuestas (pareja)
+
+| # | Tarea | Área(s) |
+| - | --- | --- |
+| 1 | Construir las rutas localizadas de índice y detalle de sabiduría (`en` + `es`) | Contenido |
+| 2 | Rutas de exploración por sección, etiqueta y nivel | Contenido |
+| 3 | Navegación de migas de pan en todas las rutas de contenido | Contenido |
+| 4 | Gestión de estados vacíos y de error en las rutas de contenido | Contenido |
+| 5 | Construir la UI del formulario "proponer una cita" — envía al endpoint que posee el Equipo 5 | Contenido, Cuentas |
+| 6 | Mostrar fuente, derechos y procedencia en cada página de cita | Contenido |
+| 7 | Pruebas unitarias y de componente para las rutas de contenido y el formulario de propuesta | Pruebas |
+| 8 | Abrir una PR hacia un módulo que no es el tuyo | Entre módulos |
+| 9 | Revisar formalmente una PR fuera de tu propio módulo | Entre módulos |
+| 10 | Documentar una decisión de diseño real (taxonomía, política de respaldo) para la defensa oral | Proceso |
+
+### Equipo 2 — Grafo de conocimiento (solo)
+
+| # | Tarea | Área(s) |
+| - | --- | --- |
+| 1 | Obtener y renderizar el grafo desde la API gobernada | Grafo |
+| 2 | Una selección de nodo accesible, reflejada como texto y no solo como resalte visual | Grafo |
+| 3 | Interacción de filtro por etiqueta | Grafo |
+| 4 | Estado de URL para la selección/filtro actual | Grafo |
+| 5 | Disposición y rendimiento a escala real del corpus (la muestra no es pequeña) | Grafo |
+| 6 | Auditoría de operabilidad por teclado en cada elemento interactivo del grafo | Pruebas |
+| 7 | Pruebas unitarias y de componente para la isla del grafo | Pruebas |
+| 8 | Abrir una PR hacia un módulo que no es el tuyo | Entre módulos |
+| 9 | Revisar formalmente una PR fuera de tu propio módulo | Entre módulos |
+| 10 | Documentar una decisión de diseño real (elección de disposición, compromiso de accesibilidad) para la defensa oral | Proceso |
+
+### Equipo 3 — Terminal Oracle (pareja)
+
+| # | Tarea | Área(s) |
+| - | --- | --- |
+| 1 | Renderizado de respuesta en flujo, de una pregunta a una respuesta citada | Oracle |
+| 2 | Anuncio en región viva de la respuesta en flujo para lectores de pantalla | Oracle |
+| 3 | Transparencia del modo fundamentado frente al modo creativo en la UI | Oracle |
+| 4 | Gestión del historial de sesión/intercambios | Oracle |
+| 5 | Un estado "preparando" en lugar de un cuelgue silencioso en un despliegue recién arrancado | Oracle |
+| 6 | Estado de recuperación/error cuando el Oráculo no está disponible | Oracle |
+| 7 | Pruebas unitarias y de componente para la terminal Oracle y su lógica de streaming | Pruebas |
+| 8 | Abrir una PR hacia un módulo que no es el tuyo | Entre módulos |
+| 9 | Revisar formalmente una PR fuera de tu propio módulo | Entre módulos |
+| 10 | Documentar una decisión de diseño real (gestión de estado, diseño de la transparencia) para la defensa oral | Proceso |
+
+### Equipo 4 — PWA y operación local (solo)
+
+| # | Tarea | Área(s) |
+| - | --- | --- |
+| 1 | Registro del service worker y un manifiesto instalable | PWA/Offline |
+| 2 | Un límite offline observable — contenido que sigue funcionando sin conexión | PWA/Offline |
+| 3 | Política cache-first frente a network-first para las rutas correctas | PWA/Offline |
+| 4 | Una cola offline que se vacía al recuperar la conexión | PWA/Offline |
+| 5 | Comprobaciones de calidad de instalación (corrección del manifiesto, iconos, instalabilidad) | PWA/Offline |
+| 6 | Presupuesto de rendimiento medido antes/después de una optimización (Core Web Vitals) | PWA/Offline |
+| 7 | Pruebas unitarias y de componente para el límite offline | Pruebas |
+| 8 | Abrir una PR hacia un módulo que no es el tuyo | Entre módulos |
+| 9 | Revisar formalmente una PR fuera de tu propio módulo | Entre módulos |
+| 10 | Documentar una decisión de diseño real (política de caché, UX de instalación) para la defensa oral | Proceso |
+
+### Equipo 5 — Cuentas, biblioteca, propuestas y API pública (pareja)
+
+| # | Tarea | Área(s) |
+| - | --- | --- |
+| 1 | Inicio de sesión (verificado en servidor, una ruta protegida) | Cuentas |
+| 2 | Biblioteca personal de favoritos — guardar, ver, eliminar | Cuentas |
+| 3 | El endpoint de backend de "proponer una cita" al que envía el formulario del Equipo 1 | Cuentas, Contenido |
+| 4 | El pipeline de revisión nativo de GitHub: una PR de propuesta, aprobación humana, diff de aceptación calculado, segunda aprobación | Cuentas |
+| 5 | Un endpoint de API pública autenticado por token (`GET` de una cita aleatoria) | Cuentas |
+| 6 | Página de documentación de la API y un cliente de ejemplo externo mínimo | Cuentas |
+| 7 | Pruebas unitarias y de componente para la autenticación, la biblioteca y la API | Pruebas |
+| 8 | Abrir una PR hacia un módulo que no es el tuyo | Entre módulos |
+| 9 | Revisar formalmente una PR fuera de tu propio módulo | Entre módulos |
+| 10 | Documentar una decisión de diseño real (sesión frente a token, compromiso del pipeline de revisión) para la defensa oral | Proceso |
+
+**Sobre el número de estudiantes:** este tablero usa el reparto confirmado de 8 estudiantes en
+cinco equipos (2+1+2+1+2 — tres parejas en las áreas más ricas, dos personas solas en las más
+acotadas). Si tu grupo real es de siete, mantén fijos los límites de los módulos y reduce una
+pareja a un trío en lugar de eliminar un módulo — las seis áreas y la forma de diez tareas por
+equipo no necesitan cambiar, solo quién está en qué equipo.
+
 ## Por qué la accesibilidad es un compromiso, no una lista de verificación
 
 Un aforismo se ofrece como sabiduría que vale sin importar quién lo lea, cuándo o cómo. Un
@@ -111,3 +201,4 @@ Terminado, no solo las áreas que se sienten visualmente interactivas.
 - [Modelo docente]({{ '/es/teaching/' | relative_url }})
 - [Para estudiantes]({{ '/es/audiences/students/' | relative_url }})
 - [Áreas del producto]({{ '/es/platform/' | relative_url }})
+- [Contribuir — cómo abrir una PR, cómo funciona la revisión]({{ '/es/guides/contributing/' | relative_url }})

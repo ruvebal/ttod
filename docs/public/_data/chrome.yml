@@ -5,6 +5,7 @@ en:
   lang_label: Language
   lang_en: English
   lang_es: Español
+  github_aria: "View source on GitHub"
   footer_blurb: A governed teaching reference for development practice.
   stewardship: Stewardship
   studio: "Research studio: "
@@ -17,6 +18,7 @@ es:
   lang_label: Idioma
   lang_en: English
   lang_es: Español
+  github_aria: "Ver el código en GitHub"
   footer_blurb: Una referencia docente gobernada para la práctica del desarrollo.
   stewardship: Custodia
   studio: "Estudio de investigación: "

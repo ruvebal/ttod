@@ -18,9 +18,16 @@ La aplicación está pensada para ejecutarse en local mediante Docker Compose. E
 - Espacio libre suficiente para las imágenes de contenedor y el modelo de lenguaje local
 - Un navegador
 
+## Clonar
+
+```bash
+git clone https://github.com/ruvebal/ttod.git
+cd ttod
+```
+
 ## Arranque
 
-Desde la raíz del repositorio, el camino simple:
+Desde la raíz del repositorio (el directorio `ttod` recién clonado), el camino simple:
 
 ```bash
 make up

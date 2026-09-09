@@ -84,6 +84,8 @@ a:hover { color: var(--ttod-color-ink); }
   padding-left: var(--ttod-space-3);
   border-left: 1px solid var(--ttod-color-line-subtle);
 }
+.github-link { display: inline-flex; align-items: center; color: var(--ttod-color-muted); }
+.github-link:hover { color: var(--ttod-color-ink); }
 .lang-switch span[aria-current="true"] {
   color: var(--ttod-color-ink);
   font-size: var(--ttod-text-sm);

@@ -17,9 +17,16 @@ The application is designed to run locally through Docker Compose. This guide co
 - Enough free disk space for container images and the local language model
 - A browser
 
+## Clone
+
+```bash
+git clone https://github.com/ruvebal/ttod.git
+cd ttod
+```
+
 ## Start
 
-From the repository root, the simple path:
+From the repository root (the `ttod` directory just cloned), the simple path:
 
 ```bash
 make up

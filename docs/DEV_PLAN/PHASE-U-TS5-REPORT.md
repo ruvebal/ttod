@@ -24,7 +24,7 @@ Every merge was clean (ort, no conflict resolution). Tip after assembly + Oracle
 | --- | --- |
 | Merge tip (pre-test fix) | `5acd0e5e` |
 | Runbook commit | `528092c4` |
-| Final tip | `3144f1c7` |
+| Final tip | `3021be4c` (+ this docs fix if amended further — prefer `git rev-parse skeleton/ts5-hello-world`) |
 
 ### Leftover resolutions
 

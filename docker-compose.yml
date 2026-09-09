@@ -7,6 +7,9 @@ services:
       - "${ALT_HTTP_PORT:-8443}:8443"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      # Populated by `make docs-local` (docs/public built with --baseurl /project-docs); empty
+      # until then, Docker creates the dir automatically. Instructor reference only.
+      - ./docs/public/_site-local:/srv/project-docs:ro
     depends_on:
       - frontend
       - backend

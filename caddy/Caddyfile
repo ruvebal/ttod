@@ -11,6 +11,13 @@
   @serviceWorker path /sw.js
   header @serviceWorker Cache-Control "max-age=0, no-cache"
 
+  # Static build of docs/public (project info, teaching model, backlog) — `make docs-local`
+  # populates this; empty/missing until then. Instructor reference only, not the student artifact.
+  handle_path /project-docs/* {
+    root * /srv/project-docs
+    file_server
+  }
+
   handle {
     reverse_proxy frontend:4321
   }

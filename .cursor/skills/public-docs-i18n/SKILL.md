@@ -46,9 +46,15 @@ accepts quotes and cold-reads pages.
   values, not keys.
 - Preserve hedging. Do not promote planned work to implemented, or design
   rationale to learning-effect evidence.
-- No internal phase shorthand in public prose.
+- No internal phase shorthand in public prose (`R6`, `Q4`, `RC0`, …). Prefer Entrega / Unit /
+  maturity language. Never ship `host.docker.internal` or other `*.internal` hostnames in public
+  pages or Archify diagram HTML under `docs/public/assets/diagrams/`.
+- Citation fragment targets: `<span id="ref-…"></span>` — never empty `<a id="ref-…"></a>`
+  (htmlproofer: “a tag is missing a reference”).
 - After edits: privacy watcher on source and rendered output; htmlproofer with
-  `--swap-urls '^/ttod/:/'`.
+  `--swap-urls '^/ttod/:/'`. When publishing Archify HTML, follow
+  `agentic/report-steward/skills/public-artifact-privacy/SKILL.md` § Archify checklist
+  (including `#focus-repository` `href`).
 
 ## Drafting a Spanish page
 

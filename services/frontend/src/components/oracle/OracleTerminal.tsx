@@ -34,13 +34,19 @@ interface Props {
   locale: Locale;
 }
 
-function sameCitations(left?: string[], right?: string[]): boolean {
+function sameList(left?: string[], right?: string[]): boolean {
   return (left ?? []).join('\u0000') === (right ?? []).join('\u0000');
 }
 
 export function appendChunk(segments: StreamSegment[], chunk: OracleResponseChunk): StreamSegment[] {
   const previous = segments.at(-1);
-  if (previous && previous.mode === chunk.mode && sameCitations(previous.citedQuoteIds, chunk.citedQuoteIds)) {
+  if (
+    previous &&
+    previous.mode === chunk.mode &&
+    sameList(previous.citedQuoteIds, chunk.citedQuoteIds) &&
+    sameList(previous.themes, chunk.themes) &&
+    sameList(previous.tags, chunk.tags)
+  ) {
     return [...segments.slice(0, -1), { ...previous, text: previous.text + chunk.text }];
   }
   return [...segments, { ...chunk, key: identifier() }];
@@ -49,8 +55,9 @@ export function appendChunk(segments: StreamSegment[], chunk: OracleResponseChun
 const COPY = {
   en: {
     eyebrow: 'Local oracle', title: 'Ask the Tao', open: 'Open oracle', close: 'Close oracle',
-    placeholder: 'Ask about your development practice…', submit: 'Ask', streaming: 'Listening…',
-    grounded: 'Grounded in the TTOD corpus', creative: 'Creative reflection — not sourced from a TTOD quote',
+    placeholder: 'Bring a practice question — the Oracle answers with wisdom, not fixes…', submit: 'Ask', streaming: 'Listening…',
+    grounded: 'Grounded in the TTOD corpus', creative: 'Oracular voice — no strong TTOD match',
+    themes: 'Thematic anchors', tags: 'Nearby tags',
     queued: 'The oracle is unreachable. Your query is safely queued on this device.',
     queueError: 'The oracle is unreachable and this browser could not open its offline queue.',
     syncing: 'Retrying queued queries…', propose: 'Save as a draft proposal', proposing: 'Saving draft…',
@@ -60,8 +67,9 @@ const COPY = {
   },
   es: {
     eyebrow: 'Oráculo local', title: 'Pregunta al Tao', open: 'Abrir oráculo', close: 'Cerrar oráculo',
-    placeholder: 'Pregunta sobre tu práctica de desarrollo…', submit: 'Preguntar', streaming: 'Escuchando…',
-    grounded: 'Fundamentado en el corpus TTOD', creative: 'Reflexión creativa — no procede de una cita TTOD',
+    placeholder: 'Trae una pregunta de práctica — el Oráculo responde con sabiduría, no con parches…', submit: 'Preguntar', streaming: 'Escuchando…',
+    grounded: 'Fundamentado en el corpus TTOD', creative: 'Voz oracular — sin coincidencia fuerte en TTOD',
+    themes: 'Anclas temáticas', tags: 'Etiquetas cercanas',
     queued: 'El oráculo no está disponible. Tu consulta queda guardada en este dispositivo.',
     queueError: 'El oráculo no está disponible y el navegador no pudo abrir la cola sin conexión.',
     syncing: 'Reintentando consultas guardadas…', propose: 'Guardar como borrador de propuesta', proposing: 'Guardando borrador…',
@@ -204,19 +212,26 @@ export default function OracleTerminal({ locale }: Props) {
       query: trimmed,
       contextTag: currentContextTag(),
       sessionHistory: historyFrom(exchangesRef.current),
+      locale,
     };
     setQuery('');
     await sendPayload(payload);
   };
 
   const propose = async (exchange: Exchange) => {
-    const creativeAnswer = exchange.segments
-      .filter((segment) => segment.mode === 'creative')
-      .map((segment) => segment.text)
-      .join('');
+    const creativeSegments = exchange.segments.filter((segment) => segment.mode === 'creative');
+    const creativeAnswer = creativeSegments.map((segment) => segment.text).join('');
     if (!creativeAnswer || exchange.proposalState === 'saving') return;
     updateExchange(exchange.id, (item) => ({ ...item, proposalState: 'saving' }));
-    const body: OracleProposeRequest = { query: exchange.query, creativeAnswer };
+    const suggestedTags = creativeSegments.find((segment) => segment.tags?.length)?.tags;
+    const suggestedSection = creativeSegments.find((segment) => segment.themes?.length)?.themes?.[0];
+    const body: OracleProposeRequest = {
+      query: exchange.query,
+      creativeAnswer,
+      locale,
+      ...(suggestedTags ? { suggestedTags } : {}),
+      ...(suggestedSection ? { suggestedSection } : {}),
+    };
     try {
       const response = await fetch('/api/v1/oracle/propose', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
@@ -253,6 +268,16 @@ export default function OracleTerminal({ locale }: Props) {
                     {exchange.segments.map((segment) => (
                       <div key={segment.key} className={`oracle-segment oracle-${segment.mode}`}>
                         <strong className="oracle-mode">{segment.mode === 'grounded' ? copy.grounded : copy.creative}</strong>
+                        {(segment.themes?.length || segment.tags?.length) ? (
+                          <p className="oracle-anchors">
+                            {segment.themes?.length ? (
+                              <><span>{copy.themes}:</span> {segment.themes.map((theme) => <code key={theme}>{theme}</code>)}{' '}</>
+                            ) : null}
+                            {segment.tags?.length ? (
+                              <><span>{copy.tags}:</span> {segment.tags.map((tag) => <code key={tag}>{tag}</code>)}</>
+                            ) : null}
+                          </p>
+                        ) : null}
                         <p>{segment.text}</p>
                         {segment.mode === 'grounded' && segment.citedQuoteIds?.length ? (
                           <ul className="oracle-citations" aria-label={copy.grounded}>

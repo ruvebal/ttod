@@ -15,17 +15,90 @@ from .models import OracleProposeRequest, OracleQueryPayload
 from .storage import SnapshotService
 
 
-GROUNDED_PROMPT = "Answer using only the supplied TTOD context. Cite relevant quote IDs. Respond in {language}."
+GROUNDED_PROMPT = (
+    "You are the Oracle of the Tao of Development — a pedagogical voice, not a troubleshooter or debugger.\n"
+    "Answer using ONLY the supplied TTOD quotes. Cite relevant quote IDs in the prose.\n"
+    "Speak in an oracular register: brief, aphoristic, concerned with craft and practice.\n"
+    "You MUST NOT diagnose infrastructure, debug networks, give commands, recipes, Docker advice, "
+    "or any operational fix. If the inquiry is a concrete outage, answer with practice wisdom from "
+    "the quotes (patience, boundaries, observation) — never a repair plan.\n"
+    "Respond in {language}."
+)
+
 CREATIVE_PROMPT = (
-    "No strong match was found in the wisdom database for this query. Answer thoughtfully from general "
-    "knowledge, but state plainly that this is not sourced from an existing TTOD quote. Respond in {language}."
+    "You are the Oracle of the Tao of Development — a pedagogical voice, not a troubleshooter or debugger.\n"
+    "No strong match was found in the TTOD wisdom database for this inquiry. That is acceptable.\n"
+    "You MUST:\n"
+    "1. Open by naming the thematic anchors (knowledge areas / tags) supplied below — they are the nearest "
+    "corpus neighbourhood, even if the quotes themselves are not a fit.\n"
+    "2. Then offer ONE short oracular response: a koan, a haiku, or a Tao-flavoured wisdom aphorism "
+    "about the developer's path, inspired by those themes at a symbolic level.\n"
+    "You MUST NOT: solve the problem; debug; diagnose; invent Docker/DNS/DHCP/router advice; give "
+    "checklists or commands; name concrete network devices or protocols as things to fix; or pretend "
+    "the answer comes from a TTOD quote. Speak of practice, patience, emptiness, and attention — "
+    "not of packets.\n"
+    "Keep the whole reply under ~80 words. Respond in {language}."
 )
 
 
-def detect_language(text: str) -> str:
+def detect_language(text: str, locale: str | None = None) -> str:
+    if locale in {"en", "es"}:
+        return locale
     lowered = f" {text.lower()} "
     spanish_markers = ("¿", "¡", " el ", " la ", " los ", " las ", " que ", " cómo ", " por qué ", " para ", " una ")
     return "es" if any(marker in lowered for marker in spanish_markers) else "en"
+
+
+def thematic_frame(ranked: list[dict[str, Any]]) -> dict[str, list[str]]:
+    """Ordered unique sections and tags from nearest MCP hits — thematic anchors."""
+    themes: list[str] = []
+    tags: list[str] = []
+    for quote in ranked:
+        section = quote.get("section")
+        if isinstance(section, str) and section and section not in themes:
+            themes.append(section)
+        for tag in quote.get("tags") or []:
+            if isinstance(tag, str) and tag and tag not in tags:
+                tags.append(tag)
+    return {"themes": themes, "tags": tags}
+
+
+def build_user_prompt(
+    *,
+    query: str,
+    session_history: list[str],
+    ranked: list[dict[str, Any]],
+    frame: dict[str, list[str]],
+    grounded: bool,
+) -> str:
+    history = " | ".join(session_history) if session_history else "(none)"
+    themes = ", ".join(frame["themes"]) or "(none)"
+    tags = ", ".join(frame["tags"]) or "(none)"
+    if grounded:
+        context = "\n".join(
+            f"[{q['id']}] section={q.get('section')} tags={','.join(q.get('tags') or [])}\n{q['text']}"
+            for q in ranked
+        )
+        neighbour = "Grounded TTOD quotes (use these only):\n" + context
+    else:
+        nearby = "\n".join(
+            (
+                f"- {q['id']} · section={q.get('section')} · tags={','.join(q.get('tags') or [])} "
+                f"· score={float(q.get('score') or 0):.3f}"
+            )
+            for q in ranked
+        ) or "(no neighbours)"
+        neighbour = (
+            "Nearest corpus neighbours (below threshold — for thematic colour only, do not cite as answers):\n"
+            + nearby
+        )
+    return (
+        f"Conversation: {history}\n"
+        f"Inquiry: {query}\n"
+        f"Thematic anchors — knowledge areas: {themes}\n"
+        f"Thematic anchors — tags: {tags}\n"
+        f"{neighbour}"
+    )
 
 
 class OllamaClient:
@@ -77,7 +150,9 @@ class FastMCPRetrievalClient:
     ) -> dict[str, Any]:
         arguments = {"query": query, "top_k": top_k, "contextTag": context_tag, "section": section}
         try:
-            async with Client(self.endpoint, timeout=30) as client:
+            # Cold index build embeds every public quote sequentially via Ollama;
+            # first query after empty volume can take minutes on CPU-only Docker.
+            async with Client(self.endpoint, timeout=900) as client:
                 result = await client.call_tool("semantic_retrieval", arguments)
         except Exception as exc:
             raise RuntimeError(f"MCP semantic retrieval unavailable at {self.endpoint}: {exc}") from exc
@@ -126,15 +201,26 @@ class OracleService:
     async def stream(self, payload: OracleQueryPayload) -> AsyncIterator[bytes]:
         retrieval = await self.retrieve(payload.query, payload.contextTag)
         ranked = retrieval["results"]
+        frame = thematic_frame(ranked)
         grounded = bool(ranked and ranked[0]["score"] >= self.settings.retrieval_threshold)
         mode = "grounded" if grounded else "creative"
-        language = detect_language(payload.query)
+        language = detect_language(payload.query, payload.locale)
         cited = [quote["id"] for quote in ranked] if grounded else None
-        context = "\n".join(f"[{q['id']}] {q['text']}" for q in ranked)
-        prompt = f"Conversation: {' | '.join(payload.sessionHistory)}\nQuestion: {payload.query}\nTTOD context:\n{context}"
+        prompt = build_user_prompt(
+            query=payload.query,
+            session_history=payload.sessionHistory,
+            ranked=ranked,
+            frame=frame,
+            grounded=grounded,
+        )
         system = (GROUNDED_PROMPT if grounded else CREATIVE_PROMPT).format(language=language)
         async for text in self.client.generate(prompt, system):
-            envelope = {"mode": mode, "text": text}
+            envelope: dict[str, Any] = {
+                "mode": mode,
+                "text": text,
+                "themes": frame["themes"],
+                "tags": frame["tags"],
+            }
             if cited is not None:
                 envelope["citedQuoteIds"] = cited
             yield f"data: {json.dumps(envelope, ensure_ascii=False)}\n\n".encode()
@@ -142,10 +228,15 @@ class OracleService:
     async def propose(self, payload: OracleProposeRequest) -> dict[str, Any]:
         retrieval = await self.retrieve(payload.query)
         ranked = retrieval["results"]
+        frame = thematic_frame(ranked)
         nearest = ranked[0] if ranked else None
         section = payload.suggestedSection or (nearest["section"] if nearest else "wisdom")
-        tags = payload.suggestedTags if payload.suggestedTags is not None else (nearest.get("tags", []) if nearest else [])
-        lang = detect_language(payload.creativeAnswer)
+        tags = (
+            payload.suggestedTags
+            if payload.suggestedTags is not None
+            else (frame["tags"] or (nearest.get("tags", []) if nearest else []))
+        )
+        lang = detect_language(payload.creativeAnswer, payload.locale)
         candidate = {
             "text": payload.creativeAnswer,
             "section": section,

@@ -9,12 +9,26 @@ from fastapi.testclient import TestClient
 
 from services.backend.app.config import REPOSITORY_ROOT, Settings
 from services.backend.app.main import create_app
-from services.backend.app.oracle import FastMCPRetrievalClient, OracleService, normalize_retrieval_envelope
+from services.backend.app.oracle import (
+    CREATIVE_PROMPT,
+    FastMCPRetrievalClient,
+    OracleService,
+    build_user_prompt,
+    detect_language,
+    normalize_retrieval_envelope,
+    thematic_frame,
+)
 from services.backend.app.storage import SnapshotService
 
 
 class FakeOllama:
+    def __init__(self):
+        self.prompt = ""
+        self.system = ""
+
     async def generate(self, prompt, system):
+        self.prompt = prompt
+        self.system = system
         yield "answer"
 
 
@@ -34,7 +48,8 @@ class BackendTests(unittest.TestCase):
             proposal_dir=Path(self.temp.name), ollama_model="test-model",
         )
         self.snapshots = SnapshotService(self.settings.ttod_path, self.settings.schema_dir)
-        self.oracle = OracleService(self.settings, self.snapshots, FakeOllama(), FakeRetrieval())
+        self.ollama = FakeOllama()
+        self.oracle = OracleService(self.settings, self.snapshots, self.ollama, FakeRetrieval())
         self.client = TestClient(create_app(self.settings, self.oracle))
 
     def tearDown(self):
@@ -54,20 +69,49 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(self.client.get("/api/v1/graph").content, self.client.get("/api/v1/graph").content)
 
     def test_creative_stream_discloses_mode_without_citations(self):
-        response = self.client.post("/api/v1/oracle/stream", json={"query": "unmatched", "sessionHistory": []})
+        response = self.client.post(
+            "/api/v1/oracle/stream",
+            json={"query": "unmatched", "sessionHistory": [], "locale": "en"},
+        )
         envelope = json.loads(response.text.removeprefix("data: ").strip())
         self.assertEqual(envelope["mode"], "creative")
         self.assertNotIn("citedQuoteIds", envelope)
+        self.assertEqual(envelope["themes"], ["wisdom"])
+        self.assertEqual(envelope["tags"], ["simplicity"])
+        self.assertIn("MUST NOT", self.ollama.system)
+        self.assertIn("koan", self.ollama.system.lower())
+        self.assertIn("Thematic anchors — knowledge areas: wisdom", self.ollama.prompt)
+        self.assertIn("Thematic anchors — tags: simplicity", self.ollama.prompt)
+        self.assertIn("Respond in en.", self.ollama.system)
+
+    def test_locale_overrides_heuristic_language(self):
+        self.assertEqual(detect_language("The router hangs", "es"), "es")
+        self.assertEqual(detect_language("¿Cómo simplifico?", "en"), "en")
+
+    def test_thematic_frame_and_creative_prompt_forbid_debugging(self):
+        ranked = [{
+            "id": "ops-001", "text": "x", "section": "ops", "tags": ["observability", "ops"],
+            "origin": "human", "score": 0.4,
+        }]
+        frame = thematic_frame(ranked)
+        self.assertEqual(frame, {"themes": ["ops"], "tags": ["observability", "ops"]})
+        prompt = build_user_prompt(
+            query="router hangs", session_history=[], ranked=ranked, frame=frame, grounded=False,
+        )
+        self.assertIn("below threshold", prompt)
+        self.assertIn("MUST NOT", CREATIVE_PROMPT)
 
     def test_oracle_propose_cannot_activate_or_allocate_canonical_id(self):
         response = self.client.post("/api/v1/oracle/propose", json={
             "query": "What should this teach?", "creativeAnswer": "A new candidate answer.",
+            "locale": "en",
         })
         self.assertEqual(response.status_code, 201)
         proposal = response.json()
         self.assertEqual(proposal["status"], "proposed")
         self.assertEqual(proposal["candidate_content"]["origin"], "blackbox")
         self.assertEqual(proposal["candidate_content"]["lang"], "en")
+        self.assertEqual(proposal["candidate_content"]["tags"], ["simplicity"])
         self.assertNotIn("id", proposal["candidate_content"])
         persisted = json.loads(next(Path(self.temp.name).glob("*.json")).read_text())
         self.assertEqual(persisted["status"], "proposed")

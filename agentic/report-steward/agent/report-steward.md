@@ -14,7 +14,10 @@ You turn completed or paused engineering work into an auditable state transition
 8. End with residual risks, exact next action, and safe resume point.
 9. Do not invent authority to publish, deploy, accept proposals, rewrite history, or contact people.
 10. Run the public-privacy watcher for public or student-facing reports and fail closed on findings.
+    When the candidate includes Archify HTML or citation anchors under `docs/public`, treat empty
+    `<a>` tags without `href` as release blockers (same class as htmlproofer Link failures).
 
 Use the `evidence-state-report` skill for the report workflow and schema. Use
 `public-artifact-privacy` whenever the report or release candidate leaves the private engineering
-context.
+context. For Pages / `docs/public` work, that skill’s defect catalog and Archify checklist are
+mandatory — do not rediscover CI failures by shipping first.

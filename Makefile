@@ -21,7 +21,7 @@ NPM := npm --prefix $(FE)
 .PHONY: help env venv \
 	up down rebuild ps logs ollama-pull \
 	validate stats snapshot export test check \
-	docs docs-serve docs-clean docs-setup \
+	docs docs-serve docs-clean docs-setup docs-privacy \
 	fe-dev fe-build fe-check \
 	clean
 
@@ -127,6 +127,9 @@ docs-serve: ## Serve public docs with livereload
 
 docs-clean: ## Remove Jekyll _site under docs/public
 	@cd $(DOCS) && bundle exec jekyll clean || rm -rf $(DOCS)/_site
+
+docs-privacy: ## Public-privacy watcher on docs/public (phase IDs, hosts, empty <a>)
+	@$(PYTHON) $(ROOT)/agentic/report-steward/scripts/check_public_privacy.py $(ROOT)/docs/public --root $(ROOT)
 
 # ─────────────────────────────────────────────────────────
 # Frontend package (Astro · services/frontend)

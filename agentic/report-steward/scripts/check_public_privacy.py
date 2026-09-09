@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Fail when candidate text exposes local paths, private coordinates, or disallowed identities."""
+"""Fail when candidate text exposes local paths, private coordinates, or disallowed identities.
+
+Also fails public/student markup that CI htmlproofer rejects as "'a' tag is missing a
+reference" — empty citation anchors and Archify UI shells without href. Shipped 2026-09-08
+from docs/public Archify HTML + `<a id="ref-…">` markers.
+"""
 
 from __future__ import annotations
 
@@ -27,6 +32,9 @@ PUBLIC_PHASE = re.compile(
     r"\b(?:phase\s+(?:[A-Z]+\d*[a-z]?|\d+)|R(?:3b|[0-9]+)|RC[0-9]+|TS[0-9]+|Q[0-9]+)\b",
     re.I,
 )
+# htmlproofer Links check: "'a' tag is missing a reference"
+ANCHOR_MISSING_HREF = re.compile(r"<a\b(?![^>]*\bhref\s*=)[^>]*>", re.I)
+MARKUP_SUFFIXES = {".html", ".md", ".astro", ".svelte"}
 
 
 def tracked_files(root: Path) -> list[Path]:
@@ -51,9 +59,15 @@ def private_ip(value: str) -> bool:
     return address.is_private and not address.is_loopback
 
 
+def is_public_surface(path: Path) -> bool:
+    return any(part in {"public", "_site-public"} for part in path.parts)
+
+
 def findings(path: Path, text: str, terms: list[str]) -> list[tuple[int, str]]:
     found: list[tuple[int, str]] = []
     lowered_terms = [(term, term.casefold()) for term in terms]
+    public = is_public_surface(path)
+    check_markup = public and path.suffix.lower() in MARKUP_SUFFIXES
     for number, line in enumerate(text.splitlines(), 1):
         reasons: set[str] = set()
         if HOME_PATH.search(line):
@@ -70,8 +84,10 @@ def findings(path: Path, text: str, terms: list[str]) -> list[tuple[int, str]]:
             reasons.add("private IPv6 address")
         if any(match.group(1).casefold() != "crea-comm.net" for match in EMAIL.finditer(line)):
             reasons.add("email outside approved studio domain")
-        if any(part in {"public", "_site-public"} for part in path.parts) and PUBLIC_PHASE.search(line):
+        if public and PUBLIC_PHASE.search(line):
             reasons.add("internal development phase identifier in public documentation")
+        if check_markup and ANCHOR_MISSING_HREF.search(line):
+            reasons.add("anchor tag missing href (htmlproofer)")
         folded = line.casefold()
         for display, term in lowered_terms:
             if term in folded:

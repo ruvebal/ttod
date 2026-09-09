@@ -1,0 +1,38 @@
+name: Frontend — typecheck and build
+
+on:
+  # No `paths:` filter on pull_request: this is main's *required* status check, so it must run
+  # on every PR regardless of what changed — a path-filtered required check simply never reports
+  # for a PR outside those paths, and GitHub then blocks the merge on a check stuck at "Expected"
+  # forever (found live via PR #3, an infra-only change with no services/frontend touch).
+  pull_request:
+  push:
+    branches: [main, "skeleton/**"]
+    paths:
+      - "services/frontend/**"
+      - ".github/workflows/ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  typecheck-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: services/frontend/package-lock.json
+
+      - run: npm ci
+
+      - run: npm run check
+
+      - run: npm run build

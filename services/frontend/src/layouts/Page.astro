@@ -8,11 +8,13 @@ const nav = {
     home: 'Home', wisdom: 'Wisdom', graph: 'Graph', oracle: 'Oracle', docs: 'Docs',
     skip: 'Skip to content', switchTo: 'Español',
     footer: 'A pedagogical wisdom database — instructor reference build.',
+    projectDocs: 'Project docs, teaching model & backlog',
   },
   es: {
     home: 'Inicio', wisdom: 'Sabiduría', graph: 'Grafo', oracle: 'Oráculo', docs: 'Docs',
     skip: 'Saltar al contenido', switchTo: 'English',
     footer: 'Una base de datos de sabiduría pedagógica — build de referencia del profesorado.',
+    projectDocs: 'Docs del proyecto, modelo docente y backlog',
   },
 }[lang];
 
@@ -82,6 +84,7 @@ const links: Array<{ href: string; label: string }> = [
     </div>
     <footer class="ttod-site-footer">
       <p>{nav.footer} © Rubén Vega Balbás · CC BY-NC-SA 4.0 (content) · MIT (code)</p>
+      <p><a href={lang === 'es' ? '/project-docs/es/' : '/project-docs/'}>{nav.projectDocs}</a></p>
     </footer>
   </body>
 </html>

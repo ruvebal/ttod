@@ -1,0 +1,105 @@
+name: Community proposal — compute accept-diff on approval
+
+# Implements PHASE-V-FEII-COHORT-COLLABORATION-AND-ASSESSMENT.md §2.7. A human reviewer approves
+# a PR that adds one proposal JSON under proposals/ (opened by the propose-form's bot, or by hand
+# via `cli.py proposal create --output proposals/<id>.json`). This workflow does NOT merge
+# anything — it computes the canonical accept diff (`cli.py proposal accept`) and pushes it back
+# onto the same PR branch. Because this repo's main branch protection dismisses stale reviews,
+# that push predictably clears the approval that triggered this run — treat that as a deliberate
+# second checkpoint (a human approves the *proposal*, the bot computes the *canonical diff*, a
+# human approves and merges the *diff*), not friction to route around. AGENTS.md's rule stands
+# literally: only a human's merge click ever lands a change in ttod.yml.
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  compute-accept-diff:
+    if: >
+      github.event.review.state == 'approved' &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Refuse if this PR touches anything outside proposals/*.json
+        id: scope
+        run: |
+          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=1
+          changed=$(git diff --name-only "origin/${{ github.event.pull_request.base.ref }}...HEAD")
+          echo "$changed"
+          if echo "$changed" | grep -qvE '^proposals/[^/]+\.json$'; then
+            echo "reason=PR touches files outside proposals/ — refusing to auto-compute an accept diff." >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          {
+            echo "files<<PROPOSAL_FILES_EOF"
+            echo "$changed"
+            echo "PROPOSAL_FILES_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -e .
+
+      - name: Run cli.py proposal accept for each file in this PR
+        id: accept
+        env:
+          REVIEWER: ${{ github.event.review.user.login }}
+          FILES: ${{ steps.scope.outputs.files }}
+        run: |
+          accepted=()
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            id=$(basename "$f" .json)
+            echo "Accepting $id (reviewer: $REVIEWER)"
+            python cli.py proposal accept "$id" --reviewer-id "$REVIEWER"
+            accepted+=("$id")
+          done <<< "$FILES"
+          printf 'accepted_ids=%s\n' "${accepted[*]}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the computed accept diff onto this PR branch
+        run: |
+          git config user.name "ttod-proposal-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ttod.yml proposals/
+          git commit -m "Compute accept diff — approved by @${{ github.event.review.user.login }}"
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+
+      - name: Comment — explain the re-approval this push intentionally triggers
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: [
+                `**Accept diff computed** by @${context.payload.review.user.login}'s approval — this PR now includes the resulting \`ttod.yml\` change, computed via \`cli.py proposal accept --reviewer-id ${context.payload.review.user.login}\`.`,
+                '',
+                'Branch protection dismisses stale reviews, so this push cleared the approval that triggered it — that is intentional, not a bug: it separates "I approve this proposal" from "I approve this exact canonical diff." A fresh approval + merge on this PR is what actually lands it in `ttod.yml`.',
+              ].join('\n'),
+            });
+
+      - name: Comment — surface a failed accept instead of failing silently
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: '`cli.py proposal accept` failed for this PR — see the failed run for the exact error (common causes: unknown tags, schema violation, already-accepted proposal). Nothing was pushed.',
+            });

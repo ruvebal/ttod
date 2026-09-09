@@ -23,6 +23,7 @@ NPM := npm --prefix $(FE)
 	validate stats snapshot export test check \
 	docs docs-serve docs-clean docs-setup docs-privacy \
 	fe-dev fe-build fe-check \
+	review-queue pr-status \
 	clean
 
 # ─────────────────────────────────────────────────────────
@@ -143,6 +144,25 @@ fe-build: ## Astro production build
 
 fe-check: ## Astro type/content check
 	@$(NPM) run check
+
+# ─────────────────────────────────────────────────────────
+# GitHub review surface (read-only — approve/merge stay human)
+# Privileged git (approve, merge, force-push, protection) is never a Make target.
+# ─────────────────────────────────────────────────────────
+
+review-queue: ## Read-only open PR queue (uses scripts/gh-review-queue.sh when present)
+	@if [ -x "$(ROOT)/scripts/gh-review-queue.sh" ]; then \
+		"$(ROOT)/scripts/gh-review-queue.sh"; \
+	else \
+		printf 'scripts/gh-review-queue.sh not on this branch yet — falling back to gh pr list\n'; \
+		gh pr list --state open --json number,title,isDraft,mergeStateStatus,reviewDecision,headRefName,url \
+			--jq '.[] | "#\(.number) [\(.mergeStateStatus // "?")/\(.reviewDecision // "none")] \(.headRefName)\n  \(.title)\n  \(.url)\(if .isDraft then " (draft)" else "" end)\n"'; \
+	fi
+
+pr-status: ## Show one PR's merge/check state (PR=2)
+	@test -n "$(PR)" || { printf 'usage: make pr-status PR=<n>\n' >&2; exit 2; }
+	@gh pr view "$(PR)" --json number,title,url,isDraft,mergeable,mergeStateStatus,reviewDecision,statusCheckRollup,baseRefName,headRefName \
+		--jq '"#\(.number) \(.title)\n\(.url)\nbase=\(.baseRefName) head=\(.headRefName) draft=\(.isDraft)\nmergeable=\(.mergeable) state=\(.mergeStateStatus) review=\(.reviewDecision)\nchecks:\n" + ((.statusCheckRollup // []) | map("  \(.name): \(.status)/\(.conclusion // "-")") | join("\n"))'
 
 # ─────────────────────────────────────────────────────────
 # Housekeeping

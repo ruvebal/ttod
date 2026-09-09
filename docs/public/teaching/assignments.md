@@ -88,6 +88,95 @@ ever does that silently.
 working example client, proof the API works outside the browser, not just inside this app's own
 UI.
 
+## Team task board
+
+Eight students, five teams — three pairs on the richest, most contract-heavy areas; two solos on
+the two most bounded ones. Every team's list below runs ~10 tasks, tagged by which of the six
+areas each one actually touches: your own area is depth, the others are the breadth this course
+explicitly grades (see [Why accessibility is a commitment](#why-accessibility-is-a-commitment-not-a-checklist)
+for why the testing/accessibility tag applies to every row, every team, not just one).
+
+### Team 1 — Content, i18n & Proposals UI (pair)
+
+| # | Task | Area(s) |
+| - | --- | --- |
+| 1 | Build the localized wisdom index and detail routes (`en` + `es`) | Content |
+| 2 | Section, tag, and level browse routes | Content |
+| 3 | Breadcrumb navigation across all content routes | Content |
+| 4 | Empty-state and error-state handling for content routes | Content |
+| 5 | Build the "propose a quote" form UI — posts to the endpoint Team 5 owns | Content, Accounts |
+| 6 | Source, rights, and provenance display on every quote page | Content |
+| 7 | Unit and component tests for content routes and the propose form | Testing |
+| 8 | Open one PR into a module you don't own | Cross-module |
+| 9 | Formally review one PR outside your own module | Cross-module |
+| 10 | Document one real design decision (taxonomy, fallback policy) for the oral defense | Process |
+
+### Team 2 — Knowledge Graph (solo)
+
+| # | Task | Area(s) |
+| - | --- | --- |
+| 1 | Fetch and render the graph from the governed API | Graph |
+| 2 | One accessible node selection reflected as text, not just a visual highlight | Graph |
+| 3 | Tag-filter interaction | Graph |
+| 4 | URL state for the current selection/filter | Graph |
+| 5 | Layout and performance at real corpus scale (the sample set is not small) | Graph |
+| 6 | Keyboard operability audit on every interactive graph element | Testing |
+| 7 | Unit and component tests for the graph island | Testing |
+| 8 | Open one PR into a module you don't own | Cross-module |
+| 9 | Formally review one PR outside your own module | Cross-module |
+| 10 | Document one real design decision (layout choice, accessibility trade-off) for the oral defense | Process |
+
+### Team 3 — Oracle Terminal (pair)
+
+| # | Task | Area(s) |
+| - | --- | --- |
+| 1 | Streamed response rendering, one prompt to one cited answer | Oracle |
+| 2 | Live-region announcement of the streaming answer for screen readers | Oracle |
+| 3 | Grounded vs. creative mode disclosure in the UI | Oracle |
+| 4 | Session/exchange history handling | Oracle |
+| 5 | A "preparing" cold-start state instead of a silent hang on a fresh deployment | Oracle |
+| 6 | Recovery/error state when the Oracle is unavailable | Oracle |
+| 7 | Unit and component tests for the Oracle terminal and its streaming logic | Testing |
+| 8 | Open one PR into a module you don't own | Cross-module |
+| 9 | Formally review one PR outside your own module | Cross-module |
+| 10 | Document one real design decision (state handling, disclosure design) for the oral defense | Process |
+
+### Team 4 — PWA & Local Operations (solo)
+
+| # | Task | Area(s) |
+| - | --- | --- |
+| 1 | Service worker registration and an installable manifest | PWA/Offline |
+| 2 | One observable offline boundary — content that keeps working without a connection | PWA/Offline |
+| 3 | Cache-first vs. network-first policy for the right routes | PWA/Offline |
+| 4 | An offline queue that flushes once the connection returns | PWA/Offline |
+| 5 | Install-quality checks (manifest correctness, icons, installability) | PWA/Offline |
+| 6 | Measured performance budget before/after one optimization (Core Web Vitals) | PWA/Offline |
+| 7 | Unit and component tests for the offline boundary | Testing |
+| 8 | Open one PR into a module you don't own | Cross-module |
+| 9 | Formally review one PR outside your own module | Cross-module |
+| 10 | Document one real design decision (caching policy, install UX) for the oral defense | Process |
+
+### Team 5 — Accounts, Library, Proposals & Public API (pair)
+
+| # | Task | Area(s) |
+| - | --- | --- |
+| 1 | Login/session (server-verified, one protected route) | Accounts |
+| 2 | Personal favorites library — save, view, remove | Accounts |
+| 3 | The propose-a-quote backend endpoint Team 1's form posts to | Accounts, Content |
+| 4 | The GitHub-native review pipeline: a proposal PR, human approval, computed accept-diff, second approval | Accounts |
+| 5 | A bearer-token-authenticated public API endpoint (`GET` a random quote) | Accounts |
+| 6 | API documentation page and a minimal external example client | Accounts |
+| 7 | Unit and component tests for auth, the library, and the API | Testing |
+| 8 | Open one PR into a module you don't own | Cross-module |
+| 9 | Formally review one PR outside your own module | Cross-module |
+| 10 | Document one real design decision (session vs. token design, review-pipeline trade-off) for the oral defense | Process |
+
+**On headcount:** this board uses the confirmed 8-student, five-team split
+(2+1+2+1+2 — three pairs on the richest areas, two solos on the most bounded ones). If your actual
+roster is seven, keep the module boundaries fixed and fold one pair down to a trio rather than
+dropping a module — the six areas and the ten-task shape per team don't need to change, just who's
+on which team.
+
 ## Why accessibility is a commitment, not a checklist
 
 An aphorism is offered as wisdom that holds regardless of who is reading it, when, or how. A
@@ -106,3 +195,4 @@ interactive.
 - [Teaching model]({{ '/teaching/' | relative_url }})
 - [For students]({{ '/audiences/students/' | relative_url }})
 - [Product areas]({{ '/platform/' | relative_url }})
+- [Contributing — how to open a PR, how review works]({{ '/guides/contributing/' | relative_url }})

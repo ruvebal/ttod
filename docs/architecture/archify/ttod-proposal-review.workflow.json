@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Community Proposal Review — the two-touchpoint gate",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "contributor", "label": "Contributor" },
+    { "id": "repository", "label": "GitHub PR / Store" },
+    { "id": "reviewer", "label": "Reviewer" }
+  ],
+  "mainPath": ["propose", "open_pr", "approve1", "compute_push", "approve2", "merge_update"],
+  "nodes": [
+    { "id": "propose", "lane": "contributor", "col": 0, "width": 104, "type": "external", "label": "Propose", "sublabel": "form or CLI" },
+    { "id": "open_pr", "lane": "repository", "col": 1, "type": "messagebus", "label": "PR Opens", "sublabel": "proposals/<id>.json" },
+    { "id": "approve1", "lane": "reviewer", "col": 2, "type": "security", "label": "Approves", "sublabel": "the proposal", "tag": "1st touchpoint" },
+    { "id": "compute_push", "lane": "repository", "col": 3, "width": 156, "type": "backend", "label": "Computes & Pushes Diff", "sublabel": "clears the approval" },
+    { "id": "approve2", "lane": "reviewer", "col": 4, "type": "security", "label": "Approves", "sublabel": "the exact diff", "tag": "2nd touchpoint" },
+    { "id": "merge_update", "lane": "repository", "col": 5, "width": 110, "type": "database", "label": "Merges", "sublabel": "ttod.yml updated" }
+  ],
+  "edges": [
+    { "from": "propose", "to": "open_pr", "variant": "emphasis" },
+    { "from": "open_pr", "to": "approve1", "variant": "emphasis" },
+    { "from": "approve1", "to": "compute_push", "variant": "emphasis" },
+    { "from": "compute_push", "to": "approve2", "variant": "emphasis" },
+    { "from": "approve2", "to": "merge_update", "variant": "emphasis" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Two Approvals, Not One", "items": ["The bot's pushed diff clears the first approval — a second, explicit approval on that exact diff is what merges it"] }
+  ]
+}

@@ -16,9 +16,17 @@ Together, Units 1–7 are roughly **half the semester**. Units 8–12 (3D, IoT, 
 
 ## What the baseline gives you
 
-The proposed student baseline will run end to end: localized content reaches an Astro page, selected interactions cross Svelte or React islands, requests follow named contracts, governed quotes return to accessible browser states, and representative tests show where evidence belongs.
+The student baseline runs end to end: localized content reaches an Astro page, selected
+interactions cross Svelte or React islands, requests follow named contracts, governed quotes
+return to accessible browser states, login and a personal library work, and representative tests
+show where evidence belongs.
 
-Content, graph, Oracle, browser operations, and testing will be present only at hello-world depth. Your assignment is to make those areas useful, resilient, accessible, and explainable through your own design choices.
+Content, graph, Oracle, browser operations, accounts, and testing are present only at hello-world
+depth. Your assignment is to make those areas useful, resilient, accessible, and explainable
+through your own design choices — see [assignments and
+backlog]({{ '/teaching/assignments/' | relative_url }}) for the full picture: who each area
+serves, the user journeys behind them, and the accessibility commitment every one of them
+inherits.
 
 ## What you will be able to do
 
@@ -26,6 +34,8 @@ Content, graph, Oracle, browser operations, and testing will be present only at 
 - Extend localized Astro content and information architecture.
 - Design meaningful Svelte graph and React streaming interactions.
 - Define browser offline behavior and measurable performance choices.
+- Build a personal favorites library and a logged-in "propose a quote" flow, and understand why
+  only a named human's review ever writes the governed collection.
 - Build a risk-based testing strategy rather than chase a test count.
 - Disclose AI assistance and keep a human accept/reject/escalate trail.
 - Explain your contribution through code, process evidence, and mid-term defence of understanding.
@@ -43,4 +53,6 @@ Container administration and cloud deployment are not theory objectives for Entr
 
 ## Before collaboration opens
 
-The reduced starter must first be built, tested from a clean copy, checked for inaccessible reference material and private metadata, rehearsed as a lesson, and aligned across the localized course materials. Until those gates pass, this page describes the intended model rather than an available assignment repository.
+The reduced starter is built, tested from a clean copy, and checked for inaccessible reference
+material and private metadata. Instructor rehearsal as a lesson and final alignment across the
+localized course materials remain before the assignment repository opens to the cohort.

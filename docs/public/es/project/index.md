@@ -39,3 +39,21 @@ El código se licencia bajo MIT. El contenido curado se licencia bajo CC BY-NC-S
 ## Custodia
 
 El proyecto se custodia desde el dominio del estudio de investigación `@crea-comm.net`. Los documentos públicos omiten deliberadamente rutas de estaciones de trabajo, nombres de infraestructura interna, coordenadas de red y herramientas privadas del estudio.
+
+## Dónde encaja TTOD en el estudio
+
+TTOD es un proyecto dentro de un pequeño estudio de desarrollo de IA soberana, construido sobre
+una regla innegociable: toda llamada a un modelo se ejecuta en infraestructura alojada localmente,
+nunca en un proveedor de IA en la nube. El propio Oráculo de TTOD, y cualquier asistencia para
+redactar propuestas, siguen esa regla igual que el resto de proyectos del estudio.
+
+Merece la pena nombrar dos proyectos hermanos para que el límite sea explícito, no solo afirmado:
+**Athanor**, la plataforma de conocimiento propia del estudio, puede consumir una instantánea de
+solo lectura de la colección gobernada de TTOD y puede hacer llegar citas candidatas a la bandeja
+de revisión humana habitual de TTOD — nunca escribe un registro canónico directamente, la misma
+regla que gobierna cualquier otro camino hacia los datos de TTOD. **Ahmes**, el motor de
+extracción de documentos de propósito general del estudio, no tiene relación con la propia
+canalización de TTOD; alimenta a Athanor desde otro material de origen y no tiene conexión directa
+con la gobernanza de citas de TTOD. Nombrar a ambos aquí es una cuestión de precisión, no de
+afiliación por proximidad: las reglas de gobernanza de TTOD se aplican sin importar qué otra
+herramienta del estudio esté preguntando.

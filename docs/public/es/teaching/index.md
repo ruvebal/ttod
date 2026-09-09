@@ -10,7 +10,13 @@ lang: es
 
 TTOD es el producto docente de la **primera mitad** de [Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) en UDIT: arquitectura de producción con Astro, comportamiento del navegador sin conexión, pruebas y revisión asistida por IA, y rendimiento medido. El [índice del track](https://ruvebal.github.io/web-atelier-udit/tracks/feii/) nombra el semestre de doce unidades; TTOD concentra las Unidades 1–7 en un solo artefacto coherente.
 
-La base docente propuesta ofrece al alumnado un recorrido de producto pequeño pero completo: cada costura mayor está presente, pero ninguna se entrega como respuesta acabada de la tarea. Las áreas avanzadas aparecen como ejemplos hello world operativos. El profesorado puede explicar primero cómo encaja el sistema; después, el alumnado amplía esas mismas costuras mediante diseño e implementación evaluados.
+La base docente está construida: un recorrido de producto pequeño pero completo, donde cada
+costura mayor está presente, pero ninguna se entrega como respuesta acabada de la tarea. Las áreas
+avanzadas aparecen como ejemplos hello world operativos. El profesorado puede explicar primero
+cómo encaja el sistema; después, el alumnado amplía esas mismas costuras mediante diseño e
+implementación evaluados. El ensayo del profesorado sobre este mismo artefacto es la puerta que
+queda antes de abrir la colaboración — ver [Para
+estudiantes]({{ '/es/audiences/students/' | relative_url }}).
 
 ## Conexión con el curso
 
@@ -40,7 +46,7 @@ Las reglas autoritativas de calificación, calendario y recuperación viven en e
 
 Las Unidades 8–12 (3D, IoT/Python y defensa del proyecto final) son trabajo posterior del curso. Quedan fuera de esta base docente de TTOD.
 
-## Las cinco áreas de ampliación
+## Las seis áreas de ampliación
 
 | Área | Hello world entregado | Profundidad a cargo del alumnado (Entrega 1) |
 | --- | --- | --- |
@@ -48,7 +54,15 @@ Las Unidades 8–12 (3D, IoT/Python y defensa del proyecto final) son trabajo po
 | Grafo Svelte | un vecindario real pequeño y una selección accesible | exploración, filtros, disposición, estado de URL y rendimiento a escala de corpus |
 | Oracle React | una pregunta, un modo de respuesta en flujo y una cita | estado robusto, sesiones, recuperación, transparencia, propuestas sin conexión y diseño de interacción |
 | Operación del navegador y comportamiento sin conexión | un límite local/offline observable | caché, instalación, colas, presupuestos y evidencia operativa |
+| Cuentas, biblioteca personal y propuestas de la comunidad | inicio de sesión, una ruta protegida y un endpoint autenticado por token | una biblioteca de favoritos, un flujo de "proponer una cita" con sesión iniciada, y el camino revisado que sigue una propuesta hasta la colección gobernada |
 | Pruebas | una aserción representativa en cada capa útil | estrategia de riesgo, E2E de interacción, amplitud de contrato, accesibilidad, rendimiento y control de inestabilidad |
+
+La sexta área no tiene ninguna referencia existente que reducir — es genuinamente nueva, construida
+sobre los mismos patrones de sesión verificada en servidor y token de acceso ya cubiertos en la
+unidad previa de autenticación de Front-end I, de modo que el grupo amplía un patrón que ya conoce
+en lugar de aprenderlo desde cero. Ver [tareas y
+backlog]({{ '/es/teaching/assignments/' | relative_url }}) para el desglose completo por área,
+las personas y los recorridos detrás de las seis.
 
 ## Secuencia pedagógica
 
@@ -58,7 +72,22 @@ Las Unidades 8–12 (3D, IoT/Python y defensa del proyecto final) son trabajo po
 4. Convertir los comportamientos deliberadamente ausentes en criterios explícitos de la Entrega 1.
 5. Exigir que el alumnado explique decisiones de diseño y evidencia — comportamiento del producto, registro de proceso y defensa de la comprensión en el parcial — no que se limite a presentar una interfaz acabada.
 
-Esto es una justificación de diseño, no la afirmación de que TTOD mejore el aprendizaje. La base debe construirse primero, ensayarse, revisarse de forma independiente y sincronizarse con los materiales localizados del curso.
+Esto es una justificación de diseño, no la afirmación de que TTOD mejore el aprendizaje. La base
+está construida y verificada de forma independiente sobre una copia limpia; queda por delante el
+ensayo del profesorado sobre ese mismo artefacto y la sincronización final con los materiales
+localizados del curso.
+
+## Cómo transcurre una sesión
+
+Cada sesión sigue el mismo ritmo de tres partes, ajustado al tiempo real de esa sesión (una
+primera sesión más corta, después un bloque semanal constante): una lección breve extraída
+directamente del contenido curricular de esa unidad, un breve punto de control en equipo (qué se
+entregó, qué está bloqueado, qué sigue) y el resto como tiempo de laboratorio práctico. La lección
+se mantiene breve a propósito — las unidades con framework nuevo merecen un bloque docente real;
+una vez que el patrón es familiar, la mayor parte de la sesión es tiempo de laboratorio,
+coincidiendo con el reparto oficial de horas entre clase magistral y laboratorio de este track. El
+punto de control también es donde un cambio en el contrato compartido de un área (un nombre de
+ruta, una forma de datos) se detecta antes de que rompa silenciosamente el trabajo de otra área.
 
 ## Por qué el andamiaje debe desvanecerse
 

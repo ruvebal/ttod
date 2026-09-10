@@ -62,7 +62,9 @@ sobre los mismos patrones de sesión verificada en servidor y token de acceso ya
 unidad previa de autenticación de Front-end I, de modo que el grupo amplía un patrón que ya conoce
 en lugar de aprenderlo desde cero. Ver [tareas y
 backlog]({{ '/es/teaching/assignments/' | relative_url }}) para el desglose completo por área,
-las personas y los recorridos detrás de las seis.
+las personas y los recorridos detrás de las seis, y [detalle de
+tareas]({{ '/es/teaching/tasks/' | relative_url }}) para saber exactamente qué espera cada tarea
+asignable.
 
 ## Secuencia pedagógica
 
@@ -105,6 +107,8 @@ La accesibilidad forma parte de la arquitectura y de la evaluación desde el pri
 
 ## Páginas relacionadas del curso
 
+- [Tareas y backlog]({{ '/es/teaching/assignments/' | relative_url }})
+- [Detalle de tareas]({{ '/es/teaching/tasks/' | relative_url }})
 - [Track FE II (publicado)](https://ruvebal.github.io/web-atelier-udit/tracks/feii/)
 - [Índice del track en inglés](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/)
 - [Cómo aprobar Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/)

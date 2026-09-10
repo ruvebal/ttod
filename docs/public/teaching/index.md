@@ -60,7 +60,8 @@ The sixth area has no existing reference to reduce — it is genuinely new, buil
 server-verified session and bearer-token patterns already covered in the prerequisite Front-end I
 authentication unit, so the cohort extends a pattern it already has rather than learning one from
 scratch. See [assignments and backlog]({{ '/teaching/assignments/' | relative_url }}) for the full
-epic-by-epic breakdown, personas, and journeys behind all six areas.
+epic-by-epic breakdown, personas, and journeys behind all six areas, and [task
+details]({{ '/teaching/tasks/' | relative_url }}) for exactly what each assignable task expects.
 
 ## Pedagogical sequence
 
@@ -101,6 +102,8 @@ Accessibility is part of the architecture and assessment from the first hello wo
 
 ## Related course pages
 
+- [Assignments and backlog]({{ '/teaching/assignments/' | relative_url }})
+- [Task details — every task expanded]({{ '/teaching/tasks/' | relative_url }})
 - [FE II track (published)](https://ruvebal.github.io/web-atelier-udit/tracks/feii/)
 - [English track index](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/)
 - [How to Pass Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/)

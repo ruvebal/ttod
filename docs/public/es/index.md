@@ -46,7 +46,7 @@ lang: es
   <a class="card" href="{{ '/es/platform/' | relative_url }}"><h3>Áreas de producto</h3><p>Contenido localizado, citas, grafo, Oracle, documentación, operación y pruebas.</p></a>
   <a class="card" href="{{ '/es/teaching/' | relative_url }}"><h3>Modelo docente</h3><p>Unidades 1–7 de FE II: Entrega 1, defensa del proceso en el parcial y columna hello world.</p></a>
   <a class="card" href="{{ '/es/research/' | relative_url }}"><h3>Investigación</h3><p>Preguntas, límites de evidencia, metodología, ética y trabajo abierto.</p></a>
-  <a class="card" href="{{ '/es/guides/' | relative_url }}"><h3>Guías</h3><p>Puesta en marcha local, orientación de producto y gobernanza de la contribución.</p></a>
+  <a class="card" href="{{ '/es/guides/' | relative_url }}"><h3>Docs</h3><p>Puesta en marcha local, gobernanza de la contribución y detalle de cada tarea.</p></a>
   <a class="card" href="{{ '/es/audiences/students/' | relative_url }}"><h3>Estudiantes</h3><p>La Entrega 1 como tu producto; el parcial como uso declarativo y defensa de la comprensión.</p></a>
   <a class="card" href="{{ '/es/audiences/partners/' | relative_url }}"><h3>Socios universitarios</h3><p>Valor académico, salvaguardas, decisiones y umbrales de colaboración.</p></a>
   <a class="card" href="{{ '/es/audiences/research-funders/' | relative_url }}"><h3>Investigación y financiación</h3><p>Activos, preparación, preguntas abiertas y colaboración responsable.</p></a>

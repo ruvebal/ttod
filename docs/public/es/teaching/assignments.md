@@ -101,6 +101,10 @@ la amplitud que este curso evalúa explícitamente (ver [Por qué la accesibilid
 compromiso](#por-qué-la-accesibilidad-es-un-compromiso-no-una-lista-de-verificación) para saber
 por qué la etiqueta de pruebas/accesibilidad se aplica a cada fila, de cada equipo, no solo a uno).
 
+**Esto es el resumen.** Para qué busca el resultado visible de cada tarea, qué incluye, y qué hay
+que hacer de verdad — basado en el `ASSIGNMENT.md` real que trae cada módulo, no una repetición
+genérica — ver [detalle de tareas]({{ '/es/teaching/tasks/' | relative_url }}).
+
 ### Equipo 1 — Contenido, i18n y UI de propuestas (pareja)
 
 | # | Tarea | Área(s) |
@@ -198,6 +202,7 @@ Terminado, no solo las áreas que se sienten visualmente interactivas.
 
 ## Páginas relacionadas
 
+- [Detalle de tareas — cada tarea explicada]({{ '/es/teaching/tasks/' | relative_url }})
 - [Modelo docente]({{ '/es/teaching/' | relative_url }})
 - [Para estudiantes]({{ '/es/audiences/students/' | relative_url }})
 - [Áreas del producto]({{ '/es/platform/' | relative_url }})

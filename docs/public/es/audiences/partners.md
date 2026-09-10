@@ -32,3 +32,18 @@ Son posibilidades de diseño, no efectos de aprendizaje demostrados.
 ## Decisiones que se invitan
 
 Los socios pueden revisar el encaje curricular, las expectativas de accesibilidad, la carga de trabajo, la validez de la evaluación, la paridad bilingüe, la preparación ética y si un protocolo de investigación posterior merece desarrollarse. El prototipo actual no implica respaldo ni aprobación institucional.
+
+## Afiliación institucional
+
+<div class="footer-logos">
+  <img class="footer-logo footer-logo--udit" src="{{ '/assets/images/institutional/udit-logo.png' | relative_url }}" alt="UDIT — Universidad de Diseño, Innovación y Tecnología" loading="lazy" width="215" height="30">
+  <a class="footer-logo-link" href="https://www.udit.es/lineas-de-investigacion/grupo-de-investigacion-innovacion-y-tecnologia-desde-y-para-la-educacion-la-cultura-y-la-sociedad/" target="_blank" rel="noopener noreferrer">
+    <img class="footer-logo footer-logo--ecsit" src="{{ '/assets/images/institutional/ecsit-logo.jpg' | relative_url }}" alt="Logo del grupo de investigación ECSIT" loading="lazy" width="120" height="80">
+  </a>
+</div>
+
+Este curso se imparte en [UDIT — Universidad de Diseño, Innovación y Tecnología](https://www.udit.es/),
+dentro de su [grupo de investigación ECSIT](https://www.udit.es/lineas-de-investigacion/grupo-de-investigacion-innovacion-y-tecnologia-desde-y-para-la-educacion-la-cultura-y-la-sociedad/)
+(Innovación y Tecnología desde y para la Educación, la Cultura y la Sociedad). Las decisiones de
+encaje curricular pertenecen a los propios canales académicos de UDIT — esta página describe el
+producto, no un compromiso institucional en nombre de UDIT.

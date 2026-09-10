@@ -21,7 +21,7 @@ NPM := npm --prefix $(FE)
 .PHONY: help env venv \
 	up down rebuild ps logs ollama-pull \
 	validate stats snapshot export test check \
-	docs docs-serve docs-clean docs-setup docs-privacy \
+	docs docs-serve docs-clean docs-setup docs-privacy docs-local \
 	fe-dev fe-build fe-check \
 	review-queue pr-status \
 	clean
@@ -131,6 +131,12 @@ docs-clean: ## Remove Jekyll _site under docs/public
 
 docs-privacy: ## Public-privacy watcher on docs/public (phase IDs, hosts, empty <a>)
 	@$(PYTHON) $(ROOT)/agentic/report-steward/scripts/check_public_privacy.py $(ROOT)/docs/public --root $(ROOT)
+
+docs-local: ## Build public docs for local serving via Caddy at /project-docs/ (main only, not the student artifact)
+	@cd $(DOCS) && bundle exec jekyll build --destination _site-local --baseurl /project-docs
+	@port=$$(grep -E '^HTTP_PORT=' $(ROOT)/.env 2>/dev/null | tail -1 | cut -d= -f2); \
+	printf 'Built %s/_site-local — reachable at http://localhost:%s/project-docs/ once the stack is up (make up).\n' '$(DOCS)' "$${port:-$(HTTP_PORT)}"
+	@printf 'Re-run this target any time docs/public changes; Caddy serves whatever is on disk, no restart needed.\n'
 
 # ─────────────────────────────────────────────────────────
 # Frontend package (Astro · services/frontend)

@@ -105,16 +105,24 @@ por qué la etiqueta de pruebas/accesibilidad se aplica a cada fila, de cada equ
 que hacer de verdad — basado en el `ASSIGNMENT.md` real que trae cada módulo, no una repetición
 genérica — ver [detalle de tareas]({{ '/es/teaching/tasks/' | relative_url }}).
 
+**Lecciones para estas tareas.** El itinerario de FE II en web-atelier-udit enseña la arquitectura
+Astro sobre la que construye cada equipo. Hay tres unidades publicadas por ahora — se enlazarán
+más aquí a medida que se publiquen:
+
+- [Unidad 1 — Arranque](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-1-kickoff/) — orientación para todos los equipos, antes de la tarea 1
+- [Unidad 2 — Fundamentos de Astro](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-2-astro-fundamentals/) — routing, layouts y una primera isla de framework; prerrequisito de la tarea 1 de los Equipos 1, 2 y 3
+- [Unidad 3 — Astro avanzado](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-3-astro-advanced/) — content collections, routing i18n, obtención de datos e islas multi-framework, trabajado enteramente sobre el código fuente real de TTOD; prerrequisito de las tareas 1 y 6 del Equipo 1, y de la tarea 1 de los Equipos 2 y 3
+
 ### Equipo 1 — Contenido, i18n y UI de propuestas (pareja)
 
 | # | Tarea | Área(s) |
 | - | --- | --- |
-| 1 | Construir las rutas localizadas de índice y detalle de sabiduría (`en` + `es`) | Contenido |
+| 1 | Construir las rutas localizadas de índice y detalle de sabiduría (`en` + `es`) — ver [Unidad 3: content collections + routing i18n](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-3-astro-advanced/) | Contenido |
 | 2 | Rutas de exploración por sección, etiqueta y nivel | Contenido |
 | 3 | Navegación de migas de pan en todas las rutas de contenido | Contenido |
 | 4 | Gestión de estados vacíos y de error en las rutas de contenido | Contenido |
 | 5 | Construir la UI del formulario "proponer una cita" — envía al endpoint que posee el Equipo 5 | Contenido, Cuentas |
-| 6 | Mostrar fuente, derechos y procedencia en cada página de cita | Contenido |
+| 6 | Mostrar fuente, derechos y procedencia en cada página de cita — ver [Unidad 3: esquemas de content collection](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-3-astro-advanced/) | Contenido |
 | 7 | Pruebas unitarias y de componente para las rutas de contenido y el formulario de propuesta | Pruebas |
 | 8 | Abrir una PR hacia un módulo que no es el tuyo | Entre módulos |
 | 9 | Revisar formalmente una PR fuera de tu propio módulo | Entre módulos |
@@ -124,7 +132,7 @@ genérica — ver [detalle de tareas]({{ '/es/teaching/tasks/' | relative_url }}
 
 | # | Tarea | Área(s) |
 | - | --- | --- |
-| 1 | Obtener y renderizar el grafo desde la API gobernada | Grafo |
+| 1 | Obtener y renderizar el grafo desde la API gobernada — ver [Unidad 3: obtención de datos + la isla del grafo](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-3-astro-advanced/) | Grafo |
 | 2 | Una selección de nodo accesible, reflejada como texto y no solo como resalte visual | Grafo |
 | 3 | Interacción de filtro por etiqueta | Grafo |
 | 4 | Estado de URL para la selección/filtro actual | Grafo |
@@ -139,7 +147,7 @@ genérica — ver [detalle de tareas]({{ '/es/teaching/tasks/' | relative_url }}
 
 | # | Tarea | Área(s) |
 | - | --- | --- |
-| 1 | Renderizado de respuesta en flujo, de una pregunta a una respuesta citada | Oracle |
+| 1 | Renderizado de respuesta en flujo, de una pregunta a una respuesta citada — ver [Unidad 3: la isla Oracle como ejemplo multi-framework](https://ruvebal.github.io/web-atelier-udit/lessons/es/feii/unit-3-astro-advanced/) | Oracle |
 | 2 | Anuncio en región viva de la respuesta en flujo para lectores de pantalla | Oracle |
 | 3 | Transparencia del modo fundamentado frente al modo creativo en la UI | Oracle |
 | 4 | Gestión del historial de sesión/intercambios | Oracle |

@@ -72,7 +72,7 @@ up: ## Start the app — its own Ollama included, nothing to install first
 	@$(COMPOSE) ps
 	@port=$$(grep -E '^HTTP_PORT=' $(ROOT)/.env | tail -1 | cut -d= -f2); \
 	printf 'Open http://localhost:%s (see compose ps for mapped ports)\n' "$${port:-$(HTTP_PORT)}"
-	@printf 'First run on an empty Ollama volume? Pull a model: make ollama-pull\n'
+	@printf 'First run on an empty Ollama volume? Pull chat + embed models: make ollama-pull\n'
 
 down: ## Stop containers (keeps named volumes)
 	@$(COMPOSE) down
@@ -87,8 +87,9 @@ ps: ## Show compose service status
 logs: ## Tail recent compose logs (n=100)
 	@$(COMPOSE) logs --tail=$${n:-100}
 
-ollama-pull: ## Pull a model into the app's own Ollama (model=llama3.2:1b)
+ollama-pull: ## Pull Oracle chat + embed models (model= / embed_model= to override)
 	@$(COMPOSE) exec ollama ollama pull $${model:-llama3.2:1b}
+	@$(COMPOSE) exec ollama ollama pull $${embed_model:-nomic-embed-text}
 
 # ─────────────────────────────────────────────────────────
 # Corpus (ttod.yml · cli.py)

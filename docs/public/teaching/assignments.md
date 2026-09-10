@@ -100,16 +100,23 @@ for why the testing/accessibility tag applies to every row, every team, not just
 what actually has to be done — grounded in the real `ASSIGNMENT.md` file each module ships with,
 not a generic restatement — see [task details]({{ '/teaching/tasks/' | relative_url }}).
 
+**Lessons for these tasks.** The FE II track at web-atelier-udit teaches the Astro architecture
+every team builds on. Three units are published so far — more will be linked here as they publish:
+
+- [Unit 1 — Kickoff](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-1-kickoff/) — orientation for every team, before task 1
+- [Unit 2 — Astro fundamentals](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-2-astro-fundamentals/) — routing, layouts, and a first framework island; prerequisite for Team 1's, Team 2's, and Team 3's task 1
+- [Unit 3 — Astro advanced](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) — content collections, i18n routing, data fetching, and multi-framework islands, worked entirely through TTOD's own source code; prerequisite for Team 1's tasks 1 and 6, and for Team 2's and Team 3's task 1
+
 ### Team 1 — Content, i18n & Proposals UI (pair)
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Build the localized wisdom index and detail routes (`en` + `es`) | Content |
+| 1 | Build the localized wisdom index and detail routes (`en` + `es`) — see [Unit 3: content collections + i18n routing](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Content |
 | 2 | Section, tag, and level browse routes | Content |
 | 3 | Breadcrumb navigation across all content routes | Content |
 | 4 | Empty-state and error-state handling for content routes | Content |
 | 5 | Build the "propose a quote" form UI — posts to the endpoint Team 5 owns | Content, Accounts |
-| 6 | Source, rights, and provenance display on every quote page | Content |
+| 6 | Source, rights, and provenance display on every quote page — see [Unit 3: content collection schemas](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Content |
 | 7 | Unit and component tests for content routes and the propose form | Testing |
 | 8 | Open one PR into a module you don't own | Cross-module |
 | 9 | Formally review one PR outside your own module | Cross-module |
@@ -119,7 +126,7 @@ not a generic restatement — see [task details]({{ '/teaching/tasks/' | relativ
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Fetch and render the graph from the governed API | Graph |
+| 1 | Fetch and render the graph from the governed API — see [Unit 3: data fetching + the graph island](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Graph |
 | 2 | One accessible node selection reflected as text, not just a visual highlight | Graph |
 | 3 | Tag-filter interaction | Graph |
 | 4 | URL state for the current selection/filter | Graph |
@@ -134,7 +141,7 @@ not a generic restatement — see [task details]({{ '/teaching/tasks/' | relativ
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Streamed response rendering, one prompt to one cited answer | Oracle |
+| 1 | Streamed response rendering, one prompt to one cited answer — see [Unit 3: the Oracle island as a multi-framework example](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Oracle |
 | 2 | Live-region announcement of the streaming answer for screen readers | Oracle |
 | 3 | Grounded vs. creative mode disclosure in the UI | Oracle |
 | 4 | Session/exchange history handling | Oracle |

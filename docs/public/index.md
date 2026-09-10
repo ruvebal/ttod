@@ -45,7 +45,7 @@ lang: en
   <a class="card" href="{{ '/platform/' | relative_url }}"><h3>Product areas</h3><p>Localized content, quotes, graph, Oracle, docs, operations, and tests.</p></a>
   <a class="card" href="{{ '/teaching/' | relative_url }}"><h3>Teaching model</h3><p>FE II Units 1–7: Entrega 1, a mid-term defence of process, and a complete hello-world spine.</p></a>
   <a class="card" href="{{ '/research/' | relative_url }}"><h3>Research</h3><p>Questions, evidence boundaries, methodology, ethics, and open work.</p></a>
-  <a class="card" href="{{ '/guides/' | relative_url }}"><h3>Guides</h3><p>Local setup, product orientation, and contribution governance.</p></a>
+  <a class="card" href="{{ '/guides/' | relative_url }}"><h3>Docs</h3><p>Local setup, contribution governance, and per-task assignment detail.</p></a>
   <a class="card" href="{{ '/audiences/students/' | relative_url }}"><h3>Students</h3><p>Entrega 1 as your product; the mid-term as a defence of declarative use and understanding.</p></a>
   <a class="card" href="{{ '/audiences/partners/' | relative_url }}"><h3>University partners</h3><p>Academic value, safeguards, decisions, and collaboration gates.</p></a>
   <a class="card" href="{{ '/audiences/research-funders/' | relative_url }}"><h3>Research & venture</h3><p>Assets, readiness, open questions, and responsible partnership.</p></a>

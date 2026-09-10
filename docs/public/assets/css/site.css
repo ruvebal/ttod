@@ -246,6 +246,35 @@ th { color: var(--ttod-color-accent); }
 .footer-grid p { margin: var(--ttod-space-2) 0 0; font-size: var(--ttod-text-sm); }
 .footer-grid strong { color: var(--ttod-color-ink); }
 .domain { color: var(--ttod-color-botanical); }
+.footer-institutional {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ttod-space-4) var(--ttod-space-6);
+  padding-block: var(--ttod-space-6);
+  border-top: 1px solid var(--ttod-color-line-subtle);
+}
+.footer-logos { display: flex; align-items: center; gap: var(--ttod-space-4); }
+.footer-logo { display: block; height: auto; }
+.footer-logo--udit { width: 10rem; }
+.footer-logo-link {
+  display: block;
+  padding: var(--ttod-space-2);
+  border-radius: var(--ttod-radius-sm);
+  background: #000;
+  line-height: 0;
+}
+.footer-logo--ecsit { width: 5.5rem; border-radius: var(--ttod-radius-sm); }
+.footer-affiliation { flex: 1 1 20rem; margin: 0; font-size: var(--ttod-text-sm); }
+.footer-github {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ttod-space-2);
+  color: var(--ttod-color-muted);
+  font-size: var(--ttod-text-sm);
+  text-decoration: none;
+}
+.footer-github:hover { color: var(--ttod-color-ink); }
 @media (max-width: 62rem) {
   .header-row { align-items: flex-start; flex-direction: column; padding-block: var(--ttod-space-4); }
   .nav-list { justify-content: flex-start; }

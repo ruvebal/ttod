@@ -31,3 +31,18 @@ These are design affordances, not demonstrated learning effects.
 ## Decisions invited
 
 Partners can review curricular fit, accessibility expectations, workload, assessment validity, bilingual parity, ethics readiness, and whether a later research protocol merits development. No institutional endorsement or approval is implied by the current prototype.
+
+## Institutional affiliation
+
+<div class="footer-logos">
+  <img class="footer-logo footer-logo--udit" src="{{ '/assets/images/institutional/udit-logo.png' | relative_url }}" alt="UDIT — Universidad de Diseño, Innovación y Tecnología" loading="lazy" width="215" height="30">
+  <a class="footer-logo-link" href="https://www.udit.es/lineas-de-investigacion/grupo-de-investigacion-innovacion-y-tecnologia-desde-y-para-la-educacion-la-cultura-y-la-sociedad/" target="_blank" rel="noopener noreferrer">
+    <img class="footer-logo footer-logo--ecsit" src="{{ '/assets/images/institutional/ecsit-logo.jpg' | relative_url }}" alt="ECSIT research group logo" loading="lazy" width="120" height="80">
+  </a>
+</div>
+
+This course runs at [UDIT — Universidad de Diseño, Innovación y Tecnología](https://www.udit.es/),
+within its [ECSIT research group](https://www.udit.es/lineas-de-investigacion/grupo-de-investigacion-innovacion-y-tecnologia-desde-y-para-la-educacion-la-cultura-y-la-sociedad/)
+(Innovation and Technology for and from Education, Culture, and Society). Course-fit and
+curricular decisions belong to UDIT's own academic channels — this page describes the product,
+not an institutional commitment on UDIT's behalf.

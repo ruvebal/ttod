@@ -6,11 +6,17 @@ en:
   lang_en: English
   lang_es: Español
   github_aria: "View source on GitHub"
+  github_label: "Source on GitHub"
   footer_blurb: A governed teaching reference for development practice.
   stewardship: Stewardship
   studio: "Research studio: "
   licensing: Licensing
   licenses: "Code: MIT. Content: CC BY-NC-SA 4.0 unless noted otherwise."
+  ecsit_alt: "ECSIT research group logo"
+  affiliation: >-
+    Affiliated with UDIT — Universidad de Diseño, Innovación y Tecnología, and its
+    <a href="https://www.udit.es/lineas-de-investigacion/grupo-de-investigacion-innovacion-y-tecnologia-desde-y-para-la-educacion-la-cultura-y-la-sociedad/" target="_blank" rel="noopener noreferrer">ECSIT research group</a>
+    (Innovation and Technology for and from Education, Culture, and Society).
 es:
   skip: Saltar al contenido
   home_aria: Inicio de TTOD
@@ -19,8 +25,14 @@ es:
   lang_en: English
   lang_es: Español
   github_aria: "Ver el código en GitHub"
+  github_label: "Código en GitHub"
   footer_blurb: Una referencia docente gobernada para la práctica del desarrollo.
   stewardship: Custodia
   studio: "Estudio de investigación: "
   licensing: Licencias
   licenses: "Código: MIT. Contenido: CC BY-NC-SA 4.0 salvo indicación contraria."
+  ecsit_alt: "Logo del grupo de investigación ECSIT"
+  affiliation: >-
+    Afiliado a UDIT — Universidad de Diseño, Innovación y Tecnología, y a su
+    <a href="https://www.udit.es/lineas-de-investigacion/grupo-de-investigacion-innovacion-y-tecnologia-desde-y-para-la-educacion-la-cultura-y-la-sociedad/" target="_blank" rel="noopener noreferrer">grupo de investigación ECSIT</a>
+    (Innovación y Tecnología desde y para la Educación, la Cultura y la Sociedad).

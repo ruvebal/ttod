@@ -96,6 +96,10 @@ areas each one actually touches: your own area is depth, the others are the brea
 explicitly grades (see [Why accessibility is a commitment](#why-accessibility-is-a-commitment-not-a-checklist)
 for why the testing/accessibility tag applies to every row, every team, not just one).
 
+**This is the overview.** For what each task's visible result looks for, what it includes, and
+what actually has to be done — grounded in the real `ASSIGNMENT.md` file each module ships with,
+not a generic restatement — see [task details]({{ '/teaching/tasks/' | relative_url }}).
+
 ### Team 1 — Content, i18n & Proposals UI (pair)
 
 | # | Task | Area(s) |
@@ -192,6 +196,7 @@ interactive.
 
 ## Related pages
 
+- [Task details — every task expanded]({{ '/teaching/tasks/' | relative_url }})
 - [Teaching model]({{ '/teaching/' | relative_url }})
 - [For students]({{ '/audiences/students/' | relative_url }})
 - [Product areas]({{ '/platform/' | relative_url }})

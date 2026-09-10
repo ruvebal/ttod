@@ -1,7 +1,7 @@
 ---
-title: Guías
+title: Docs
 eyebrow: Elige el camino
-description: Guías públicas para ejecutar, comprender y contribuir a TTOD.
+description: Todas las guías para ejecutar, enseñar, aprender y contribuir a TTOD, en un solo lugar.
 permalink: /es/guides/
 lang: es
 ---
@@ -9,9 +9,13 @@ lang: es
 # Empieza desde tu rol
 
 <div class="grid">
-  <a class="card" href="{{ '/es/guides/local-setup/' | relative_url }}"><h3>Ejecutar en local</h3><p>Arrancar, verificar, explorar y detener la referencia del profesorado sin aprender operaciones en la nube.</p></a>
+  <a class="card" href="{{ '/es/guides/local-setup/' | relative_url }}"><h3>Ejecutar en local</h3><p>Clonar, arrancar, verificar, explorar y detener la aplicación — sin operaciones en la nube.</p></a>
   <a class="card" href="{{ '/es/guides/product/' | relative_url }}"><h3>Usar el producto</h3><p>Navegar contenido, citas, relaciones, documentación y el Oracle local con seguridad.</p></a>
-  <a class="card" href="{{ '/es/guides/contributing/' | relative_url }}"><h3>Contribuir</h3><p>Respetar los datos canónicos, la procedencia, la revisión, las licencias, las pruebas y la privacidad de publicación.</p></a>
+  <a class="card" href="{{ '/es/guides/contributing/' | relative_url }}"><h3>Contribuir</h3><p>Abrir una PR, entender cómo funciona la revisión, y respetar los datos canónicos, la procedencia y las licencias.</p></a>
+  <a class="card" href="{{ '/es/teaching/' | relative_url }}"><h3>Enseñar o aprender de él</h3><p>Las seis áreas docentes, el backlog de tareas, y cada tarea explicada en detalle.</p></a>
 </div>
 
-La guía local está pensada para el profesorado y para quienes colaboran en la evaluación de la referencia actual. El futuro punto de partida estudiantil tendrá su propia guía reducida cuando la base docente supere sus controles de publicación.
+Las guías de ejecución local y de contribución aplican tanto si evalúas la referencia del
+profesorado como si construyes tu módulo asignado como estudiante — la mecánica (clonar, ejecutar,
+abrir una PR) es la misma en ambos casos. [Docencia]({{ '/es/teaching/' | relative_url }}) es donde
+vive el contenido específico de la tarea.

@@ -97,13 +97,19 @@ hands-on work, allowing teams to maintain deep focus on building.
 
 ### Dev Week 1 — foundations, and the one hard blocker
 
+**Correction (2026-09-12):** the first version of this table pulled only 2–3 curated items per
+team and left roughly half the two boards' items unscheduled entirely — including all of
+Accounts' own item 1 (login/session) and three of Oracle's six core items. Every core item (1–6
+per team) now lands in Week 1 or Week 2; nothing sits unscheduled. Solos (Graph, PWA) take 3
+items/week; pairs (Content, Oracle, Accounts) split 3 items/week across two people.
+
 | Team | Pulls this week |
 | --- | --- |
 | 1 (Content) | item 2 (browse routes), item 3 (breadcrumb) |
-| 2 (Graph) | item 3 (tag filter), item 4 (URL state) |
-| 3 (Oracle) | item 4 (session history), item 5 (cold-start state) |
-| 4 (PWA) | item 1 (SW lifecycle), item 2 (observable offline boundary) |
-| **5 (Accounts)** | item 2 (favorites), **item 3 (propose endpoint) — priority, Team 1 depends on this contract next week** |
+| 2 (Graph) | item 1 (fetch/render, hardened), item 2 (accessible node selection), item 3 (tag filter) |
+| 3 (Oracle) | item 1 (streamed response, hardened), item 2 (live-region announcement), item 4 (session history) |
+| 4 (PWA) | item 1 (SW lifecycle), item 2 (observable offline boundary), item 5 (install-quality checks) |
+| **5 (Accounts)** | item 1 (login/session, hardened), item 2 (favorites), **item 3 (propose endpoint) — priority, Team 1 depends on this contract next week** |
 
 **Why Team 5's propose-endpoint work must land in Week 1:** Team 1's propose-a-quote form,
 scheduled for Week 2, relies entirely on an endpoint that Team 5 owns and must implement first.
@@ -121,9 +127,9 @@ slipping Week 2.
 | Team | Pulls this week |
 | --- | --- |
 | 1 (Content) | item 4 (empty/error states), **item 5 (propose form — now unblocked)**, item 6 (rights/provenance) |
-| 2 (Graph) | item 5 (layout/perf at scale), item 6 (keyboard audit) |
-| 3 (Oracle) | item 6 (recovery/error state) |
-| 4 (PWA) | item 3 (cache policy), **item 4 (offline queue — coordinate with Team 3, who calls into it)** |
+| 2 (Graph) | item 4 (URL state), item 5 (layout/perf at scale), item 6 (keyboard audit) |
+| 3 (Oracle) | item 3 (grounded/creative disclosure), item 5 (cold-start state), item 6 (recovery/error state) |
+| 4 (PWA) | item 3 (cache policy), **item 4 (offline queue — coordinate with Team 3, who calls into it)**, item 6 (measured performance budget) |
 | 5 (Accounts) | item 4 (review pipeline + role-gate), item 5 (bearer API), item 6 (docs + example client) |
 
 **Checkpoint 2 (end of week):** by now most of every team's board (items 2–6) should be

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Sprint &amp; Hackathon Timeline — TTOD</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,wght@1,400;1,500&display=swap');
+
+  :root {
+    --bg: #F2F1EA;
+    --surface: #FBFAF5;
+    --surface-2: #E9E6DA;
+    --ink: #1E2A28;
+    --ink-soft: #4A5652;
+    --line: #D6D1C1;
+    --accent: #33456B;
+    --accent-soft: #E4E8F0;
+    --warm: #A6772C;
+    --warm-soft: #F2E6D0;
+    --done: #7A9E7E;
+    --done-soft: #E4EDE3;
+
+    --t-content: #5A72A8;
+    --t-graph: #6E9673;
+    --t-oracle: #A16E93;
+    --t-pwa: #BD9552;
+    --t-accounts: #8C6F55;
+
+    --t-content-soft: #E7EAF3;
+    --t-graph-soft: #E6EEE6;
+    --t-oracle-soft: #F0E5EC;
+    --t-pwa-soft: #F3EADA;
+    --t-accounts-soft: #ECE4DB;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14181A; --surface: #1B2124; --surface-2: #232B2E;
+      --ink: #E9E6DD; --ink-soft: #ABB3AD; --line: #333C3E;
+      --accent: #7C93C4; --accent-soft: #26314A;
+      --warm: #D9A84E; --warm-soft: #3A2F1A;
+      --done: #8FBB93; --done-soft: #223129;
+      --t-content: #8CA0D6; --t-graph: #90BF96; --t-oracle: #C696B8; --t-pwa: #D9B36B; --t-accounts: #B79D82;
+      --t-content-soft: #232B42; --t-graph-soft: #20302A; --t-oracle-soft: #33222F; --t-pwa-soft: #362B18; --t-accounts-soft: #2E271E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181A; --surface: #1B2124; --surface-2: #232B2E;
+    --ink: #E9E6DD; --ink-soft: #ABB3AD; --line: #333C3E;
+    --accent: #7C93C4; --accent-soft: #26314A;
+    --warm: #D9A84E; --warm-soft: #3A2F1A;
+    --done: #8FBB93; --done-soft: #223129;
+    --t-content: #8CA0D6; --t-graph: #90BF96; --t-oracle: #C696B8; --t-pwa: #D9B36B; --t-accounts: #B79D82;
+    --t-content-soft: #232B42; --t-graph-soft: #20302A; --t-oracle-soft: #33222F; --t-pwa-soft: #362B18; --t-accounts-soft: #2E271E;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    padding-inline: 20px;
+    padding-block: 40px 64px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1040px; margin-inline: auto; }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  header.page { margin-bottom: 40px; }
+  h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 700;
+    margin: 6px 0 10px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .dek { font-size: 1.05rem; color: var(--ink-soft); max-width: 62ch; margin: 0 0 22px; }
+  figure.epigraph {
+    margin: 26px 0 0;
+    padding: 18px 22px;
+    border-left: 3px solid var(--warm);
+    background: var(--warm-soft);
+    border-radius: 2px;
+  }
+  figure.epigraph blockquote {
+    margin: 0 0 8px;
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--ink);
+    max-width: 62ch;
+  }
+  figure.epigraph figcaption { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); }
+  section { margin-top: 52px; }
+  h2 { font-size: 1.3rem; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
+  .section-note { color: var(--ink-soft); font-size: 0.92rem; max-width: 68ch; margin: 0 0 20px; }
+
+  .macro { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 8px; }
+  .macro-item { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 12px; position: relative; }
+  .macro-item.done { border-color: var(--done); background: var(--done-soft); }
+  .macro-item.now { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+  .macro-item .idx { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+  .macro-item .label { font-weight: 600; font-size: 0.95rem; display: block; }
+  .macro-item .dates { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; color: var(--ink-soft); margin-top: 4px; display: block; }
+  .macro-item.check::after {
+    content: "PR review"; position: absolute; top: -9px; right: 8px;
+    background: var(--warm); color: var(--warm-soft);
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 999px;
+  }
+
+  .board { display: grid; grid-template-columns: 148px repeat(3, 1fr); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+  .board > div { padding: 12px 14px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .board > div:nth-child(4n) { border-right: none; }
+  .board-head { background: var(--surface-2); font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  .team-cell { background: var(--surface-2); display: flex; flex-direction: column; gap: 2px; }
+  .team-cell .seam { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--ink-soft); }
+  .team-cell .name { font-weight: 600; font-size: 0.94rem; }
+  .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .pull-cell { font-size: 0.84rem; }
+  .pull-cell ul { margin: 0; padding-left: 16px; }
+  .pull-cell li { margin-bottom: 3px; }
+  .pull-cell li.blocker { font-weight: 600; }
+  .pull-cell li.blocker::marker { color: var(--warm); }
+
+  .row-content .team-cell, .row-content .pull-cell { border-left: 3px solid var(--t-content); }
+  .row-graph .team-cell, .row-graph .pull-cell { border-left: 3px solid var(--t-graph); }
+  .row-oracle .team-cell, .row-oracle .pull-cell { border-left: 3px solid var(--t-oracle); }
+  .row-pwa .team-cell, .row-pwa .pull-cell { border-left: 3px solid var(--t-pwa); }
+  .row-accounts .team-cell, .row-accounts .pull-cell { border-left: 3px solid var(--t-accounts); }
+  .row-content .team-cell .swatch { background: var(--t-content); }
+  .row-graph .team-cell .swatch { background: var(--t-graph); }
+  .row-oracle .team-cell .swatch { background: var(--t-oracle); }
+  .row-pwa .team-cell .swatch { background: var(--t-pwa); }
+  .row-accounts .team-cell .swatch { background: var(--t-accounts); }
+  .hackathon-col { background: var(--warm-soft) !important; }
+
+  .checkpoints { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+  .cp { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+  .cp .cp-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--warm); letter-spacing: 0.08em; text-transform: uppercase; }
+  .cp h3 { margin: 6px 0 8px; font-size: 1.02rem; }
+  .cp p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); }
+  .rubric-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--ink-soft); }
+  footer .mono { display: block; margin-top: 4px; }
+  footer a { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .macro { grid-template-columns: repeat(2, 1fr); }
+    .board { grid-template-columns: 1fr; }
+    .board-head:not(:first-child) { display: none; }
+    .board > div { border-right: none; }
+    .team-cell { border-bottom: none; padding-bottom: 4px; }
+    .pull-cell::before {
+      content: attr(data-week); display: block; font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
+    }
+    .checkpoints { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .macro-item, .cp, .board { transition: box-shadow 0.15s ease; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <span class="eyebrow">TTOD · FE II Cohort · 8 students · 5 teams</span>
+    <h1>Dev Sprint &amp; Hackathon Timeline</h1>
+    <p class="dek">Three weeks of build, the third run as a four-hour hackathon, three PR-review
+      checkpoints, then Unit 7 measures what the cohort shipped. All 49 real tasks across the five
+      boards land somewhere below — nothing is left unscheduled.</p>
+    <figure class="epigraph">
+      <blockquote>&ldquo;Ship the module when it works alone. Ship the system when the modules
+        work together. Ship the platform when the systems compose without speaking.&rdquo;</blockquote>
+      <figcaption>— TTOD <code>arch-007</code>, architecture</figcaption>
+    </figure>
+  </header>
+
+  <section aria-labelledby="macro-h">
+    <h2 id="macro-h">Where we are, and where this goes</h2>
+    <p class="section-note">Three short sessions already ran ahead of the original weekly-4h
+      schedule — welcome, kickoff, and a session that reached Unit 3. What follows replaces the
+      three separate Unit 4/5/6 sessions with one continuous sprint.</p>
+    <div class="macro">
+      <div class="macro-item done">
+        <span class="idx">Session 0–2</span><span class="label">Welcome → U2 → U3</span>
+        <span class="dates">2h + 2h + 2h · done</span>
+      </div>
+      <div class="macro-item now check">
+        <span class="idx">Dev Week 1</span><span class="label">Foundations</span>
+        <span class="dates">week of 09&#8209;17 · 4h</span>
+      </div>
+      <div class="macro-item check">
+        <span class="idx">Dev Week 2</span><span class="label">Core features</span>
+        <span class="dates">week of 09&#8209;24 · 4h</span>
+      </div>
+      <div class="macro-item check">
+        <span class="idx">Dev Week 3</span><span class="label">Hackathon</span>
+        <span class="dates">week of 10&#8209;01 · 4h</span>
+      </div>
+      <div class="macro-item">
+        <span class="idx">Unit 7</span><span class="label">Measure the app</span>
+        <span class="dates">week of 10&#8209;08 · 4h</span>
+      </div>
+      <div class="macro-item">
+        <span class="idx">Defense</span><span class="label">Diff review</span>
+        <span class="dates">week of 10&#8209;15 · TBD</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="board-h">
+    <h2 id="board-h">Who builds what, which week — all 49 tasks</h2>
+    <p class="section-note">Accounts' propose-endpoint contract (week 1) unblocks Content's propose
+      form (week 2) — the one hard dependency in this schedule. Solos (Graph, PWA) carry 3 tasks a
+      week; pairs (Content, Oracle, Accounts) split 3 a week across two people. Cross-module PR/
+      review/tests/design-decision tasks wait for the hackathon, once every module has real code
+      worth reading.</p>
+
+    <div class="board">
+      <div class="board-head">Team</div>
+      <div class="board-head">Week 1 — foundations</div>
+      <div class="board-head">Week 2 — core features</div>
+      <div class="board-head">Week 3 — hackathon</div>
+
+      <div class="team-cell row-content"><span class="name"><span class="swatch"></span>Content</span><span class="seam">content · pair</span></div>
+      <div class="pull-cell row-content" data-week="Week 1"><ul><li>browse routes</li><li>breadcrumb nav</li></ul></div>
+      <div class="pull-cell row-content" data-week="Week 2"><ul><li>empty/error states</li><li class="blocker">propose form</li><li>rights &amp; provenance</li></ul></div>
+      <div class="pull-cell row-content hackathon-col" data-week="Week 3"><ul><li>tests</li><li>open a PR</li><li>review a PR</li><li>taxonomy/fallback design</li></ul></div>
+
+      <div class="team-cell row-graph"><span class="name"><span class="swatch"></span>Graph</span><span class="seam">graph · solo</span></div>
+      <div class="pull-cell row-graph" data-week="Week 1"><ul><li>fetch/render, hardened</li><li>accessible node selection</li><li>tag filter</li></ul></div>
+      <div class="pull-cell row-graph" data-week="Week 2"><ul><li>URL state</li><li>layout/perf at scale</li><li>keyboard audit</li></ul></div>
+      <div class="pull-cell row-graph hackathon-col" data-week="Week 3"><ul><li>tests</li><li>open a PR</li><li>review a PR</li><li>layout/a11y design</li></ul></div>
+
+      <div class="team-cell row-oracle"><span class="name"><span class="swatch"></span>Oracle</span><span class="seam">oracle · pair</span></div>
+      <div class="pull-cell row-oracle" data-week="Week 1"><ul><li>streamed response, hardened</li><li>live-region announcement</li><li>session history</li></ul></div>
+      <div class="pull-cell row-oracle" data-week="Week 2"><ul><li>mode disclosure</li><li>cold-start state</li><li>recovery/error state</li></ul></div>
+      <div class="pull-cell row-oracle hackathon-col" data-week="Week 3"><ul><li>tests</li><li>open a PR</li><li>review a PR</li><li>state/disclosure design</li></ul></div>
+
+      <div class="team-cell row-pwa"><span class="name"><span class="swatch"></span>PWA</span><span class="seam">pwa · solo</span></div>
+      <div class="pull-cell row-pwa" data-week="Week 1"><ul><li>SW lifecycle</li><li>observable offline boundary</li><li>install-quality checks</li></ul></div>
+      <div class="pull-cell row-pwa" data-week="Week 2"><ul><li>cache policy</li><li>offline queue (with Oracle)</li><li>performance budget</li></ul></div>
+      <div class="pull-cell row-pwa hackathon-col" data-week="Week 3"><ul><li>tests</li><li>open a PR</li><li>review a PR</li><li>caching/install design</li></ul></div>
+
+      <div class="team-cell row-accounts"><span class="name"><span class="swatch"></span>Accounts</span><span class="seam">accounts · pair</span></div>
+      <div class="pull-cell row-accounts" data-week="Week 1"><ul><li>login/session, hardened</li><li>favorites library</li><li class="blocker">propose endpoint — priority</li></ul></div>
+      <div class="pull-cell row-accounts" data-week="Week 2"><ul><li>review pipeline + role-gate</li><li>bearer API</li><li>docs + example client</li></ul></div>
+      <div class="pull-cell row-accounts hackathon-col" data-week="Week 3"><ul><li>tests</li><li>open a PR</li><li>review a PR</li><li>session/token design</li></ul></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="cp-h">
+    <h2 id="cp-h">Three PR reviews, before Unit 7</h2>
+    <p class="section-note">Scored against the standing PR rubric each time — what gets heavier
+      as the sprint goes on is how much of it should already be real.</p>
+    <div class="checkpoints">
+      <div class="cp">
+        <span class="cp-num">Checkpoint 1 · end of week 1</span>
+        <h3>Is the one blocker gone?</h3>
+        <p>Baseline hardened, foundational tasks landed per team. Specifically: does Accounts'
+          propose endpoint exist and is its contract documented well enough for Content to build
+          against next week?</p>
+      </div>
+      <div class="cp">
+        <span class="cp-num">Checkpoint 2 · end of week 2</span>
+        <h3>Is the board mostly real?</h3>
+        <p>Every team's core 6 tasks substantively shipped. Contract adherence and correctness now
+          score for real — a PR still stubbing acceptance criteria here is a signal, not noise.</p>
+      </div>
+      <div class="cp">
+        <span class="cp-num">Checkpoint 3 · end of hackathon</span>
+        <h3>The Entrega-1-style pass</h3>
+        <p>Full board, a genuine cross-module contribution, real test coverage — the heaviest
+          review, right before the cohort turns to measuring what it built.</p>
+      </div>
+    </div>
+    <div class="rubric-chips">
+      <span class="chip">contract adherence · 25</span>
+      <span class="chip">correctness · 25</span>
+      <span class="chip">test coverage · 20</span>
+      <span class="chip">accessibility · 10</span>
+      <span class="chip">CI green · 10</span>
+      <span class="chip">AI disclosure · 10</span>
+    </div>
+  </section>
+
+  <footer>
+    Sequencing grounded in the 49 reviewed task sheets under <code class="mono">docs/DEV_PLAN/ASSIGNMENTS/</code>,
+    published as <a href="../../teaching/tasks/">individual detail sheets</a>, and
+    <code class="mono">PHASE-V-DEV-SPRINT-AND-HACKATHON-TIMELINE.md</code>. Dates proposed against
+    the confirmed session cadence — professor's call to fix the exact calendar.
+    <span class="mono">TTOD · crea-comm.net</span>
+  </footer>
+
+</div>
+</body>
+</html>

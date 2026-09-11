@@ -18,6 +18,13 @@ measures the app the cohort has actually built.
 > platform when the systems compose without speaking."
 > — TTOD `arch-007`, *architecture*
 
+<figure class="diagram-teaser">
+  <a class="diagram-teaser-link" href="{{ '/assets/diagrams/ttod-sprint-timeline.html' | relative_url }}">
+    <img src="{{ '/assets/diagrams/ttod-sprint-timeline.svg' | relative_url }}" alt="The same six-stage progress strip and five-team by three-week task grid as this page's own tables, as one diagram." loading="lazy">
+  </a>
+  <figcaption><a href="{{ '/assets/diagrams/ttod-sprint-timeline.html' | relative_url }}">Open the interactive timeline diagram ↗</a> — every team, every week, all 49 tasks, one view.</figcaption>
+</figure>
+
 ## Where this sits in the course
 
 Three short sessions — welcome, kickoff, and a session that reached

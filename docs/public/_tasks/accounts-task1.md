@@ -8,6 +8,7 @@ area: "Accounts"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 1: Login/session (server-verified, one protected route)
@@ -62,7 +63,7 @@ A logged-in user can access the protected account route. A logged-out user (or a
 
 - **Code organization:** The auth logic is isolated in `auth.server.ts` and `auth.py`. No client-side code imports `auth.server.ts`.
 - **AI-use/process documentation:** Document the decision to use server-side guards over client-side checks. Explain why `return` is used instead of `throw` for `Response` objects in Astro.
-- **Test shape:** Per R7's Trophy-not-Pyramid doctrine, write integration tests that verify the *behavior* (HTTP status code, response body content) rather than just unit-testing the `requireUser` function in isolation. The test `test_auth_login_me_token_logout_are_separate_credentials` is a good example of this.
+- **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, write integration tests that verify the *behavior* (HTTP status code, response body content) rather than just unit-testing the `requireUser` function in isolation. The test `test_auth_login_me_token_logout_are_separate_credentials` is a good example of this.
 - **Accessibility:** The protected route must be keyboard-operable, have one accessible name or label, not carry meaning by color alone, and respect reduced-motion preferences. (Cite the global Definition of Done, do not restate as task-specific.)
 - **Oral defense:** Be prepared to explain the difference between session auth (cookie-based, for browsers) and bearer auth (token-based, for APIs). Explain why client-side-only guards are insecure (XSS, race conditions). Explain the Astro-specific pitfall of throwing `Response` objects.
 

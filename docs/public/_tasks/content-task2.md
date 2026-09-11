@@ -8,6 +8,7 @@ area: "Content"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 2: Breadcrumb navigation across all content routes

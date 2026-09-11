@@ -39,7 +39,7 @@ When a user submits a query on a fresh deployment (or when the model is cold), t
 
 ## 4. Success criteria (functional)
 
-*   **Distinct State:** The UI must render a unique visual/semantic state for the "preparing" phase that is not identical to the "idle" or "streaming" states.
+*   **Distinct State:** The UI must render a unique visual/semantic state for "preparing" that is not identical to the "idle" or "streaming" states.
 *   **No Silent Hang:** A user observing the terminal during a cold start must be able to determine that the system is actively processing their request, not frozen or broken.
 *   **State Transition:** The "preparing" state must automatically transition to the "streaming" state upon receipt of the first `OracleResponseChunk` from `readOracleStream`.
 *   **Guard Integration:** The existing `busy/double-submit guard` must remain functional; the "preparing" state must be part of the `busy` logic, preventing new submissions.

@@ -8,6 +8,7 @@ area: "Testing"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 6: Keyboard operability audit on every interactive graph element
@@ -21,7 +22,7 @@ This task exercises the accessibility and testing foundations covered in **Unit 
 
 ## 2. Worked example, from the real TTOD app
 
-The existing hello-world implementation in `services/frontend/src/pages/[locale]/wisdom/ASSIGNMENT.md` (referenced as the graph island context) and the actual `GraphIsland.svelte` component on the `ts5` worktree already establishes the baseline pattern. Specifically, the node circles in the SVG already implement:
+The existing hello-world implementation in `services/frontend/src/pages/[locale]/wisdom/ASSIGNMENT.md` (referenced as the graph island context) and the actual `GraphIsland.svelte` component on the reference implementation already establishes the baseline pattern. Specifically, the node circles in the SVG already implement:
 - `role="button"`
 - `tabindex="0"` (or equivalent focusable state)
 - `aria-label` derived from the node's text content
@@ -54,7 +55,7 @@ This task is not about building this from scratch, but about **auditing** this e
 
 - **Code organization:** The keyboard event handlers and accessibility attributes should be consistent across all interactive elements. Avoid duplicating logic; consider a shared utility or composable if the pattern is repeated.
 - **AI-use/process documentation discipline:** Document the audit process. Include a brief note in the PR description or a dedicated section in the task sheet detailing the steps taken to verify keyboard operability (e.g., "Tabbed through all nodes, verified Enter/Space selection, tested filter control with arrow keys, confirmed focus retention after filtering").
-- **Test shape per [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) and R7's own Trophy-not-Pyramid doctrine:** While this is an audit task, consider adding a simple integration test that simulates keyboard navigation (e.g., using `@testing-library/svelte` or similar) to verify that key events trigger the expected state changes. This is not a full unit test suite, but a targeted check that the keyboard handlers are wired correctly.
+- **Test shape per [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) and the Testing Trophy (not Pyramid) doctrine:** While this is an audit task, consider adding a simple integration test that simulates keyboard navigation (e.g., using `@testing-library/svelte` or similar) to verify that key events trigger the expected state changes. This is not a full unit test suite, but a targeted check that the keyboard handlers are wired correctly.
 - **Accessibility:** Every module inherits the same Definition of Done per `assignments.md` — do not restate it as if it were unique to this task, cite it. The Definition of Done includes: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. This task specifically focuses on the "keyboard-operable" and "one accessible name or label" aspects.
 - **Defensible oral-defense answer:** Be prepared to explain *why* keyboard operability is critical (accessibility, efficiency for power users, compliance). Be able to describe the specific patterns used (e.g., `role="button"`, `tabindex`, `aria-label`) and how they were applied consistently. Be able to discuss the focus management strategy when filtering removes nodes.
 

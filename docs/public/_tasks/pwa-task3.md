@@ -8,6 +8,7 @@ area: "PWA/Offline"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 4, Task 3: Cache-first vs. network-first policy for the right routes
@@ -55,7 +56,7 @@ Static assets (CSS, JS, images) load instantly from the Cache Storage API on sub
 
 - **Code organization:** The caching logic should be modular and readable. Avoid duplicating the cache-check logic; use helper functions or clear conditional branches.
 - **AI-use/process documentation:** If you use AI assistance to generate the caching logic, document the specific prompt and the reasoning behind the chosen strategy in your commit message or a local note. You must be able to explain every caching decision in your own words during the oral defense.
-- **Test shape:** Per R7's Trophy-not-Pyramid doctrine, write integration tests that verify the end-to-end behavior of the service worker in an offline/online scenario. Unit tests for the helper functions that determine the caching strategy are also appropriate. Link [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on testing service workers.
+- **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, write integration tests that verify the end-to-end behavior of the service worker in an offline/online scenario. Unit tests for the helper functions that determine the caching strategy are also appropriate. Link [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on testing service workers.
 - **Accessibility:** This task inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. While caching is a backend concern, ensure that the offline banner (rendered in `Page.astro`) remains accessible and correctly reflects the network state.
 - **Oral defense:** Be prepared to explain why Cache-First is appropriate for static assets but dangerous for API responses. Discuss the trade-offs of Network-First vs. Stale-While-Revalidate and why you chose Network-First for this task.
 

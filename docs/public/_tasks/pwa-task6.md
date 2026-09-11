@@ -8,6 +8,7 @@ area: "PWA/Offline"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 4, Task 6: Measured performance budget before/after one optimization (Core Web Vitals)

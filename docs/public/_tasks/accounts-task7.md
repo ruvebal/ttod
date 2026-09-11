@@ -8,6 +8,7 @@ area: "Testing"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 7: Unit and component tests for auth, the library, and the API
@@ -60,7 +61,7 @@ Bearer surface: a logged-in session can `POST /api/v1/auth/token`, receive a PAT
 - Ensure that AI-generated tests are reviewed for correctness and do not introduce prohibited patterns (e.g., client-side-only guards, localStorage session storage).
 - Maintain a clear separation between test setup, execution, and assertion.
 
-**Test shape per R7's own Trophy-not-Pyramid doctrine:**
+**Test shape per the Testing Trophy (not Pyramid) doctrine:**
 - Prioritize integration tests that verify end-to-end behavior over unit tests that mock internal implementation details.
 - Ensure that tests verify the system's behavior from the user's perspective, not just internal function calls.
 - Avoid over-mocking; let the real components interact where possible to catch integration issues.

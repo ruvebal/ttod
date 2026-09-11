@@ -8,6 +8,7 @@ area: "Accounts, Content"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 3: The propose-a-quote backend endpoint Team 1's form posts to

@@ -8,6 +8,7 @@ area: "Testing"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 6: Unit and component tests for content routes and the propose form
@@ -51,7 +52,7 @@ Content routes and the propose form each have at least one real test, wired into
 
 - **Code organization:** Tests are colocated with the code they test or follow the project's established test directory structure. Test files are named clearly to reflect the module and function/component under test.
 - **AI-use/process documentation discipline:** Any AI assistance used in writing the tests is documented in the commit message or PR description, explaining what was generated and what was manually verified.
-- **Test shape per R7's Trophy-not-Pyramid doctrine:** The tests follow the "Trophy" shape, with a broad base of unit tests for pure logic and a narrower top of component tests for rendering behavior. No heavy E2E tests are used for what can be covered by unit or component tests.
+- **Test shape per the Testing Trophy (not Pyramid) doctrine:** The tests follow the "Trophy" shape, with a broad base of unit tests for pure logic and a narrower top of component tests for rendering behavior. No heavy E2E tests are used for what can be covered by unit or component tests.
 - **Accessibility:** The component test verifies that the propose form is keyboard-operable, has accessible names or labels, does not carry meaning by color alone, and respects reduced-motion preferences, as per the project's Definition of Done.
 - **Defensible oral-defense answer:** A student can explain why they chose unit tests for `frequencies()` (pure function, no side effects) and component tests for the form (rendering behavior, state management), and how this aligns with the Trophy-not-Pyramid doctrine. They can also explain how the tests are wired into CI and how they ensure the tests are not just passing but actually verifying the intended behavior.
 

@@ -8,6 +8,7 @@ area: "Content"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 3: Empty-state and error-state handling for content routes

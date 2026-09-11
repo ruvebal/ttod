@@ -8,6 +8,7 @@ area: "Oracle"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 6: Recovery/error state when the Oracle is unavailable

@@ -8,6 +8,7 @@ area: "Graph"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 5: Layout and performance at real corpus scale

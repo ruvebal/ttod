@@ -8,6 +8,7 @@ area: "Cross-module"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 9: Formally review one PR outside your own module

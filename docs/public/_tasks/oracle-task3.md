@@ -8,6 +8,7 @@ area: "Oracle"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 3: Grounded vs. creative mode disclosure in the UI
@@ -41,7 +42,7 @@ The Oracle terminal clearly distinguishes between "grounded" and "creative" resp
 1. Audit the current `OracleTerminal` rendering logic to identify where `mode` is applied.
 2. Add a visible text label (e.g., `<span className="mode-label">Grounded</span>`) next to or within the response header.
 3. Ensure the label is associated with the response container via ARIA attributes (e.g., `aria-label` or `role="status"` with descriptive text).
-4. Update the rendering of `citedQuoteIds` to generate `<a>` tags with appropriate `href` and `aria-label` (e.g., "View quote <id>").
+4. Update the rendering of `citedQuoteIds` to generate anchor elements with appropriate `href` and `aria-label` (e.g., "View quote <id>").
 5. Verify that the distinction is not color-only: test with a color-blindness simulator and a screen reader (e.g., NVDA, VoiceOver).
 
 ## 4. Success criteria (functional)
@@ -54,7 +55,7 @@ The Oracle terminal clearly distinguishes between "grounded" and "creative" resp
 
 - **Code organization:** The mode label and citation link logic should be encapsulated in a reusable sub-component (e.g., `ResponseHeader` or `CitationLinks`) to keep the main `OracleTerminal` component clean.
 - **AI-use/process documentation:** Document in the PR description how the accessibility requirements were verified (e.g., "Tested with NVDA and color-blindness simulator").
-- **Test shape:** Per R7's Trophy-not-Pyramid doctrine, write a component test that asserts the presence of the mode label and the `href` of the citation links. Do not test implementation details like class names; test the semantic output.
+- **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, write a component test that asserts the presence of the mode label and the `href` of the citation links. Do not test implementation details like class names; test the semantic output.
 - **Accessibility:** This task inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. Cite this definition rather than restating it as unique to this task.
 - **Oral defense:** Be prepared to explain why color-only distinction is insufficient and how the text label + link structure satisfies both visual and non-visual users. Reference the specific ARIA attributes used and why they were chosen.
 

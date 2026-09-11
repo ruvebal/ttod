@@ -8,6 +8,7 @@ area: "PWA/Offline"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 4, Task 4: An offline queue that flushes once the connection returns
@@ -47,7 +48,7 @@ The existing implementation in `services/frontend/src/lib/db.ts` already establi
 
 *   **Code organization:** Extend the existing `OfflineLogEntry` type in `src/types/domain.ts` and the IndexedDB helpers in `src/lib/db.ts`. Do not invent a second queue or edit the domain freeze without a documented contract change.
 *   **AI-use/process documentation:** Document the design choices made in extending the queue, particularly how the flush logic interacts with the service worker's lifecycle events.
-*   **Test shape:** Per R7's Trophy-not-Pyramid doctrine, tests should focus on the integration of the queue with the service worker's network state changes, not just unit tests of the queue in isolation. Every mention of testing links [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/).
+*   **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, tests should focus on the integration of the queue with the service worker's network state changes, not just unit tests of the queue in isolation. Every mention of testing links [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/).
 *   **Accessibility:** This task inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences.
 *   **Oral defense:** A defensible answer explains how the flush logic ensures data integrity without violating the "extend, do not replace" constraint, and how the `synced` flag prevents infinite retries while preserving ordering.
 

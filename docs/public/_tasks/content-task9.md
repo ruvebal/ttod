@@ -8,6 +8,7 @@ area: "Content/i18n/Proposals UI"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 9: Document one real design decision (taxonomy, fallback policy) for the oral defense

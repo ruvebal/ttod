@@ -8,6 +8,7 @@ area: "Accounts"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 6: API documentation page and a minimal external example client
@@ -48,7 +49,7 @@ The `services/backend/tests/test_backend.py` file contains the real test `test_a
 
 *   **Code Organization:** The example client should be a single, readable script (e.g., Python or Node.js) that clearly separates the authentication setup from the API call. It should not be a full application with a UI.
 *   **AI-Use/Process Documentation:** The documentation should include a "How to verify" section that explicitly states the command to run the example script and the expected output. This ensures the "types are the contract" principle is not just asserted but demonstrated.
-*   **Test Shape:** Per R7's Trophy-not-Pyramid doctrine, the "test" here is the successful execution of the example client. The client itself acts as an integration test for the API's public surface. It should be simple, direct, and fail loudly if the API contract is broken.
+*   **Test Shape:** Per the Testing Trophy (not Pyramid) doctrine, the "test" here is the successful execution of the example client. The client itself acts as an integration test for the API's public surface. It should be simple, direct, and fail loudly if the API contract is broken.
 *   **Accessibility:** The documentation page must be keyboard-operable, have one accessible name or label for all interactive elements, not carry meaning by color alone, and respect reduced-motion preferences, as per the global Definition of Done.
 *   **Oral Defense:** A defensible answer for this task explains *why* the documentation is tied to the `types/domain.ts` shapes (to ensure the frontend and backend contracts remain synchronized) and *how* the example client proves the API is usable by external, non-browser clients (by demonstrating the bearer token flow, which is distinct from the session cookie flow).
 

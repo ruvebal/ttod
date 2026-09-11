@@ -8,6 +8,7 @@ area: "Accounts"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 10: Document one real design decision (session vs. token design, review-pipeline trade-off) for the oral defense

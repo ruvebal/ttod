@@ -8,6 +8,7 @@ area: "PWA/Offline"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 4, Task 2: One observable offline boundary — content that keeps working without a connection

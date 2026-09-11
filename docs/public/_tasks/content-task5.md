@@ -8,6 +8,7 @@ area: "Content"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 5: Source, rights, and provenance display on every quote page
@@ -58,7 +59,7 @@ The existing detail route at `services/frontend/src/pages/[locale]/wisdom/[slug]
 
 - **Code organization:** The provenance block is a single, reusable component (e.g., `src/components/ProvenanceBlock.astro`) that is imported and used consistently across all three view types. No duplication of provenance rendering logic.
 - **AI-use/process documentation:** Document the design decision to use a shared component for provenance display, including why this approach was chosen over inline rendering. Note any trade-offs (e.g., component size vs. reusability).
-- **Test shape:** Per R7's Trophy-not-Pyramid doctrine, write one integration test that verifies the provenance block renders correctly on the detail page with a real `WisdomEntry` fixture. Unit tests for the component itself are optional if the integration test covers the behavior.
+- **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, write one integration test that verifies the provenance block renders correctly on the detail page with a real `WisdomEntry` fixture. Unit tests for the component itself are optional if the integration test covers the behavior.
 - **Accessibility:** The provenance block must meet the [Accessibility Definition of Done](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/): keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. Use semantic HTML (`<dl>`, `<dt>`, `<dd>`) for label-value pairs.
 - **Defensible oral-defense answer:** "I created a single, reusable provenance block component that displays the holder, license, and origin from the `WisdomEntry` object. I applied it consistently across the index, facet, and detail pages to ensure that attribution is always visible, as required by the module's acceptance criteria. I used semantic HTML to ensure accessibility and tested that the block handles missing data gracefully."
 

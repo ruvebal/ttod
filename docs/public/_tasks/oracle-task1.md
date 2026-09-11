@@ -8,6 +8,7 @@ area: "Oracle"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 1: Streamed response rendering, one prompt to one cited answer
@@ -63,7 +64,7 @@ A user submits a single prompt in the Oracle terminal. The response appears incr
 
 *   **Code Organization:** The streaming logic is encapsulated within the component or a custom hook, keeping the render function clean. No new SSE parsers are invented; the existing `sse.ts` helpers are used.
 *   **AI-Use/Process Documentation:** A brief comment or docstring in the code explains *why* the state is updated on each chunk rather than batching, referencing the "no buffering before first paint" constraint.
-*   **Test Shape:** Per R7's Trophy-not-Pyramid doctrine, include at least one integration test that mocks the SSE stream and verifies that the UI updates incrementally, and that the busy guard correctly blocks a second submission mid-stream. Do not write unit tests for the `sse.ts` parser (it is frozen); test the *consumption* of the stream. (The live region itself is Task 2's own test surface, not this task's.)
+*   **Test Shape:** Per the Testing Trophy (not Pyramid) doctrine, include at least one integration test that mocks the SSE stream and verifies that the UI updates incrementally, and that the busy guard correctly blocks a second submission mid-stream. Do not write unit tests for the `sse.ts` parser (it is frozen); test the *consumption* of the stream. (The live region itself is Task 2's own test surface, not this task's.)
 *   **Accessibility:** The component inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. Cite this global standard rather than restating it as unique to this task.
 *   **Oral Defense:** Be prepared to explain how you ensured React's batching behavior doesn't introduce a delay between a chunk arriving and it appearing on screen, and how the busy guard prevents a second submission from corrupting the in-flight stream's state.
 

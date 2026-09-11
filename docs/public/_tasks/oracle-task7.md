@@ -8,6 +8,7 @@ area: "Testing"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 7: Unit and component tests for the Oracle terminal and its streaming logic
@@ -61,7 +62,7 @@ The test should assert that the component's state updates incrementally, renderi
 
 - **Code organization:** The tests should be organized in a way that reflects the component's structure. For example, `oracle-terminal.test.tsx` should contain tests for the `OracleTerminal` component, and `sse.test.ts` should contain tests for the `readOracleStream` and `parseSseEvent` helpers.
 - **AI-use/process documentation discipline:** If AI tools are used to generate or refine the tests, the process should be documented in the PR description. The AI should not be used to "guess" the expected behavior; the tests should be based on the real implementation details of `readOracleStream` and `parseSseEvent`.
-- **Test shape per R7's own Trophy-not-Pyramid doctrine:** The tests should prioritize high-value integration and component tests over exhaustive unit tests of trivial helpers. The goal is to verify that the component works correctly in the context of the real streaming logic, not to test every possible edge case of a simple function.
+- **Test shape per the Testing Trophy (not Pyramid) doctrine:** The tests should prioritize high-value integration and component tests over exhaustive unit tests of trivial helpers. The goal is to verify that the component works correctly in the context of the real streaming logic, not to test every possible edge case of a simple function.
 - **Accessibility:** Every task inherits the same Definition of Done per `assignments.md` — do not restate it as if it were unique to this task, cite it. The tests should verify that the `aria-busy` and `aria-live` attributes are updated correctly during the streaming process.
 - **Defensible oral-defense answer:** A defensible answer for this task would explain how the tests verify the streaming behavior and state transitions. It would also explain why the tests do not mock the network layer in a way that hides real streaming behaviors. The answer should demonstrate an understanding of the "Trophy-not-Pyramid" doctrine and the importance of testing the real implementation details.
 

@@ -8,6 +8,7 @@ area: "Graph"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 4: URL state for the current selection/filter
@@ -21,7 +22,7 @@ This task exercises the client-side state management and browser API integration
 
 ## 2. Worked example, from the real TTOD app
 
-The current `GraphIsland.svelte` implementation on the `ts5` assembly worktree demonstrates the reactive foundation required for this task. It uses Svelte 5 runes (`$state`, `$derived`) to manage the `selectedNode` and `activeTag` (currently hardcoded or absent in the hello-world cut). The `layout.ts` file already exports `selectedTag` and `filterGraph`, which are the exact utility functions this task must integrate with. The existing `<aside>` element that displays the selected node's text serves as the visual target for the "selection" part of the URL state, while the (currently missing) tag filter UI will be the target for the "filter" part.
+The current `GraphIsland.svelte` implementation on the reference implementation demonstrates the reactive foundation required for this task. It uses Svelte 5 runes (`$state`, `$derived`) to manage the `selectedNode` and `activeTag` (currently hardcoded or absent in the hello-world cut). The `layout.ts` file already exports `selectedTag` and `filterGraph`, which are the exact utility functions this task must integrate with. The existing `<aside>` element that displays the selected node's text serves as the visual target for the "selection" part of the URL state, while the (currently missing) tag filter UI will be the target for the "filter" part.
 
 ## 3. What "done" looks like
 
@@ -50,7 +51,7 @@ The current `GraphIsland.svelte` implementation on the `ts5` assembly worktree d
 
 *   **Code organization:** The URL sync logic should be encapsulated in a dedicated module or composable (e.g., `useUrlState.ts`) to keep `GraphIsland.svelte` focused on rendering. This aligns with the module's constraint to keep `layout.ts` pure and shared.
 *   **AI-use/process documentation:** Document the decision to use `pushState` vs `replaceState` and how `popstate` is handled. Explain why the URL is the source of truth for filter/selection state.
-*   **Test shape:** Per R7's Trophy-not-Pyramid doctrine, write integration tests that simulate user interactions (clicking a tag, selecting a node) and assert that the URL updates correctly. Write unit tests for the `syncFromUrl` and `setTag`/`setNode` functions to verify they parse and generate the correct query strings. Link to [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on testing browser API interactions.
+*   **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, write integration tests that simulate user interactions (clicking a tag, selecting a node) and assert that the URL updates correctly. Write unit tests for the `syncFromUrl` and `setTag`/`setNode` functions to verify they parse and generate the correct query strings. Link to [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on testing browser API interactions.
 *   **Accessibility:** Ensure that the URL state changes do not disrupt keyboard focus. If the filter changes and the previously selected node is no longer visible, move focus to a sensible next target (e.g., the first visible node or the filter control) as per the module's Acceptance Criteria #3. Cite the global Accessibility Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences.
 *   **Oral defense:** Be prepared to explain why the URL is a better source of truth for filter/selection state than local component state (shareability, persistence, back/forward support). Discuss how you handled the `popstate` event to avoid infinite loops or state desynchronization.
 

@@ -8,6 +8,7 @@ area: "Process"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 10: Document one real design decision for the oral defense

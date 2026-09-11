@@ -8,6 +8,7 @@ area: "Graph"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 3: Tag-filter interaction
@@ -23,7 +24,7 @@ This task exercises the core principles of **Svelte 5 Runes** and **Reactive Sta
 
 ## 2. Worked example, from the real TTOD app
 
-The foundation for this task already exists in the `ts5` assembly worktree. In `services/frontend/src/pages/[locale]/wisdom/components/graph/layout.ts`, the functions `filterGraph` and `selectedTag` are already implemented and exported.
+The foundation for this task already exists in the reference implementation. In `services/frontend/src/pages/[locale]/wisdom/components/graph/layout.ts`, the functions `filterGraph` and `selectedTag` are already implemented and exported.
 
 Currently, `GraphIsland.svelte` does **not** call these functions. The hello-world state renders the full graph via `radialLayout` but lacks any filtering mechanism. This task requires wiring the existing, tested `filterGraph` logic into the UI, rather than writing new filtering algorithms. The "worked example" is the successful execution of `filterGraph` in the unit tests (`layout.test.mjs`), which proves the logic is sound; the student's job is to bridge the gap between this tested logic and the reactive UI layer.
 
@@ -66,7 +67,7 @@ These criteria are drawn directly from the parent module `ASSIGNMENT.md` (Graph 
 
 -   **Code Organization:** The filtering logic must remain in `layout.ts`. The `GraphIsland.svelte` component should only contain UI state and rendering logic. Do not duplicate the filtering algorithm in the Svelte file.
 -   **AI-Use/Process Documentation:** If using AI assistance to generate the Svelte runes or accessibility attributes, document the specific prompts used and the verification steps taken to ensure the generated code adheres to the module's constraints (e.g., no forbidden shortcuts).
--   **Test Shape (R7 Trophy-not-Pyramid):**
+-   **Test Shape (Testing Trophy, not Pyramid):**
     -   **Unit Tests:** Extend `layout.test.mjs` if new edge cases for `filterGraph` are discovered (e.g., filtering by a tag with no nodes).
     -   **Component Tests:** Write a test for `GraphIsland.svelte` that simulates changing the `activeTag` state and asserts that the rendered SVG contains only the expected nodes. Use a testing library that supports Svelte 5 runes (e.g., Vitest with Svelte plugin).
     -   **Integration Test:** Verify that selecting a tag in the UI updates the `activeTag` state and triggers a re-render.

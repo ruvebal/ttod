@@ -8,6 +8,7 @@ area: "Oracle"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 4: Session/exchange history handling
@@ -51,7 +52,7 @@ The current implementation in `services/frontend/src/components/oracle/OracleTer
 
 *   **Code Organization:** The logic for building `sessionHistory` should be isolated from the streaming logic. Consider a helper function or a custom hook if the logic becomes complex, but keep it simple for this task. The streaming logic (`readOracleStream`) must remain a pure consumer of the stream, unaware of history.
 *   **AI-Use/Process Documentation:** Document in your PR description *why* you chose to store the history in React state versus a local storage or backend session. (Hint: React state is the correct choice for this task's scope, as it is client-side session memory, not persistent storage).
-*   **Test Shape:** Per R7's Trophy-not-Pyramid doctrine, write a component test that simulates two consecutive prompts. Assert that after the second prompt, the DOM contains both the first and second answers. Do not mock the SSE stream entirely; use a mock server or a fake stream that yields two distinct responses to verify the accumulation logic.
+*   **Test Shape:** Per the Testing Trophy (not Pyramid) doctrine, write a component test that simulates two consecutive prompts. Assert that after the second prompt, the DOM contains both the first and second answers. Do not mock the SSE stream entirely; use a mock server or a fake stream that yields two distinct responses to verify the accumulation logic.
 *   **Accessibility:** The history list must be keyboard-navigable. Each exchange should have a clear heading or label indicating it is a past interaction. Ensure that the `aria-live` region for the *current* streaming answer does not conflict with the static history. The history should be static content, not live-updating, to avoid screen reader noise.
 *   **Oral Defense:** Be prepared to explain how `sessionHistory` differs from a backend session. (Answer: It is client-side context sent with each request, allowing the server to be stateless. The client is the source of truth for the conversation order.)
 

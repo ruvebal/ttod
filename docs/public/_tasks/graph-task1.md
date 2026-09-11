@@ -8,6 +8,7 @@ area: "Graph"
 verb: find
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 1: Fetch and render the graph from the governed API
@@ -21,7 +22,7 @@ This task exercises the core concepts of **Svelte 5 runes** (`$state`, `$derived
 
 ## 2. Worked example, from the real TTOD app
 
-The baseline for this task is already present in the `ts5` assembly worktree (`skeleton/ts5-hello-world`). The file `services/frontend/src/components/graph/GraphIsland.svelte` demonstrates the required pattern:
+The baseline for this task is already present in the reference implementation. The file `services/frontend/src/components/graph/GraphIsland.svelte` demonstrates the required pattern:
 1.  It mounts via `client:load` from `pages/[locale]/graph.astro`.
 2.  It performs a client-side `fetch` to `GET /api/v1/graph` and `GET /api/v1/wisdom/sample`.
 3.  It processes the payload using `joinTags` and `radialLayout` from `./layout.ts`.
@@ -63,7 +64,7 @@ The graph island loads successfully from the governed API endpoints. All nodes r
 
 -   **Code Organization:** The component must remain a single hydrated Svelte island. State management should use Svelte 5 runes (`$state`, `$derived`) rather than parallel stores. The separation between data fetching, layout calculation (in `layout.ts`), and rendering (in `GraphIsland.svelte`) must be clear.
 -   **AI-Use/Process Documentation:** Any AI-assisted code generation must be documented in the commit message or PR description, specifying which parts of the fetch/render logic were generated and how they were verified against the module constraints.
--   **Test Shape:** Per R7's Trophy-not-Pyramid doctrine, tests should focus on the integration of the fetch and layout pipeline. A test should verify that given a mock API response, the rendered SVG nodes correspond to the output of `radialLayout(joinTags(payload))`. Unit tests for `layout.ts` functions are already present; this task ensures the component correctly consumes them.
+-   **Test Shape:** Per the Testing Trophy (not Pyramid) doctrine, tests should focus on the integration of the fetch and layout pipeline. A test should verify that given a mock API response, the rendered SVG nodes correspond to the output of `radialLayout(joinTags(payload))`. Unit tests for `layout.ts` functions are already present; this task ensures the component correctly consumes them.
 -   **Accessibility:** The task inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. Specifically, the `<aside>` must be announced by screen readers when selection changes.
 -   **Oral Defense:** A defensible answer for this task explains *why* the layout logic is kept in `layout.ts` (shared, testable, pure) and *how* the island hydration pattern ensures the graph is interactive without blocking initial page load. It should also address how the current selection mechanism meets accessibility standards without relying on visual cues alone.
 -   **Testing Strategy:** This task involves verifying the integrity of the data pipeline. Refer to [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on testing reactive components and data flow.

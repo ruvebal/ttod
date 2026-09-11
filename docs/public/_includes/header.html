@@ -33,11 +33,37 @@
     <nav aria-label="{{ chrome.nav_label }}">
       <ul class="nav-list">
         {% for item in nav %}
-          {% assign item_url = item.url | relative_url %}
-          <li><a href="{{ item_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+          {% if item.children %}
+            {% assign section_open = false %}
+            {% if item.url and page.url == item.url %}{% assign section_open = true %}{% endif %}
+            {% for child in item.children %}{% if page.url == child.url %}{% assign section_open = true %}{% endif %}{% endfor %}
+            <li class="nav-group">
+              <details{% if section_open %} open{% endif %}>
+                <summary{% if section_open %} aria-current="true"{% endif %}>{{ item.title }}</summary>
+                <ul class="nav-submenu">
+                  {% if item.url %}
+                    <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }} {{ chrome.nav_overview }}</a></li>
+                  {% endif %}
+                  {% for child in item.children %}
+                    <li><a href="{{ child.url | relative_url }}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </details>
+            </li>
+          {% else %}
+            <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+          {% endif %}
         {% endfor %}
         <li class="lang-switch" aria-label="{{ chrome.lang_label }}">
-          {% if lang == "es" %}
+          {% if page.alt_lang_missing %}
+            {% if lang == "es" %}
+              <span class="lang-unavailable" lang="en">{{ chrome.lang_en }}</span>
+              <span aria-current="true">{{ chrome.lang_es }}</span>
+            {% else %}
+              <span aria-current="true">{{ chrome.lang_en }}</span>
+              <span class="lang-unavailable" lang="es">{{ chrome.lang_es }}</span>
+            {% endif %}
+          {% elsif lang == "es" %}
             <a href="{{ alt_url | relative_url }}" lang="en" hreflang="en">{{ chrome.lang_en }}</a>
             <span aria-current="true">{{ chrome.lang_es }}</span>
           {% else %}

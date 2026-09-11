@@ -8,6 +8,7 @@ area: "Testing"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 7: Unit and component tests for the graph island

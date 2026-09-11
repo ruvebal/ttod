@@ -8,6 +8,7 @@ area: "Oracle"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 10: Document one real design decision (state handling, disclosure design) for the oral defense

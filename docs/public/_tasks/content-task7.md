@@ -8,6 +8,7 @@ area: "Content/i18n/Proposals UI"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 7: Open one PR into a module you don't own

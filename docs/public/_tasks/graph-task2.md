@@ -8,6 +8,7 @@ area: "Graph"
 verb: question
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 2: One accessible node selection reflected as text, not just a visual highlight
@@ -21,7 +22,7 @@ This task exercises the core principles of **SVG accessibility** and **state-dri
 
 ## 2. Worked example, from the real TTOD app
 
-The hello-world implementation on the `ts5` assembly worktree already contains the foundational pattern for this task. In `services/frontend/src/pages/[locale]/wisdom/GraphIsland.svelte` (or the equivalent graph island component), the code currently implements:
+The hello-world implementation on the reference implementation already contains the foundational pattern for this task. In `services/frontend/src/pages/[locale]/wisdom/GraphIsland.svelte` (or the equivalent graph island component), the code currently implements:
 
 1.  **Focusable Nodes:** Each SVG `<circle>` or `<g>` element representing a node has `role="button"`, `tabindex="0"`, and a descriptive `aria-label`.
 2.  **Keyboard Events:** Event listeners for `keydown` handle `Enter` and `Space` to trigger selection, mirroring the `click` event.
@@ -63,7 +64,7 @@ When a user selects a node via mouse click or keyboard (Tab to focus, Enter/Spac
 
 *   **Code Organization:** The selection logic is encapsulated in the `GraphIsland.svelte` component. The `<aside>` is a separate, accessible component or clearly marked section. No global state pollution; selection is local to the island.
 *   **AI-Use/Process Documentation:** Any AI-assisted code generation for accessibility attributes (e.g., `aria-label` templates) is documented in the PR description, explaining *why* specific attributes were chosen.
-*   **Test Shape:** Per R7’s Trophy-not-Pyramid doctrine, tests should focus on **behavioral outcomes** (e.g., "selecting a node updates the aside text") rather than implementation details (e.g., "clicking a circle triggers a function"). Use testing libraries that simulate user interaction (e.g., `@testing-library/svelte`) to verify accessibility attributes and text updates.
+*   **Test Shape:** Per the Testing Trophy (not Pyramid) doctrine, tests should focus on **behavioral outcomes** (e.g., "selecting a node updates the aside text") rather than implementation details (e.g., "clicking a circle triggers a function"). Use testing libraries that simulate user interaction (e.g., `@testing-library/svelte`) to verify accessibility attributes and text updates.
 *   **Accessibility:** This task inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. This is not a task-specific requirement but a baseline for all TTOD work.
 *   **Defensible Oral-Defense Answer:** "I ensured that node selection is not just a visual highlight but a semantic event. By using `aria-live` on the text reflection and maintaining keyboard parity, I made the graph accessible to users who rely on screen readers or keyboard navigation. This aligns with the principle that accessibility is a foundation, not a feature."
 

@@ -8,6 +8,7 @@ area: "PWA/Offline"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 4, Task 5: Install-quality checks (manifest correctness, icons, installability)
@@ -51,7 +52,7 @@ The starter manifest at `services/frontend/public/manifest.webmanifest` already 
 
 **AI-use/process documentation discipline:** Document the process of generating or obtaining the required icon sizes, including any tools or scripts used. If an AI tool was used to generate the icons, note this in the process documentation and ensure that the icons are visually consistent with the app's branding.
 
-**Test shape per R7's own Trophy-not-Pyramid doctrine:** The installability check is a functional requirement that can be verified manually in a real browser. However, to ensure that the manifest remains valid over time, consider adding a simple test that validates the manifest's structure (e.g., checking that the required fields are present and that the icon files exist). This test should be lightweight and focused on the manifest's correctness, not on the visual appearance of the icons.
+**Test shape per the Testing Trophy (not Pyramid) doctrine:** The installability check is a functional requirement that can be verified manually in a real browser. However, to ensure that the manifest remains valid over time, consider adding a simple test that validates the manifest's structure (e.g., checking that the required fields are present and that the icon files exist). This test should be lightweight and focused on the manifest's correctness, not on the visual appearance of the icons.
 
 **Accessibility:** This task inherits the global Definition of Done for accessibility: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. While the manifest itself is not directly interactive, ensure that the app's UI is accessible when launched in standalone mode.
 

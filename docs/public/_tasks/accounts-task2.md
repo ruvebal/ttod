@@ -8,6 +8,7 @@ area: "Accounts"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 2: Personal favorites library — save, view, remove

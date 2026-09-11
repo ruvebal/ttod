@@ -8,6 +8,7 @@ area: "Cross-module"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 2, Task 8: Open one PR into a module you don't own

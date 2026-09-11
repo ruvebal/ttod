@@ -8,6 +8,7 @@ area: "Accounts"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 5, Task 4: The GitHub-native review pipeline: a proposal PR, human approval, computed accept-diff, second approval
@@ -52,7 +53,7 @@ The frontend gate for this pipeline is the `requireRole` function exported from 
 
 *   **Code Organization:** Ensure that the `requireRole` check is isolated in the Astro frontmatter of the relevant page/component. Do not import `auth.server.ts` from a client-side island or React/Svelte component.
 *   **AI-Use/Process Documentation:** Document your process of tracing the pipeline. Include screenshots or logs of the PR creation, the diff computation, and the final acceptance. This demonstrates your understanding of the "two-touchpoint" design.
-*   **Test Shape:** Per R7's Trophy-not-Pyramid doctrine, ensure that your tests for this task focus on the *integration* of the auth gate and the proposal acceptance flow. A unit test for `requireRole` is necessary but insufficient; an integration test that verifies a student cannot trigger `proposal accept` is critical. Link to [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on structuring these tests.
+*   **Test Shape:** Per the Testing Trophy (not Pyramid) doctrine, ensure that your tests for this task focus on the *integration* of the auth gate and the proposal acceptance flow. A unit test for `requireRole` is necessary but insufficient; an integration test that verifies a student cannot trigger `proposal accept` is critical. Link to [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) for guidance on structuring these tests.
 *   **Accessibility:** The reviewer queue UI must be keyboard-operable, have one accessible name or label, no meaning carried by color alone, and respect reduced-motion preferences. Cite the [Accessibility Definition of Done](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) (or the relevant FE II accessibility unit) rather than restating these requirements as unique to this task.
 *   **Oral Defense:** Be prepared to explain why the "two-touchpoint" design is superior to a single-approval system. Focus on the separation of concerns: PR approval ensures social consensus and code review, while diff approval ensures technical integrity and prevents accidental or malicious modifications to the canonical corpus.
 

@@ -4,6 +4,7 @@ eyebrow: Three weeks of build, three PR reviews, then Unit 7
 description: How the five teams' task boards land across a three-week dev sprint — the third week run as a four-hour hackathon — with three PR-review checkpoints before Unit 7 measures the app.
 permalink: /teaching/timeline/
 lang: en
+alt_lang_missing: true
 ---
 
 # Dev sprint & hackathon timeline

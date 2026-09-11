@@ -2,6 +2,7 @@ en:
   skip: Skip to content
   home_aria: TTOD home
   nav_label: Primary navigation
+  nav_overview: overview
   lang_label: Language
   lang_en: English
   lang_es: Español
@@ -21,6 +22,7 @@ es:
   skip: Saltar al contenido
   home_aria: Inicio de TTOD
   nav_label: Navegación principal
+  nav_overview: visión general
   lang_label: Idioma
   lang_en: English
   lang_es: Español

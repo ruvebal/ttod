@@ -3,20 +3,39 @@ en:
     url: /
   - title: Project
     url: /project/
-  - title: Product areas
+  - title: Platform
     url: /platform/
-  - title: Teaching model
+  - title: Teaching
     url: /teaching/
+    children:
+      - title: Assignments & backlog
+        url: /teaching/assignments/
+      - title: Task details
+        url: /teaching/tasks/
+      - title: Sprint & hackathon timeline
+        url: /teaching/timeline/
   - title: Research
     url: /research/
+    children:
+      - title: Method & safeguards
+        url: /research/methodology/
   - title: Docs
     url: /guides/
-  - title: Students
-    url: /audiences/students/
-  - title: University partners
-    url: /audiences/partners/
-  - title: Research & venture
-    url: /audiences/research-funders/
+    children:
+      - title: Contributing
+        url: /guides/contributing/
+      - title: Run it locally
+        url: /guides/local-setup/
+      - title: Use the product
+        url: /guides/product/
+  - title: Audiences
+    children:
+      - title: Students
+        url: /audiences/students/
+      - title: University partners
+        url: /audiences/partners/
+      - title: Research & venture
+        url: /audiences/research-funders/
   - title: Roadmap
     url: /roadmap/
 es:
@@ -24,19 +43,36 @@ es:
     url: /es/
   - title: Proyecto
     url: /es/project/
-  - title: Áreas de producto
+  - title: Plataforma
     url: /es/platform/
-  - title: Modelo docente
+  - title: Docencia
     url: /es/teaching/
+    children:
+      - title: Encargos y backlog
+        url: /es/teaching/assignments/
+      - title: Detalle de tareas
+        url: /es/teaching/tasks/
   - title: Investigación
     url: /es/research/
+    children:
+      - title: Método y salvaguardas
+        url: /es/research/methodology/
   - title: Docs
     url: /es/guides/
-  - title: Estudiantes
-    url: /es/audiences/students/
-  - title: Socios universitarios
-    url: /es/audiences/partners/
-  - title: Investigación e iniciativa
-    url: /es/audiences/research-funders/
+    children:
+      - title: Contribuir
+        url: /es/guides/contributing/
+      - title: Ejecutarlo en local
+        url: /es/guides/local-setup/
+      - title: Usar el producto
+        url: /es/guides/product/
+  - title: Audiencias
+    children:
+      - title: Estudiantes
+        url: /es/audiences/students/
+      - title: Socios universitarios
+        url: /es/audiences/partners/
+      - title: Investigación e iniciativa
+        url: /es/audiences/research-funders/
   - title: Hoja de ruta
     url: /es/roadmap/

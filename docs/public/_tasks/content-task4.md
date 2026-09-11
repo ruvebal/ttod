@@ -8,6 +8,7 @@ area: "Content, Accounts"
 verb: contribute
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 1, Task 4: Build the "propose a quote" form UI
@@ -55,7 +56,7 @@ The existing application demonstrates the **authentication gate** pattern in `se
 
 *   **Code Organization:** The form logic should be encapsulated in a reusable component or a dedicated script file, not inline in the Astro page template if it grows beyond simple HTML. Keep the "auth check" and "form submission" logic separate for clarity.
 *   **AI-Use/Process Documentation:** Document the coordination with Team 5. Include a comment or a note in your PR description stating the agreed-upon API contract (endpoint, fields). This is critical for cross-team tasks.
-*   **Test Shape (R7 Trophy-not-Pyramid):**
+*   **Test Shape (Testing Trophy, not Pyramid):**
     *   **Unit Test:** Mock the `fetch` API and `requireUser`. Test that the form submits the correct payload when valid. Test that validation prevents submission when invalid.
     *   **Integration Test:** (If feasible) Test that the form is hidden when `requireUser` returns false.
     *   *Link:* [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)

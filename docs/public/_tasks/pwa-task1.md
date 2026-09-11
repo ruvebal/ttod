@@ -8,6 +8,7 @@ area: "PWA/Offline"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 4, Task 1: Service worker registration and an installable manifest
@@ -44,7 +45,7 @@ The existing implementation in `services/frontend/src/layouts/Page.astro` alread
 
 *   **Code Organization:** The service worker logic in `services/frontend/public/sw.js` must remain modular. The cache cleanup logic in the `activate` event handler should be explicit and commented to show the intent of removing old caches.
 *   **AI-use/process documentation:** Document any changes made to the manifest or service worker in your commit messages or a brief note in your PR description, explaining *why* the cache name was changed and *how* you verified the cleanup.
-*   **Test shape:** Per R7's Trophy-not-Pyramid doctrine, focus on an integration test that registers the worker, forces a `CACHE_NAME` change, and asserts the old cache key is gone from `caches.keys()` after `activate`. Unit tests for the individual event handlers are less valuable than verifying this end-to-end lifecycle behavior.
+*   **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, focus on an integration test that registers the worker, forces a `CACHE_NAME` change, and asserts the old cache key is gone from `caches.keys()` after `activate`. Unit tests for the individual event handlers are less valuable than verifying this end-to-end lifecycle behavior.
 *   **Accessibility:** The app must remain keyboard-operable, have one accessible name or label, no meaning carried by color alone, and respect reduced-motion preferences. This is inherited from the global Definition of Done and is not unique to this task.
 *   **Oral defense:** Be prepared to explain the difference between `install`, `activate`, and `fetch` events. Explain why the cache name is changed and how the `activate` event ensures old caches are removed.
 

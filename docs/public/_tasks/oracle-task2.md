@@ -8,6 +8,7 @@ area: "Oracle"
 verb: keep
 layout: default
 lang: en
+alt_lang_missing: true
 ---
 
 # Assignment — Team 3, Task 2: Live-region announcement of the streaming answer for screen readers
@@ -46,7 +47,7 @@ The existing `OracleTerminal` component in `services/frontend/src/components/ora
 
 - **Code organization:** The `aria-live` and `aria-busy` attributes are managed via React state or direct DOM manipulation in a way that does not conflict with the existing busy guard logic. The streaming text element is clearly separated from the status indicator element.
 - **AI-use/process documentation:** The decision to use `aria-live="polite"` over `assertive` is documented in the commit message or PR description, referencing the need to avoid interrupting other screen reader activities.
-- **Test shape:** Per R7's Trophy-not-Pyramid doctrine, the test for this task should be an integration test that simulates a screen reader's behavior by asserting that the `aria-live` region's content changes incrementally as chunks are appended, rather than a unit test that only checks the presence of the attribute.
+- **Test shape:** Per the Testing Trophy (not Pyramid) doctrine, the test for this task should be an integration test that simulates a screen reader's behavior by asserting that the `aria-live` region's content changes incrementally as chunks are appended, rather than a unit test that only checks the presence of the attribute.
 - **Accessibility:** This task inherits the global Definition of Done: keyboard-operable, one accessible name or label, no meaning carried by color alone, respects reduced-motion preferences. Specifically, the live region must not be visually hidden in a way that breaks the accessibility tree.
 - **Oral defense:** A defensible answer explains why `aria-atomic="false"` is critical for streaming (to prevent the screen reader from reading the entire accumulated text at the end) and how the `aria-busy` attribute prevents double-announcement. It also acknowledges the limitation that visual inspection is not a substitute for auditory verification.
 

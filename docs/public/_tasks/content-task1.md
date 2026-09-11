@@ -8,16 +8,8 @@ area: "Content"
 verb: find
 layout: default
 lang: en
+alt_lang_missing: true
 ---
-
-<!--
-Proof-of-pattern for the assignment-forger skill (~/src/.cursor/skills/assignment-forger/).
-Grounded in the real, already-shipped
-services/frontend/src/pages/[locale]/wisdom/ASSIGNMENT.md (ts5 assembly worktree,
-skeleton/ts5-hello-world branch) and docs/public/teaching/tasks.md's own Team 1 / Task 1 prose.
-Not published to docs/public or the ts5 worktree yet - source-of-truth draft on main, per the
-skill's own "cold review before it reaches the site" discipline.
--->
 
 # Assignment — Team 1, Task 1: Section, tag, and level browse routes
 
@@ -34,8 +26,7 @@ layouts) is the prerequisite before that, for every team's own task 1.
 
 ## 2. Worked example, from the real TTOD app
 
-The starting point is not hypothetical — it is the real hello-world already on the `ts5` assembly
-branch (`skeleton/ts5-hello-world`):
+The starting point is not hypothetical — it is the real hello-world already on the reference implementation:
 
 - `src/pages/[locale]/wisdom/index.astro` and `.../[slug].astro` already call
   `fetchWisdom(locale)` and render real `WisdomEntry[]` records in `en`/`es` — read these two
@@ -43,7 +34,7 @@ branch (`skeleton/ts5-hello-world`):
 - `src/content/wisdom.ts` exports `frequencies(entries: WisdomEntry[], field: 'section' | 'level'
   | 'tags')` (confirmed at line 31 of that file) — already written, **not yet called by any
   route**. This task's whole job is building the three routes that call it.
-- The three route files this task adds do not exist on `ts5` — they were the instructor's own
+- The three route files this task adds do not exist on the reference implementation — they were the instructor's own
   deliberate removal, named explicitly in `wisdom/ASSIGNMENT.md`'s "instructor-removed routes"
   table, not an oversight to work around.
 
@@ -88,7 +79,7 @@ this same module's Task 2 and a cross-cutting requirement respectively, not re-l
   a route that works in `en` and silently 404s or shows English copy in `es` fails this task
   regardless of whether the `en` acceptance criteria pass.
 - **Test shape.** Per [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)
-  and R7's own Trophy-not-Pyramid doctrine on the reference build: an integration/component test
+  and the Testing Trophy (not Pyramid) doctrine on the reference build: an integration/component test
   that a real facet route renders real filtered data is worth more here than a unit test of
   `frequencies()` itself (already tested where it's defined). This task's own dedicated testing
   task (Team 1, Task 7) owns the full suite; this bullet is the bar *this* task's own code should

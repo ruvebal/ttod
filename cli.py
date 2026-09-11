@@ -38,6 +38,13 @@ app = typer.Typer(help="道 The Tao of Development (TTOD) — pedagogical wisdom
 proposal_app = typer.Typer(help="Proposal lifecycle (only accept touches ttod.yml)")
 bridge_app = typer.Typer(help="Athanor bridge transport (serialization only; no canonical writes)")
 app.add_typer(proposal_app, name="proposal")
+# F1 fix (2026-09-10, DevIAC Phase CH0 readiness): bridge_app was defined but never
+# registered with the root Typer app, leaving `cli.py bridge quote-out` and
+# `cli.py bridge proposal-in` as dead code from the CLI surface. The underlying
+# transport module (`ttod_core.bridge.TTODBridge`) was and remains functional —
+# see `bridge-self-test` — but the CLI wrapper never routed to it.
+# See deviac/docs/DEV_PLAN/PHASE-CH/PHASE-CH0-READINESS-REPORT.md § F1.
+app.add_typer(bridge_app, name="bridge")
 migrate_app = typer.Typer(help="Phase Q6 v2→v3 migration (live ttod.yml only with --apply)")
 app.add_typer(migrate_app, name="migrate")
 

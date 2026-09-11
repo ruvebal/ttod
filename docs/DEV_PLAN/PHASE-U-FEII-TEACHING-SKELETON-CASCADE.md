@@ -280,8 +280,124 @@ Each implementation phase must run the relevant governed-core tests plus:
 - protected `ttod.yml` before/after digest; and
 - an evidence-state report stopping at `VERIFYING` before independent review.
 
-## 9. Safe next action
+## 9. Live worktree inventory
+
+Every TS lane runs in its own sibling git worktree (`../ttod-skeleton-<lane>`), never nested
+inside this checkout — git worktrees are conventionally kept outside the main tree specifically
+because nesting one confuses `.gitignore`/file-scanning tools run from the parent repo. Only TS5's
+own report previously named its worktree by exact path; this table closes that gap for the other
+seven, added 2026-09-11 after a live audit found all eight clean (zero uncommitted files) and
+seven of eight genuinely unmerged — this table describes real, checked state, not intent.
+
+| Lane | Worktree path | Branch | Merged to `main`? | Purpose |
+| --- | --- | --- | --- | --- |
+| TS1 | `../ttod-skeleton-ts1` | `skeleton/ts1-contracts` | No | Subtraction and contracts freeze |
+| TS3a | `../ttod-skeleton-ts3a` | `skeleton/ts3a-r3b` | No | R3b content hello-world |
+| TS3b | `../ttod-skeleton-ts3b` | `skeleton/ts3b-r4` | No | R4 graph hello-world |
+| TS3c | `../ttod-skeleton-ts3c` | `skeleton/ts3c-r5` | No | R5 Oracle hello-world |
+| TS4a | `../ttod-skeleton-ts4a` | `skeleton/ts4a-r6` | No | R6 PWA hello-world |
+| TS4b | `../ttod-skeleton-ts4b` | `skeleton/ts4b-r7` | No | R7 testing hello-world |
+| TS4c | `../ttod-skeleton-ts4c` | `skeleton/ts4c-auth` | No | Auth hello-world (no prior reference to reduce) |
+| TS5 | `../ttod-skeleton-ts5` | `skeleton/ts5-hello-world` | No | Assembled teaching baseline (minimum); `ts5-fresh2` (full) already cleaned up after its own verification pass, per `PHASE-U-TS5-REPORT.md` |
+
+None of these eight are merged to `main` — that is the expected, correct state per this cascade's
+own subtraction-and-assembly design, not drift to fix. Two unrelated worktrees
+(`ttod-pr2-autopilot`, `ttod-pr3-autopilot` — not part of this cascade, an external tool's own
+PR/sync bookkeeping) were found alongside these during the same audit, confirmed fully merged and
+pushed to `origin`, and removed 2026-09-11 with their local branches.
+
+## 10. Safe next action
 
 Independently verify [`PHASE-TS0-REPORT.md`](PHASE-TS0-REPORT.md) and promote TS0 only if its live
-evidence holds. Do not remove rich features or edit the course repository until TS1 freezes the
-teaching and subtraction contracts.
+evidence holds.
+
+**Note (2026-09-11):** this line's own second sentence — "do not remove rich features or edit the
+course repository until TS1 freezes the teaching and subtraction contracts" — reads as stale
+against `INDEX.md`'s own current state (TS1 through TS4c already `DONE`, TS5 `PARTIAL`, per the
+worktree inventory above). Not re-audited in full here; flagged so a future session checks
+`INDEX.md`'s live status rather than trusting this sentence's own frozen framing.
+
+## 11. Publish architecture — task sheets and quote URIs
+
+**§11.1 executed 2026-09-11** — the `_tasks` collection is live: `collections: tasks:` in
+`docs/public/_config.yml`, all 49 reviewed sheets copied from `docs/DEV_PLAN/ASSIGNMENTS/` into
+`docs/public/_tasks/` with real Jekyll front matter, board rows in `assignments.md` and the
+[dev sprint timeline](../public/teaching/timeline.md) linked to each one, verified with a real
+local `bundle exec jekyll build` (clean, zero broken internal links, checked programmatically
+against all 49 generated pages). §11.2/11.3 (a citable `urn:ttod:quote:<id>` URN) remain
+unexecuted — nothing in this pass touched quote-level URIs, only task sheets.
+
+The assignment-forger skill's own "What this skill does not do" section already defers this
+exact question ("a later, separate step decides whether/how they reach the published Jekyll
+site"). Recorded here, formally, so the deferral has a concrete target instead of staying only
+verbal. Nothing in this section has been built.
+
+### 11.1 `_tasks` Jekyll collection — one file per task, own permalink
+
+`docs/public/_config.yml` today declares no `collections:` block at all (confirmed by reading the
+file directly, 2026-09-11) — `tasks.md`'s per-task prose lives as bold-text pseudo-headers with no
+real anchors, and `assignments.md`'s board has no per-task link target. The shape to add, once
+enough `ASSIGNMENT-<seam>-<task>.md` sheets exist under `docs/DEV_PLAN/ASSIGNMENTS/` to be worth
+publishing:
+
+```yaml
+collections:
+  tasks:
+    output: true
+    permalink: /teaching/tasks/:path/
+```
+
+with one file per task at `docs/public/_tasks/<seam>-task<n>.md` — this maps directly onto the
+file-per-task shape the forger already produces (`ASSIGNMENT-graph-task1.md` → `_tasks/graph-task1.md`),
+no renaming or restructuring needed, and resolves to `/ttod/teaching/tasks/graph-task1/` under the
+site's existing `baseurl: /ttod`. Each collection file's front matter (`seam`, `team`, `task`,
+`area`) is what `assignments.md`'s board table would link against per row, replacing today's dead
+(non-linked) task cells. Publishing a task sheet this way is still the "separate, explicit step"
+the forger skill's own rule requires — reviewed sheets in `docs/DEV_PLAN/ASSIGNMENTS/` do not
+become site content automatically.
+
+### 11.2 Quote-level URIs — what exists, what doesn't
+
+Checked directly, 2026-09-11, rather than assumed:
+
+- **App-level route: real, already built.** `services/frontend/src/pages/[locale]/wisdom/[slug].astro`
+  (on the `ts5` worktree) resolves `Astro.params.slug` against `entry.id` and renders text,
+  teaches, section, level, origin, lang, tags, rights, and license — i.e. a working
+  `/{locale}/wisdom/{id}/` route (e.g. `/en/wisdom/arch-016/`) already exists at the application
+  layer. It is not yet part of the published Jekyll `docs/public/` site and is not confirmed
+  reachable on a live deployment — it exists on the teaching-baseline worktree, verified by
+  reading the source, not by hitting a URL.
+- **No `ttod:` URN or URI scheme exists anywhere in the governed data layer.** `ttod_core/canonical.py`
+  and `ttod_core/exporter.py` were read directly (not grepped-and-trusted) — quote identity is a
+  bare slug (`"id": "arch-016"`), with no scheme prefix, no minting logic, and no `uri`/`urn`
+  field anywhere in the canonicalization or export pipeline.
+- **`ahmes/.cursor/skills/skill-semantic-ontology.mdc` does not reserve one either.** Its
+  `term_uri` priority ladder (CIDOC-CRM → Getty AAT → Wikidata → `urn:ahmes:vocab:<slug>`) names
+  TTOD only as an example *consumer* of Ahmes's own fourth-tier, Ahmes-internal namespace ("for
+  project-specific terms (WPL provenance, SVCM, TTOD)") — and that tier is for Ahmes's
+  extraction-time *concepts/terms* (lexicum/thesaurus/syllabum), a different concern from TTOD's
+  own quote *records*. This is not a TTOD namespace; it is Ahmes's namespace with TTOD as one
+  possible source of terms it might extract.
+
+### 11.3 Ownership — neither the ontology skill nor a new subagent, yet
+
+Two distinct URI concerns are being asked about and should not be collapsed into one:
+
+1. A resolvable **citation URL** for a quote — the app route above already covers this once
+   deployed; publishing `_tasks` (11.1) and an eventual `_wisdom`-style per-quote Jekyll mirror
+   would extend it to the static site.
+2. An abstract, hosting-independent **URN** for scholarly/provenance citation (CIDOC-CRM/SKOS
+   style, citable even if the app's URL structure changes) — nothing reserves this today.
+
+(2) is a TTOD schema decision, not Ahmes's to make on TTOD's behalf — `urn:ahmes:vocab:` is
+explicitly scoped as Ahmes-internal. If TTOD wants `urn:ttod:quote:<id>` (or similar), that is
+authored in TTOD's own `canonical.py`/`AGENTS.md` and only then registered as a peer entry in
+Ahmes's ladder, the same way WPL/SVCM already are — not authored inside
+`skill-semantic-ontology.mdc` itself.
+
+Neither task warrants a new subagent. `cascade-phase-executor`/`cascade-cold-reviewer` earned
+subagent status because they are invoked repeatedly, across many phases, with a bounded and
+identical contract each time. A URN scheme is a one-time architecture decision: define it, wire
+one emission point in `canonical.py`, document it, done — there is nothing recurring to delegate.
+If and when TTOD decides to mint one, it belongs as a small `docs/DEV_PLAN/DECISIONS/` entry plus
+a `canonical.py` change, not a new agent.

@@ -104,6 +104,7 @@ Accessibility is part of the architecture and assessment from the first hello wo
 
 - [Assignments and backlog]({{ '/teaching/assignments/' | relative_url }})
 - [Task details — every task expanded]({{ '/teaching/tasks/' | relative_url }})
+- [Dev sprint & hackathon timeline]({{ '/teaching/timeline/' | relative_url }})
 - [FE II track (published)](https://ruvebal.github.io/web-atelier-udit/tracks/feii/)
 - [English track index](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/)
 - [How to Pass Front-end II](https://ruvebal.github.io/web-atelier-udit/tracks/en/feii/how-to-pass-this-track/)

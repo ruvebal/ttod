@@ -101,86 +101,91 @@ what actually has to be done — grounded in the real `ASSIGNMENT.md` file each 
 not a generic restatement — see [task details]({{ '/teaching/tasks/' | relative_url }}).
 
 **Lessons for these tasks.** The FE II track at web-atelier-udit teaches the Astro architecture
-every team builds on. Three units are published so far — more will be linked here as they publish:
+every team builds on. All seven Unit 1–7 lessons are published — link text below names exactly
+which tasks each one grounds, not just "read this at some point":
 
 - [Unit 1 — Kickoff](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-1-kickoff/) — orientation for every team, before task 1
 - [Unit 2 — Astro fundamentals](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-2-astro-fundamentals/) — routing, layouts, and a first framework island; prerequisite for Team 1's, Team 2's, and Team 3's task 1
 - [Unit 3 — Astro advanced](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) — content collections, i18n routing, data fetching, and multi-framework islands, worked entirely through TTOD's own source code; prerequisite for Team 1's tasks 1 and 6, and for Team 2's and Team 3's task 1
+- [Unit 4 — Progressive Web Apps & Offline Capabilities](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-4-pwa-offline/) — service-worker lifecycle, caching strategy, install quality; Team 4's own tasks 1, 3, and 5 draw directly on this unit
+- [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) — the Testing Trophy doctrine every team's own task 7 (task 6 for Teams 1 and 4) draws on; see the [dev sprint timeline]({{ '/teaching/timeline/' | relative_url }}) for when each team's testing task lands
+- [Unit 6 — AI-Assisted Code Review](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-6-ai-code-review/) — human-in-the-loop review discipline behind every task's AI-disclosure requirement (§5 of [the assignment template]({{ '/teaching/tasks/' | relative_url }})) and the hackathon week's own PR-review checkpoint
+- [Unit 7 — Performance](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-7-performance/) — measured Core Web Vitals work; the session that follows the [dev sprint]({{ '/teaching/timeline/' | relative_url }}), once all six areas actually run
 
 ### Team 1 — Content, i18n & Proposals UI (pair)
 
 | # | Task | Area(s) |
 | - | --- | --- |
 | 1 | Build the localized wisdom index and detail routes (`en` + `es`) — see [Unit 3: content collections + i18n routing](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Content |
-| 2 | Section, tag, and level browse routes | Content |
-| 3 | Breadcrumb navigation across all content routes | Content |
-| 4 | Empty-state and error-state handling for content routes | Content |
-| 5 | Build the "propose a quote" form UI — posts to the endpoint Team 5 owns | Content, Accounts |
-| 6 | Source, rights, and provenance display on every quote page — see [Unit 3: content collection schemas](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Content |
-| 7 | Unit and component tests for content routes and the propose form | Testing |
-| 8 | Open one PR into a module you don't own | Cross-module |
-| 9 | Formally review one PR outside your own module | Cross-module |
-| 10 | Document one real design decision (taxonomy, fallback policy) for the oral defense | Process |
+| 2 | Section, tag, and level browse routes — [detail sheet]({{ '/teaching/tasks/content-task1/' | relative_url }}) | Content |
+| 3 | Breadcrumb navigation across all content routes — [detail sheet]({{ '/teaching/tasks/content-task2/' | relative_url }}) | Content |
+| 4 | Empty-state and error-state handling for content routes — [detail sheet]({{ '/teaching/tasks/content-task3/' | relative_url }}) | Content |
+| 5 | Build the "propose a quote" form UI — posts to the endpoint Team 5 owns — [detail sheet]({{ '/teaching/tasks/content-task4/' | relative_url }}) | Content, Accounts |
+| 6 | Source, rights, and provenance display on every quote page — see [Unit 3: content collection schemas](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) — [detail sheet]({{ '/teaching/tasks/content-task5/' | relative_url }}) | Content |
+| 7 | Unit and component tests for content routes and the propose form — see [Unit 5: Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) — [detail sheet]({{ '/teaching/tasks/content-task6/' | relative_url }}) | Testing |
+| 8 | Open one PR into a module you don't own — [detail sheet]({{ '/teaching/tasks/content-task7/' | relative_url }}) | Cross-module |
+| 9 | Formally review one PR outside your own module — [detail sheet]({{ '/teaching/tasks/content-task8/' | relative_url }}) | Cross-module |
+| 10 | Document one real design decision (taxonomy, fallback policy) for the oral defense — [detail sheet]({{ '/teaching/tasks/content-task9/' | relative_url }}) | Process |
 
 ### Team 2 — Knowledge Graph (solo)
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Fetch and render the graph from the governed API — see [Unit 3: data fetching + the graph island](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Graph |
-| 2 | One accessible node selection reflected as text, not just a visual highlight | Graph |
-| 3 | Tag-filter interaction | Graph |
-| 4 | URL state for the current selection/filter | Graph |
-| 5 | Layout and performance at real corpus scale (the sample set is not small) | Graph |
-| 6 | Keyboard operability audit on every interactive graph element | Testing |
-| 7 | Unit and component tests for the graph island | Testing |
-| 8 | Open one PR into a module you don't own | Cross-module |
-| 9 | Formally review one PR outside your own module | Cross-module |
-| 10 | Document one real design decision (layout choice, accessibility trade-off) for the oral defense | Process |
+| 1 | Fetch and render the graph from the governed API — see [Unit 3: data fetching + the graph island](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) — [detail sheet]({{ '/teaching/tasks/graph-task1/' | relative_url }}) | Graph |
+| 2 | One accessible node selection reflected as text, not just a visual highlight — [detail sheet]({{ '/teaching/tasks/graph-task2/' | relative_url }}) | Graph |
+| 3 | Tag-filter interaction — [detail sheet]({{ '/teaching/tasks/graph-task3/' | relative_url }}) | Graph |
+| 4 | URL state for the current selection/filter — [detail sheet]({{ '/teaching/tasks/graph-task4/' | relative_url }}) | Graph |
+| 5 | Layout and performance at real corpus scale (the sample set is not small) — [detail sheet]({{ '/teaching/tasks/graph-task5/' | relative_url }}) | Graph |
+| 6 | Keyboard operability audit on every interactive graph element — [detail sheet]({{ '/teaching/tasks/graph-task6/' | relative_url }}) | Testing |
+| 7 | Unit and component tests for the graph island — see [Unit 5: Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) — [detail sheet]({{ '/teaching/tasks/graph-task7/' | relative_url }}) | Testing |
+| 8 | Open one PR into a module you don't own — [detail sheet]({{ '/teaching/tasks/graph-task8/' | relative_url }}) | Cross-module |
+| 9 | Formally review one PR outside your own module — [detail sheet]({{ '/teaching/tasks/graph-task9/' | relative_url }}) | Cross-module |
+| 10 | Document one real design decision (layout choice, accessibility trade-off) for the oral defense — [detail sheet]({{ '/teaching/tasks/graph-task10/' | relative_url }}) | Process |
 
 ### Team 3 — Oracle Terminal (pair)
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Streamed response rendering, one prompt to one cited answer — see [Unit 3: the Oracle island as a multi-framework example](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) | Oracle |
-| 2 | Live-region announcement of the streaming answer for screen readers | Oracle |
-| 3 | Grounded vs. creative mode disclosure in the UI | Oracle |
-| 4 | Session/exchange history handling | Oracle |
-| 5 | A "preparing" cold-start state instead of a silent hang on a fresh deployment | Oracle |
-| 6 | Recovery/error state when the Oracle is unavailable | Oracle |
-| 7 | Unit and component tests for the Oracle terminal and its streaming logic | Testing |
-| 8 | Open one PR into a module you don't own | Cross-module |
-| 9 | Formally review one PR outside your own module | Cross-module |
-| 10 | Document one real design decision (state handling, disclosure design) for the oral defense | Process |
+| 1 | Streamed response rendering, one prompt to one cited answer — see [Unit 3: the Oracle island as a multi-framework example](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-3-astro-advanced/) — [detail sheet]({{ '/teaching/tasks/oracle-task1/' | relative_url }}) | Oracle |
+| 2 | Live-region announcement of the streaming answer for screen readers — [detail sheet]({{ '/teaching/tasks/oracle-task2/' | relative_url }}) | Oracle |
+| 3 | Grounded vs. creative mode disclosure in the UI — [detail sheet]({{ '/teaching/tasks/oracle-task3/' | relative_url }}) | Oracle |
+| 4 | Session/exchange history handling — [detail sheet]({{ '/teaching/tasks/oracle-task4/' | relative_url }}) | Oracle |
+| 5 | A "preparing" cold-start state instead of a silent hang on a fresh deployment — [detail sheet]({{ '/teaching/tasks/oracle-task5/' | relative_url }}) | Oracle |
+| 6 | Recovery/error state when the Oracle is unavailable — [detail sheet]({{ '/teaching/tasks/oracle-task6/' | relative_url }}) | Oracle |
+| 7 | Unit and component tests for the Oracle terminal and its streaming logic — see [Unit 5: Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) — [detail sheet]({{ '/teaching/tasks/oracle-task7/' | relative_url }}) | Testing |
+| 8 | Open one PR into a module you don't own — [detail sheet]({{ '/teaching/tasks/oracle-task8/' | relative_url }}) | Cross-module |
+| 9 | Formally review one PR outside your own module — [detail sheet]({{ '/teaching/tasks/oracle-task9/' | relative_url }}) | Cross-module |
+| 10 | Document one real design decision (state handling, disclosure design) for the oral defense — [detail sheet]({{ '/teaching/tasks/oracle-task10/' | relative_url }}) | Process |
 
 ### Team 4 — PWA & Local Operations (solo)
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Service worker registration and an installable manifest | PWA/Offline |
-| 2 | One observable offline boundary — content that keeps working without a connection | PWA/Offline |
-| 3 | Cache-first vs. network-first policy for the right routes | PWA/Offline |
-| 4 | An offline queue that flushes once the connection returns | PWA/Offline |
-| 5 | Install-quality checks (manifest correctness, icons, installability) | PWA/Offline |
-| 6 | Measured performance budget before/after one optimization (Core Web Vitals) | PWA/Offline |
-| 7 | Unit and component tests for the offline boundary | Testing |
-| 8 | Open one PR into a module you don't own | Cross-module |
-| 9 | Formally review one PR outside your own module | Cross-module |
-| 10 | Document one real design decision (caching policy, install UX) for the oral defense | Process |
+| 1 | Service worker registration and an installable manifest — [detail sheet]({{ '/teaching/tasks/pwa-task1/' | relative_url }}) | PWA/Offline |
+| 2 | One observable offline boundary — content that keeps working without a connection — [detail sheet]({{ '/teaching/tasks/pwa-task2/' | relative_url }}) | PWA/Offline |
+| 3 | Cache-first vs. network-first policy for the right routes — [detail sheet]({{ '/teaching/tasks/pwa-task3/' | relative_url }}) | PWA/Offline |
+| 4 | An offline queue that flushes once the connection returns — [detail sheet]({{ '/teaching/tasks/pwa-task4/' | relative_url }}) | PWA/Offline |
+| 5 | Install-quality checks (manifest correctness, icons, installability) — [detail sheet]({{ '/teaching/tasks/pwa-task5/' | relative_url }}) | PWA/Offline |
+| 6 | Measured performance budget before/after one optimization (Core Web Vitals) — [detail sheet]({{ '/teaching/tasks/pwa-task6/' | relative_url }}) | PWA/Offline |
+| 7 | Unit and component tests for the offline boundary — see [Unit 5: Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) — [detail sheet]({{ '/teaching/tasks/pwa-task7/' | relative_url }}) | Testing |
+| 8 | Open one PR into a module you don't own — [detail sheet]({{ '/teaching/tasks/pwa-task8/' | relative_url }}) | Cross-module |
+| 9 | Formally review one PR outside your own module — [detail sheet]({{ '/teaching/tasks/pwa-task9/' | relative_url }}) | Cross-module |
+| 10 | Document one real design decision (caching policy, install UX) for the oral defense — [detail sheet]({{ '/teaching/tasks/pwa-task10/' | relative_url }}) | Process |
 
 ### Team 5 — Accounts, Library, Proposals & Public API (pair)
 
 | # | Task | Area(s) |
 | - | --- | --- |
-| 1 | Login/session (server-verified, one protected route) | Accounts |
-| 2 | Personal favorites library — save, view, remove | Accounts |
-| 3 | The propose-a-quote backend endpoint Team 1's form posts to | Accounts, Content |
-| 4 | The GitHub-native review pipeline: a proposal PR, human approval, computed accept-diff, second approval | Accounts |
-| 5 | A bearer-token-authenticated public API endpoint (`GET` a random quote) | Accounts |
-| 6 | API documentation page and a minimal external example client | Accounts |
-| 7 | Unit and component tests for auth, the library, and the API | Testing |
-| 8 | Open one PR into a module you don't own | Cross-module |
-| 9 | Formally review one PR outside your own module | Cross-module |
-| 10 | Document one real design decision (session vs. token design, review-pipeline trade-off) for the oral defense | Process |
+| 1 | Login/session (server-verified, one protected route) — [detail sheet]({{ '/teaching/tasks/accounts-task1/' | relative_url }}) | Accounts |
+| 2 | Personal favorites library — save, view, remove — [detail sheet]({{ '/teaching/tasks/accounts-task2/' | relative_url }}) | Accounts |
+| 3 | The propose-a-quote backend endpoint Team 1's form posts to — [detail sheet]({{ '/teaching/tasks/accounts-task3/' | relative_url }}) | Accounts, Content |
+| 4 | The GitHub-native review pipeline: a proposal PR, human approval, computed accept-diff, second approval — [detail sheet]({{ '/teaching/tasks/accounts-task4/' | relative_url }}) | Accounts |
+| 5 | A bearer-token-authenticated public API endpoint (`GET` a random quote) — [detail sheet]({{ '/teaching/tasks/accounts-task5/' | relative_url }}) | Accounts |
+| 6 | API documentation page and a minimal external example client — [detail sheet]({{ '/teaching/tasks/accounts-task6/' | relative_url }}) | Accounts |
+| 7 | Unit and component tests for auth, the library, and the API — see [Unit 5: Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/) — [detail sheet]({{ '/teaching/tasks/accounts-task7/' | relative_url }}) | Testing |
+| 8 | Open one PR into a module you don't own — [detail sheet]({{ '/teaching/tasks/accounts-task8/' | relative_url }}) | Cross-module |
+| 9 | Formally review one PR outside your own module — [detail sheet]({{ '/teaching/tasks/accounts-task9/' | relative_url }}) | Cross-module |
+| 10 | Document one real design decision (session vs. token design, review-pipeline trade-off) for the oral defense — [detail sheet]({{ '/teaching/tasks/accounts-task10/' | relative_url }}) | Process |
 
 **On headcount:** this board uses the confirmed 8-student, five-team split
 (2+1+2+1+2 — three pairs on the richest areas, two solos on the most bounded ones). If your actual

@@ -19,6 +19,11 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+collections:
+  tasks:
+    output: true
+    permalink: /teaching/tasks/:path/
+
 exclude:
   - Gemfile
   - Gemfile.lock

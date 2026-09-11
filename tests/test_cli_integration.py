@@ -129,6 +129,27 @@ class TestCLIIntegration(unittest.TestCase):
         self.assertIn("<missing>", result.output)
         self.assertNotIn("human: 2", result.output)
 
+    def test_bridge_subtyper_registered(self):
+        """
+        F1 regression (2026-09-10, DevIAC Phase CH0 readiness): the `bridge`
+        sub-typer was defined in `cli.py` but never registered via
+        `app.add_typer(bridge_app, name="bridge")`, leaving `bridge quote-out`
+        and `bridge proposal-in` unreachable from the CLI surface even though
+        the underlying `TTODBridge` module worked. See
+        deviac/docs/DEV_PLAN/PHASE-CH/PHASE-CH0-READINESS-REPORT.md § F1.
+
+        This test would have failed against the pre-fix code with exit_code 2
+        ('No such command bridge'). It fails now if the wiring is dropped again.
+        """
+        result = self.runner.invoke(app, ["bridge", "--help"])
+        self.assertEqual(result.exit_code, 0, result.output)
+        self.assertIn("quote-out", result.output)
+        self.assertIn("proposal-in", result.output)
+        # And the sub-commands must themselves be reachable (not just listed).
+        for sub in ("quote-out", "proposal-in"):
+            sub_result = self.runner.invoke(app, ["bridge", sub, "--help"])
+            self.assertEqual(sub_result.exit_code, 0, sub_result.output)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -8,11 +8,16 @@ permalink: /teaching/tasks/
 # Every task, expanded
 
 The [team task board]({{ '/teaching/assignments/#team-task-board' | relative_url }}) lists ~10
-tasks per team. This page is the detail behind each one — grounded directly in the `ASSIGNMENT.md`
-file that ships inside the module's own code, not a separate retelling of it. Three tasks recur
-identically on every team's list (cross-module PR, cross-module review, defense documentation) —
-[explained once, near the bottom](#the-three-recurring-tasks), linked from every team section
-instead of repeated five times.
+tasks per team. This page is the summary behind each one — grounded directly in the
+`ASSIGNMENT.md` file that ships inside the module's own code, not a separate retelling of it.
+Every task also has its own **full detail sheet** now — curriculum map, a worked example from the
+real TTOD app, success criteria, and quality criteria — linked from the board's own rows, or
+reachable directly at `/teaching/tasks/<team-seam>-task<n>/` (e.g.
+[`/teaching/tasks/oracle-task4/`]({{ '/teaching/tasks/oracle-task4/' | relative_url }})). This page
+stays the fast overview; the detail sheets are where "what does 'done' actually mean" gets
+answered in full. Three tasks recur identically on every team's list (cross-module PR, cross-module
+review, defense documentation) — [explained once, near the bottom](#the-three-recurring-tasks),
+linked from every team section instead of repeated five times.
 
 ## Team 1 — Content, i18n & Proposals UI
 
@@ -64,7 +69,9 @@ this branch yet — that absence is deliberate, not a bug to report.
   into the same CI job every other module's tests run in.
 - *What it includes:* one unit test (e.g., a pure content-filtering function) and one component
   test (a rendered route or the form), matching the Testing Trophy layering the whole project uses
-  — see [Team 2's testing task](#team-2--knowledge-graph) for the shared philosophy.
+  — see [Team 2's testing task](#team-2--knowledge-graph) for the shared philosophy, and
+  [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)
+  for where that doctrine comes from.
 - *What has to be done:* pick the cheapest layer that gives real confidence — do not write a heavy
   E2E test for something a unit test already proves.
 
@@ -122,7 +129,9 @@ motion are deliberately absent.
   a selection).
 - *What it includes:* this is the shared Testing Trophy approach every team uses — see the
   project's [testing philosophy]({{ '/guides/contributing/' | relative_url }}) for what "the
-  cheapest useful layer" means in practice.
+  cheapest useful layer" means in practice, and
+  [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)
+  for the curriculum lesson it's drawn from.
 - *What has to be done:* test the pure logic directly (fast, no rendering needed), and test the
   rendered island only for what a unit test can't cover (actual DOM interaction).
 
@@ -183,7 +192,9 @@ deliberately absent.
 **Task 7 — Unit and component tests**
 - *Visible result:* the terminal and its streaming logic each have at least one real test.
 - *What it includes:* testing the streaming state machine (a unit-level concern) separately from
-  the rendered terminal's behavior (component-level).
+  the rendered terminal's behavior (component-level) — the same Testing Trophy layering from
+  [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)
+  every team's own testing task uses.
 - *What has to be done:* do not poll the stream endpoint or collapse SSE into one buffered
   response just to make testing easier — test the real streaming behavior.
 
@@ -238,7 +249,9 @@ CI/CD pipeline.
 **Task 6 — Unit and component tests**
 - *Visible result:* the offline boundary (queue + banner) has at least one real test.
 - *What it includes:* testing the queue's ordering/flush logic directly, separately from the
-  banner's visual online/offline state.
+  banner's visual online/offline state — the same Testing Trophy layering from
+  [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)
+  every team's own testing task uses.
 - *What has to be done:* simulate `online`/`offline` events in the test rather than requiring an
   actual network change to verify behavior.
 
@@ -303,7 +316,9 @@ whose area has no existing reference code to reduce — it's new, not a subtract
 **Task 7 — Unit and component tests**
 - *Visible result:* auth, the library, and the API each have at least one real test.
 - *What it includes:* a test that a logged-out request to a protected route is actually rejected
-  — not just that a logged-in one succeeds.
+  — not just that a logged-in one succeeds — following the same Testing Trophy layering from
+  [Unit 5 — Testing strategy](https://ruvebal.github.io/web-atelier-udit/lessons/en/feii/unit-5-testing-strategy/)
+  every team's own testing task uses.
 - *What has to be done:* never store the session in `localStorage`, never hand-roll password
   hashing, never reuse the session token as the bearer token — these are prohibited shortcuts, not
   style preferences, and a test that only checks the happy path won't catch them.

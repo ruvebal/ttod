@@ -93,6 +93,14 @@ Every TTOD project session (from Week 1 onward) runs the same three-part structu
 
 ## 3. Sprint & session chart — tomorrow through the defense
 
+**Superseded for Sessions 3–6 (2026-09-11):** the cohort ran three 2-hour sessions (not this
+chart's Session 1 + Session 2) and reached Unit 3 content ahead of this schedule. Sessions 3–6
+below (U4/U5/U6/U7) are replaced by
+[`PHASE-V-DEV-SPRINT-AND-HACKATHON-TIMELINE.md`](PHASE-V-DEV-SPRINT-AND-HACKATHON-TIMELINE.md) — a
+continuous 3-week dev sprint (the third week run as a 4-hour hackathon), then U7, then the
+defense. Sessions 1–2 below are kept for the historical record; read them as already-completed,
+not as remaining plan.
+
 Each row is one class session. "Pulls from backlog" cites the epic/story IDs from
 `PHASE-V-PRODUCT-BACKLOG-AND-JOURNEYS.md` §5 so lab time has a concrete pull list, not a vague
 "keep building."

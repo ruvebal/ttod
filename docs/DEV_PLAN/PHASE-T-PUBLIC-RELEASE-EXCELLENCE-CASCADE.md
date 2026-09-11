@@ -395,7 +395,7 @@ Use the following prompt for Phase T execution:
 
 | Phase | State at creation | Reason |
 | --- | --- | --- |
-| RC0 | VERIFYING | baseline and decisions filed in `PHASE-RC0-REPORT.md`; awaits independent verification and product-owner promotion |
+| RC0 | **BLOCKED — cold review found the baseline stale** | [`PHASE-RC0-COLD-REVIEW.md`](PHASE-RC0-COLD-REVIEW.md), F0 (2026-09-11): `ttod.yml`'s digest and `HEAD` have both moved (22 commits, real canonical-data mutation) since `PHASE-RC0-REPORT.md` froze its baseline. Not promotable as-written; needs a fresh RC0 pass against current `HEAD`, folding in the review's F1–F5 clarity fixes while re-freezing. Originally: VERIFYING, awaiting independent verification. |
 | RC1 | BLOCKED | waits on RC0 audience/scope decisions |
 | RC2 | BLOCKED | waits on RC0 retention and disclosure decisions |
 | RC3 | BLOCKED | waits on RC0 boundary decision and confirmation of non-overlap with R6 |

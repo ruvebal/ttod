@@ -39,8 +39,7 @@ hits each.
 
 ## Owner actions this exposed (not done by Phase Y)
 
-1. Re-run the ingest against the **`deviac`** database (or repoint the pipeline: an Athanor-side
-   `DATABASE_URL` leaked into the ingest step), **and** make the pipeline's smoke check assert
+1. Re-run the ingest against the **`deviac`** database (the log shows the ingest targeted `athanor`; *why* is not established — check the pipeline's environment), **and** make the pipeline's smoke check assert
    `len(results) > 0` — it currently passes on HTTP status alone while returning `results: []`.
    Otherwise drop lane 1 from the pack's `SKILL.md`.
 2. If Lao Tzu grounding should ever be cited, assert bibliographic metadata for the chosen edition

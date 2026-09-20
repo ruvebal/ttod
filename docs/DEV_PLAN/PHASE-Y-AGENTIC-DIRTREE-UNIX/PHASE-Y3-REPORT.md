@@ -1,6 +1,6 @@
 # PHASE-Y3-REPORT.md
 
-**Status:** VERIFYING — first cold review said AMEND (2 P1); amended below, re-review pending
+**Status:** DONE (2026-09-20) — first review AMEND (2 P1), amended, re-review PASS. See [`PHASE-Y3-COLD-REVIEW.md`](PHASE-Y3-COLD-REVIEW.md)
 **Runbook:** [`PHASES/Y3-compose-lens-ops.md`](PHASES/Y3-compose-lens-ops.md)
 **Deliverable:** [`OPS-dear-tree-compose.md`](OPS-dear-tree-compose.md)
 

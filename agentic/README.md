@@ -1,29 +1,65 @@
-# `agentic/` — TTOD's tool-neutral agent harness
+# `agentic/` — the legend
 
-Canonical edit-home for TTOD-scoped agent rules, skills, and packs. `.cursor/` and `.claude/`
-load these bodies through thin landings (real per-tool frontmatter, a redirect body) — they are
-not a second copy. See [`../AGENTS.md`](../AGENTS.md) for the root contract and full discovery
-map (agent harness · product MCP · Astro/Oracle · studio ttod-bridge), and
-[`../docs/DEV_PLAN/DECISIONS/W0-2026-09-18-AGENTIC-HOME.md`](../docs/DEV_PLAN/DECISIONS/W0-2026-09-18-AGENTIC-HOME.md)
-for why each item below lives where it does.
+> "The module that knows its boundaries serves the whole. The module that knows no boundaries
+> becomes the whole—and collapses under its own weight." — TTOD `arch-001`
+>
+> "A template is not a constraint. It is a garden where a thousand flowers can bloom in
+> harmony." — TTOD `arch-014`
+>
+> "Linus's open development policy was the very opposite of cathedral-building." — Raymond,
+> Eric S. 2001. *The Cathedral and the Bazaar: Musings on Linux and Open Source by an
+> Accidental Revolutionary*. Rev. ed. O'Reilly, PDF p. 42.
+> (A metaphor for how this tree grows — planned names, emergent packs — not evidence for it.)
 
-**Product MCP lives at [`../services/mcp/`](../services/mcp/)** — read-only FastMCP for the
-Oracle/Astro stack. It is a runtime protocol, not a skill pack; it is never nested here.
+`agentic/` is TTOD's tool-neutral **edit-home** for agent-facing rules, skills, and packs.
+`.cursor/` and `.claude/` are doorways that load these bodies; they are never a second copy.
+Root contract and discovery map: [`../AGENTS.md`](../AGENTS.md). Why each item lives where it
+does: [`W0`](../docs/DEV_PLAN/DECISIONS/W0-2026-09-18-AGENTIC-HOME.md). Why this legend exists:
+[Phase Y](../docs/DEV_PLAN/PHASE-Y-AGENTIC-DIRTREE-UNIX/INDEX.md).
 
-## Contents
+**Product MCP lives at [`../services/mcp/`](../services/mcp/)** — the running app's own
+read-only FastMCP server. It is a runtime protocol, not a skill pack, and is never nested here.
 
-| Path | What it is | TTOD-scoped? |
+## How to place something (read this before adding anything)
+
+Treat `agentic/` like `/usr/local` with a written FHS. Four kinds of thing exist:
+
+| Kind | Path shape | It belongs here when… | Example |
+| --- | --- | --- | --- |
+| **Pack** | `agentic/<name>/` with a `PACK.md` at its root — **mandatory**; no `PACK.md`, not a pack | ≥2 surfaces must move together (skill + script, rule + skill, agent + skill), **or** a CI path depends on it, **or** it is a multi-file harness | `report-steward/`, `ide-mcp/` |
+| **Leaf rule** | `agentic/rules/<name>.md` | one always-on discipline; one landing; no companion script | `rules/ttod-editing.md` |
+| **Leaf skill** | `agentic/skills/<name>/SKILL.md` | one named workflow, one surface; promote to a pack when a second surface appears | `skills/public-docs-i18n/` |
+| **Landing** | `.cursor/…`, `.claude/…` | frontmatter + a redirect, nothing else | see below |
+
+So: a new always-on YAML rule → `rules/`. A new one-off workflow → `skills/<name>/`. A new
+harness with a script → its own pack directory with a `PACK.md`. Inside a pack, `rules/` and
+`skills/` are that pack's own — they are **not** the top-level ones.
+
+**Never rename `report-steward/`** — CI (`public-docs-pages.yml`) runs
+`report-steward/scripts/check_public_privacy.py` at that exact path.
+
+Cite-not-absorb: studio skills (`ttod-bridge`, `cascade-forge`) and the two cascade subagents
+live outside this repository and stay there; TTOD points at them and never forks them.
+
+## What exists today
+
+| Path | Kind | Note |
 | --- | --- | --- |
-| `report-steward/` | Evidence-report workflow + public-artifact privacy watcher. CI (`public-docs-pages.yml`) depends on `report-steward/scripts/check_public_privacy.py` at this exact path — do not move it. | Yes — already correctly homed before Phase W |
-| `rules/ttod-editing.md` | Strict TTOD YAML editing discipline (schema v3, IDs, `proposal`/`add` CLI path, bilingual `lang`/`translation_of` invariants). Landing: [`.cursor/rules/ttod-editing.mdc`](../.cursor/rules/ttod-editing.mdc). | Yes |
-| `skills/public-docs-i18n/SKILL.md` | Authoring/translating the bilingual `docs/public` Jekyll site. Landing: [`.cursor/skills/public-docs-i18n/SKILL.md`](../.cursor/skills/public-docs-i18n/SKILL.md). | Yes |
-| `agents/` | Reserved, currently empty. `cascade-phase-executor` and `cascade-cold-reviewer` are cross-repo cascade-forge infrastructure, not TTOD content — they stay canonical at `~/src/.agents/agents/` per W0 §2. Nothing moves here unless a genuinely TTOD-only agent is authorized later. | N/A |
-| `ide-mcp/` | Not yet created — student IDE MCP harness (Astro + Svelte docs MCP, `llms.txt`, verify script) ships under AG6. | AG6 |
+| `report-steward/` | pack | evidence reports + the public-privacy watcher (CI-locked path). Its `agent/report-steward.md` is source material with no landing — packs are not auto-installed |
+| `ide-mcp/` | pack | student IDE MCP harness. Its `mcp.cursor.json` is mirrored **byte-for-byte** to `.cursor/mcp.json` (JSON cannot redirect); `verify-ide-mcp.py` enforces it |
+| `rules/ttod-editing.md` | leaf rule | strict YAML editing discipline |
+| `skills/public-docs-i18n/` | leaf skill | bilingual public-docs authoring |
+| `agents/` | reserved, absent | nothing TTOD-only exists yet; the cascade subagents are studio-wide |
+| `lao-tzu-tao-compose/` | pack, **local and untracked** | generated by the bibliography pipeline; not committed until its privacy findings are sanitized |
 
-## What is deliberately absent
+Landings that exist: `.cursor/rules/ttod-editing.mdc` and `.cursor/skills/public-docs-i18n/SKILL.md`
+(redirects), `.cursor/mcp.json` (the byte-copy exception above), and
+`.claude/agents/cascade-{phase-executor,cold-reviewer}.md` (redirects to the studio agents home).
 
-- No `.cursor`/`.claude` fork of the two cascade subagents (see `agents/` row above).
-- No copy of studio-only skills (`ttod-bridge`, `cascade-forge`) — cited from `AGENTS.md` and
-  this pack's own docs, never absorbed. See W0's cite-but-do-not-absorb list.
-- No `services/mcp/` content — that is application infrastructure, discovered through the map
-  above, not nested under this tree.
+## Harness honesty
+
+Cascades over this tree are orchestrated with the studio's `cascade-forge` skill and its
+`cascade-*` subagents, kept outside this repository. There is no `agentic/` directory in the
+sibling DevIAC repository; do not assume one. Layout changes are proposed through a branch and a
+pull request, and merged only by a named human — the same two-touchpoint discipline as a quote
+proposal, on a different write surface. Nothing here mutates `ttod.yml`.

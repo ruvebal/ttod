@@ -6,7 +6,7 @@ official, vendor-maintained servers only. Student-facing setup lives in [`README
 | Surface | Purpose |
 | --- | --- |
 | `mcp.cursor.json` | edit-home for the committed server list |
-| `../../.cursor/mcp.json` | landing Cursor actually reads — a **byte-identical copy**, not a redirect (JSON cannot forward); `verify-ide-mcp.py` enforces equality |
+| `../../.cursor/mcp.json` | landing Cursor actually reads — an **identical copy**, not a redirect (JSON cannot forward); `verify-ide-mcp.py` enforces semantic equality (parsed JSON, so whitespace or key order alone would not trip it) |
 | `examples/github.json` | opt-in-only GitHub server block (credentialed, never in the default) |
 | `llms/` | vendored, digest-checked offline docs index |
 | `scripts/verify-ide-mcp.py` | offline config + official-servers allowlist gate (CI-safe) |

@@ -5,7 +5,7 @@ Planning pack only until product-owner authorization. Author: orchestrator · 20
 
 # Phase Y — Agentic dirtree Unix tidy (“Dear Tree”)
 
-**Status:** PROPOSED · plan audited and amended 2026-09-20 (see § Plan audit). No moves yet, no `ttod.yml` mutation.
+**Status:** AUTHORIZED 2026-09-20 · plan audited and amended (see § Plan audit) · Y0 DONE. No moves yet, no `ttod.yml` mutation.
 **Depends on:** Phase W COMPLETE (AG0–AG6 on `main`). Phase X optional (docs guides).
 **Programme letter:** Y (Q–X taken).
 **Author:** Rubén Vega Balbás PhD · cascade drafted 2026-09-20
@@ -52,7 +52,8 @@ Treat `agentic/` like `/usr/local` with a written FHS:
 | **Pack** | `agentic/<pack-name>/` with a `PACK.md` at its root (mandatory — a directory without one is not a pack) | ≥2 surfaces that must move together (skill+rule, or skill+script, or agent+skill) **or** CI/lock path **or** multi-file harness | `report-steward`, `ide-mcp` (gets its `PACK.md` in Y0), `lao-tzu-tao-compose` (local, untracked) |
 | **Leaf rule** | `agentic/rules/<name>.md` | Single always-on discipline; one Cursor landing; no companion scripts | `ttod-editing.md` |
 | **Leaf skill** | `agentic/skills/<name>/SKILL.md` | Single named workflow; may grow into a pack later when a second surface appears | `public-docs-i18n` (borderline — Y1 decides promote-to-pack vs keep leaf) |
-| **Landing** | `.cursor/` / `.claude/` | Frontmatter + redirect only; never a second body | already W policy |
+| **Landing** | `.cursor/` / `.claude/` | Frontmatter + redirect only; never a second body (sole exception: `.cursor/mcp.json`, an identical copy because JSON cannot redirect) | already W policy |
+| **Reserved** | `agentic/agents/` | Absent until a genuinely TTOD-only agent exists; the cascade subagents are studio-wide (W0 §2) | — |
 | **Cite-not-absorb** | outside TTOD | Studio skills (`ttod-bridge`, `cascade-forge`) stay studio | W0 list |
 
 **Unix maxims encoded:**

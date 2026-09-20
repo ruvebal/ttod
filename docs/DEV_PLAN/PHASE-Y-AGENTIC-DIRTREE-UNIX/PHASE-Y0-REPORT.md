@@ -1,6 +1,6 @@
 # PHASE-Y0-REPORT.md
 
-**Status:** VERIFYING — no self-certified DONE; awaiting cold review + legibility test
+**Status:** DONE (2026-09-20) — cold review PASS 7/7 + legibility test PASS; three P2s fixed. See [`PHASE-Y0-COLD-REVIEW.md`](PHASE-Y0-COLD-REVIEW.md)
 **Runbook:** [`PHASES/Y0-criteria-and-readme.md`](PHASES/Y0-criteria-and-readme.md)
 **Branch:** `agentic/dear-tree-tidy`
 

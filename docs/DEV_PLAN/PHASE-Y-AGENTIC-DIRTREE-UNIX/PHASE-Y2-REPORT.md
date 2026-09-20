@@ -1,6 +1,6 @@
 # PHASE-Y2-REPORT.md
 
-**Status:** VERIFYING — awaiting legibility re-run + cold review (which also re-checks Y1's amendments)
+**Status:** DONE (2026-09-20) — cold review PASS + legibility re-run PASS; five nits fixed. See [`PHASE-Y2-COLD-REVIEW.md`](PHASE-Y2-COLD-REVIEW.md)
 **Runbook:** [`PHASES/Y2-execute-moves.md`](PHASES/Y2-execute-moves.md)
 
 ## Moves

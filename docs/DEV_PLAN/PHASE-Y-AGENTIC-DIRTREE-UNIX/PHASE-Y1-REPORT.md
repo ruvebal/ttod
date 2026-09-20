@@ -1,6 +1,6 @@
 # PHASE-Y1-REPORT.md
 
-**Status:** VERIFYING — cold review returned "amend first"; amendments applied, re-checked inside Y2's review
+**Status:** DONE (2026-09-20) — cold review (two passes; first said amend, reversal applied, second PASS). See [`PHASE-Y1-COLD-REVIEW.md`](PHASE-Y1-COLD-REVIEW.md)
 **Runbook:** [`PHASES/Y1-layout-decision.md`](PHASES/Y1-layout-decision.md)
 **Decision:** [`DECISIONS/Y1-2026-09-20-AGENTIC-LAYOUT.md`](../DECISIONS/Y1-2026-09-20-AGENTIC-LAYOUT.md)
 
@@ -20,8 +20,8 @@ The first draft **promoted** `public-docs-i18n` to a pack. The review (asked to 
 case in earnest) found the rationale oversold: no new evidence since Y0 had called the skill
 borderline; the coupling is one-way; promotion needs a code edit and empties `agentic/skills/`; and
 the option "pack that only indexes the script" had not been weighed. The row was **reversed**.
-Amendments applied: rejected alternatives recorded; the runbook's "one surface" count and its
-reversal acknowledged in the Amendment section; `agents/` described as *inaccurate* (the directory
+Amendments applied: rejected alternatives recorded; the runbook's "one surface" count and the first draft's
+reversal of it acknowledged in the decision file's Amendment section; `agents/` described as *inaccurate* (the directory
 does not exist), not "ambiguous"; the weakest control claim softened; both legibility transcripts
 saved with an honest caveat (one small-model sample each); pack criterion tightened.
 

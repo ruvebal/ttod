@@ -38,7 +38,7 @@ with one surface), argued the opposite case, and observed that option B had not 
 weighed. On that evidence the row was reversed to C. The first draft also called the criterion
 "decorative" if the skill stayed a leaf; that was rhetoric, not an argument, and is withdrawn.
 
-## Evidence that "no structural change" is right
+## Evidence that the legend, not the layout, was the defect
 
 Legibility test with a negative control (transcripts saved in
 [`PHASE-Y-LEGIBILITY-TRANSCRIPTS.md`](../PHASE-Y-AGENTIC-DIRTREE-UNIX/PHASE-Y-LEGIBILITY-TRANSCRIPTS.md)).
@@ -48,6 +48,10 @@ reader given the Y0 README found none. Verified against `main`'s README by the r
 as "reserved, currently empty" although no such directory exists (inaccurate, not merely
 ambiguous); the "deliberately absent" wording about the cascade subagents is the weakest point
 (only misleading if a redirect stub is taken for a fork). Also misfiled: `.cursor/mcp.json`.
+
+What this evidence does **not** show: that flat packs are the *best* layout. Nesting under
+`agentic/packs/` was never tested; the decision is only that the flat tree, once legible, gives
+the reader no reason to pay for another level.
 
 ## Non-authorization
 

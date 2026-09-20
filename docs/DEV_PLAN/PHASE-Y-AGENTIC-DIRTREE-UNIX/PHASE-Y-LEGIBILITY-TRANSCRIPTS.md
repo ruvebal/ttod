@@ -58,6 +58,22 @@ test plus `find agentic -maxdepth 2` and the landing listing.
    agentic/agents/ as "Reserved, currently empty" but no such directory exists.
 ```
 
+## Run 3 — final tree (README at Y2, commit `00349309`) — PASS
+
+```
+1. ide-mcp: pack - student IDE MCP harness multi-file pack
+   lao-tzu-tao-compose: pack - generated bibliography pack local and untracked
+   report-steward: pack - CI-locked evidence reports public privacy watcher
+   rules: other - container for leaf rules never packs
+   skills: other - container for leaf skills never packs
+2. .claude/agents/cascade-{cold-reviewer,phase-executor}.md: landing (redirect)
+   .cursor/mcp.json: byte-copy exception (JSON cannot redirect)
+   .cursor/rules/ttod-editing.mdc, .cursor/skills/public-docs-i18n/SKILL.md: landing (redirect)
+3. (a) agentic/rules/<name>.md  (b) agentic/skills/<name>/SKILL.md  (c) agentic/<name>/PACK.md
+4. Never rename report-steward/ — CI runs report-steward/scripts/check_public_privacy.py there.
+5. Nothing.
+```
+
 Caveat, stated plainly: the readers are a single small-model sample each, and the listing given
 to Run 2 already contained `ide-mcp/PACK.md` (added in Y0). The control shows the test can fail on
 the old README; it is not a statistical claim.

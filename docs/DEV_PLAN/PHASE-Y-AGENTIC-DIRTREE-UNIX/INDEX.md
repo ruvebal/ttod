@@ -70,7 +70,7 @@ Treat `agentic/` like `/usr/local` with a written FHS:
 agentic/
   README.md                 ← legend + epigraphs + criteria table (live)
   rules/                    ← leaf rules only
-  skills/                   ← leaf skills only (or empty if all promoted)
+  skills/                   ← leaf skills only (today: public-docs-i18n)
   report-steward/           ← pack (CI-locked path — do not rename without CI PR)
   ide-mcp/                  ← pack
   lao-tzu-tao-compose/      ← pack (compose lens; not a second rules namespace)

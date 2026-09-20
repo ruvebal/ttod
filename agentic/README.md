@@ -35,8 +35,8 @@ So: a new always-on YAML rule → `rules/`. A new one-off workflow → `skills/<
 harness with a script → its own pack directory with a `PACK.md`. Inside a pack, `rules/` and
 `skills/` are that pack's own — they are **not** the top-level ones.
 
-**Never rename `report-steward/`** — CI (`public-docs-pages.yml`) runs
-`report-steward/scripts/check_public_privacy.py` at that exact path.
+**Never rename `report-steward/`** — its `scripts/check_public_privacy.py` is hard-wired in CI
+(`public-docs-pages.yml`), in the `Makefile`, and in `tests/test_public_privacy_watcher.py`.
 
 Cite-not-absorb: studio skills (`ttod-bridge`, `cascade-forge`) and the two cascade subagents
 live outside this repository and stay there; TTOD points at them and never forks them.

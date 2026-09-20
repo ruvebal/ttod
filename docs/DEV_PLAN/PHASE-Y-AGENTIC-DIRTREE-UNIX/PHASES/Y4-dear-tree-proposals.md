@@ -1,5 +1,8 @@
 # Y4 — Dear Tree proposals (human gate)
 
+**Amended 2026-09-20 after a dry run** — the plan's accept path did not exist as written; see
+[`PHASE-Y4-REPORT.md`](../PHASE-Y4-REPORT.md) for what was measured and the verified recipe.
+
 ## Already staged (2026-09-20) — review these first
 
 Under `~/src/.cursor/skills/ttod-bridge/pending/`:
@@ -18,8 +21,9 @@ All `origin: blackbox`, no `validated_by`.
 
 - Read the five staged files; confirm each is well-formed and still `origin: blackbox` with no
   `validated_by`.
-- Dry-run the import on a **disposable copy** of `ttod.yml` (never the live file) to show they
-  would pass `validate --strict`.
+- Dry-run the import → accept chain in a **disposable sandbox** (never the live file or the live
+  `proposals/`), with a reviewer id that cannot be mistaken for a person (`DRYRUN-NOT-A-HUMAN`), delete
+  the sandbox, and show the live hash unchanged.
 - Write `PHASE-Y4-REPORT.md` and leave the exact accept commands for the named human.
 
 The agent does **not** run `proposal accept`, does not supply a `--reviewer-id`, and does not
@@ -27,8 +31,11 @@ edit `collections`. Accepting is the human act; the collection edit is only vali
 
 ## Human steps
 
-1. `proposal import` / review / `proposal accept --reviewer-id …` (or studio accept path).
-2. Add collection only after IDs exist:
+1. Convert the staged YAML to proposal JSON (the staged `acceptance.command` lines are stale and will
+   not run), then `proposal import` → review → `proposal accept --reviewer-id <your id>`.
+2. **Collection — owner decision, not an agent step.** No CLI verb edits `collections`, and a hand-edit of
+   `ttod.yml` breaks the project contract. Skip it, accept a deliberate human hand-edit, or add a CLI
+   verb first. If (and only if) the owner chooses the hand-edit, after IDs exist:
 
 ```yaml
 dear_tree:

@@ -43,7 +43,8 @@ dear_tree:
   description: >-
     Quotes on dirtree coherence — naming homes, packs vs leaves,
     non-forcing structure (cathedral of names, bazaar of packs).
-  ids: [/* accepted ids */]
+  ids: [cc-XXX, arch-XXX]   # replace with the real accepted IDs; YAML comments here change the
+                            # snapshot's collection-policy digest, so keep this block bare
 ```
 
 3. `python cli.py validate --strict` + `stats --check`.

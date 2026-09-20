@@ -5,7 +5,7 @@ Planning pack only until product-owner authorization. Author: orchestrator · 20
 
 # Phase Y — Agentic dirtree Unix tidy (“Dear Tree”)
 
-**Status:** AUTHORIZED 2026-09-20 · plan audited and amended (see § Plan audit) · Y0 DONE · Y1 decided (flat packs; `public-docs-i18n` stays a leaf). No moves yet, no `ttod.yml` mutation.
+**Status:** AUTHORIZED 2026-09-20 · plan audited and amended (see § Plan audit) · Y0–Y3 DONE · Y4 agent work DONE (human accept gate still open). Flat packs; `public-docs-i18n` stays a leaf; no directory moved, no `ttod.yml` mutation.
 **Depends on:** Phase W COMPLETE (AG0–AG6 on `main`). Phase X optional (docs guides).
 **Programme letter:** Y (Q–X taken).
 **Author:** Rubén Vega Balbás PhD · cascade drafted 2026-09-20

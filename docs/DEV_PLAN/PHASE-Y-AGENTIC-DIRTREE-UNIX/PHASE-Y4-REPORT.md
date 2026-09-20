@@ -1,6 +1,6 @@
 # PHASE-Y4-REPORT.md
 
-**Status:** VERIFYING — awaiting cold review. **The human gate is still closed**: nothing was accepted.
+**Status:** DONE for the agent's work (2026-09-20) — cold review PASS, see [`PHASE-Y4-COLD-REVIEW.md`](PHASE-Y4-COLD-REVIEW.md). **The human gate is still closed**: nothing was accepted.
 **Runbook:** [`PHASES/Y4-dear-tree-proposals.md`](PHASES/Y4-dear-tree-proposals.md)
 
 ## What the agent did (and only this)
@@ -26,6 +26,15 @@ did not touch `collections`.
 | 2 | Staged files are YAML; `proposal import` takes proposal **JSON** (`schema/proposal.schema.json`) | A conversion is needed. A verified converter is in the appendix; `subsection`/`teaches` survive because the schema carries them (`cli.py proposal create` and `add` cannot set them) |
 | 3 | Runbook step 2 says to add a `collections.dear_tree` block. **No CLI verb edits `collections`**, and hand-editing `ttod.yml` is forbidden by the project contract | Left undone. **Owner decision:** skip the collection, accept a deliberate human hand-edit of `collections` only, or add a CLI verb (out of scope here) |
 | 4 | Provenance strings say `lens:lao-tzu-tao-compose(scholar-lao-tzu)`, but Y3 showed only Athanor answers for that lens (vectors empty, cite `[BIBLIO-GAP]`) | Not a defect — no Lao Tzu cite is claimed — but the reviewer should know the lens grounding is Athanor-only |
+
+## What the converter added that the staged files did not contain
+
+Text, section, level, tags, `subsection` and `teaches` carry over unchanged. The converter also
+**asserts**: `lang: en`; a `rights` block (CC-BY-NC-SA-4.0, holder `ruvebal@crea-comm.net`,
+`permission_basis: rights-holder-relicense-2026-08-18` — identical on all 460 live quotes, so
+defensible, but still a rights statement made by an agent); an `authorship_assertion` built from the
+staged `source` string; and a `generation_method` label (which does not reach the accepted quote).
+**The human should confirm the rights block and `lang` before accepting.**
 
 ## For the human reviewer (advisory, not a verdict)
 

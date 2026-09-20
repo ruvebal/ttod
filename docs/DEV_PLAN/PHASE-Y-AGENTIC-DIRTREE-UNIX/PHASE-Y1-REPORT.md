@@ -1,29 +1,35 @@
 # PHASE-Y1-REPORT.md
 
-**Status:** VERIFYING — awaiting cold review
+**Status:** VERIFYING — cold review returned "amend first"; amendments applied, re-checked inside Y2's review
 **Runbook:** [`PHASES/Y1-layout-decision.md`](PHASES/Y1-layout-decision.md)
 **Decision:** [`DECISIONS/Y1-2026-09-20-AGENTIC-LAYOUT.md`](../DECISIONS/Y1-2026-09-20-AGENTIC-LAYOUT.md)
 
 ## Checklist result
 
-- [x] Flat siblings — *adopted from the recommended default*
-- [x] `public-docs-i18n` → **pack** — *departs from the default; evidence: skill + a script only it uses*
-- [x] Collection `dear_tree` — *adopted from the recommended default*
+- [x] Flat siblings — recommended default adopted
+- [x] `public-docs-i18n` → **stays a leaf skill**, script dependency declared — recommended default adopted
+- [x] Collection `dear_tree` — recommended default adopted
 - [x] `report-steward/` frozen
 
-The product owner delegated the full Y cycle on 2026-09-20; these rows are adopted on that
-delegation, not chosen row-by-row, and may be overturned before Y2 merges.
+The product owner delegated the full Y cycle on 2026-09-20; every row is the plan's recommended
+default, adopted on that delegation rather than chosen row-by-row. Any may be overturned.
 
-## Reconsidered upcoming phases (from Y0's findings)
+## What the cold review changed
 
-- **Y2 is no longer a no-op.** One real move: the script into the pack, with its root constant
-  fixed and the landing retargeted; then the legibility test on the final tree.
-- **New finding:** `main`'s `agentic/README.md` has been stale since AG2 (says `ide-mcp/` does not
-  exist). Y0's rewrite fixes it; the PR should say so.
+The first draft **promoted** `public-docs-i18n` to a pack. The review (asked to argue the opposite
+case in earnest) found the rationale oversold: no new evidence since Y0 had called the skill
+borderline; the coupling is one-way; promotion needs a code edit and empties `agentic/skills/`; and
+the option "pack that only indexes the script" had not been weighed. The row was **reversed**.
+Amendments applied: rejected alternatives recorded; the runbook's "one surface" count and its
+reversal acknowledged in the Amendment section; `agents/` described as *inaccurate* (the directory
+does not exist), not "ambiguous"; the weakest control claim softened; both legibility transcripts
+saved with an honest caveat (one small-model sample each); pack criterion tightened.
+
+## Reconsidered upcoming phases
+
+- **Y2 is again a documented no-op for moves** — one real content edit remains: the README's
+  `public-docs-i18n` row names the script it calls, and the criterion text is tightened. Then verify
+  landings resolve and re-run the legibility test on the final tree.
+- The hazards the review listed for a promotion (script root constant, `ttod_core` import path,
+  landing retarget) are moot under the leaf decision; they are kept in the review record.
 - Y3/Y4 unchanged.
-
-## Evidence
-
-Negative-control legibility run (old README → 3 contradictions found; new README → none), and
-the `git grep` showing the script's only consumer is the skill — both in the decision file.
-No file moved in this phase.

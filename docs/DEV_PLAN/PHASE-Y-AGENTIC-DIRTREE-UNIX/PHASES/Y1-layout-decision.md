@@ -8,11 +8,11 @@ a documented no-op. If the test failed, the failure text says what to move.
 
 ## Decision checklist (product owner — pre-filled with the recommended defaults; owner may overturn)
 
-- [ ] Keep packs as **flat siblings** under `agentic/` (recommended) · or nest under `agentic/packs/`
-- [ ] `public-docs-i18n`: keep as **leaf skill** · or promote to **pack** with `PACK.md`
-      (criterion: ≥2 surfaces that must move together — today it has one)
-- [ ] Collection id: `dear_tree` (recommended) · `dirtree_wisdom` · other: ________
-- [ ] Confirm `report-steward/` path **frozen** (CI)
+- [x] Keep packs as **flat siblings** under `agentic/` (recommended) · or nest under `agentic/packs/`
+- [x] `public-docs-i18n`: keep as **leaf skill** · or promote to **pack** with `PACK.md`
+      (decided: leaf; it calls a standalone repo-level CLI, one-way coupling — see decision)
+- [x] Collection id: `dear_tree` (recommended) · `dirtree_wisdom` · other: ________
+- [x] Confirm `report-steward/` path **frozen** (CI)
 
 ## Deliverable
 

@@ -1,6 +1,7 @@
 # Y1 decision — agentic layout: flat packs; `public-docs-i18n` stays a leaf
 
 **Status:** FROZEN 2026-09-20, amended after cold review the same day (see § Amendment).
+**Row 2 is superseded by [Y5](Y5-2026-09-21-ONE-AXIS-TREE.md) — accepted by the owner 2026-09-21** (rows 1, 3, 4 stand). Kept unedited below as the record of why the leaf design was tried.
 **Owner:** `ruvebal@crea-comm.net` — may overturn any row.
 **Implementation authority:** Y2 only; no file moved by this record.
 

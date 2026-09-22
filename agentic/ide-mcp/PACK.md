@@ -1,3 +1,14 @@
+---
+name: ide-mcp
+purpose: Student IDE MCP client configuration (official servers only), its vendored llms index and offline/live verify scripts.
+surfaces: [mcp.cursor.json, examples, llms, scripts]
+landings: []
+mirrors: [mcp.cursor.json>.cursor/mcp.json]
+locks: []
+external_readers: []
+status: tracked
+---
+
 # Student IDE MCP Pack
 
 Project-level MCP client configuration for the coding agent inside a collaborator's editor —

@@ -5,7 +5,7 @@ Planning pack only until product-owner authorization. Author: orchestrator · 20
 
 # Phase Y — Agentic dirtree Unix tidy (“Dear Tree”)
 
-**Status:** AUTHORIZED 2026-09-20 · plan audited and amended (see § Plan audit) · Y0–Y3 DONE · Y4 agent work DONE (human accept gate still open). Flat packs; `public-docs-i18n` stays a leaf; no directory moved, no `ttod.yml` mutation.
+**Status:** AUTHORIZED 2026-09-20 · plan audited and amended (see § Plan audit) · Y0–Y3 DONE · Y4 agent work DONE (human accept gate still open). Y0–Y4 design: flat packs, `public-docs-i18n` a leaf (**the leaf part is superseded by Y5**); no directory moved, no `ttod.yml` mutation. **Y5 (2026-09-21, ACCEPTED by the owner, executed, VERIFYING — human gate open, cold review pending):** the owner still found the tree confusing after a model-legibility pass, so leaves are being abolished — every child of `agentic/` becomes a topic pack. See [Y5 decision](../DECISIONS/Y5-2026-09-21-ONE-AXIS-TREE.md) and [`PHASES/Y5`](PHASES/Y5-one-axis-tree.md).
 **Depends on:** Phase W COMPLETE (AG0–AG6 on `main`). Phase X optional (docs guides).
 **Programme letter:** Y (Q–X taken).
 **Author:** Rubén Vega Balbás PhD · cascade drafted 2026-09-20
@@ -41,9 +41,15 @@ Planning pack only until product-owner authorization. Author: orchestrator · 20
 | --- | --- |
 | Index (this) | entry + criteria + naming discussion |
 | Orchestrator | [`PHASE-Y-AGENTIC-DIRTREE-UNIX-CASCADE.md`](PHASE-Y-AGENTIC-DIRTREE-UNIX-CASCADE.md) |
-| Phases | [`PHASES/`](PHASES/) Y0→Y4 |
+| Phases | [`PHASES/`](PHASES/) Y0→Y5 |
+| Y5 decision | [`../DECISIONS/Y5-2026-09-21-ONE-AXIS-TREE.md`](../DECISIONS/Y5-2026-09-21-ONE-AXIS-TREE.md) |
 
 ## Placement criteria (Unix engineer · half agentic · half human)
+
+> **SUPERSEDED IN PART by Y5 (once accepted):** the *Leaf rule* and *Leaf skill* rows and the
+> *Reserved `agents/`* row below describe the Y1 design. Under Y5 there is one kind at the top
+> level — the pack — and `rules/`, `skills/`, `agents/`, `scripts/` exist only inside a pack.
+> Kept as the historical record; the live legend is `agentic/README.md`.
 
 Treat `agentic/` like `/usr/local` with a written FHS:
 
@@ -64,7 +70,7 @@ Treat `agentic/` like `/usr/local` with a written FHS:
 4. **Worse is better** — prefer a boring taxonomy over clever nesting that agents misread.
 5. **Release early / often** — ship the legend (README) before inventing a third layout style.
 
-## Target shape (proposed — freeze in Y0)
+## Target shape — Y1 design (superseded by Y5; see `PHASES/Y5` for the one-axis target)
 
 ```text
 agentic/
@@ -131,3 +137,6 @@ cold review after every phase. Branch `agentic/dear-tree-tidy`. Y4's accept step
 | 7 | Y1 assumed moves would follow; with the recommended defaults Y2 has zero moves | Y2 may be a **documented no-op**; Y1 decides only after Y0's legibility result |
 | 8 | Y4 blurred what an agent may do with proposals | Y4 now bounds the agent to read + disposable-copy dry run; accept needs `--reviewer-id` from a named human |
 | 9 | `lao-tzu-tao-compose/` listed as a pack but is untracked with watcher findings | Legend marks it "local, untracked"; not committed by Phase Y |
+| 10 | Y0's legibility test used a small model as the reader and passed, while the human owner still found the tree confusing — the instrument, not the tree, was trusted | Y5: the owner is the primary reader; the model test is secondary and never substitutes |
+| 11 | The tree mixed two axes (topic packs beside kind folders) and reused `rules`/`skills` at two depths | Y5: one axis; kind folders exist only inside a pack; enforced by `tests/test_agentic_tree.py` |
+| 12 | `report-steward/agent/` (singular) beside `rules/`, `skills/` and a README-reserved top-level `agents/` | Y5: plural `agents/` inside packs; no top-level reservation |

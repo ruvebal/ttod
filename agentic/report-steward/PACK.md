@@ -1,10 +1,21 @@
+---
+name: report-steward
+purpose: Evidence-state reporting workflow and the public-privacy watcher that CI runs.
+surfaces: [agents, skills, rules, scripts]
+landings: []
+mirrors: []
+locks: [.github/workflows/public-docs-pages.yml, Makefile, tests/test_public_privacy_watcher.py]
+external_readers: [The studio cascade-forge skill mentions this pack by name]
+status: tracked
+---
+
 # Evidence-State Reporting Pack
 
 Maintained by `@crea-comm.net` for reusable, agent-oriented engineering reports.
 
 | Surface | Purpose |
 | --- | --- |
-| `agent/report-steward.md` | bounded role and operating contract |
+| `agents/report-steward.md` | bounded role and operating contract |
 | `skills/evidence-state-report/SKILL.md` | reusable report workflow |
 | `skills/public-artifact-privacy/SKILL.md` | public/student artifact privacy gate |
 | `skills/evidence-state-report/references/report-contract.md` | report schema and claim tests |

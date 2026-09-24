@@ -15,7 +15,14 @@ _backup/
 .env.stg
 *.code-workspace
 .privacy-denylist
-
+.playwright-mcp/*
+.playwright-mcp/.*
+.playwright-mcp/console-*.log
+.playwright-mcp/console-*.log.*
+.playwright-mcp/console-*.log.*.*
+.playwright-mcp/console-*.log.*.*.*
+.playwright-mcp/console-*.log.*.*.*.*
+.playwright-mcp/console-*.log.*.*.*.*.*
 # Node / Astro build artifacts and caches (services/frontend and any future Node service)
 node_modules/
 dist/

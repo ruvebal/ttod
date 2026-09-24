@@ -2,7 +2,19 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class ProposalRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    text: str = Field(min_length=1, max_length=2000)
+    section: str = Field(min_length=1, max_length=100)
+    source: str | None = Field(default=None, min_length=1, max_length=2000)
+    level: Literal["beginner", "intermediate", "advanced", "master"] = "intermediate"
+    tags: list[str] = Field(default_factory=list, max_length=20)
+    teaches: str | None = Field(default=None, min_length=1, max_length=2000)
+    lang: Literal["en", "es"] = "en"
 
 
 class OracleQueryPayload(BaseModel):
@@ -26,4 +38,3 @@ class OracleResponseChunk(BaseModel):
     themes: list[str] | None = None
     tags: list[str] | None = None
     text: str
-

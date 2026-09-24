@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
@@ -117,6 +119,73 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(persisted["status"], "proposed")
         self.assertNotEqual(persisted.get("status"), "active")
         self.assertNotIn("accepted_quote_id", persisted)
+
+    def test_proposal_api_requires_authentication(self):
+        response = self.client.post(
+            "/api/v1/proposals",
+            json={"text": "A useful quote", "section": "wisdom"},
+        )
+        self.assertEqual(response.status_code, 401)
+
+    def test_proposal_api_validates_payload(self):
+        response = self.client.post(
+            "/api/v1/proposals",
+            headers={"Authorization": "Bearer student-1"},
+            json={"text": "", "section": "wisdom"},
+        )
+        self.assertEqual(response.status_code, 422)
+        forged_origin = self.client.post(
+            "/api/v1/proposals",
+            headers={"Authorization": "Bearer {\"userId\":\"student-1\"}"},
+            json={"text": "A useful quote", "section": "wisdom", "origin": "blackbox"},
+        )
+        self.assertEqual(forged_origin.status_code, 422)
+
+    def test_proposal_api_creates_and_persists_proposal(self):
+        payload = {
+            "text": "A useful quote",
+            "section": "wisdom",
+            "source": "student observation",
+            "level": "advanced",
+            "tags": ["simplicity"],
+            "teaches": "Prefer the smallest useful change.",
+            "lang": "en",
+        }
+        canonical_before = hashlib.sha256(self.settings.ttod_path.read_bytes()).digest()
+        response = self.client.post(
+            "/api/v1/proposals",
+            headers={"Authorization": "Bearer student-1"},
+            json=payload,
+        )
+
+        self.assertEqual(response.status_code, 201)
+        result = response.json()
+        self.assertIsInstance(result["proposal_id"], str)
+        self.assertTrue(result["proposal_id"])
+        self.assertEqual(result["status"], "proposed")
+        self.assertEqual(result["proposer_id"], "student-1")
+        self.assertEqual(result["candidate_content"]["text"], payload["text"])
+        self.assertEqual(result["candidate_content"]["source"], payload["source"])
+        self.assertEqual(result["candidate_content"]["origin"], "human")
+        self.assertNotIn("stored_at", result)
+        proposal_files = list(Path(self.temp.name).glob("*.json"))
+        self.assertEqual(len(proposal_files), 1)
+        self.assertTrue(proposal_files[0].is_file())
+        self.assertEqual(
+            hashlib.sha256(self.settings.ttod_path.read_bytes()).digest(),
+            canonical_before,
+        )
+
+    def test_proposal_api_returns_server_error_when_storage_fails(self):
+        client = TestClient(create_app(self.settings, self.oracle), raise_server_exceptions=False)
+        with patch("services.backend.app.main.ProposalStore.save", side_effect=OSError("disk full")):
+            response = client.post(
+                "/api/v1/proposals",
+                headers={"Authorization": "Bearer student-1"},
+                json={"text": "A useful quote", "section": "wisdom"},
+            )
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.json()["detail"], "Unable to save proposal")
 
     def test_r2_envelope_normalization(self):
         payload = {"results": [{

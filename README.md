@@ -80,9 +80,11 @@ suite, is listed in [`AGENTS.md`](AGENTS.md).
 **Rodrigo García Sánchez <rodrigo.garcia.sanchez@alumnos.udit.es>**: Developer, Oracle Terminal  
 **Àvila Rodriguez Andrea <andrea.avila@alumnos.udit.es>**: Developer, Oracle Terminal  
 **Alejandro Blanco Rodríguez (alexxblaro16) <alejandro.blanco@alum.udit.es>**: Developer, Front End II  
-**Iván (@Gonsiii11)<ivan.herrera@alumnos.udit.es>**: Developer, Front End II  
-**Pablo Novoa Rodríguez (@PRNovoa)<pablo.novoa@alumnos.udit.es>**: PWA Local Operations  
-**Gonzalo Pérez Fernández-Corugedo (@gpfc-git)<gonzalo.perez.fernandezcorugedo@alumnos.udit.es>**: Knowledge Graph Developer  
+**Iván (@Gonsiii11) <ivan.herrera@alumnos.udit.es>**: Developer, Front End II  
+**Pablo Novoa Rodríguez (@PRNovoa) <pablo.novoa@alumnos.udit.es>**: PWA Local Operations  
+**Gonzalo Pérez Fernández-Corugedo (@gpfc-git) <gonzalo.perez.fernandezcorugedo@alumnos.udit.es>**: Knowledge Graph Developer   
+**Gonzalo Sanchez Alvarez (@gontugithub) <gonzalo.sanchez@alum.udit.es>**: Content i18n & Proposals  
+**Gabriel Calvo Ballesteros (@gabrielcclv) <gabriel.calvo@alumnos.udit.es>**: Content i18n & Proposals  
 
 
 ## License

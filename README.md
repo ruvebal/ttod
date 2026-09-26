@@ -37,7 +37,8 @@ planned teaching surfaces:
 - [Project](docs/public/project/index.md) — mission, governance, provenance, and licensing
 - [Product areas](docs/public/platform/index.md) — content, quotes, graph, Oracle, operations, and tests
 - [Teaching model](docs/public/teaching/index.md) — FE II Units 1–7, Entrega 1, mid-term defence
-- [Research](docs/public/research/index.md) — questions, maturity, method, and safeguards
+- [Research (public)](docs/public/research/index.md) — questions, maturity, method, and safeguards
+- [Research design map (internal)](docs/research/INDEX.md) — Strand A (parked) / Strand B (pedagogical) + [ethics package](docs/research/ethics/)
 - [Guides](docs/public/guides/index.md) — local setup, product use, and contribution
 - [Students](docs/public/audiences/students.md) — Entrega 1 product and Units 1–7 mid-term
 - [University partners](docs/public/audiences/partners.md) — academic value and release gates

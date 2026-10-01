@@ -92,3 +92,41 @@ describe('OracleTerminal governance and URL context', () => {
     }));
   });
 });
+
+describe('OracleTerminal streamed rendering (Task 1)', () => {
+  afterEach(() => cleanup());
+  beforeEach(() => vi.clearAllMocks());
+
+  it('paints each chunk as it arrives and blocks a second submit mid-stream', async () => {
+    const encoder = new TextEncoder();
+    let controller!: ReadableStreamDefaultController<Uint8Array>;
+    const body = new ReadableStream<Uint8Array>({ start: (c) => { controller = c; } });
+    const send = (chunk: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(body, {
+      status: 200, headers: { 'Content-Type': 'text/event-stream' },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<OracleTerminal locale="en" />);
+    const input = screen.getByPlaceholderText(/practice question/);
+    const ask = screen.getByRole('button', { name: 'Ask' });
+
+    fireEvent.change(input, { target: { value: 'First question' } });
+    fireEvent.click(ask);
+    send({ mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'Water ' });
+    expect(await screen.findByText('Water')).toBeVisible();
+    expect(screen.getByText('Listening…')).toBeVisible();
+
+    fireEvent.change(input, { target: { value: 'Second question' } });
+    expect(ask).toBeDisabled();
+    fireEvent.keyDown(input, { key: 'Enter', ctrlKey: true });
+    fireEvent.submit(input.closest('form')!);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    send({ mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'finds its way.' });
+    expect(await screen.findByText('Water finds its way.')).toBeVisible();
+    controller.close();
+    await waitFor(() => expect(screen.queryByText('Listening…')).not.toBeInTheDocument());
+    expect(ask).toBeEnabled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});

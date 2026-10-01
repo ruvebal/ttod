@@ -92,3 +92,81 @@ describe('OracleTerminal governance and URL context', () => {
     }));
   });
 });
+
+describe('OracleTerminal streamed rendering (Task 1)', () => {
+  afterEach(() => cleanup());
+  beforeEach(() => vi.clearAllMocks());
+
+  it('paints each chunk as it arrives and blocks a second submit mid-stream', async () => {
+    const encoder = new TextEncoder();
+    let controller!: ReadableStreamDefaultController<Uint8Array>;
+    const body = new ReadableStream<Uint8Array>({ start: (c) => { controller = c; } });
+    const send = (chunk: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(body, {
+      status: 200, headers: { 'Content-Type': 'text/event-stream' },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<OracleTerminal locale="en" />);
+    const input = screen.getByPlaceholderText(/practice question/);
+    const ask = screen.getByRole('button', { name: 'Ask' });
+
+    fireEvent.change(input, { target: { value: 'First question' } });
+    fireEvent.click(ask);
+    send({ mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'Water ' });
+    expect(await screen.findByText('Water')).toBeVisible();
+    expect(screen.getByText('Listening…')).toBeVisible();
+
+    fireEvent.change(input, { target: { value: 'Second question' } });
+    expect(ask).toBeDisabled();
+    fireEvent.keyDown(input, { key: 'Enter', ctrlKey: true });
+    fireEvent.submit(input.closest('form')!);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    send({ mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'finds its way.' });
+    expect(await screen.findByText((_, element) => element?.tagName === 'P' && element.textContent === 'Water finds its way.')).toBeVisible();
+    controller.close();
+    await waitFor(() => expect(screen.queryByText('Listening…')).not.toBeInTheDocument());
+    expect(ask).toBeEnabled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('OracleTerminal live-region announcement (Task 2)', () => {
+  afterEach(() => cleanup());
+  beforeEach(() => vi.clearAllMocks());
+
+  it('grows the answer live region chunk by chunk and clears aria-busy when the stream closes', async () => {
+    const encoder = new TextEncoder();
+    let controller!: ReadableStreamDefaultController<Uint8Array>;
+    const body = new ReadableStream<Uint8Array>({ start: (c) => { controller = c; } });
+    const send = (chunk: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(body, {
+      status: 200, headers: { 'Content-Type': 'text/event-stream' },
+    })));
+    const { container } = render(<OracleTerminal locale="en" />);
+    fireEvent.change(screen.getByPlaceholderText(/practice question/), { target: { value: 'Speak slowly' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Ask' }));
+
+    const liveRegions = () => container.querySelectorAll('[aria-live]');
+    await waitFor(() => expect(liveRegions()).toHaveLength(1));
+    const answer = liveRegions()[0];
+    expect(answer).toHaveAttribute('aria-live', 'polite');
+    expect(answer).toHaveAttribute('aria-atomic', 'false');
+    expect(answer).toHaveAttribute('aria-busy', 'true');
+    expect(answer).not.toHaveTextContent('Speak slowly');
+    expect(answer).not.toHaveTextContent('Listening…');
+
+    send({ mode: 'creative', text: 'The river ' });
+    await waitFor(() => expect(answer).toHaveTextContent('The river'));
+    expect(answer).not.toHaveTextContent('bends.');
+    expect(answer).toHaveAttribute('aria-busy', 'true');
+
+    send({ mode: 'creative', text: 'bends.' });
+    await waitFor(() => expect(answer).toHaveTextContent('The river bends.'));
+    // Each chunk is its own node, so with aria-atomic="false" only the new words are announced.
+    expect([...answer.querySelectorAll('p > span')].map((span) => span.textContent)).toEqual(['The river ', 'bends.']);
+    controller.close();
+    await waitFor(() => expect(answer).toHaveAttribute('aria-busy', 'false'));
+    expect(liveRegions()).toHaveLength(1);
+  });
+});

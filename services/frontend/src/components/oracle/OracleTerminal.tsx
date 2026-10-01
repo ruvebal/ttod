@@ -18,7 +18,8 @@ import { readOracleStream } from './sse';
 import './oracle-terminal.css';
 
 type Locale = 'en' | 'es';
-type StreamSegment = OracleResponseChunk & { key: string };
+// `parts` keeps each chunk as its own text node so the live region announces only the new words (Task 2).
+type StreamSegment = OracleResponseChunk & { key: string; parts: string[] };
 
 interface Exchange {
   id: string;
@@ -47,9 +48,11 @@ export function appendChunk(segments: StreamSegment[], chunk: OracleResponseChun
     sameList(previous.themes, chunk.themes) &&
     sameList(previous.tags, chunk.tags)
   ) {
-    return [...segments.slice(0, -1), { ...previous, text: previous.text + chunk.text }];
+    return [...segments.slice(0, -1), {
+      ...previous, text: previous.text + chunk.text, parts: [...previous.parts, chunk.text],
+    }];
   }
-  return [...segments, { ...chunk, key: identifier() }];
+  return [...segments, { ...chunk, key: identifier(), parts: [chunk.text] }];
 }
 
 const COPY = {
@@ -64,6 +67,7 @@ const COPY = {
     proposed: 'Saved as a draft proposal. The current human acceptance path is not yet operational.',
     proposalError: 'The draft proposal could not be saved.', retryError: 'A queued query could not be retried yet.',
     context: 'Context tag', hint: 'Alt+Shift+O opens · Ctrl/⌘+Enter asks · Esc closes',
+    citations: 'Cited quotes', viewQuote: 'View quote',
   },
   es: {
     eyebrow: 'Oráculo local', title: 'Pregunta al Tao', open: 'Abrir oráculo', close: 'Cerrar oráculo',
@@ -76,8 +80,34 @@ const COPY = {
     proposed: 'Guardada como borrador de propuesta. La vía actual de aceptación humana aún no está operativa.',
     proposalError: 'No se pudo guardar el borrador.', retryError: 'Todavía no se pudo reintentar una consulta guardada.',
     context: 'Etiqueta de contexto', hint: 'Alt+Mayús+O abre · Ctrl/⌘+Intro pregunta · Esc cierra',
+    citations: 'Citas', viewQuote: 'Ver cita',
   },
 } as const;
+
+type Copy = (typeof COPY)[Locale];
+
+// Task 3: the mode is disclosed by text plus a distinct glyph, never by color alone. The glyph is
+// aria-hidden so screen readers hear only the label, which also names the segment (aria-labelledby).
+const MODE_GLYPH = { grounded: '◆', creative: '✦' } as const;
+
+function ModeLabel({ id, mode, copy }: { id: string; mode: OracleResponseChunk['mode']; copy: Copy }) {
+  return (
+    <strong id={id} className="oracle-mode">
+      <span aria-hidden="true">{MODE_GLYPH[mode]} </span>
+      {mode === 'grounded' ? copy.grounded : copy.creative}
+    </strong>
+  );
+}
+
+function CitationLinks({ ids, locale, copy }: { ids: string[]; locale: Locale; copy: Copy }) {
+  return (
+    <ul className="oracle-citations" aria-label={copy.citations}>
+      {ids.map((id) => (
+        <li key={id}><a href={`/${locale}/wisdom/${id}`} aria-label={`${copy.viewQuote} ${id}`}>{id}</a></li>
+      ))}
+    </ul>
+  );
+}
 
 const identifier = () => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
 
@@ -109,6 +139,7 @@ export default function OracleTerminal({ locale }: Props) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const exchangesRef = useRef(exchanges);
   const syncingRef = useRef(false);
+  const submittingRef = useRef(false);
   exchangesRef.current = exchanges;
 
   const updateExchange = useCallback((id: string, update: (exchange: Exchange) => Exchange) => {
@@ -132,6 +163,10 @@ export default function OracleTerminal({ locale }: Props) {
         if (response.status >= 500) throw new UnreachableOracleError(message);
         throw new Error(message);
       }
+      // One state update per chunk, never buffering the whole answer before first paint.
+      // React 18+ auto-batches updates from the same task, so chunks that arrive in one
+      // network read commit in a single render (no layout thrashing), while each new read
+      // paints on the next frame. The functional updater keeps concurrent chunks ordered.
       received = await readOracleStream(response, (chunk) => {
         updateExchange(id, (exchange) => ({
           ...exchange,
@@ -207,7 +242,9 @@ export default function OracleTerminal({ locale }: Props) {
 
   const submit = async () => {
     const trimmed = query.trim();
-    if (!trimmed || busy) return;
+    // `busy` comes from the last render; the ref also blocks a second submit fired before it re-renders.
+    if (!trimmed || busy || submittingRef.current) return;
+    submittingRef.current = true;
     const payload: OracleQueryPayload = {
       query: trimmed,
       contextTag: currentContextTag(),
@@ -215,7 +252,11 @@ export default function OracleTerminal({ locale }: Props) {
       locale,
     };
     setQuery('');
-    await sendPayload(payload);
+    try {
+      await sendPayload(payload);
+    } finally {
+      submittingRef.current = false;
+    }
   };
 
   const propose = async (exchange: Exchange) => {
@@ -259,15 +300,26 @@ export default function OracleTerminal({ locale }: Props) {
             transition={{ duration: reduceMotion ? 0 : 0.22 }}
           >
             <header><span>{copy.eyebrow}</span><h1>{copy.title}</h1></header>
-            <div className="oracle-log" aria-live="polite" aria-busy={busy}>
+            <div className="oracle-log">
               <AnimatePresence initial={false}>
                 {exchanges.map((exchange) => (
-                  <motion.article key={exchange.id} className="oracle-exchange" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  <motion.article key={exchange.id} className="oracle-exchange" initial={reduceMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }}>
                     <p className="oracle-query"><strong>›</strong> {exchange.query}</p>
                     {exchange.contextTag && <p className="oracle-context">{copy.context}: <code>{exchange.contextTag}</code></p>}
+                    {/* Task 2: only the streamed answer is a live region (not the whole log), so the query echo,
+                        status and notices are not re-announced. `polite` waits for the screen reader to finish
+                        speaking instead of interrupting it; `aria-atomic="false"` announces only what each chunk
+                        changed, never the whole accumulated answer; `aria-busy` marks it in progress while streaming. */}
+                    <div
+                      className="oracle-answer" aria-live="polite" aria-atomic="false"
+                      aria-busy={exchange.state === 'streaming'}
+                    >
                     {exchange.segments.map((segment) => (
-                      <div key={segment.key} className={`oracle-segment oracle-${segment.mode}`}>
-                        <strong className="oracle-mode">{segment.mode === 'grounded' ? copy.grounded : copy.creative}</strong>
+                      <div
+                        key={segment.key} className={`oracle-segment oracle-${segment.mode}`}
+                        role="group" aria-labelledby={`oracle-mode-${segment.key}`}
+                      >
+                        <ModeLabel id={`oracle-mode-${segment.key}`} mode={segment.mode} copy={copy} />
                         {(segment.themes?.length || segment.tags?.length) ? (
                           <p className="oracle-anchors">
                             {segment.themes?.length ? (
@@ -278,15 +330,14 @@ export default function OracleTerminal({ locale }: Props) {
                             ) : null}
                           </p>
                         ) : null}
-                        <p>{segment.text}</p>
+                        <p>{segment.parts.map((part, index) => <span key={index}>{part}</span>)}</p>
                         {segment.mode === 'grounded' && segment.citedQuoteIds?.length ? (
-                          <ul className="oracle-citations" aria-label={copy.grounded}>
-                            {segment.citedQuoteIds.map((id) => <li key={id}><a href={`/${locale}/wisdom/${id}`}>{id}</a></li>)}
-                          </ul>
+                          <CitationLinks ids={segment.citedQuoteIds} locale={locale} copy={copy} />
                         ) : null}
                       </div>
                     ))}
-                    {exchange.state === 'streaming' && <p className="oracle-status">{copy.streaming}</p>}
+                    </div>
+                    {exchange.state === 'streaming' && <p className="oracle-status" role="status">{copy.streaming}</p>}
                     {exchange.notice && <p className="oracle-notice" role="status">{exchange.notice}</p>}
                     {exchange.state === 'complete' && exchange.segments.some((segment) => segment.mode === 'creative') && (
                       <div className="oracle-proposal">

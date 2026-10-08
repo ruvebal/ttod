@@ -1,0 +1,44 @@
+---
+import type { WisdomEntry } from '../types/domain';
+
+export interface Props {
+  entry: Pick<WisdomEntry, 'rights' | 'origin'>;
+  locale: 'en' | 'es';
+  variant?: 'full' | 'compact';
+}
+const { entry, locale, variant = 'full' } = Astro.props;
+
+// Fallback holder matches the project's existing convention (previously duplicated inline as
+// `entry.rights.holder ?? 'Rubén Vega Balbás'` in four places) — centralized here, same value.
+const UNKNOWN_HOLDER = 'Rubén Vega Balbás';
+
+const copy = locale === 'es'
+  ? { label: 'Procedencia', holder: 'Titular', license: 'Licencia', origin: 'Origen' }
+  : { label: 'Provenance', holder: 'Holder', license: 'License', origin: 'Origin' };
+
+// origin is a small, closed, frontend-known enum (see types/domain.ts) — not open backend content
+// like a section or tag slug, so translating it is safe and not "inventing" a dictionary that
+// doesn't exist (the T1/T2 constraint on facet values doesn't apply here).
+const ORIGIN_LABELS: Record<string, { en: string; es: string }> = {
+  human: { en: 'Human', es: 'Humano' },
+  studio: { en: 'Studio', es: 'Estudio' },
+  blackbox: { en: 'AI-proposed', es: 'Propuesto por IA' },
+  mixed: { en: 'Mixed', es: 'Mixto' },
+  'legacy-unknown': { en: 'Legacy (unknown)', es: 'Legado (desconocido)' },
+};
+
+// Defensive, not type-driven: domain.ts marks rights/license/origin as required, but a real
+// backend payload can diverge from the TS type, and this task's own brief explicitly asks for
+// missing rights/origin to degrade gracefully rather than break the layout.
+const holder = entry.rights?.holder ?? UNKNOWN_HOLDER;
+const license = entry.rights?.license;
+const origin = entry.origin ? (ORIGIN_LABELS[entry.origin]?.[locale] ?? entry.origin) : undefined;
+---
+<dl class={variant === 'compact' ? 'ttod-provenance ttod-provenance-compact' : 'ttod-provenance'} aria-label={copy.label}>
+  <dt>{copy.holder}</dt>
+  <dd>{holder}</dd>
+  {license && <dt>{copy.license}</dt>}
+  {license && <dd>{license}</dd>}
+  {origin && <dt>{copy.origin}</dt>}
+  {origin && <dd>{origin}</dd>}
+</dl>

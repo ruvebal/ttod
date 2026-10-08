@@ -36,3 +36,7 @@ jobs:
       - run: npm run check
 
       - run: npm run build
+
+      # No frontend job ran tests before this (confirmed: no test script existed and no step
+      # invoked vitest) — content-task6 adds the step and the script together.
+      - run: npm test

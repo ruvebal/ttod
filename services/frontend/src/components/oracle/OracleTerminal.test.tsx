@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import '@testing-library/jest-dom/vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -77,7 +77,7 @@ describe('OracleTerminal governance and URL context', () => {
     fireEvent.change(screen.getByPlaceholderText(/practice question/), { target: { value: 'A grounded question' } });
     fireEvent.click(screen.getByRole('button', { name: 'Ask' }));
     expect(await screen.findByText('Grounded in the TTOD corpus')).toBeVisible();
-    expect(screen.getByRole('link', { name: 'wis-001' })).toHaveAttribute('href', '/en/wisdom/wis-001');
+    expect(screen.getByRole('link', { name: 'View quote wis-001' })).toHaveAttribute('href', '/en/wisdom/wis-001');
     expect(screen.queryByRole('button', { name: /draft proposal/ })).not.toBeInTheDocument();
   });
 
@@ -90,5 +90,110 @@ describe('OracleTerminal governance and URL context', () => {
     expect(queueMocks.enqueueOracleQuery).toHaveBeenCalledWith(expect.objectContaining({
       query: 'Queue this', contextTag: 'simplicity', sessionHistory: [], locale: 'en',
     }));
+  });
+});
+
+describe('OracleTerminal streamed rendering (Task 1)', () => {
+  afterEach(() => cleanup());
+  beforeEach(() => vi.clearAllMocks());
+
+  it('paints each chunk as it arrives and blocks a second submit mid-stream', async () => {
+    const encoder = new TextEncoder();
+    let controller!: ReadableStreamDefaultController<Uint8Array>;
+    const body = new ReadableStream<Uint8Array>({ start: (c) => { controller = c; } });
+    const send = (chunk: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(body, {
+      status: 200, headers: { 'Content-Type': 'text/event-stream' },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<OracleTerminal locale="en" />);
+    const input = screen.getByPlaceholderText(/practice question/);
+    const ask = screen.getByRole('button', { name: 'Ask' });
+
+    fireEvent.change(input, { target: { value: 'First question' } });
+    fireEvent.click(ask);
+    send({ mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'Water ' });
+    expect(await screen.findByText('Water')).toBeVisible();
+    expect(screen.getByText('Listening…')).toBeVisible();
+    // Incremental paint: the first chunk is on screen while the second has not been sent yet.
+    expect(screen.queryByText(/finds its way/)).not.toBeInTheDocument();
+
+    fireEvent.change(input, { target: { value: 'Second question' } });
+    expect(ask).toBeDisabled();
+    fireEvent.keyDown(input, { key: 'Enter', ctrlKey: true });
+    fireEvent.submit(input.closest('form')!);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    send({ mode: 'grounded', citedQuoteIds: ['wis-001'], text: 'finds its way.' });
+    expect(await screen.findByText((_, element) => element?.tagName === 'P' && element.textContent === 'Water finds its way.')).toBeVisible();
+    controller.close();
+    await waitFor(() => expect(screen.queryByText('Listening…')).not.toBeInTheDocument());
+    expect(ask).toBeEnabled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('OracleTerminal live-region announcement (Task 2)', () => {
+  afterEach(() => cleanup());
+  beforeEach(() => vi.clearAllMocks());
+
+  it('grows the answer live region chunk by chunk and clears aria-busy when the stream closes', async () => {
+    const encoder = new TextEncoder();
+    let controller!: ReadableStreamDefaultController<Uint8Array>;
+    const body = new ReadableStream<Uint8Array>({ start: (c) => { controller = c; } });
+    const send = (chunk: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(body, {
+      status: 200, headers: { 'Content-Type': 'text/event-stream' },
+    })));
+    const { container } = render(<OracleTerminal locale="en" />);
+    fireEvent.change(screen.getByPlaceholderText(/practice question/), { target: { value: 'Speak slowly' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Ask' }));
+
+    const liveRegions = () => container.querySelectorAll('[aria-live]');
+    await waitFor(() => expect(liveRegions()).toHaveLength(1));
+    const answer = liveRegions()[0];
+    expect(answer).toHaveAttribute('aria-live', 'polite');
+    expect(answer).toHaveAttribute('aria-atomic', 'false');
+    expect(answer).toHaveAttribute('aria-busy', 'true');
+    expect(answer).not.toHaveTextContent('Speak slowly');
+    expect(answer).not.toHaveTextContent('Listening…');
+
+    send({ mode: 'creative', text: 'The river ' });
+    await waitFor(() => expect(answer).toHaveTextContent('The river'));
+    expect(answer).not.toHaveTextContent('bends.');
+    expect(answer).toHaveAttribute('aria-busy', 'true');
+
+    send({ mode: 'creative', text: 'bends.' });
+    await waitFor(() => expect(answer).toHaveTextContent('The river bends.'));
+    // Each chunk is its own node, so with aria-atomic="false" only the new words are announced.
+    expect([...answer.querySelectorAll('p > span')].map((span) => span.textContent)).toEqual(['The river ', 'bends.']);
+    controller.close();
+    await waitFor(() => expect(answer).toHaveAttribute('aria-busy', 'false'));
+    expect(liveRegions()).toHaveLength(1);
+  });
+});
+
+describe('OracleTerminal grounded vs. creative disclosure (Task 3)', () => {
+  afterEach(() => cleanup());
+  beforeEach(() => vi.clearAllMocks());
+
+  it('names each segment by its mode in text and links grounded citations to their quote pages', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(sseResponse([
+      { mode: 'grounded', citedQuoteIds: ['wis-001', 'arch-038'], text: 'From the corpus.' },
+      { mode: 'creative', citedQuoteIds: ['wis-999'], text: 'From the oracle.' },
+    ])));
+    render(<OracleTerminal locale="es" />);
+    fireEvent.change(screen.getByPlaceholderText(/pregunta de práctica/), { target: { value: 'Mixed answer' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Preguntar' }));
+
+    const grounded = await screen.findByRole('group', { name: 'Fundamentado en el corpus TTOD' });
+    const creative = screen.getByRole('group', { name: 'Voz oracular — sin coincidencia fuerte en TTOD' });
+    expect(grounded).toHaveTextContent('From the corpus.');
+    expect(creative).toHaveTextContent('From the oracle.');
+
+    const citations = within(grounded).getByRole('list', { name: 'Citas' });
+    expect(within(citations).getByRole('link', { name: 'Ver cita wis-001' })).toHaveAttribute('href', '/es/wisdom/wis-001');
+    expect(within(citations).getByRole('link', { name: 'Ver cita arch-038' })).toHaveAttribute('href', '/es/wisdom/arch-038');
+    expect(within(creative).queryByRole('link')).not.toBeInTheDocument();
   });
 });

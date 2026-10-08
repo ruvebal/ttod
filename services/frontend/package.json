@@ -6,7 +6,11 @@
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "start": "node ./dist/server/entry.mjs",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "vitest run",
+    "pwa:guard": "node scripts/pwa-guard.mjs",
+    "pwa:watch": "node scripts/pwa-guard.mjs --watch",
+    "pwa:fix": "node scripts/pwa-guard.mjs --fix"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",

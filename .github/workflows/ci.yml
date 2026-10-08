@@ -7,10 +7,12 @@ on:
   # forever (found live via PR #3, an infra-only change with no services/frontend touch).
   pull_request:
   push:
-    branches: [main, "skeleton/**"]
+    # Include feature branches: contract drift should be visible before a PR.
     paths:
       - "services/frontend/**"
       - ".github/workflows/ci.yml"
+      - "docs/pwa-offline-queue.md"
+      - "docs/pwa-compatibility-monitor.md"
   workflow_dispatch:
 
 permissions:
@@ -35,4 +37,40 @@ jobs:
 
       - run: npm run check
 
+      - run: npm test
+
       - run: npm run build
+
+  pwa-compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: services/frontend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: services/frontend/package-lock.json
+
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+
+      - name: Check PWA and Oracle compatibility
+        run: npm run pwa:guard
+
+      - name: Save compatibility report, repair proposal, and failure traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pwa-compatibility-report
+          path: |
+            services/frontend/test-results/pwa-guard/
+            services/frontend/test-results/pwa-browser/
+          if-no-files-found: warn
+          retention-days: 7

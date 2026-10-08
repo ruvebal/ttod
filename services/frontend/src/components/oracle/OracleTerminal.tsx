@@ -109,6 +109,7 @@ export default function OracleTerminal({ locale }: Props) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const exchangesRef = useRef(exchanges);
   const syncingRef = useRef(false);
+  const submittingRef = useRef(false);
   exchangesRef.current = exchanges;
 
   const updateExchange = useCallback((id: string, update: (exchange: Exchange) => Exchange) => {
@@ -132,6 +133,10 @@ export default function OracleTerminal({ locale }: Props) {
         if (response.status >= 500) throw new UnreachableOracleError(message);
         throw new Error(message);
       }
+      // One state update per chunk, never buffering the whole answer before first paint.
+      // React 18+ auto-batches updates from the same task, so chunks that arrive in one
+      // network read commit in a single render (no layout thrashing), while each new read
+      // paints on the next frame. The functional updater keeps concurrent chunks ordered.
       received = await readOracleStream(response, (chunk) => {
         updateExchange(id, (exchange) => ({
           ...exchange,
@@ -207,7 +212,9 @@ export default function OracleTerminal({ locale }: Props) {
 
   const submit = async () => {
     const trimmed = query.trim();
-    if (!trimmed || busy) return;
+    // `busy` comes from the last render; the ref also blocks a second submit fired before it re-renders.
+    if (!trimmed || busy || submittingRef.current) return;
+    submittingRef.current = true;
     const payload: OracleQueryPayload = {
       query: trimmed,
       contextTag: currentContextTag(),
@@ -215,7 +222,11 @@ export default function OracleTerminal({ locale }: Props) {
       locale,
     };
     setQuery('');
-    await sendPayload(payload);
+    try {
+      await sendPayload(payload);
+    } finally {
+      submittingRef.current = false;
+    }
   };
 
   const propose = async (exchange: Exchange) => {
@@ -262,7 +273,7 @@ export default function OracleTerminal({ locale }: Props) {
             <div className="oracle-log" aria-live="polite" aria-busy={busy}>
               <AnimatePresence initial={false}>
                 {exchanges.map((exchange) => (
-                  <motion.article key={exchange.id} className="oracle-exchange" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  <motion.article key={exchange.id} className="oracle-exchange" initial={reduceMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }}>
                     <p className="oracle-query"><strong>›</strong> {exchange.query}</p>
                     {exchange.contextTag && <p className="oracle-context">{copy.context}: <code>{exchange.contextTag}</code></p>}
                     {exchange.segments.map((segment) => (

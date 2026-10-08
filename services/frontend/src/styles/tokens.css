@@ -30,3 +30,4 @@ body { margin: 0; }
 .ttod-prose h1 { font-size: var(--ttod-text-xl); line-height: 1.1; }
 .ttod-prose h2 { margin-top: var(--ttod-space-12); }
 .ttod-prose a { color: var(--ttod-color-accent); }
+.ttod-pill[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }

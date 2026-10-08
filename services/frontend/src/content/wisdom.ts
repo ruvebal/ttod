@@ -20,11 +20,13 @@ export const labels = {
     wisdom: 'Wisdom', docs: 'Documentation', empty: 'No accepted English wisdom is available yet.',
     sections: 'Sections', levels: 'Levels', tags: 'Tags', all: 'All wisdom', teaches: 'Teaches',
     back: 'Back to wisdom', entries: 'entries', notFound: 'Wisdom entry not found',
+    noMatchesTitle: 'No matches', noMatches: 'No English wisdom entry carries this facet yet.',
   },
   es: {
     wisdom: 'Sabiduría', docs: 'Documentación', empty: 'Todavía no hay sabiduría aceptada en español.',
     sections: 'Secciones', levels: 'Niveles', tags: 'Etiquetas', all: 'Toda la sabiduría', teaches: 'Enseña',
     back: 'Volver a sabiduría', entries: 'entradas', notFound: 'Entrada de sabiduría no encontrada',
+    noMatchesTitle: 'Sin coincidencias', noMatches: 'Ninguna entrada de sabiduría en español tiene esta faceta todavía.',
   },
 } as const;
 

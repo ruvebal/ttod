@@ -1,3 +1,18 @@
+export type SessionRole = 'student' | 'reviewer' | 'instructor';
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  roles: SessionRole[];
+}
+
+export interface AuthLoginResponse {
+  session_token: string;
+  token_type: 'Session';
+  expires_in: number;
+  user: AuthUser;
+}
+
 export interface WisdomEntry {
   id: string;
   section: string;

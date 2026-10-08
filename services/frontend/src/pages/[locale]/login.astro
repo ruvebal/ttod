@@ -1,0 +1,76 @@
+---
+import Page from '../../layouts/Page.astro';
+import { isLocale } from '../../content/wisdom';
+import { SESSION_COOKIE_NAME, loginWithBackend } from '../../lib/auth.server';
+
+export const prerender = false;
+
+const locale = Astro.params.locale;
+if (!isLocale(locale)) return new Response(null, { status: 404 });
+
+let loginError: 'credentials' | 'service' | null = null;
+
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    loginError = 'credentials';
+  } else {
+    // La contraseña solo viaja al backend, que la verifica con bcrypt; esta página no compara nada.
+    const login = await loginWithBackend(email, password);
+    if (login.ok) {
+      Astro.cookies.set(SESSION_COOKIE_NAME, login.sessionToken, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: import.meta.env.PROD,
+        path: '/',
+        maxAge: login.expiresIn
+      });
+      return Astro.redirect(`/${locale}/account`);
+    }
+    loginError = login.reason;
+  }
+}
+
+const copy = locale === 'es'
+  ? {
+      title: 'Iniciar sesión · TTOD',
+      heading: 'Iniciar sesión',
+      email: 'Correo electrónico',
+      password: 'Contraseña',
+      submit: 'Entrar',
+      credentialsError: 'Las credenciales no son válidas.',
+      serviceError: 'El servicio de autenticación no está disponible. Inténtalo de nuevo.'
+    }
+  : {
+      title: 'Log in · TTOD',
+      heading: 'Log in',
+      email: 'Email',
+      password: 'Password',
+      submit: 'Log in',
+      credentialsError: 'Invalid credentials.',
+      serviceError: 'The authentication service is unavailable. Please try again.'
+    };
+---
+
+<Page lang={locale} title={copy.title}>
+  <main>
+    <h1>{copy.heading}</h1>
+
+    {loginError && <p role="alert">{loginError === 'credentials' ? copy.credentialsError : copy.serviceError}</p>}
+
+    <form method="post">
+      <p>
+        <label for="email">{copy.email}</label>
+        <input id="email" name="email" type="email" required autocomplete="email" />
+      </p>
+      <p>
+        <label for="password">{copy.password}</label>
+        <input id="password" name="password" type="password" required autocomplete="current-password" />
+      </p>
+      <button type="submit">{copy.submit}</button>
+    </form>
+  </main>
+</Page>

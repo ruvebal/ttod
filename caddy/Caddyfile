@@ -12,6 +12,7 @@
   header @serviceWorker Cache-Control "max-age=0, no-cache"
 
   handle {
+    encode zstd gzip
     reverse_proxy frontend:4321
   }
 }

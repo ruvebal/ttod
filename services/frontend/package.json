@@ -6,7 +6,11 @@
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "start": "node ./dist/server/entry.mjs",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "vitest run",
+    "pwa:guard": "node scripts/pwa-guard.mjs",
+    "pwa:watch": "node scripts/pwa-guard.mjs --watch",
+    "pwa:fix": "node scripts/pwa-guard.mjs --fix"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",
@@ -34,6 +38,7 @@
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
     "@types/node": "^26.4.1",
+    "fake-indexeddb": "^6.2.5",
     "jsdom": "^29.1.1",
     "msw": "^2.15.0",
     "vitest": "^5.0.0"

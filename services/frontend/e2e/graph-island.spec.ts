@@ -46,7 +46,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 	const nodeButtons = svg.getByRole('button');
 	await expect(nodeButtons).toHaveCount(expectedNodes.length);
 	for (const node of expectedNodes) {
-		const renderedNode = page.getByRole('button', { name: `${node.id}: ${node.text}` });
+		const renderedNode = page.getByRole('button', { name: `${node.id}: ${node.text}, tag: tag-${node.id}` });
 		await expect(renderedNode).toHaveAttribute('tabindex', '0');
 		await expect(renderedNode).toHaveAttribute('cx', String(node.x));
 		await expect(renderedNode).toHaveAttribute('cy', String(node.y));
@@ -54,15 +54,117 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 
 	const details = page.getByRole('complementary', { name: 'Selected node' });
 	await expect(details).toHaveAttribute('aria-live', 'polite');
-	await page.getByRole('button', { name: 'arch-001: Keep boundaries clear.' }).click();
+	await page.getByRole('button', { name: 'arch-001: Keep boundaries clear., tag: tag-arch-001' }).click();
 	await expect(details).toContainText('Keep boundaries clear.');
-	await expect(details).toBeInViewport();
-	await page.getByRole('button', { name: 'arch-002: Share pure functions.' }).press('Enter');
+	await expect(details).toBeVisible();
+	await page.getByRole('button', { name: 'arch-002: Share pure functions., tag: tag-arch-002' }).press('Enter');
 	await expect(details).toContainText('Share pure functions.');
-	await expect(details).toBeInViewport();
-	await page.getByRole('button', { name: 'wis-001: Question the obvious.' }).press('Space');
+	await expect(details).toBeVisible();
+	await page.getByLabel('Filter by tag').focus();
+	await expect(details).toContainText('Share pure functions.');
+	await page.getByRole('button', { name: 'wis-001: Question the obvious., tag: tag-wis-001' }).press('Space');
 	await expect(details).toContainText('Question the obvious.');
-	await expect(details).toBeInViewport();
+	await expect(details).toBeVisible();
+
+	const firstNode = page.locator('[data-node-id="arch-001"]');
+	await firstNode.focus();
+	await firstNode.press('ArrowRight');
+	await expect(page.locator('[data-node-id="arch-002"]')).toBeFocused();
+	await expect(details).toContainText('Question the obvious.');
+	await page.locator('[data-node-id="arch-002"]').press('Space');
+	await expect(details).toContainText('Share pure functions.');
+});
+
+test('filters by tag, moves focus to the filter when the focused node disappears, and follows browser history', async ({ page }) => {
+	await page.route('**/api/v1/graph', (route) => route.fulfill({
+		status: 200,
+		contentType: 'application/json',
+		body: JSON.stringify({ nodes: graphNodes, edges: graphEdges })
+	}));
+	await page.route('**/api/v1/wisdom/sample', (route) => route.fulfill({
+		status: 200,
+		contentType: 'application/json',
+		body: JSON.stringify(wisdom)
+	}));
+
+	await page.goto('/en/graph');
+	const filter = page.getByLabel('Filter by tag');
+	await expect(filter).toHaveValue('');
+	const node = page.locator('[data-node-id="arch-001"]');
+	await node.focus();
+	await node.press('Space');
+	const details = page.getByRole('complementary', { name: 'Selected node' });
+	await expect(details).toContainText('Keep boundaries clear.');
+
+	await page.evaluate(() => {
+		const url = new URL(window.location.href);
+		url.searchParams.set('tag', 'tag-arch-002');
+		window.history.pushState({}, '', url);
+		window.dispatchEvent(new PopStateEvent('popstate'));
+	});
+
+	await expect(filter).toHaveValue('tag-arch-002');
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 1 nodes and 0 edges' })).toBeVisible();
+	await expect(filter).toBeFocused();
+	await expect(details).toContainText('Select a node to view its details.');
+	await expect(page).toHaveURL(/tag=tag-arch-002/);
+
+	await page.goBack();
+	await expect(filter).toHaveValue('');
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' })).toBeVisible();
+});
+
+test('filters from the tag control, preserves matching selection, clears selection, and restores the graph', async ({ page }) => {
+	await page.route('**/api/v1/graph', (route) => route.fulfill({
+		status: 200,
+		contentType: 'application/json',
+		body: JSON.stringify({ nodes: graphNodes, edges: graphEdges })
+	}));
+	await page.route('**/api/v1/wisdom/sample', (route) => route.fulfill({
+		status: 200,
+		contentType: 'application/json',
+		body: JSON.stringify(wisdom.map((entry) => ({
+			...entry,
+			tags: entry.id.startsWith('arch-') ? ['architecture'] : ['wisdom']
+		})))
+	}));
+
+	await page.goto('/en/graph');
+	const filter = page.getByLabel('Filter by tag');
+	const details = page.getByRole('complementary', { name: 'Selected node' });
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' })).toBeVisible();
+
+	await page.locator('[data-node-id="arch-001"]').click();
+	await expect(details).toContainText('Keep boundaries clear.');
+	await filter.selectOption('architecture');
+	await expect(page).toHaveURL(/tag=architecture/);
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 2 nodes and 1 edges' })).toBeVisible();
+	await expect(page.locator('[data-node-id="arch-001"]')).toBeVisible();
+	await expect(page.locator('[data-node-id="arch-002"]')).toBeVisible();
+	await expect(page.locator('[data-node-id="wis-001"]')).toHaveCount(0);
+	await expect(page.locator('svg line')).toHaveCount(1);
+	await expect(details).toContainText('Keep boundaries clear.');
+	await expect(page.getByText('Filtered to tag: architecture')).toBeAttached();
+
+	await filter.selectOption('wisdom');
+	await expect(page).toHaveURL(/tag=wisdom/);
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 1 nodes and 0 edges' })).toBeVisible();
+	await expect(page.locator('[data-node-id="wis-001"]')).toBeVisible();
+	await expect(page.locator('[data-node-id="arch-001"]')).toHaveCount(0);
+	await expect(details).toContainText('Select a node to view its details.');
+
+	await filter.selectOption('');
+	await expect(page).toHaveURL((url) => !url.searchParams.has('tag'));
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' })).toBeVisible();
+	await expect(page.locator('svg line')).toHaveCount(2);
+	await expect(page.getByText('Showing all tags')).toBeAttached();
+
+	await page.goBack();
+	await expect(filter).toHaveValue('wisdom');
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 1 nodes and 0 edges' })).toBeVisible();
+	await page.goBack();
+	await expect(filter).toHaveValue('architecture');
+	await expect(page.getByRole('group', { name: 'Knowledge graph with 2 nodes and 1 edges' })).toBeVisible();
 });
 
 test('shows loading and empty states while a successful graph response is pending', async ({ page }) => {

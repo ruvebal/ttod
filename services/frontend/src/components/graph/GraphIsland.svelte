@@ -1,29 +1,70 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { GraphLink, GraphNode, WisdomEntry } from '../../types/domain';
-  import { joinTags, radialLayout, type PositionedNode } from './layout';
+  import { filterGraph, joinTags, radialLayout, selectedTag, type PositionedNode } from './layout';
 
   let allNodes = $state<Array<GraphNode & { tags: string[] }>>([]);
   let allEdges = $state<GraphLink[]>([]);
+  let activeTag = $state('');
   let selected = $state<PositionedNode | null>(null);
   let loading = $state(true);
   let error = $state('');
+  let graphRoot: SVGSVGElement | undefined = $state();
+  let tagFilter: HTMLSelectElement | undefined = $state();
 
-  const nodes = $derived(radialLayout(allNodes));
+  const tags = $derived([...new Set(allNodes.flatMap((node) => node.tags))].sort());
+  const filtered = $derived(filterGraph(allNodes, allEdges, activeTag));
+  const nodes = $derived(radialLayout(filtered.nodes));
   const positioned = $derived(new Map(nodes.map((node) => [node.id, node])));
-  const edges = $derived(allEdges.filter((edge) => positioned.has(edge.source) && positioned.has(edge.target)));
+  const edges = $derived(filtered.edges.filter((edge) => positioned.has(edge.source) && positioned.has(edge.target)));
+
+  async function applyTag(tag: string) {
+    const focusedNode = document.activeElement instanceof Element
+      && document.activeElement.matches('[data-node-id]')
+      ? document.activeElement
+      : null;
+    activeTag = tag;
+    if (selected && !filtered.nodes.some((node) => node.id === selected?.id)) selected = null;
+    await tick();
+    if (focusedNode && !focusedNode.isConnected) tagFilter?.focus();
+  }
+
+  function setTag(tag: string) {
+    const url = new URL(window.location.href);
+    if (tag) url.searchParams.set('tag', tag);
+    else url.searchParams.delete('tag');
+    window.history.pushState({}, '', url);
+    void applyTag(tag);
+  }
+
+  function syncFromUrl() {
+    void applyTag(selectedTag(window.location.search));
+  }
 
   function selectNode(node: PositionedNode) {
     selected = node;
   }
 
+  const arrowSteps: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+
   function handleNodeKeydown(event: KeyboardEvent, node: PositionedNode) {
-    if (event.key !== 'Enter' && event.key !== ' ') return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      selectNode(node);
+      return;
+    }
+    const step = arrowSteps[event.key];
+    if (step === undefined) return;
     event.preventDefault();
-    selectNode(node);
+    const currentIndex = nodes.findIndex((candidate) => candidate.id === node.id);
+    if (currentIndex === -1) return;
+    const nextNode = nodes[(currentIndex + step + nodes.length) % nodes.length];
+    (graphRoot?.querySelector(`[data-node-id="${CSS.escape(nextNode.id)}"]`) as SVGCircleElement | null)?.focus();
   }
 
   onMount(() => {
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
     void (async () => {
       try {
         // Data flow: API response -> joinTags -> radialLayout -> SVG render -> selectNode -> <aside>.
@@ -42,21 +83,28 @@
         loading = false;
       }
     })();
+    return () => window.removeEventListener('popstate', syncFromUrl);
   });
 </script>
 
 <section class="graph-island" aria-labelledby="graph-title">
   <header>
-    <h1 id="graph-title">TTOD knowledge graph</h1>
-    <p>{nodes.length} nodes · {edges.length} edges</p>
+    <div><h1 id="graph-title">TTOD knowledge graph</h1><p>{nodes.length} nodes · {edges.length} edges</p></div>
+    <label for="tag-filter">Filter by tag
+      <select id="tag-filter" bind:this={tagFilter} value={activeTag} onchange={(event) => setTag(event.currentTarget.value)}>
+        <option value="">All tags</option>
+        {#each tags as tag}<option value={tag}>{tag}</option>{/each}
+      </select>
+    </label>
   </header>
   <div class="legend" aria-label="Origin legend">
     <span class="human">Human</span><span class="studio">Studio</span><span class="blackbox">AI proposal</span><span class="mixed">Mixed</span><span class="legacy-unknown">Legacy</span>
   </div>
-  {#if loading}<p>Loading live graph…</p>{:else if error}<p role="alert">{error}</p>{:else if nodes.length === 0}<p>No graph nodes are available.</p>{:else}
-    <svg viewBox="0 0 960 620" role="group" aria-label={`Knowledge graph with ${nodes.length} nodes and ${edges.length} edges`}>
+  <p class="sr-only" aria-live="polite" aria-atomic="true">{activeTag ? `Filtered to tag: ${activeTag}` : 'Showing all tags'}</p>
+  {#if loading}<p>Loading live graph…</p>{:else if error}<p role="alert">{error}</p>{:else if nodes.length === 0}<p>{activeTag ? 'No nodes carry this tag.' : 'No graph nodes are available.'}</p>{:else}
+    <svg bind:this={graphRoot} viewBox="0 0 960 620" role="group" aria-label={`Knowledge graph with ${nodes.length} nodes and ${edges.length} edges`}>
       <g class="edges">{#each edges as edge}<line x1={positioned.get(edge.source)?.x} y1={positioned.get(edge.source)?.y} x2={positioned.get(edge.target)?.x} y2={positioned.get(edge.target)?.y}><title>{edge.rel}</title></line>{/each}</g>
-      <g>{#each nodes as node (node.id)}<circle class:deprecated={node.status === 'deprecated'} class={`node ${node.origin}`} cx={node.x} cy={node.y} r="5" tabindex="0" role="button" aria-label={`${node.id}: ${node.text}`} onclick={() => selectNode(node)} onkeydown={(event) => handleNodeKeydown(event, node)}><title>{node.id} · {node.origin} · {node.text}</title></circle>{/each}</g>
+      <g>{#each nodes as node (node.id)}<circle data-node-id={node.id} class:deprecated={node.status === 'deprecated'} class={`node ${node.origin}`} cx={node.x} cy={node.y} r="5" tabindex="0" role="button" aria-label={`${node.id}: ${node.text}${node.tags[0] ? `, tag: ${node.tags[0]}` : ''}`} onclick={() => selectNode(node)} onkeydown={(event) => handleNodeKeydown(event, node)}><title>{node.id} · {node.origin} · {node.text}</title></circle>{/each}</g>
     </svg>
   {/if}
   <aside aria-labelledby="graph-node-details-title" aria-live="polite" aria-atomic="true">
@@ -75,6 +123,8 @@
   .graph-island { font-family: ui-sans-serif, system-ui, sans-serif; }
   header { align-items: end; display: flex; justify-content: space-between; gap: 1rem; }
   h1 { margin-bottom: 0; } header p { margin-top: .25rem; opacity: .7; }
+  select { display: block; padding: .45rem; min-width: 12rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   svg { background: color-mix(in srgb, Canvas 96%, #9c7a31); border: 1px solid #7775; border-radius: 1rem; width: 100%; }
   line { stroke: #7776; stroke-width: .65; }
   circle { cursor: pointer; fill: #678; stroke: Canvas; stroke-width: 1.5; }

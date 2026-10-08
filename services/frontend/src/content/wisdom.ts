@@ -20,11 +20,15 @@ export const labels = {
     wisdom: 'Wisdom', docs: 'Documentation', empty: 'No accepted English wisdom is available yet.',
     sections: 'Sections', levels: 'Levels', tags: 'Tags', all: 'All wisdom', teaches: 'Teaches',
     back: 'Back to wisdom', entries: 'entries', notFound: 'Wisdom entry not found',
+    propose: 'Propose a quote',
+    proposeLoginPrompt: 'Log in to propose a quote.',
   },
   es: {
     wisdom: 'Sabiduría', docs: 'Documentación', empty: 'Todavía no hay sabiduría aceptada en español.',
     sections: 'Secciones', levels: 'Niveles', tags: 'Etiquetas', all: 'Toda la sabiduría', teaches: 'Enseña',
     back: 'Volver a sabiduría', entries: 'entradas', notFound: 'Entrada de sabiduría no encontrada',
+    propose: 'Proponer una cita',
+    proposeLoginPrompt: 'Inicia sesión para proponer una cita.',
   },
 } as const;
 

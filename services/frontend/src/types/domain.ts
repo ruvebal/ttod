@@ -59,4 +59,6 @@ export interface OfflineLogEntry {
   kind: 'oracle-query' | 'error-report';
   payload: OracleQueryPayload | { errorLog: string };
   synced: boolean;
+  /** Assigned by IndexedDB when first saved; retained when marked synced. */
+  queueOrder?: number;
 }

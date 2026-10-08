@@ -7,6 +7,8 @@ import { defineConfig, devices } from '@playwright/test';
 // something a browser-automation config should own.
 export default defineConfig({
   testDir: './e2e',
+  // Keep regular-suite cleanup away from the guard's reports and running lock.
+  outputDir: 'test-results/browser',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,

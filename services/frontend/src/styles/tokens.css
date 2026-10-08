@@ -30,3 +30,7 @@ body { margin: 0; }
 .ttod-prose h1 { font-size: var(--ttod-text-xl); line-height: 1.1; }
 .ttod-prose h2 { margin-top: var(--ttod-space-12); }
 .ttod-prose a { color: var(--ttod-color-accent); }
+.ttod-breadcrumbs ol { display: flex; flex-wrap: wrap; gap: var(--ttod-space-2, .375rem); list-style: none; margin: 0 0 var(--ttod-space-6) 0; padding: 0; font-family: var(--ttod-font-ui); font-size: var(--ttod-text-sm); }
+.ttod-breadcrumbs li:not(:last-child)::after { content: "›"; margin-inline-start: var(--ttod-space-2, .375rem); color: var(--ttod-color-muted); }
+.ttod-breadcrumbs a { color: var(--ttod-color-accent); }
+.ttod-breadcrumbs li[aria-current="page"] { color: var(--ttod-color-muted); }

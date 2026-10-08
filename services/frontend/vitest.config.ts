@@ -1,6 +1,9 @@
-import { defineConfig } from 'vitest/config';
+/// <reference types="vitest/config" />
+import { getViteConfig } from 'astro/config';
 
-export default defineConfig({
+// getViteConfig (not a bare defineConfig) so vitest can resolve `.astro` imports: the facet-route
+// tests in src/tests/ render real pages through Astro's container API.
+export default getViteConfig({
   test: {
     exclude: [
       'node_modules/**',

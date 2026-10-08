@@ -1,0 +1,19 @@
+---
+export interface Crumb { label: string; href?: string }
+interface Props { locale: 'en' | 'es'; items: Crumb[] }
+const { locale, items } = Astro.props;
+const navLabel = locale === 'es' ? 'Ruta de navegación' : 'Breadcrumb';
+const lastIndex = items.length - 1;
+---
+<nav class="ttod-breadcrumbs" aria-label={navLabel}>
+  <ol>
+    {items.map((item, index) => {
+      const isCurrent = index === lastIndex;
+      return (
+        <li aria-current={isCurrent ? 'page' : undefined}>
+          {isCurrent ? item.label : <a href={item.href}>{item.label}</a>}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

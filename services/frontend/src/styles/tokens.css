@@ -30,3 +30,7 @@ body { margin: 0; }
 .ttod-prose h1 { font-size: var(--ttod-text-xl); line-height: 1.1; }
 .ttod-prose h2 { margin-top: var(--ttod-space-12); }
 .ttod-prose a { color: var(--ttod-color-accent); }
+.ttod-provenance { display: grid; grid-template-columns: auto 1fr; gap: var(--ttod-space-1, .25rem) var(--ttod-space-3, .75rem); margin: var(--ttod-space-4) 0 0; font: var(--ttod-text-sm)/1.5 var(--ttod-font-ui); color: var(--ttod-color-muted); }
+.ttod-provenance dt { font-weight: 600; }
+.ttod-provenance dd { margin: 0; }
+.ttod-provenance-compact { margin-top: var(--ttod-space-2, .5rem); }

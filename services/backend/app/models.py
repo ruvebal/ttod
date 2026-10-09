@@ -5,6 +5,31 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 
+SessionRole = Literal["student", "reviewer", "instructor"]
+
+
+class AuthUser(BaseModel):
+    id: str
+    email: str
+    roles: list[SessionRole]
+
+
+class AuthLoginRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=254)
+    password: str = Field(min_length=1, max_length=1024)
+
+
+class AuthLoginResponse(BaseModel):
+    session_token: str
+    token_type: Literal["Session"] = "Session"
+    expires_in: int
+    user: AuthUser
+
+
+class FavoriteRequest(BaseModel):
+    quoteId: str = Field(min_length=1, max_length=200)
+
+
 class OracleQueryPayload(BaseModel):
     query: str = Field(min_length=1, max_length=8000)
     contextTag: str | None = None

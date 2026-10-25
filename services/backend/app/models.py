@@ -31,10 +31,19 @@ class ProposalRequest(BaseModel):
     source: str | None = None
 
 
+class FavoriteRequest(BaseModel):
+    quoteId: str = Field(min_length=1, max_length=128)
+
+
+class FavoriteEntry(BaseModel):
+    userId: str
+    quoteId: str
+    savedAt: str
+
+
 class OracleResponseChunk(BaseModel):
     mode: Literal["grounded", "creative"]
     citedQuoteIds: list[str] | None = None
     themes: list[str] | None = None
     tags: list[str] | None = None
     text: str
-

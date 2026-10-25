@@ -1,0 +1,40 @@
+---
+import Page from '../../layouts/Page.astro';
+import FavoriteButton from '../../components/wisdom/FavoriteButton';
+import { requireUser } from '../../lib/auth.server';
+import type { FavoriteEntry } from '../../types/domain';
+import '../../styles/tokens.css';
+
+const locale = Astro.params.locale;
+if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 });
+if (!requireUser(Astro.request)) {
+  return new Response('Authentication required', { status: 401, headers: { 'content-type': 'text/plain' } });
+}
+
+const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+const headers: Record<string, string> = { accept: 'application/json' };
+for (const name of ['cookie', 'authorization']) {
+  const value = Astro.request.headers.get(name);
+  if (value) headers[name] = value;
+}
+const response = await fetch(`${backend}/api/v1/favorites`, { headers });
+if (!response.ok) throw new Error(`Unable to load favorites (${response.status})`);
+const favorites = await response.json() as FavoriteEntry[];
+const copy = locale === 'es'
+  ? { title: 'Mi biblioteca', back: 'Volver a sabiduría', empty: 'Todavía no has guardado ninguna cita.', saved: 'Guardada' }
+  : { title: 'My library', back: 'Back to wisdom', empty: 'You have not saved any quotes yet.', saved: 'Saved' };
+---
+<Page lang={locale} title={copy.title}>
+  <main class="ttod-shell">
+    <nav class="ttod-nav"><a href={`/${locale}/wisdom/`}>← {copy.back}</a></nav>
+    <h1>{copy.title}</h1>
+    {favorites.length === 0 ? <p class="ttod-empty">{copy.empty}</p> : <section class="ttod-grid" aria-label={copy.title}>
+      {favorites.map((favorite) => favorite.quote ? <article class="ttod-card">
+        <blockquote>{favorite.quote.text}</blockquote>
+        <a href={`/${locale}/wisdom/${favorite.quoteId}/`}>{favorite.quoteId}</a>
+        <p class="ttod-meta">{favorite.quote.section} · {favorite.quote.level} · {copy.saved} {favorite.savedAt}</p>
+        <FavoriteButton quoteId={favorite.quoteId} initiallySaved client:load />
+      </article> : null)}
+    </section>}
+  </main>
+</Page>

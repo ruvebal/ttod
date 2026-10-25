@@ -15,6 +15,13 @@ export interface WisdomEntry {
   };
 }
 
+export interface FavoriteEntry {
+  userId: string;
+  quoteId: string;
+  savedAt: string;
+  quote?: WisdomEntry;
+}
+
 export interface GraphNode {
   id: string;
   section: string;

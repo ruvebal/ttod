@@ -7,14 +7,20 @@ from ttod_core.repository import ProposalStore
 
 from .config import Settings
 from .auth import require_reviewer_session, require_session_user
-from .models import OracleProposeRequest, OracleQueryPayload, ProposalRequest
+from .favorites import FavoriteStore, RedisFavoriteStore
+from .models import FavoriteRequest, OracleProposeRequest, OracleQueryPayload, ProposalRequest
 from .oracle import OracleService
 from .storage import SnapshotService
 
-def create_app(settings: Settings | None = None, oracle: OracleService | None = None) -> FastAPI:
+def create_app(
+    settings: Settings | None = None,
+    oracle: OracleService | None = None,
+    favorites: FavoriteStore | None = None,
+) -> FastAPI:
     settings = settings or Settings.from_env()
     snapshots = SnapshotService(settings.ttod_path, settings.schema_dir)
     oracle = oracle or OracleService(settings, snapshots)
+    favorites = favorites or RedisFavoriteStore(settings.redis_url)
     app = FastAPI(title="TTOD Oracle Backend", version="1.0.0")
 
     @app.get("/health")
@@ -35,6 +41,44 @@ def create_app(settings: Settings | None = None, oracle: OracleService | None = 
     @app.get("/api/v1/graph")
     def graph():
         return Response(content=snapshots.graph_bytes(), media_type="application/json")
+
+    def public_quote(quote_id: str) -> dict:
+        quote = next((entry for entry in snapshots.wisdom() if entry["id"] == quote_id), None)
+        if quote is None:
+            raise HTTPException(status_code=404, detail="Quote not found or not publicly active")
+        return quote
+
+    @app.post("/api/v1/favorites", status_code=201)
+    def save_favorite(payload: FavoriteRequest, user_id: str = Depends(require_session_user)):
+        public_quote(payload.quoteId)
+        try:
+            return favorites.save(user_id, payload.quoteId).model_dump()
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail="Favorites store unavailable") from exc
+
+    @app.get("/api/v1/favorites")
+    def list_favorites(user_id: str = Depends(require_session_user)):
+        try:
+            entries = favorites.list(user_id)
+            active_quotes = {entry["id"]: entry for entry in snapshots.wisdom()}
+            return [
+                {**entry.model_dump(), "quote": active_quotes[entry.quoteId]}
+                for entry in entries
+                if entry.quoteId in active_quotes
+            ]
+        except HTTPException:
+            raise
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail="Favorites store unavailable") from exc
+
+    @app.delete("/api/v1/favorites/{quote_id}")
+    def remove_favorite(quote_id: str, user_id: str = Depends(require_session_user)):
+        public_quote(quote_id)
+        try:
+            favorites.remove(user_id, quote_id)
+            return {"removed": True, "quoteId": quote_id}
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail="Favorites store unavailable") from exc
 
     @app.post("/api/v1/oracle/stream")
     def oracle_stream(payload: OracleQueryPayload):
@@ -88,4 +132,3 @@ def create_app(settings: Settings | None = None, oracle: OracleService | None = 
 
 
 app = create_app()
-

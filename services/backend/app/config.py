@@ -13,6 +13,7 @@ class Settings:
     ttod_path: Path = REPOSITORY_ROOT / "ttod.yml"
     schema_dir: Path = REPOSITORY_ROOT / "schema"
     proposal_dir: Path = REPOSITORY_ROOT / "services/backend/data/proposals"
+    redis_url: str = "redis://redis:6379/0"
     ollama_mode: str = "host"
     ollama_model: str = ""
     ollama_embed_model: str = "nomic-embed-text"
@@ -30,6 +31,7 @@ class Settings:
             ttod_path=Path(os.getenv("TTOD_PATH", str(REPOSITORY_ROOT / "ttod.yml"))),
             schema_dir=Path(os.getenv("TTOD_SCHEMA_DIR", str(REPOSITORY_ROOT / "schema"))),
             proposal_dir=Path(os.getenv("TTOD_PROPOSAL_DIR", str(REPOSITORY_ROOT / "services/backend/data/proposals"))),
+            redis_url=os.getenv("REDIS_URL", "redis://redis:6379/0"),
             ollama_mode=mode,
             ollama_model=os.getenv("OLLAMA_MODEL", ""),
             ollama_embed_model=os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text"),

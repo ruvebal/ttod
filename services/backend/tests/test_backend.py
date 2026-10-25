@@ -8,6 +8,8 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from services.backend.app.config import REPOSITORY_ROOT, Settings
+from services.backend.app.favorites import RedisFavoriteStore
+from services.backend.app.models import FavoriteEntry
 from services.backend.app.main import create_app
 from services.backend.app.oracle import (
     CREATIVE_PROMPT,
@@ -40,6 +42,41 @@ class FakeRetrieval:
         }], "indexDigest": "digest", "indexedQuotes": 1}
 
 
+class FakeFavorites:
+    def __init__(self):
+        self.entries: dict[str, dict[str, FavoriteEntry]] = {}
+
+    def save(self, user_id: str, quote_id: str) -> FavoriteEntry:
+        user_entries = self.entries.setdefault(user_id, {})
+        entry = user_entries.setdefault(
+            quote_id, FavoriteEntry(userId=user_id, quoteId=quote_id, savedAt="2026-01-01T00:00:00+00:00")
+        )
+        return entry
+
+    def list(self, user_id: str) -> list[FavoriteEntry]:
+        return list(self.entries.get(user_id, {}).values())
+
+    def remove(self, user_id: str, quote_id: str) -> bool:
+        return self.entries.get(user_id, {}).pop(quote_id, None) is not None
+
+
+class FakeRedis:
+    def __init__(self):
+        self.values: dict[str, dict[str, str]] = {}
+
+    def hget(self, key: str, field: str) -> str | None:
+        return self.values.get(key, {}).get(field)
+
+    def hset(self, key: str, field: str, value: str) -> None:
+        self.values.setdefault(key, {})[field] = value
+
+    def hgetall(self, key: str) -> dict[str, str]:
+        return self.values.get(key, {})
+
+    def hdel(self, key: str, field: str) -> int:
+        return int(self.values.get(key, {}).pop(field, None) is not None)
+
+
 class BackendTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -50,7 +87,8 @@ class BackendTests(unittest.TestCase):
         self.snapshots = SnapshotService(self.settings.ttod_path, self.settings.schema_dir)
         self.ollama = FakeOllama()
         self.oracle = OracleService(self.settings, self.snapshots, self.ollama, FakeRetrieval())
-        self.client = TestClient(create_app(self.settings, self.oracle))
+        self.favorites = FakeFavorites()
+        self.client = TestClient(create_app(self.settings, self.oracle, self.favorites))
 
     def tearDown(self):
         self.temp.cleanup()
@@ -133,6 +171,35 @@ class BackendTests(unittest.TestCase):
             "origin": "human", "score": 0.8,
         }], "indexDigest": "abc", "indexedQuotes": 1, "ignored": True}
         self.assertEqual(set(normalize_retrieval_envelope(payload)), {"results", "indexDigest", "indexedQuotes"})
+
+    def test_favorites_are_authenticated_isolated_and_idempotent(self):
+        student = {"Authorization": "Bearer " + json.dumps({"userId": "student-1", "roles": ["student"]})}
+        other = {"Authorization": "Bearer " + json.dumps({"userId": "student-2", "roles": ["student"]})}
+        quote_id = self.client.get("/api/v1/wisdom/sample").json()[0]["id"]
+
+        self.assertEqual(self.client.post("/api/v1/favorites", json={"quoteId": quote_id}).status_code, 401)
+        first = self.client.post("/api/v1/favorites", json={"quoteId": quote_id}, headers=student)
+        second = self.client.post("/api/v1/favorites", json={"quoteId": quote_id}, headers=student)
+        self.assertEqual(first.status_code, 201)
+        self.assertEqual(second.json(), first.json())
+        self.assertEqual(self.client.get("/api/v1/favorites", headers=student).json()[0]["quoteId"], quote_id)
+        self.assertEqual(self.client.get("/api/v1/favorites", headers=other).json(), [])
+        self.assertEqual(self.client.delete(f"/api/v1/favorites/{quote_id}", headers=student).status_code, 200)
+        self.assertEqual(self.client.get("/api/v1/favorites", headers=student).json(), [])
+
+    def test_favorites_reject_unknown_or_non_public_quote(self):
+        student = {"Authorization": "Bearer " + json.dumps({"userId": "student-1", "roles": ["student"]})}
+        response = self.client.post("/api/v1/favorites", json={"quoteId": "missing"}, headers=student)
+        self.assertEqual(response.status_code, 404)
+
+    def test_redis_favorite_store_is_idempotent_and_persistent(self):
+        store = RedisFavoriteStore("redis://unused", client=FakeRedis())
+        first = store.save("student-1", "wis-001")
+        second = store.save("student-1", "wis-001")
+        self.assertEqual(first, second)
+        self.assertEqual(store.list("student-1"), [first])
+        self.assertTrue(store.remove("student-1", "wis-001"))
+        self.assertFalse(store.remove("student-1", "wis-001"))
 
     def test_mcp_unavailable_fails_closed(self):
         import asyncio

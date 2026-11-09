@@ -193,7 +193,8 @@ AGENTS.md                          ← root contract (read first)
   │     ├── public-docs-i18n/      ← bilingual public-docs skill
   │     ├── report-steward/        ← evidence + privacy watcher (CI uses this)
   │     ├── ide-mcp/               ← student IDE MCP configs, llms index, verify scripts
-  │     └── lao-tzu-tao-compose/   ← compose lens (local, untracked)
+  │     ├── ttod-influence-compose/ ← influence RAG/graph → ttod-bridge propose
+  │     └── lao-tzu-tao-compose/   ← Lao profile data (path locked; do not rename)
   ├── .cursor/ · .claude/          ← landings only (tool loaders); .cursor/mcp.json = IDE MCP client config
   ├── services/mcp/                ← product FastMCP (read-only corpus retrieval)
   ├── services/frontend/ (Astro)   ← UI; Oracle island talks to backend
@@ -231,5 +232,6 @@ touches `ttod.yml`. See `docs/DEV_PLAN/PHASE-W-AGENTIC-HOMOGENIZATION/PHASE-W-AG
 | [`INDEX.md`](INDEX.md)                                                                   | Public readme + constitutional boundary |
 | [`docs/DEV_PLAN/INDEX.md`](docs/DEV_PLAN/INDEX.md)                                       | Phase Q programme state                 |
 | [`~/src/.cursor/skills/ttod-bridge/SKILL.md`](../../.cursor/skills/ttod-bridge/SKILL.md) | Propose/read contract (studio skill — cited, not absorbed into `agentic/`; see `docs/DEV_PLAN/DECISIONS/W0-2026-09-18-AGENTIC-HOME.md`) |
+| [`agentic/ttod-influence-compose/`](agentic/ttod-influence-compose/) | Influence RAG/graph compose → ttod-bridge propose (Lao profile first) |
 | [`agentic/README.md`](agentic/README.md)                                                | Map of TTOD's agent-facing tree: edit-home vs landings vs product MCP |
 | [`agentic/ttod-editing/rules/ttod-editing.md`](agentic/ttod-editing/rules/ttod-editing.md) | YAML editing gate (edit-home; loaded via the `.cursor/rules/ttod-editing.mdc` landing) |

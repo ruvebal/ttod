@@ -32,8 +32,12 @@ agentic/
 ├── ide-mcp/                      pack — student IDE MCP harness
 │   ├── PACK.md  README.md             (README = the student-facing setup)
 │   └── mcp.cursor.json  examples/  llms/  scripts/
-└── lao-tzu-tao-compose/          pack — local and untracked; not committed by the layout phases
-    └── PACK.md  skills/  rules/  queries/  prompts/   (path is locked: a sibling repo reads it)
+├── ttod-influence-compose/       pack — compose TTOD quotes under a named influence (RAG/graph → propose)
+│   ├── PACK.md
+│   ├── skills/ttod-influence-compose/SKILL.md
+│   └── profiles/                      (first profile: lao-tzu.md)
+└── lao-tzu-tao-compose/          pack — Lao influence profile data (prompts/rules/queries); path locked
+    └── PACK.md  skills/  rules/  queries/  prompts/
 ```
 
 Nothing inside a pack is loaded by a tool on its own: a rule or skill reaches Cursor only through a
@@ -72,6 +76,7 @@ because JSON cannot redirect.
 | `.cursor/rules/public-privacy.mdc` | `report-steward/rules/public-privacy.md` |
 | `.cursor/rules/spanish-research-prose.mdc` | `report-steward/rules/spanish-research-prose.md` |
 | `.cursor/skills/public-docs-i18n/SKILL.md` | `public-docs-i18n/skills/public-docs-i18n/SKILL.md` |
+| `.cursor/skills/ttod-influence-compose/SKILL.md` | `ttod-influence-compose/skills/ttod-influence-compose/SKILL.md` |
 | `.cursor/mcp.json` | **the exception:** an identical copy of `ide-mcp/mcp.cursor.json`; the tree test compares the parsed JSON, and `ide-mcp/scripts/verify-ide-mcp.py` is the stricter gate (allowlist and digest) |
 | `.claude/agents/cascade-*.md` | the studio's shared agents, outside this repository |
 
@@ -85,14 +90,17 @@ must find the file gets a doorway that redirects to it.
 
 **Never rename `report-steward/` or `lao-tzu-tao-compose/`.** The first is hard-wired in
 `public-docs-pages.yml`, the `Makefile` and `tests/test_public_privacy_watcher.py`; the second
-is read by a sibling repository. Their `PACK.md` lists say so under `locks` and `external_readers`.
+is the Lao influence profile pack (prompts/queries) consumed by `ttod-influence-compose` and named
+by a sibling repository. Their `PACK.md` lists say so under `locks` and `external_readers`.
 
 ## Beside this tree, not in it
 
 - The running app's own MCP server is [`../services/mcp/`](../services/mcp/): a runtime protocol,
   not an agent pack.
 - Studio skills (`ttod-bridge`, `cascade-forge`) and the two cascade subagents live outside this
-  repository and stay there; TTOD points at them and never forks them.
+  repository and stay there; TTOD points at them and never forks them. `ttod-influence-compose` is
+  TTOD-scoped (edit under `agentic/`); a thin stub at `~/src/.cursor/skills/ttod-influence-compose/`
+  points here for studio-wide discovery.
 - Root contract and map: [`../AGENTS.md`](../AGENTS.md). Why things live where they do:
   [W0](../docs/DEV_PLAN/DECISIONS/W0-2026-09-18-AGENTIC-HOME.md) and the
   [Phase Y plan](../docs/DEV_PLAN/PHASE-Y-AGENTIC-DIRTREE-UNIX/INDEX.md).

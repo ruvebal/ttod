@@ -20,5 +20,5 @@ signed blobs still read for compatibility. Cookie name `ttod_session` and AuthUs
 - [x] Logout then reuse login cookie → 401 (`test_logout_revokes_a_login_issued_session`)
 - [x] Env admin still works via seed; unit tests without live Redis green
 - [x] Existing auth suite green with Memory stores in `create_app`
-- [ ] Compose restart smoke for sessions — deferred to operator `make up` (redis already proven Z1)
-- [ ] Cold review — pending
+- [x] Session/favorites survive backend restart — closed 2026-11-09 via Equipo #92 `SurvivesRestartTests` (FakeRedis shared across two app boots); Redis AOF host restart re-proven same day (see [COMPLETENESS-2026-11-09.md](COMPLETENESS-2026-11-09.md)). Live Compose backend smoke still needs stable `.env` secrets.
+- [x] Cold review — [PHASE-Z-COLD-REVIEW.md](PHASE-Z-COLD-REVIEW.md); F2 closed as above

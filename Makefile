@@ -18,7 +18,7 @@ HTTP_PORT ?= 8080
 # Prefer npm when present; never introduce a second package manager at the root.
 NPM := npm --prefix $(FE)
 
-.PHONY: help env venv \
+.PHONY: help env env-secrets venv \
 	up down rebuild ps logs ollama-pull \
 	validate stats snapshot export test check \
 	docs docs-serve docs-clean docs-setup docs-privacy docs-local \
@@ -54,6 +54,9 @@ env: ## Show toolchain resolutions (python, ruby, docker, bundle, npm)
 	@test -f $(ROOT)/.env && echo 'env: .env present' || echo 'env: copy .env.example → .env'
 	@grep -E '^OLLAMA_MODE=' $(ROOT)/.env 2>/dev/null || echo 'OLLAMA_MODE: (.env missing)'
 
+env-secrets: ## Fill empty TTOD session/PAT/admin secrets in .env (idempotent)
+	@$(PYTHON) $(ROOT)/scripts/ensure_env_secrets.py
+
 venv: ## Create .venv (idempotent) and install the editable CLI + service deps
 	@test -d $(ROOT)/.venv || python3 -m venv $(ROOT)/.venv
 	@$(ROOT)/.venv/bin/pip install -q -e $(ROOT)
@@ -67,7 +70,7 @@ venv: ## Create .venv (idempotent) and install the editable CLI + service deps
 # ─────────────────────────────────────────────────────────
 
 up: ## Start the app — its own Ollama included, nothing to install first
-	@test -f $(ROOT)/.env || cp $(ROOT)/.env.example $(ROOT)/.env
+	@$(PYTHON) $(ROOT)/scripts/ensure_env_secrets.py
 	@$(COMPOSE) up --build -d
 	@$(COMPOSE) ps
 	@port=$$(grep -E '^HTTP_PORT=' $(ROOT)/.env | tail -1 | cut -d= -f2); \

@@ -147,10 +147,10 @@ def create_app(
 
     @app.post("/api/v1/auth/login", response_model=AuthLoginResponse)
     def login(payload: AuthLoginRequest):
-        claims = auth_service.authenticate(payload.email, payload.password)
-        if claims is None:
-            raise HTTPException(status_code=401, detail="Invalid email or password")
         try:
+            claims = auth_service.authenticate(payload.email, payload.password)
+            if claims is None:
+                raise HTTPException(status_code=401, detail="Invalid email or password")
             session_token = auth_service.issue_session(claims)
         except redis.RedisError as exc:
             raise HTTPException(status_code=503, detail="Session store unavailable") from exc

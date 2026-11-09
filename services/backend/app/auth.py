@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import secrets
 import uuid
 from dataclasses import dataclass
@@ -11,6 +12,8 @@ from passlib.context import CryptContext
 from passlib.exc import UnknownHashError
 
 from .users import UserRecord
+
+logger = logging.getLogger(__name__)
 
 
 SESSION_COOKIE_NAME = "ttod_session"
@@ -79,7 +82,11 @@ class AuthService:
         self._users = users
         self._sessions = sessions
         if self._users is not None:
-            self._users.ensure_admin(self.admin_email, self.admin_password_hash)
+            # Best-effort: a Redis blip at import must not keep the container unhealthy.
+            try:
+                self._users.ensure_admin(self.admin_email, self.admin_password_hash)
+            except Exception:
+                logger.exception("Could not seed admin user into the shore store")
 
     def authenticate(self, email: str, password: str) -> SessionClaims | None:
         if self._users is not None:

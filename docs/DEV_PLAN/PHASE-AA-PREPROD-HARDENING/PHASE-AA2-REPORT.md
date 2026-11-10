@@ -73,6 +73,15 @@ Every one of these is a direct consequence of the findings. None was loosened:
    `TTOD_THROTTLE_REGISTER_IP=5/3600` for its isolated stack. It tests the mechanism, not the
    default. Compose now passes the `TTOD_THROTTLE_*` variables through to the backend.
 
+3. **The isolated stack shared host data.** The first runner `verify` failed: the first registration
+   returned 429, because the previous run's throttle counter survived. The isolated stack's Redis
+   wrote to the checkout's `./data/redis` bind mount, which `down -v` does not remove. Run from the
+   main checkout, it would even have shared the live stack's AOF and drafts. Fix: Compose takes
+   `TTOD_REDIS_HOST_DIR` (default `./data/redis`, unchanged for Tanit), and
+   `scripts/isolated-stack.sh` gives every stack fresh temporary directories for Redis and proposal
+   drafts, deleted on `down`. The AA5 lane A gate predates the helper; it is safe only because the
+   harness runs it in a worktree. AA5 lane B should move it onto the helper.
+
 ## 4. Rolling it out on Tanit (after the owner merges)
 
 1. If the class reaches TTOD by a LAN name, set it in `.env`, for example

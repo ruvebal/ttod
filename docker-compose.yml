@@ -105,7 +105,8 @@ services:
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
-      - ./data/redis:/data
+      # Host folder for the AOF; override (e.g. a temp dir for an isolated test stack) with TTOD_REDIS_HOST_DIR.
+      - ${TTOD_REDIS_HOST_DIR:-./data/redis}:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s

@@ -47,6 +47,7 @@ only needs repeating if you later remove that volume.
 
 ```bash
 cp .env.example .env
+python3 scripts/ensure_env_secrets.py   # stable session/PAT secrets; the backend refuses to boot without them
 docker compose up --build -d
 docker compose ps
 docker compose exec ollama ollama pull llama3.2:1b

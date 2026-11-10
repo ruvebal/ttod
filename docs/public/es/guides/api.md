@@ -39,7 +39,7 @@ local con Compose — porque Caddy redirige `/api/*` al backend.
 | `GET /api/v1/wisdom/sample` | ninguna | `200` con el corpus público |
 | `POST /api/v1/proposals` | cookie de sesión | `201` con `{ proposal_id, status }` |
 | `GET /api/v1/schema/definitions` | ninguna | `200` con las definiciones del esquema |
-| `GET /health` | ninguna | `200` con `{ status, ttod_version }` |
+| `GET /health` | ninguna | `200` con `{ status, ttod_version, redis }`; **`503`** con `status: "degraded"`, `redis: "down"` si Redis está configurado pero no responde (sin Redis no aparece `redis`) |
 
 ## Las formas son los tipos compartidos
 

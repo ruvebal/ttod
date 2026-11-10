@@ -59,8 +59,12 @@ sys.exit(1 if s.get("ports") else 0)' || fail "redis publishes a host port"
 
 # 4. Live, isolated: recreate keeps proposal files; /health answers 503 with Redis down.
 if [ "${AA5_SKIP_LIVE:-0}" != "1" ]; then
-  dc() { docker compose -p "$project" -f docker-compose.yml "$@"; }
-  trap 'dc down -v --remove-orphans >/dev/null 2>&1 || true' EXIT
+  # F28 makes empty secrets fail boot, so the isolated stack gets throwaway ones (never the
+  # instructor's .env). Amended during AA5 lane A, disclosed in the report.
+  envf="$(mktemp)"
+  printf 'TTOD_SESSION_SECRET=%s\nTTOD_PAT_SECRET=%s\n' "$(openssl rand -hex 24)" "$(openssl rand -hex 24)" > "$envf"
+  dc() { docker compose -p "$project" --env-file "$envf" -f docker-compose.yml "$@"; }
+  trap 'dc down -v --remove-orphans >/dev/null 2>&1 || true; rm -f "$envf"' EXIT
   mkdir -p "$bind_src"
   marker="aa5-gate-$$.txt"; echo "recreate probe" > "$bind_src/$marker"
   dc up -d redis >/dev/null 2>&1

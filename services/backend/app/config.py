@@ -9,6 +9,21 @@ from pathlib import Path
 REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 
 
+def _secret(name: str) -> str:
+    """Read a signing secret. F28: with REDIS_URL set, an empty secret fails boot.
+
+    A random per-process secret would invalidate every session and PAT on each restart
+    (and differ between workers), so the shore deployment refuses it. Without Redis
+    (local dev, tests) a throwaway secret is still generated.
+    """
+    value = os.getenv(name, "").strip()
+    if value:
+        return value
+    if os.getenv("REDIS_URL", "").strip():
+        raise RuntimeError(f"{name} is empty while REDIS_URL is set; run `make env-secrets`")
+    return secrets.token_urlsafe(32)
+
+
 @dataclass(frozen=True)
 class Settings:
     ttod_path: Path = REPOSITORY_ROOT / "ttod.yml"
@@ -38,9 +53,9 @@ class Settings:
             ttod_path=Path(os.getenv("TTOD_PATH", str(REPOSITORY_ROOT / "ttod.yml"))),
             schema_dir=Path(os.getenv("TTOD_SCHEMA_DIR", str(REPOSITORY_ROOT / "schema"))),
             proposal_dir=Path(os.getenv("TTOD_PROPOSAL_DIR", str(REPOSITORY_ROOT / "services/backend/data/proposals"))),
-            session_secret=os.getenv("TTOD_SESSION_SECRET") or secrets.token_urlsafe(32),
+            session_secret=_secret("TTOD_SESSION_SECRET"),
             session_ttl_seconds=int(os.getenv("TTOD_SESSION_TTL_SECONDS", "3600")),
-            pat_secret=os.getenv("TTOD_PAT_SECRET") or secrets.token_urlsafe(32),
+            pat_secret=_secret("TTOD_PAT_SECRET"),
             pat_ttl_seconds=int(os.getenv("TTOD_PAT_TTL_SECONDS", "3600")),
             admin_email=os.getenv("TTOD_ADMIN_EMAIL", "admin@ttod.local"),
             admin_password_hash=os.getenv("TTOD_ADMIN_PASSWORD_HASH", ""),

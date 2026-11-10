@@ -81,6 +81,7 @@ down: ## Stop containers (keeps named volumes)
 	@$(COMPOSE) down
 
 rebuild: ## Rebuild images and recreate the stack
+	@$(PYTHON) $(ROOT)/scripts/ensure_env_secrets.py
 	@$(COMPOSE) up --build -d --force-recreate
 	@$(COMPOSE) ps
 

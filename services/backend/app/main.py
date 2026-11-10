@@ -9,7 +9,7 @@ from typing import Any
 import redis
 from fastapi import Cookie, Depends, FastAPI, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import Response, StreamingResponse
+from fastapi.responses import JSONResponse, Response, StreamingResponse
 
 from ttod_core.proposals import create_proposal
 
@@ -131,10 +131,12 @@ def create_app(
         except Exception as exc:
             raise HTTPException(status_code=503, detail=f"TTOD repository unavailable: {exc}") from exc
         if settings.redis_url.strip() or shore_client is not None:
-            payload = {
-                **payload,
-                "redis": "ok" if shore_client is not None and redis_ping(shore_client) else "down",
-            }
+            redis_ok = shore_client is not None and redis_ping(shore_client)
+            payload = {**payload, "redis": "ok" if redis_ok else "down"}
+            if not redis_ok:
+                # F27: the shore APIs answer 503 without Redis, so health must too; the
+                # Compose healthcheck (urlopen raises on 503) then marks the backend unhealthy.
+                return JSONResponse(status_code=503, content={**payload, "status": "degraded"})
         return payload
 
     @app.get("/api/v1/schema/definitions")

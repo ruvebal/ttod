@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import secrets
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any, Protocol
 
 from fastapi import Cookie, Header, HTTPException
@@ -11,6 +11,7 @@ from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from passlib.context import CryptContext
 from passlib.exc import UnknownHashError
 
+from .revocation import MemoryTokenRegistry, TokenRegistry
 from .users import UserRecord
 
 logger = logging.getLogger(__name__)
@@ -30,10 +31,13 @@ class SessionClaims:
 @dataclass(frozen=True)
 class AccessTokenClaims:
     user_id: str
+    jti: str = ""
 
 
 class _UserStore(Protocol):
     def get_by_email(self, email: str) -> Any: ...
+    def get_by_id(self, user_id: str) -> Any: ...
+    def upsert(self, user: UserRecord) -> None: ...
     def create(self, user: UserRecord) -> bool: ...
     def ensure_admin(self, email: str, password_hash: str, *, user_id: str = "usr-001") -> None: ...
 
@@ -56,6 +60,8 @@ class AuthService:
         *,
         users: _UserStore | None = None,
         sessions: _SessionStore | None = None,
+        registry: TokenRegistry | None = None,
+        allow_signed_fallback: bool = False,
     ):
         if len(session_secret.encode("utf-8")) < 32:
             raise ValueError("Session secret must contain at least 32 bytes")
@@ -81,6 +87,11 @@ class AuthService:
         self._session_serializer = URLSafeTimedSerializer(session_secret, salt="ttod-web-session-v1")
         self._users = users
         self._sessions = sessions
+        self._registry = registry or MemoryTokenRegistry()
+        # F4: with a session store, a signed cookie blob is no longer accepted unless this is set
+        # (TTOD_ALLOW_SIGNED_SESSION_FALLBACK=1). Signed blobs cannot be revoked: logout must mean
+        # "delete the session row" (React authentication lesson).
+        self._allow_signed_fallback = allow_signed_fallback
         if self._users is not None:
             # Best-effort: a Redis blip at import must not keep the container unhealthy.
             try:
@@ -147,6 +158,7 @@ class AuthService:
         if self._sessions is not None:
             sid = secrets.token_urlsafe(32)
             self._sessions.put(sid, claims, ttl_seconds=self.session_ttl_seconds)
+            self._registry.add_session(claims.user_id, sid, self.session_ttl_seconds)
             return sid
         return self._session_serializer.dumps({
             "sub": claims.user_id,
@@ -159,8 +171,12 @@ class AuthService:
         if self._sessions is not None:
             stored = self._sessions.get(token)
             if stored is not None:
+                # Sessions issued before AA2 are not in the per-user index yet; adding the sid on
+                # read lets a password change or logout-all reach them too (idempotent SADD).
+                self._registry.add_session(stored.user_id, token, self.session_ttl_seconds)
                 return stored
-            # Compat: tests / older cookies still use signed blobs without a store entry.
+            if not self._allow_signed_fallback:
+                return None
         return self._read_signed_session(token)
 
     def _read_signed_session(self, token: str) -> SessionClaims | None:
@@ -184,12 +200,66 @@ class AuthService:
     def revoke_session(self, token: str) -> bool:
         if self._sessions is None or not token:
             return False
+        claims = self._sessions.get(token)
+        if claims is not None:
+            self._registry.remove_session(claims.user_id, token)
         return self._sessions.delete(token)
+
+    def user_sessions(self, user_id: str) -> set[str]:
+        """Live sids of a user; members whose session row expired are pruned on read."""
+        if self._sessions is None:
+            return set()
+        live = set()
+        for sid in self._registry.sessions(user_id):
+            if self._sessions.get(sid) is None:
+                self._registry.remove_session(user_id, sid)
+            else:
+                live.add(sid)
+        return live
+
+    def revoke_user_sessions(self, user_id: str, *, keep: str | None = None) -> int:
+        revoked = 0
+        for sid in self.user_sessions(user_id):
+            if sid != keep:
+                self.revoke_session(sid)
+                revoked += 1
+        return revoked
+
+    def verify_password(self, user_id: str, password: str) -> bool:
+        """Constant-time check against the stored hash (a dummy hash when the user is unknown)."""
+        user = self._users.get_by_id(user_id) if self._users is not None else None
+        password_hash = (user.password_hash if user is not None else "") or self._dummy_password_hash
+        try:
+            ok = self._password_context.verify(password, password_hash)
+        except (TypeError, ValueError, UnknownHashError):
+            ok = False
+        return bool(ok and user is not None)
+
+    def change_password(self, user_id: str, new_password: str) -> None:
+        if self._users is None:
+            raise RuntimeError("Changing a password requires a user store")
+        user = self._users.get_by_id(user_id)
+        if user is None:
+            raise LookupError(user_id)
+        self._users.upsert(replace(user, password_hash=self._password_context.hash(new_password)))
 
     def issue_pat(self, user_id: str) -> str:
         if not user_id.strip():
             raise ValueError("user_id must not be empty")
-        return self._pat_serializer.dumps({"sub": user_id, "typ": "pat"})
+        jti = uuid.uuid4().hex
+        self._registry.add_pat(user_id, jti, self.pat_ttl_seconds)
+        return self._pat_serializer.dumps({"sub": user_id, "typ": "pat", "jti": jti})
+
+    def revoke_pat(self, claims: AccessTokenClaims) -> None:
+        if claims.jti:
+            self._registry.deny_pat(claims.jti, self.pat_ttl_seconds)
+
+    def revoke_user_pats(self, user_id: str) -> int:
+        jtis = self._registry.pats(user_id)
+        for jti in jtis:
+            self._registry.deny_pat(jti, self.pat_ttl_seconds)
+        self._registry.clear_pats(user_id)
+        return len(jtis)
 
     def read_pat(self, token: str) -> AccessTokenClaims | None:
         try:
@@ -199,9 +269,13 @@ class AuthService:
         if not isinstance(payload, dict) or payload.get("typ") != "pat":
             return None
         user_id = payload.get("sub")
+        jti = payload.get("jti")
         if not isinstance(user_id, str) or not user_id.strip():
             return None
-        return AccessTokenClaims(user_id=user_id)
+        # Tokens issued before AA2 carry no jti and cannot be revoked: refuse them (TTL ≤ 1 h).
+        if not isinstance(jti, str) or not jti or self._registry.is_pat_denied(jti):
+            return None
+        return AccessTokenClaims(user_id=user_id, jti=jti)
 
 
 class RequireSession:

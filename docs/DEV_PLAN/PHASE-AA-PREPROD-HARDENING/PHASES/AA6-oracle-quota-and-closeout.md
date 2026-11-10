@@ -13,6 +13,8 @@ Classroom Redis budget on Oracle/SSE (auth already AA2); design QA rubric + grap
 - Design QA rubric; graph palette vs tokens; token-layer audit.
 - `PHASE-AA6-REPORT.md` disposition table for F1–F58.
 - Optional dated completeness note.
+- **Oracle quota (F21), carried from AA2:** reuse `app/throttle.py` (`Budget`, the `guard` pattern in `main.py`) keyed by the session's user id. The stream already requires a session, and the terminal already shows 429 ("too many requests"). No second rate-limit mechanism.
+- **AA2 accepted P2s to dispose:** the revoke-all race (a PAT minted during `logout-all` survives up to its 1 h TTL; fix with a per-user "revoked-before" timestamp + `iat`), and per-account lockout by a third party (10 bad logins lock an account for 5 min; unlock recipe in PHASE-AA2-REPORT §4).
 - **Follow-ups carried from AA1** (dispose of each: done, scheduled with an owner, or explicitly deferred):
   - **CSP enforcement.** Give `script-src` one owner (Astro's per-page hashes, or TTOD's 4 inline scripts moved to modules), switch Caddy to `Content-Security-Policy`, browser smoke at 0 violations, and bump the service worker cache so cached pages drop the old policy (PHASE-AA1-REPORT §4).
   - **Duplicate `Cache-Control` on `/sw.js`.** Present before AA1; pick one rule (PHASE-AA1-REPORT §6).

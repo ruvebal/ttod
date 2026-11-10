@@ -5,6 +5,8 @@ import secrets
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from .throttle import DEFAULT_BUDGETS, Budget, budgets_from_env
+
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 
@@ -46,6 +48,13 @@ class Settings:
     mcp_server_url: str = "http://mcp:3001"
     retrieval_threshold: float = 0.575
     retrieval_top_k: int = 5
+    # AA2 (F4): signed-cookie sessions are refused unless explicitly re-enabled.
+    allow_signed_session_fallback: bool = False
+    # AA2 (F3): trust the left-most X-Forwarded-For hop as the client IP. True in Compose, where the
+    # backend is reachable only through Caddy (which replaces untrusted XFF) and Astro (which
+    # forwards Caddy's value). Never enable it on a backend published directly.
+    trust_forwarded_for: bool = False
+    throttle_budgets: dict[str, Budget] = field(default_factory=lambda: dict(DEFAULT_BUDGETS))
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -70,4 +79,7 @@ class Settings:
             mcp_server_url=os.getenv("MCP_SERVER_URL", "http://mcp:3001").rstrip("/"),
             retrieval_threshold=float(os.getenv("ORACLE_RETRIEVAL_THRESHOLD", "0.575")),
             retrieval_top_k=int(os.getenv("ORACLE_RETRIEVAL_TOP_K", "5")),
+            allow_signed_session_fallback=os.getenv("TTOD_ALLOW_SIGNED_SESSION_FALLBACK", "0") == "1",
+            trust_forwarded_for=os.getenv("TTOD_TRUST_FORWARDED_FOR", "0") == "1",
+            throttle_budgets=budgets_from_env(),
         )

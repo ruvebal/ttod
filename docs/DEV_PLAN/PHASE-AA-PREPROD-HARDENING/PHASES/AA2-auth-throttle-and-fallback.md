@@ -3,6 +3,8 @@
 > **Track:** accounts + oracle shore — F3–F5, F20, F22–F24, F26, F55 (API) · A2–A5, A16–A19, A34.  
 > **Status:** BLOCKED until AA1 DONE (preferred; AA0 minimum) · AA0 O1 closed 2026-11-10: PATs follow the React authentication lesson (short expiry + `jti` denylist; see PHASE-AA0-REPORT §1)
 
+**Exit gate:** [`AA2-auth-throttle-and-fallback.exit-gate.sh`](AA2-auth-throttle-and-fallback.exit-gate.sh). Read it first: it names the backend tests (`throttle_*`, `signed_fallback_off`, `pat_denylist`, `oracle_*`, `password_change`, `session_index`) and frontend tests it runs, and checks LAN login, cookie Secure, a 429 burst and oracle 401 on an isolated stack (`scripts/isolated-stack.sh`).
+
 ## Goal
 
 Abuse budgets on register/login/proposal-create; signed-cookie fallback **off by default**; PAT disposition; **cookie Secure from real TLS signal** (not bare `PROD`); **Astro allowedDomains from env**; authenticate oracle stream/propose and route propose through **dual-write**; **change-password + profile endpoints** with a per-user session index (F55), which the AA3 User section consumes.
@@ -55,7 +57,7 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA2-auth-throttle-and-fallback.m
 - [ ] Rapid register/login → 429.
 - [ ] Fallback off + missing sid → unauthenticated.
 - [ ] Non-PROD-secure story documented; LAN HTTP can set cookies when Secure=false.
-- [ ] Non-localhost Host allowed when env configured.
+- [ ] A browser on a configured non-localhost host can POST login/register: the matching **Host + Origin** pair returns non-403. Astro decides on the Origin header (AA0 probe-amend.log: today the LAN pair gets 403).
 - [ ] Unauthenticated oracle stream/propose rejected; dual-write path used.
 - [ ] Password change revokes other sessions; wrong current password throttled; `display_name` round-trips if PATCH shipped.
 - [ ] Cold review green or amended.

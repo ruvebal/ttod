@@ -32,7 +32,7 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA4-seo-robots-and-meta.md.
 4. Evidence + cold review. Do not self-certify DONE.
 
 ## Constraints
-- Classroom hosts are noindex (AA0 D7 (a)). Put the noindex in the page (`<meta name="robots">`) or an `X-Robots-Tag` header, and do **not** `Disallow` those pages in `robots.txt`: a crawler that may not fetch a page never reads its noindex. No commit unless asked.
+- Classroom hosts are noindex (AA0 D7 (a)). Put the noindex in the page (`<meta name="robots">`) or an `X-Robots-Tag` header, and do **not** `Disallow` those pages in `robots.txt`: a crawler that may not fetch a page never reads its noindex. If you use `X-Robots-Tag`, add it to the `(seguridad)` snippet in `caddy/Caddyfile` (AA1), so errors Caddy generates itself carry it too. Live checks run on `scripts/isolated-stack.sh` (AA2). No commit unless asked.
 ```
 
 ## Acceptance

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import unicodedata
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -12,6 +13,8 @@ class AuthUser(BaseModel):
     id: str
     email: str
     roles: list[SessionRole]
+    # Set by PATCH /auth/profile (D5); omitted from responses while unset, so the login contract is unchanged.
+    display_name: str | None = None
 
 
 class AuthLoginRequest(BaseModel):
@@ -29,6 +32,40 @@ class AuthRegisterRequest(BaseModel):
         # bcrypt solo usa los primeros 72 bytes: se rechaza antes que recortarla sin avisar.
         if len(value.encode("utf-8")) > 72:
             raise ValueError("Password must not exceed 72 bytes")
+        return value
+
+
+def _password_fits_bcrypt(value: str) -> str:
+    if len(value.encode("utf-8")) > 72:
+        raise ValueError("Password must not exceed 72 bytes")
+    return value
+
+
+class PasswordChangeRequest(BaseModel):
+    """F55 (AA2): same length rules as register; revokes the other sessions by default."""
+
+    current_password: str = Field(min_length=1, max_length=1024)
+    new_password: str = Field(min_length=8)
+    revoke_others: bool = True
+
+    @field_validator("new_password")
+    @classmethod
+    def new_password_fits_bcrypt(cls, value: str) -> str:
+        return _password_fits_bcrypt(value)
+
+
+class ProfileUpdateRequest(BaseModel):
+    display_name: str
+
+    @field_validator("display_name")
+    @classmethod
+    def plain_short_name(cls, value: str) -> str:
+        value = unicodedata.normalize("NFC", value).strip()
+        if not 1 <= len(value) <= 40:
+            raise ValueError("display_name must be 1–40 characters")
+        # No markup, and no invisible or direction-changing characters (Cc/Cf: e.g. U+202E, U+200B).
+        if any(ch in value for ch in "<>") or any(unicodedata.category(ch) in {"Cc", "Cf"} for ch in value):
+            raise ValueError("display_name must be plain, visible text")
         return value
 
 

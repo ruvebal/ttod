@@ -1,0 +1,78 @@
+<!--
+Phase AA — Pre-production hardening + student assignment cascade.
+Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
+-->
+
+# Phase AA — Pre-production hardening
+
+**Status:** AUTHORIZED 2026-11-10 (owner accepted the recommended D1–D7) · AA0 READY.  
+**Programme letter:** AA (after Z Redis shore).  
+**Depends on:** Phase Z complete on `main`; cohort accounts/register landed.  
+**Related but separate:** [Phase T public release](../PHASE-T-PUBLIC-RELEASE-EXCELLENCE-CASCADE.md) — do not conflate.
+
+## One-sentence claims
+
+- **Product:** Before a real web server, close the gap between “works in Compose” and “safe enough for a classroom host.”
+- **Engineering:** Evidence-backed findings → gated phases → cold review; no self-certified DONE.
+- **Pedagogy:** Each fix is a student-sized assignment mapped to a seam, not a maintainer-only dump.
+
+## How to read this pack
+
+| Face | File |
+| ---- | ---- |
+| Index (this) | entry + live snapshot |
+| Why | [RATIONALE.md](RATIONALE.md) |
+| Evidence | [FINDINGS-2026-11-10.md](FINDINGS-2026-11-10.md) |
+| Student brief | [ASSIGNMENTS.md](ASSIGNMENTS.md) |
+| URL / locator contract | [LOCATORS.md](LOCATORS.md) |
+| Orchestrator | [PHASE-AA-PREPROD-HARDENING-CASCADE.md](PHASE-AA-PREPROD-HARDENING-CASCADE.md) |
+| Phases | [PHASES/](PHASES/) AA0→AA6 (+ AA3b locators) |
+
+## Programme (harness-readable)
+
+`cascade-harness.sh` parses only the first word of the Gate column. The prose lives in the
+[cascade](PHASE-AA-PREPROD-HARDENING-CASCADE.md). Each step carries a companion
+`PHASES/<file>.exit-gate.sh`. A step whose gate script is still missing cannot be verified.
+
+| Step | File | Deliverable | Gate |
+| ---- | ---- | ----------- | ---- |
+| 0 | [AA0](PHASES/AA0-assignment-cut-and-freeze.md) | Assignment cut, D1–D7, LOCATORS frozen, live re-probe, UX baseline | READY — owner authorized 2026-11-10 ("the defaults are ok") |
+| 1 | [AA1](PHASES/AA1-caddy-security-headers.md) | Caddy security headers, CSP report-only | BLOCKED until AA0 DONE |
+| 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | BLOCKED until AA1 DONE |
+| 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | BLOCKED until AA0 DONE |
+| 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | BLOCKED until AA0 DONE |
+| 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED until AA3 + AA3b DONE |
+| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | BLOCKED until AA0 DONE (lane A) / AA1 DONE (lane B) |
+| 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA2 + AA3b + AA5 DONE |
+
+## Live snapshot (2026-11-10)
+
+| Fact | Value | Where checked |
+| ---- | ----- | ------------- |
+| Compose stack | Up; backend healthy; `redis: ok` | `docker compose ps`; `/health` |
+| Site | `http://localhost:18080/en/` → 200 | curl |
+| Security headers | **Absent** (F1) | `curl -sI` |
+| TLS at Caddy | **Off** both ports (F2) | `Caddyfile` |
+| Cookie Secure vs HTTP | **Mismatch risk** (F22) | FE `PROD` + cleartext Caddy |
+| Astro allowedDomains | **localhost only** (F23) | `astro.config.mjs` |
+| Proposal disk bind | **Missing** (F25) | compose volumes |
+| `/health` if Redis down | Still **200** (F27) | `main.py` |
+| Rate limits | **None** (F3/F21/F24) | backend grep |
+| `robots.txt` | **Missing** (F14) | `public/` |
+| Graph i18n | **EN-only island** (F32) | `GraphIsland.svelte` |
+| Backend tests in CI | **Skipped** (F45) | `ci.yml` / Makefile |
+| Slash duplicates | **Both forms 200** on every page (F8) | curl |
+| Deep links in `/es/wisdom/` | **None** (no quote/volume ids, no `?q=`) (F49/F50) | id inventory |
+| Landing chapter ids | **3** for hero + thesis + 13-stop scroll + close (F51) | id inventory |
+| 3D graph | At `/graph/path`; header "Grafo" opens the 2D view (F52) | `Page.astro` / curl |
+| Lang switch on a quote | **200 "not found"** (`wis-034` → `/en/…/wis-034/`) (F57) | curl |
+| `/library` layout | Bare `<main>`, raw slugs (F53) | `library.astro` |
+| Change password | **No route**; no per-user session index (F55) | `main.py`, `sessions.py` |
+| Landing figures (230/13/4) | **Dynamic** from corpus ✓, but unguarded by tests (F54) | `pages/es/index.astro` |
+| Redis permanence | Green (prior day) | COMPLETENESS-2026-11-09 |
+| Open register | Live, always `student` | `#92` + smoke |
+| FINDINGS count | F1–F58 (deep audits + owner walkthrough) | this pack |
+
+## Decision needed from product owner
+
+Authorize **AA0** to freeze the assignment cut (A1–A40 vs I1–I16) and answer **D1–D7** (slash policy, locator keys, graph IA, header, user-section scope, search, PAT/index), before code phases open. **AA5 lane A** (F25/F27/F28) is now eligible right after AA0. Shore permanence and honest health matter before “deployed” demos.

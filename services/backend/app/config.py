@@ -80,6 +80,6 @@ class Settings:
             retrieval_threshold=float(os.getenv("ORACLE_RETRIEVAL_THRESHOLD", "0.575")),
             retrieval_top_k=int(os.getenv("ORACLE_RETRIEVAL_TOP_K", "5")),
             allow_signed_session_fallback=os.getenv("TTOD_ALLOW_SIGNED_SESSION_FALLBACK", "0") == "1",
-            trust_forwarded_for=os.getenv("TTOD_TRUST_FORWARDED_FOR", "1") == "1",
+            trust_forwarded_for=os.getenv("TTOD_TRUST_FORWARDED_FOR", "0") == "1",
             throttle_budgets=budgets_from_env(),
         )

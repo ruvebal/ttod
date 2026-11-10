@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA2 report: auth throttle, cookies, Host allowlist, oracle gate
 
-**Status:** VERIFYING · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-2` · **Exit gate:**
+**Status:** VERIFYING · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA2-COLD-REVIEW.md](PHASE-AA2-COLD-REVIEW.md)), amended in the same session (§7) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-2` · **Exit gate:**
 [`PHASES/AA2-auth-throttle-and-fallback.exit-gate.sh`](PHASES/AA2-auth-throttle-and-fallback.exit-gate.sh)
 · **Shared helper:** [`scripts/isolated-stack.sh`](scripts/isolated-stack.sh) (proxy + frontend + backend +
 Redis built from the checkout, scratch ports, never `ttod_oracle`; reusable by AA3/AA3b/AA4)
@@ -88,12 +88,23 @@ Every one of these is a direct consequence of the findings. None was loosened:
    `TTOD_ALLOWED_HOSTS=tanit.crea-comm.loc`. It is baked in at build time.
 2. `make rebuild`. It runs `ensure_env_secrets.py`, rebuilds the frontend with the allowed hosts,
    and recreates the stack. Drafts survive on the bind mount (AA5 lane A).
-3. **Everyone is signed out once.** Existing browser sessions remain valid Redis rows and survive.
-   Old PATs (no `jti`) stop working; clients request a new one with `POST /api/v1/auth/token`.
+3. **Who has to sign in again:** nobody in the browser. Existing sessions are valid Redis rows
+   and survive. They join the per-user index the first time they are used after the rollout, so a
+   password change or "sign out everywhere" reaches them from then on. **API clients** lose their
+   old PATs (no `jti`) and request a new one with `POST /api/v1/auth/token`.
 4. Check:
    - `curl -s -o /dev/null -w '%{http_code}\n' -X POST -H 'content-type: application/json' -d '{"query":"x"}' http://127.0.0.1:18080/api/v1/oracle/stream`
      must print `401`;
    - signing in on `http://tanit.crea-comm.loc:18080/es/login/` works.
+
+5. **If someone locks an account** (10 bad logins in 5 minutes, possibly by a third party, since
+   the per-account budget cannot tell who is guessing), it unlocks by itself after 5 minutes. To
+   unlock at once, delete its counter. The key is the SHA-256 of the lowercased email:
+
+   ```bash
+   key="ttod:throttle:account:$(printf '%s' 'student@example.org' | tr 'A-Z' 'a-z' | shasum -a 256 | cut -c1-32)"
+   docker compose -p ttod_oracle exec redis redis-cli DEL "$key"
+   ```
 
 ## 5. For students and later phases
 
@@ -102,6 +113,28 @@ Every one of these is a direct consequence of the findings. None was loosened:
   cookie, because the old sid is revoked. The username field uses `PATCH /api/v1/auth/profile`.
 - **AA6 (F21)** adds the oracle *quota*. AA2 only requires a session for the stream.
 - **Not done here:** CAPTCHA (out of scope) and email change or reset (D5: no mail transport).
+
+## 7. Cold review amendments (PASS-WITH-AMENDMENTS)
+
+| Finding | Amendment |
+| ------- | --------- |
+| F1 (P1) XFF trusted by default in code | `TTOD_TRUST_FORWARDED_FOR` defaults to `0` in code; Compose sets `1`; test `…trusts_forwarded_for_only_when_told` |
+| F2 (P1) Rollout step contradicted itself, and pre-AA2 sessions escaped revocation | A session joins the index the first time it is read (test `…revokes_sessions_issued_before_the_index_existed`); rollout step 3 rewritten |
+| F3 (P1) `COOKIE_SECURE=true` behind an external TLS proxy does not work yet | Wording in `cookie-security.ts` and `.env.example` says so; AA5 lane B carries Caddy `trusted_proxies` + re-test, the gate move onto the helper, and the Lilith checklist names |
+| F4 (P2) revoke-all race | Accepted for a classroom host (needs the same signed-in user minting during their own logout-all; window ≤ 1 h); disposition carried into AA6 |
+| F5 (P2) third-party account lockout | Documented, with an unlock recipe (§4.5); AA6 disposes of it |
+| F6 (P2) loose gate | Gate asserts 303, 429 by request 6, a spoofed-XFF form-login burst through Astro, and a live `COOKIE_SECURE=true` → Secure |
+| F7 (P2) counter without TTL | `INCR` + `EXPIRE NX` in one MULTI |
+| F8 (P2) bad budget crashes with a wrong name | The error names the real variable and the format |
+| F9 (P2) invisible / RTL characters in `display_name` | NFC + reject Unicode Cc/Cf; test |
+| F10 (P2) oracle terminal | 401/429 on replay no longer file error reports (the query waits for sign-in); propose shows its own sign-in / limit messages; the sign-in notice links to login |
+| F11 (P2) dual-write not asserted; bare 500 | Test with `DualWriteProposalDraftStore` (Redis key + index + file); `OSError` → logged 500 "Unable to save proposal" |
+| F12 (P2) silent in-memory fallback | Logged at startup when an injected client selects it |
+| Classroom note | The sign-up "too many" message says it is per network and to tell the instructor, not that the student did something wrong |
+
+Downstream phase files amended in the same commit: AA3 (password-form cookie rotation,
+`revoke_others` vs `logout-all`, profile, sign-in link), AA3b and AA4 (live checks on the helper),
+AA5 lane B (F3 items, data-dir ownership), AA6 (quota on `throttle.py`, the two accepted P2s).
 
 ## 6. Acceptance
 

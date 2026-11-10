@@ -294,6 +294,60 @@ class PasswordChangeTests(AA2Case):
                                            json={"display_name": "<b>x</b>"}).status_code, 422)
 
 
+class ReviewAmendmentTests(AA2Case):
+    """Cold review (PASS-WITH-AMENDMENTS) fixes: F1, F2, F9, F11."""
+
+    def test_throttle_login_trusts_forwarded_for_only_when_told(self):
+        import os
+        from unittest import mock
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertFalse(Settings.from_env().trust_forwarded_for)  # code default: off (F1)
+        with mock.patch.dict(os.environ, {"TTOD_TRUST_FORWARDED_FOR": "1"}, clear=True):
+            self.assertTrue(Settings.from_env().trust_forwarded_for)  # Compose sets it
+
+    def test_password_change_revokes_sessions_issued_before_the_index_existed(self):
+        self.build()
+        token = self.register("legacy@example.test")
+        user_id = self.client.get("/api/v1/auth/session", cookies=self.as_user(token)).json()["id"]
+        # A pre-AA2 session: a valid row in the store that the per-user index never saw.
+        claims = self.sessions.get(token)
+        self.sessions.put("legacy-sid", claims, ttl_seconds=3600)
+        self.assertEqual(self.client.get("/api/v1/auth/session", cookies=self.as_user("legacy-sid")).status_code, 200)
+        changed = self.client.post("/api/v1/auth/password", cookies=self.as_user(token),
+                                   json={"current_password": PASSWORD, "new_password": "a-brand-new-secret"})
+        self.assertEqual(changed.status_code, 200)
+        self.assertEqual(self.client.get("/api/v1/auth/session", cookies=self.as_user("legacy-sid")).status_code, 401)
+        self.assertTrue(user_id)
+
+    def test_password_change_profile_rejects_invisible_and_rtl_characters(self):
+        self.build()
+        token = self.register("unicode@example.test")
+        for bad in ["Ada\u202e", "A\u200bda"]:
+            response = self.client.patch("/api/v1/auth/profile", cookies=self.as_user(token), json={"display_name": bad})
+            self.assertEqual(response.status_code, 422, bad)
+        ok = self.client.patch("/api/v1/auth/profile", cookies=self.as_user(token), json={"display_name": "Zoë"})
+        self.assertEqual(ok.json()["display_name"], "Zoë")
+
+    def test_oracle_propose_dual_write_indexes_the_draft_in_redis(self):
+        from services.backend.app.proposal_drafts import DualWriteProposalDraftStore
+        from services.backend.tests.test_shore_stores import FakeRedis as ShoreFakeRedis
+        self.build()
+        redis = ShoreFakeRedis()
+        dual = DualWriteProposalDraftStore(self.settings.proposal_dir, client=redis)
+        snapshots = SnapshotService(self.settings.ttod_path, self.settings.schema_dir)
+        app = create_app(self.settings, OracleService(self.settings, snapshots, FakeOllama(), FakeRetrieval()),
+                         users=self.users, sessions=self.sessions, proposals=dual)
+        client = TestClient(app)
+        token = self.register("indexed@example.test")
+        response = client.post("/api/v1/oracle/propose", cookies=self.as_user(token),
+                               json={"query": "q", "creativeAnswer": "A candidate."})
+        self.assertEqual(response.status_code, 201, response.text)
+        proposal_id = response.json()["proposal_id"]
+        self.assertTrue(any(proposal_id in key for key in redis.kv), redis.kv.keys())
+        self.assertTrue(any(proposal_id in members for members in redis.sets.values()))
+        self.assertTrue((self.settings.proposal_dir / f"{proposal_id}.json").exists())
+
+
 class SessionIndexTests(AA2Case):
     def test_session_index_prunes_sids_whose_row_expired(self):
         self.build()
@@ -329,8 +383,11 @@ class FakeRedis:
         self.kv[key] = str(int(self.kv.get(key, "0")) + 1)
         return int(self.kv[key])
 
-    def expire(self, key, seconds):
+    def expire(self, key, seconds, nx=False):
+        if nx and key in self.ttl:
+            return False
         self.ttl[key] = seconds
+        return True
 
     def set(self, key, value, ex=None):
         self.kv[key] = value

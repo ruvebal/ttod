@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import unicodedata
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -59,11 +60,12 @@ class ProfileUpdateRequest(BaseModel):
     @field_validator("display_name")
     @classmethod
     def plain_short_name(cls, value: str) -> str:
-        value = value.strip()
+        value = unicodedata.normalize("NFC", value).strip()
         if not 1 <= len(value) <= 40:
             raise ValueError("display_name must be 1–40 characters")
-        if any(ch in value for ch in "<>") or any(ord(ch) < 32 for ch in value):
-            raise ValueError("display_name must be plain text")
+        # No markup, and no invisible or direction-changing characters (Cc/Cf: e.g. U+202E, U+200B).
+        if any(ch in value for ch in "<>") or any(unicodedata.category(ch) in {"Cc", "Cf"} for ch in value):
+            raise ValueError("display_name must be plain, visible text")
         return value
 
 

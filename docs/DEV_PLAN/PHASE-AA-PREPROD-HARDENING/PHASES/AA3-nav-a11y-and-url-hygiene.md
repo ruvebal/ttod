@@ -101,6 +101,13 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
 
 - **CSP (AA1, live in report-only):** add no new inline `<script>`; when you touch a layout or page script, prefer moving it to a module. Every inline script is one more hash to manage at enforcement (PHASE-AA1-REPORT §4). Re-run `baselines/aa1-2026-11-10/browser-smoke.mjs`: the CSP report count must not grow.
 
+## Carried from AA2 (amended 2026-11-10)
+
+- **Password form (A35):** `POST /api/v1/auth/password` revokes the caller's old sid and returns a new `session_token`. Set it as the new cookie with `cookieSecure(Astro.request)` (`lib/cookie-security.ts`), or the user is signed out right after changing their password. "Sign out my other devices" is the form's `revoke_others` flag (default true). `POST /api/v1/auth/logout-all` signs out the caller too and returns no token, so use it only for an explicit "sign out everywhere" button.
+- **Username (D5):** `PATCH /api/v1/auth/profile {display_name}`. `display_name` appears in `/auth/session` only once set.
+- **Oracle:** the terminal's "sign in to ask" notice links to `/{locale}/login?next=…`; keep that consistent with the header's account entry (F7).
+- **Live checks** run on `scripts/isolated-stack.sh`, never on the instructor stack.
+
 ## Acceptance
 
 - [ ] Header is full-width, not a pill; language switch is not the dominant element; no hamburger at 768 px.

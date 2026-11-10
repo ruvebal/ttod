@@ -32,6 +32,6 @@ case "$cmd" in
     curl -fs -o /dev/null "http://127.0.0.1:$port/es/" || { echo "isolated stack not serving on :$port" >&2; exit 1; }
     echo "isolated stack $project up on http://127.0.0.1:$port"
     ;;
-  down) dc down -v --remove-orphans >/dev/null 2>&1 || true; rm -f "$envf"; rm -rf "$datadir" ;;
+  down) dc down -v --remove-orphans >/dev/null 2>&1 || true; rm -f "$envf" "$envf.bak"; rm -rf "$datadir" ;;
   *) echo "usage: $0 up|down <project> ..." >&2; exit 2 ;;
 esac

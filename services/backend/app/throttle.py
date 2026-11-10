@@ -36,13 +36,17 @@ def budgets_from_env(env: dict[str, str] | None = None) -> dict[str, Budget]:
     env = os.environ if env is None else env
     budgets = dict(DEFAULT_BUDGETS)
     for name in DEFAULT_BUDGETS:
-        raw = env.get(f"TTOD_THROTTLE_{name.upper().replace('-', '_')}", "").strip()
+        var = f"TTOD_THROTTLE_{name.upper().replace('-', '_')}"
+        raw = env.get(var, "").strip()
         if not raw:
             continue
         limit, _, window = raw.partition("/")
-        budgets[name] = Budget(int(limit), int(window))
+        try:
+            budgets[name] = Budget(int(limit), int(window))
+        except ValueError:
+            raise ValueError(f'{var}="{raw}" must be "limit/window-seconds", e.g. "40/3600"') from None
         if budgets[name].limit <= 0 or budgets[name].window <= 0:
-            raise ValueError(f"TTOD_THROTTLE_{name.upper()} must be positive limit/window")
+            raise ValueError(f'{var}="{raw}" must have a positive limit and window')
     return budgets
 
 
@@ -76,7 +80,10 @@ class RedisThrottle:
         # The key is hashed so emails and IPs never sit in Redis key names.
         digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:32]
         redis_key = f"ttod:throttle:{bucket}:{digest}"
-        count = int(self.client.incr(redis_key))
-        if count == 1:
-            self.client.expire(redis_key, budget.window)
-        return count <= budget.limit
+        # One MULTI: the counter and its expiry land together, so a failure between two calls can
+        # never leave a counter without TTL (a permanent lockout). NX keeps the first window.
+        pipe = self.client.pipeline()
+        pipe.incr(redis_key)
+        pipe.expire(redis_key, budget.window, nx=True)
+        count, _ = pipe.execute()
+        return int(count) <= budget.limit

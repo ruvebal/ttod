@@ -171,6 +171,9 @@ class AuthService:
         if self._sessions is not None:
             stored = self._sessions.get(token)
             if stored is not None:
+                # Sessions issued before AA2 are not in the per-user index yet; adding the sid on
+                # read lets a password change or logout-all reach them too (idempotent SADD).
+                self._registry.add_session(stored.user_id, token, self.session_ttl_seconds)
                 return stored
             if not self._allow_signed_fallback:
                 return None

@@ -111,6 +111,8 @@ def create_app(
     real_redis = shore_client is not None and redis_client is None
     throttle = throttle or (RedisThrottle(shore_client) if real_redis else MemoryThrottle())
     registry = registry or (RedisTokenRegistry(shore_client) if real_redis else MemoryTokenRegistry())
+    if shore_client is not None and not real_redis:
+        logger.info("Injected Redis client: throttle and token registry run in memory (tests only)")
     auth_service = AuthService(
         settings.session_secret,
         settings.session_ttl_seconds,
@@ -336,6 +338,9 @@ def create_app(
             return await oracle.propose(payload, proposals)
         except redis.RedisError as exc:
             raise HTTPException(status_code=503, detail="Proposal store unavailable") from exc
+        except OSError as exc:
+            logger.exception("Unable to persist oracle proposal")
+            raise HTTPException(status_code=500, detail="Unable to save proposal") from exc
 
     # El usuario de cada favorito sale siempre de la sesión, nunca del cuerpo de la petición.
     @app.post("/api/v1/favorites", status_code=201)

@@ -57,7 +57,8 @@ if [ "${AA2_SKIP_LIVE:-0}" != "1" ]; then
   trap 'bash "$stack" down "$project"' EXIT
   # Amended during AA2: the per-IP defaults fit a classroom NAT (40 registrations/hour), so the gate
   # sets a tight register budget explicitly. It tests the mechanism, not the default.
-  bash "$stack" up "$project" "$port" "TTOD_ALLOWED_HOSTS=$lan" "COOKIE_SECURE=auto" "TTOD_THROTTLE_REGISTER_IP=5/3600" >/dev/null
+  # Cold review F6: tight login-ip budget too, to prove the Astro path is throttled per visitor.
+  bash "$stack" up "$project" "$port" "TTOD_ALLOWED_HOSTS=$lan" "COOKIE_SECURE=auto" "TTOD_THROTTLE_REGISTER_IP=5/3600" "TTOD_THROTTLE_LOGIN_IP=6/300" >/dev/null
   base="http://127.0.0.1:$port"
   email="aa2-gate-$$@example.test"; pw="aa2-gate-password-$$"
   code=$(curl -s -o /dev/null -w '%{http_code}' -H 'content-type: application/json' \
@@ -65,7 +66,7 @@ if [ "${AA2_SKIP_LIVE:-0}" != "1" ]; then
   [ "$code" = 201 ] || fail "isolated register returned $code"
   form="email=$email&password=$pw"
   lan_code=$(curl -s -o /dev/null -w '%{http_code}' -H "Host: $lan" -H "Origin: http://$lan" -d "$form" "$base/es/login/")
-  [ "$lan_code" != 403 ] || fail "LAN Host+Origin login still 403 with TTOD_ALLOWED_HOSTS set (F23)"
+  [ "$lan_code" = 303 ] || fail "LAN Host+Origin login answered $lan_code, expected 303 (signed in) (F23)"
   plain="$(curl -s -D - -o /dev/null -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" -d "$form" "$base/es/login/" | tr -d '\r' | grep -i '^set-cookie: ttod_session=' || true)"
   [ -n "$plain" ] || fail "HTTP login set no session cookie"
   printf '%s' "$plain" | grep -qi '; *secure' && fail "plain-HTTP login set a Secure cookie (breaks LAN HTTP, F22)"
@@ -75,16 +76,31 @@ if [ "${AA2_SKIP_LIVE:-0}" != "1" ]; then
   spoof="$(curl -s -D - -o /dev/null -H 'X-Forwarded-Proto: https' -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" -d "$form" "$base/es/login/" | tr -d '\r' | grep -i '^set-cookie: ttod_session=' || true)"
   [ -n "$spoof" ] || fail "second HTTP login set no session cookie"
   printf '%s' "$spoof" | grep -qi '; *secure' && fail "a client-spoofed X-Forwarded-Proto made the cookie Secure (F22)"
+  # Cold review F6: COOKIE_SECURE=true must really set Secure (recreate the frontend with it).
+  envf="${TMPDIR:-/tmp}/$project.env"; sed -i.bak 's/^COOKIE_SECURE=.*/COOKIE_SECURE=true/' "$envf"
+  docker compose -p "$project" --env-file "$envf" -f docker-compose.yml up -d --no-deps frontend >/dev/null 2>&1
+  for _ in $(seq 1 30); do curl -fs -o /dev/null "$base/es/login/" && break; sleep 2; done
+  forced="$(curl -s -D - -o /dev/null -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" -d "$form" "$base/es/login/" | tr -d '\r' | grep -i '^set-cookie: ttod_session=' || true)"
+  printf '%s' "$forced" | grep -qi '; *secure' || fail "COOKIE_SECURE=true did not set Secure (F22)"
+  # Login budget 6 per IP: 4 logins above; a burst with a fresh spoofed X-Forwarded-For each time
+  # must still be throttled (Caddy replaces the header, Astro forwards Caddy's value).
+  throttled=no
+  for i in 1 2 3 4; do
+    page="$(curl -s -H "X-Forwarded-For: 10.$i.$i.$i" -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" \
+      -d "email=spoof-$i-$$@example.test&password=wrong-$i" "$base/es/login/")"
+    printf '%s' "$page" | grep -q 'Demasiados intentos seguidos' && { throttled=yes; break; }
+  done
+  [ "$throttled" = yes ] || fail "spoofed-XFF form-login burst was never throttled (F3 through Astro)"
   oc=$(curl -s -o /dev/null -w '%{http_code}' -H 'content-type: application/json' -d '{"query":"x"}' "$base/api/v1/oracle/stream")
   [ "$oc" = 401 ] || fail "oracle stream without session answered $oc, expected 401 (F24)"
   got429=no
-  for i in $(seq 1 40); do
+  for i in $(seq 1 6); do
     c=$(curl -s -o /dev/null -w '%{http_code}' -H 'content-type: application/json' \
       -d "{\"email\":\"burst-$i-$$@example.test\",\"password\":\"burst-password-$i\"}" "$base/api/v1/auth/register")
     [ "$c" = 429 ] && { got429=yes; break; }
   done
-  [ "$got429" = yes ] || fail "40 rapid registrations never hit 429 (F3)"
-  echo "live (isolated $project): LAN login $lan_code, no Secure on HTTP (spoof-proof), oracle 401, register burst 429"
+  [ "$got429" = yes ] || fail "6 rapid registrations never hit 429 with a 5/hour budget (F3; is TTOD_THROTTLE_REGISTER_IP passed through Compose?)"
+  echo "live (isolated $project): LAN login 303, no Secure on HTTP (spoof-proof), Secure when forced, spoofed-XFF login burst throttled, oracle 401, register 429 by request 6"
 fi
 
 # 4. Evidence and scope.

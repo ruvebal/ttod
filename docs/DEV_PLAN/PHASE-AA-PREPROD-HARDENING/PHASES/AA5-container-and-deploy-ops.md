@@ -7,6 +7,11 @@
 
 **Exit gate:** [`AA5-container-and-deploy-ops.exit-gate.sh`](AA5-container-and-deploy-ops.exit-gate.sh) (lane A now; lane B is appended when AA1 is DONE). Read it before you start: it names the backend tests it runs (`*health_redis_down*`, `*empty_secret*`) and smoke-tests recreate + Redis-down in an isolated Compose project.
 
+**Lane A DONE (2026-11-10):** F25 bind mount, F27 health 503, F28 fail-closed secrets ([PHASE-AA5-REPORT](../PHASE-AA5-REPORT.md)). Carried into lane B by the lane A cold review:
+- **F47, concretely:** `/health` puts the repository exception text in its 503 body (`main.py` health handler, `detail=f"TTOD repository unavailable: {exc}"`). Sanitize it and add a test that fails on today's body.
+- **Non-root `USER` (F16)** must own the `data/proposals` bind (and `data/redis` if touched): set the UID/GID and document a `chown` on Linux hosts (Lilith), or the backend can no longer write drafts.
+- `make rebuild` is now safe for drafts (bind mount live), but rollouts of one service should still recreate only that service.
+
 ## Goal
 
 Bind-mount proposal dual-write disk; make `/health` fail when Redis is down; fail-closed secrets + `ensure_env_secrets` on rebuild; Redis `maxmemory`; stop publishing Ollama by default; non-root USER; healthchecks; CI/backend tests; honest TLS story; Lilith rewrite; npm audit.

@@ -97,6 +97,10 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
 - Do not commit unless asked.
 ```
 
+## Carried from AA1 (amended 2026-11-10)
+
+- **CSP (AA1, live in report-only):** add no new inline `<script>`; when you touch a layout or page script, prefer moving it to a module. Every inline script is one more hash to manage at enforcement (PHASE-AA1-REPORT §4). Re-run `baselines/aa1-2026-11-10/browser-smoke.mjs`: the CSP report count must not grow.
+
 ## Acceptance
 
 - [ ] Header is full-width, not a pill; language switch is not the dominant element; no hamburger at 768 px.

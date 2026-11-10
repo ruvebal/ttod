@@ -55,7 +55,7 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA2-auth-throttle-and-fallback.m
 - [ ] Rapid register/login → 429.
 - [ ] Fallback off + missing sid → unauthenticated.
 - [ ] Non-PROD-secure story documented; LAN HTTP can set cookies when Secure=false.
-- [ ] Non-localhost Host allowed when env configured.
+- [ ] A browser on a configured non-localhost host can POST login/register: the matching **Host + Origin** pair returns non-403. Astro decides on the Origin header (AA0 probe-amend.log: today the LAN pair gets 403).
 - [ ] Unauthenticated oracle stream/propose rejected; dual-write path used.
 - [ ] Password change revokes other sessions; wrong current password throttled; `display_name` round-trips if PATCH shipped.
 - [ ] Cold review green or amended.

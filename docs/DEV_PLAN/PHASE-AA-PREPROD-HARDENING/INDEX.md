@@ -5,7 +5,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 
 # Phase AA — Pre-production hardening
 
-**Status:** AUTHORIZED 2026-11-10 (owner: "the defaults are ok"; D1–D6 recorded as written, D7 (a) noindex confirmed by name ("D7 a"), D7 (b) per the React authentication lesson: short PAT expiry + `jti` denylist) · AA0 DONE · AA5 lane A DONE · AA1 DONE.  
+**Status:** AUTHORIZED 2026-11-10 (owner: "the defaults are ok"; D1–D6 recorded as written, D7 (a) noindex confirmed by name ("D7 a"), D7 (b) per the React authentication lesson: short PAT expiry + `jti` denylist) · AA0, AA1, AA2, AA5 lane A DONE.  
 **Programme letter:** AA (after Z Redis shore).  
 **Depends on:** Phase Z complete on `main`; cohort accounts/register landed.  
 **Related but separate:** [Phase T public release](../PHASE-T-PUBLIC-RELEASE-EXCELLENCE-CASCADE.md) — do not conflate.
@@ -38,7 +38,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | ---- | ---- | ----------- | ---- |
 | 0 | [AA0](PHASES/AA0-assignment-cut-and-freeze.md) | Assignment cut, D1–D7, LOCATORS frozen, live re-probe, UX baseline | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("Mark AA0 as done, AA5 lane A as DONE") |
 | 1 | [AA1](PHASES/AA1-caddy-security-headers.md) | Caddy security headers, CSP report-only | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("AA1 done") |
-| 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | READY — AA1 DONE; AA0 O1 closed (PATs per the React authentication lesson); exit gate still to be written by the planner |
+| 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("AA2 done") |
 | 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | READY — exit gate still to be written by the planner |
 | 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | READY — exit gate still to be written by the planner |
 | 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED until AA3 + AA3b DONE |

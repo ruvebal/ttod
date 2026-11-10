@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA2 report: auth throttle, cookies, Host allowlist, oracle gate
 
-**Status:** VERIFYING · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA2-COLD-REVIEW.md](PHASE-AA2-COLD-REVIEW.md)), amended in the same session (§7) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-2` · **Exit gate:**
+**Status:** DONE (owner, 2026-11-10: "AA2 done") · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA2-COLD-REVIEW.md](PHASE-AA2-COLD-REVIEW.md)), amended in the same session (§7) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-2` · **Exit gate:**
 [`PHASES/AA2-auth-throttle-and-fallback.exit-gate.sh`](PHASES/AA2-auth-throttle-and-fallback.exit-gate.sh)
 · **Shared helper:** [`scripts/isolated-stack.sh`](scripts/isolated-stack.sh) (proxy + frontend + backend +
 Redis built from the checkout, scratch ports, never `ttod_oracle`; reusable by AA3/AA3b/AA4)

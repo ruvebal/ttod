@@ -2,8 +2,8 @@
 
 **Run by:** cascade-harness.sh (runner process, not the implementing session)
 **Worktree:** /Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-0
-**Commit:** 28939ee32746f5ca572bd2e8e8f8837aa525c0cb
-**Started:** 2026-11-10T16:57:14Z
+**Commit:** e6482b8ccb477545f8fc1eebf5287c56cec028c4
+**Started:** 2026-11-10T17:06:19Z
 
 ```
 coverage: F1–F58 mapped; 56 A*/I* rows

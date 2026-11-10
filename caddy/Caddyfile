@@ -3,6 +3,26 @@
 }
 
 :8080, :8443 {
+  # Cabeceras de seguridad (F1 / AA1). Se aplican a toda respuesta, también a la API.
+  # - X-Frame-Options: nadie enmarca TTOD (no hay iframes propios), así que DENY. La CSP va en
+  #   report-only, y en ese modo `frame-ancestors` no protege; por eso la denegación de marcos
+  #   la da esta cabecera.
+  # - Permissions-Policy: la app no usa cámara, micrófono, geolocalización ni pagos.
+  # - CSP en report-only: es la política objetivo (scripts solo de 'self', sin inline). El
+  #   navegador informa en consola de lo que rompería; esa lista es el trabajo previo a
+  #   imponerla (hashes de los scripts inline de Astro). Los estilos conservan 'unsafe-inline'
+  #   por los atributos style= del sistema visual. img-src admite blob: por las texturas
+  #   generadas en el navegador (estilo/cielo.ts, lib/tinta.ts).
+  # - Sin HSTS: el borde es HTTP plano (F2, AA5); anunciar HTTPS aquí sería mentir.
+  header {
+    X-Frame-Options "DENY"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+    X-Content-Type-Options "nosniff"
+    Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    -Server
+  }
+
   @api path /api/* /health
   handle @api {
     # El JSON de la API también se comprime (medido en la vista previa con gzip:

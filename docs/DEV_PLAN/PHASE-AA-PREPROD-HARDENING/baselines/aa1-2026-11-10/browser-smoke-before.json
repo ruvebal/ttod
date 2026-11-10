@@ -1,0 +1,94 @@
+{
+  "base": "http://127.0.0.1:18080",
+  "recorded": "2026-11-10T18:48:47.775Z",
+  "results": [
+    {
+      "path": "/es/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/wisdom/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/wisdom/wis-034/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/graph/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/graph/path/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/oracle/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/login/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/en/docs/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [],
+      "status": 200,
+      "headers": {
+        "cspro": false
+      },
+      "swRegistered": true
+    }
+  ]
+}

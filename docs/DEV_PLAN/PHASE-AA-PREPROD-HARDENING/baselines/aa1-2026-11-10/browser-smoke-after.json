@@ -1,0 +1,302 @@
+{
+  "base": "http://127.0.0.1:28081",
+  "recorded": "2026-11-10T18:49:32.394Z",
+  "results": [
+    {
+      "path": "/es/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 54
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 68
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 68
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 68
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/wisdom/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 122
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 122
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 122
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/wisdom/wis-034/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 12
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/graph/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 13
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/graph/path/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 15
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/oracle/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/login/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 14
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/en/docs/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "",
+          "line": 12
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    }
+  ]
+}

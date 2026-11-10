@@ -6,7 +6,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 # PHASE-AA0 report: assignment cut and freeze
 
 **Status:** VERIFYING · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA0-COLD-REVIEW.md](PHASE-AA0-COLD-REVIEW.md)).
-Blocking items F2–F4 are amended in this session. F1: the owner confirmed D7 (a) ("D7 a"); **D7 (b) still needs the owner** (O1). The exit gate is
+Blocking items F1–F4 are amended in this session. F1: the owner confirmed D7 (a) ("D7 a") and named the source for D7 (b) (the React authentication lesson). The exit gate is
 [`PHASES/AA0-assignment-cut-and-freeze.exit-gate.sh`](PHASES/AA0-assignment-cut-and-freeze.exit-gate.sh),
 and the harness verify log will sit next to it. A cold review follows, and only the owner promotes
 this phase to DONE.
@@ -24,6 +24,11 @@ confirming **D7 (a)** (noindex on classroom hosts) by name, so (a) is no longer 
 not clearly settle **D7 (b)**: "a" could mean the first token option, but (a) is also the label of
 the index part. (b) stays open (O1) until the owner answers it by name.
 
+**Owner follow-up (verbatim), 2026-11-10:** "Can we follow
+http://127.0.0.1:4000/web-atelier-udit/lessons/en/react/react-authentication/ lesson for tokens
+policy ?" The owner named the lesson as the source for D7 (b), and the agent mapped its rules onto
+TTOD as quoted below. O1 is closed. The owner can still veto the mapping before AA2 opens.
+
 The first three sentences of the first message are about the Mondrian repository. "AAO" is read as AA0. The question
 "paralel running?" is answered in §7 and left to the owner as O2.
 
@@ -39,7 +44,7 @@ marked open.
 | D4 | Header (F56) | **Full-width classic bar** per the AA3 header spec, on existing Equipo tokens. Confirmed as a **component restyle, not a brand redesign** (fonts, palette and logo unchanged) | AA0 table | AA3 |
 | D5 | User section scope (F55) | Username (`display_name`) + change password + revoke other sessions. **No** email change, **no** reset-by-email | AA0 table | AA2 A34, AA3 A35 |
 | D6 | Wisdom search (F49) | **SSR `?q=`** over the locale corpus; no backend search endpoint | AA0 table | AA3b |
-| D7 | PAT policy (F5) and index/noindex (F14) | **(a) Index: noindex on classroom hosts**, no sitemap while noindex. Confirmed by the owner by name ("D7 a", 2026-11-10). Mechanism, for AA4: page-level `<meta name="robots">` or `X-Robots-Tag`. `robots.txt` must **not** `Disallow` those pages, because a crawler that may not fetch a page never reads its noindex. **(b) PAT: OPEN, provisional.** TTL-only classroom policy with a docs note (A4's second branch). The other branch, a revocation denylist (`ttod:pat:{jti}`), stays available; the agent does not schedule it. The AA0 table gave no single default for D7 ("already listed in AA2/AA4"), and A4 offers two equal branches, so (b) is the agent's reading, not an owner answer | (a) AA4 phase file: "Classroom default may be noindex", "prefer noindex unless owner says otherwise". (b) A4: "Denylist on logout-all **or** AA0-accepted docs note" | (a) AA4 · (b) AA2 (A4). (b) must be answered before AA2 opens. AA2's status line now says so, since AA2 may otherwise open on AA0 alone |
+| D7 | PAT policy (F5) and index/noindex (F14) | **(a) Index: noindex on classroom hosts**, no sitemap while noindex. Confirmed by the owner by name ("D7 a", 2026-11-10). Mechanism, for AA4: page-level `<meta name="robots">` or `X-Robots-Tag`. `robots.txt` must **not** `Disallow` those pages, because a crawler that may not fetch a page never reads its noindex. **(b) Tokens: follow the [React authentication lesson](http://127.0.0.1:4000/web-atelier-udit/lessons/en/react/react-authentication/) (Web Atelier, "JWT vs session-based").** Browser: session-based, an opaque Redis sid in an httpOnly cookie (the lesson's "best fit: same-origin web app, you own the stack"; already shipped). Its "Logout = delete the session row" also backs F4 (signed fallback off). PATs are the lesson's JWT case: "valid until expiry (needs denylist for true revoke)", and "revocation requires a denylist or short expiry + refresh". TTOD has no refresh flow, so: **keep the short expiry (`TTOD_PAT_TTL_SECONDS=3600`) and add a `jti` claim with a Redis denylist `ttod:pat:deny:{jti}`** (TTL = the token's remaining life), checked on every read and written on logout-all and password change (D5). This is A4's first branch | (a) AA4 phase file: "Classroom default may be noindex", "prefer noindex unless owner says otherwise". (b) the owner-named lesson, quoted; A4 first branch | (a) AA4 · (b) AA2 (A4). (b) answered via the lesson, mapping open to owner veto until AA2 starts |
 
 ## 2. Assignment cut (frozen)
 
@@ -147,7 +152,7 @@ Two harness facts constrain parallel execution today:
 
 | # | Item | Owner |
 | - | ---- | ----- |
-| O1 | Confirm or amend **D7 (b)** (PAT: TTL-only classroom policy + docs note vs `ttod:pat:{jti}` denylist) before AA2 opens | product owner |
+| O1 | ~~D7 (b)~~ **Closed 2026-11-10:** owner named the React authentication lesson; mapping in §1 (short PAT expiry + `jti` denylist) | product owner (veto before AA2) |
 | O2 | Choose the parallel mechanism: a lane-aware harness change in the cascade-forge skill, or manual worktrees per phase | product owner |
 | O3 | Exit-gate scripts for AA3 and AA3b (AA1 and AA5 lane A are written, on branch `docs/phase-aa-preprod-hardening`) | planner |
 
@@ -169,7 +174,21 @@ trailing spaces. The committed log had trailing whitespace stripped, and its con
 byte-identical: `diff` against the pre-strip copy, ignoring trailing space, is empty. Lesson: run
 gates on committed state, which is what the runner does.
 
-## 10. Glossary (for students and new instructors)
+## 10. Downstream phase files amended (cold review §5)
+
+| File | Change | Finding |
+| ---- | ------ | ------- |
+| `PHASES/AA2-auth-throttle-and-fallback.md` status | waits for O1; O1 now closed via the lesson | F1 |
+| `PHASES/AA4-seo-robots-and-meta.md` (Goal, constraints, risks) + ASSIGNMENTS A12 | noindex decided (D7 (a)); no `Disallow` on noindexed pages | F3 |
+| `PHASES/AA3-nav-a11y-and-url-hygiene.md` acceptance + ASSIGNMENTS A31 | cite the single AA0 regression rule | F4 |
+| `PHASES/AA3b-locators-wisdom-and-graph-ia.md` acceptance | same rule; `/es/graph/` successor view; new 2D baseline | F4, F8 |
+| ASSIGNMENTS A4 | names the lesson's denylist branch | D7 (b) |
+| ASSIGNMENTS A7, A17, I16 | always-slash named; Host + Origin pair; I16 not deferred | F12, F10 |
+
+Standing rule: when a later phase meets a surprise that contradicts a frozen file, it amends that
+file in the same session and lists the change here or in its own report.
+
+## 11. Glossary (for students and new instructors)
 
 | Term | Meaning |
 | ---- | ------- |
@@ -180,7 +199,7 @@ gates on committed state, which is what the runner does.
 | Harness, lane | `cascade-harness.sh` opens a worktree per phase and runs its exit gate. A lane is the "one phase at a time" claim it writes |
 | A4's second branch | A4 accepts either a denylist **or** an AA0-accepted docs note. The second is the docs note |
 
-## 11. Cold review
+## 12. Cold review
 
 Handed to a fresh `cascade-cold-reviewer` session. Its findings go to
 `PHASE-AA0-COLD-REVIEW.md`, and any blocking item is amended in this pack in the same session.

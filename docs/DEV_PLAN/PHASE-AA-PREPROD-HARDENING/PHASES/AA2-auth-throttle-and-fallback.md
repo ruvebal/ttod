@@ -1,7 +1,7 @@
 # PHASE-AA2: Auth throttle, cookies, Host allowlist, oracle gate
 
 > **Track:** accounts + oracle shore — F3–F5, F20, F22–F24, F26, F55 (API) · A2–A5, A16–A19, A34.  
-> **Status:** BLOCKED until AA1 DONE (preferred; AA0 minimum) **and** the owner has answered AA0 open item O1 (D7 (b), PAT policy)
+> **Status:** BLOCKED until AA1 DONE (preferred; AA0 minimum) · AA0 O1 closed 2026-11-10: PATs follow the React authentication lesson (short expiry + `jti` denylist; see PHASE-AA0-REPORT §1)
 
 ## Goal
 
@@ -39,7 +39,7 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA2-auth-throttle-and-fallback.m
 ## Deliver
 1. Rate-limit register + login (+ proposal POST); 429.
 2. Signed session fallback default-off.
-3. PAT revoke or TTL-only policy (AA0 owner).
+3. PAT denylist per AA0 D7 (b): `jti` claim, `ttod:pat:deny:{jti}` with TTL = remaining life; logout-all and password change write it.
 4. Cookie Secure from explicit env / forwarded proto — not import.meta.env.PROD alone.
 5. allowedDomains from env; document classroom Host values.
 6. Auth-gate oracle stream + propose; propose via DualWriteProposalDraftStore.

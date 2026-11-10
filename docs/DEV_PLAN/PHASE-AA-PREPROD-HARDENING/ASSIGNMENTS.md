@@ -33,7 +33,7 @@ Instructor-only rows stay out of student PRs unless AA0 reassigns them.
 | **A1** | Platform / Caddy | Security response headers | `curl -sI` shows frame denial / referrer / permissions (± CSP-RO) | AA1 · F1 | M |
 | **A2** | Accounts (Eq. 5) | Redis throttle register + login | Rapid POSTs → **429**; unit test with fake counter | AA2 · F3 | L |
 | **A3** | Accounts (Eq. 5) | Gate signed-cookie fallback | Compose default: missing Redis sid → unauthenticated | AA2 · F4 | S |
-| **A4** | Accounts + instructor | PAT revoke or TTL-only policy | Denylist on logout-all **or** AA0-accepted docs note | AA2 · F5 | M |
+| **A4** | Accounts + instructor | PAT revocation (AA0 D7 (b): React authentication lesson) | PATs keep the short expiry and carry a `jti`; Redis denylist `ttod:pat:deny:{jti}` written on logout-all and password change, checked on every read; a test proves a revoked PAT gets 401 before it expires | AA2 · F5 | M |
 | **A5** | Accounts (Eq. 5) | Rate-limit proposal create | Shares throttle with A2; test → 429 | AA2 · F20 | S |
 | **A16** | Accounts (Eq. 5) | Cookie `Secure` from real TLS signal | Env `COOKIE_SECURE` / `PUBLIC_HTTPS` (not bare `PROD`); HTTP LAN login works when Secure=false | AA2 · F22 | M |
 | **A17** | Accounts / shell | Astro `allowedDomains` from env | A browser on a non-localhost host can POST login/register: the matching **Host + Origin** pair (e.g. both `tanit.crea-comm.loc`) returns non-403 in deploy config. Astro checks the Origin; today that pair gets 403 | AA2 · F23 | S |

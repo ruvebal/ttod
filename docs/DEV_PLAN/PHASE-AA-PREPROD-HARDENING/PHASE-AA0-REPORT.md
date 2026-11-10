@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA0 report: assignment cut and freeze
 
-**Status:** VERIFYING · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA0-COLD-REVIEW.md](PHASE-AA0-COLD-REVIEW.md)).
+**Status:** DONE (owner marked DONE 2026-11-10 ("Mark AA0 as done, AA5 lane A as DONE")) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA0-COLD-REVIEW.md](PHASE-AA0-COLD-REVIEW.md)).
 Blocking items F1–F4 are amended in this session. F1: the owner confirmed D7 (a) ("D7 a") and named the source for D7 (b) (the React authentication lesson). The exit gate is
 [`PHASES/AA0-assignment-cut-and-freeze.exit-gate.sh`](PHASES/AA0-assignment-cut-and-freeze.exit-gate.sh),
 and the harness verify log will sit next to it. A cold review follows, and only the owner promotes

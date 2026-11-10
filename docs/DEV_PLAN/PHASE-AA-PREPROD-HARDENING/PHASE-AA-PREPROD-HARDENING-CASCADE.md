@@ -1,6 +1,6 @@
 # Technical director — Phase AA Pre-production hardening (AA0–AA6, incl. AA3b)
 
-**Status:** PROPOSED · drafted 2026-11-10 from live audit · **amended same day** (backend+frontend deep audits → F22–F48; owner walkthrough → F49–F58, [LOCATORS.md](LOCATORS.md), new phase AA3b).  
+**Status:** IN PROGRESS · AA0 DONE, AA5 lane A DONE (2026-11-10) · drafted 2026-11-10 from live audit · **amended same day** (backend+frontend deep audits → F22–F48; owner walkthrough → F49–F58, [LOCATORS.md](LOCATORS.md), new phase AA3b).  
 **Evidence:** [FINDINGS-2026-11-10.md](FINDINGS-2026-11-10.md) · **Why:** [RATIONALE.md](RATIONALE.md) · **Students:** [ASSIGNMENTS.md](ASSIGNMENTS.md) · **URL contract:** [LOCATORS.md](LOCATORS.md)  
 **Depends on:** Phase Z DONE on `main`. **Does not supersede:** Phase T (public release).
 

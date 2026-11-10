@@ -7,7 +7,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 ## Lane A: shore integrity (F25, F27, F28 · I7–I9)
 
-**Status:** VERIFYING · **Opened by:** the owner, 2026-11-10 ("permanent data needed"), ahead of
+**Status:** DONE (owner, 2026-11-10; cold review PASS-WITH-AMENDMENTS, amended) · **Opened by:** the owner, 2026-11-10 ("permanent data needed"), ahead of
 AA0 DONE · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` · **Exit gate:**
 [`PHASES/AA5-container-and-deploy-ops.exit-gate.sh`](PHASES/AA5-container-and-deploy-ops.exit-gate.sh)
 

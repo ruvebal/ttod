@@ -36,11 +36,11 @@ Instructor-only rows stay out of student PRs unless AA0 reassigns them.
 | **A4** | Accounts + instructor | PAT revoke or TTL-only policy | Denylist on logout-all **or** AA0-accepted docs note | AA2 · F5 | M |
 | **A5** | Accounts (Eq. 5) | Rate-limit proposal create | Shares throttle with A2; test → 429 | AA2 · F20 | S |
 | **A16** | Accounts (Eq. 5) | Cookie `Secure` from real TLS signal | Env `COOKIE_SECURE` / `PUBLIC_HTTPS` (not bare `PROD`); HTTP LAN login works when Secure=false | AA2 · F22 | M |
-| **A17** | Accounts / shell | Astro `allowedDomains` from env | Non-localhost Host can POST login/register in deploy config | AA2 · F23 | S |
+| **A17** | Accounts / shell | Astro `allowedDomains` from env | A browser on a non-localhost host can POST login/register: the matching **Host + Origin** pair (e.g. both `tanit.crea-comm.loc`) returns non-403 in deploy config. Astro checks the Origin; today that pair gets 403 | AA2 · F23 | S |
 | **A18** | Oracle (Eq. 3) | Auth-gate oracle stream + propose | Unauthenticated → 401/403; session path works | AA2 · F24 | M |
 | **A19** | Oracle (Eq. 3) | Oracle propose → dual-write store | Draft appears in Redis indexes **and** on bound disk path | AA2 · F26 | M |
 | **A6** | Shell (Eq. 1–3) | Header Account / Log in | Session-aware; not footer-only | AA3 · F7 | M |
-| **A7** | Shell | Trailing-slash hygiene | One policy (AA0 D1); slashless page URL → 301; nav/footer consistent | AA3b · F8 | M |
+| **A7** | Shell | Trailing-slash hygiene | Always-slash for pages (AA0 D1); slashless page URL → 301; nav/footer consistent | AA3b · F8 | M |
 | **A8** | Shell | Footer login `next` | Never `next=/…/login` on login page | AA3 · F9 | S |
 | **A9** | Shell + Accounts | Library gate UX | CTA or “requires account” nav cue | AA3 · F10 | S |
 | **A10** | Shell / a11y | Skip-link landmark | `#ttod-main` on `<main>` | AA3 · F11 | S |
@@ -52,7 +52,7 @@ Instructor-only rows stay out of student PRs unless AA0 reassigns them.
 | **A24** | Accounts | Password confirm on register | Client + server reject mismatch | AA3 · F36 | S |
 | **A25** | Accounts | Logout cookie delete attrs | Delete matches set (path/secure/sameSite) | AA3 · F37 | S |
 | **A26** | Shell / a11y | `aria-current` prefix match | Nested `/wisdom/…` marks Wisdom current | AA3 · F38 | S |
-| **A12** | Content / SEO | robots + sitemap | File exists; index/noindex decision in PR | AA4 · F14 | M |
+| **A12** | Content / SEO | robots + sitemap | File exists; noindex as decided in AA0 D7 (a) (not a PR choice); robots.txt does not `Disallow` noindexed pages | AA4 · F14 | M |
 | **A13** | Content / SEO | OG + canonical + hreflang | On home + login at minimum | AA4 · F15 | M |
 | **A27** | Content / SEO | Quote title/description from text | Not ID-only `<title>` | AA4 · F41 | S |
 | **A28** | PWA (Eq. 6) | Oracle-only offline honesty **or** shell | Docs + manifest/SW match reality | AA4 · F42–F44 | M |
@@ -67,7 +67,7 @@ Contract for every locator row: [LOCATORS.md](LOCATORS.md). Same rules as above:
 
 | ID | Equipo / owner | Title | Acceptance (falsifiable) | Cascade · Finding | Size |
 | -- | ------------- | ----- | ------------------------ | ----------------- | ---- |
-| **A31** | Shell (Eq. 1–3) | Classic full-width header + global anchor offset | Not a pill; 4 primary links + utility cluster; no hamburger at 768 px; `scroll-padding-top` from `--ttod-header-height`; CLS ≤ AA0 baseline; screenshot strip 390/768/1440 × en/es × in/out | AA3 · F56, F58 | M |
+| **A31** | Shell (Eq. 1–3) | Classic full-width header + global anchor offset | Not a pill; 4 primary links + utility cluster; no hamburger at 768 px; `scroll-padding-top` from `--ttod-header-height`; no regression under the AA0 regression rule (PHASE-AA0-REPORT §5); screenshot strip 390/768/1440 × en/es × in/out | AA3 · F56, F58 | M |
 | **A32** | Content (Eq. 1) | Guard the landing figures | Fixture test (3/2/1) fails if a literal count is typed; `<dt>` label / `<dd>` number | AA3b · F54 | S |
 | **A33** | Shell + Accounts | Fix `/library` layout | Styled cards (shared with wisdom), localized section label, `id` per card, `EmptyState`; en + es | AA3 · F53 | M |
 | **A34** | Accounts (Eq. 5) | Change-password + profile API | `POST /auth/password` (verify current, throttled, revokes other sids via `ttod:user:{id}:sessions`); optional `PATCH /auth/profile` `display_name`; pytest for each path | AA2 · F55 | M |
@@ -97,7 +97,7 @@ Contract for every locator row: [LOCATORS.md](LOCATORS.md). Same rules as above:
 | **I13** | Dual-write orphan cleanup note | F31 | |
 | **I14** | Redis pool timeouts | F46 | |
 | **I15** | Sanitize health/oracle error bodies | F47 | |
-| **I16** | Structured JSON access logs with request id | F48 | Added 2026-11-10: F48 had no owner. AA0 may defer it with a named owner |
+| **I16** | Structured JSON access logs with request id | F48 | Added 2026-11-10: F48 had no owner. AA0 kept it instructor-owned (not deferred) |
 
 ---
 

@@ -1,7 +1,7 @@
 # PHASE-AA2: Auth throttle, cookies, Host allowlist, oracle gate
 
 > **Track:** accounts + oracle shore — F3–F5, F20, F22–F24, F26, F55 (API) · A2–A5, A16–A19, A34.  
-> **Status:** BLOCKED until AA1 DONE (preferred; AA0 minimum)
+> **Status:** BLOCKED until AA1 DONE (preferred; AA0 minimum) **and** the owner has answered AA0 open item O1 (D7 (b), PAT policy)
 
 ## Goal
 

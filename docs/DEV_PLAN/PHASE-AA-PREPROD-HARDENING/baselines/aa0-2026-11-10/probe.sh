@@ -16,6 +16,9 @@ code() { curl -s -o /dev/null -m 10 -w '%{http_code}' "$@"; }
 
 echo "# probe run: $(date -u +%Y-%m-%dT%H:%M:%SZ) on $(hostname) · base $BASE · repo $(git -C "$repo" rev-parse --short HEAD)"
 
+h "live images"
+docker compose -p "${COMPOSE_PROJECT:-ttod_oracle}" -f "$LIVE_COMPOSE" images 2>&1
+
 h "health"
 curl -s -m 5 "$BASE/health"; echo
 
@@ -34,8 +37,9 @@ grep -n "secure:" "$fe/src/pages/[locale]/login.astro" "$fe/src/pages/[locale]/r
 
 h "F23 allowedDomains (code) + POST with a LAN Host header"
 grep -n "allowedDomains" "$fe/astro.config.mjs"
-echo "POST /es/login Host=localhost:        $(code -X POST -H 'Host: localhost' -H 'Origin: http://localhost' -d 'username=aa0-probe&password=x' "$BASE/es/login")"
-echo "POST /es/login Host=$(hostname): $(code -X POST -H "Host: $(hostname)" -H "Origin: http://$(hostname)" -d 'username=aa0-probe&password=x' "$BASE/es/login")"
+# Astro decides on Origin; a LAN browser sends Host and Origin for the same LAN name.
+echo "POST /es/login Host+Origin=localhost:        $(code -X POST -H 'Host: localhost' -H 'Origin: http://localhost' -d 'username=aa0-probe&password=x' "$BASE/es/login")"
+echo "POST /es/login Host+Origin=$(hostname): $(code -X POST -H "Host: $(hostname)" -H "Origin: http://$(hostname)" -d 'username=aa0-probe&password=x' "$BASE/es/login")"
 
 h "F25 proposal store mount (backend container)"
 docker inspect "$(docker compose -p "${COMPOSE_PROJECT:-ttod_oracle}" -f "$LIVE_COMPOSE" ps -q backend)" \
@@ -65,7 +69,8 @@ h "F14 robots / sitemap"
 echo "/robots.txt: $(code "$BASE/robots.txt") · /sitemap.xml: $(code "$BASE/sitemap.xml") · /sitemap-index.xml: $(code "$BASE/sitemap-index.xml")"
 
 h "F32 graph locale"
-curl -s -m 10 "$BASE/es/graph/path/" | grep -o '<html[^>]*lang="[^"]*"' | head -1
+curl -s -m 10 "$BASE/es/graph/" | grep -o '<html[^>]*lang="[^"]*"' | head -1
+echo "English strings rendered on /es/graph/: $(curl -s -m 10 "$BASE/es/graph/" | grep -oE 'TTOD knowledge graph|All tags|Section legend|Loading live graph…|Selected node' | sort -u | tr '\n' ';')"
 island="$fe/src/components/graph/GraphIsland.svelte"
 echo "English UI strings hard-coded in GraphIsland.svelte (rendered on /es/ too):"
 grep -noE '>(All tags|Loading live graph…|Select a node to view its details\.|Selected node|TTOD knowledge graph)<|aria-label="Section legend"' "$island" | sed 's/^/  /'

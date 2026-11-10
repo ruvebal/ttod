@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 # AA0 UX baseline: Lighthouse (mobile, 390 px) a11y + CLS + LCP on three views, and header
 # screenshots at 390/768/1440 (F56). Later phases re-run this into their own folder and compare
-# against ux-baseline.json here ("no regression" = a11y score not lower, CLS not higher than
-# max(0.1, baseline), no new failing a11y audit).
-# Usage: baseline.sh [base-url] [out-dir]
+# against ux-baseline.json here under the single "AA0 regression rule" in PHASE-AA0-REPORT.md §5.
+# Run on Tanit only (LCP compares on the same host). Prerequisites: Google Chrome at CHROME_PATH,
+# playwright installed in services/frontend (FE_PKG), npx with network access for lighthouse.
+# Usage: baseline.sh <base-url> <out-dir>   (refuses to overwrite an existing ux-baseline.json)
 set -euo pipefail
-BASE="${1:-http://127.0.0.1:18080}"
-OUT="${2:-$(cd "$(dirname "$0")" && pwd)}"
+BASE="${1:?usage: baseline.sh <base-url> <out-dir>}"
+OUT="${2:?usage: baseline.sh <base-url> <out-dir> (a new folder; the AA0 reference is never overwritten)}"
+[ -e "$OUT/ux-baseline.json" ] && { echo "refusing to overwrite $OUT/ux-baseline.json" >&2; exit 1; }
 export CHROME_PATH="${CHROME_PATH:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 FE_PKG="${FE_PKG:-$HOME/src/ttod/services/frontend/package.json}"   # where playwright is installed
 LH="lighthouse@12.6.0"

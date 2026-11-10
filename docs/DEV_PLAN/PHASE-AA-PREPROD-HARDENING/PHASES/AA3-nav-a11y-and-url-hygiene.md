@@ -102,7 +102,7 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
 - [ ] Header is full-width, not a pill; language switch is not the dominant element; no hamburger at 768 px.
 - [ ] Signed-out header shows Entrar (never `next=/…/login`); signed-in shows Cuenta (+ Biblioteca), en and es.
 - [ ] `#id` jumps land below the header on every view (spot-check `/es/oracle`, `/es/docs/…#heading`).
-- [ ] CLS on `/es/` and `/es/wisdom/` at 390 px ≤ the AA0 baseline; Lighthouse a11y does not drop.
+- [ ] No UX regression on `/es/` and `/es/wisdom/` at 390 px under the [AA0 regression rule](../PHASE-AA0-REPORT.md#5-ux-baseline-the-no-regression-reference) (re-run `baseline.sh` into this phase's own folder).
 - [ ] `/en/library/` and `/es/library/` render as styled cards with localized section names.
 - [ ] Changing password from `/account#password` works end-to-end, rejects a wrong current password, and signs out another browser.
 - [ ] Graph UI bilingual; skip link → main landmark; reduced-motion verified.

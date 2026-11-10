@@ -99,7 +99,7 @@ and the frozen contract docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/LOCATORS.md.
 - [ ] The header "Graph" link opens the 3D view; `/es/graph/path?…` still works (301); a path between two quotes survives reload and copy-paste.
 - [ ] Language switch on `/es/wisdom/wis-034/` lands on `/en/wisdom/wis-033/`; on a list it keeps `?q=`/`#id`; an unknown id returns HTTP 404.
 - [ ] F54 fixture test fails if a literal count is typed into `ValleSigue`.
-- [ ] No CLS regression on `/es/` and `/es/wisdom/` at 390 px (before/after Lighthouse in the report).
+- [ ] No UX regression on `/es/` and `/es/wisdom/` at 390 px under the [AA0 regression rule](../PHASE-AA0-REPORT.md#5-ux-baseline-the-no-regression-reference). The AA0 graph view `/es/graph/path` becomes a 301, so compare its baseline against its successor `/es/graph/`, and record a **new** baseline for the 2D page `/es/graph/plano/` (no AA0 baseline exists for it).
 - [ ] Cold review green or amended.
 
 ## Risks

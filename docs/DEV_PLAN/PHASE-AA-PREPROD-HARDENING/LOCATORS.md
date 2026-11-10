@@ -1,12 +1,12 @@
 <!--
-Proposed URL / locator contract for the Astro shell. Drafted 2026-11-10 from an owner walkthrough
+URL / locator contract for the Astro shell (frozen by AA0 on 2026-11-10). Drafted 2026-11-10 from an owner walkthrough
 plus live probes (F8, F49–F58). AA0 freezes it; AA3b implements it; AA4 canonicalizes it.
 Author: Rubén Vega Balbás PhD (agent-assisted). Not a DONE claim.
 -->
 
-# Locator contract — permanent, semantic URLs (proposal)
+# Locator contract — permanent, semantic URLs
 
-**Status:** PROPOSED · frozen by [AA0](PHASES/AA0-assignment-cut-and-freeze.md) · implemented in
+**Status:** FROZEN 2026-11-10 by [AA0](PHASE-AA0-REPORT.md) (owner accepted D1 always-slash, D2 keys-are-code, D3 3D at `/graph/`) · implemented in
 [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) · canonical/sitemap in [AA4](PHASES/AA4-seo-robots-and-meta.md).  
 **Evidence:** [FINDINGS F8, F49–F58](FINDINGS-2026-11-10.md#usability-ia--permanent-locators-owner-walkthrough).
 
@@ -46,12 +46,12 @@ Rules that follow from the table:
 
 ## 3. Trailing slash
 
-**Recommendation: always-slash for pages** (`/es/library/`, `/es/graph/`), 301 from the
+**Decision (AA0 D1, 2026-11-10): always-slash for pages** (`/es/library/`, `/es/graph/`), 301 from the
 slashless form via Astro middleware (one place, testable) rather than Caddy. Reason: most
 shipped internal links already end in `/` (wisdom, docs, facets, quote permalinks), so this
 choice rewrites the fewest hrefs. Endpoints that are not pages (`/es/logout`, `/api/…`) are exempt.
-AA0 may choose never-slash instead. What it must not do is leave both forms returning 200,
-which is the state today.
+The owner accepted this default. What must not survive AA3b is both forms returning 200, the
+state measured on 2026-11-10 (`baselines/aa0-2026-11-10/probe.log`, F8).
 
 ## 4. Registry (what AA3b implements)
 

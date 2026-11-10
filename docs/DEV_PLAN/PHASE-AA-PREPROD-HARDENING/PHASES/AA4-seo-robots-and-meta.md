@@ -5,7 +5,7 @@
 
 ## Goal
 
-Index vs noindex decision; `robots.txt` (+ sitemap if indexing); OG/canonical/hreflang; quote title/description from text; document or extend Oracle-only PWA (manifest locale + maskable).
+Noindex on classroom hosts, **decided in AA0 D7 (a)**; `robots.txt` (+ sitemap only if a later owner decision allows indexing); OG/canonical/hreflang; quote title/description from text; document or extend Oracle-only PWA (manifest locale + maskable).
 
 ## Deliverables
 
@@ -32,7 +32,7 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA4-seo-robots-and-meta.md.
 4. Evidence + cold review. Do not self-certify DONE.
 
 ## Constraints
-- Classroom default may be noindex. No commit unless asked.
+- Classroom hosts are noindex (AA0 D7 (a)). Put the noindex in the page (`<meta name="robots">`) or an `X-Robots-Tag` header, and do **not** `Disallow` those pages in `robots.txt`: a crawler that may not fetch a page never reads its noindex. No commit unless asked.
 ```
 
 ## Acceptance
@@ -44,4 +44,4 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA4-seo-robots-and-meta.md.
 
 ## Risks
 
-- Indexing open-register classroom host — prefer noindex unless owner says otherwise.
+- Indexing an open-register classroom host: decided against in AA0 D7 (a); reopening it is an owner decision, not a PR choice.

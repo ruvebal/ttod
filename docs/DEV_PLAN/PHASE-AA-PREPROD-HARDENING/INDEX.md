@@ -5,7 +5,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 
 # Phase AA — Pre-production hardening
 
-**Status:** AUTHORIZED 2026-11-10 (owner accepted the recommended D1–D7) · AA0 VERIFYING · AA5 lane A READY.  
+**Status:** AUTHORIZED 2026-11-10 (owner: "the defaults are ok"; D1–D6 recorded as written, D7 (a) noindex confirmed by name ("D7 a"), D7 (b) per the React authentication lesson: short PAT expiry + `jti` denylist) · AA0 VERIFYING · AA5 lane A READY.  
 **Programme letter:** AA (after Z Redis shore).  
 **Depends on:** Phase Z complete on `main`; cohort accounts/register landed.  
 **Related but separate:** [Phase T public release](../PHASE-T-PUBLIC-RELEASE-EXCELLENCE-CASCADE.md) — do not conflate.

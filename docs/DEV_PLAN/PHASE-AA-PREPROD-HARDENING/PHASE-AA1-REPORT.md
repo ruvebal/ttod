@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA1 report: Caddy security headers
 
-**Status:** VERIFYING · cold review **PASS-WITH-AMENDMENTS**
+**Status:** DONE (owner, 2026-11-10: "AA1 done") · cold review **PASS-WITH-AMENDMENTS**
 ([PHASE-AA1-COLD-REVIEW.md](PHASE-AA1-COLD-REVIEW.md)), amended in the same session (§7) ·
 **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-1` · **Exit gate:**
 [`PHASES/AA1-caddy-security-headers.exit-gate.sh`](PHASES/AA1-caddy-security-headers.exit-gate.sh) ·

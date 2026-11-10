@@ -38,7 +38,7 @@ Compose run — because Caddy proxies `/api/*` through to the backend.
 | `GET /api/v1/wisdom/sample` | none | `200` with the public corpus |
 | `POST /api/v1/proposals` | session cookie | `201` with `{ proposal_id, status }` |
 | `GET /api/v1/schema/definitions` | none | `200` with the schema definitions |
-| `GET /health` | none | `200` with `{ status, ttod_version }` |
+| `GET /health` | none | `200` with `{ status, ttod_version, redis }`; **`503`** with `status: "degraded"`, `redis: "down"` when Redis is configured but unreachable (`redis` is absent without Redis) |
 
 ## The shapes are the shared types
 

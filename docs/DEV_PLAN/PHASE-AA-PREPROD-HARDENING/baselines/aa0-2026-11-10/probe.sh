@@ -39,7 +39,7 @@ echo "POST /es/login Host=$(hostname): $(code -X POST -H "Host: $(hostname)" -H 
 
 h "F25 proposal store mount (backend container)"
 docker inspect "$(docker compose -p "${COMPOSE_PROJECT:-ttod_oracle}" -f "$LIVE_COMPOSE" ps -q backend)" \
-  --format '{{len .Mounts}} mounts {{range .Mounts}}· {{.Type}} {{.Source}} -> {{.Destination}} {{end}}' 2>&1
+  --format '{{len .Mounts}} mounts{{range .Mounts}} · {{.Type}} {{.Source}} -> {{.Destination}}{{end}}' 2>&1
 grep -n "TTOD_PROPOSAL_DIR" "$LIVE_COMPOSE"
 
 h "F27 /health with Redis down"
@@ -78,7 +78,7 @@ done
 h "F50/F51 id inventory"
 for p in /es/ /es/wisdom/; do
   ids="$(curl -s -m 10 "$BASE$p" | grep -o ' id="[^"]*"' | sed 's/ id=//; s/"//g' | sort -u)"
-  echo "$p: $(printf '%s\n' "$ids" | grep -c .) ids → $(printf '%s ' $ids)"
+  echo "$p: $(printf '%s\n' "$ids" | grep -c .) ids → $(echo $ids)"
 done
 
 h "F57 language switch on /es/wisdom/wis-034/"

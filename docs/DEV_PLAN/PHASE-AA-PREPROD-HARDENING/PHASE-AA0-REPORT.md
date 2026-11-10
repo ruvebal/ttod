@@ -148,6 +148,13 @@ The gate also caught a real deviation, and the **report** was fixed rather than 
 first draft split D7 into "D7a/D7b" rows, while the phase file defines a single D7 row. The report
 now has one D7 row with parts (a) and (b).
 
+The first harness `verify` (commit `b11094ca`) **failed**, and rightly. `probe.log` carried trailing
+spaces from `probe.sh`'s id and mount lines. The agent's dry run had passed only because the log was
+still untracked, so `git diff <base>` could not see it. Two fixes followed. `probe.sh` no longer emits
+trailing spaces. The committed log had trailing whitespace stripped, and its content is otherwise
+byte-identical: `diff` against the pre-strip copy, ignoring trailing space, is empty. Lesson: run
+gates on committed state, which is what the runner does.
+
 ## 10. Cold review
 
 Handed to a fresh `cascade-cold-reviewer` session. Its findings go to

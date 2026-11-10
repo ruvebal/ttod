@@ -30,7 +30,7 @@ POST /es/login Host=localhost:        200
 POST /es/login Host=tanit.crea-comm.loc: 403
 
 ## F25 proposal store mount (backend container)
-0 mounts 
+0 mounts
 41:      TTOD_PROPOSAL_DIR: ${TTOD_PROPOSAL_DIR:-/workspace/services/backend/data/proposals}
 
 ## F27 /health with Redis down
@@ -65,8 +65,8 @@ English UI strings hard-coded in GraphIsland.svelte (rendered on /es/ too):
 /en/wisdom         no-slash 200 · slash 200
 
 ## F50/F51 id inventory
-/es/: 8 ids → flagship-quote-heading pie-pincel sigue-rollo sigue-tesis ttod-main ttod-network-boundary ttod-site-header ttod-site-nav 
-/es/wisdom/: 9 ids → armario-facetas-rotulo lectura-volumen mazo-datos mazo-titulo pie-pincel ttod-main ttod-network-boundary ttod-site-header ttod-site-nav 
+/es/: 8 ids → flagship-quote-heading pie-pincel sigue-rollo sigue-tesis ttod-main ttod-network-boundary ttod-site-header ttod-site-nav
+/es/wisdom/: 9 ids → armario-facetas-rotulo lectura-volumen mazo-datos mazo-titulo pie-pincel ttod-main ttod-network-boundary ttod-site-header ttod-site-nav
 
 ## F57 language switch on /es/wisdom/wis-034/
 EN links on the page: href="/en/wisdom/wis-034/"

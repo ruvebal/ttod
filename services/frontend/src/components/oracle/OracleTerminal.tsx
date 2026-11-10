@@ -73,6 +73,8 @@ const COPY = {
     proposed: 'Saved as a draft proposal. The current human acceptance path is not yet operational.',
     proposalError: 'The draft proposal could not be saved.', retryError: 'A queued query could not be retried yet.',
     retry: 'Retry',
+    signIn: 'Sign in to ask the Oracle. It runs on a shared local model, so each question needs an account.',
+    tooMany: 'Too many requests for now. Wait a few minutes and ask again.',
     context: 'Context tag',
     citations: 'Cited quotes', viewQuote: 'View quote', exchange: 'Exchange',
     wait: 'A local model writes this, with no cloud behind it. The first word usually takes one to two minutes; then it writes slowly, word by word. You can keep reading meanwhile.',
@@ -92,6 +94,8 @@ const COPY = {
     proposed: 'Guardada como borrador de propuesta. La vía actual de aceptación humana aún no está operativa.',
     proposalError: 'No se pudo guardar el borrador.', retryError: 'Todavía no se pudo reintentar una consulta guardada.',
     retry: 'Reintentar',
+    signIn: 'Inicia sesión para preguntar al Oráculo. Funciona con un modelo local compartido, así que cada pregunta necesita una cuenta.',
+    tooMany: 'Demasiadas peticiones por ahora. Espera unos minutos y vuelve a preguntar.',
     context: 'Etiqueta de contexto',
     citations: 'Citas', viewQuote: 'Ver cita', exchange: 'Intercambio',
     wait: 'Lo escribe un modelo local, sin nube detrás. La primera palabra suele tardar uno o dos minutos; después escribe despacio, palabra a palabra. Mientras, puedes seguir leyendo.',
@@ -282,6 +286,10 @@ const ExchangeView = memo(function ExchangeView({ exchange, index, copy, locale,
 const identifier = () => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
 
 class UnreachableOracleError extends Error {}
+// AA2 (F24): the stream needs a session; 401 and 429 are answers, not outages, so they never go to
+// the offline queue (replaying them later would fail the same way).
+class SignInRequiredError extends Error {}
+class TooManyRequestsError extends Error {}
 
 function currentContextTag(): string | undefined {
   if (typeof window === 'undefined') return undefined;
@@ -364,6 +372,8 @@ export default function OracleTerminal({ locale }: Props) {
       if (!response.ok) {
         const message = `Oracle stream failed (${response.status})`;
         if (response.status >= 500) throw new UnreachableOracleError(message);
+        if (response.status === 401) throw new SignInRequiredError(message);
+        if (response.status === 429) throw new TooManyRequestsError(message);
         throw new Error(message);
       }
       // One state update per chunk, never buffering the whole answer before first paint.
@@ -401,12 +411,14 @@ export default function OracleTerminal({ locale }: Props) {
         // the brief's success criterion is that a user never reads an HTTP status or a stack trace.
         const detail = error instanceof Error ? error.message : String(error);
         await enqueueErrorReport(detail).catch(() => undefined);
-        const notice = serverBroken ? copy.unavailable : queuedEntry ? copy.retryError : copy.answerFailed;
+        const notice = error instanceof SignInRequiredError ? copy.signIn
+          : error instanceof TooManyRequestsError ? copy.tooMany
+          : serverBroken ? copy.unavailable : queuedEntry ? copy.retryError : copy.answerFailed;
         updateExchange(id, (exchange) => ({ ...exchange, state: 'error', notice }));
       }
       return false;
     }
-  }, [copy.answerFailed, copy.queueError, copy.queued, copy.retryError, copy.unavailable, updateExchange]);
+  }, [copy.answerFailed, copy.queueError, copy.queued, copy.retryError, copy.signIn, copy.tooMany, copy.unavailable, updateExchange]);
 
   const flushQueue = useCallback(async () => {
     if (syncingRef.current || typeof navigator === 'undefined' || !navigator.onLine) return;

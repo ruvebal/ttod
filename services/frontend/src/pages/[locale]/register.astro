@@ -2,8 +2,9 @@
 import CieloRuyi from '../../components/estilo/CieloRuyi.astro';
 import '../../components/estilo/acceso.css';
 import Page from '../../layouts/Page.astro';
+import { cookieSecure } from '../../lib/cookie-security';
 import { isLocale } from '../../content/wisdom';
-import { SESSION_COOKIE_NAME, getSessionUser, registerWithBackend, safeNextPath } from '../../lib/auth.server';
+import { SESSION_COOKIE_NAME, clientAddressOf, getSessionUser, registerWithBackend, safeNextPath } from '../../lib/auth.server';
 
 export const prerender = false;
 
@@ -11,7 +12,14 @@ const locale = Astro.params.locale;
 if (!isLocale(locale)) return new Response(null, { status: 404 });
 
 let next = safeNextPath(Astro.url.searchParams.get('next'), locale);
-let registerError: 'taken' | 'invalid' | 'service' | null = null;
+let registerError: 'taken' | 'invalid' | 'service' | 'throttled' | null = null;
+let socketAddress: string | undefined;
+try {
+  socketAddress = Astro.clientAddress;
+} catch {
+  socketAddress = undefined;
+}
+
 let email = '';
 
 if (Astro.request.method === 'POST') {
@@ -25,12 +33,12 @@ if (Astro.request.method === 'POST') {
     registerError = 'invalid';
   } else {
     // La contraseña solo viaja al backend, que guarda su hash bcrypt en Redis.
-    const result = await registerWithBackend(rawEmail, password);
+    const result = await registerWithBackend(rawEmail, password, clientAddressOf(Astro.request, socketAddress));
     if (result.ok) {
       Astro.cookies.set(SESSION_COOKIE_NAME, result.sessionToken, {
         httpOnly: true,
         sameSite: 'lax',
-        secure: import.meta.env.PROD,
+        secure: cookieSecure(Astro.request),
         path: '/',
         maxAge: result.expiresIn
       });
@@ -61,6 +69,7 @@ const copy = locale === 'es'
       takenError: 'Ese correo ya tiene cuenta. Inicia sesión con él.',
       invalidError: 'Revisa el correo y que la contraseña tenga entre 8 y 72 caracteres.',
       serviceError: 'El servicio de cuentas no responde ahora mismo. Inténtalo de nuevo en un momento.',
+      throttledError: 'Demasiados intentos seguidos. Espera unos minutos y vuelve a probar.',
       note: '¿Ya tienes cuenta?',
       login: 'Iniciar sesión'
     }
@@ -81,11 +90,13 @@ const copy = locale === 'es'
       takenError: 'That email already has an account. Log in with it instead.',
       invalidError: 'Check the email and that the password has between 8 and 72 characters.',
       serviceError: 'The account service is not answering right now. Please try again in a moment.',
+      throttledError: 'Too many attempts in a row. Wait a few minutes and try again.',
       note: 'Already have an account?',
       login: 'Log in'
     };
 const errorText = registerError === 'taken' ? copy.takenError
   : registerError === 'invalid' ? copy.invalidError
+  : registerError === 'throttled' ? copy.throttledError
   : registerError === 'service' ? copy.serviceError : '';
 const loginHref = `/${locale}/login?next=${encodeURIComponent(next)}`;
 ---

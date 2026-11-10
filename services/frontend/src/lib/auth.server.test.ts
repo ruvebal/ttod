@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { getSessionUser, loginWithBackend, registerWithBackend, requireRole, requireUser, safeNextPath } from './auth.server';
+import { clientAddressOf, getSessionUser, loginWithBackend, registerWithBackend, requireRole, requireUser, safeNextPath } from './auth.server';
 
 const reviewer = { id: 'usr-001', email: 'admin@ttod.local', roles: ['reviewer', 'instructor'] };
 const student = { id: 'usr-002', email: 'student@ttod.local', roles: ['student'] };
@@ -109,6 +109,38 @@ describe('login against the backend', () => {
     expect(String(url)).toContain('/api/v1/auth/login');
     expect(init?.method).toBe('POST');
     expect(JSON.parse(String(init?.body))).toEqual({ email: 'admin@ttod.local', password: 'a-password' });
+  });
+
+  it('forwards the client address as x-forwarded-for so the backend throttles per visitor (F3)', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue(Response.json({
+      session_token: 'sid', token_type: 'Session', expires_in: 3600, user: reviewer
+    }));
+
+    await loginWithBackend('admin@ttod.local', 'a-password', '203.0.113.7');
+
+    const headers = new Headers(fetchSpy.mock.calls[0][1]?.headers);
+    expect(headers.get('x-forwarded-for')).toBe('203.0.113.7');
+  });
+
+  it('sends no x-forwarded-for when the address is unknown', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(null, { status: 401 }));
+
+    await loginWithBackend('admin@ttod.local', 'a-password');
+
+    expect(new Headers(fetchSpy.mock.calls[0][1]?.headers).has('x-forwarded-for')).toBe(false);
+  });
+
+  it('reports a throttled login when the backend answers 429', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(null, { status: 429 }));
+
+    await expect(loginWithBackend('admin@ttod.local', 'a-password')).resolves.toEqual({ ok: false, reason: 'throttled' });
+  });
+
+  it('takes the left-most x-forwarded-for hop, else the socket address', () => {
+    const viaCaddy = new Request('http://localhost/es/login/', { headers: { 'x-forwarded-for': '198.51.100.4, 172.18.0.5' } });
+    expect(clientAddressOf(viaCaddy, '172.18.0.9')).toBe('198.51.100.4');
+    expect(clientAddressOf(new Request('http://localhost/es/login/'), '172.18.0.9')).toBe('172.18.0.9');
+    expect(clientAddressOf(new Request('http://localhost/es/login/'))).toBeUndefined();
   });
 
   it('reports wrong credentials when the backend answers 401', async () => {

@@ -19,9 +19,13 @@ services:
       context: ./services/frontend
       args:
         BACKEND_URL: http://backend:8000
+        # F23: LAN / public hostnames allowed to POST forms (rebuild the frontend after changing).
+        TTOD_ALLOWED_HOSTS: ${TTOD_ALLOWED_HOSTS:-}
     restart: unless-stopped
     environment:
       BACKEND_URL: http://backend:8000
+      # F22: auto = Secure cookie only when the request reached the edge over HTTPS.
+      COOKIE_SECURE: ${COOKIE_SECURE:-auto}
     depends_on:
       backend:
         condition: service_healthy
@@ -46,6 +50,14 @@ services:
       TTOD_ADMIN_EMAIL: ${TTOD_ADMIN_EMAIL:-admin@ttod.local}
       TTOD_ADMIN_PASSWORD_HASH: ${TTOD_ADMIN_PASSWORD_HASH:-}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      # AA2: refuse signed-cookie sessions (F4); trust Caddy's X-Forwarded-For for throttles (F3).
+      TTOD_ALLOW_SIGNED_SESSION_FALLBACK: ${TTOD_ALLOW_SIGNED_SESSION_FALLBACK:-0}
+      TTOD_TRUST_FORWARDED_FOR: ${TTOD_TRUST_FORWARDED_FOR:-1}
+      # Abuse budgets "limit/window-seconds"; empty = code defaults (throttle.py).
+      TTOD_THROTTLE_LOGIN_IP: ${TTOD_THROTTLE_LOGIN_IP:-}
+      TTOD_THROTTLE_ACCOUNT: ${TTOD_THROTTLE_ACCOUNT:-}
+      TTOD_THROTTLE_REGISTER_IP: ${TTOD_THROTTLE_REGISTER_IP:-}
+      TTOD_THROTTLE_PROPOSAL_USER: ${TTOD_THROTTLE_PROPOSAL_USER:-}
       ORACLE_RETRIEVAL_THRESHOLD: ${ORACLE_RETRIEVAL_THRESHOLD:-0.575}
       ORACLE_RETRIEVAL_TOP_K: ${ORACLE_RETRIEVAL_TOP_K:-5}
       MCP_SERVER_URL: http://mcp-server:3001

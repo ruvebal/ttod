@@ -5,6 +5,20 @@ import react from '@astrojs/react';
 import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 
+// F23 (Phase AA2): the other hostnames a classroom reaches TTOD by (LAN name, public domain).
+// Comma-separated, hostnames only, read at BUILD time (the Docker build receives it as a build
+// arg): TTOD_ALLOWED_HOSTS=tanit.crea-comm.loc,ttod.example.org. Without an entry, Astro does not
+// trust that Host header and refuses form POSTs from it with 403.
+const extraHosts = (process.env.TTOD_ALLOWED_HOSTS ?? '')
+  .split(',')
+  .map((host) => host.trim())
+  .filter(Boolean);
+for (const host of extraHosts) {
+  if (!/^[a-z0-9.-]+$/i.test(host)) {
+    throw new Error(`TTOD_ALLOWED_HOSTS entry "${host}" must be a bare hostname (no scheme, port or path)`);
+  }
+}
+
 export default defineConfig({
   output: 'server',
   // El CSS de cada vista va dentro del HTML en vez de en un <link> que bloquea el
@@ -24,7 +38,9 @@ export default defineConfig({
   server: { host: true, port: 4321 },
   // El formulario de login hace POST: sin esto el build de Node no confía en la cabecera Host,
   // toma el origen como `http://localhost` sin puerto y rechaza con 403 el POST del stack local.
-  security: { allowedDomains: [{ hostname: 'localhost' }, { hostname: '127.0.0.1' }] },
+  security: {
+    allowedDomains: [{ hostname: 'localhost' }, { hostname: '127.0.0.1' }, ...extraHosts.map((hostname) => ({ hostname }))]
+  },
   vite: {
     plugins: [tailwindcss()],
     // Solo en dev: Caddy no existe fuera de Docker, así que el fetch del navegador

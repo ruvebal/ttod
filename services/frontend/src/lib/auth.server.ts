@@ -7,11 +7,11 @@ const SESSION_ROLES: readonly SessionRole[] = ['student', 'reviewer', 'instructo
 
 export type LoginResult =
   | { ok: true; sessionToken: string; expiresIn: number }
-  | { ok: false; reason: 'credentials' | 'service' };
+  | { ok: false; reason: 'credentials' | 'service' | 'throttled' };
 
 export type RegisterResult =
   | { ok: true; sessionToken: string; expiresIn: number }
-  | { ok: false; reason: 'taken' | 'invalid' | 'service' };
+  | { ok: false; reason: 'taken' | 'invalid' | 'service' | 'throttled' };
 
 function isAuthUser(value: unknown): value is AuthUser {
   if (typeof value !== 'object' || value === null) return false;
@@ -52,16 +52,31 @@ function localeOf(request: Request): 'en' | 'es' {
   return new URL(request.url).pathname.split('/')[1] === 'es' ? 'es' : 'en';
 }
 
-export async function loginWithBackend(email: string, password: string): Promise<LoginResult> {
+// F3 (Phase AA2): login and register reach the backend from this server, so without help every
+// attempt would look like it came from the frontend container. Forward the address Caddy saw
+// (left-most X-Forwarded-For hop), falling back to the socket address.
+export function clientAddressOf(request: Request, socketAddress?: string): string | undefined {
+  const forwarded = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim();
+  return forwarded || socketAddress || undefined;
+}
+
+function backendHeaders(clientAddress?: string): Record<string, string> {
+  const headers: Record<string, string> = { accept: 'application/json', 'content-type': 'application/json' };
+  if (clientAddress) headers['x-forwarded-for'] = clientAddress;
+  return headers;
+}
+
+export async function loginWithBackend(email: string, password: string, clientAddress?: string): Promise<LoginResult> {
   if (email.trim() === '' || password === '') return { ok: false, reason: 'credentials' };
 
   try {
     const response = await fetch(`${BACKEND_URL}/api/v1/auth/login`, {
       method: 'POST',
-      headers: { accept: 'application/json', 'content-type': 'application/json' },
+      headers: backendHeaders(clientAddress),
       body: JSON.stringify({ email, password })
     });
     if (response.status === 401 || response.status === 422) return { ok: false, reason: 'credentials' };
+    if (response.status === 429) return { ok: false, reason: 'throttled' };
     if (!response.ok) return { ok: false, reason: 'service' };
 
     const session = readIssuedSession(await response.json());
@@ -72,16 +87,17 @@ export async function loginWithBackend(email: string, password: string): Promise
   }
 }
 
-export async function registerWithBackend(email: string, password: string): Promise<RegisterResult> {
+export async function registerWithBackend(email: string, password: string, clientAddress?: string): Promise<RegisterResult> {
   if (email.trim() === '' || password === '') return { ok: false, reason: 'invalid' };
 
   try {
     const response = await fetch(`${BACKEND_URL}/api/v1/auth/register`, {
       method: 'POST',
-      headers: { accept: 'application/json', 'content-type': 'application/json' },
+      headers: backendHeaders(clientAddress),
       body: JSON.stringify({ email: email.trim(), password })
     });
     if (response.status === 409) return { ok: false, reason: 'taken' };
+    if (response.status === 429) return { ok: false, reason: 'throttled' };
     if (response.status === 422) return { ok: false, reason: 'invalid' };
     if (!response.ok) return { ok: false, reason: 'service' };
 

@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 from services.backend.app.auth import SESSION_COOKIE_NAME, AuthService, SessionClaims
 from services.backend.app.config import REPOSITORY_ROOT, Settings
 from services.backend.app.main import create_app
+from services.backend.app.sessions import MemorySessionStore
 from services.backend.app.oracle import OracleService
 from services.backend.app.storage import SnapshotService
 
@@ -24,7 +25,7 @@ class FakeRetrieval:
         return {"results": [], "indexDigest": "test", "indexedQuotes": 0}
 
 
-def auth_service_for(settings: Settings) -> AuthService:
+def auth_service_for(settings: Settings, sessions=None, users=None) -> AuthService:
     """`AuthService` recibe los parámetros del PAT a partir de la Tarea 5.
 
     Se le pasa solo lo que acepta su firma actual para que este test siga
@@ -37,6 +38,9 @@ def auth_service_for(settings: Settings) -> AuthService:
         "admin_password_hash": settings.admin_password_hash,
         "pat_secret": getattr(settings, "pat_secret", None),
         "pat_ttl_seconds": getattr(settings, "pat_ttl_seconds", None),
+        # AA2 (F4): sessions must be rows in the app's store; signed blobs are refused.
+        "sessions": sessions,
+        "users": users,
     }
     accepted = inspect.signature(AuthService.__init__).parameters
     return AuthService(**{name: value for name, value in candidates.items() if name in accepted})
@@ -56,8 +60,9 @@ class ReviewPipelineTestCase(unittest.TestCase):
         )
         snapshots = SnapshotService(self.settings.ttod_path, self.settings.schema_dir)
         oracle = OracleService(self.settings, snapshots, FakeOllama(), FakeRetrieval())
-        self.client = TestClient(create_app(self.settings, oracle))
-        self.auth_service = auth_service_for(self.settings)
+        self.sessions = MemorySessionStore()
+        self.client = TestClient(create_app(self.settings, oracle, sessions=self.sessions))
+        self.auth_service = auth_service_for(self.settings, sessions=self.sessions)
 
     def session_for(self, user_id: str, *roles: str) -> dict[str, str]:
         """Cookie de sesión firmada para un usuario con los roles indicados."""

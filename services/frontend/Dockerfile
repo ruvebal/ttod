@@ -2,6 +2,9 @@ FROM node:22-alpine AS build
 WORKDIR /app
 ARG BACKEND_URL=http://backend:8000
 ENV BACKEND_URL=${BACKEND_URL}
+# F23 (AA2): extra hostnames for Astro security.allowedDomains, baked in at build time.
+ARG TTOD_ALLOWED_HOSTS=""
+ENV TTOD_ALLOWED_HOSTS=${TTOD_ALLOWED_HOSTS}
 COPY package.json package-lock.json* ./
 RUN npm ci
 COPY . .

@@ -2,8 +2,9 @@
 import CieloRuyi from '../../components/estilo/CieloRuyi.astro';
 import '../../components/estilo/acceso.css';
 import Page from '../../layouts/Page.astro';
+import { cookieSecure } from '../../lib/cookie-security';
 import { isLocale } from '../../content/wisdom';
-import { SESSION_COOKIE_NAME, getSessionUser, loginWithBackend, safeNextPath } from '../../lib/auth.server';
+import { SESSION_COOKIE_NAME, clientAddressOf, getSessionUser, loginWithBackend, safeNextPath } from '../../lib/auth.server';
 
 export const prerender = false;
 
@@ -17,7 +18,14 @@ const desdeReferer = referer && new URL(referer, Astro.url).origin === Astro.url
   ? new URL(referer).pathname : null;
 let next = safeNextPath(Astro.url.searchParams.get('next') ?? desdeReferer, locale);
 
-let loginError: 'credentials' | 'service' | null = null;
+let loginError: 'credentials' | 'service' | 'throttled' | null = null;
+let socketAddress: string | undefined;
+try {
+  socketAddress = Astro.clientAddress;
+} catch {
+  socketAddress = undefined;
+}
+
 let email = '';
 
 if (Astro.request.method === 'POST') {
@@ -34,12 +42,12 @@ if (Astro.request.method === 'POST') {
     loginError = 'credentials';
   } else {
     // La contraseña solo viaja al backend, que la verifica con bcrypt; esta página no compara nada.
-    const login = await loginWithBackend(rawEmail, password);
+    const login = await loginWithBackend(rawEmail, password, clientAddressOf(Astro.request, socketAddress));
     if (login.ok) {
       Astro.cookies.set(SESSION_COOKIE_NAME, login.sessionToken, {
         httpOnly: true,
         sameSite: 'lax',
-        secure: import.meta.env.PROD,
+        secure: cookieSecure(Astro.request),
         path: '/',
         maxAge: login.expiresIn
       });
@@ -68,6 +76,7 @@ const copy = locale === 'es'
       busy: 'Entrando…',
       credentialsError: 'El correo o la contraseña no coinciden. Revísalos y vuelve a intentarlo.',
       serviceError: 'El servicio de cuentas no responde ahora mismo. Inténtalo de nuevo en un momento.',
+      throttledError: 'Demasiados intentos seguidos. Espera unos minutos y vuelve a probar.',
       note: '¿Todavía no tienes cuenta?',
       register: 'Crear una cuenta',
       back: 'Seguir sin entrar'
@@ -87,11 +96,14 @@ const copy = locale === 'es'
       busy: 'Logging in…',
       credentialsError: 'The email or password does not match. Check them and try again.',
       serviceError: 'The account service is not answering right now. Please try again in a moment.',
+      throttledError: 'Too many attempts in a row. Wait a few minutes and try again.',
       note: 'No account yet?',
       register: 'Create an account',
       back: 'Continue without logging in'
     };
-const errorText = loginError === 'credentials' ? copy.credentialsError : loginError === 'service' ? copy.serviceError : '';
+const errorText = loginError === 'credentials' ? copy.credentialsError
+  : loginError === 'throttled' ? copy.throttledError
+  : loginError === 'service' ? copy.serviceError : '';
 const backHref = next === `/${locale}/account` ? `/${locale}/` : next;
 ---
 

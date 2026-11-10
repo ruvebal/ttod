@@ -15,7 +15,8 @@
 #   src/lib/cookie-security.test.ts                       Secure from COOKIE_SECURE / X-Forwarded-Proto (F22)
 #   src/lib/auth.server.test.ts                           forwards the client address to the backend
 # Live, isolated (scripts/isolated-stack.sh, project ttod_aa2gate): LAN Host+Origin login is not 403
-# (F23), HTTP login sets a non-Secure cookie and a forwarded-https one sets Secure (F22), a register
+# (F23), HTTP login sets a non-Secure cookie and a client-spoofed X-Forwarded-Proto cannot make it
+# Secure, since Caddy overwrites the header for untrusted clients (F22; amended during AA2), a register
 # burst hits 429 (F3), the oracle answers 401 without a session (F24).
 # Set AA2_SKIP_LIVE=1 only for a quick local pre-check; the runner's verify runs it in full.
 set -euo pipefail
@@ -54,7 +55,9 @@ if [ "${AA2_SKIP_LIVE:-0}" != "1" ]; then
   stack="$pack/scripts/isolated-stack.sh"; project=ttod_aa2gate; port="${AA2_PORT:-28180}"
   lan="aa2-gate.lan"
   trap 'bash "$stack" down "$project"' EXIT
-  bash "$stack" up "$project" "$port" "TTOD_ALLOWED_HOSTS=$lan" "COOKIE_SECURE=auto" >/dev/null
+  # Amended during AA2: the per-IP defaults fit a classroom NAT (40 registrations/hour), so the gate
+  # sets a tight register budget explicitly. It tests the mechanism, not the default.
+  bash "$stack" up "$project" "$port" "TTOD_ALLOWED_HOSTS=$lan" "COOKIE_SECURE=auto" "TTOD_THROTTLE_REGISTER_IP=5/3600" >/dev/null
   base="http://127.0.0.1:$port"
   email="aa2-gate-$$@example.test"; pw="aa2-gate-password-$$"
   code=$(curl -s -o /dev/null -w '%{http_code}' -H 'content-type: application/json' \
@@ -66,8 +69,12 @@ if [ "${AA2_SKIP_LIVE:-0}" != "1" ]; then
   plain="$(curl -s -D - -o /dev/null -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" -d "$form" "$base/es/login/" | tr -d '\r' | grep -i '^set-cookie: ttod_session=' || true)"
   [ -n "$plain" ] || fail "HTTP login set no session cookie"
   printf '%s' "$plain" | grep -qi '; *secure' && fail "plain-HTTP login set a Secure cookie (breaks LAN HTTP, F22)"
-  https="$(curl -s -D - -o /dev/null -H 'X-Forwarded-Proto: https' -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" -d "$form" "$base/es/login/" | tr -d '\r' | grep -i '^set-cookie: ttod_session=' || true)"
-  printf '%s' "$https" | grep -qi '; *secure' || fail "forwarded-https login did not set Secure (F22)"
+  # Amended during AA2: Caddy replaces X-Forwarded-Proto from untrusted clients, so a spoofed
+  # "https" must NOT flip the cookie to Secure. The genuine https path (COOKIE_SECURE=true, or a
+  # trusted TLS proxy) is covered by src/lib/cookie-security.test.ts.
+  spoof="$(curl -s -D - -o /dev/null -H 'X-Forwarded-Proto: https' -H 'Origin: http://localhost:'"$port" -H "Host: localhost:$port" -d "$form" "$base/es/login/" | tr -d '\r' | grep -i '^set-cookie: ttod_session=' || true)"
+  [ -n "$spoof" ] || fail "second HTTP login set no session cookie"
+  printf '%s' "$spoof" | grep -qi '; *secure' && fail "a client-spoofed X-Forwarded-Proto made the cookie Secure (F22)"
   oc=$(curl -s -o /dev/null -w '%{http_code}' -H 'content-type: application/json' -d '{"query":"x"}' "$base/api/v1/oracle/stream")
   [ "$oc" = 401 ] || fail "oracle stream without session answered $oc, expected 401 (F24)"
   got429=no
@@ -77,7 +84,7 @@ if [ "${AA2_SKIP_LIVE:-0}" != "1" ]; then
     [ "$c" = 429 ] && { got429=yes; break; }
   done
   [ "$got429" = yes ] || fail "40 rapid registrations never hit 429 (F3)"
-  echo "live (isolated $project): LAN login $lan_code, cookie Secure only behind https, oracle 401, register burst 429"
+  echo "live (isolated $project): LAN login $lan_code, no Secure on HTTP (spoof-proof), oracle 401, register burst 429"
 fi
 
 # 4. Evidence and scope.

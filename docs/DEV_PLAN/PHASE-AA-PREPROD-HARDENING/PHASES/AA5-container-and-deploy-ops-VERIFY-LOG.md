@@ -2,13 +2,13 @@
 
 **Run by:** cascade-harness.sh (runner process, not the implementing session)
 **Worktree:** /Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-5
-**Commit:** 2aa93c0d1424ac71792e65a464a2173f96da04fe
-**Started:** 2026-11-10T17:32:35Z
+**Commit:** 7e66a6b58737f624894768f59f708a3360535c2d
+**Started:** 2026-11-10T17:41:34Z
 
 ```
 tests 'health_redis_down': 2 passed
 tests 'empty_secret': 2 passed
-live (isolated ttod_aa5gate): recreate kept aa5-gate-37247.txt; /health 503 with Redis down
+live (isolated ttod_aa5gate): recreate kept aa5-gate-65823.txt; /health 503 with Redis down
 AA5 lane A exit gate passed: proposal bind survives recreate, health 503 on Redis down, secrets fail closed.
 ```
 

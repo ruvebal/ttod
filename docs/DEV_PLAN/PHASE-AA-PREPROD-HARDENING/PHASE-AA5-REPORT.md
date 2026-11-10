@@ -42,6 +42,9 @@ AA0 DONE · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` · **Exit gate:**
 
 ### Rolling it out to the instructor stack (after the owner merges)
 
+Run from `~/src/ttod` on `main` after the merge. `make rebuild` recreates every service, Redis
+included; its AOF keeps the data.
+
 1. `make rebuild` on Tanit. It runs `ensure_env_secrets.py`; `.env` already has both secrets, so
    the boot check passes.
 2. **No migration is needed today.** On 2026-11-10 the running container's proposal folder held
@@ -49,9 +52,14 @@ AA0 DONE · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` · **Exit gate:**
    - If drafts appear before the rebuild, copy them out first:
      `docker cp ttod_oracle-backend-1:/workspace/services/backend/data/proposals/. data/proposals/`.
    - Drafts also live in Redis (dual-write), so the copy is a belt-and-braces step.
-3. Check: `docker compose -p ttod_oracle exec backend ls "$TTOD_PROPOSAL_DIR"` matches
-   `ls data/proposals`.
+3. Check the mount: `docker compose -p ttod_oracle exec backend sh -c 'ls -la "$TTOD_PROPOSAL_DIR"'`
+   lists the same files as `ls -la data/proposals`. The single quotes matter: the variable only
+   exists inside the container. Check health: `curl -fsS http://127.0.0.1:18080/health` shows
+   `"redis":"ok"`.
 4. Back up `data/proposals/` together with `data/redis/`.
+5. **Accepting a web draft** (F25's second half): `cli.py proposal accept` reads `proposals/`, so
+   run `.venv/bin/python cli.py proposal import data/proposals/<id>.json` first, then review and
+   accept as usual. The Redis copy stays `proposed` in the web queue until it is resolved there.
 
 ### Notes for lane B and later phases
 
@@ -61,6 +69,21 @@ AA0 DONE · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` · **Exit gate:**
 - **A stricter boot.** A raw `docker compose up` without `.env` secrets now fails on purpose, with
   a clear message. Before, it silently produced sessions that died on every restart. Students who
   run Compose directly need `make env-secrets` once.
+
+### Cold review amendments (PASS-WITH-AMENDMENTS, [PHASE-AA5-COLD-REVIEW.md](PHASE-AA5-COLD-REVIEW.md))
+
+| Finding | Amendment |
+| ------- | --------- |
+| F1 (P1) | The README and the Compose comment no longer claim `accept` reads the folder; rollout step 5 documents `proposal import`. No CLI change was needed |
+| F2 (P1) | The four `cp .env.example .env` guides (local setup EN/ES, student and maintainer guides) add `python3 scripts/ensure_env_secrets.py`; the boot error names the script, not only `make` |
+| F3 (P1) | Rollout step 3 uses `sh -c '…"$TTOD_PROPOSAL_DIR"'`, adds a health check, and says where the commands run |
+| F4 (P2) | The API guides (EN/ES) document the 503 and the `redis` field |
+| F5 (P2) | The test is renamed `…body_is_sanitized` and marked a regression guard; the real leak is F47 (lane B) |
+| F7 (P2) | `.env.example` gains `TTOD_PROPOSAL_HOST_DIR`, notes that `TTOD_PROPOSAL_DIR` must be absolute, and its stale "random secret if empty" comment now states the F28 rule |
+| F6 (P2) | Not taken: a live empty-secret boot probe adds a build for a rule the unit tests already prove |
+
+Handed to lane B: the `main.py` repository-exception leak (F47), and giving `data/proposals` the
+non-root UID when F16 lands.
 
 ### Gate amendment made during the phase
 

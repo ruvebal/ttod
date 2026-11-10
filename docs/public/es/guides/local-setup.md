@@ -49,6 +49,7 @@ repetirlo si más adelante eliminas ese volumen.
 
 ```bash
 cp .env.example .env
+python3 scripts/ensure_env_secrets.py   # secretos estables de sesión/PAT; sin ellos el backend no arranca
 docker compose up --build -d
 docker compose ps
 docker compose exec ollama ollama pull llama3.2:1b

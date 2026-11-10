@@ -53,7 +53,9 @@ class HealthRedisTests(unittest.TestCase):
         self.assertEqual(body["redis"], "down")
         self.assertEqual(body["status"], "degraded")
 
-    def test_health_redis_down_never_leaks_the_exception(self):
+    def test_health_redis_down_body_is_sanitized(self):
+        # Regression guard: redis_ping already swallows the error, so this pins the body shape.
+        # The real leak on /health (repository exception text, main.py) is F47, lane B.
         response = self._client(redis.RedisError("secret-host:6379 refused")).get("/health")
         self.assertEqual(response.status_code, 503)
         self.assertNotIn("secret-host", response.text)

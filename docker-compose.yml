@@ -51,7 +51,8 @@ services:
       MCP_SERVER_URL: http://mcp-server:3001
     volumes:
       # F25: proposal drafts (disk half of the dual-write) live on the host, so a backend
-      # recreate keeps them and `cli.py proposal accept` can read them. Target = TTOD_PROPOSAL_DIR.
+      # recreate keeps them; the host imports them with `cli.py proposal import` (see
+      # data/proposals/README.md). Target = TTOD_PROPOSAL_DIR (must be absolute).
       - ${TTOD_PROPOSAL_HOST_DIR:-./data/proposals}:${TTOD_PROPOSAL_DIR:-/workspace/services/backend/data/proposals}
     extra_hosts:
       - "host.docker.internal:host-gateway"

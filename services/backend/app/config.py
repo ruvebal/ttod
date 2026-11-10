@@ -20,7 +20,10 @@ def _secret(name: str) -> str:
     if value:
         return value
     if os.getenv("REDIS_URL", "").strip():
-        raise RuntimeError(f"{name} is empty while REDIS_URL is set; run `make env-secrets`")
+        raise RuntimeError(
+            f"{name} is empty while REDIS_URL is set; run `python3 scripts/ensure_env_secrets.py` "
+            "(or `make env-secrets`) to write stable secrets into .env"
+        )
     return secrets.token_urlsafe(32)
 
 

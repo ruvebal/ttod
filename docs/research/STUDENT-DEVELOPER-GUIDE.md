@@ -26,6 +26,7 @@ cd <DIRECTORIO-DEL-STARTER>
 git log --all --oneline
 git branch -a
 cp .env.example .env
+python3 scripts/ensure_env_secrets.py   # stable session/PAT secrets; the backend refuses to boot without them
 docker compose config --quiet
 docker compose up --build -d
 docker compose ps

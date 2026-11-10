@@ -3,6 +3,8 @@
 > **Track:** edge — response headers (F1). Student assignment **A1**.  
 > **Status:** BLOCKED until AA0 DONE
 
+**Exit gate:** [`AA1-caddy-security-headers.exit-gate.sh`](AA1-caddy-security-headers.exit-gate.sh). Read it before you start: it serves your Caddyfile in a throwaway container on the live network and states exactly which headers pass.
+
 ## Goal
 
 Ship a falsifiable Caddy `header` block so classroom browsers get frame denial, referrer, and permissions policy. CSP starts report-only unless AA0 authorizes enforce.

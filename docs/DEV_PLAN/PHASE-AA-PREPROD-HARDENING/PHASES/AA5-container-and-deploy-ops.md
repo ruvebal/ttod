@@ -5,6 +5,8 @@
 > **Lane A (shore integrity: F25, F27, F28 / I7–I9): READY after AA0.** It has no dependency on Caddy headers.  
 > **Lane B (everything else): BLOCKED until AA1 DONE.** One report, two VERIFYING passes.
 
+**Exit gate:** [`AA5-container-and-deploy-ops.exit-gate.sh`](AA5-container-and-deploy-ops.exit-gate.sh) (lane A now; lane B is appended when AA1 is DONE). Read it before you start: it names the backend tests it runs (`*health_redis_down*`, `*empty_secret*`) and smoke-tests recreate + Redis-down in an isolated Compose project.
+
 ## Goal
 
 Bind-mount proposal dual-write disk; make `/health` fail when Redis is down; fail-closed secrets + `ensure_env_secrets` on rebuild; Redis `maxmemory`; stop publishing Ollama by default; non-root USER; healthchecks; CI/backend tests; honest TLS story; Lilith rewrite; npm audit.

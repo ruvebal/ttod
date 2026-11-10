@@ -2,8 +2,8 @@
 
 **Run by:** cascade-harness.sh (runner process, not the implementing session)
 **Worktree:** /Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-1
-**Commit:** e5468bc518a7c7bb66dc438b1027de57f4d6ba8e
-**Started:** 2026-11-10T18:50:25Z
+**Commit:** 6eb4634d90cbeacf2513c065b5d5b259f9e84675
+**Started:** 2026-11-10T19:00:45Z
 
 ```
 AA1 exit gate passed: headers on HTML, CSP report-only, JSON/assets/SW intact, scope caddy+docs.

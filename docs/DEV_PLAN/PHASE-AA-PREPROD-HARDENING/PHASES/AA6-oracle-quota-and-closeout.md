@@ -13,6 +13,9 @@ Classroom Redis budget on Oracle/SSE (auth already AA2); design QA rubric + grap
 - Design QA rubric; graph palette vs tokens; token-layer audit.
 - `PHASE-AA6-REPORT.md` disposition table for F1–F58.
 - Optional dated completeness note.
+- **Follow-ups carried from AA1** (dispose of each: done, scheduled with an owner, or explicitly deferred):
+  - **CSP enforcement.** Give `script-src` one owner (Astro's per-page hashes, or TTOD's 4 inline scripts moved to modules), switch Caddy to `Content-Security-Policy`, browser smoke at 0 violations, and bump the service worker cache so cached pages drop the old policy (PHASE-AA1-REPORT §4).
+  - **Duplicate `Cache-Control` on `/sw.js`.** Present before AA1; pick one rule (PHASE-AA1-REPORT §6).
 - Whole-cascade cold review.
 
 ## Scope

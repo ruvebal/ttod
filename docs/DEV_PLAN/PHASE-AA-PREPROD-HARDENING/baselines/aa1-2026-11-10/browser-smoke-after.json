@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:28081",
-  "recorded": "2026-11-10T18:49:32.394Z",
+  "recorded": "2026-11-10T18:59:53.104Z",
   "results": [
     {
       "path": "/es/",
@@ -10,25 +10,25 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "// Antes de pintar: con JavaScript la fi",
           "line": 54
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 68
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 68
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 68
         }
       ],
@@ -47,19 +47,19 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 122
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 122
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 122
         }
       ],
@@ -78,19 +78,19 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 12
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 12
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 12
         }
       ],
@@ -109,31 +109,31 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var e=async t=>{await(await t())()",
           "line": 13
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var A=Object.defineProperty;var g=",
           "line": 13
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 13
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 13
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 13
         }
       ],
@@ -152,37 +152,37 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var e=async t=>{await(await t())()",
           "line": 15
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var A=Object.defineProperty;var g=",
           "line": 15
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var a=(s,i,o)=>{let r=async()=>{aw",
           "line": 15
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 15
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 15
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 15
         }
       ],
@@ -201,31 +201,31 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var e=async t=>{await(await t())()",
           "line": 14
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "(()=>{var A=Object.defineProperty;var g=",
           "line": 14
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 14
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 14
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 14
         }
       ],
@@ -244,19 +244,19 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 14
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 14
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 14
         }
       ],
@@ -275,19 +275,19 @@
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.querySelector(\"[data-pi",
           "line": 12
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const e=document.getElementById(\"ttod-si",
           "line": 12
         },
         {
           "directive": "script-src-elem",
           "blocked": "inline",
-          "sample": "",
+          "sample": "const n=document.getElementById(\"ttod-ne",
           "line": 12
         }
       ],

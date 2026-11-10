@@ -2,8 +2,10 @@
   auto_https off
 }
 
-:8080, :8443 {
-  # Cabeceras de seguridad (F1 / AA1). Se aplican a toda respuesta, también a la API.
+(seguridad) {
+  # Cabeceras de seguridad (F1 / AA1). Se aplican a toda respuesta: las del sitio con
+  # `import seguridad`, y los errores que genera el propio Caddy (502, 404 de file_server)
+  # con `handle_errors`, porque esos se saltarían el bloque del sitio.
   # - X-Frame-Options: nadie enmarca TTOD (no hay iframes propios), así que DENY. La CSP va en
   #   report-only, y en ese modo `frame-ancestors` no protege; por eso la denegación de marcos
   #   la da esta cabecera.
@@ -17,11 +19,15 @@
   header {
     X-Frame-Options "DENY"
     Referrer-Policy "strict-origin-when-cross-origin"
-    Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+    Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     X-Content-Type-Options "nosniff"
-    Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'report-sample'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
     -Server
   }
+}
+
+:8080, :8443 {
+  import seguridad
 
   @api path /api/* /health
   handle @api {
@@ -78,5 +84,11 @@
   handle {
     encode zstd gzip
     reverse_proxy frontend:4321
+  }
+
+  # Errores generados por Caddy (no los del upstream): misma política de cabeceras.
+  handle_errors {
+    import seguridad
+    respond "{err.status_code} {err.status_text}" {err.status_code}
   }
 }

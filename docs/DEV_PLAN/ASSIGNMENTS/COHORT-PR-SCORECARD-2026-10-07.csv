@@ -53,3 +53,15 @@ E5,73,accounts-task6,accounts-task6-api-guide,alexxblaro16,https://github.com/ru
 E5,59,accounts-task7,accounts-task7-auth-library-api-tests,alexxblaro16,https://github.com/ruvebal/ttod/pull/59,24,24,20,8,10,9,95,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-11,5-accounts
 E5,—,accounts-task9,formal-review-other-module,alexxblaro16,—,,,,,,,,,—,—,—,WAIVED,Instructor class waiver 2026-10-15,5-accounts
 E5,—,accounts-task8,pr-into-other-module,alexxblaro16,—,,,,,,,,,—,—,—,WAIVED,Instructor class waiver 2026-10-15 no cross-team commits,5-accounts
+E2,90,post-defense-graph-colors,graph-section-colors-tags,gpfc-git,https://github.com/ruvebal/ttod/pull/90,24,24,16,8,10,8,90,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-11-09 section colors + tag filters,2-graph-post
+E3,79,post-defense-visual-shell,content-cabecera-pie-404,Andreavilaro0,https://github.com/ruvebal/ttod/pull/79,24,24,14,10,10,8,90,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 header footer 404 tokens,3-oracle-post
+E3,80,post-defense-wisdom-visual,content-sabiduria-estanteria,Andreavilaro0,https://github.com/ruvebal/ttod/pull/80,24,24,14,9,10,8,89,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 wisdom shelf stele,3-oracle-post
+E3,81,post-defense-graph-path,graph-sendero-backend,Andreavilaro0,https://github.com/ruvebal/ttod/pull/81,25,24,16,9,10,9,93,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 graph/path + ETag,3-oracle-post
+E3,82,post-defense-home,portada-valle-rollo,Andreavilaro0,https://github.com/ruvebal/ttod/pull/82,24,24,12,9,10,8,87,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 home valley scroll,3-oracle-post
+E3,83,post-defense-oracle-cielo,oracle-cielo-ruyi,Andreavilaro0,https://github.com/ruvebal/ttod/pull/83,24,25,16,10,10,8,93,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 cielo ruyi oracle,3-oracle-post
+E3,84,post-defense-login-next,entrar-cuenta-next,Andreavilaro0,https://github.com/ruvebal/ttod/pull/84,24,24,16,9,10,8,91,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 login safeNextPath,3-oracle-post
+E3,85,post-defense-backend-cache,backend-ttod-yml-memory,Andreavilaro0,https://github.com/ruvebal/ttod/pull/85,25,24,14,5,10,8,86,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-10-25 SnapshotService preload,3-oracle-post
+E3,88,post-defense-oracle-escape,oracle-stream-escape,nbfrodri,https://github.com/ruvebal/ttod/pull/88,24,24,16,10,10,8,92,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-11-09 stream cancel + Escape a11y,3-oracle-post
+E4,91,post-defense-icon-revert,icon-deletion-revert,PRNovoa,https://github.com/ruvebal/ttod/pull/91,22,22,12,8,10,5,79,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-11-09 thin body icon restore,4-pwa-post
+E5,89,accounts-task10,accounts-post-defense-logout-t10,alexxblaro16,https://github.com/ruvebal/ttod/pull/89,24,25,18,10,10,9,96,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-11-09 T10 + logout FavoriteButton a11y,5-accounts-post
+E5,92,post-defense-redis-register,accounts-redis-register-favorites,alexxblaro16,https://github.com/ruvebal/ttod/pull/92,25,25,18,8,10,9,95,SUCCESS,—,—,APPROVED,MERGED,MERGED 2026-11-09 register always student + Redis users,5-accounts-post

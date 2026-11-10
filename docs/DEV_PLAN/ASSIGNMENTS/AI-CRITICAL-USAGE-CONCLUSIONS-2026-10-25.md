@@ -28,15 +28,15 @@ Eight observable **signs** (0–2 each → max 16) are defined in the HTML repor
 
 ## 2. Cohort rollup (anonymized)
 
-| Cohort | Seam | Tip Mean Σ | AI signs /16 | Draft AI-critical 0–10 | Standout control evidence |
-| --- | --- | ---: | ---: | ---: | --- |
-| **E1 Content** | Content | 96 | **15** | **9.0** | Mutation tests; plan-before-code; deliberate non-padding of tests; design-decision #68 |
-| **E2 Graph** | Graph | 96 | **9** | **6.5** | Logs filled; verification commands named; thin REJECT trail; M2 admits struggle to use AI as primary tool |
-| **E3 Oracle** | Oracle | 94 | **8** | **6.0** | Structured log on #42; M2 thin (“less IA… agents.md”); product strong, metacognition thin |
-| **E4 PWA** | PWA | 96 | **14** | **9.0** | Cohort memo #74; rejected `tsc` drop; honest “AI ran checks, I did not claim them” |
-| **E5 Accounts** | Accounts | 92 | **12** | **8.0** | Cookie vs PAT reject reasoning in M2; filled logs; plans-before-implement |
+| Cohort | Seam | Tip Mean Σ (combined) | Sprint-only Σ | AI signs /16 | Draft AI-critical 0–10 | Standout control evidence |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| **E1 Content** | Content | **96** | 96 | **15** | **9.0** | Mutation tests; plan-before-code; deliberate non-padding of tests; design-decision #68 |
+| **E2 Graph** | Graph | **95** | 96 | **9** | **6.5** | Logs filled; verification commands named; thin REJECT trail; M2 admits struggle to use AI as primary tool; +#90 post-defense |
+| **E3 Oracle** | Oracle | **92** | 94 | **8** | **6.0** | Structured log on #42; M2 thin (“less IA… agents.md”); product strong (+#79–#85/#88 visual wave), metacognition thin |
+| **E4 PWA** | PWA | **94** | 96 | **14** | **9.0** | Cohort memo #74; rejected `tsc` drop; honest “AI ran checks, I did not claim them”; +#91 thin hygiene PR |
+| **E5 Accounts** | Accounts | **93** | 92 | **12** | **8.0** | Cookie vs PAT reject reasoning in M2; filled logs; +#89 T10 + #92 Redis register |
 
-**Reading:** High tip Mean Σ ≠ automatic AI-critical excellence. Graph/Oracle shipped product well; their **control narrative** is thinner than Content/PWA.
+**Reading:** High tip Mean Σ ≠ automatic AI-critical excellence. Graph/Oracle shipped product well; their **control narrative** is thinner than Content/PWA. Combined Σ includes post-defense merges scored 2026-11-10 in the cohort scorecard; **AI signs / draft AI 0–10 unchanged** (Moodle + sprint logs — not re-audited against #79–#92 bodies).
 
 ---
 
@@ -99,7 +99,8 @@ Activity is free-text **M1** (Git) · **M2** (AI ritual) · **M3** (proposal). A
 2. **Honesty about AI-run checks is a positive control signal**, not a penalty. E4’s “assistant ran the checks; I do not claim them as mine” matches the Practical Guide’s verification boundary better than vague “I verified everything.”
 3. **Product excellence can coexist with thin metacognition.** E2/E3 mean Σ ≥ 94 with fewer critique signs — grade the *axes separately* so a strong Graph island does not auto-inflate AI-critical marks.
 4. **Git hygiene was instructor-absorbed.** Multiple M1 answers ask for student-owned conflict practice. That is a course redesign note, not an AI-failure.
-5. **Optional Tip 10 design memos** (Graph/Oracle/PWA/Accounts) never filed as PRs; only Content #68 and PWA #74 give extended process artifacts. Do not treat missing T10 as AI-log failure — it is a separate process tip.
+5. **Optional Tip 10 design memos:** Content #68 and PWA #74 remain the strong process artifacts; **Accounts T10 landed in #89** (2026-11-09). Graph / Oracle still lack a dedicated T10 tip PR (group-3 DECISION docs partially cover Oracle/graph). Do not treat missing Graph/Oracle/PWA T10 as AI-log failure — it is a separate process tip.
+6. **Post-defense product credit (2026-11-10):** Equipo 3’s #79–#85 visual series and the #88–#92 merge train are scored on the PR scorecard. They raise E5’s combined tip mean and slightly dilute E3/E4 means; they do **not** by themselves change Moodle M1–M3 Avgs in §4.
 
 ### Recommended human next steps
 
@@ -107,15 +108,16 @@ Activity is free-text **M1** (Git) · **M2** (AI ritual) · **M3** (proposal). A
 - [ ] Enter Moodle grades from §4 (or your override).
 - [ ] Optionally ask E2/E3 for one written REJECT example retroactively (formative, not punitive).
 - [ ] Keep `gradebook-import/` local-only (gitignored) — contains emails.
+- [ ] Optional: skim AI Review Logs on #89/#92/#88 if you want to bump E5/E3 signs without reopening Moodle.
 
 ---
 
 ## 6. Sources used
 
 - Unit 6 lesson · AI Practical Guide · AI Declaration / Oral Defence Rubric (Web Atelier)
-- TTOD PR template AI Review Log · merged tip PRs (Content #61–#68, Graph #48–#78, Oracle #42, PWA #46–#74, Accounts #53–#59)
+- TTOD PR template AI Review Log · merged tip PRs (Content #61–#68, Graph #48–#78+#90, Oracle #42+#79–#85+#88, PWA #46–#74+#91, Accounts #53–#59+#89+#92)
 - `docs/uso-ia-team-4.md` (PR #74)
-- `COHORT-PR-SCORECARD-2026-10-07.md` rollup
+- `COHORT-PR-SCORECARD-2026-10-07.md` rollup (updated 2026-11-10)
 - Moodle export folder (2026-10-25) — local gitignored copy
 
-_Generated 2026-10-25 as instructor base; not a published research claim._
+_Generated 2026-10-25 as instructor base; Tip Mean Σ columns refreshed 2026-11-10 for post-defense PRs; not a published research claim._

@@ -1,0 +1,31 @@
+# AA1 curl evidence: 2026-11-10T18:49:46Z on tanit.crea-comm.loc
+
+## before: live stack, curl -sI http://127.0.0.1:18080/es/
+HTTP/1.1 200 OK
+Content-Type: text/html
+Date: Tue, 10 Nov 2026 18:49:46 GMT
+Via: 1.1 Caddy
+
+## after: worktree Caddyfile via throwaway proxy, curl -sI http://127.0.0.1:28081/es/
+HTTP/1.1 200 OK
+Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+Content-Type: text/html
+Date: Tue, 10 Nov 2026 18:49:46 GMT
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+Referrer-Policy: strict-origin-when-cross-origin
+Via: 1.1 Caddy
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+## after: API JSON, curl -sI http://127.0.0.1:28081/api/v1/wisdom/sample
+HTTP/1.1 405 Method Not Allowed
+Allow: GET
+Content-Length: 31
+Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+Content-Type: application/json
+Date: Tue, 10 Nov 2026 18:49:46 GMT
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+Referrer-Policy: strict-origin-when-cross-origin
+Via: 1.1 Caddy
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY

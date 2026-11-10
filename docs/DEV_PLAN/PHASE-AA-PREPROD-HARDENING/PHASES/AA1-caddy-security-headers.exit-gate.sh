@@ -6,6 +6,8 @@
 # network, so it proxies to the real frontend/backend. It listens on a scratch port and leaves the
 # running stack untouched.
 #
+# Amended after the cold review (R1, R6): non-HTML and Caddy-generated error responses.
+#
 # Env: AA1_PROBE_PORT (default 28080), LIVE_COMPOSE_NETWORK (default ttod_oracle_default).
 set -euo pipefail
 
@@ -48,6 +50,16 @@ for page in /es/ /en/ /es/wisdom/; do
     && fail "$page enforces CSP; AA0 did not authorize enforcement (report-only first)"
   printf '%s\n' "$h" | grep -q '^strict-transport-security:' \
     && fail "$page sends HSTS over plain HTTP (claims HTTPS the edge does not have)"
+done
+
+# 2b. Headers on non-HTML responses too, including errors Caddy generates itself (cold review
+#     R1/R6, amended during AA1): API, health, an API 404 and a file_server 404.
+for path in /health /api/v1/wisdom/sample /api/v1/__aa1-gate-missing /project-docs/__aa1-gate-missing; do
+  h="$(headers "$path")"
+  need "$h" '^x-frame-options: deny$' "$path lacks X-Frame-Options"
+  need "$h" '^x-content-type-options: nosniff$' "$path lacks nosniff"
+  need "$h" '^content-security-policy-report-only: .+' "$path lacks CSP report-only"
+  printf '%s\n' "$h" | grep -q '^server:' && fail "$path still sends a Server header"
 done
 
 # 3. API JSON still usable; no CORS invented.

@@ -63,5 +63,6 @@ start="$(git merge-base HEAD origin/main)"
 git diff --quiet "$start" -- services backend caddy redis docker-compose.yml ttod.yml proposals \
   || fail "AA0 touched code, Compose or the canonical stores"
 
-git diff --check "$start"
+# Markdown is excluded: two trailing spaces are the pack's deliberate hard line breaks.
+git diff --check "$start" -- . ':(exclude)*.md'
 echo "AA0 exit gate passed: owner decisions recorded, cut + locators frozen, probe + baseline stored, no code touched."

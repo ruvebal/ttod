@@ -1,0 +1,77 @@
+# probe run: 2026-11-10T16:52:09Z on tanit.crea-comm.loc · base http://127.0.0.1:18080 · repo 72a76ebe
+
+## health
+{"status":"ok","ttod_version":"3.1.0","redis":"ok"}
+
+## F1 security headers (curl -sI http://127.0.0.1:18080/es/)
+HTTP/1.1 200 OK
+Content-Type: text/html
+Date: Tue, 10 Nov 2026 16:52:09 GMT
+Via: 1.1 Caddy
+
+ABSENT  content-security-policy
+ABSENT  x-frame-options
+ABSENT  referrer-policy
+ABSENT  permissions-policy
+ABSENT  x-content-type-options
+ABSENT  strict-transport-security
+
+## F2 TLS on the alt port (http://127.0.0.1:18443)
+https handshake: 000 (000 = no TLS)
+plain http on alt port: 200
+
+## F22 cookie Secure source (code)
+/Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-0/services/frontend/src/pages/[locale]/login.astro:42:        secure: import.meta.env.PROD,
+/Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-0/services/frontend/src/pages/[locale]/register.astro:33:        secure: import.meta.env.PROD,
+
+## F23 allowedDomains (code) + POST with a LAN Host header
+27:  security: { allowedDomains: [{ hostname: 'localhost' }, { hostname: '127.0.0.1' }] },
+POST /es/login Host=localhost:        200
+POST /es/login Host=tanit.crea-comm.loc: 403
+
+## F25 proposal store mount (backend container)
+0 mounts 
+41:      TTOD_PROPOSAL_DIR: ${TTOD_PROPOSAL_DIR:-/workspace/services/backend/data/proposals}
+
+## F27 /health with Redis down
+redis stopped → /health: HTTP 200 body {"status":"ok","ttod_version":"3.1.0","redis":"down"}
+redis restarted → /health: {"status":"ok","ttod_version":"3.1.0","redis":"ok"}
+
+## F3 open registration
+GET /es/register: 200
+(no matches above = no registration gate or limiter in backend code)
+
+## F14 robots / sitemap
+/robots.txt: 404 · /sitemap.xml: 404 · /sitemap-index.xml: 404
+
+## F32 graph locale
+<html lang="es"
+English UI strings hard-coded in GraphIsland.svelte (rendered on /es/ too):
+  130:>TTOD knowledge graph<
+  133:>All tags<
+  138:aria-label="Section legend"
+  144:>Loading live graph…<
+  151:>Selected node<
+  157:>Select a node to view its details.<
+
+## F8 slash duplicates (slashless vs slash)
+/es/wisdom         no-slash 200 · slash 200
+/es/library        no-slash 302 · slash 302
+/es/graph          no-slash 200 · slash 200
+/es/graph/path     no-slash 200 · slash 200
+/es/oracle         no-slash 200 · slash 200
+/es/login          no-slash 200 · slash 200
+/es/docs           no-slash 200 · slash 200
+/en/wisdom         no-slash 200 · slash 200
+
+## F50/F51 id inventory
+/es/: 8 ids → flagship-quote-heading pie-pincel sigue-rollo sigue-tesis ttod-main ttod-network-boundary ttod-site-header ttod-site-nav 
+/es/wisdom/: 9 ids → armario-facetas-rotulo lectura-volumen mazo-datos mazo-titulo pie-pincel ttod-main ttod-network-boundary ttod-site-header ttod-site-nav 
+
+## F57 language switch on /es/wisdom/wis-034/
+EN links on the page: href="/en/wisdom/wis-034/"
+switch target /en/wisdom/wis-034/ → HTTP 200 · title: <title>Wisdom entry not found
+/en/wisdom/wis-034/ → HTTP 200 · title: <title>Wisdom entry not found
+/es/no-such-page/ → HTTP 404
+
+## end

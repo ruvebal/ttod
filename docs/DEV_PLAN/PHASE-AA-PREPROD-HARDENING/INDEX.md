@@ -5,7 +5,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 
 # Phase AA — Pre-production hardening
 
-**Status:** AUTHORIZED 2026-11-10 (owner accepted the recommended D1–D7) · AA0 READY.  
+**Status:** AUTHORIZED 2026-11-10 (owner accepted the recommended D1–D7) · AA0 VERIFYING.  
 **Programme letter:** AA (after Z Redis shore).  
 **Depends on:** Phase Z complete on `main`; cohort accounts/register landed.  
 **Related but separate:** [Phase T public release](../PHASE-T-PUBLIC-RELEASE-EXCELLENCE-CASCADE.md) — do not conflate.
@@ -36,7 +36,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 
 | Step | File | Deliverable | Gate |
 | ---- | ---- | ----------- | ---- |
-| 0 | [AA0](PHASES/AA0-assignment-cut-and-freeze.md) | Assignment cut, D1–D7, LOCATORS frozen, live re-probe, UX baseline | READY — owner authorized 2026-11-10 ("the defaults are ok") |
+| 0 | [AA0](PHASES/AA0-assignment-cut-and-freeze.md) | Assignment cut, D1–D7, LOCATORS frozen, live re-probe, UX baseline | VERIFYING — owner authorized 2026-11-10 ("the defaults are ok"); report PHASE-AA0-REPORT.md |
 | 1 | [AA1](PHASES/AA1-caddy-security-headers.md) | Caddy security headers, CSP report-only | BLOCKED until AA0 DONE |
 | 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | BLOCKED until AA1 DONE |
 | 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | BLOCKED until AA0 DONE |

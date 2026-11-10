@@ -5,6 +5,7 @@ Instructor freezes ownership in AA0. Do not treat this as authorization to merge
 
 # Assignments — pre-production hardening (Phase AA)
 
+**Status:** FROZEN 2026-11-10 by [AA0](PHASE-AA0-REPORT.md). The cut below is affirmed as drafted: students A1–A40, instructor I1–I16, no reassignments. Changes after this date go through an AA0 amendment in the report.  
 **Audience:** FE II / TTOD cohort teams.  
 **Source of truth for defects:** [FINDINGS-2026-11-10.md](FINDINGS-2026-11-10.md).  
 **Rationale:** [RATIONALE.md](RATIONALE.md).  

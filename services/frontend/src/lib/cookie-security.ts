@@ -29,8 +29,10 @@ export function cookieSecure(request: Request, mode: CookieSecureMode = cookieSe
 }
 
 /**
- * Los atributos de la cookie de sesión, en un solo sitio (AA3, F37): se borra con los
- * mismos con los que se puso, o el navegador la trata como otra cookie y no la borra.
+ * Los atributos de la cookie de sesión, en un solo sitio (AA3, F37). El navegador
+ * reconoce una cookie por nombre + dominio + ruta: es el mismo `path: '/'` lo que hace
+ * que el borrado alcance a la que puso la entrada. `HttpOnly`, `SameSite` y `Secure` no
+ * cuentan para eso; se repiten para que poner y borrar se lean igual y no diverjan.
  */
 export function atributosSesion(request: Request) {
   return { httpOnly: true, sameSite: 'lax' as const, secure: cookieSecure(request), path: '/' };

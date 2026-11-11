@@ -44,7 +44,8 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA6-oracle-quota-and-closeout.md
 ## Carried from AA3b (amended 2026-11-11)
 
 - **CSP enforcement:** AA3b added no inline script; `/es/graph/` dropped from 6 to 5 inline-script reports. The
-  service worker cache is at `v7` (AA3b bumped it for the slash-form offline pages), so the CSP rollout bumps to `v8`.
+  service worker cache is at `v8` (AA3b went to v7 for slash-form offline pages; AA3 went to v8 for anonymous,
+  network-first offline pages), so the CSP rollout bumps to `v9`.
 - **Close-out inputs:** F59 (es corpus has no `related` edges), F60 (2D plano CLS 0.47), F61 (harness ignores `3b`)
   need a disposition in the AA6 ledger.
 

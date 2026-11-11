@@ -2,8 +2,11 @@ const CACHE_PREFIX = 'ttod-pwa-stub-';
 /* v6: cacheFirst sobre /visual-system/ conserva un fichero viejo bajo el mismo
    nombre; subir la versión purga las pinturas de la portada anterior.
    v7 (AA3b): las páginas acaban en barra; la forma sin barra es un 301, y una
-   respuesta redirigida guardada en caché no sirve para una navegación. */
-const CACHE_NAME = `${CACHE_PREFIX}v7`;
+   respuesta redirigida guardada en caché no sirve para una navegación.
+   v8 (AA3, cold review F1): la cabecera cambia con la sesión, así que estas páginas
+   se guardan sin cookies y se sirven de la red primero. Subir la versión purga las
+   copias que guardó la v7, que podían llevar el nombre de quien estaba dentro. */
+const CACHE_NAME = `${CACHE_PREFIX}v8`;
 const PROOF_ASSET = '/visual-system/tokens.css';
 
 const OFFLINE_PAGES = ['/en/oracle/', '/es/oracle/'];
@@ -50,7 +53,9 @@ async function precacheOracle(cache) {
     if (visited.has(url)) continue;
     visited.add(url);
 
-    const response = await fetch(url, { cache: 'no-store' });
+    // Sin cookies: lo que se guarda es la página de un visitante anónimo, nunca la de
+    // quien tenga la sesión abierta en ese momento (su nombre, su biblioteca).
+    const response = await fetch(url, { cache: 'no-store', credentials: 'omit' });
     if (!response.ok) throw new Error(`Precache failed: ${url} (${response.status})`);
     await cache.put(url, response.clone());
 
@@ -103,6 +108,22 @@ async function cacheFirst(request) {
   return response;
 }
 
+/**
+ * Las páginas sin conexión (el oráculo): de la red primero, con la sesión de verdad;
+ * la copia anónima guardada solo si no hay red. La respuesta con cookies no se guarda
+ * nunca: en un navegador compartido de clase, el siguiente vería al anterior.
+ */
+async function paginaSinConexion(request) {
+  try {
+    return await fetch(request, { cache: 'no-store' });
+  } catch (error) {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(new URL(request.url).pathname);
+    if (cached) return cached;
+    throw error;
+  }
+}
+
 async function networkFirst(request) {
   const cache = await caches.open(CACHE_NAME);
   let response;
@@ -146,8 +167,10 @@ self.addEventListener('fetch', (event) => {
     url.pathname.startsWith('/visual-system/') ||
     url.pathname.startsWith('/assets/');
 
-  // Preserve Task 2's offline pages and reuse cached static assets.
-  if (selectedPage || staticAsset) {
+  // Task 2's offline pages: network first, anonymous copy offline (AA3). Static assets: cache first.
+  if (selectedPage) {
+    event.respondWith(paginaSinConexion(request));
+  } else if (staticAsset) {
     event.respondWith(cacheFirst(request));
   }
 });

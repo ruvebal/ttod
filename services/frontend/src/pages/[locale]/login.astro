@@ -29,7 +29,9 @@ try {
 let email = '';
 
 if (Astro.request.method === 'POST') {
-  const formData = await Astro.request.formData();
+  // Solo formularios: otro tipo de cuerpo es un 415, no un 500 (cold review AA3, F9).
+  let formData: FormData;
+  try { formData = await Astro.request.formData(); } catch { return new Response(null, { status: 415 }); }
   const rawEmail = formData.get('email');
   const password = formData.get('password');
   next = safeNextPath(formData.get('next'), locale);
@@ -137,7 +139,7 @@ const backHref = next === `/${locale}/account/` ? `/${locale}/` : next;
             <button
               type="button" class="ver-clave" hidden
               aria-controls="password" aria-pressed="false" aria-label={copy.showLabel}
-              data-show={copy.show} data-hide={copy.hide}
+              data-ver-contrasena="password" data-mostrar={copy.show} data-ocultar={copy.hide}
             >{copy.show}</button>
           </div>
         </div>

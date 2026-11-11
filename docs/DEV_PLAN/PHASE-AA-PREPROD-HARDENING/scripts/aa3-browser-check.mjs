@@ -78,12 +78,15 @@ for (const [width, lang] of [[390, "es"], [768, "es"], [1440, "en"], [768, "en"]
   await ctx.close();
 }
 // 4. Anchors below the header on views AA3 owns (AA3b checks the landing and wisdom).
-for (const [path, sel] of [["/es/account/reviewer/", null], ["/es/docs/", "h2[id], h3[id]"], ["/es/oracle/", "[id]:not(script):not(#ttod-site-header *)"]]) {
-  if (!sel) continue;
+// Amended after the cold review (F4): the first version could skip silently (no target on /es/docs/) or
+// pick the hidden live region. Real targets now, and a missing target fails.
+for (const [path, pick] of [["/es/docs/introduction/", null], ["/es/oracle/", "oracle-query"]]) {
   const { ctx, page } = await open(path, { width: 390, height: 844 });
-  const id = await page.evaluate((s) => [...document.querySelectorAll(s)].map((e) => e.id).find((i) => i && document.getElementById(i).getBoundingClientRect().top > 900) ?? "", sel);
-  if (id) {
-    await page.goto(`${base}${path}#${id}`, { waitUntil: "networkidle" }); await page.waitForTimeout(600);
+  const id = pick ?? await page.evaluate(() => [...document.querySelectorAll("main h2[id]")].pop()?.id ?? "");
+  const exists = Boolean(id) && await page.evaluate((i) => Boolean(document.getElementById(i)?.closest("main")), id);
+  ok(exists, `${path}: no anchor target inside main (${id || "none"})`);
+  if (exists) {
+    await page.goto(`${base}${path}#${encodeURIComponent(id)}`, { waitUntil: "networkidle" }); await page.waitForTimeout(600);
     const r = await page.evaluate((i) => {
       const t = document.getElementById(i).getBoundingClientRect(); const h = document.getElementById("ttod-site-header");
       const hr = h.getBoundingClientRect(); const shown = getComputedStyle(h).visibility !== "hidden" && hr.bottom > 0;
@@ -91,6 +94,37 @@ for (const [path, sel] of [["/es/account/reviewer/", null], ["/es/docs/", "h2[id
     }, id);
     ok(r.top >= r.hb - 1 && r.top < 844, `${path}#${id}: target top ${Math.round(r.top)} vs header bottom ${Math.round(r.hb)}`);
   }
+  await ctx.close();
+}
+// 4b. Added after the cold review (F3): under reduced motion the header never slides away at 390.
+{
+  const { ctx, page } = await open("/es/docs/introduction/", { width: 390, height: 844, reduced: true });
+  for (const y of [300, 900, 1500]) { await page.evaluate((v) => window.scrollTo(0, v), y); await page.waitForTimeout(250); }
+  const h = await page.evaluate(() => { const e = document.getElementById("ttod-site-header"); return { top: e.getBoundingClientRect().top, vis: getComputedStyle(e).visibility }; });
+  ok(h.vis !== "hidden" && Math.abs(h.top) < 1, `reduced motion 390: header slid away (top ${h.top}, ${h.vis})`);
+  await ctx.close();
+}
+// 4c. Added after the cold review (F1): the service worker must never freeze the session-aware header.
+// Sign in, let the worker install and control the page, reload the offline-capable Oracle page: it shows
+// the account. Sign out: no name, no email, no Library on that page.
+{
+  const email = `aa3-sw-${Date.now()}@example.test`, password = "aa3-sw-password-1";
+  await fetch(`${base}/api/v1/auth/register`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, password }) });
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const page = await ctx.newPage();
+  await page.goto(`${base}/es/login/`); await page.fill("#email", email); await page.fill("#password", password);
+  await Promise.all([page.waitForNavigation(), page.click('button[type="submit"]')]);
+  await page.goto(`${base}/es/account/`); await page.fill("#cuenta-nombre", "Ada SW");
+  await Promise.all([page.waitForNavigation(), page.click('#profile button[type="submit"]')]);
+  await page.goto(`${base}/es/oracle/`, { waitUntil: "networkidle" });
+  await page.waitForFunction(() => navigator.serviceWorker?.controller, null, { timeout: 15000 }).catch(() => {});
+  await page.reload({ waitUntil: "networkidle" });
+  const inHeader = await page.evaluate(() => document.getElementById("ttod-site-header").innerText);
+  ok(inHeader.includes("Ada SW") && !inHeader.includes("Entrar"), `SW: signed-in /es/oracle/ header shows "${inHeader.replace(/\s+/g, " ")}"`);
+  await page.goto(`${base}/es/account/`); await Promise.all([page.waitForNavigation(), page.click('#sessions form[action="/es/logout"] button')]);
+  await page.goto(`${base}/es/oracle/`, { waitUntil: "networkidle" }); await page.reload({ waitUntil: "networkidle" });
+  const html = await page.content();
+  ok(!html.includes("Ada SW") && !html.includes(email) && !html.includes('href="/es/library/"'), "SW: after logout /es/oracle/ still carries the previous student's name, email or Library");
   await ctx.close();
 }
 // 5. Reduced motion: the auth sky (CieloRuyi) runs no continuous animation loop (F12).

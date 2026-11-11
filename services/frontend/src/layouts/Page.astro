@@ -152,10 +152,12 @@ const entrar = enlaceEntrar(lang, Astro.url);
         padding-inline-start: clamp(.8rem, 1.6vw, 1.25rem);
         border-inline-start: 1px solid var(--ttod-color-line-subtle);
       }
-      .ttod-cuenta { max-width: 12ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block !important; line-height: 44px; }
+      /* El nombre se recorta dentro de su `span`; el enlace se alinea como sus vecinos (F5). */
+      .ttod-cuenta-nombre { max-width: 12ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .ttod-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
       /* La lengua, en voz baja: un código de dos letras, nunca una pastilla de tinta. */
       .ttod-lang-switch {
-        display: inline-flex; align-items: center; min-height: 44px;
+        display: inline-flex; align-items: center; min-height: 44px; padding-inline: .75rem; margin-inline: -.75rem;
         font-size: .8125rem !important; letter-spacing: .08em; font-weight: 500;
         color: var(--ttod-color-muted) !important; background: transparent;
       }
@@ -183,6 +185,18 @@ const entrar = enlaceEntrar(lang, Astro.url);
         border-radius: 50%; background: currentColor;
       }
 
+      /* Al bajar, la barra se aparta en el móvil (y vuelve al subir, con el tabulador o
+         con el foco dentro; con el menú abierto no se va). Con «reducir movimiento» no se
+         aparta nunca (cold review AA3, F3): antes una regla más específica le devolvía la
+         transición. Un salto a un fragmento hacia abajo la deja apartada: es lo previsto
+         (vuelve al subir), y el fragmento queda arriba, a la vista. */
+      @media (max-width: 39.99rem) and (prefers-reduced-motion: no-preference) {
+        .ttod-site-header[data-oculta]:not([data-open]):not(:focus-within) {
+          transform: translateY(-100%); visibility: hidden;
+          transition: transform .3s cubic-bezier(.2, .7, .3, 1), visibility 0s .3s;
+        }
+      }
+
       /* Por debajo de 40rem: marca y «Menú». El menú es una navegación desplegable
          (WAI-ARIA APG *Disclosure Navigation*): el panel se abre debajo de la barra
          y empuja el contenido, filas de 48 px. No es modal, así que no atrapa el foco. */
@@ -200,13 +214,8 @@ const entrar = enlaceEntrar(lang, Astro.url);
         }
         .ttod-site-header[data-collapsible] .ttod-panel a[aria-current="page"]::after { bottom: .7rem; inset-inline-end: auto; width: 2.5rem; }
         .ttod-site-header[data-collapsible] .ttod-site-nav a.ttod-solo-panel { display: inline-flex; }
-        .ttod-site-header[data-collapsible] .ttod-cuenta { max-width: none; }
-        /* Al bajar, la barra se aparta en el móvil (y vuelve al subir, con el
-           tabulador o con el foco dentro). Con el menú abierto no se va. */
-        .ttod-site-header[data-oculta]:not([data-open]):not(:focus-within) {
-          transform: translateY(-100%); visibility: hidden;
-          transition: transform .3s cubic-bezier(.2, .7, .3, 1), visibility 0s .3s;
-        }
+        .ttod-site-header[data-collapsible] .ttod-cuenta-nombre { max-width: none; }
+        .ttod-site-header[data-collapsible] .ttod-lang-switch { margin-inline: 0; padding-inline: 0; }
         #ttod-network-boundary[data-state='offline'] { font-size: .75rem; letter-spacing: .04em; }
       }
 
@@ -255,7 +264,11 @@ const entrar = enlaceEntrar(lang, Astro.url);
           <div class="ttod-utility" role="group" aria-label={nav.utility}>
             {usuario && <a href={`/${lang}/library/`} aria-current={esActual(aqui, `/${lang}/library/`) ? 'page' : undefined}>{nav.library}</a>}
             {usuario
-              ? <a class="ttod-cuenta" href={`/${lang}/account/`} aria-current={esActual(aqui, `/${lang}/account/`) ? 'page' : undefined} title={usuario.display_name ?? usuario.email}>{usuario.display_name ?? nav.account}</a>
+              ? <a class="ttod-cuenta" href={`/${lang}/account/`} aria-current={esActual(aqui, `/${lang}/account/`) ? 'page' : undefined}>
+                  {/* El nombre accesible dice qué es el enlace y conserva el texto visible (WCAG 2.4.4, 2.5.3).
+                      Sin `title`: sin nombre de usuario mostraba el correo a quien mirase la pantalla. */}
+                  {usuario.display_name ? <><span class="ttod-sr">{nav.account}: </span><span class="ttod-cuenta-nombre">{usuario.display_name}</span></> : nav.account}
+                </a>
               : <a href={entrar}>{nav.signIn}</a>}
             <a class="ttod-lang-switch" href={switchPath} hreflang={otherLocale} lang={otherLocale} data-cambio-idioma aria-label={`${nav.switchTo} (${otherLocale.toUpperCase()})`}>{otherLocale.toUpperCase()}</a>
           </div>
@@ -295,11 +308,13 @@ const entrar = enlaceEntrar(lang, Astro.url);
       // `search + hash`, y «copiar enlace» copia la dirección absoluta y lo anuncia.
       import { enlazarCambioIdioma } from '../lib/idioma';
       import { enlazarCopiarEnlace } from '../lib/copiarEnlace';
-      import { enlazarVerContrasena } from '../lib/verContrasena';
+      import { enlazarIgualQue, enlazarVerContrasena } from '../lib/campos-clave';
       enlazarCambioIdioma();
       enlazarCopiarEnlace();
-      // Mostrar u ocultar las contraseñas de la cuenta y del registro (AA3, F55).
+      // Mostrar u ocultar contraseñas, y «repite la contraseña» que avisa si no coincide:
+      // un solo sitio para la cuenta, el registro y la entrada (AA3, F55/F36).
       enlazarVerContrasena();
+      enlazarIgualQue();
 
       const header = document.getElementById('ttod-site-header');
       const toggle = header?.querySelector<HTMLButtonElement>('.ttod-nav-toggle');
@@ -357,7 +372,7 @@ const entrar = enlaceEntrar(lang, Astro.url);
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
         // Apartada no puede significar inalcanzable: al primer tabulador la
-        // pastilla vuelve, y el foco entra en ella como en cualquier página.
+        // barra vuelve, y el foco entra en ella como en cualquier página.
         window.addEventListener('keydown', (ev) => {
           if (ev.key === 'Tab') header.removeAttribute('data-oculta');
         });

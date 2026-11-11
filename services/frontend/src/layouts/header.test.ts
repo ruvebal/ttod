@@ -56,13 +56,16 @@ describe('header, signed in', () => {
   it('shows Library and the account, never Entrar', async () => {
     const doc = await render('/es/wisdom/', 'es', ana);
     expect(utility(doc).querySelector('a[href="/es/library/"]')?.textContent).toBe('Biblioteca');
-    expect(utility(doc).querySelector('a[href="/es/account/"]')?.textContent).toBe('Cuenta');
+    expect(utility(doc).querySelector('a[href="/es/account/"]')?.textContent?.trim()).toBe('Cuenta');
     expect(doc.querySelector('#ttod-site-header a[href^="/es/login/"]')).toBeNull();
   });
   it('the account link shows display_name once set (F55)', async () => {
     const doc = await render('/en/account/', 'en', { ...ana, display_name: 'Ada' });
     const cuenta = utility(doc).querySelector('a[href="/en/account/"]');
-    expect(cuenta?.textContent).toBe('Ada');
+    // Visible: the name. Accessible: what the link is, then the name (cold review F5, WCAG 2.4.4 / 2.5.3).
+    expect(cuenta?.querySelector('.ttod-cuenta-nombre')?.textContent).toBe('Ada');
+    expect(cuenta?.textContent?.replace(/\s+/g, ' ').trim()).toBe('Account: Ada');
+    expect(cuenta?.hasAttribute('title')).toBe(false);
     expect(cuenta?.getAttribute('aria-current')).toBe('page');
   });
 });

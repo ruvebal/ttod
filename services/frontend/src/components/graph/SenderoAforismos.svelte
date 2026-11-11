@@ -1937,11 +1937,11 @@
   /* En móvil la constelación ocupa la pantalla entera: es el instrumento, no una
      ilustración de cabecera. El rótulo y la respuesta se montan encima, cada uno
      con su velo para que el texto no caiga sobre los puntos. */
-  /* 61 px es lo que mide la barra de navegación pegajosa de `Page.astro`, que va
-     en el flujo encima de esta sección: sin restarla, la escena se salía por
-     abajo y la leyenda quedaba cortada (medido a 390, 768 y 1440). */
+  /* Lo que mide la barra pegajosa de `Page.astro`, que va en el flujo: su token
+     (`--ttod-header-height`, AA3). Antes eran 61 px a mano y, con la barra de 56, quedaba
+     una franja de 5 px a 390 (cold review AA3, F8d). */
   .sendero__escena {
-    --sendero-nav: 61px;
+    --sendero-nav: var(--ttod-header-height, 3.5rem);
     position: relative;
     height: calc(100svh - var(--sendero-nav));
     min-height: 520px;

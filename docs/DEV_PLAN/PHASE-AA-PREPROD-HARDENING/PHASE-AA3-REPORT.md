@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA3 report: header, account, library, shell hygiene
 
-**Status:** VERIFYING (2026-11-11) · cold review pending · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3` · **Exit gate:**
+**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA3-COLD-REVIEW.md](PHASE-AA3-COLD-REVIEW.md)), amended in the same session (§8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3` · **Exit gate:**
 [`PHASES/AA3-nav-a11y-and-url-hygiene.exit-gate.sh`](PHASES/AA3-nav-a11y-and-url-hygiene.exit-gate.sh) plus
 [`scripts/aa3-browser-check.mjs`](scripts/aa3-browser-check.mjs), both written before the code (commit `35385ed5`). The gate also
 re-runs AA3b's browser check, so every locator must survive the new header.
@@ -26,8 +26,11 @@ re-runs AA3b's browser check, so every locator must survive the new header.
   - The bar reads the session once: from the page's `usuario` prop if the page already knows it, otherwise from
     `getSessionUser`, which only asks the backend when a session cookie exists.
   - Below 40rem it becomes a disclosure menu (WAI-ARIA APG): the panel opens below the bar and pushes content, with
-    48 px rows and **no focus trap**. Escape and an outside tap close it and return focus to the button.
-  - Hiding on scroll applies only below 40rem.
+    48 px rows and **no focus trap**. Escape closes it and returns focus to the button; an outside tap closes it
+    and leaves focus where it was (corrected after the cold review, F8a).
+  - Hiding on scroll applies only below 40rem, and never under reduced motion (cold review F3).
+  - **Decision (F8f):** a downward fragment jump at 390 lands with the bar hidden; it comes back on scroll-up,
+    Tab or focus. The target stays at the top, fully visible.
   - Kept from earlier phases: the server-side `data-collapsible`, the `<noscript>` fallback, the network status
     region, and AA3b's hooks (`cambioIdioma`, `data-cambio-idioma`, `#ttod-aviso`, and the module imports in the
     header script).
@@ -88,7 +91,10 @@ re-runs AA3b's browser check, so every locator must survive the new header.
   - **Menu:** rows of at least 44 px, the panel pushes `main` down, Tab leaves the panel (no trap), Escape returns
     focus to the button.
   - **Skip link:** it is the first Tab stop and lands on `main#ttod-main`.
-  - **Anchors** on `/es/docs/` and `/es/oracle/` land below the header.
+  - **Anchors:** the last heading of `/es/docs/introduction/` and the Oracle's input land below the header. A
+    missing target fails the check (the first version could skip silently; cold review F4).
+  - **Service worker:** signed in, `/es/oracle/` shows the account; after logout, no name, email or Library
+    (cold review F1).
   - **Reduced motion:** the login sky does not animate.
   - **2D graph:** `/es/graph/plano/` has no English UI strings.
   - **CSP:** reports no higher than AA1 on 6 views.
@@ -139,3 +145,23 @@ re-runs AA3b's browser check, so every locator must survive the new header.
 
 Run `make rebuild` on Tanit; there is no backend change. Signed-in students see **Cuenta** and **Biblioteca**
 right away. The username shows once they set it under `Mi cuenta → Perfil`.
+
+## 8. Cold review amendments (2026-11-11)
+
+The verdict was PASS-WITH-AMENDMENTS, with one P1 ([review](PHASE-AA3-COLD-REVIEW.md)). Every finding was handled in this session:
+
+| # | Fix | Proof |
+| - | --- | ----- |
+| F1 (P1): the service worker froze the session header | `sw.js` v8. The Oracle pages are precached **without cookies** and served **network-first**; the cached anonymous copy is only the offline fallback, and a signed-in response is never stored. v8 purges v7 caches that could hold a student's name | New browser-check step (sign in → account shown on `/es/oracle/`; logout → no name, email or Library). **Falsified:** with v7 the signed-in Oracle page showed "Entrar" |
+| F2: a backend stall hung signed-in pages | `getSessionUser` times out after 1.5 s and the page renders signed out. The reviewer page asks for the session once | — |
+| F3: header animated away under reduced motion | The hide rule only applies under `(prefers-reduced-motion: no-preference)` | New browser-check step. **Falsified:** with the old rule the bar slid away (top −56, hidden) |
+| F4: anchor spot-checks proved nothing | Real targets (docs last `h2`, Oracle input), and a missing target fails | report §3 corrected |
+| F5: account name | The accessible name is "Cuenta: Ada" (prefix visually hidden), with the same flex alignment as its neighbours. `title` removed, so the email is never shown on hover | `header.test.ts` |
+| F6: two show/hide helpers, double negative | One helper (`lib/campos-clave.ts`) for login, register and account. Each toggle has a fixed name per field ("Mostrar la contraseña actual"); `aria-pressed` carries the state | — |
+| F7: no client mismatch check | `data-igual-que` on the account confirm field, through the same helper. The account form no longer has `novalidate`. A register mismatch now answers 400, like the account page | `shell-polish.test.ts` |
+| F8: legibility | (a) the outside-tap sentence corrected; (b) the cookie comments now say a browser identifies a cookie by name + domain + path; (c) "pastilla" comment; (d) the 3D scene height uses `--ttod-header-height` instead of 61 px; (e) `paginaProhibida` is documented as unused today; (f) the deep-link decision recorded in §2 | — |
+| F9: JSON POST → 500 | login, register and account answer 415 to a non-form body | — |
+| F10: missing inventory, small language target | [`inventory/`](baselines/aa3-2026-11-11/inventory/) (header, main and skip link of 5 views × en/es × signed in/out, from `inventory.sh`) and [`keyboard-note.md`](baselines/aa3-2026-11-11/keyboard-note.md). `EN`/`ES` now has a 44 px-wide target (padding with an equal negative margin, so the layout does not move) | — |
+
+**Also fixed:** three e2e specs still opened slashless `/xx/oracle`. That is an AA3b leftover: since AA3b the
+offline cache key is `/xx/oracle/`, so the offline spec could not have passed. They now use the slash form.

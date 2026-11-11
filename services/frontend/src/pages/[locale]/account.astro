@@ -36,7 +36,9 @@ let errorSesiones = false;
 let nombrePedido = '';
 
 if (Astro.request.method === 'POST') {
-  const form = await Astro.request.formData();
+  // Solo formularios: otro tipo de cuerpo es un 415, no un 500 (cold review F9).
+  let form: FormData;
+  try { form = await Astro.request.formData(); } catch { return new Response(null, { status: 415 }); }
   const intent = String(form.get('intent') ?? '');
   if (intent === 'profile') {
     nombrePedido = String(form.get('display_name') ?? '').trim();
@@ -90,7 +92,8 @@ const copy = locale === 'es'
       profile: 'Perfil', name: 'Nombre de usuario', nameHelp: 'Lo que se ve en la cabecera. De 1 a 40 caracteres.',
       noName: '—', saveName: 'Guardar el nombre', email: 'Correo electrónico', roles: 'Roles',
       password: 'Contraseña', current: 'Contraseña actual', next: 'Contraseña nueva', confirm: 'Repite la contraseña nueva',
-      passwordHelp: 'Al menos 8 caracteres.', show: 'Mostrar', hide: 'Ocultar', revoke: 'Cerrar mis otras sesiones (recomendado)',
+      passwordHelp: 'Al menos 8 caracteres.', show: 'Mostrar', hide: 'Ocultar',
+      showCurrent: 'Mostrar la contraseña actual', showNew: 'Mostrar la contraseña nueva', showConfirm: 'Mostrar la contraseña repetida', revoke: 'Cerrar mis otras sesiones (recomendado)',
       changePassword: 'Cambiar la contraseña',
       sessions: 'Sesiones', sessionsHelp: 'Cierra esta sesión, o todas: también las de otros dispositivos y los tokens personales.',
       logout: 'Cerrar esta sesión', logoutAll: 'Cerrar todas mis sesiones',
@@ -111,7 +114,8 @@ const copy = locale === 'es'
       profile: 'Profile', name: 'Username', nameHelp: 'Shown in the header. 1 to 40 characters.',
       noName: '—', saveName: 'Save the name', email: 'Email', roles: 'Roles',
       password: 'Password', current: 'Current password', next: 'New password', confirm: 'Repeat the new password',
-      passwordHelp: 'At least 8 characters.', show: 'Show', hide: 'Hide', revoke: 'Sign out my other sessions (recommended)',
+      passwordHelp: 'At least 8 characters.', show: 'Show', hide: 'Hide',
+      showCurrent: 'Show the current password', showNew: 'Show the new password', showConfirm: 'Show the repeated password', revoke: 'Sign out my other sessions (recommended)',
       changePassword: 'Change the password',
       sessions: 'Sessions', sessionsHelp: 'Sign out of this session, or of all of them: other devices and personal tokens too.',
       logout: 'Sign out of this session', logoutAll: 'Sign out of every session',
@@ -163,12 +167,14 @@ const copy = locale === 'es'
     <section id="password" class="ttod-card cuenta-bloque" aria-labelledby="cuenta-clave">
       <h2 id="cuenta-clave">{copy.password}</h2>
       {ok === 'password' && <p class="cuenta-ok" role="status">{copy.okPassword}</p>}
-      <form method="post" action={`/${locale}/account/#password`} novalidate>
+      {/* Sin `novalidate`: el navegador frena un campo vacío, corto o que no coincide antes de
+          enviar (F7). El servidor vuelve a comprobarlo todo. */}
+      <form method="post" action={`/${locale}/account/#password`}>
         <input type="hidden" name="intent" value="password" />
         {[
-          { id: 'cuenta-actual', name: 'current_password', label: copy.current, auto: 'current-password' },
-          { id: 'cuenta-nueva', name: 'new_password', label: copy.next, auto: 'new-password', help: copy.passwordHelp },
-          { id: 'cuenta-repetida', name: 'confirm_password', label: copy.confirm, auto: 'new-password' },
+          { id: 'cuenta-actual', name: 'current_password', label: copy.current, auto: 'current-password', ver: copy.showCurrent },
+          { id: 'cuenta-nueva', name: 'new_password', label: copy.next, auto: 'new-password', help: copy.passwordHelp, ver: copy.showNew },
+          { id: 'cuenta-repetida', name: 'confirm_password', label: copy.confirm, auto: 'new-password', ver: copy.showConfirm, igualQue: 'cuenta-nueva' },
         ].map((campo) => (
           <div class="cuenta-campo">
             <label for={campo.id}>{campo.label}</label>
@@ -176,9 +182,10 @@ const copy = locale === 'es'
               <input id={campo.id} name={campo.name} type="password" autocomplete={campo.auto} required
                 minlength={campo.name === 'current_password' ? undefined : 8}
                 aria-describedby={campo.help ? `${campo.id}-ayuda` : undefined}
+                data-igual-que={campo.igualQue} data-no-coincide={campo.igualQue ? copy.errPassword.mismatch : undefined}
                 aria-invalid={errorClave && (errorClave === 'wrong-current' ? campo.name === 'current_password' : campo.name !== 'current_password') ? 'true' : undefined} />
-              {/* Mostrar u ocultar: lo enciende `lib/verContrasena.ts` desde el guion de la cabecera. */}
-              <button type="button" class="cuenta-ver" data-ver-contrasena={campo.id} data-mostrar={copy.show} data-ocultar={copy.hide} aria-controls={campo.id} aria-pressed="false" hidden>{copy.show}</button>
+              {/* Mostrar u ocultar: lo enciende `lib/campos-clave.ts` desde el guion de la cabecera. */}
+              <button type="button" class="cuenta-ver" data-ver-contrasena={campo.id} data-mostrar={copy.show} data-ocultar={copy.hide} aria-label={campo.ver} aria-controls={campo.id} aria-pressed="false" hidden>{copy.show}</button>
             </span>
             {campo.help && <p id={`${campo.id}-ayuda`} class="cuenta-ayuda">{campo.help}</p>}
           </div>

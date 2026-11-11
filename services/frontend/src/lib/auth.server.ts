@@ -115,8 +115,11 @@ export async function getSessionUser(request: Request): Promise<AuthUser | null>
   if (!sessionToken) return null;
   try {
     // La firma solo la comprueba el backend: Astro reenvía la cookie y no confía en su contenido.
+    // Con tope (cold review AA3, F2): la cabecera de cualquier página pregunta esto, y un
+    // backend parado no puede dejar colgada la portada. Si no contesta, se pinta sin sesión.
     const response = await fetch(`${BACKEND_URL}/api/v1/auth/session`, {
-      headers: { accept: 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` }
+      headers: { accept: 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
+      signal: AbortSignal.timeout(1500),
     });
     if (!response.ok) return null;
     const user: unknown = await response.json();
@@ -184,9 +187,10 @@ export async function requireRole(
 }
 
 /**
- * 403 en el idioma de la ruta (AA3, F35), no un «Forbidden» en texto plano. Las páginas
- * que quieren la cabecera y el pie del sitio lo pintan ellas (la cola de revisión);
- * esto es lo que recibe cualquier otra ruta protegida.
+ * 403 en el idioma de la ruta (AA3, F35), no un «Forbidden» en texto plano. Hoy la única
+ * ruta con rol, la cola de revisión, pinta su propio 403 con la cabecera y el pie del
+ * sitio (y no llega a usar este cuerpo); esto es lo que recibirá una ruta protegida
+ * nueva que devuelva sin más lo que diga `requireRole`.
  */
 export const PROHIBIDO = {
   es: { title: 'Sin permiso', message: 'Esta página es solo para el equipo de revisión. Tu cuenta no tiene ese rol.', back: 'Volver a mi cuenta' },

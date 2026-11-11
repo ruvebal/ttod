@@ -127,6 +127,13 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
   does 150 ms RTT / 1.6 Mb/s / 4× CPU) and must leave the reader's fragment unchanged. A new header that changes
   scene heights must keep `lib/capitulos.ts`'s rule: no fragment writes before the reader touches the page.
 
+## Decisions recorded after the cold review (2026-11-11)
+
+- **Hide-on-scroll** (spec row): only below 40rem, and never under `prefers-reduced-motion` (F3).
+- **Deep links at 390** (AA3b carry): a downward fragment jump leaves the bar hidden. It returns on scroll-up, Tab
+  or focus, and the target stays fully visible at the top (F8f).
+- **Outside tap** closes the menu without moving focus. Only Escape returns focus to "Menú" (F8a).
+
 ## Acceptance
 
 - [ ] Header is full-width, not a pill; language switch is not the dominant element; no hamburger at 768 px.

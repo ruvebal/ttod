@@ -17,7 +17,7 @@ export const POST: APIRoute = async ({ params, request, cookies, redirect }) => 
     return redirect(`/${locale}/account/?logout=failed`, 303);
   }
 
-  // Mismos atributos que al ponerla (F37): si no, el navegador no la reconoce como la misma.
+  // Mismos atributos que al ponerla (F37): sobre todo la misma ruta, que es lo que la identifica.
   cookies.delete(SESSION_COOKIE_NAME, atributosSesion(request));
   return redirect(`/${locale}/`, 303);
 };

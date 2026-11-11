@@ -2,7 +2,7 @@
 import Page from '../../../../layouts/Page.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import EmptyState from '../../../../components/EmptyState.astro';
-import { PROHIBIDO, SESSION_COOKIE_NAME, requireRole } from '../../../../lib/auth.server';
+import { PROHIBIDO, SESSION_COOKIE_NAME, requireUser } from '../../../../lib/auth.server';
 import { isLocale } from '../../../../content/wisdom';
 
 export const prerender = false;
@@ -13,10 +13,11 @@ if (!isLocale(locale)) return new Response(null, { status: 404 });
 // Un estudiante con sesión recibe aquí el 403: la cola no se oculta solo en la interfaz.
 // Sin sesión, la redirección a entrar; con sesión y sin rol, un 403 con la cabecera y
 // el pie del sitio y el mensaje en su idioma (AA3, F35), no un «Forbidden» suelto.
-const guarda = await requireRole(Astro.request, ['reviewer', 'instructor']);
-if (guarda instanceof Response && guarda.status !== 403) return guarda;
-const prohibido = guarda instanceof Response;
-const reviewer = guarda instanceof Response ? null : guarda;
+// Una sola pregunta al backend: el usuario sirve para la guarda y para la cabecera.
+const usuario = await requireUser(Astro.request);
+if (usuario instanceof Response) return usuario;
+const prohibido = !usuario.roles.some((role) => role === 'reviewer' || role === 'instructor');
+const reviewer = prohibido ? null : usuario;
 if (prohibido) Astro.response.status = 403;
 
 const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
@@ -47,7 +48,7 @@ const copy = locale === 'es'
       failedTitle: 'The queue is not answering', failed: 'The queue could not be loaded because the service is not answering. The proposals are still stored: please try again in a moment.'
     };
 ---
-<Page lang={locale} title={prohibido ? PROHIBIDO[locale].title : copy.title} usuario={reviewer ?? undefined}>
+<Page lang={locale} title={prohibido ? PROHIBIDO[locale].title : copy.title} usuario={usuario}>
   <main id="ttod-main" class="ttod-shell">
     <Breadcrumbs locale={locale} items={[{ label: copy.account, href: `/${locale}/account/` }, { label: copy.title }]} />
     {prohibido ? <>

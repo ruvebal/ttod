@@ -61,7 +61,7 @@ describe('register confirm (F36)', () => {
     const spy = vi.spyOn(global, 'fetch').mockResolvedValue(new Response(null, { status: 401 }));
     const body = new URLSearchParams({ email: 'ana@example.test', password: 'una-clave-larga', confirm_password: 'otra-clave-larga' });
     const { response, doc } = await render(RegisterRoute, '/es/register/', 'es', { method: 'POST', body, headers: { 'content-type': 'application/x-www-form-urlencoded' } });
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(400);
     expect(doc.body.textContent).toContain('Las dos contraseñas no coinciden.');
     expect(spy.mock.calls.some(([u]) => String(u).includes('/auth/register'))).toBe(false);
     expect(doc.querySelector('input[name="confirm_password"]')?.getAttribute('autocomplete')).toBe('new-password');
@@ -69,7 +69,11 @@ describe('register confirm (F36)', () => {
 });
 
 describe('session cookie attributes (F37)', () => {
-  it('set and delete share one definition', () => {
-    expect(atributosSesion(new Request('http://localhost/es/'))).toEqual({ httpOnly: true, sameSite: 'lax', secure: false, path: '/' });
+  // A browser matches a cookie by name + domain + path; `path: '/'` is what makes the delete hit the cookie
+  // login set. The other attributes are kept equal so the Set-Cookie that deletes reads like the one that set.
+  it('one definition: login sets it, logout deletes it at the same path', () => {
+    const attrs = atributosSesion(new Request('http://localhost/es/'));
+    expect(attrs).toEqual({ httpOnly: true, sameSite: 'lax', secure: false, path: '/' });
+    expect(atributosSesion(new Request('https://ttod.example/es/')).secure).toBe(true);
   });
 });

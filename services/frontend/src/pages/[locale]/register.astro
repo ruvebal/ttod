@@ -23,7 +23,9 @@ try {
 let email = '';
 
 if (Astro.request.method === 'POST') {
-  const formData = await Astro.request.formData();
+  // Solo formularios: otro tipo de cuerpo es un 415, no un 500 (cold review AA3, F9).
+  let formData: FormData;
+  try { formData = await Astro.request.formData(); } catch { return new Response(null, { status: 415 }); }
   const rawEmail = formData.get('email');
   const password = formData.get('password');
   const confirm = formData.get('confirm_password');
@@ -34,7 +36,9 @@ if (Astro.request.method === 'POST') {
     registerError = 'invalid';
   } else if (password !== confirm) {
     // F36: las dos contraseñas tienen que coincidir; se comprueba aquí, sin llamar al backend.
+    // 400, como en la cuenta (cold review F7): una petición que el servidor rechaza por su contenido.
     registerError = 'mismatch';
+    Astro.response.status = 400;
   } else {
     // La contraseña solo viaja al backend, que guarda su hash bcrypt en Redis.
     const result = await registerWithBackend(rawEmail, password, clientAddressOf(Astro.request, socketAddress));
@@ -140,7 +144,7 @@ const loginHref = `/${locale}/login/?next=${encodeURIComponent(next)}`;
             <button
               type="button" class="ver-clave" hidden
               aria-controls="password" aria-pressed="false" aria-label={copy.showLabel}
-              data-show={copy.show} data-hide={copy.hide}
+              data-ver-contrasena="password" data-mostrar={copy.show} data-ocultar={copy.hide}
             >{copy.show}</button>
           </div>
           <p id="password-hint" class="acceso-pista">{copy.passwordHint}</p>

@@ -71,7 +71,7 @@ for (const locale of ['en', 'es'] as const) {
 		});
 
 		test(`/${locale}/oracle terminal shell renders and passes axe before any query`, async ({ page }) => {
-			const response = await page.goto(`/${locale}/oracle`);
+			const response = await page.goto(`/${locale}/oracle/`);
 			expect(response?.status()).toBe(200);
 			const results = await new AxeBuilder({ page }).analyze();
 			expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);

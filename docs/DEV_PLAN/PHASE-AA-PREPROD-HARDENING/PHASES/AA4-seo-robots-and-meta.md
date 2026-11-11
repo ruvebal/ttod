@@ -59,6 +59,9 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA4-seo-robots-and-meta.md.
 - Signed-in pages (`/account/`, `/library/`, `/account/reviewer/`) are `noindex` candidates. The header now renders
   differently with a session, but those pages also redirect anonymous crawlers to the login page.
 - F62 (breadcrumb current-item alignment) is a small style fix if AA4 touches `Breadcrumbs`.
+- **PWA honesty (AA3 cold review F1):** the header now depends on the session. Any page the service worker keeps
+  for offline use must be precached with `credentials: 'omit'` and served network-first, never storing a
+  credentialed response (`sw.js` v8 does this for the Oracle pages). The next cache bump is v9.
 
 ## Acceptance
 

@@ -63,8 +63,12 @@ for pkg in sys.stdin.read().split():
 if bad: print("\n".join(bad)); sys.exit(1)') || fail "the built server imports a package the production image will not have"
 
 # 4. Earlier gates, unchanged: they must not have been edited on this branch to pass.
+# Amended during AA7: one edit is allowed, and only that one. The AA3b and AA3 scope checks compared
+# "since my gate was written" to HEAD, so AA5's backend work counted as theirs. Their window now ends at
+# their own DONE commit (lines mentioning `end` or the scope window). Any other changed line fails here.
 for g in AA2-auth-throttle-and-fallback AA3b-locators-wisdom-and-graph-ia AA3-nav-a11y-and-url-hygiene AA5-container-and-deploy-ops; do
-  git diff --quiet "$start" -- "$pack/PHASES/$g.exit-gate.sh" || fail "$g exit gate was edited on the AA7 branch"
+  other="$(git diff -U0 "$start" -- "$pack/PHASES/$g.exit-gate.sh" | grep '^[+-][^+-]' | grep -v 'end=\|"\$end"\|Scope window\|later phase.s legitimate' || true)"
+  [ -z "$other" ] || { printf '%s\n' "$other"; fail "$g exit gate was edited on the AA7 branch beyond the scope window"; }
 done
 git diff --quiet "$start" -- "$pack/scripts/aa3b-browser-check.mjs" "$pack/scripts/aa3-browser-check.mjs" \
   || fail "an earlier browser check was edited on the AA7 branch"

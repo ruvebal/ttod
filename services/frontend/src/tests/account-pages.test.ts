@@ -73,7 +73,8 @@ describe('logging out', () => {
 
     expect(response.status).toBe(303);
     expect(response.headers.get('location')).toBe('/es/');
-    expect(cookies.delete).toHaveBeenCalledWith('ttod_session', { path: '/' });
+    // F37: deleted with the attributes it was set with (lib/cookie-security.ts atributosSesion).
+    expect(cookies.delete).toHaveBeenCalledWith('ttod_session', expect.objectContaining({ path: '/', httpOnly: true, sameSite: 'lax' }));
     const [url, init] = fetchSpy.mock.calls[0];
     expect(String(url)).toMatch(/\/api\/v1\/auth\/logout$/);
     expect(init).toMatchObject({ method: 'POST', headers: { cookie } });
@@ -114,10 +115,9 @@ describe('my account', () => {
     const { main } = await render(AccountRoute, '/account', 'es');
 
     expect(main?.querySelector('a[href="/es/library/"]')?.textContent).toBe('Mi biblioteca');
-    const form = main?.querySelector('form');
+    const form = main?.querySelector('#sessions form[action="/es/logout"]');
     expect(form?.getAttribute('method')).toBe('post');
-    expect(form?.getAttribute('action')).toBe('/es/logout');
-    expect(form?.querySelector('button[type="submit"]')?.textContent).toBe('Cerrar sesión');
+    expect(form?.querySelector('button[type="submit"]')?.textContent).toBe('Cerrar esta sesión');
   });
 
   it('links the reviewer queue only for reviewers and instructors', async () => {
@@ -148,8 +148,10 @@ describe('personal library', () => {
     const { status, main } = await render(LibraryRoute, '/library', 'es');
 
     expect(status).toBe(200);
-    expect(main?.querySelector('blockquote')?.textContent).toBe(quote.text);
-    expect(main?.querySelector('a[href="/es/wisdom/arch-001/"]')?.textContent).toBe('arch-001');
+    // Since AA3 (F53) each saved quote is the wisdom stele card: text links to its page, id anchors it.
+    expect(main?.querySelector('article.piedra#arch-001 .piedra-texto')?.textContent).toBe(quote.text);
+    expect(main?.querySelector('a.piedra-enlace')?.getAttribute('href')).toBe('/es/wisdom/arch-001/');
+    expect(main?.querySelector('a.piedra-id')?.textContent).toBe('arch-001');
     const time = main?.querySelector('time');
     expect(time?.getAttribute('datetime')).toBe('2026-10-01T10:00:00.000Z');
     expect(time?.textContent).toBe('1 de octubre de 2026');

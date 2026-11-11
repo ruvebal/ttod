@@ -2,7 +2,7 @@
 import CieloRuyi from '../../components/estilo/CieloRuyi.astro';
 import '../../components/estilo/acceso.css';
 import Page from '../../layouts/Page.astro';
-import { cookieSecure } from '../../lib/cookie-security';
+import { atributosSesion } from '../../lib/cookie-security';
 import { isLocale } from '../../content/wisdom';
 import { SESSION_COOKIE_NAME, clientAddressOf, getSessionUser, registerWithBackend, safeNextPath } from '../../lib/auth.server';
 
@@ -12,7 +12,7 @@ const locale = Astro.params.locale;
 if (!isLocale(locale)) return new Response(null, { status: 404 });
 
 let next = safeNextPath(Astro.url.searchParams.get('next'), locale);
-let registerError: 'taken' | 'invalid' | 'service' | 'throttled' | null = null;
+let registerError: 'taken' | 'invalid' | 'mismatch' | 'service' | 'throttled' | null = null;
 let socketAddress: string | undefined;
 try {
   socketAddress = Astro.clientAddress;
@@ -23,25 +23,27 @@ try {
 let email = '';
 
 if (Astro.request.method === 'POST') {
-  const formData = await Astro.request.formData();
+  // Solo formularios: otro tipo de cuerpo es un 415, no un 500 (cold review AA3, F9).
+  let formData: FormData;
+  try { formData = await Astro.request.formData(); } catch { return new Response(null, { status: 415 }); }
   const rawEmail = formData.get('email');
   const password = formData.get('password');
+  const confirm = formData.get('confirm_password');
   next = safeNextPath(formData.get('next'), locale);
   email = typeof rawEmail === 'string' ? rawEmail : '';
 
   if (typeof rawEmail !== 'string' || typeof password !== 'string') {
     registerError = 'invalid';
+  } else if (password !== confirm) {
+    // F36: las dos contraseñas tienen que coincidir; se comprueba aquí, sin llamar al backend.
+    // 400, como en la cuenta (cold review F7): una petición que el servidor rechaza por su contenido.
+    registerError = 'mismatch';
+    Astro.response.status = 400;
   } else {
     // La contraseña solo viaja al backend, que guarda su hash bcrypt en Redis.
     const result = await registerWithBackend(rawEmail, password, clientAddressOf(Astro.request, socketAddress));
     if (result.ok) {
-      Astro.cookies.set(SESSION_COOKIE_NAME, result.sessionToken, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: cookieSecure(Astro.request),
-        path: '/',
-        maxAge: result.expiresIn
-      });
+      Astro.cookies.set(SESSION_COOKIE_NAME, result.sessionToken, { ...atributosSesion(Astro.request), maxAge: result.expiresIn });
       return Astro.redirect(next, 303);
     }
     registerError = result.reason;
@@ -68,6 +70,8 @@ const copy = locale === 'es'
       busy: 'Creando la cuenta…',
       takenError: 'Ese correo ya tiene cuenta. Inicia sesión con él.',
       invalidError: 'Revisa el correo y que la contraseña tenga entre 8 y 72 caracteres.',
+      mismatchError: 'Las dos contraseñas no coinciden.',
+      confirm: 'Repite la contraseña',
       serviceError: 'El servicio de cuentas no responde ahora mismo. Inténtalo de nuevo en un momento.',
       throttledError: 'Demasiadas altas desde esta red en poco tiempo. Espera un rato o avisa a tu profesor o profesora.',
       note: '¿Ya tienes cuenta?',
@@ -89,6 +93,8 @@ const copy = locale === 'es'
       busy: 'Creating your account…',
       takenError: 'That email already has an account. Log in with it instead.',
       invalidError: 'Check the email and that the password has between 8 and 72 characters.',
+      mismatchError: 'The two passwords do not match.',
+      confirm: 'Repeat the password',
       serviceError: 'The account service is not answering right now. Please try again in a moment.',
       throttledError: 'Too many sign-ups from this network in a short time. Wait a while or tell your instructor.',
       note: 'Already have an account?',
@@ -96,13 +102,14 @@ const copy = locale === 'es'
     };
 const errorText = registerError === 'taken' ? copy.takenError
   : registerError === 'invalid' ? copy.invalidError
+  : registerError === 'mismatch' ? copy.mismatchError
   : registerError === 'throttled' ? copy.throttledError
   : registerError === 'service' ? copy.serviceError : '';
 const loginHref = `/${locale}/login/?next=${encodeURIComponent(next)}`;
 ---
 
 <Page lang={locale} title={copy.title} description={copy.description}>
-  <main class="acceso">
+  <main id="ttod-main" class="acceso">
     <CieloRuyi semilla={11} />
     <div class="acceso-caja">
       <p class="acceso-ojo">{copy.eyebrow}</p>
@@ -137,10 +144,19 @@ const loginHref = `/${locale}/login/?next=${encodeURIComponent(next)}`;
             <button
               type="button" class="ver-clave" hidden
               aria-controls="password" aria-pressed="false" aria-label={copy.showLabel}
-              data-show={copy.show} data-hide={copy.hide}
+              data-ver-contrasena="password" data-mostrar={copy.show} data-ocultar={copy.hide}
             >{copy.show}</button>
           </div>
           <p id="password-hint" class="acceso-pista">{copy.passwordHint}</p>
+        </div>
+        <div class="campo">
+          <label for="confirm_password">{copy.confirm}</label>
+          <input
+            id="confirm_password" name="confirm_password" type="password" required minlength="8" maxlength="72"
+            autocomplete="new-password" data-igual-que="password" data-no-coincide={copy.mismatchError}
+            aria-invalid={registerError === 'mismatch' ? 'true' : undefined}
+            aria-describedby={registerError ? 'register-error' : undefined}
+          />
         </div>
         <button type="submit" class="acceso-entrar" data-busy={copy.busy}>{copy.submit}</button>
       </form>

@@ -1,6 +1,11 @@
 ---
 import Page from '../../layouts/Page.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import Estela from '../../components/wisdom/Estela.astro';
 import FavoriteButton from '../../components/favorites/FavoriteButton';
+import '../../styles/tokens.css';
+import '../../styles/bosque.css';
 import { SESSION_COOKIE_NAME, requireUser } from '../../lib/auth.server';
 import { isLocale } from '../../content/wisdom';
 import type { FavoriteEntry, WisdomEntry } from '../../types/domain';
@@ -49,38 +54,63 @@ const savedOn = (savedAt: string) => {
 const copy = locale === 'es'
   ? {
       title: 'Mi biblioteca', description: 'Las citas que has guardado en TTOD.',
-      empty: 'Todavía no has guardado citas.', browse: 'Explorar la sabiduría', saved: 'Guardada el',
-      failed: 'No se ha podido cargar tu biblioteca porque el servicio no responde. Tus citas siguen guardadas: vuelve a intentarlo en un momento.'
+      intro: 'Las estelas que has guardado, de la más reciente a la primera.', account: 'Mi cuenta',
+      emptyTitle: 'Tu biblioteca está vacía', empty: 'Todavía no has guardado citas.', browse: 'Explorar la sabiduría', saved: 'Guardada el',
+      failedTitle: 'No se ha podido cargar tu biblioteca',
+      failed: 'El servicio no responde. Tus citas siguen guardadas: vuelve a intentarlo en un momento.'
     }
   : {
       title: 'My library', description: 'The quotes you have saved in TTOD.',
-      empty: 'You have not saved any quotes yet.', browse: 'Browse the wisdom', saved: 'Saved on',
-      failed: 'Your library could not be loaded because the service is not answering. Your quotes are still saved: please try again in a moment.'
+      intro: 'The steles you have saved, most recent first.', account: 'My account',
+      emptyTitle: 'Your library is empty', empty: 'You have not saved any quotes yet.', browse: 'Browse the wisdom', saved: 'Saved on',
+      failedTitle: 'Your library could not be loaded',
+      failed: 'The service is not answering. Your quotes are still saved: please try again in a moment.'
     };
+// La más reciente arriba: es la que se acaba de guardar y la que se viene a buscar.
+quotes.sort((a, b) => (b.favorite.savedAt ?? '').localeCompare(a.favorite.savedAt ?? ''));
 ---
-<Page lang={locale} title={copy.title} description={copy.description}>
-  <style>
-    button { transition: opacity 160ms ease; }
-    @media (prefers-reduced-motion: reduce) {
-      button { transition: none; }
-    }
-  </style>
-  <main>
-    <h1>{copy.title}</h1>
-    {failed ? <p role="alert">{copy.failed}</p>
-      : quotes.length === 0 ? <p>{copy.empty} <a href={`/${locale}/wisdom/`}>{copy.browse}</a></p>
-      : <section aria-label={copy.title}>
-      {quotes.map(({ favorite, quote }) => {
+<Page lang={locale} title={copy.title} description={copy.description} usuario={authenticatedUser}>
+  {/* La biblioteca se lee en el mismo pasillo de estelas que la sabiduría (AA3, F53):
+      misma losa, sección con su rótulo, y el id de la cita como ancla (LOCATORS §4). */}
+  <main id="ttod-main" class="bosque biblioteca">
+    <Breadcrumbs locale={locale} items={[{ label: copy.account, href: `/${locale}/account/` }, { label: copy.title }]} />
+    <header class="bosque-entrada">
+      <h1 class="bosque-titulo">{copy.title}</h1>
+      <p class="bosque-intro">{copy.intro}</p>
+    </header>
+    {failed ? <EmptyState variant="error" title={copy.failedTitle} message={copy.failed} />
+      : quotes.length === 0 ? <EmptyState title={copy.emptyTitle} message={copy.empty} action={{ label: copy.browse, href: `/${locale}/wisdom/` }} />
+      : <ol class="pasillo">
+      {quotes.map(({ favorite, quote }, i) => {
         const date = savedOn(favorite.savedAt);
-        return <article id={quote.id}>
-          <blockquote>{quote.text}</blockquote>
-          <p class="meta">
-            <a href={`/${locale}/wisdom/${quote.id}/`}>{quote.id}</a> · {quote.section}
-            {date && <> · {copy.saved} <time datetime={date.iso}>{date.text}</time></>}
+        return <li class="estela">
+          <Estela entry={quote} locale={locale} folio={String(i + 1).padStart(String(quotes.length).length, '0')} de={quotes.length} />
+          <p class="biblioteca-pie">
+            {date && <span>{copy.saved} <time datetime={date.iso}>{date.text}</time></span>}
+            <FavoriteButton client:visible quoteId={quote.id} locale={locale} initiallySaved />
           </p>
-          <FavoriteButton client:load quoteId={quote.id} locale={locale} />
-        </article>;
+        </li>;
       })}
-    </section>}
+    </ol>}
   </main>
 </Page>
+
+<style>
+  .biblioteca-pie {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ttod-space-3);
+    margin: var(--ttod-space-3) 0 0;
+    font-family: var(--ttod-font-ui); font-size: var(--ttod-text-sm); color: var(--ttod-color-muted);
+  }
+  /* El botón de guardar con los tokens de botón del sitio, no el gris del navegador. */
+  .biblioteca-pie :global(button) {
+    min-height: 44px; padding: 0 1rem;
+    font: 500 var(--ttod-text-sm) / 1 var(--ttod-font-ui);
+    color: var(--ttod-color-ink); background: transparent;
+    border: 1px solid currentColor; border-radius: .375rem; cursor: pointer;
+    transition: background-color .16s ease, color .16s ease;
+  }
+  .biblioteca-pie :global(button:hover) { background: var(--ttod-color-ink); color: var(--ttod-color-paper); }
+  @media (prefers-reduced-motion: reduce) {
+    .biblioteca-pie :global(button) { transition: none; }
+  }
+</style>

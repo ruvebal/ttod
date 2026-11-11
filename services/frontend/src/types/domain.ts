@@ -4,6 +4,8 @@ export interface AuthUser {
   id: string;
   email: string;
   roles: SessionRole[];
+  /** Set by PATCH /api/v1/auth/profile (AA2, D5); absent until the user picks one. */
+  display_name?: string;
 }
 
 export interface AuthLoginResponse {

@@ -1,7 +1,7 @@
 # PHASE-AA3: Header, a11y, graph i18n, account and library UX
 
 > **Track:** Astro shell — F7, F9–F12, F32–F38, F53, F55 (UI), F56, F58 · A6, A8–A11, A20–A26, A31, A33, A35.  
-> **Status:** BLOCKED until AA0 DONE · **may run parallel to AA1/AA2 and AA3b**  
+> **Status:** DONE 2026-11-11 (owner: "AA3 done") · [report](../PHASE-AA3-REPORT.md) · exit gate [`AA3-nav-a11y-and-url-hygiene.exit-gate.sh`](AA3-nav-a11y-and-url-hygiene.exit-gate.sh) + [`scripts/aa3-browser-check.mjs`](../scripts/aa3-browser-check.mjs), written before the code  
 > **Amended 2026-11-10:** URL/locator work (F8, F49–F52, F54, F57) moved to [AA3b](AA3b-locators-wisdom-and-graph-ia.md).
 > Header redesign, library layout, User section and anchor offset added here.
 
@@ -126,6 +126,13 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
 - **Cold review F2:** the anchor checks must pass on a **throttled** network too (the AA3b browser check already
   does 150 ms RTT / 1.6 Mb/s / 4× CPU) and must leave the reader's fragment unchanged. A new header that changes
   scene heights must keep `lib/capitulos.ts`'s rule: no fragment writes before the reader touches the page.
+
+## Decisions recorded after the cold review (2026-11-11)
+
+- **Hide-on-scroll** (spec row): only below 40rem, and never under `prefers-reduced-motion` (F3).
+- **Deep links at 390** (AA3b carry): a downward fragment jump leaves the bar hidden. It returns on scroll-up, Tab
+  or focus, and the target stays fully visible at the top (F8f).
+- **Outside tap** closes the menu without moving focus. Only Escape returns focus to "Menú" (F8a).
 
 ## Acceptance
 

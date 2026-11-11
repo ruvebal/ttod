@@ -7,7 +7,7 @@ for (const locale of ['en', 'es'] as const) {
 		const labels = locale === 'en'
 			? { title: 'Ask the Tao', offline: 'Offline', close: 'Close oracle', open: 'Open oracle' }
 			: { title: 'Pregunta al Tao', offline: 'Sin conexión', close: 'Cerrar oráculo', open: 'Abrir oráculo' };
-		const target = `/${locale}/oracle`;
+		const target = `/${locale}/oracle/`;
 		const errors: string[] = [];
 		const failedAssets: string[] = [];
 		page.on('pageerror', (error) => errors.push(error.message));

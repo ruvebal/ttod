@@ -2,7 +2,7 @@
 import CieloRuyi from '../../components/estilo/CieloRuyi.astro';
 import '../../components/estilo/acceso.css';
 import Page from '../../layouts/Page.astro';
-import { cookieSecure } from '../../lib/cookie-security';
+import { atributosSesion } from '../../lib/cookie-security';
 import { isLocale } from '../../content/wisdom';
 import { SESSION_COOKIE_NAME, clientAddressOf, getSessionUser, loginWithBackend, safeNextPath } from '../../lib/auth.server';
 
@@ -29,7 +29,9 @@ try {
 let email = '';
 
 if (Astro.request.method === 'POST') {
-  const formData = await Astro.request.formData();
+  // Solo formularios: otro tipo de cuerpo es un 415, no un 500 (cold review AA3, F9).
+  let formData: FormData;
+  try { formData = await Astro.request.formData(); } catch { return new Response(null, { status: 415 }); }
   const rawEmail = formData.get('email');
   const password = formData.get('password');
   next = safeNextPath(formData.get('next'), locale);
@@ -44,13 +46,7 @@ if (Astro.request.method === 'POST') {
     // La contraseña solo viaja al backend, que la verifica con bcrypt; esta página no compara nada.
     const login = await loginWithBackend(rawEmail, password, clientAddressOf(Astro.request, socketAddress));
     if (login.ok) {
-      Astro.cookies.set(SESSION_COOKIE_NAME, login.sessionToken, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: cookieSecure(Astro.request),
-        path: '/',
-        maxAge: login.expiresIn
-      });
+      Astro.cookies.set(SESSION_COOKIE_NAME, login.sessionToken, { ...atributosSesion(Astro.request), maxAge: login.expiresIn });
       return Astro.redirect(next, 303);
     }
     loginError = login.reason;
@@ -108,7 +104,7 @@ const backHref = next === `/${locale}/account/` ? `/${locale}/` : next;
 ---
 
 <Page lang={locale} title={copy.title} description={copy.description}>
-  <main class="acceso">
+  <main id="ttod-main" class="acceso">
     <CieloRuyi semilla={11} />
     <div class="acceso-caja">
       <p class="acceso-ojo">{copy.eyebrow}</p>
@@ -143,7 +139,7 @@ const backHref = next === `/${locale}/account/` ? `/${locale}/` : next;
             <button
               type="button" class="ver-clave" hidden
               aria-controls="password" aria-pressed="false" aria-label={copy.showLabel}
-              data-show={copy.show} data-hide={copy.hide}
+              data-ver-contrasena="password" data-mostrar={copy.show} data-ocultar={copy.hide}
             >{copy.show}</button>
           </div>
         </div>

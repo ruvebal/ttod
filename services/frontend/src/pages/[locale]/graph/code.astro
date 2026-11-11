@@ -51,7 +51,7 @@ const copia = {
       .then((r) => (r.ok ? r.json() : null))
       .catch(() => null);
   </script>
-  <main class="grafo-ancho">
+  <main id="ttod-main" class="grafo-ancho">
     <section class="grafo-codigo" aria-labelledby="grafo-codigo-titulo">
       <h1 id="grafo-codigo-titulo">{copia.titulo}</h1>
       <p class="grafo-codigo__intro">{copia.intro}</p>

@@ -30,7 +30,10 @@ import QuoteRoute from '../pages/[locale]/wisdom/[slug].astro';
 import SectionRoute from '../pages/[locale]/wisdom/sections/[section].astro';
 import LevelRoute from '../pages/[locale]/wisdom/levels/[level].astro';
 import TagRoute from '../pages/[locale]/wisdom/tags/[tag].astro';
+import AccountRoute from '../pages/[locale]/account.astro';
 
+type RegistryPage = { path: string; ids: string[]; auth?: boolean; owner?: string; conditional?: string[] };
+const pages = registry.pages as RegistryPage[];
 const LIVE_ONLY = ['/{l}/graph/', '/{l}/graph/plano/', '/{l}/graph/code/', '/{l}/oracle/', '/{l}/docs/'];
 const V = registry.values;
 const locales = ['en', 'es'] as const;
@@ -53,6 +56,7 @@ function routeFor(template: string, l: 'en' | 'es'): { route: Route; params: Rec
     const route = kind === 'sections' ? SectionRoute : kind === 'levels' ? LevelRoute : TagRoute;
     return { route, params: { locale: l, [kind === 'sections' ? 'section' : kind === 'levels' ? 'level' : 'tag']: value } };
   }
+  if (path === `/${l}/account/`) return { route: AccountRoute, params: { locale: l } };
   m = path.match(/^\/(?:en|es)\/wisdom\/([^/]+)\/$/);
   if (m) return { route: QuoteRoute, params: { locale: l, slug: m[1] } };
   return null;
@@ -70,11 +74,11 @@ async function render(template: string, l: 'en' | 'es') {
   return { status: response.status, doc: new JSDOM(html).window.document };
 }
 
-const testable = registry.pages.filter((p) => !p.owner && !p.auth && !LIVE_ONLY.includes(p.path));
+const testable = pages.filter((p) => !p.owner && !p.auth && !LIVE_ONLY.includes(p.path));
 
 describe('locator registry (LOCATORS §4, §8)', () => {
   it('maps every registry page to a route here or to the live probe', () => {
-    for (const p of registry.pages) {
+    for (const p of pages) {
       if (p.owner || p.auth || LIVE_ONLY.includes(p.path)) continue;
       expect(routeFor(p.path, 'es'), p.path).not.toBeNull();
     }
@@ -106,6 +110,31 @@ describe('locator registry (LOCATORS §4, §8)', () => {
       for (const l of locales) expect((await render(template, l)).status, `${l} ${template}`).toBe(404);
     });
   }
+
+  // Signed-in pages (`auth: true`): rendered with a session the backend accepts (AA3 took over /account/).
+  it('signed-in registry pages carry their ids exactly once, en and es alike', async () => {
+    const student = { id: 'usr-1', email: 'ana@example.test', roles: ['student'] };
+    const spy = vi.spyOn(global, 'fetch').mockImplementation(async () => Response.json(student));
+    try {
+      for (const page of pages.filter((p) => p.auth && routeFor(p.path, 'es'))) {
+        const ids: Record<string, string[]> = {};
+        for (const l of locales) {
+          const target = routeFor(page.path, l)!;
+          const container = await AstroContainer.create({ renderers: await loadRenderers([getContainerRenderer()]) });
+          const response = await container.renderToResponse(target.route, {
+            params: target.params, request: new Request(`http://localhost${fill(page.path, l)}`, { headers: { cookie: 'ttod_session=t' } }),
+          });
+          expect(response.status, `${l} ${page.path}`).toBe(200);
+          const found = [...new JSDOM(await response.text()).window.document.querySelectorAll('[id]')].map((el) => el.id);
+          for (const want of page.ids) expect(found.filter((id) => id === want), `${l} ${page.path} #${want}`).toHaveLength(1);
+          ids[l] = found.sort();
+        }
+        expect(ids.en, page.path).toEqual(ids.es);
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  });
 
   it('quote pages switch language to the translation twin, both directions', async () => {
     const es = (await render('/es/wisdom/wis-034/', 'es')).doc;

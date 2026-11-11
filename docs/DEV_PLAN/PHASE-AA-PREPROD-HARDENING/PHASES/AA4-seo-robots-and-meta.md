@@ -51,6 +51,18 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA4-seo-robots-and-meta.md.
   Facet pages now answer 404 for unknown values (F10), so the sitemap lists only corpus values. Graph `from`/`to`
   values are node ids (LOCATORS §2).
 
+## Carried from AA3 (amended 2026-11-11)
+
+- `Page.astro` `<head>` is where canonical and `hreflang` go. The header language switch is already a link with
+  `hreflang` and `lang`; on quote pages its target is the translation twin (`cambioIdioma`), so reuse that value for
+  the quote's `hreflang` alternate.
+- Signed-in pages (`/account/`, `/library/`, `/account/reviewer/`) are `noindex` candidates. The header now renders
+  differently with a session, but those pages also redirect anonymous crawlers to the login page.
+- F62 (breadcrumb current-item alignment) is a small style fix if AA4 touches `Breadcrumbs`.
+- **PWA honesty (AA3 cold review F1):** the header now depends on the session. Any page the service worker keeps
+  for offline use must be precached with `credentials: 'omit'` and served network-first, never storing a
+  credentialed response (`sw.js` v8 does this for the Oracle pages). The next cache bump is v9.
+
 ## Acceptance
 
 - [ ] `/robots.txt` coherent; no private account URLs in sitemap.

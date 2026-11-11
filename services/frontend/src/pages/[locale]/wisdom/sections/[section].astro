@@ -20,7 +20,7 @@ const t = copia[locale];
 const rotulo = rotuloSeccion(section, locale);
 ---
 <Page lang={locale} title={`${copy.sections}: ${rotulo}`}>
-  <main class="bosque">
+  <main id="ttod-main" class="bosque">
     <Breadcrumbs locale={locale} items={[{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: rotulo }]} />
     <Bosque
       locale={locale}

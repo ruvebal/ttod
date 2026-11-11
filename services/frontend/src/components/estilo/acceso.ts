@@ -6,20 +6,10 @@ export function prepararAcceso(): void {
   entintar(document.querySelector('.acceso h1'), { retraso: .15 });
 
   const form = document.querySelector<HTMLFormElement>('.acceso-form');
-  const ver = form?.querySelector<HTMLButtonElement>('.ver-clave');
   const clave = form?.querySelector<HTMLInputElement>('#password');
 
-  if (ver && clave) {
-    // Sin JS el botón no existe: no promete lo que no puede hacer.
-    ver.hidden = false;
-    ver.addEventListener('click', () => {
-      const visible = clave.type === 'password';
-      clave.type = visible ? 'text' : 'password';
-      ver.setAttribute('aria-pressed', String(visible));
-      ver.textContent = visible ? ver.dataset.hide! : ver.dataset.show!;
-      clave.focus();
-    });
-  }
+  // Mostrar u ocultar la contraseña y el «repite la contraseña» los lleva
+  // `lib/campos-clave.ts`, desde el guion de la cabecera (uno para todo el sitio).
 
   form?.addEventListener('submit', (ev) => {
     const boton = form.querySelector<HTMLButtonElement>('.acceso-entrar');

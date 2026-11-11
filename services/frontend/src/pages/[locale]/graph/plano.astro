@@ -13,7 +13,7 @@ const copia = {
 ---
 <Page lang={locale} title={copia.titulo}>
   <nav><a href={`/${locale}/graph/`}>← {copia.volver}</a></nav>
-  <main>
-    <GraphIsland client:load />
+  <main id="ttod-main">
+    <GraphIsland client:load lang={locale} />
   </main>
 </Page>

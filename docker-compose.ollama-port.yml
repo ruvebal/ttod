@@ -1,0 +1,7 @@
+# Opt-in (AA5, F30): publish the stack's Ollama on this machine's loopback only, for host tools such
+# as `make review-pr`. It is never published on the LAN.
+#   docker compose -f docker-compose.yml -f docker-compose.ollama-port.yml up -d ollama
+services:
+  ollama:
+    ports:
+      - "127.0.0.1:${OLLAMA_CONTAINER_PORT:-11435}:11434"

@@ -11,6 +11,11 @@ COPY ttod_core ./ttod_core
 COPY ttod.yml ./ttod.yml
 COPY services/mcp ./services/mcp
 
+# F16 (AA5): unprivileged user (it reads ttod.yml and talks to Ollama; it writes nothing).
+ARG TTOD_UID=10001
+RUN useradd --uid "${TTOD_UID}" --user-group --create-home --shell /usr/sbin/nologin ttod
+USER ttod
+
 EXPOSE 3001
 CMD ["python", "services/mcp/server.py"]
 

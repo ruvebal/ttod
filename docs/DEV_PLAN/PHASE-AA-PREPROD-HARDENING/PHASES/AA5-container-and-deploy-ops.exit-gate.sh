@@ -47,10 +47,11 @@ grep -q 'services/backend/tests' .github/workflows/ci.yml || fail "CI has no bac
 
 # 3. Static config.
 make -n rebuild 2>/dev/null | grep -q 'ensure_env_secrets.py' || fail "make rebuild does not call ensure_env_secrets.py (F28)"
-cfg="$(docker compose -p ttod_aa5cfg -f docker-compose.yml config --format json 2>/dev/null)"
-printf '%s' "$cfg" | python3 - "$repo_root" <<'PY' || fail "compose config (see message above)"
+# Amended during lane B: the config goes through a file; piping it would collide with the heredoc on stdin.
+cfgf="$(mktemp)"; docker compose -p ttod_aa5cfg -f docker-compose.yml config --format json > "$cfgf" 2>/dev/null
+python3 - "$cfgf" <<'PY' || fail "compose config (see message above)"
 import json, sys
-c = json.load(sys.stdin)["services"]; root = sys.argv[1]; bad = []
+c = json.load(open(sys.argv[1]))["services"]; bad = []
 b = c["backend"]; target = b["environment"]["TTOD_PROPOSAL_DIR"]
 if not any(v.get("type") == "bind" and v.get("target") == target for v in b.get("volumes", [])): bad.append("backend: no bind at TTOD_PROPOSAL_DIR (F25)")
 if c["redis"].get("ports"): bad.append("redis publishes a host port")
@@ -95,17 +96,25 @@ if [ "${AA5_SKIP_LIVE:-0}" != "1" ]; then
   mm="$(dc exec -T redis redis-cli config get maxmemory | tail -1 | tr -d '\r')"; pol="$(dc exec -T redis redis-cli config get maxmemory-policy | tail -1 | tr -d '\r')"
   [ "${mm:-0}" -gt 0 ] && [ "$pol" = noeviction ] || fail "redis maxmemory=$mm policy=$pol (F29)"
   # F16 + F25: the non-root backend still writes drafts to the host bind.
-  email="aa5-$$@example.test"; pw="aa5-gate-password-1"; jar="$(mktemp)"
+  email="aa5-$$@example.test"; pw="aa5-gate-password-1"
   curl -s -o /dev/null -H 'content-type: application/json' -d "{\"email\":\"$email\",\"password\":\"$pw\"}" "$base/api/v1/auth/register"
-  curl -s -o /dev/null -c "$jar" -H 'content-type: application/json' -d "{\"email\":\"$email\",\"password\":\"$pw\"}" "$base/api/v1/auth/login"
+  # Amended during lane B: the JSON login returns the token in its body (only the form login sets a cookie).
+  token="$(curl -s -H 'content-type: application/json' -d "{\"email\":\"$email\",\"password\":\"$pw\"}" "$base/api/v1/auth/login" \
+    | python3 -c 'import json, sys; print(json.load(sys.stdin).get("session_token", ""))')"
+  [ -n "$token" ] || fail "isolated login returned no session token"
   before="$(ls "$datadir/proposals" | wc -l | tr -d ' ')"
-  code="$(curl -s -o /dev/null -w '%{http_code}' -b "$jar" -H 'content-type: application/json' \
+  code="$(curl -s -o /dev/null -w '%{http_code}' -H "cookie: ttod_session=$token" -H 'content-type: application/json' \
     -d '{"text":"Una cita de prueba del gate AA5.","teaches":"Que el borrador llega al disco.","section":"wisdom","level":"beginner","tags":["aa5"]}' "$base/api/v1/proposals")"
   after="$(ls "$datadir/proposals" | wc -l | tr -d ' ')"
   [ "$code" = 201 ] && [ "$after" -gt "$before" ] || fail "non-root backend could not write a draft to the bind (HTTP $code, files $before → $after)"
   # F48: one request id from Caddy to the backend log, echoed to the client.
   rid="$(curl -s -D - -o /dev/null "$base/health" | tr -d '\r' | sed -n 's/^[Xx]-[Rr]equest-[Ii][Dd]: //p')"
   [ -n "$rid" ] || fail "no X-Request-ID on /health through Caddy (F48)"
+  # Amended during lane B (strengthening): the id must be Caddy's UUID, not one the backend minted (32 hex,
+  # no dashes), and a client-chosen id must not survive the proxy.
+  printf '%s' "$rid" | grep -Eq '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$' || fail "X-Request-ID $rid is not Caddy's UUID (F48)"
+  spoof="$(curl -s -D - -o /dev/null -H 'X-Request-ID: client-chosen-id-12345' "$base/health" | tr -d '\r' | sed -n 's/^[Xx]-[Rr]equest-[Ii][Dd]: //p')"
+  [ "$spoof" != "client-chosen-id-12345" ] || fail "a client-chosen X-Request-ID reached the backend (F48)"
   sleep 1; dc logs --no-log-prefix backend 2>/dev/null | grep -F "\"request_id\": \"$rid\"" | grep -q '"path": "/health"' \
     || dc logs --no-log-prefix backend 2>/dev/null | grep -F "\"request_id\":\"$rid\"" | grep -q '"path":"/health"' \
     || fail "backend log has no JSON line for request $rid (F48)"

@@ -112,8 +112,9 @@ export: ## Export canonical JSON and graph projections
 	@$(CLI) export --format json
 	@$(CLI) export --format graph
 
-test: ## Full Python unittest suite
+test: ## Full Python unittest suite: core (tests/) and backend (services/backend/tests, F45)
 	@$(PYTHON) -m unittest discover -s $(ROOT)/tests -p 'test_*.py'
+	@cd $(ROOT) && $(PYTHON) -m unittest discover -s services/backend/tests -t . -p 'test_*.py'
 
 check: validate stats test ## Corpus gate: validate + stats + tests
 	@printf 'check ok\n'

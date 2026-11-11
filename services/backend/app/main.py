@@ -22,6 +22,7 @@ from .auth import (
     RequireSession,
     SessionClaims,
 )
+from .access_log import install_access_log
 from .config import Settings
 from .revocation import MemoryTokenRegistry, RedisTokenRegistry, TokenRegistry
 from .throttle import MemoryThrottle, RedisThrottle, Throttle
@@ -166,13 +167,17 @@ def create_app(
         yield
 
     app = FastAPI(title="TTOD Oracle Backend", version="1.0.0", lifespan=lifespan)
+    # F48: request id + one JSON access line per request (uvicorn's own access log is off in the image).
+    install_access_log(app)
 
     @app.get("/health")
     def health():
         try:
             payload = snapshots.health()
         except Exception as exc:
-            raise HTTPException(status_code=503, detail=f"TTOD repository unavailable: {exc}") from exc
+            # F47: the reason goes to the log, never to the client (it can name paths and hosts).
+            logger.exception("TTOD repository unavailable")
+            raise HTTPException(status_code=503, detail="TTOD repository unavailable") from exc
         if settings.redis_url.strip() or shore_client is not None:
             redis_ok = shore_client is not None and redis_ping(shore_client)
             payload = {**payload, "redis": "ok" if redis_ok else "down"}

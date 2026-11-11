@@ -2,8 +2,8 @@
 
 **Run by:** cascade-harness.sh (runner process, not the implementing session)
 **Worktree:** /Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-3
-**Commit:** f3f64dea3dae54470cafecf613a81da7e05a9746
-**Started:** 2026-11-11T13:51:28Z
+**Commit:** 709f590e8f036975a5b12ee895cc9b6be00c566b
+**Started:** 2026-11-11T14:21:47Z
 
 ```
 contract tests: Tests  56 passed
@@ -23,9 +23,9 @@ csp /es/graph/             5 (AA1 /es/graph/path/: 6)
 csp /es/graph/plano/       5 (AA1 /es/graph/: 5)
 csp /es/graph/code/        6 (AA1 /es/graph/path/: 6)
 browser checks passed: handscroll hash at 390/1440 (+reduced motion), chapters, scroll writer, volumes, paged quote, copy-link, language switch, graph from/to/node, CSP ≤ AA1
-/es/           a11y 100 CLS 0.0130 LCP 5122 (AA0 /es/: 100 / 0.0130 / 5047)
-/es/wisdom/    a11y 100 CLS 0.0000 LCP 2335 (AA0 /es/wisdom/: 100 / 0.0000 / 2330)
-/es/graph/     a11y 100 CLS 0.0003 LCP 2409 (AA0 /es/graph/path: 100 / 0.0003 / 4959)
+/es/           a11y 100 CLS 0.0130 LCP 5117 (AA0 /es/: 100 / 0.0130 / 5047)
+/es/wisdom/    a11y 100 CLS 0.0000 LCP 2336 (AA0 /es/wisdom/: 100 / 0.0000 / 2330)
+/es/graph/     a11y 100 CLS 0.0003 LCP 2404 (AA0 /es/graph/path: 100 / 0.0003 / 4959)
 live (isolated ttod_aa3gate): signed-out/in HTML, account e2e, browser checks, AA3b anchors, AA0 UX rule
 AA3 exit gate passed: classic header, account and library UX, Spanish 2D graph, shell a11y hygiene.
 ```

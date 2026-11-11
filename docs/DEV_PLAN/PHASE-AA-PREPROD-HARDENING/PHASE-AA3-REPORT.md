@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA3 report: header, account, library, shell hygiene
 
-**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA3-COLD-REVIEW.md](PHASE-AA3-COLD-REVIEW.md)), amended in the same session (§8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3` · **Exit gate:**
+**Status:** DONE (owner, 2026-11-11: "AA3 done") · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA3-COLD-REVIEW.md](PHASE-AA3-COLD-REVIEW.md)), amended in the same session (§8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3` · **Exit gate:**
 [`PHASES/AA3-nav-a11y-and-url-hygiene.exit-gate.sh`](PHASES/AA3-nav-a11y-and-url-hygiene.exit-gate.sh) plus
 [`scripts/aa3-browser-check.mjs`](scripts/aa3-browser-check.mjs), both written before the code (commit `35385ed5`). The gate also
 re-runs AA3b's browser check, so every locator must survive the new header.

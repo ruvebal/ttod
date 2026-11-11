@@ -58,27 +58,32 @@ export function origenPublico(url: URL, cabeceras: Headers): string {
   return !pedido || pedido === url.host.toLowerCase() ? url.origin : '';
 }
 
-/** La página de la lista (`?p=`) solo cuenta desde la 2; la 1 es la ruta sin consulta. */
-function pagina(url: URL): string {
-  const p = Number(url.searchParams.get('p'));
-  return Number.isInteger(p) && p >= 2 ? `?p=${p}` : '';
+/**
+ * El tramo de una lista (`?p=`) solo cuenta desde el 2 y solo si la página lo dice: la lista de una
+ * faceta sabe cuántos tramos tiene y pasa el que de verdad enseña (`?p=999` → el último, `?p=1e1` → el
+ * 1). En cualquier otra página `?p=` no cambia nada y se cae, como el resto de la consulta (cold
+ * review AA4, F1: `?q=…&p=2` apuntaba a `/wisdom/?p=2`).
+ */
+function sufijoPagina(pagina: number): string {
+  return Number.isInteger(pagina) && pagina >= 2 ? `?p=${pagina}` : '';
 }
 
 /**
  * Dirección canónica: la ruta sin la consulta. Una búsqueda (`?q=`), los filtros combinados, el
- * camino del grafo (`?from=&to=&node=`) o el `?next=` de la entrada son la misma página.
+ * camino del grafo (`?from=&to=&node=`) o el `?next=` de la entrada son la misma página. `pagina` es
+ * el tramo que la lista enseña de verdad (solo lo pasan las facetas).
  */
-export function canonica(url: URL, origen: string): string {
-  return origen + url.pathname + pagina(url);
+export function canonica(url: URL, origen: string, pagina = 1): string {
+  return origen + url.pathname + sufijoPagina(pagina);
 }
 
 /**
  * Las alternas `hreflang`: esta página, su gemela y `x-default` (la inglesa). `otra` es la ruta de
  * la gemela; `null` cuando no la hay (una cita sin traducción), y entonces no se anuncia ninguna.
  */
-export function alternas(url: URL, origen: string, lang: Idioma, otra: string | null): Array<{ hreflang: string; href: string }> {
+export function alternas(url: URL, origen: string, lang: Idioma, otra: string | null, pagina = 1): Array<{ hreflang: string; href: string }> {
   if (!otra) return [];
-  const sufijo = pagina(url);
+  const sufijo = sufijoPagina(pagina);
   const rutas: Record<Idioma, string> = lang === 'en' ? { en: url.pathname, es: otra } : { en: otra, es: url.pathname };
   return [
     { hreflang: 'en', href: origen + rutas.en + sufijo },

@@ -12,15 +12,20 @@ import { corpus, edges } from '../tests/fixtures/locators-corpus';
 let gemelas: Map<string, string> | null = mapaGemelas(edges);
 vi.mock('../lib/corpus.server', () => ({ pideCorpus: async () => corpus }));
 vi.mock('../lib/grafo.server', () => ({ gemelasTraduccion: async () => gemelas, planoInicial: () => null, grafoInicial: () => null }));
+// `caido`: the backend is down, so loadWisdom reports `failed` (cold review AA4, F2).
+let caido = false;
 vi.mock('../content/wisdom', async (importOriginal) => {
   const mod = await importOriginal<typeof import('../content/wisdom')>();
   const entries = (locale: 'en' | 'es') => corpus.filter((e) => e.lang === locale);
-  return { ...mod, fetchWisdom: async (l: 'en' | 'es') => entries(l), loadWisdom: async (l: 'en' | 'es') => ({ entries: entries(l), failed: false }) };
+  return { ...mod, fetchWisdom: async (l: 'en' | 'es') => entries(l),
+    loadWisdom: async (l: 'en' | 'es') => (caido ? { entries: [], failed: true } : { entries: entries(l), failed: false }) };
 });
 
 import Page from './Page.astro';
 import QuoteRoute from '../pages/[locale]/wisdom/[slug].astro';
 import SectionRoute from '../pages/[locale]/wisdom/sections/[section].astro';
+import TagRoute from '../pages/[locale]/wisdom/tags/[tag].astro';
+import WisdomIndex from '../pages/[locale]/wisdom/index.astro';
 
 const O = 'http://aula.example';
 const doc = (html: string) => new JSDOM(html).window.document;
@@ -129,5 +134,44 @@ describe('quote page head (F41)', () => {
     const { status, d } = await route(QuoteRoute, '/es/wisdom/zz-999/', { locale: 'es', slug: 'zz-999' });
     expect(status).toBe(404);
     expect(meta(d, 'robots')).toEqual(['noindex']);
+  });
+});
+
+describe('list pages and ?p= (cold review AA4, F1)', () => {
+  it('the layout writes the page it is given, on canonical and alternates', async () => {
+    const d = await page('/es/wisdom/tags/koan/?p=2&orden=nivel', 'es', { pagina: 2 });
+    expect(canon(d)).toEqual([`${O}/es/wisdom/tags/koan/?p=2`]);
+    expect(alts(d).en).toBe(`${O}/en/wisdom/tags/koan/?p=2`);
+  });
+  it('a facet clamps ?p= to the pages it has (fixture: one page), so ?p=2, ?p=999, ?p=1e1 point at page 1', async () => {
+    for (const p of ['2', '999', '1e1']) {
+      const { status, d } = await route(TagRoute, `/es/wisdom/tags/koan/?p=${p}`, { locale: 'es', tag: 'koan' });
+      expect(status).toBe(200);
+      expect(canon(d), p).toEqual([`${O}/es/wisdom/tags/koan/`]);
+    }
+  });
+  it('search with ?p= still points at /wisdom/', async () => {
+    const { d } = await route(WisdomIndex, '/es/wisdom/?q=diseno&p=2', { locale: 'es' });
+    expect(canon(d)).toEqual([`${O}/es/wisdom/`]);
+  });
+});
+
+describe('backend down (cold review AA4, F2)', () => {
+  it('quote, facet and wisdom pages that could not load the corpus are noindex, with no canonical', async () => {
+    caido = true;
+    try {
+      for (const [r, path, params] of [
+        [QuoteRoute, '/es/wisdom/wis-034/', { locale: 'es', slug: 'wis-034' }],
+        [SectionRoute, '/es/wisdom/sections/wisdom/', { locale: 'es', section: 'wisdom' }],
+        [TagRoute, '/es/wisdom/tags/koan/', { locale: 'es', tag: 'koan' }],
+        [WisdomIndex, '/es/wisdom/', { locale: 'es' }],
+      ] as const) {
+        const { d } = await route(r, path, params);
+        expect(meta(d, 'robots'), path).toEqual(['noindex']);
+        expect(canon(d), path).toEqual([]);
+      }
+    } finally {
+      caido = false;
+    }
   });
 });

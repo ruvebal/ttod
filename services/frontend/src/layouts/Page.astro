@@ -19,8 +19,10 @@ interface Props {
   indexar?: boolean;
   /** `og:type`: una cita es un artículo; el resto, el sitio. */
   tipo?: 'website' | 'article';
+  /** El tramo de la lista que la página enseña de verdad (ya acotado); solo las facetas lo pasan. */
+  pagina?: number;
 }
-const { lang, title, description, fuentesExtra = [], cambioIdioma, alterna, indexar, tipo = 'website' } = Astro.props;
+const { lang, title, description, fuentesExtra = [], cambioIdioma, alterna, indexar, tipo = 'website', pagina = 1 } = Astro.props;
 import '../styles/tokens.css';
 import Footer from '../components/Footer.astro';
 import { getSessionUser } from '../lib/auth.server';
@@ -64,8 +66,8 @@ const switchPath = cambioIdioma ?? mismaRutaEnLaOtra;
 const sePuedeIndexar = indexar !== false && indexable(Astro.url, Astro.response.status);
 // Sin un origen de fiar (un host que Astro no conoce), direcciones relativas a la raíz.
 const origen = origenPublico(Astro.url, Astro.request.headers);
-const urlCanonica = canonica(Astro.url, origen);
-const listaAlternas = sePuedeIndexar ? alternas(Astro.url, origen, lang, alterna === undefined ? mismaRutaEnLaOtra : alterna) : [];
+const urlCanonica = canonica(Astro.url, origen, pagina);
+const listaAlternas = sePuedeIndexar ? alternas(Astro.url, origen, lang, alterna === undefined ? mismaRutaEnLaOtra : alterna, pagina) : [];
 const ogLocale = { en: 'en_US', es: 'es_ES' } as const;
 
 // Cuatro destinos (F56). «Inicio» es la marca; en el panel del móvil vuelve como fila.

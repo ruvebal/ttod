@@ -24,7 +24,8 @@
 #                                       ?untranslated= noindex, alternates (none without a twin), quote
 #                                       title/description trimmed at a word boundary, never the id alone
 #   src/layouts/head-seo.test.ts        rendered Page: one canonical, en/es/x-default alternates, og:*,
-#                                       noindex page → robots meta and no canonical/alternates
+#                                       noindex page → robots meta and no canonical/alternates; backend
+#                                       down → noindex (amended after the cold review, F2)
 #   src/lib/idioma.test.ts              preferred locale from Accept-Language (q values, regions, default en)
 #   src/tests/locators-registry.test.ts the new rows render (login, register, propose)
 #
@@ -291,6 +292,14 @@ for L in ("en", "es"):
                     (f"/{L}/login/?next=%2F{L}%2Fwisdom%2F", f"/{L}/login/")):
         st, _, html = get(path); h = head(html)
         check(st == 200 and canon(h) == [abs_(c)], f"{path} → {st}, canonical {canon(h)} (want {abs_(c)})")
+    # Amended after the cold review (F1/F9, a strengthening): ?p= counts only on a facet list, clamped to the pages
+    # it really has; search, filters and the home page drop it.
+    for path, c in ((f"/{L}/wisdom/?q={V['word'][L]}&p=2", f"/{L}/wisdom/"), (f"/{L}/?p=7", f"/{L}/")):
+        st, _, html = get(path); check(canon(head(html)) == [abs_(c)], f"{path}: canonical {canon(head(html))} (want {abs_(c)})")
+    n = sum(1 for e in E if V["tag"] in e["tags"]); last = max(1, -(-n // 20))
+    for p, want in (("2", min(2, last)), ("999", last), ("1e1", 1)):
+        path = f"/{L}/wisdom/tags/{V['tag']}/?p={p}"; c = f"/{L}/wisdom/tags/{V['tag']}/" + (f"?p={want}" if want >= 2 else "")
+        st, _, html = get(path); check(canon(head(html)) == [abs_(c)], f"{path} ({n} quotes, {last} pages): canonical {canon(head(html))} (want {abs_(c)})")
     st, _, html = get(f"/{L}/wisdom/?untranslated={qids[0]}"); noindex(f"/{L}/wisdom/?untranslated=", head(html))
     st, _, html = get(f"/{L}/wisdom/zz-999/"); check(st == 404, f"/{L}/wisdom/zz-999/ → {st}"); noindex(f"/{L}/wisdom/zz-999/ (404)", head(html))
     st, _, html = get(f"/{L}/wisdom/sections/zz-none/"); noindex(f"/{L}/wisdom/sections/zz-none/ ({st})", head(html))

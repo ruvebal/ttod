@@ -3,7 +3,7 @@ import Page from '../../../../layouts/Page.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Bosque from '../../../../components/wisdom/Bosque.astro';
 import { isLocale, labels, loadWisdom } from '../../../../content/wisdom';
-import { copia, rotuloSeccion } from '../../../../content/bosque';
+import { copia, rotuloSeccion, pasilloPedido } from '../../../../content/bosque';
 import '../../../../styles/tokens.css';
 import '../../../../styles/bosque.css';
 const locale = Astro.params.locale;
@@ -19,7 +19,12 @@ const copy = labels[locale];
 const t = copia[locale];
 const rotulo = rotuloSeccion(section, locale);
 ---
-<Page lang={locale} title={`${copy.sections}: ${rotulo}`}>
+<Page
+  lang={locale}
+  title={`${copy.sections}: ${rotulo}`}
+  pagina={pasilloPedido(Astro.url.searchParams.get('p'), entries.length)}
+  indexar={!failed}
+>
   <main id="ttod-main" class="bosque">
     <Breadcrumbs locale={locale} items={[{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: rotulo }]} />
     <Bosque

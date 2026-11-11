@@ -28,10 +28,12 @@ describe('canonical (AA3b carry)', () => {
     expect(canonica(u('/en/graph/?from=arch-008&to=wis-033&node=arch-008'), O)).toBe(`${O}/en/graph/`);
     expect(canonica(u('/es/login/?next=%2Fes%2Fwisdom%2F'), O)).toBe(`${O}/es/login/`);
   });
-  it('keeps the list page from 2 up, and nothing else', () => {
-    expect(canonica(u('/es/wisdom/tags/koan/?p=2&orden=nivel'), O)).toBe(`${O}/es/wisdom/tags/koan/?p=2`);
-    expect(canonica(u('/es/wisdom/tags/koan/?p=1'), O)).toBe(`${O}/es/wisdom/tags/koan/`);
-    expect(canonica(u('/es/wisdom/tags/koan/?p=x'), O)).toBe(`${O}/es/wisdom/tags/koan/`);
+  it('keeps the list page only when the page passes it, from 2 up (cold review AA4, F1)', () => {
+    expect(canonica(u('/es/wisdom/tags/koan/?p=2&orden=nivel'), O, 2)).toBe(`${O}/es/wisdom/tags/koan/?p=2`);
+    expect(canonica(u('/es/wisdom/tags/koan/?p=1'), O, 1)).toBe(`${O}/es/wisdom/tags/koan/`);
+    // `?p=` in the URL alone changes nothing: search, filters, the home page.
+    expect(canonica(u('/es/wisdom/?q=diseno&p=2'), O)).toBe(`${O}/es/wisdom/`);
+    expect(canonica(u('/es/?p=7'), O)).toBe(`${O}/es/`);
   });
 });
 
@@ -47,7 +49,7 @@ describe('hreflang alternates', () => {
     expect(alternas(u('/es/wisdom/arch-099/'), O, 'es', null)).toEqual([]);
   });
   it('the list page travels with both alternates', () => {
-    expect(alternas(u('/en/wisdom/tags/koan/?p=3'), O, 'en', '/es/wisdom/tags/koan/').map((a) => a.href))
+    expect(alternas(u('/en/wisdom/tags/koan/?p=3'), O, 'en', '/es/wisdom/tags/koan/', 3).map((a) => a.href))
       .toEqual([`${O}/en/wisdom/tags/koan/?p=3`, `${O}/es/wisdom/tags/koan/?p=3`, `${O}/en/wisdom/tags/koan/?p=3`]);
   });
 });

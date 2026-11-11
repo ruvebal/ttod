@@ -60,6 +60,7 @@ const crumbs = quote
   title={quote ? tituloCita(quote.text, copy.wisdom) : copy.notFound}
   description={quote ? descripcionCita(quote.text, quote.teaches) : undefined}
   tipo={quote ? 'article' : 'website'}
+  indexar={!failed}
   cambioIdioma={cambioIdioma}
   alterna={alterna}
 >

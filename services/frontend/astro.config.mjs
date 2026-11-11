@@ -33,7 +33,8 @@ export default defineConfig({
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'en',
-    routing: { prefixDefaultLocale: true }
+    // Explicit since Astro 6 changed the default (AA7). The root `/` is redirected by pages/index.astro.
+    routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false }
   },
   server: { host: true, port: 4321 },
   // El formulario de login hace POST: sin esto el build de Node no confía en la cabecera Host,

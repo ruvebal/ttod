@@ -10,13 +10,14 @@
  * El crédito sale del README del repositorio (Development Team, License): es un
  * proyecto de clase de Front-end II en la UDIT, y así se dice.
  */
-interface Props { lang: 'en' | 'es' }
+interface Props { lang: 'en' | 'es'; switchPath?: string }
 const { lang } = Astro.props;
 
 const otherLocale = lang === 'en' ? 'es' : 'en';
-const switchPath = '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
+// El mismo destino que el de la cabecera (en una cita, su gemela de traducción).
+const switchPath = Astro.props.switchPath ?? '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
 // Quien entra desde el pie vuelve a la página donde estaba.
-const loginHref = `/${lang}/login?next=${encodeURIComponent(Astro.url.pathname)}`;
+const loginHref = `/${lang}/login/?next=${encodeURIComponent(Astro.url.pathname)}`;
 
 const t = {
   es: {
@@ -25,9 +26,9 @@ const t = {
     links: [
       { href: '/es/', label: 'Inicio' },
       { href: '/es/wisdom/', label: 'Sabiduría' },
-      { href: '/es/graph', label: 'Grafo' },
-      { href: '/es/graph/path', label: 'Sendero' },
-      { href: '/es/oracle', label: 'Oráculo' },
+      { href: '/es/graph/', label: 'Grafo' },
+      { href: '/es/graph/code/', label: 'Grafo del código' },
+      { href: '/es/oracle/', label: 'Oráculo' },
       { href: '/es/docs/', label: 'Docs' },
       { href: loginHref, label: 'Iniciar sesión' },
     ],
@@ -44,9 +45,9 @@ const t = {
     links: [
       { href: '/en/', label: 'Home' },
       { href: '/en/wisdom/', label: 'Wisdom' },
-      { href: '/en/graph', label: 'Graph' },
-      { href: '/en/graph/path', label: 'Path' },
-      { href: '/en/oracle', label: 'Oracle' },
+      { href: '/en/graph/', label: 'Graph' },
+      { href: '/en/graph/code/', label: 'Code graph' },
+      { href: '/en/oracle/', label: 'Oracle' },
       { href: '/en/docs/', label: 'Docs' },
       { href: loginHref, label: 'Log in' },
     ],
@@ -90,7 +91,7 @@ const docsHref = lang === 'es' ? 'https://ruvebal.github.io/ttod/es/' : 'https:/
       </ul>
     </nav>
 
-    <a class="pie-idioma" href={switchPath} hreflang={otherLocale} lang={otherLocale}>{t.idioma}</a>
+    <a class="pie-idioma" href={switchPath} hreflang={otherLocale} lang={otherLocale} data-cambio-idioma>{t.idioma}</a>
 
     <div class="pie-credito">
       <p>{t.credito}</p>

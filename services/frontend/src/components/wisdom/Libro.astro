@@ -28,6 +28,7 @@ const seccion = `/${locale}/wisdom/sections/${volumen.slug}/`;
 ---
 
 <details
+  id={`volume-${volumen.slug}`}
   class="libro"
   name="armario"
   style={`--grosor:${volumen.grosor}px; --tono:${volumen.tono};`}
@@ -67,7 +68,7 @@ const seccion = `/${locale}/wisdom/sections/${volumen.slug}/`;
   <div class="libro-dentro">
     <ol class="hojas">
       {paginas.map((cita, i) => (
-        <li class="hoja">
+        <li class="hoja" id={cita.id}>
           <span class="hoja-folio">{t.pagina(i + 1, volumen.citas.length)}</span>
           <a class="hoja-enlace" href={`/${locale}/wisdom/${cita.id}/`}>
             <span class="hoja-texto">{cita.text}</span>
@@ -83,6 +84,7 @@ const seccion = `/${locale}/wisdom/sections/${volumen.slug}/`;
       ))}
     </ol>
 
+    <a class="hoja-copiar" href={`#volume-${volumen.slug}`} data-copiar>{t.copiarVolumen}</a>
     <a class="hoja-seguir" href={seccion}>
       {quedan > 0 ? t.seguir(volumen.citas.length, volumen.titulo) : t.sinMas(volumen.titulo)}
     </a>

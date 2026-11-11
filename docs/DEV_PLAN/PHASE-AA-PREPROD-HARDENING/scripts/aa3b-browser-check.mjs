@@ -118,6 +118,9 @@ for (const [hash, sel] of [["#thesis", "#sigue-tesis"], ["#close", "#close h2"],
 // 5. Language switch carries search + hash; quote twin.
 {
   const { ctx, page } = await open("/es/wisdom/?q=diseno#search");
+  // Amended during AA3b: after the jump to #search the header has hidden itself (it hides on any
+  // downward scroll past 200 px), so the reader scrolls up to reach it, as a person would.
+  await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(400);
   await page.click(".ttod-lang-switch"); await page.waitForLoadState("networkidle");
   const u = new URL(page.url());
   ok(u.pathname === "/en/wisdom/" && u.search === "?q=diseno" && u.hash === "#search", `switch from ?q=diseno#search landed on ${u.pathname}${u.search}${u.hash}`);
@@ -130,16 +133,22 @@ for (const [hash, sel] of [["#thesis", "#sigue-tesis"], ["#close", "#close h2"],
 {
   const deg = new Map();
   for (const e of graph.edges) if (e.rel === "related") for (const n of [e.source, e.target]) deg.set(n, (deg.get(n) ?? 0) + 1);
-  const esIds = new Set(es.map((e) => e.id));
-  const linked = graph.edges.find((e) => e.rel === "related" && esIds.has(e.source) && esIds.has(e.target));
+  // Amended during AA3b: the es corpus has no `related` edges, so 3D nodes carry the related (en)
+  // quote's id and show its es twin. The URL keeps the node id (identical in both locales); the page
+  // shows the twin. A path end counts as shown if either id is on screen.
+  const linked = graph.edges.find((e) => e.rel === "related");
   const [a, b] = [linked.source, linked.target];
+  const twin = new Map();
+  for (const e of graph.edges) if (e.rel === "translation_of") { twin.set(e.source, e.target); twin.set(e.target, e.source); }
+  // innerText returns the rendered case and the meta line is `text-transform: uppercase`.
+  const shown = (text, id) => { const t = text.toLowerCase(); return t.includes(id) || (twin.has(id) && t.includes(twin.get(id))); };
   const { ctx, page, pageErrors } = await open(`/es/graph/?from=${a}&to=${b}`);
   await page.waitForTimeout(2500);
   const keep = async (when) => {
     const s = new URL(page.url()).searchParams;
     ok(s.get("from") === a && s.get("to") === b, `${when}: /es/graph/ URL lost from/to (${page.url()})`);
     const text = await page.evaluate(() => document.body.innerText);
-    ok(text.includes(a) && text.includes(b), `${when}: path ends ${a}/${b} not shown`);
+    ok(shown(text, a) && shown(text, b), `${when}: path ends ${a}/${b} (or their twins) not shown`);
   };
   await keep("cold");
   await page.reload({ waitUntil: "networkidle" }); await page.waitForTimeout(3000);

@@ -82,7 +82,7 @@ describe('register page', () => {
 
     const response = await send('en', { email: 'ana@ttod.local', password: 'una-clave-larga', next: '//evil.example' });
 
-    expect(response.headers.get('location')).toBe('/en/account');
+    expect(response.headers.get('location')).toBe('/en/account/');
   });
 
   it('login and register link to each other and keep the return path', async () => {
@@ -96,7 +96,7 @@ describe('register page', () => {
       params: { locale: 'es' }, request: new Request('http://localhost/es/register?next=%2Fes%2Flibrary')
     }));
 
-    expect(login.querySelector('a[href="/es/register?next=%2Fes%2Flibrary"]')?.textContent).toBe('Crear una cuenta');
-    expect(register.querySelector('a[href="/es/login?next=%2Fes%2Flibrary"]')?.textContent).toBe('Iniciar sesión');
+    expect(login.querySelector('a[href="/es/register/?next=%2Fes%2Flibrary"]')?.textContent).toBe('Crear una cuenta');
+    expect(register.querySelector('a[href="/es/login/?next=%2Fes%2Flibrary"]')?.textContent).toBe('Iniciar sesión');
   });
 });

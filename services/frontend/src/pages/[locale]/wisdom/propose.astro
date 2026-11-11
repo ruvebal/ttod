@@ -15,6 +15,6 @@ const copy = labels[locale];
     <h1>{copy.propose}</h1>
     {user
       ? <ProposeForm client:load lang={locale} />
-      : <p class="ttod-empty">{copy.proposeLoginPrompt} <a href={`/${locale}/login?next=/${locale}/wisdom/propose`}>{locale === 'es' ? 'Inicia sesión' : 'Log in'}</a></p>}
+      : <p class="ttod-empty">{copy.proposeLoginPrompt} <a href={`/${locale}/login/?next=/${locale}/wisdom/propose/`}>{locale === 'es' ? 'Inicia sesión' : 'Log in'}</a></p>}
   </main>
 </Page>

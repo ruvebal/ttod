@@ -55,6 +55,10 @@ state measured on 2026-11-10 (`baselines/aa0-2026-11-10/probe.log`, F8).
 
 ## 4. Registry (what AA3b implements)
 
+**As data:** [`services/frontend/src/lib/locators.registry.json`](../../../services/frontend/src/lib/locators.registry.json)
+(AA3b, 2026-11-11). The tables below are the human reading of that file; the Vitest registry test and the AA3b
+exit gate's live probe both walk the file. Rows marked *(AA3b)* were added while implementing it.
+
 ### Landing `/{locale}/`
 
 | Locator | Lands on | Notes |
@@ -78,7 +82,8 @@ scrolls past each chapter, but not inside the first viewport, so a plain visit k
 | `/{l}/wisdom/{id}/` | **quote permalink** (exists). Not-found must return **404**, not 200 (F57) |
 | `/{l}/wisdom/sections/{s}/` · `levels/{v}/` · `tags/{t}/` | single-facet lists (exist; canonical for one facet) |
 | `/{l}/wisdom/?q=` | full-text search over text, teaches, tags, id (accent- and case-insensitive) |
-| `/{l}/wisdom/?section=&level=&tag=&q=` | combined filters. A **single** facet with no `q` 301s to its path form above |
+| `/{l}/wisdom/?section=&level=&tag=&q=` | combined filters. A **single** facet with no `q` 301s to its path form above (keeping `orden`/`p`) |
+| `/{l}/wisdom/?untranslated={id}` | *(AA3b)* the language switch from a quote with no twin lands here, with a notice naming `{id}` |
 | `&orden=` · `&p=` | sort and page (shipped keys, unchanged) |
 | `#wis-034` | that quote inside any list that renders it (facets, search results, volumes, library) |
 | `#volume-{section}` | opens that volume on the shelf (`<details>` gets `open`) and scrolls to it |
@@ -92,10 +97,12 @@ Recommended IA (decided in AA0, see [AA3b](PHASES/AA3b-locators-wisdom-and-graph
 | ------- | ------- |
 | `/{l}/graph/` | **the 3D constellation** (today at `/graph/path`) — what the header "Graph" opens |
 | `/{l}/graph/?from={id}&to={id}` | the path between two quotes, restorable from the URL |
-| `/{l}/graph/?node={id}` · `&tag=` | selected node / tag filter (shipped GraphIsland keys) |
+| `/{l}/graph/?node={id}` | the open quote card in the 3D view (*amended in AA3b*: `&tag=` moved to `/plano/`, row below) |
 | `/{l}/graph/plano/` | the 2D radial view, kept as the accessible / no-WebGL alternative (localized, F32) |
 | `/{l}/graph/code/?s=` | the repository code graph (shipped key `s`) |
 | `/{l}/graph/path` | **301** → `/{l}/graph/` with the query kept (links already pasted keep working) |
+| `/{l}/graph/path?s=` | *(AA3b)* **301** → `/{l}/graph/code/?s=` (the code graph used to live below the path view) |
+| `/{l}/graph/?tag=` | *(AA3b)* **301** → `/{l}/graph/plano/?tag=` (`tag` is a 2D-island key; the 3D view reads `from`, `to`, `node`) |
 
 ### Account and library
 
@@ -133,7 +140,8 @@ JS off it is still a working anchor.
 
 ## 8. How it is proven
 
-A table-driven test (Vitest) walks this registry: each path/query returns 200 (or the documented
+A table-driven test (Vitest, `src/tests/locators-registry.test.ts`) walks this registry
+(`src/lib/locators.registry.json`): each path/query returns 200 (or the documented
 301/404), each fragment id exists exactly once in the SSR HTML, and en/es share the same id set.
 The live probe in the AA3b report runs `curl` over the same table. **A locator that is not in this
 registry is not a contract.** Add it here first.

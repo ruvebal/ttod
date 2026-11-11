@@ -23,7 +23,7 @@ async function loadManifest(request: APIRequestContext): Promise<InstallManifest
 }
 
 test('pages link one manifest with the expected TTOD installation metadata', async ({ page, request, baseURL }) => {
-  for (const path of ['/en/docs/', '/es/docs/', '/en/oracle', '/es/oracle']) {
+  for (const path of ['/en/docs/', '/es/docs/', '/en/oracle/', '/es/oracle/']) {
     await page.goto(path);
     const link = page.locator('link[rel="manifest"]');
     await expect(link).toHaveCount(1);

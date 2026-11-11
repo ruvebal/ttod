@@ -3,8 +3,10 @@ interface Props {
   lang: 'en' | 'es'; title: string; description?: string; overlayHeader?: boolean;
   /** Fuentes que solo usa esta vista y conviene pedir ya (nombre del woff2 en /visual-system/fonts). */
   fuentesExtra?: string[];
+  /** Adónde lleva el cambio de idioma si no es la misma ruta en la otra lengua (una cita va a su gemela). */
+  cambioIdioma?: string;
 }
-const { lang, title, description, overlayHeader = false, fuentesExtra = [] } = Astro.props;
+const { lang, title, description, overlayHeader = false, fuentesExtra = [], cambioIdioma } = Astro.props;
 import '../styles/tokens.css';
 import Footer from '../components/Footer.astro';
 
@@ -12,12 +14,12 @@ const nav = {
   en: {
     home: 'Home', wisdom: 'Wisdom', library: 'Library', graph: 'Graph', oracle: 'Oracle', docs: 'Docs',
     skip: 'Skip to content', switchTo: 'Español',
-    menu: 'Menu',
+    menu: 'Menu', copied: 'Link copied',
   },
   es: {
     home: 'Inicio', wisdom: 'Sabiduría', library: 'Biblioteca', graph: 'Grafo', oracle: 'Oráculo', docs: 'Docs',
     skip: 'Saltar al contenido', switchTo: 'English',
-    menu: 'Menú',
+    menu: 'Menú', copied: 'Enlace copiado',
   },
 }[lang];
 
@@ -28,14 +30,14 @@ const descripcionPorDefecto = lang === 'es'
 const descripcion = description ?? descripcionPorDefecto;
 
 const otherLocale = lang === 'en' ? 'es' : 'en';
-const switchPath = '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
+const switchPath = cambioIdioma ?? '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
 
 const links: Array<{ href: string; label: string }> = [
   { href: `/${lang}/`, label: nav.home },
   { href: `/${lang}/wisdom/`, label: nav.wisdom },
-  { href: `/${lang}/library`, label: nav.library },
-  { href: `/${lang}/graph`, label: nav.graph },
-  { href: `/${lang}/oracle`, label: nav.oracle },
+  { href: `/${lang}/library/`, label: nav.library },
+  { href: `/${lang}/graph/`, label: nav.graph },
+  { href: `/${lang}/oracle/`, label: nav.oracle },
   { href: `/${lang}/docs/`, label: nav.docs },
 ];
 ---
@@ -64,6 +66,10 @@ const links: Array<{ href: string; label: string }> = [
     <title>{title}</title>
     <style>
       :root { color-scheme: light; font-family: var(--ttod-font-body); --ttod-header-height: 4.25rem; --ttod-cabecera-flujo: 61px; }
+      /* Todo salto a un fragmento se para debajo de la cabecera (WCAG 2.2, 2.4.11), con una
+         sola regla para todas las vistas (LOCATORS §6). AA3 ajusta la altura con su cabecera. */
+      html { scroll-padding-top: calc(var(--ttod-header-height) + 1rem); }
+      .ttod-aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
       body {
         margin: 0;
         color: var(--ttod-color-ink);
@@ -264,12 +270,13 @@ const links: Array<{ href: string; label: string }> = [
       >
         {lang === 'es' ? 'Comprobando conexión…' : 'Checking connection…'}
       </p>
-      <a class="ttod-lang-switch" href={switchPath} hreflang={otherLocale}>{nav.switchTo}</a>
+      <a class="ttod-lang-switch" href={switchPath} hreflang={otherLocale} data-cambio-idioma>{nav.switchTo}</a>
     </header>
     <div id="ttod-main">
       <slot />
     </div>
-    <Footer lang={lang} />
+    <Footer lang={lang} switchPath={switchPath} />
+    <p id="ttod-aviso" class="ttod-aviso" role="status" aria-live="polite" data-copiado={nav.copied}></p>
     <script>
       const boundary = document.getElementById('ttod-network-boundary');
 
@@ -296,6 +303,13 @@ const links: Array<{ href: string; label: string }> = [
       }
     </script>
     <script>
+      // Enlaces que se completan en el navegador (AA3b): el cambio de idioma lleva
+      // `search + hash`, y «copiar enlace» copia la dirección absoluta y lo anuncia.
+      import { enlazarCambioIdioma } from '../lib/idioma';
+      import { enlazarCopiarEnlace } from '../lib/copiarEnlace';
+      enlazarCambioIdioma();
+      enlazarCopiarEnlace();
+
       const header = document.getElementById('ttod-site-header');
       const toggle = header?.querySelector<HTMLButtonElement>('.ttod-nav-toggle');
 

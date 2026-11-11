@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ params, request, cookies, redirect }) => 
   if (!(await logoutWithBackend(request))) {
     // La sesión sigue viva en el backend: se conserva la cookie para poder reintentarlo
     // y la cuenta lo explica, en vez de dar por cerrada una sesión que no lo está.
-    return redirect(`/${locale}/account?logout=failed`, 303);
+    return redirect(`/${locale}/account/?logout=failed`, 303);
   }
 
   cookies.delete(SESSION_COOKIE_NAME, { path: '/' });

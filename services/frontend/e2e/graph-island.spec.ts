@@ -35,7 +35,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 		await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(wisdom) });
 	});
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	const svg = page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' });
 	await expect(svg).toBeVisible();
 	await expect(page.locator('svg line')).toHaveCount(graphEdges.length);
@@ -95,7 +95,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 			body: JSON.stringify(wisdom)
 		}));
 
-		await page.goto('/en/graph');
+		await page.goto('/en/graph/plano/');
 		const filter = page.getByLabel('Filter by tag');
 		await expect(filter).toHaveValue('');
 		const node = page.locator('[data-node-id="arch-001"]');
@@ -137,7 +137,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 			})))
 		}));
 
-		await page.goto('/en/graph');
+		await page.goto('/en/graph/plano/');
 		const filter = page.getByLabel('Filter by tag');
 		const details = page.getByRole('complementary', { name: 'Selected node' });
 		await expect(page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' })).toBeVisible();
@@ -190,7 +190,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 			})))
 		}));
 
-		await page.goto('/en/graph?tag=architecture');
+		await page.goto('/en/graph/plano/?tag=architecture');
 		await expect(page.getByLabel('Filter by tag')).toHaveValue('architecture');
 		await expect(page.getByRole('group', { name: 'Knowledge graph with 2 nodes and 1 edges' })).toBeVisible();
 	});
@@ -210,7 +210,7 @@ test('shows loading and empty states while a successful graph response is pendin
 		body: JSON.stringify([])
 	}));
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await expect(page.getByText('Loading live graph…')).toBeVisible();
 	releaseGraphResponse();
 	await expect(page.getByText('No graph nodes are available.')).toBeVisible();
@@ -229,6 +229,6 @@ test('announces graph fetch failures', async ({ page }) => {
 		body: JSON.stringify([])
 	}));
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await expect(page.getByRole('alert')).toHaveText('The live graph is unavailable.');
 });

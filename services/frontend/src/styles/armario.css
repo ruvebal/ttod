@@ -1074,3 +1074,91 @@
 /* En Sabiduría las nubes no sobresalen por el canto: la página no se puede
    desplazar en horizontal. */
 .armario-vista .nube-ruyi { inset-inline-end: 0; max-width: 100%; }
+
+/* ---------- Buscar, índice de secciones y resultados (AA3b, F49) ----------
+   La tarea primero: el buscador y las secciones con su recuento van antes que la
+   estantería. Los dos van en folio de papel, como la entrada: la pintura de
+   detrás nunca baja el contraste del texto. */
+.armario-buscar,
+.armario-indice,
+.armario-resultados,
+.armario-aviso {
+  box-sizing: border-box;
+  max-width: 48rem;
+  margin: 0 auto var(--ttod-space-8);
+  padding: 1.25rem clamp(1.1rem, 4vw, 2rem);
+  background: radial-gradient(120% 80% at 50% 0%, #fbf8f1 55%, #f6efdf 100%);
+  border: 1px solid #dccfb3;
+  border-radius: 1.5rem;
+  box-shadow: 0 1.5rem 3rem #5b4a301f;
+}
+.armario-resultados { max-width: 74rem; }
+.armario-aviso { font-family: var(--ttod-font-body); color: #5e523f; }
+.armario-buscar { display: grid; gap: var(--ttod-space-2); }
+.armario-buscar label,
+.armario-indice h2 {
+  margin: 0;
+  font: 500 var(--ttod-text-ui) / 1.2 var(--ttod-font-ui);
+  text-transform: uppercase;
+  letter-spacing: var(--ttod-tracking-ui);
+  color: #5e523f;
+}
+.armario-buscar-fila { display: flex; gap: var(--ttod-space-2); }
+.armario-buscar input[type="search"] {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 .9rem;
+  font: var(--ttod-text-base) / 1.4 var(--ttod-font-body);
+  color: var(--ttod-color-ink);
+  background: var(--ttod-color-paper);
+  border: 1px solid #b9ab8d;
+  border-radius: .5rem;
+}
+.armario-buscar button {
+  min-height: 44px;
+  padding: 0 1.1rem;
+  font: 500 var(--ttod-text-sm) / 1 var(--ttod-font-ui);
+  color: var(--ttod-color-paper);
+  background: var(--ttod-color-ink);
+  border: 0;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.armario-buscar button:hover { background: var(--ttod-color-accent); }
+.armario-buscar-ayuda { font: .9375rem / 1.45 var(--ttod-font-ui); color: #5e523f; }
+/* El layout global pone `display:flex` a todo `main > nav`: esto es una lista. */
+.armario-indice { display: block; }
+.armario-indice ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.1rem;
+  margin: var(--ttod-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.armario-indice a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  font: var(--ttod-text-base) / 1.2 var(--ttod-font-body);
+  color: var(--ttod-color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ttod-color-line-subtle);
+}
+.armario-indice a:hover { border-bottom-color: var(--ttod-color-accent); }
+.armario-indice b { font: 500 var(--ttod-text-ui) / 1 var(--ttod-font-ui); color: #5e523f; }
+.armario-resultados .bosque-entrada { margin-block: 0 var(--ttod-space-6); }
+.armario-resultados .bosque-titulo { font-size: clamp(1.6rem, 5vw, 2.4rem); margin-bottom: var(--ttod-space-3); }
+
+/* Copiar el enlace a un volumen abierto: discreto, pero un blanco de 44 px. */
+.hoja-copiar {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: var(--ttod-space-6) var(--ttod-space-4) 0 0;
+  font: 500 var(--ttod-text-sm) / 1.4 var(--ttod-font-ui);
+  color: var(--ttod-color-ink);
+  text-underline-offset: 4px;
+}

@@ -49,8 +49,8 @@ const muestras = Object.fromEntries(
 const doors = [
   { href: '/es/wisdom/', label: 'Sabiduría', note: 'El corpus gobernado, por sección, nivel y etiqueta.' },
   { href: '/es/docs/', label: 'Documentación', note: 'Cómo se gobierna el corpus: esquema, licencia y revisión.' },
-  { href: '/es/graph/path', label: 'Grafo', note: "El sendero entre dos citas y el grafo del código del propio repositorio." },
-  { href: '/es/oracle', label: 'Oráculo', note: 'Pregunta al Tao; un modelo local responde desde el corpus.' },
+  { href: '/es/graph/', label: 'Grafo', note: "El sendero entre dos citas y el grafo del código del propio repositorio." },
+  { href: '/es/oracle/', label: 'Oráculo', note: 'Pregunta al Tao; un modelo local responde desde el corpus.' },
 ];
 ---
 <Page lang="es" title="道 El Tao del Desarrollo (TTOD)">
@@ -62,7 +62,7 @@ const doors = [
     doors={doors}
     headingId="flagship-quote-heading"
     cta="Leer una cita en vivo"
-    ctaHref="/es/quote"
+    ctaHref="/es/quote/"
   />
   <main class="ttod-portada">
     <ValleSigue lang="es" secciones={secciones} muestras={muestras} totalCitas={enEspanol.length} totalNiveles={totalNiveles} />

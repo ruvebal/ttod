@@ -34,7 +34,7 @@ const href = `/${locale}/wisdom/${entry.id}/`;
 const facetas = entry.tags.slice(0, 3);
 ---
 
-<article class="piedra">
+<article class="piedra" id={entry.id}>
   <div class="piedra-cabeza">
     <span class="piedra-folio">{folio} / {de}</span>
     <a class="piedra-seccion" href={`/${locale}/wisdom/sections/${entry.section}/`}>
@@ -54,7 +54,9 @@ const facetas = entry.tags.slice(0, 3);
   <!-- El colofón de la losa: quién la mandó levantar y con qué derecho. En una
        estela de verdad ese dato va grabado al pie, pequeño, y aquí también. -->
   <div class="piedra-pie">
-    <span class="piedra-id">{entry.id}</span>
+    <!-- El id es también el enlace a esta estela dentro de la lista (LOCATORS §7):
+         un ancla de verdad; con JavaScript, copia la dirección entera. -->
+    <a class="piedra-id" href={`#${entry.id}`} data-copiar aria-label={`${entry.id} · ${t.copiarEnlace}`}>{entry.id}</a>
     <ProvenanceBlock entry={entry} locale={locale} variant="compact" />
   </div>
 </article>

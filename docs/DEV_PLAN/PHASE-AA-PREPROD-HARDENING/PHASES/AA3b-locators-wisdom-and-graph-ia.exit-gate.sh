@@ -183,7 +183,10 @@ for L in ("en", "es"):
                 for s in secs: check(found.count(want.replace("{section}", s)) == 1, f"{path}: #{want.replace('{section}', s)} not exactly once")
             else:
                 check(found.count(fill(want)) == 1, f"{path}: #{fill(want)} not exactly once")
-        structural.setdefault(p["path"], {})[L] = {i for i in found if i not in qids and not re.match(r"^volume-|^map-", i)}
+        # Amended during AA3b: ids a registry row declares "conditional" (content-dependent sections,
+        # e.g. "Related wisdom" — the es corpus has no related edges) are outside en/es parity.
+        cond = set(p.get("conditional", []))
+        structural.setdefault(p["path"], {})[L] = {i for i in found if i not in qids and i not in cond and not re.match(r"^volume-|^map-", i)}
         # every internal page href is slash-terminated (F8)
         for href in re.findall(r'href="(/[^"#?]*)', html):
             last = href.rsplit("/", 1)[-1]

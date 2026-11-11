@@ -1,7 +1,7 @@
 # PHASE-AA3b: Permanent locators, wisdom usability, graph IA
 
 > **Track:** Astro shell — F8, F49–F52, F54, F57 · A7, A32, A36–A40.  
-> **Status:** IN_PROGRESS 2026-11-11 (owner: "go AA3b"; runs **before** AA3).
+> **Status:** VERIFYING 2026-11-11 (owner: "go AA3b"; runs **before** AA3) · [report](../PHASE-AA3b-REPORT.md).
 > *Amended 2026-11-11 (was: "VERIFYING requires AA3's header (A31) merged").* AA3b now carries the one global
 > `html { scroll-padding-top: calc(var(--ttod-header-height, <fallback>) + 1rem) }` rule from LOCATORS §6, with a
 > fallback measured on today's header. The exit gate measures the real header against each landing target, so it

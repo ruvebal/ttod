@@ -11,13 +11,15 @@
 import EmptyState from '../EmptyState.astro';
 import Libro from './Libro.astro';
 import Mazo from './Mazo.astro';
+import Bosque from './Bosque.astro';
 import FondoEstudio from './FondoEstudio.astro';
 import '../../styles/movimiento.css';
 import type { WisdomEntry } from '../../types/domain';
 import type { Locale } from '../../content/wisdom';
 import { frequencies, labels } from '../../content/wisdom';
-import { rotuloNivel } from '../../content/bosque';
+import { rotuloNivel, rotuloSeccion } from '../../content/bosque';
 import { copia, volumenes } from '../../content/estanteria';
+import { buscar, hayFiltros, LIMITE_Q, type Filtros } from '../../lib/buscar';
 
 interface Props {
   locale: Locale;
@@ -25,9 +27,13 @@ interface Props {
   failed: boolean;
   /** Hay cookie de sesión: la tirada se pide a `/api/v1/wisdom/random`. */
   sesion?: boolean;
+  /** `?q=&section=&level=&tag=` ya leídos (AA3b): con alguno puesto, la vista enseña resultados. */
+  filtros?: Filtros;
+  /** `?untranslated=`: la cita de la otra lengua que todavía no tiene gemela en esta. */
+  sinTraduccion?: string;
 }
 
-const { locale, entries, failed, sesion = false } = Astro.props;
+const { locale, entries, failed, sesion = false, filtros = { q: '', section: '', level: '', tag: '' }, sinTraduccion } = Astro.props;
 const t = copia[locale];
 const copy = labels[locale];
 const armario = volumenes(entries, locale);
@@ -38,6 +44,12 @@ const niveles = frequencies(entries, 'level');
 const etiquetas = frequencies(entries, 'tags')
   .sort(([, a], [, b]) => b - a)
   .slice(0, 6);
+// La tarea primero (AA3b, F49): quien llega a buscar una cita la busca aquí, sin
+// recorrer la estantería. Con un filtro puesto, los resultados ocupan el sitio
+// de la estantería y se leen en el mismo pasillo que las facetas.
+const filtrando = hayFiltros(filtros);
+const resultados = filtrando ? buscar(entries, filtros) : [];
+const ocultos = (['section', 'level', 'tag'] as const).filter((clave) => filtros[clave]);
 ---
 
 <FondoEstudio />
@@ -53,25 +65,64 @@ const etiquetas = frequencies(entries, 'tags')
   )}
 </header>
 
+{sinTraduccion && <p class="armario-aviso" role="note">{t.sinTraduccion(sinTraduccion)}</p>}
+
 {failed ? (
   <EmptyState variant="error" title={copy.errorTitle} message={copy.errorMessage} />
 ) : entries.length === 0 ? (
   <EmptyState title={copy.emptyTitle} message={copy.empty} />
 ) : (
   <>
+    <form id="search" class="armario-buscar" role="search" method="get" action={`/${locale}/wisdom/`}>
+      <label for="armario-q">{t.buscarRotulo}</label>
+      <span class="armario-buscar-fila">
+        <input id="armario-q" name="q" type="search" value={filtros.q} maxlength={LIMITE_Q} autocomplete="off" enterkeyhint="search" />
+        {ocultos.map((clave) => <input type="hidden" name={clave} value={filtros[clave]} />)}
+        <button type="submit">{t.buscarBoton}</button>
+      </span>
+      <span class="armario-buscar-ayuda">{t.buscarAyuda}</span>
+    </form>
+
+    <nav class="armario-indice" aria-labelledby="armario-indice-rotulo">
+      <h2 id="armario-indice-rotulo">{t.indice}</h2>
+      <ul>
+        {armario.map((volumen) => (
+          <li><a href={`/${locale}/wisdom/sections/${volumen.slug}/`}>{volumen.titulo} <b>{volumen.citas.length}</b></a></li>
+        ))}
+      </ul>
+    </nav>
+
+    {filtrando ? (
+      <section class="armario-resultados" aria-labelledby="armario-resultados-rotulo">
+        <Bosque
+          locale={locale}
+          todas={entries}
+          entries={resultados}
+          failed={false}
+          encabezado={false}
+          titulo={t.resultados(resultados.length, filtros.q, [filtros.section && rotuloSeccion(filtros.section, locale), filtros.level && rotuloNivel(filtros.level, locale), filtros.tag].filter(Boolean).join(' · '))}
+          tituloId="armario-resultados-rotulo"
+          intro=""
+          vacio={{ title: copy.noMatchesTitle, message: t.sinResultados, action: { label: copy.back, href: `/${locale}/wisdom/` } }}
+        />
+      </section>
+    ) : (
+      <>
+        <h2 class="armario-subtitulo">{t.estanteTitulo}</h2>
+        <p class="armario-pista" aria-hidden="true">{t.pista}</p>
+        <div class="armario">
+          <div class="armario-balda">
+            {armario.map((volumen, i) => (
+              <Libro volumen={volumen} locale={locale} orden={ROMANOS[i] ?? String(i + 1)} />
+            ))}
+          </div>
+        </div>
+      </>
+    )}
+
     <Mazo locale={locale} armario={armario} entries={entries} sesion={sesion} />
 
-    <h2 class="armario-subtitulo">{t.estanteTitulo}</h2>
-    <p class="armario-pista" aria-hidden="true">{t.pista}</p>
-    <div class="armario">
-      <div class="armario-balda">
-        {armario.map((volumen, i) => (
-          <Libro volumen={volumen} locale={locale} orden={ROMANOS[i] ?? String(i + 1)} />
-        ))}
-      </div>
-    </div>
-
-    <nav class="armario-facetas" aria-labelledby="armario-facetas-rotulo">
+    <nav id="facets" class="armario-facetas" aria-labelledby="armario-facetas-rotulo">
       <h2 id="armario-facetas-rotulo">{t.facetas}</h2>
       <p class="facetas-grupo">
         <span class="facetas-rotulo">{t.porNivel}</span>
@@ -104,6 +155,10 @@ const etiquetas = frequencies(entries, 'tags')
   // asientan, la pila baja a la mesa, los libros de la balda se posan uno tras
   // otro y las nubes ruyi se dibujan sobre la pintura.
   import { alLlegar, asentar, subirLineas, nubesRuyi } from '../movimiento';
+  // `#volume-{sección}` abre su volumen y lo trae; abrir o cerrar uno reescribe
+  // el fragmento con `replaceState` (LOCATORS §4, AA3b).
+  import { enlazarVolumenes } from '../../lib/volumenes';
+  enlazarVolumenes();
   asentar(document.querySelector('.armario-entrada'), { y: 40 });
   asentar(document.querySelector('.mazo-texto'), { y: 32 });
   asentar(document.querySelector('.pila-escena'), { y: -40, rotar: -2 });
@@ -111,6 +166,6 @@ const etiquetas = frequencies(entries, 'tags')
   // Los libros de la balda se posan con una animación de CSS (compositor):
   // moverlos con GSAP, trece volúmenes en 3D a la vez, daba fotogramas largos.
   const balda = document.querySelector('.armario-balda');
-  alLlegar(balda, () => balda!.setAttribute('data-llega', ''));
+  if (balda) alLlegar(balda, () => balda.setAttribute('data-llega', ''));
   nubesRuyi(document.querySelector('.armario-vista') ?? document);
 </script>

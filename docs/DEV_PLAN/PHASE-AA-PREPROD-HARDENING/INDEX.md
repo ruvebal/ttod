@@ -40,7 +40,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | 1 | [AA1](PHASES/AA1-caddy-security-headers.md) | Caddy security headers, CSP report-only | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("AA1 done") |
 | 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("AA2 done") |
 | 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | BLOCKED — queued behind AA3b by owner order ("go AA3b", 2026-11-11); its exit gate is still to be written by the planner |
-| 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | IN_PROGRESS — owner: "go AA3b" (2026-11-11); exit gate written first; worktree opened by hand with the harness's naming, because its parser reads numeric steps only and skips "3b" |
+| 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | VERIFYING — owner: "go AA3b" (2026-11-11); exit gate written first; report [PHASE-AA3b-REPORT.md](PHASE-AA3b-REPORT.md); cold review pending; worktree opened by hand with the harness's naming, because its parser reads numeric steps only and skips "3b" |
 | 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED until AA3 + AA3b DONE |
 | 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | READY — lane A DONE 2026-11-10 (F25/F27/F28); lane B unblocked by AA1 DONE (its gate checks are appended to the AA5 exit gate before it starts) |
 | 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA2 + AA3b + AA5 DONE |
@@ -71,7 +71,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | Landing figures (230/13/4) | **Dynamic** from corpus ✓, but unguarded by tests (F54) | `pages/es/index.astro` |
 | Redis permanence | Green (prior day) | COMPLETENESS-2026-11-09 |
 | Open register | Live, always `student` | `#92` + smoke |
-| FINDINGS count | F1–F58 (deep audits + owner walkthrough) | this pack |
+| FINDINGS count | F1–F61 (deep audits + owner walkthrough + AA3b) | this pack |
 
 ## Decision needed from product owner
 

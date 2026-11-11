@@ -98,7 +98,7 @@ const errorText = registerError === 'taken' ? copy.takenError
   : registerError === 'invalid' ? copy.invalidError
   : registerError === 'throttled' ? copy.throttledError
   : registerError === 'service' ? copy.serviceError : '';
-const loginHref = `/${locale}/login?next=${encodeURIComponent(next)}`;
+const loginHref = `/${locale}/login/?next=${encodeURIComponent(next)}`;
 ---
 
 <Page lang={locale} title={copy.title} description={copy.description}>

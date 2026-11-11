@@ -24,7 +24,7 @@ describe('propose page session gate', () => {
     const main = await render('/en/wisdom/propose/', { locale: 'en' });
     expect(main.textContent).toContain('Log in to propose a quote.');
     expect(main.querySelector('form')).toBeNull();
-    expect(main.querySelector('a[href="/en/login?next=/en/wisdom/propose"]')).not.toBeNull();
+    expect(main.querySelector('a[href="/en/login/?next=/en/wisdom/propose/"]')).not.toBeNull();
   });
 
   it('with a session cookie: renders the ProposeForm mount point, not the login prompt', async () => {

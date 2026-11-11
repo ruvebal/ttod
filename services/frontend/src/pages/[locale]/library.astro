@@ -72,7 +72,7 @@ const copy = locale === 'es'
       : <section aria-label={copy.title}>
       {quotes.map(({ favorite, quote }) => {
         const date = savedOn(favorite.savedAt);
-        return <article>
+        return <article id={quote.id}>
           <blockquote>{quote.text}</blockquote>
           <p class="meta">
             <a href={`/${locale}/wisdom/${quote.id}/`}>{quote.id}</a> · {quote.section}

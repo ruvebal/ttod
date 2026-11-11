@@ -26,9 +26,17 @@ interface Props {
   titulo: string;
   /** La frase de entrada; en las facetas, la que explica por dónde se entró. */
   intro: string;
+  /**
+   * Sin cabecera propia (AA3b): los resultados de búsqueda viven dentro de
+   * `/wisdom/`, que ya tiene su `<h1>`; el título baja a `<h2>`.
+   */
+  encabezado?: boolean;
+  tituloId?: string;
+  /** El estado vacío de una búsqueda, que no es el de una faceta. */
+  vacio?: { title: string; message: string; action?: { label: string; href: string } };
 }
 
-const { locale, todas, entries, failed, activa, titulo, intro } = Astro.props;
+const { locale, todas, entries, failed, activa, titulo, intro, encabezado = true, tituloId, vacio } = Astro.props;
 const t = copia[locale];
 const copy = labels[locale];
 
@@ -56,26 +64,43 @@ const deOtroPasillo = (n: number) => {
   return url.pathname + url.search;
 };
 const folio = (i: number) => String(desde + i + 1).padStart(String(total).length, '0');
+// El formulario de orden manda solo `orden`: lo demás de la consulta (la búsqueda,
+// los filtros) viaja escondido, o reordenar borraría lo que se buscaba.
+const conservar = (['q', 'section', 'level', 'tag'] as const)
+  .map((clave) => [clave, Astro.url.searchParams.get(clave) ?? ''] as const)
+  .filter(([, valor]) => valor.trim());
 ---
 
-<header class="bosque-entrada">
-  <h1 class="bosque-titulo">{titulo}</h1>
-  <p class="bosque-intro">{intro}</p>
-  {!failed && total > 0 && (
-    <p class="bosque-recuento">
-      <span>{activa ? t.recuentoFaceta(mostradas, total, todas.length) : t.recuento(mostradas, total, secciones)}</span>
-      <b>{t.pasilloDe(pasillo, pasillos)}</b>
-    </p>
-  )}
-</header>
+{encabezado ? (
+  <header class="bosque-entrada">
+    <h1 class="bosque-titulo">{titulo}</h1>
+    <p class="bosque-intro">{intro}</p>
+    {!failed && total > 0 && (
+      <p class="bosque-recuento">
+        <span>{activa ? t.recuentoFaceta(mostradas, total, todas.length) : t.recuento(mostradas, total, secciones)}</span>
+        <b>{t.pasilloDe(pasillo, pasillos)}</b>
+      </p>
+    )}
+  </header>
+) : (
+  <header class="bosque-entrada bosque-entrada--resultados">
+    <h2 class="bosque-titulo" id={tituloId}>{titulo}</h2>
+    {total > 0 && (
+      <p class="bosque-recuento">
+        <span>{t.recuentoFaceta(mostradas, total, todas.length)}</span>
+        <b>{t.pasilloDe(pasillo, pasillos)}</b>
+      </p>
+    )}
+  </header>
+)}
 
 {failed ? (
   <EmptyState variant="error" title={copy.errorTitle} message={copy.errorMessage} />
 ) : total === 0 ? (
   <EmptyState
-    title={activa ? copy.noMatchesTitle : copy.emptyTitle}
-    message={activa ? copy.noMatches : copy.empty}
-    action={activa ? { label: copy.back, href: `/${locale}/wisdom/` } : undefined}
+    title={vacio?.title ?? (activa ? copy.noMatchesTitle : copy.emptyTitle)}
+    message={vacio?.message ?? (activa ? copy.noMatches : copy.empty)}
+    action={vacio ? vacio.action : activa ? { label: copy.back, href: `/${locale}/wisdom/` } : undefined}
   />
 ) : (
   <>
@@ -88,6 +113,7 @@ const folio = (i: number) => String(desde + i + 1).padStart(String(total).length
             <option value={o.clave} selected={o.clave === orden}>{o[locale]}</option>
           ))}
         </select>
+        {conservar.map(([clave, valor]) => <input type="hidden" name={clave} value={valor} />)}
         <button type="submit">{t.aplicar}</button>
       </form>
     </div>

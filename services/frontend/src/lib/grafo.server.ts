@@ -1,4 +1,5 @@
 import { construirGrafo, planoGuardable, type PlanoGuardado, type RespuestaGrafo } from '../components/graph/sendero';
+import { mapaGemelas, type Arista } from './idioma';
 
 /**
  * El plano 2D de /graph, calculado en el servidor una vez por grafo y por idioma.
@@ -71,6 +72,23 @@ export function planoInicial(idioma: string): PlanoGuardado | null {
  */
 export function grafoInicial(): string | null {
   return vigente()?.texto ?? null;
+}
+
+/**
+ * Las gemelas de traducción (`translation_of`, en los dos sentidos) para el
+ * cambio de idioma de una cita (AA3b, F57). A diferencia del plano, aquí sí se
+ * espera al grafo la primera vez: el enlace tiene que llevar a la cita gemela,
+ * no a un índice. Si el backend no da grafo, `null` (el enlace va al índice).
+ */
+let gemelasDe: { datos: RespuestaGrafo; mapa: Map<string, string> } | undefined;
+export async function gemelasTraduccion(): Promise<Map<string, string> | null> {
+  if (!vigente()) await refresca();
+  const guardado = memoria.guardado;
+  if (!guardado) return null;
+  if (gemelasDe?.datos !== guardado.datos) {
+    gemelasDe = { datos: guardado.datos, mapa: mapaGemelas(guardado.datos.edges as Arista[]) };
+  }
+  return gemelasDe.mapa;
 }
 
 function vigente() {

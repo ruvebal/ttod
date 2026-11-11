@@ -810,12 +810,9 @@
 		clip: rect(0 0 0 0);
 		white-space: nowrap;
 	}
-	/* La barra de arriba es fija: lo que recibe el foco o el salto se para debajo. */
-	.codigo,
-	.rio__centro,
-	.rio__protagonista {
-		scroll-margin-top: 7rem;
-	}
+	/* La barra de arriba es fija: lo que recibe el foco o el salto se para debajo.
+	   Lo hace una sola regla global (`html { scroll-padding-top }` en `Page.astro`,
+	   LOCATORS §6); un `scroll-margin` aquí se sumaba a ella. */
 
 	/* ── El río: quien llama | el símbolo | a quién llama ── */
 	.rio {

@@ -1,0 +1,48 @@
+{
+  "recorded": "2026-11-11T11:42:13+00:00",
+  "base": "http://127.0.0.1:28290",
+  "tool": "lighthouse 12.6.0, mobile form factor, 390x844 @2x, simulated throttling",
+  "host": "tanit.crea-comm.loc",
+  "views": [
+    {
+      "path": "/es/",
+      "lighthouse_a11y": 100,
+      "a11y_violations": 0,
+      "a11y_failing_audits": [],
+      "performance": 81,
+      "cls": 0.013,
+      "lcp_ms": 5040,
+      "tbt_ms": 4
+    },
+    {
+      "path": "/es/wisdom/",
+      "lighthouse_a11y": 100,
+      "a11y_violations": 0,
+      "a11y_failing_audits": [],
+      "performance": 97,
+      "cls": 0,
+      "lcp_ms": 2401,
+      "tbt_ms": 32
+    },
+    {
+      "path": "/es/graph/",
+      "lighthouse_a11y": 100,
+      "a11y_violations": 0,
+      "a11y_failing_audits": [],
+      "performance": 95,
+      "cls": 0.0003,
+      "lcp_ms": 2714,
+      "tbt_ms": 27
+    },
+    {
+      "path": "/es/graph/plano/",
+      "lighthouse_a11y": 100,
+      "a11y_violations": 0,
+      "a11y_failing_audits": [],
+      "performance": 76,
+      "cls": 0.4702,
+      "lcp_ms": 2724,
+      "tbt_ms": 9
+    }
+  ]
+}

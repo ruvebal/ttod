@@ -45,6 +45,10 @@ services:
     build:
       context: .
       dockerfile: services/backend/Dockerfile
+      # F16: `make` passes your uid/gid so the drafts bind stays yours (Makefile, AA5).
+      args:
+        TTOD_UID: ${TTOD_UID:-10001}
+        TTOD_GID: ${TTOD_GID:-10001}
     restart: unless-stopped
     environment:
       OLLAMA_MODE: ${OLLAMA_MODE:-container}
@@ -102,6 +106,9 @@ services:
     build:
       context: .
       dockerfile: services/mcp/Dockerfile
+      args:
+        TTOD_UID: ${TTOD_UID:-10001}
+        TTOD_GID: ${TTOD_GID:-10001}
     restart: unless-stopped
     environment:
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
@@ -127,6 +134,9 @@ services:
     image: redis:7-alpine
     restart: unless-stopped
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    # `make` runs Redis as you (TTOD_REDIS_USER=uid:gid), so data/redis stays readable for backups.
+    # Empty (plain `docker compose`): the image's own `redis` user, which takes /data itself.
+    user: "${TTOD_REDIS_USER:-}"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
       # Host folder for the AOF; override (e.g. a temp dir for an isolated test stack) with TTOD_REDIS_HOST_DIR.

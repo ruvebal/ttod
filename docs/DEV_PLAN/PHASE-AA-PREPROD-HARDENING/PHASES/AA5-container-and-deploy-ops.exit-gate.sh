@@ -82,12 +82,22 @@ if [ "${AA5_SKIP_LIVE:-0}" != "1" ]; then
   envf="${TMPDIR:-/tmp}/$project.env"; datadir="${TMPDIR:-/tmp}/$project.data"
   dc() { docker compose -p "$project" --env-file "$envf" -f docker-compose.yml "$@"; }
   trap 'bash "$stack" down "$project"' EXIT
+  # Amended after the cold review (F1, strengthening): run as `make` does, with the host's uid/gid, and
+  # check below that the containers which write host folders really run as that user. Docker Desktop maps
+  # bind ownership, so a write test alone cannot catch the Linux failure; the uid check can.
+  host_uid="$(id -u)"; host_gid="$(id -g)"
+  export TTOD_UID="$host_uid" TTOD_GID="$host_gid" TTOD_REDIS_USER="$host_uid:$host_gid"
   bash "$stack" up "$project" "$port" "TTOD_ALLOWED_HOSTS=$lan" "COOKIE_SECURE=auto" >/dev/null
   dc up -d --no-deps --build mcp-server >/dev/null 2>&1 || fail "isolated mcp-server did not start"
   base="http://127.0.0.1:$port"
   # F16: nothing of ours runs as root.
   for svc in backend frontend mcp-server; do
     uid="$(dc exec -T "$svc" id -u | tr -d '\r')"; [ "$uid" != 0 ] || fail "$svc runs as root (F16)"; done
+  for svc in backend redis; do
+    uid="$(dc exec -T "$svc" id -u | tr -d '\r')"; [ "$uid" = "$host_uid" ] || fail "$svc runs as uid $uid, not the host user $host_uid (F16/F1)"; done
+  # Amended after the cold review (F4): a malformed Host port (an open @astrojs/node crash) stops at Caddy.
+  hc="$(curl -s -o /dev/null -w '%{http_code}' -H 'Host: localhost:8x8x' "$base/es/")"
+  [ "$hc" = 400 ] || fail "malformed Host port reached the frontend (HTTP $hc), want 400 at Caddy"
   # F17: frontend and mcp become healthy.
   for svc in frontend mcp-server; do
     st=""; for _ in $(seq 1 45); do st="$(docker inspect -f '{{.State.Health.Status}}' "$(dc ps -q "$svc")" 2>/dev/null)"; [ "$st" = healthy ] && break; sleep 2; done

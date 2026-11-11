@@ -11,6 +11,15 @@ ROOT     := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 PYTHON   := $(shell if [ -x "$(ROOT)/.venv/bin/python" ]; then echo "$(ROOT)/.venv/bin/python"; else echo python3; fi)
 CLI      := $(PYTHON) $(ROOT)/cli.py
 COMPOSE  := docker compose
+# AA5 (F16, cold review F1/F3): the containers that write host folders (backend drafts, Redis AOF) run
+# as the user who runs `make`, so files under data/ stay yours: no chown, `git pull` keeps working and
+# backups need no sudo. Root (uid 0) falls back to 10001. Plain `docker compose` uses 10001 and the
+# Redis image's own user; on Linux use `make`, or set TTOD_UID/TTOD_GID/TTOD_REDIS_USER in .env.
+_HOST_UID := $(shell id -u)
+_HOST_GID := $(shell id -g)
+export TTOD_UID ?= $(if $(filter 0,$(_HOST_UID)),10001,$(_HOST_UID))
+export TTOD_GID ?= $(if $(filter 0,$(_HOST_GID)),10001,$(_HOST_GID))
+export TTOD_REDIS_USER ?= $(TTOD_UID):$(TTOD_GID)
 FE       := services/frontend
 DOCS     := docs/public
 HTTP_PORT ?= 8080

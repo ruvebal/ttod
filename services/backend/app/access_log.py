@@ -8,7 +8,11 @@ logs one line:
     {"ts": "...", "event": "http", "request_id": "...", "method": "GET", "path": "/health", "status": 200, "ms": 3.1}
 
 Only the path is logged, never the query string or headers: a query can carry a search a student
-typed, and headers carry session cookies.
+typed, and headers carry session cookies. `ms` is the time until the response *starts*: for a streamed
+Oracle answer that is the time to first byte, not the whole stream.
+
+The Compose health probe (`/health` from inside the container, every 10 s, no request id) is not logged
+when it succeeds: it was ~8,600 lines a day of noise. A `/health` through Caddy, or any failure, is.
 """
 
 from __future__ import annotations
@@ -24,7 +28,7 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, Request
 
 REQUEST_ID_HEADER = "X-Request-ID"
-_WELL_FORMED = re.compile(r"^[A-Za-z0-9._-]{8,128}$")
+_WELL_FORMED = re.compile(r"[A-Za-z0-9._-]{8,128}")
 
 access_logger = logging.getLogger("ttod.access")
 if not access_logger.handlers:
@@ -37,12 +41,14 @@ if not access_logger.handlers:
 
 def request_id_of(request: Request) -> str:
     incoming = request.headers.get(REQUEST_ID_HEADER, "")
-    return incoming if _WELL_FORMED.match(incoming) else uuid.uuid4().hex
+    # fullmatch: `match` with `$` would also accept a trailing newline (cold review AA5, F7).
+    return incoming if _WELL_FORMED.fullmatch(incoming) else uuid.uuid4().hex
 
 
 def install_access_log(app: FastAPI) -> None:
     @app.middleware("http")
     async def access_log(request: Request, call_next):
+        probe = request.url.path == "/health" and REQUEST_ID_HEADER not in request.headers
         request_id = request_id_of(request)
         request.state.request_id = request_id
         started = time.perf_counter()
@@ -53,12 +59,17 @@ def install_access_log(app: FastAPI) -> None:
             response.headers[REQUEST_ID_HEADER] = request_id
             return response
         finally:
-            access_logger.info(json.dumps({
-                "ts": datetime.now(timezone.utc).isoformat(timespec="milliseconds"),
-                "event": "http",
-                "request_id": request_id,
-                "method": request.method,
-                "path": request.url.path,
-                "status": status,
-                "ms": round((time.perf_counter() - started) * 1000, 1),
-            }))
+            if not (probe and status == 200):
+                _log(request, request_id, status, started)
+
+
+def _log(request: Request, request_id: str, status: int, started: float) -> None:
+    access_logger.info(json.dumps({
+        "ts": datetime.now(timezone.utc).isoformat(timespec="milliseconds"),
+        "event": "http",
+        "request_id": request_id,
+        "method": request.method,
+        "path": request.url.path,
+        "status": status,
+        "ms": round((time.perf_counter() - started) * 1000, 1),
+    }))

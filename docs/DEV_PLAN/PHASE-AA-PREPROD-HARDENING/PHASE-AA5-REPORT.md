@@ -98,7 +98,7 @@ Lane B covers F2, F6, F16–F19, F29–F31 and F45–F48. It stays BLOCKED until
 
 ## Lane B: ops (F2, F6, F16–F19, F29–F31, F45–F48 · I1–I6, I10–I16)
 
-**Status:** VERIFYING (2026-11-11) · cold review pending · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` (reopened from `main` at
+**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA5-COLD-REVIEW.md](PHASE-AA5-COLD-REVIEW.md) § Lane B), amended in the same session (§ Cold review amendments) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` (reopened from `main` at
 `fd2f8278`). **Exit gate:** the same file. The lane B checks were appended before any code (commit `4f529de6`),
 lane A's checks keep running, and lane A's live part moved onto `scripts/isolated-stack.sh` (AA2 cold review F3).
 
@@ -113,7 +113,7 @@ lane A's checks keep running, and lane A's live part moved onto `scripts/isolate
 | **F18** Lilith checklist (I5) | Rewritten for current `main`: services and users, `.env` with `TTOD_ALLOWED_HOSTS` / `COOKIE_SECURE` / `TTOD_TRUSTED_PROXIES`, `ensure_env_secrets`, `chown`, the TLS proxy steps, current probes (`wis-034`, headers, 301, 401, request id, maxmemory), and the security boundary | `docs/DEV_PLAN/LILITH-VALIDATION-CHECKLIST.md` |
 | **F19** npm audit (I6) | Re-measured below; fixes deliberately deferred | this report |
 | **F29** Redis memory (I10) | `maxmemory 256mb` with `noeviction` kept: a runaway client now gets a clean error, not an OOM kill | `redis/redis.conf` |
-| **F30** Ollama port (I11) | No host port by default. `docker-compose.ollama-port.yml` is the opt-in, publishing on `127.0.0.1` only (for `make review-pr`); the docs that named `:11435` say so | compose, override, guide, `review-local.sh` |
+| **F30** Ollama port (I11) | No host port by default. `docker-compose.ollama-port.yml` is the opt-in, publishing on `127.0.0.1` only. It is needed only when a host tool should use the *stack's* Ollama; `make review-pr` defaults to a native one on `:11434`. The docs that named `:11435` say so | compose, override, guide, `review-local.sh` |
 | **F31** orphans (I13) | A note on why a draft can be orphaned (disk write, then Redis fails) and how to sweep it | `data/proposals/README.md` |
 | **F45** backend tests (I12) | `make test` now also runs `services/backend/tests`, and CI gains a `backend-tests` job (Python 3.12, the `make venv` installs). The push trigger now includes `services/backend/**` and `ttod_core/**` | `Makefile`, `.github/workflows/ci.yml` |
 | **F46** Redis pool (I14) | `socket_timeout` 2 s, `socket_connect_timeout` 2 s, `health_check_interval` 30 s, `max_connections` 50, each overridable by env | `app/redis_client.py`, compose |
@@ -174,9 +174,30 @@ lane A's checks keep running, and lane A's live part moved onto `scripts/isolate
 
 ### Rollout (owner)
 
-1. **Linux hosts only:** run `sudo chown -R 10001:10001 data/proposals` once. Tanit runs Docker Desktop and
-   needs nothing.
-2. Run `make rebuild`. Ollama is recreated with the pinned image, the same one already running, and keeps its
-   model volume. Its host port `11435` disappears: use the override for `make review-pr`.
-3. Check: `curl -sI http://127.0.0.1:18080/health | grep -i x-request-id` and
-   `docker compose logs --tail=5 backend` (JSON lines).
+1. Run `make rebuild`. It builds the backend and mcp images with your uid, and runs Redis as you (no `chown`
+   anywhere). Ollama is recreated with the pinned image, the same one already running, and keeps its model
+   volume. Its host port `11435` disappears; the override restores it on loopback if a host tool needs the
+   stack's Ollama.
+2. Check: `curl -s -D - -o /dev/null http://127.0.0.1:18080/health | grep -i x-request-id` (a GET; HEAD answers
+   405) and `docker compose logs --tail=5 backend` (JSON lines).
+3. **Optional, GitHub settings:** make `backend-tests` a required check next to `typecheck-and-build`. Today a
+   red backend run would not block a merge.
+
+### Cold review amendments (lane B, 2026-11-11)
+
+The verdict was PASS-WITH-AMENDMENTS, with one P1. Every finding was handled in this session:
+
+| # | Fix | Proof |
+| - | --- | ----- |
+| F1 (P1): on Linux the non-root backend could not write `data/proposals` (every proposal a 500) | `make` exports your uid/gid (`TTOD_UID`, `TTOD_GID`). Compose passes them as build args to backend and mcp, whose Dockerfiles create that user (numeric `USER`, root → 10001). Plain `docker compose` keeps 10001, and the setup guides (en, es) now show Linux users the one `.env` line. The backend logs a clear startup error when the drafts folder is not writable | The gate now runs the live stack with the host uid and checks that the backend **and Redis** run as that uid (the structural proof; Docker Desktop's ownership mapping hides the write failure itself) |
+| F2: the trusted-proxy story had holes | The checklist §4: Traefik must reach Caddy over the Docker network, not the published port (on Docker Desktop every client comes from `192.168.65.x`); Traefik must not forward client `X-Forwarded-*` (keep `forwardedHeaders.insecure` off); several CIDRs are space-separated, never comma; never `private_ranges`. The same rules are in the Caddyfile comment and `.env.example` | — |
+| F3: `chown -R` broke `git pull`; Redis files needed sudo | Gone with F1: under `make`, Redis runs as you too (`TTOD_REDIS_USER`), so `data/` stays yours | gate: Redis uid = host uid |
+| F4: non-breaking npm fixes not covered by I6; no reachability | `npm audit fix` (lockfile only): **18 → 13** (4 highs, 1 moderate gone). The frontend suite (269), `astro check`, the build, and the AA3 + AA3b browser checks pass on a stack built from the new lockfile. **Reachability** of the 13 left (all need Astro 7): the Astro XSS advisories need `define:vars`, spread props, `transition:` directives or server islands, and TTOD uses none (every `transition:` in the code is CSS); `sharp` needs `astro:assets` (unused); `zod` and `esbuild` run at build time. The one reachable, `@astrojs/node` crashing on a malformed `Host` port, is now blocked at Caddy (strict `Host` matcher → 400). The checklist guard now also says that student stacks are reachable by classmates on a shared LAN | gate: `Host: localhost:8x8x` → 400 at Caddy |
+| F5: `curl -sI` sends HEAD (405); the `make review-pr` claim was wrong | Both corrected here and in the checklist | — |
+| F6: `/health` said `redis: ok` at the memory cap; probe log noise | `redis: "full"` and 503 within 5 % of `maxmemory`. Docker's internal `/health` probe (no request id, status 200) is no longer logged; one through Caddy, or any failure, still is. The ~350 ms cost of `/health` predates AA5 and stays recorded | `health_redis_full…`, `request_id_health_probe…` tests |
+| F7: `ms` for streams; `match` + `$` | `ms` is documented as time until the response starts; the request id uses `fullmatch` | `request_id_trailing_newline…` test |
+| F8: CI job not required; trigger paths | The push trigger adds `ttod.yml`, `schema/**`, `pyproject.toml`, `cli.py`. Making `backend-tests` required is a GitHub setting for the owner (rollout step 3). The workflow keeps its name, because renaming it changes nothing about required checks and only adds noise | — |
+
+**Also found while amending:** the first draft of the probe-skip used `return` inside `finally`, which replaced
+the response with `None` (caught by the existing health tests). It now logs from `finally` and never returns
+from it.

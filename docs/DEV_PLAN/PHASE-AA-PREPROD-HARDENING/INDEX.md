@@ -42,7 +42,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | DONE — cold review PASS-WITH-AMENDMENTS (F1–F10), amended and re-verified; owner marked DONE 2026-11-11 ("AA3 done") |
 | 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | DONE — cold review PASS-WITH-AMENDMENTS (F1–F11), amended and re-verified; owner marked DONE 2026-11-11 ("AA3b done") |
 | 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED — queued behind AA5 lane B by owner order (2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
-| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | IN_PROGRESS — lane A DONE 2026-11-10; lane B VERIFYING 2026-11-11 (owner chose it over AA4); report [PHASE-AA5-REPORT.md](PHASE-AA5-REPORT.md) § Lane B; cold review pending; worktree opened by hand (harness picks the first READY row) |
+| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | IN_PROGRESS — lane A DONE 2026-11-10; lane B VERIFYING 2026-11-11 (owner chose it over AA4); report [PHASE-AA5-REPORT.md](PHASE-AA5-REPORT.md) § Lane B; cold review PASS-WITH-AMENDMENTS (F1–F8), amended and re-verified; awaiting owner; worktree opened by hand (harness picks the first READY row) |
 | 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 DONE (AA2, AA3b DONE) |
 
 ## Live snapshot (2026-11-10)

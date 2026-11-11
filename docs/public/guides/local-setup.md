@@ -54,6 +54,16 @@ docker compose exec ollama ollama pull llama3.2:1b
 docker compose exec ollama ollama pull nomic-embed-text
 ```
 
+**Linux without `make`:** the backend and Redis containers run as an unprivileged user and write into
+`data/`. `make` runs them as *you*; by hand, tell Compose who you are first, or web proposals fail with a
+permission error (the backend logs `Proposal drafts folder … is not writable`):
+
+```bash
+printf 'TTOD_UID=%s\nTTOD_GID=%s\nTTOD_REDIS_USER=%s:%s\n' "$(id -u)" "$(id -g)" "$(id -u)" "$(id -g)" >> .env
+```
+
+macOS and Windows (Docker Desktop) need nothing.
+
 **Is `make` available on your machine?** macOS and Linux ship with it. Windows does not — but
 Docker Desktop on Windows requires the WSL2 backend anyway, and a WSL2 terminal (not PowerShell or
 cmd.exe) already has `make`, or gets it via `sudo apt install make`. If you're on a shared/school

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import os
 import random
 from contextlib import asynccontextmanager
 from dataclasses import replace
@@ -43,7 +44,7 @@ from .models import (
 )
 from .oracle import OracleService
 from .proposal_drafts import DualWriteProposalDraftStore, FilesystemProposalDraftStore, ProposalDraftStore
-from .redis_client import create_redis_client, redis_ping
+from .redis_client import create_redis_client, redis_full, redis_ping
 from .sessions import MemorySessionStore, RedisSessionStore, SessionStore
 from .storage import SnapshotService
 from .users import MemoryUserStore, RedisUserStore, UserStore
@@ -166,6 +167,14 @@ def create_app(
             logging.getLogger(__name__).warning("No se pudo precargar ttod.yml al arrancar", exc_info=True)
         yield
 
+    # Cold review AA5 F1: a drafts folder the process cannot write turns every web proposal into a 500
+    # while /health stays green. Say so at startup, with the fix, instead of only in a stack trace.
+    if not os.access(settings.proposal_dir, os.W_OK):
+        logger.error(
+            "Proposal drafts folder %s is not writable by uid %s: web proposals will fail. "
+            "Rebuild with `make rebuild` (it runs the backend as your user) or make the folder writable.",
+            settings.proposal_dir, os.getuid(),
+        )
     app = FastAPI(title="TTOD Oracle Backend", version="1.0.0", lifespan=lifespan)
     # F48: request id + one JSON access line per request (uvicorn's own access log is off in the image).
     install_access_log(app)
@@ -180,7 +189,11 @@ def create_app(
             raise HTTPException(status_code=503, detail="TTOD repository unavailable") from exc
         if settings.redis_url.strip() or shore_client is not None:
             redis_ok = shore_client is not None and redis_ping(shore_client)
-            payload = {**payload, "redis": "ok" if redis_ok else "down"}
+            # Cold review AA5 F6: at the maxmemory cap (noeviction) every write fails and logins answer
+            # 503, so health must not say "ok". "full" = within 5 % of the cap.
+            full = redis_ok and redis_full(shore_client)
+            payload = {**payload, "redis": "full" if full else "ok" if redis_ok else "down"}
+            redis_ok = redis_ok and not full
             if not redis_ok:
                 # F27: the shore APIs answer 503 without Redis, so health must too; the
                 # Compose healthcheck (urlopen raises on 503) then marks the backend unhealthy.

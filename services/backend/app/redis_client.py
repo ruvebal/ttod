@@ -34,3 +34,13 @@ def redis_ping(client: Any) -> bool:
         return bool(client.ping())
     except redis.RedisError:
         return False
+
+
+def redis_full(client: Any, margin: float = 0.95) -> bool:
+    """True when Redis is within `margin` of its maxmemory (AA5 cold review F6). Unknown → False."""
+    try:
+        info = client.info("memory")
+        used, cap = info.get("used_memory"), info.get("maxmemory")
+    except (redis.RedisError, AttributeError, TypeError):
+        return False
+    return isinstance(used, int) and isinstance(cap, int) and cap > 0 and used >= cap * margin

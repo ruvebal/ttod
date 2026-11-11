@@ -90,5 +90,36 @@ class RequestIdTests(unittest.TestCase):
         self.assertEqual(lines[0]["request_id"], response.headers["X-Request-ID"])
 
 
+class HealthProbeAndCapTests(unittest.TestCase):
+    def test_request_id_health_probe_not_logged_but_proxied_health_is(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            client = TestClient(_app(tmp))
+            with self.assertLogs("ttod.access", level="INFO") as logs:
+                client.get("/health")                                       # Docker's probe: silent
+                client.get("/health", headers={"X-Request-ID": "caddy-1234-5678"})  # through Caddy: logged
+        self.assertEqual(len(logs.output), 1)
+        self.assertIn("caddy-1234-5678", logs.output[0])
+
+    def test_request_id_trailing_newline_is_rejected(self):
+        from services.backend.app.access_log import _WELL_FORMED
+        self.assertIsNone(_WELL_FORMED.fullmatch("caddy-1234-5678\n"))
+
+    def test_health_redis_full_at_the_cap_is_503(self):
+        from unittest.mock import MagicMock
+        from services.backend.app.users import MemoryUserStore as _U  # noqa: F401
+        shore = MagicMock()
+        shore.ping.return_value = True
+        shore.info.return_value = {"used_memory": 268_000_000, "maxmemory": 268_435_456}
+        with tempfile.TemporaryDirectory() as tmp:
+            settings = Settings(ttod_path=REPOSITORY_ROOT / "ttod.yml", schema_dir=REPOSITORY_ROOT / "schema",
+                                proposal_dir=Path(tmp), redis_url="redis://unused", ollama_model="test-model")
+            app = create_app(settings, users=MemoryUserStore(), sessions=MemorySessionStore(),
+                             favorites=MemoryFavoriteStore(), proposals=FilesystemProposalDraftStore(Path(tmp)),
+                             redis_client=shore)
+            response = TestClient(app).get("/health")
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.json()["redis"], "full")
+
+
 if __name__ == "__main__":
     unittest.main()

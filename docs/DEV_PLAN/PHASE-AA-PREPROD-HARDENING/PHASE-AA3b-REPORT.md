@@ -69,9 +69,12 @@ Paste a link and have the reader land in the same place, in either language:
 
 - **Exit gate (dry run on the dev stack, 2026-11-11):**
   - registry 15 pages / 11 redirects / 2 not-found / 5 exempt;
-  - contract tests 38 passed; frontend suite 233 passed; `astro check` 0 errors;
+  - contract tests 38 passed; frontend suite 233 passed; `astro check` 0 errors (the runner's run below: 39 and 234,
+    after the alias test was added);
   - F54 mutation: a literal count in ValleSigue, `/es/` and `/en/` each turns the fixture test red.
-  - The runner's verify log is [`PHASES/AA3b-locators-wisdom-and-graph-ia-VERIFY-LOG.md`](PHASES/AA3b-locators-wisdom-and-graph-ia-VERIFY-LOG.md).
+  - **Runner verify: exit 0** on commit `3566dd49`, with a fresh isolated stack (`ttod_aa3bgate`), the full live
+    probe, the browser checks and Lighthouse:
+    [`PHASES/AA3b-locators-wisdom-and-graph-ia-VERIFY-LOG.md`](PHASES/AA3b-locators-wisdom-and-graph-ia-VERIFY-LOG.md).
 - **Live curl probe** of every registry row, both locales: [`baselines/aa3b-2026-11-11/probe.log`](baselines/aa3b-2026-11-11/probe.log)
   (script `probe.sh`, isolated stack). Pages 200; all 11 redirects 301 to the exact Location; `zz-999` and the
   other locale's id 404; exemptions untouched; `POST /es/login` is not redirected (403 from Astro's origin check).
@@ -90,16 +93,18 @@ Paste a link and have the reader land in the same place, in either language:
   | `/es/graph/plano/` | 5 | 5 (`/es/graph/`) |
   | `/es/graph/code/` | 6 | 6 (`/es/graph/path/`) |
 
-- **AA0 UX rule** (Lighthouse 12.6.0, mobile 390, on Tanit; [`baselines/aa3b-2026-11-11/ux/`](baselines/aa3b-2026-11-11/ux/ux-baseline.json)):
+- **AA0 UX rule** (Lighthouse 12.6.0, mobile 390, on Tanit). Two runs: the dev stack
+  ([`baselines/aa3b-2026-11-11/ux/`](baselines/aa3b-2026-11-11/ux/ux-baseline.json)) and the runner's verify.
 
-  | View | a11y | CLS | LCP | AA0 reference |
-  | ---- | ---- | --- | --- | ------------- |
-  | `/es/` | 100 | 0.0130 | 5040 ms | 100 / 0.0130 / 5047 |
-  | `/es/wisdom/` | 100 | 0.0000 | 2401 ms | 100 / 0.0000 / 2330 |
-  | `/es/graph/` | 100 | 0.0003 | **2714 ms** | `/es/graph/path` 100 / 0.0003 / 4959 |
-  | `/es/graph/plano/` (new baseline) | 100 | **0.4702** | 2724 ms | none (see F60) |
+  | View | a11y | CLS | LCP (dev run / runner) | AA0 reference (a11y / CLS / LCP) |
+  | ---- | ---- | --- | ---------------------- | -------------------------------- |
+  | `/es/` | 100 | 0.0130 | 5040 / 5045 ms | 100 / 0.0130 / 5047 |
+  | `/es/wisdom/` | 100 | 0.0000 | 2401 / 2339 ms | 100 / 0.0000 / 2330 |
+  | `/es/graph/` | 100 | 0.0003 | 2714 / 4662 ms | `/es/graph/path` 100 / 0.0003 / 4959 |
+  | `/es/graph/plano/` (new baseline) | 100 | **0.4702** | 2724 / 2734 ms | none (see F60) |
 
-  The 3D page's LCP fell by 45 % because the code graph no longer loads with it.
+  No view regresses under the rule. The two `/es/graph/` LCP runs are 1.9 s apart, so the only claim is "within
+  budget". Removing the code graph from that page may help, but two runs do not show it.
 
 ## 4. Amendments (disclosed)
 

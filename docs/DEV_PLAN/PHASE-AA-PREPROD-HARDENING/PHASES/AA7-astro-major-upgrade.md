@@ -1,7 +1,7 @@
 # PHASE-AA7: Astro 5 → 7 major upgrade
 
 > **Track:** frontend platform. It closes F19's deferred majors (PHASE-AA5-REPORT, lane B cold review F4).
-> **Status:** READY (AA5 DONE 2026-11-11). It runs before AA4 and AA6, by owner order ("AA7 -> AA4").
+> **Status:** IN_PROGRESS 2026-11-11 (AA5 DONE). It runs before AA4 and AA6, by owner order ("AA7 -> AA4").
 > It must land **before AA6** (the close-out and Phase T handoff): the AA5 guard says "the Astro major upgrade
 > comes before any public exposure".
 > **Planned:** 2026-11-11, at the owner's request ("get ready for astro upgrade in a dedicated phase").

@@ -1,5 +1,6 @@
 import { construirGrafo, planoGuardable, type PlanoGuardado, type RespuestaGrafo } from '../components/graph/sendero';
 import { mapaGemelas, type Arista } from './idioma';
+import { backendUrl } from './backend';
 
 /**
  * El plano 2D de /graph, calculado en el servidor una vez por grafo y por idioma.
@@ -29,7 +30,7 @@ const { planos } = memoria;
 
 function refresca(): Promise<void> {
   if (!memoria.enVuelo) {
-    const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+    const backend = backendUrl();
     memoria.enVuelo = (async () => {
       try {
         // Con tope: una cita espera a este grafo para su cambio de idioma, y un

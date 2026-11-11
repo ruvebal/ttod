@@ -1,4 +1,5 @@
 import type { WisdomEntry } from '../types/domain';
+import { backendUrl } from './backend';
 
 /**
  * El corpus que sirve el backend real, pedido una vez por minuto en vez de en
@@ -55,7 +56,7 @@ function refresca(): Promise<WisdomEntry[]> {
   // Dos visitas a la vez comparten la misma petición: sin esto, un pico de
   // tráfico multiplica el segundo de espera por cada visitante.
   if (!enVuelo) {
-    const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+    const backend = backendUrl();
     enVuelo = (async () => {
       try {
         const respuesta = await fetch(`${backend}/api/v1/wisdom/sample`, { headers: { accept: 'application/json' } });

@@ -53,6 +53,10 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA6-oracle-quota-and-closeout.md
 
 - AA6 waits for **AA7** (Astro 5 → 7), not only AA5. The close-out hands Phase T a frontend with no critical or high
   production advisory, so AA6's ledger cites `PHASE-AA7-REPORT.md` for F19.
+- **Node floor:** Astro 7.4.11 needs Node **>= 22.23.4** (`.nvmrc`). Student setup guides and the Lilith checklist
+  should say so in the close-out.
+- The proposal form's browser POST went to `http://backend:8000` until AA7 fixed it (cold review F6). Note it in
+  the ledger as a pre-existing defect found late.
 
 ## Acceptance
 

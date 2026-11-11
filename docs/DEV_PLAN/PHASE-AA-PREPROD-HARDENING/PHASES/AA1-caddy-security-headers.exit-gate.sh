@@ -83,8 +83,12 @@ need "$sw" '^cache-control: max-age=0, no-cache' "/sw.js lost its no-cache rule"
 report="$pack/PHASE-AA1-REPORT.md"
 test -f "$report" || fail "missing $report"
 grep -qi 'before' "$report" && grep -qi 'after' "$report" || fail "report lacks before/after curl evidence"
-start="$(git merge-base HEAD origin/main)"
-outside="$(git diff --name-only "$start" -- . ':(exclude)caddy/**' ':(exclude)docs/**' || true)"
+# Scope window (amended in AA7): once AA1 is DONE, its own diff is gate-commit..DONE-commit; re-run on a
+# later branch, a later phase's legitimate changes outside caddy/ must not count as AA1's.
+end="$(git log --format=%H -1 --grep='owner marks AA1 DONE')"
+if [ -n "$end" ]; then start="$(git log --format=%H -1 --diff-filter=A -- "$pack/PHASES/AA1-caddy-security-headers.exit-gate.sh")"
+else start="$(git merge-base HEAD origin/main)"; end=HEAD; fi
+outside="$(git diff --name-only "$start" "$end" -- . ':(exclude)caddy/**' ':(exclude)docs/**' || true)"
 [ -z "$outside" ] || fail "AA1 changed files outside caddy/ and docs/: $outside"
 # Markdown is excluded: two trailing spaces are the pack's deliberate hard line breaks.
 git diff --check "$start" -- . ':(exclude)*.md'

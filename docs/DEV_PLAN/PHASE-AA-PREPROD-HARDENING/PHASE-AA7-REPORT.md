@@ -5,9 +5,10 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA7 report: Astro 5 → 7
 
-**Status:** VERIFYING (2026-11-11) · cold review pending · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-7`, stacked on AA5
+**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA7-COLD-REVIEW.md](PHASE-AA7-COLD-REVIEW.md)), amended in the same session (§8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-7`, stacked on AA5
 (PR #97). **Exit gate:** [`PHASES/AA7-astro-major-upgrade.exit-gate.sh`](PHASES/AA7-astro-major-upgrade.exit-gate.sh), written
-with the phase file before any upgrade code. It re-runs the AA2, AA3b, AA3 and AA5 exit gates unchanged.
+with the phase file before any upgrade code. It re-runs the AA1, AA2, AA3b, AA3 and AA5 exit gates. The only edit to them is one
+scope window each in AA1, AA3b and AA3, pinned by file hash (§6).
 
 ## 1. Result
 
@@ -18,7 +19,7 @@ with the phase file before any upgrade code. It re-runs the AA2, AA3b, AA3 and A
 | `npm audit --omit=dev` | 13 (1 critical, 4 high, 2 moderate, 6 low) | **5 (0 critical, 0 high, 2 moderate, 3 low)** |
 | Frontend suite / `astro check` / build / PWA guard | green | green (271 tests) |
 | Docs heading ids (2 pages, 4 ids) | — | identical |
-| Visible text of `/es/`, `/es/wisdom/`, `/es/graph/`, `/es/wisdom/wis-034/`, `/en/docs/` | — | identical |
+| Visible text, header + main, uncut, of `/es/`, `/es/wisdom/` (16,118 characters), `/es/graph/`, `/es/wisdom/wis-034/`, `/en/docs/` | — | identical |
 
 The 5 advisories left are build-time tooling only:
 - `@tailwindcss/typography` → `postcss-selector-parser`, CSS processing at build time;
@@ -78,8 +79,9 @@ The first full verify **failed** in the AA3b gate: on Astro 7, `GET //evil.examp
 
 ## 4. Decisions
 
-- **`compressHTML: true`, not v7's default `'jsx'`.** `'jsx'` strips whitespace between inline elements: the
-  header's "Biblioteca Ada EN" or the stele foot would run together. With it pinned, the text snapshot is
+- **`compressHTML: true`, not v7's default `'jsx'`.** `'jsx'` applies JSX-style whitespace rules: a line break
+  between two elements collapses to nothing, so text written across lines in a template can lose its space
+  (corrected after the cold review, F8). With it pinned, the text snapshot is
   byte-identical. Moving to `'jsx'` is a separate, screenshot-checked decision, not part of an upgrade whose
   promise is "nothing changes".
 - **Markdown pipeline left on the v7 default (Sätteri).** The heading-id diff shows the docs ids unchanged, even the
@@ -93,13 +95,19 @@ The first full verify **failed** in the AA3b gate: on Astro 7, `GET //evil.examp
   - `/en/docs/introduction/`: `how-to-read-the-corpus`, `governance-before-convenience`.
   - `/es/docs/introduction/`: `cómo-leer-el-corpus`, `la-gobernanza-antes-que-la-comodidad`.
 - **Visible text** of the five views: byte-identical before and after.
-- **Screenshots** (`before/` and `after/`, `strip.mjs`, 390 and 1440):
-  - `quote` is 0 % different;
-  - `landing` 0.1 %, `graph` 5–6 %, `wisdom` 11–17 %. All of it falls inside animated layers: the 3D
-    constellation, and the slowly drifting painted backgrounds (`FondoEstudio`, the valley).
-  - Side by side, the content layer is the same (checked by eye on `wisdom-1440` and `landing-1440`).
-- **The earlier gates:** the third runner verify **exit 0**. AA2, AA3b, AA3 and AA5 all pass, unchanged. The first two
-  runs failed on the §3b break; both runs are in the git history of the log:
+- **Screenshots** (`before/` from a stack of `main` on Astro 5, `after/` from this branch; `strip.mjs`, 390 and 1440;
+  numbers from the committed `compare.py`):
+  - `quote` is 0.00 % different;
+  - `landing` is 0.05–0.09 %, `wisdom` 2.2–6.5 %, `graph` 3.9–6.4 %.
+  - The differences fall in animated layers: the 3D constellation, the drifting painted backgrounds, and on
+    `wisdom` the intro text's word-by-word reveal caught at a different instant.
+  - The numbers vary from run to run with animation timing (the cold reviewer measured wisdom at 4.8–6.65 %).
+    The text snapshot, which is byte-identical, is the evidence that the content is the same.
+  - `/es/account/` is not in the strip: it needs a session. The AA3 gate's re-run covers it (header and account
+    forms live).
+- **The earlier gates:** the runner verify re-runs AA1, AA2, AA3b, AA3 and AA5. The log keeps each gate's live
+  summary, CSP counts and Lighthouse numbers (not only its last line, cold review F8). Earlier runs failed on
+  the §3b break and are in the git history of the log:
   [`PHASES/AA7-astro-major-upgrade-VERIFY-LOG.md`](PHASES/AA7-astro-major-upgrade-VERIFY-LOG.md). They include the CSP
   inline-script counts against AA1 and the AA0 Lighthouse rule.
 
@@ -115,13 +123,14 @@ The first full verify **failed** in the AA3b gate: on Astro 7, `GET //evil.examp
   react 7, mdx 8. Also, `npm audit` exits non-zero on any advisory, even low, so only the critical/high verdict
   counts now.
 
-## 7. Why the gate re-runs AA2, AA3b, AA3 and AA5
+## 7. Why the gate re-runs AA1, AA2, AA3b, AA3 and AA5
 
 The upgrade replaces the compiler, the bundler, the server adapter and how env variables are read. Each earlier
 gate holds a guarantee that lives exactly there:
 
 | Gate | Guarantee the upgrade could silently break |
 | ---- | ------------------------------------------ |
+| AA1 | The security headers and report-only CSP on every response, now that the Caddyfile changed (§3b) |
 | AA2 | Cookie `Secure` rules, `security.allowedDomains` and the form origin check (adapter and core), the per-IP throttle through Astro |
 | AA3b | The locator middleware (Astro 6 may hand it a partly decoded `pathname`), SSR ids, the hash/scroll scripts after a bundler change, CSP inline-script counts |
 | AA3 | The session-aware header, the account forms and the cookie jar, the service worker, reduced motion, the AA0 Lighthouse rule |
@@ -131,3 +140,20 @@ Unit tests mock the backend and render in a container; they cannot see the adapt
 browser. The earlier gates do. Running them unchanged (the gate refuses if any was edited on this branch) is
 what lets this report say "nothing changed" with evidence. The `cookie` crash in §3 is the proof: every unit
 test passed, and only a real stack found it.
+
+## 8. Cold review amendments (2026-11-11)
+
+The verdict was PASS-WITH-AMENDMENTS, with one P1 ([review](PHASE-AA7-COLD-REVIEW.md)). Every finding was handled:
+
+| # | Fix | Proof |
+| - | --- | ----- |
+| F1 (P1): `.nvmrc` 22.12 below Astro 7.4.11's own CLI floor (22.23.4) | `.nvmrc` `22.23.4`, `engines` `>=22.23.4` | — |
+| F2: `devalue` had the `cookie` defect, invisible to a presence-only scan | `vite.ssr.noExternal: ['cookie', 'devalue']`: both are bundled from Astro's own folder, so the right major ships. The `cookie` direct dependency is gone. The externals scan now also fails when the code's owner (astro, `@astrojs/node`, another external) carries its own nested copy that differs from the top-level one | Falsified: with `devalue` external, the scan reports "astro needs its nested 6.0.3, the bundle would import the top-level 5.9.4" |
+| F3: `@rutadoble` missed dot segments and control characters | The guard rejects a doubled slash or backslash anywhere, dot segments, encoded dot/slash/backslash, and control characters. The placeholder holds the decoded path, so raw control characters are matched too | Through Caddy: `/.//`, `/%2e//`, `/%2e%2e//`, `/.\/`, `/es/..//`, `/%09/`, `/%0a/`, `/%7f/`, `//`, `/\`, `%2F%2F`, `%5C` all 404; pages, accented queries, docs, hyphenated sections and the API unchanged |
+| F4: the allowed-edit guard matched text, not content | AA1, AA3b and AA3 gates are pinned by git blob hash; every other earlier gate and both browser checks must be byte-identical | Falsified: a one-line edit dropping the backend path fails |
+| F5: AA1 not re-run although Caddy changed | AA1 joins the re-run, with the same scope window (its own diff, `9d748fb8..5a915b3d`, stayed inside `caddy/` and `docs/`; checked) | verify log |
+| F6: `ProposeForm` posted to `http://backend:8000` from the browser (older bug) | In the browser the island posts to its own origin (`/api/v1/proposals`, routed by Caddy) | `proposals.test.ts` browser case |
+| F7: screenshot numbers not reproducible; snapshot partial; `/es/account/` silently dropped | `compare.py` committed; the snapshot reads header + main, uncut; before/after re-captured; the account page's absence is stated (§5) | `compare.py` output above |
+| F8: overclaims | "unchanged" now says "only a pinned scope window"; the log keeps each gate's CSP/UX lines; the `compressHTML` description is corrected; a skipped run no longer says "re-proven" | — |
+| F9: no test for the middleware change | `destinoDe(request)` in `lib/locators.ts`, tested with a raw `//host` request (and the normalized form shown to fire) | `middleware.test.ts` |
+| F10: dead `@rollup/*-musl` pins | Removed (Vite 8 bundles with Rolldown); the image still builds | isolated stack |

@@ -48,6 +48,11 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    // AA7 (cold review F2): Astro's server code imports `cookie` and `devalue` by bare name, but its own
+    // versions (cookie 2, devalue 6) sit nested under node_modules/astro while other copies (msw's
+    // cookie 1, Svelte's devalue 5) take the top level. Bundled, each import resolves from Astro's own
+    // folder, so the right version ships and `npm ci --omit=dev` cannot drop it.
+    ssr: { noExternal: ['cookie', 'devalue'] },
     // Solo en dev: Caddy no existe fuera de Docker, así que el fetch del navegador
     // a /api y /health se reenvía al backend local, igual que hace el Caddyfile.
     server: {

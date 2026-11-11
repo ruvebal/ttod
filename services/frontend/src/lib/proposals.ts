@@ -11,7 +11,9 @@ export type ProposalResult =
   | { ok: false; reason: 'unauthenticated' | 'validation' | 'server' | 'not-found' | 'network' };
 
 export async function submitProposal(payload: ProposalPayload): Promise<ProposalResult> {
-  const backend = backendUrl();
+  // In the browser the island posts to its own origin (Caddy routes /api to the backend); `backendUrl()`
+  // is the Docker-internal address, which a browser cannot resolve (cold review AA7, F6 — older bug).
+  const backend = typeof window === 'undefined' ? backendUrl() : '';
   let response: Response;
   try {
     response = await fetch(`${backend}/api/v1/proposals`, {

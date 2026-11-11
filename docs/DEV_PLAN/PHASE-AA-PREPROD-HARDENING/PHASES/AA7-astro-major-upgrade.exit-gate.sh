@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # AA7 exit gate (Astro 5 → 7), made runnable. Written by the planner with the phase file (2026-11-11), before
 # any upgrade code. The point of the phase is that nothing earlier breaks, so after its own checks it re-runs
-# the AA2, AA3b, AA3 and AA5 exit gates as they are. A guarantee that held on Astro 5 must hold on Astro 7.
+# the AA1, AA2, AA3b, AA3 and AA5 exit gates (only a pinned scope-window edit allowed; see §4). A guarantee that held on Astro 5 must hold on Astro 7.
 # Each re-run gate brings up and tears down its own isolated stack (they run one after another).
 # AA7_SKIP_GATES=1 runs only AA7's own checks (a quick local pre-check); the runner's verify runs all.
 set -euo pipefail
@@ -58,29 +58,54 @@ echo "frontend: suite, check, build, PWA guard green"
   | python3 -c '
 import json, sys
 lock = json.load(open("package-lock.json"))["packages"]; bad = []
-for pkg in sys.stdin.read().split():
+externals = sys.stdin.read().split()
+# Amended after the cold review (F2): presence is not enough. If a package that the server code comes
+# from (astro, @astrojs/node, or another external) has its OWN nested copy of X, its bare `import "X"`
+# gets the top-level copy instead (devalue: Astro wants 6, the top level is the Svelte copy, 5). Such an X
+# must be bundled (vite.ssr.noExternal in astro.config.mjs).
+owners = set(externals) | {"astro", "@astrojs/node"}
+for pkg in externals:
     top = lock.get(f"node_modules/{pkg}")
     why = "missing" if not top else ("dev-only" if top.get("dev") else "")
     if why: bad.append(pkg + ": " + why + " at top level")
+    for owner in owners:
+        nested = lock.get(f"node_modules/{owner}/node_modules/{pkg}")
+        if nested and top and nested.get("version") != top.get("version"):
+            bad.append(f"{pkg}: {owner} needs its nested {nested.get('version')}, the bundle would import the top-level {top.get('version')}")
 if bad: print("\n".join(bad)); sys.exit(1)') || fail "the built server imports a package the production image will not have"
 
-# 4. Earlier gates, unchanged: they must not have been edited on this branch to pass.
-# Amended during AA7: one edit is allowed, and only that one. The AA3b and AA3 scope checks compared
-# "since my gate was written" to HEAD, so AA5's backend work counted as theirs. Their window now ends at
-# their own DONE commit (lines mentioning `end` or the scope window). Any other changed line fails here.
-for g in AA2-auth-throttle-and-fallback AA3b-locators-wisdom-and-graph-ia AA3-nav-a11y-and-url-hygiene AA5-container-and-deploy-ops; do
-  other="$(git diff -U0 "$start" -- "$pack/PHASES/$g.exit-gate.sh" | grep '^[+-][^+-]' | grep -v 'end=\|"\$end"\|Scope window\|later phase.s legitimate' \
-    | grep -v '^-git diff --quiet "\$start" -- ttod.yml proposals services/backend' || true)"
-  [ -z "$other" ] || { printf '%s\n' "$other"; fail "$g exit gate was edited on the AA7 branch beyond the scope window"; }
+# 4. Earlier gates. Amended after the cold review (F4/F5): the allowed edit is pinned by content, not by text
+# patterns. AA1, AA3b and AA3 got one scope window each (their own diff ends at their DONE commit); each of
+# those three files must be byte-identical to the blob pinned here. Every other earlier gate and browser
+# check must be unchanged since this gate was written. Re-pinning a hash is a reviewed change, never routine.
+declare -A pinned=(
+  [AA1-caddy-security-headers]=c133ae2319fa1cfb682ea2b73f8e441a64542bb2
+  [AA3b-locators-wisdom-and-graph-ia]=16da05b5e54da0ddd82a1814ecbd481120ca848a
+  [AA3-nav-a11y-and-url-hygiene]=5e2e658e97cfe2632756390536c4826c12099004
+)
+gates=(AA1-caddy-security-headers AA2-auth-throttle-and-fallback AA3b-locators-wisdom-and-graph-ia AA3-nav-a11y-and-url-hygiene AA5-container-and-deploy-ops)
+for g in "${gates[@]}"; do
+  f="$pack/PHASES/$g.exit-gate.sh"
+  if [ -n "${pinned[$g]:-}" ]; then
+    [ "$(git hash-object "$f")" = "${pinned[$g]}" ] || fail "$g exit gate differs from its pinned scope-window version"
+  else
+    git diff --quiet "$start" -- "$f" || fail "$g exit gate was edited on the AA7 branch"
+  fi
 done
 git diff --quiet "$start" -- "$pack/scripts/aa3b-browser-check.mjs" "$pack/scripts/aa3-browser-check.mjs" \
   || fail "an earlier browser check was edited on the AA7 branch"
 if [ "${AA7_SKIP_GATES:-0}" != "1" ]; then
-  for g in AA2-auth-throttle-and-fallback AA3b-locators-wisdom-and-graph-ia AA3-nav-a11y-and-url-hygiene AA5-container-and-deploy-ops; do
+  for g in "${gates[@]}"; do
     echo "--- re-running $g"
-    bash "$pack/PHASES/$g.exit-gate.sh" >"${TMPDIR:-/tmp}/aa7-$g.log" 2>&1 || { tail -15 "${TMPDIR:-/tmp}/aa7-$g.log"; fail "$g exit gate fails on Astro 7"; }
-    tail -1 "${TMPDIR:-/tmp}/aa7-$g.log"
+    log="${TMPDIR:-/tmp}/aa7-$g.log"
+    bash "$pack/PHASES/$g.exit-gate.sh" >"$log" 2>&1 || { tail -15 "$log"; fail "$g exit gate fails on Astro 7"; }
+    # Keep each gate's CSP counts and UX numbers in this log, not only its last line (cold review F8).
+    grep -E '^csp |a11y [0-9]+ CLS|live|contract tests|frontend suite' "$log" || true
+    tail -1 "$log"
   done
+  gates_note="and the AA1/AA2/AA3b/AA3/AA5 guarantees re-proven"
+else
+  gates_note="(earlier gates SKIPPED: AA7_SKIP_GATES=1, not a verify)"
 fi
 
 # 5. Evidence and scope.
@@ -90,4 +115,4 @@ grep -q "heading" "$pack/PHASE-AA7-REPORT.md" || fail "report has no docs headin
 # the open-redirect guard moved to the edge (caddy/Caddyfile @rutadoble); see PHASE-AA7-REPORT §3b.
 git diff --quiet "$start" -- ttod.yml proposals services/backend || fail "AA7 touched the corpus or the backend"
 git diff --check "$start" -- . ':(exclude)*.md' || fail "whitespace errors"
-echo "AA7 exit gate passed: Astro 7, clean production audit, and the AA2/AA3b/AA3/AA5 guarantees re-proven."
+echo "AA7 exit gate passed: Astro 7, clean production audit, $gates_note."

@@ -49,11 +49,13 @@
   handle @hostmalo {
     respond "Bad Request" 400
   }
-  # AA7: a path that starts with `//` or `/\` is never a TTOD page, and a browser can read it as another
-  # host. Since Astro 7 the Node adapter normalizes the path when it rebuilds the URL from Caddy's
+  # AA7: a path with a doubled slash, a backslash, a dot segment (`/./`, `/../`), an encoded dot, slash or
+  # backslash, or an encoded control character is never a TTOD page; normalized, some become `//host`,
+  # which a browser reads as another host (cold review AA7 F3: `/.//`, `/%2e//`, `/%09/` slipped past
+  # the first version). The placeholder holds the *decoded* path, so control characters are matched raw. Since Astro 7 the Node adapter normalizes the path when it rebuilds the URL from Caddy's
   # X-Forwarded-* headers, so the app's open-redirect guard (lib/locators.ts) can no longer see it.
   # Refuse it here, on the raw request line, before it is proxied.
-  @rutadoble vars_regexp {http.request.orig_uri.path} ^/[/\\]
+  @rutadoble vars_regexp {http.request.orig_uri.path} (//|\\|/\.\.?(/|$)|%2[eEfF]|%5[cC]|%[01][0-9A-Fa-f]|%7[fF]|[\x00-\x1f\x7f])
   handle @rutadoble {
     respond "Not Found" 404
   }

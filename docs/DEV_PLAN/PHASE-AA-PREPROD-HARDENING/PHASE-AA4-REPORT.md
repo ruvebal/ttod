@@ -1,11 +1,11 @@
 <!--
 AA4 report: SEO robots, meta and PWA honesty.
-Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent does not mark DONE.
+Author: Rubén Vega Balbás PhD (agent-assisted). Status DONE by the owner. The agent does not mark DONE.
 -->
 
 # PHASE-AA4 report: robots, meta and PWA honesty
 
-**Status:** VERIFYING · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-4`, stacked on AA7 (PR #98 not yet merged).
+**Status:** DONE (owner, 2026-11-12: "AA4 DONE"; the cold review was still running, §8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-4`, stacked on AA7 (PR #98 not yet merged).
 **Exit gate:** [`PHASES/AA4-seo-robots-and-meta.exit-gate.sh`](PHASES/AA4-seo-robots-and-meta.exit-gate.sh). It was
 committed alone (7808afa3) before any phase code. It re-runs the AA1, AA3b, AA3 and AA5 gates unchanged. There was one
 later edit, a strengthening (§6). **Findings:** F14, F15, F41, F42, F43, F44 · **Assignments:** A12, A13, A27, A28.

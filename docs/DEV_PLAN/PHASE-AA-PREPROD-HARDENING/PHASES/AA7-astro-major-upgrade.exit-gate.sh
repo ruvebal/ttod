@@ -47,6 +47,20 @@ grep -q "redirectToDefaultLocale" "$fe/astro.config.mjs" || fail "i18n redirectT
 (cd "$fe" && npm run build >"${TMPDIR:-/tmp}/aa7-build.log" 2>&1) || { tail -30 "${TMPDIR:-/tmp}/aa7-build.log"; fail "build red"; }
 (cd "$fe" && npm run pwa:guard >"${TMPDIR:-/tmp}/aa7-pwa.log" 2>&1) || { tail -20 "${TMPDIR:-/tmp}/aa7-pwa.log"; fail "PWA guard red"; }
 echo "frontend: suite, check, build, PWA guard green"
+# Amended during AA7 (strengthening): the production image installs with --omit=dev, so every bare
+# import the built server makes must resolve to a top-level, non-dev package in the lockfile. Astro 7
+# emitted `import "cookie"` while its cookie@2 sat nested under astro/ and the top-level cookie was a
+# dev-only 1.x: fine locally (wrong version), a crash in the image.
+(cd "$fe" && grep -rhoE 'from "[a-z@][^"]*"|import\("[a-z@][^"]*"\)' dist/server 2>/dev/null \
+  | sed -E 's/.*"([^"]+)".*/\1/' | grep -v '^node:\|^astro:' | sed -E 's#^(@[^/]+/[^/]+|[^/@][^/]*).*#\1#' | sort -u \
+  | python3 -c '
+import json, sys
+lock = json.load(open("package-lock.json"))["packages"]; bad = []
+for pkg in sys.stdin.read().split():
+    top = lock.get(f"node_modules/{pkg}")
+    why = "missing" if not top else ("dev-only" if top.get("dev") else "")
+    if why: bad.append(pkg + ": " + why + " at top level")
+if bad: print("\n".join(bad)); sys.exit(1)') || fail "the built server imports a package the production image will not have"
 
 # 4. Earlier gates, unchanged: they must not have been edited on this branch to pass.
 for g in AA2-auth-throttle-and-fallback AA3b-locators-wisdom-and-graph-ia AA3-nav-a11y-and-url-hygiene AA5-container-and-deploy-ops; do

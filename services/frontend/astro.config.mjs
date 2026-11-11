@@ -28,6 +28,10 @@ export default defineConfig({
   // de CSS); lo que se pierde es la caché del CSS entre vistas: cada navegación los
   // vuelve a traer dentro del HTML (~20-40 ms a 4 Mb/s). Capturas idénticas (0 %).
   build: { inlineStylesheets: 'always' },
+  // AA7: Astro 7 changed the default to 'jsx', which strips whitespace between inline elements
+  // ("Biblioteca Ada EN" would run together). Keep the Astro 5/6 behaviour until each view is
+  // compared; changing it is a separate, screenshot-checked decision.
+  compressHTML: true,
   adapter: node({ mode: 'standalone' }),
   integrations: [mdx(), react(), svelte()],
   i18n: {

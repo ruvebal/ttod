@@ -41,8 +41,8 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("AA2 done") |
 | 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | DONE — cold review PASS-WITH-AMENDMENTS (F1–F10), amended and re-verified; owner marked DONE 2026-11-11 ("AA3 done") |
 | 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | DONE — cold review PASS-WITH-AMENDMENTS (F1–F11), amended and re-verified; owner marked DONE 2026-11-11 ("AA3b done") |
-| 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | READY — unblocked by AA3 + AA3b DONE (2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
-| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | READY — lane A DONE 2026-11-10 (F25/F27/F28); lane B unblocked by AA1 DONE (its gate checks are appended to the AA5 exit gate before it starts) |
+| 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED — queued behind AA5 lane B by owner order (2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
+| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | IN_PROGRESS — lane A DONE 2026-11-10; lane B started 2026-11-11 (owner chose it over AA4); lane B checks appended to the AA5 exit gate before code; worktree opened by hand (harness picks the first READY row) |
 | 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 DONE (AA2, AA3b DONE) |
 
 ## Live snapshot (2026-11-10)

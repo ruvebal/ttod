@@ -1,98 +1,152 @@
 #!/usr/bin/env bash
-# AA5 exit gate. Lane A section (F25 / F27 / F28 · I7–I9), made runnable. Written by the planner before
-# the phase starts. Lane B checks are appended to this same file when AA1 is DONE (the harness
-# looks for exactly one <phase>.exit-gate.sh); lane A checks then keep running.
+# AA5 exit gate. Lane A (F25 / F27 / F28 · I7–I9) was written before lane A; lane B (F2, F6, F16–F19,
+# F29–F31, F45–F48 · I1–I6, I10–I16) was appended by the planner before lane B code (2026-11-11).
+# Lane A checks keep running. Amended for lane B: lane A's live part now runs on scripts/isolated-stack.sh
+# (AA2 cold review F3), which uses temp Redis/drafts dirs instead of the checkout's ./data.
 #
-# Test-name contract (the implementer adds these to services/backend/tests):
-#   *health_redis_down*   F27: /health answers 503 (or the ready probe does) when REDIS_URL is set
-#                         and the ping fails
-#   *empty_secret*        F28: boot fails closed when REDIS_URL is set and a TTOD_*_SECRET is empty
+# Backend test-name contract (services/backend/tests, unittest -k):
+#   lane A  *health_redis_down*      /health 503 when REDIS_URL is set and the ping fails (F27)
+#           *empty_secret*           boot fails closed on an empty TTOD_*_SECRET with REDIS_URL (F28)
+#   lane B  *health_body_sanitized*  a failing repository never puts exception text in the 503 body (F47)
+#           *redis_pool_knobs*       timeouts, health_check_interval, max_connections reach the pool (F46)
+#           *request_id*             X-Request-ID set or echoed (only if well formed) and one JSON access
+#                                    log line per request with request_id, method, path, status, ms (F48)
 #
-# The live part runs in an isolated Compose project (default ttod_aa5gate: redis + backend only,
-# no host ports) built from this worktree, so the instructor stack is never touched.
-# Set AA5_SKIP_LIVE=1 only for a quick local pre-check; the runner's verify must run it in full.
+# Live, isolated (project ttod_aa5gate): processes run as non-root and can still write proposal drafts
+# to the host bind; frontend and mcp report healthy; Ollama publishes no host port; Redis has a
+# maxmemory with noeviction; a request id flows Caddy → backend → JSON log; an https form login through
+# an untrusted proxy is refused, and through a trusted proxy (TTOD_TRUSTED_PROXIES) succeeds with a
+# Secure cookie; recreate keeps drafts and /health is 503 with Redis down (lane A).
+# AA5_SKIP_LIVE=1 is for a quick local pre-check only; the runner's verify runs it in full.
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 pack="docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING"
 py="${PYTHON:-$HOME/src/ttod/.venv/bin/python}"
-project="${AA5_GATE_PROJECT:-ttod_aa5gate}"
-fail() { echo "AA5-A GATE FAIL: $*" >&2; exit 1; }
+fail() { echo "AA5 GATE FAIL: $*" >&2; exit 1; }
+laneb_start="$(git log --format=%H -1 -S'lane B (F2, F6' -- "$pack/PHASES/AA5-container-and-deploy-ops.exit-gate.sh")"
+[ -n "$laneb_start" ] || laneb_start="$(git merge-base HEAD origin/main)"
 
-# 1. Named tests exist and pass, and the backend suite stays green.
+# 1. Named tests exist and pass; backend suite green.
 run_k() {
   out="$("$py" -m unittest discover -s services/backend/tests -t . -p 'test_*.py' -k "$1" -v 2>&1)" \
-    || { printf '%s\n' "$out" | grep -q 'NO TESTS RAN' \
-           && fail "no test matches '$1' (see the test-name contract at the top of this gate)"
+    || { printf '%s\n' "$out" | grep -q 'NO TESTS RAN' && fail "no test matches '$1' (test-name contract above)"
          printf '%s\n' "$out" | tail -20; fail "tests matching '$1' failed"; }
   n="$(printf '%s\n' "$out" | sed -n 's/^Ran \([0-9]*\) test.*/\1/p')"
-  [ "${n:-0}" -ge 1 ] || fail "no test matches '$1' (see the test-name contract at the top of this gate)"
+  [ "${n:-0}" -ge 1 ] || fail "no test matches '$1' (test-name contract above)"
   echo "tests '$1': $n passed"
 }
-run_k health_redis_down
-run_k empty_secret
+for k in health_redis_down empty_secret health_body_sanitized redis_pool_knobs request_id; do run_k "$k"; done
 grep -rqs "503" $(grep -rls "health_redis_down" services/backend/tests) || fail "health_redis_down tests never assert 503"
 "$py" -m unittest discover -s services/backend/tests -t . -p 'test_*.py' >/dev/null 2>&1 || fail "backend suite red"
 
-# 2. F28: rebuild runs ensure_env_secrets.
-make -n rebuild 2>/dev/null | grep -q 'ensure_env_secrets.py' || fail "make rebuild does not call ensure_env_secrets.py"
+# 2. F45: CI and `make test` run the backend suite.
+make -n test 2>/dev/null | grep -q 'services/backend/tests' || fail "make test does not discover services/backend/tests (F45)"
+grep -q 'services/backend/tests' .github/workflows/ci.yml || fail "CI has no backend test job (F45)"
 
-# 3. F25: the proposal dir is a host bind at TTOD_PROPOSAL_DIR, and its contents are gitignored.
-cfg="$(docker compose -p "$project" -f docker-compose.yml config --format json 2>/dev/null)"
-bind_src="$(printf '%s' "$cfg" | python3 -c '
+# 3. Static config.
+make -n rebuild 2>/dev/null | grep -q 'ensure_env_secrets.py' || fail "make rebuild does not call ensure_env_secrets.py (F28)"
+cfg="$(docker compose -p ttod_aa5cfg -f docker-compose.yml config --format json 2>/dev/null)"
+printf '%s' "$cfg" | python3 - "$repo_root" <<'PY' || fail "compose config (see message above)"
 import json, sys
-c = json.load(sys.stdin)["services"]["backend"]
-target = c["environment"]["TTOD_PROPOSAL_DIR"]
-for v in c.get("volumes", []):
-    if v.get("type") == "bind" and v.get("target") == target:
-        print(v["source"]); break
-')"
-[ -n "$bind_src" ] || fail "backend has no bind mount whose target equals TTOD_PROPOSAL_DIR"
-case "$bind_src" in "$repo_root"/*) ;; *) fail "proposal bind source $bind_src is outside the repo checkout";; esac
-rel="${bind_src#"$repo_root"/}"
-git check-ignore -q "$rel/aa5-probe.yml" || fail "$rel/ contents are not gitignored"
-printf '%s' "$cfg" | python3 -c '
-import json, sys
-s = json.load(sys.stdin)["services"]["redis"]
-sys.exit(1 if s.get("ports") else 0)' || fail "redis publishes a host port"
+c = json.load(sys.stdin)["services"]; root = sys.argv[1]; bad = []
+b = c["backend"]; target = b["environment"]["TTOD_PROPOSAL_DIR"]
+if not any(v.get("type") == "bind" and v.get("target") == target for v in b.get("volumes", [])): bad.append("backend: no bind at TTOD_PROPOSAL_DIR (F25)")
+if c["redis"].get("ports"): bad.append("redis publishes a host port")
+if c["ollama"].get("ports"): bad.append("ollama publishes a host port by default (F30)")
+if "@sha256:" not in c["ollama"]["image"]: bad.append(f"ollama image not pinned by digest: {c['ollama']['image']} (F6)")
+for svc in ("frontend", "mcp-server"):
+    if not c[svc].get("healthcheck"): bad.append(f"{svc} has no healthcheck (F17)")
+if bad: print("\n".join(bad)); sys.exit(1)
+PY
+git check-ignore -q data/proposals/aa5-probe.yml || fail "data/proposals/ contents are not gitignored"
+test -f docker-compose.ollama-port.yml && grep -q '127.0.0.1:' docker-compose.ollama-port.yml \
+  || fail "no opt-in override publishing Ollama on loopback only (F30)"
+grep -Eq '^maxmemory [0-9]+(mb|gb)' redis/redis.conf && grep -q '^maxmemory-policy noeviction' redis/redis.conf \
+  || fail "redis.conf lacks maxmemory or noeviction (F29)"
+for f in services/backend/Dockerfile services/frontend/Dockerfile services/mcp/Dockerfile; do
+  grep -Eq '^USER +[^r0 ][^ ]*' "$f" || fail "$f does not drop to a non-root USER (F16)"; done
+grep -q 'trusted_proxies' caddy/Caddyfile && grep -q 'TTOD_TRUSTED_PROXIES' caddy/Caddyfile .env.example \
+  || fail "Caddy trusted_proxies not wired to TTOD_TRUSTED_PROXIES (F2 / AA2 carry)"
+grep -qi 'not TLS\|no es TLS' caddy/Caddyfile || fail "Caddyfile does not say plainly that :8443 is not TLS (F2)"
+lil="docs/DEV_PLAN/LILITH-VALIDATION-CHECKLIST.md"
+for k in TTOD_ALLOWED_HOSTS COOKIE_SECURE TTOD_TRUSTED_PROXIES ensure_env_secrets maxmemory chown docker-compose.ollama-port.yml; do
+  grep -q "$k" "$lil" || fail "Lilith checklist does not mention $k (F18)"; done
+grep -qi 'orphan\|huérfan' data/proposals/README.md || fail "no orphan-file note for the dual-write (F31)"
 
-# 4. Live, isolated: recreate keeps proposal files; /health answers 503 with Redis down.
+# 4. Live, isolated.
 if [ "${AA5_SKIP_LIVE:-0}" != "1" ]; then
-  # F28 makes empty secrets fail boot, so the isolated stack gets throwaway ones (never the
-  # instructor's .env). Amended during AA5 lane A, disclosed in the report.
-  envf="$(mktemp)"
-  printf 'TTOD_SESSION_SECRET=%s\nTTOD_PAT_SECRET=%s\n' "$(openssl rand -hex 24)" "$(openssl rand -hex 24)" > "$envf"
+  stack="$pack/scripts/isolated-stack.sh"; project=ttod_aa5gate; port="${AA5_PORT:-28680}"; lan="aa5-gate.lan"
+  envf="${TMPDIR:-/tmp}/$project.env"; datadir="${TMPDIR:-/tmp}/$project.data"
   dc() { docker compose -p "$project" --env-file "$envf" -f docker-compose.yml "$@"; }
-  trap 'dc down -v --remove-orphans >/dev/null 2>&1 || true; rm -f "$envf"' EXIT
-  mkdir -p "$bind_src"
-  marker="aa5-gate-$$.txt"; echo "recreate probe" > "$bind_src/$marker"
-  dc up -d redis >/dev/null 2>&1
-  dc up -d --no-deps --build backend >/dev/null 2>&1 || fail "isolated backend did not start"
-  in_backend() { dc exec -T backend python -c "$1"; }
-  status() { in_backend "
-import urllib.request, urllib.error
-try: print(urllib.request.urlopen('http://localhost:8000/health', timeout=3).status)
-except urllib.error.HTTPError as e: print(e.code)
-except Exception: print(0)"; }
-  for _ in $(seq 1 40); do [ "$(status 2>/dev/null)" = "200" ] && break; sleep 2; done
-  [ "$(status)" = "200" ] || fail "isolated backend never became healthy with Redis up"
+  trap 'bash "$stack" down "$project"' EXIT
+  bash "$stack" up "$project" "$port" "TTOD_ALLOWED_HOSTS=$lan" "COOKIE_SECURE=auto" >/dev/null
+  dc up -d --no-deps --build mcp-server >/dev/null 2>&1 || fail "isolated mcp-server did not start"
+  base="http://127.0.0.1:$port"
+  # F16: nothing of ours runs as root.
+  for svc in backend frontend mcp-server; do
+    uid="$(dc exec -T "$svc" id -u | tr -d '\r')"; [ "$uid" != 0 ] || fail "$svc runs as root (F16)"; done
+  # F17: frontend and mcp become healthy.
+  for svc in frontend mcp-server; do
+    st=""; for _ in $(seq 1 45); do st="$(docker inspect -f '{{.State.Health.Status}}' "$(dc ps -q "$svc")" 2>/dev/null)"; [ "$st" = healthy ] && break; sleep 2; done
+    [ "$st" = healthy ] || fail "$svc health is '$st' (F17)"; done
+  # F29: Redis memory cap with clean rejects.
+  mm="$(dc exec -T redis redis-cli config get maxmemory | tail -1 | tr -d '\r')"; pol="$(dc exec -T redis redis-cli config get maxmemory-policy | tail -1 | tr -d '\r')"
+  [ "${mm:-0}" -gt 0 ] && [ "$pol" = noeviction ] || fail "redis maxmemory=$mm policy=$pol (F29)"
+  # F16 + F25: the non-root backend still writes drafts to the host bind.
+  email="aa5-$$@example.test"; pw="aa5-gate-password-1"; jar="$(mktemp)"
+  curl -s -o /dev/null -H 'content-type: application/json' -d "{\"email\":\"$email\",\"password\":\"$pw\"}" "$base/api/v1/auth/register"
+  curl -s -o /dev/null -c "$jar" -H 'content-type: application/json' -d "{\"email\":\"$email\",\"password\":\"$pw\"}" "$base/api/v1/auth/login"
+  before="$(ls "$datadir/proposals" | wc -l | tr -d ' ')"
+  code="$(curl -s -o /dev/null -w '%{http_code}' -b "$jar" -H 'content-type: application/json' \
+    -d '{"text":"Una cita de prueba del gate AA5.","teaches":"Que el borrador llega al disco.","section":"wisdom","level":"beginner","tags":["aa5"]}' "$base/api/v1/proposals")"
+  after="$(ls "$datadir/proposals" | wc -l | tr -d ' ')"
+  [ "$code" = 201 ] && [ "$after" -gt "$before" ] || fail "non-root backend could not write a draft to the bind (HTTP $code, files $before → $after)"
+  # F48: one request id from Caddy to the backend log, echoed to the client.
+  rid="$(curl -s -D - -o /dev/null "$base/health" | tr -d '\r' | sed -n 's/^[Xx]-[Rr]equest-[Ii][Dd]: //p')"
+  [ -n "$rid" ] || fail "no X-Request-ID on /health through Caddy (F48)"
+  sleep 1; dc logs --no-log-prefix backend 2>/dev/null | grep -F "\"request_id\": \"$rid\"" | grep -q '"path": "/health"' \
+    || dc logs --no-log-prefix backend 2>/dev/null | grep -F "\"request_id\":\"$rid\"" | grep -q '"path":"/health"' \
+    || fail "backend log has no JSON line for request $rid (F48)"
+  # F2: an https login through a proxy Caddy does not trust is refused; through a trusted one it works.
+  login_via_proxy() { dc exec -T backend python - "$lan" "$email" "$pw" <<'PY'
+import sys, urllib.request, urllib.error, urllib.parse
+lan, email, pw = sys.argv[1:]
+req = urllib.request.Request("http://reverse-proxy:8080/es/login/", method="POST",
+    data=urllib.parse.urlencode({"email": email, "password": pw}).encode(),
+    headers={"Host": lan, "Origin": f"https://{lan}", "X-Forwarded-Proto": "https", "X-Forwarded-Host": lan,
+             "content-type": "application/x-www-form-urlencoded"})
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *a, **k): return None
+try: r = urllib.request.build_opener(NoRedirect).open(req, timeout=20); code, h = r.status, r.headers
+except urllib.error.HTTPError as e: code, h = e.code, e.headers
+print(code, "secure" if "secure" in (h.get("Set-Cookie") or "").lower() else "plain")
+PY
+  }
+  untrusted="$(login_via_proxy)"
+  case "$untrusted" in "303 secure") fail "an untrusted client's X-Forwarded-Proto was honoured ($untrusted) (F2)";; esac
+  subnet="$(docker network inspect "${project}_default" -f '{{(index .IPAM.Config 0).Subnet}}')"
+  echo "TTOD_TRUSTED_PROXIES=$subnet" >> "$envf"
+  dc up -d --no-deps --force-recreate reverse-proxy >/dev/null 2>&1; sleep 3
+  trusted="$(login_via_proxy)"
+  [ "$trusted" = "303 secure" ] || fail "https login through a trusted proxy answered '$trusted', want '303 secure' (F2)"
+  # Lane A: recreate keeps drafts; /health 503 with Redis down.
+  marker="aa5-gate-$$.txt"; echo "recreate probe" > "$datadir/proposals/$marker"
   dc up -d --no-deps --force-recreate backend >/dev/null 2>&1
-  for _ in $(seq 1 40); do [ "$(status 2>/dev/null)" = "200" ] && break; sleep 2; done
+  for _ in $(seq 1 40); do [ "$(curl -s -o /dev/null -w '%{http_code}' "$base/health")" = 200 ] && break; sleep 2; done
   dir="$(dc exec -T backend printenv TTOD_PROPOSAL_DIR | tr -d '\r')"
   dc exec -T backend test -f "$dir/$marker" || fail "proposal file lost on backend recreate (F25)"
-  rm -f "$bind_src/$marker"
   dc stop redis >/dev/null 2>&1; sleep 3
-  code="$(status)"
-  [ "$code" = "503" ] || fail "/health answered $code with Redis down, expected 503 (F27)"
-  echo "live (isolated $project): recreate kept $marker; /health 503 with Redis down"
+  code="$(curl -s -o /dev/null -w '%{http_code}' "$base/health")"
+  [ "$code" = 503 ] || fail "/health answered $code with Redis down, expected 503 (F27)"
+  echo "live (isolated $project): non-root (backend/frontend/mcp), drafts written, frontend+mcp healthy, maxmemory+noeviction, request id end to end, https login untrusted='$untrusted' trusted='$trusted', recreate kept drafts, health 503 on Redis down"
 fi
 
 # 5. Evidence and scope.
 test -f "$pack/PHASE-AA5-REPORT.md" || fail "missing PHASE-AA5-REPORT.md"
-grep -qi 'lane a' "$pack/PHASE-AA5-REPORT.md" || fail "report has no lane A section"
-start="$(git merge-base HEAD origin/main)"
-git diff --quiet "$start" -- ttod.yml proposals || fail "lane A touched the canonical stores"
-# Markdown is excluded: two trailing spaces are the pack's deliberate hard line breaks.
-git diff --check "$start" -- . ':(exclude)*.md'
-echo "AA5 lane A exit gate passed: proposal bind survives recreate, health 503 on Redis down, secrets fail closed."
+grep -qi 'lane a' "$pack/PHASE-AA5-REPORT.md" && grep -qi 'lane b' "$pack/PHASE-AA5-REPORT.md" || fail "report lacks a lane A or lane B section"
+grep -q 'npm audit --omit=dev' "$pack/PHASE-AA5-REPORT.md" || fail "report has no npm audit --omit=dev excerpt (F19)"
+git diff --quiet "$laneb_start" -- ttod.yml proposals || fail "AA5 touched the canonical stores"
+git diff --check "$laneb_start" -- . ':(exclude)*.md' || fail "whitespace errors"
+echo "AA5 exit gate passed: lane A (bind, health 503, secrets) and lane B (non-root, health checks, pins, maxmemory, CI backend suite, request ids, TLS proxy trust, docs)."

@@ -2,23 +2,23 @@
 
 **Run by:** cascade-harness.sh (runner process, not the implementing session)
 **Worktree:** /Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-4
-**Commit:** 5d0056a8af61ca0dc64bf684ed44998fb643a5dd
-**Started:** 2026-11-11T23:16:44Z
+**Commit:** f1005dd224ee6c2f4e3d091ee08d05f9ed2452b9
+**Started:** 2026-11-11T23:48:12Z
 
 ```
 registry: 20 pages, noindex rows: ['/{l}/account/', '/{l}/account/reviewer/', '/{l}/library/', '/{l}/quote/', '/{l}/wisdom/propose/']
 maskable visual-system/icon-192.png: glyph radius 0.303 of the width (safe zone 0.40)
 maskable visual-system/icon-512.png: glyph radius 0.304 of the width (safe zone 0.40)
 offline pages in sw.js and both platform docs: ['/en/oracle/', '/es/oracle/']
-contract tests: Tests  54 passed
-frontend suite: Tests  305 passed
+contract tests: Tests  58 passed
+frontend suite: Tests  309 passed
 frontend: suite, check, PWA guard green
 live: X-Robots-Tag on every response (Caddy errors too), robots.txt, registry head tags, query canonicals, quote meta + twins, signed-in noindex, forged Host, root locale, manifest
 --- re-running AA1-caddy-security-headers
 AA1 exit gate passed: headers on HTML, CSP report-only, JSON/assets/SW intact, scope caddy+docs.
 --- re-running AA3b-locators-wisdom-and-graph-ia
 contract tests: Tests  51 passed
-frontend suite: Tests  305 passed
+frontend suite: Tests  309 passed
 live registry probe: statuses, 301 Locations, ids, en/es parity, slash hrefs, search = corpus fold, twins, graph IA
 csp /es/                   4 (AA1 /es/: 4)
 csp /es/wisdom/            3 (AA1 /es/wisdom/: 3)
@@ -26,15 +26,15 @@ csp /es/wisdom/wis-034/    3 (AA1 /es/wisdom/wis-034/: 3)
 csp /es/graph/             5 (AA1 /es/graph/path/: 6)
 csp /es/graph/plano/       5 (AA1 /es/graph/: 5)
 csp /es/graph/code/        6 (AA1 /es/graph/path/: 6)
-/es/             a11y 100 CLS 0.0130 LCP 5123 (AA0 /es/: 100 / 0.0130 / 5047)
-/es/wisdom/      a11y 100 CLS 0.0000 LCP 2337 (AA0 /es/wisdom/: 100 / 0.0000 / 2330)
-/es/graph/       a11y 100 CLS 0.0003 LCP 2410 (AA0 /es/graph/path: 100 / 0.0003 / 4959)
-/es/graph/plano/ (new baseline) a11y 100 CLS 0.0984 LCP 2256
+/es/             a11y 100 CLS 0.0130 LCP 5119 (AA0 /es/: 100 / 0.0130 / 5047)
+/es/wisdom/      a11y 100 CLS 0.0000 LCP 2333 (AA0 /es/wisdom/: 100 / 0.0000 / 2330)
+/es/graph/       a11y 100 CLS 0.0003 LCP 2420 (AA0 /es/graph/path: 100 / 0.0003 / 4959)
+/es/graph/plano/ (new baseline) a11y 100 CLS 0.0984 LCP 2260
 live (isolated ttod_aa3bgate): registry probe, browser checks, AA0 UX rule
 AA3b exit gate passed: slash policy, wisdom ids/search/filters, landing chapters, graph IA, language switch, F54 guard.
 --- re-running AA3-nav-a11y-and-url-hygiene
 contract tests: Tests  61 passed
-frontend suite: Tests  305 passed
+frontend suite: Tests  309 passed
 live: signed-out header (Entrar, no Library, prefix current, one main#ttod-main), signed-in header, profile name, password change e2e, library card, localized 403, logout attrs
 csp /es/               4 (AA1 /es/: 4)
 csp /es/wisdom/        3 (AA1 /es/wisdom/: 3)
@@ -48,8 +48,8 @@ csp /es/wisdom/wis-034/    3 (AA1 /es/wisdom/wis-034/: 3)
 csp /es/graph/             5 (AA1 /es/graph/path/: 6)
 csp /es/graph/plano/       5 (AA1 /es/graph/: 5)
 csp /es/graph/code/        6 (AA1 /es/graph/path/: 6)
-/es/           a11y 100 CLS 0.0130 LCP 5042 (AA0 /es/: 100 / 0.0130 / 5047)
-/es/wisdom/    a11y 100 CLS 0.0000 LCP 2334 (AA0 /es/wisdom/: 100 / 0.0000 / 2330)
+/es/           a11y 100 CLS 0.0130 LCP 5040 (AA0 /es/: 100 / 0.0130 / 5047)
+/es/wisdom/    a11y 100 CLS 0.0000 LCP 2333 (AA0 /es/wisdom/: 100 / 0.0000 / 2330)
 /es/graph/     a11y 100 CLS 0.0003 LCP 4806 (AA0 /es/graph/path: 100 / 0.0003 / 4959)
 live (isolated ttod_aa3gate): signed-out/in HTML, account e2e, browser checks, AA3b anchors, AA0 UX rule
 AA3 exit gate passed: classic header, account and library UX, Spanish 2D graph, shell a11y hygiene.

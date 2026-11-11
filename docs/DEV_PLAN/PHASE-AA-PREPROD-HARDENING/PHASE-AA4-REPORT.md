@@ -148,6 +148,12 @@ The rebuild really swapped in each case: the failing messages quote the old outp
      head, a root-relative canonical, and no `og:url` or `og:image`.
    - Falsified: with the old origin it fails on both hosts.
 
+2. **`?p=` cases, added after the cold review (F1/F9, a strengthening).** The live probe now checks that
+   `?q=…&p=2` and `/{l}/?p=7` point at the path without the query, and that a tag list's `?p=2`, `?p=999` and
+   `?p=1e1` point at the page it really shows. The `head-seo.test.ts` contract line now names the backend-down
+   case (F2). Falsified: with the old canonical (`?p=` from the URL) three unit tests fail, and without
+   `indexar={!failed}` the backend-down test fails.
+
 ## 7. Carries to AA6
 
 - **CSP enforcement:** when it lands, bump the SW to v9 in the same change (AA1 R8).
@@ -161,9 +167,15 @@ The rebuild really swapped in each case: the failing messages quote the old outp
 [PHASE-AA4-COLD-REVIEW.md](PHASE-AA4-COLD-REVIEW.md): **PASS-WITH-AMENDMENTS**, no P1, nothing blocking. It
 returned **after** the owner marked AA4 DONE, so no amendment is applied without the owner's word.
 
-- **P2s (awaiting the owner's decision):**
+- **P2s, fixed on PR #99 after the owner's DONE (owner: "Fix on PR #99"),** commit f1005dd2, re-verified (exit 0,
+  suite 309, AA1/AA3b/AA3/AA5 re-run green):
   - F1: `?p=` is kept on any path (`/es/wisdom/?q=x&p=2` → canonical `/es/wisdom/?p=2`, against the AA3b rule;
-    `?p=1e1`, `?p=999`, `/es/?p=7`).
+    `?p=1e1`, `?p=999`, `/es/?p=7`). **Fixed:** `?p=` counts only on facet lists, clamped by `pasilloPedido`
+    (the same function the list uses); `Page.astro` takes a `pagina` prop and no longer reads `?p=` itself.
   - F2: with the backend down, the quote, facet and wisdom pages answer 200 with a canonical and no noindex.
+    **Fixed:** those five pages pass `indexar={!failed}`. (The landing pages already answer 500, so noindex.)
   - F3: `e2e/i18n-routes.spec.ts` still asserts `/` → `/en/`, which fails on a Spanish-locale machine.
+    **Fixed:** the root cases pin the browser locale (en-US, fr-FR → `/en/`; es-ES → `/es/`); 3/3 pass on an
+    isolated stack. The same file's two `/{l}/ resolves…` tests fail there too: they expect landing copy
+    ("Flagship quote") that no longer exists in `src/`, which AA4 did not touch. Carried to AA6.
 - **P3s (F4–F10):** carried to AA6 ([AA6 § Carried from AA4](PHASES/AA6-oracle-quota-and-closeout.md)).

@@ -61,8 +61,8 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA6-oracle-quota-and-closeout.md
 ## Carried from AA4 (2026-11-12)
 
 AA4 is DONE (owner, 2026-11-12). Its cold review ([PHASE-AA4-COLD-REVIEW.md](../PHASE-AA4-COLD-REVIEW.md))
-returned PASS-WITH-AMENDMENTS after the owner's DONE. Items the owner has not assigned to an AA4 follow-up
-belong here:
+returned PASS-WITH-AMENDMENTS after the owner's DONE. Its three P2s were fixed on PR #99 (owner's choice);
+the rest belongs here:
 
 - **F62:** breadcrumb current-item alignment (AA4 did not touch `Breadcrumbs`).
 - **`/{l}/quote/` always shows the first quote** (`quote.astro`, cold review AA4 F5). It is noindex either way;
@@ -72,6 +72,9 @@ belong here:
   `locators.registry.json` (indexable rows, corpus values only). Note: a deploy that bypasses Caddy loses the noindex
   (cold review AA4 F6).
 - **CSP enforcement** bumps the service worker to v9 in the same change (AA1 R8).
+- **Stale e2e:** `e2e/i18n-routes.spec.ts` "`/{l}/` resolves and declares its own lang" expects landing copy that no
+  longer exists ("Flagship quote", "wis-033 · wisdom · en"); both locales fail against a full stack. Update to the
+  current landing or delete.
 - **The AA4 cold review's P3s** (F4, F6–F10): `docs/pwa-install-quality.md` vs the manifest, Go-level 400s without
   headers, `origenPublico` comment and relative hreflang, `404.astro` locale rule vs `idiomaPreferido`, gate gaps,
   `robots.txt` plan ids and Markdown in quote titles. The owner decides whether each is fixed or recorded as accepted.

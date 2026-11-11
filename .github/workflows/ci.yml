@@ -52,7 +52,10 @@ jobs:
 
   pwa-compatibility:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # 15, not 5: the guard itself takes about a minute, but installing Chromium's system packages
+    # can stall on the Ubuntu mirror (each font package dropped after ~20 s). At 5 minutes the job was
+    # cancelled before any test ran (2026-11-11, run 43048076153, twice).
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: services/frontend
@@ -68,7 +71,33 @@ jobs:
           cache-dependency-path: services/frontend/package-lock.json
 
       - run: npm ci
-      - run: npx --no-install playwright install --with-deps chromium
+
+      # apt: retry and give up on a stalled mirror quickly instead of hanging on it.
+      - name: Make apt retry stalled downloads
+        run: |
+          printf 'Acquire::Retries "5";\nAcquire::http::Timeout "15";\nAcquire::https::Timeout "15";\n' \
+            | sudo tee /etc/apt/apt.conf.d/80-ttod-retries >/dev/null
+
+      # The browser download is cached by Playwright version; the system packages are installed every run.
+      - name: Read the Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+      - name: Install Chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx --no-install playwright install chromium
+      # Best effort: the runner image already carries Chromium's libraries, and what Playwright adds is
+      # mostly fonts (the PWA tests take no screenshots). When the Ubuntu archive is unreachable
+      # (2026-11-11: DNS failures on archive/security.ubuntu.com) the job warns and goes on; if a library
+      # is really missing, launching Chromium fails in the guard below, with a clear error.
+      - name: Install Chromium's system packages (best effort)
+        run: |
+          npx --no-install playwright install-deps chromium \
+            || echo "::warning::playwright install-deps failed (Ubuntu archive unreachable?); continuing with the runner image's libraries"
 
       - name: Check PWA and Oracle compatibility
         run: npm run pwa:guard

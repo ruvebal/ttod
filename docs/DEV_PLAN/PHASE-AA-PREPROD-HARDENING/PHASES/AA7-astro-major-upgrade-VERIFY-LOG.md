@@ -2,8 +2,8 @@
 
 **Run by:** cascade-harness.sh (runner process, not the implementing session)
 **Worktree:** /Users/ruvebal/src/ttod-PHASE-AA-PREPROD-HARDENING-7
-**Commit:** dfb56d0fdf1a354966a200519c5a7de01d2b3452
-**Started:** 2026-11-11T18:30:52Z
+**Commit:** fcc04b5205a52d1bd3e87403407722571aa8134e
+**Started:** 2026-11-11T18:36:45Z
 
 ```
 astro 7.4.11, @astrojs/node 11.1.12
@@ -12,14 +12,14 @@ frontend: suite, check, build, PWA guard green
 --- re-running AA2-auth-throttle-and-fallback
 AA2 exit gate passed: throttles, fallback off, PAT denylist, oracle auth + dual-write, password API, cookie/Host wiring.
 --- re-running AA3b-locators-wisdom-and-graph-ia
-registry: 15 pages, 11 redirects, 4 not-found, 5 exempt
-contract tests: Tests  45 passed
-frontend suite: Tests  271 passed
-F54 mutation: literal counts in ValleSigue, /es/ and /en/ each fail the fixture test
-live registry probe: statuses, 301 Locations, ids, en/es parity, slash hrefs, search = corpus fold, twins, graph IA
-AA3b GATE FAIL: off-site redirect: //evil.example/x → Location: /evil.example/x/ (open redirect)
-AA7 GATE FAIL: AA3b-locators-wisdom-and-graph-ia exit gate fails on Astro 7
+AA3b exit gate passed: slash policy, wisdom ids/search/filters, landing chapters, graph IA, language switch, F54 guard.
+--- re-running AA3-nav-a11y-and-url-hygiene
+AA3 exit gate passed: classic header, account and library UX, Spanish 2D graph, shell a11y hygiene.
+--- re-running AA5-container-and-deploy-ops
+AA5 exit gate passed: lane A (bind, health 503, secrets) and lane B (non-root, health checks, pins, maxmemory, CI backend suite, request ids, TLS proxy trust, docs).
+AA7 exit gate passed: Astro 7, clean production audit, and the AA2/AA3b/AA3/AA5 guarantees re-proven.
 ```
 
-**Exit code:** 1
-**Verdict:** exit-gate FAILED. Do not promote. Return the phase to IN_PROGRESS.
+**Exit code:** 0
+**Verdict:** exit-gate PASSED. Eligible for VERIFYING -> COLD_REVIEW.
+**Reminder:** the runner does not flip status to DONE. A separate verifier session must review before promotion.

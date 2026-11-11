@@ -98,7 +98,8 @@ The first full verify **failed** in the AA3b gate: on Astro 7, `GET //evil.examp
   - `landing` 0.1 %, `graph` 5–6 %, `wisdom` 11–17 %. All of it falls inside animated layers: the 3D
     constellation, and the slowly drifting painted backgrounds (`FondoEstudio`, the valley).
   - Side by side, the content layer is the same (checked by eye on `wisdom-1440` and `landing-1440`).
-- **The earlier gates:** the runner's verify log re-runs AA2, AA3b, AA3 and AA5 unchanged:
+- **The earlier gates:** the third runner verify **exit 0**. AA2, AA3b, AA3 and AA5 all pass, unchanged. The first two
+  runs failed on the §3b break; both runs are in the git history of the log:
   [`PHASES/AA7-astro-major-upgrade-VERIFY-LOG.md`](PHASES/AA7-astro-major-upgrade-VERIFY-LOG.md). They include the CSP
   inline-script counts against AA1 and the AA0 Lighthouse rule.
 

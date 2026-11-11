@@ -44,7 +44,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED — queued behind AA7 by owner order ("AA7 -> AA4", 2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
 | 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | DONE — lane A DONE 2026-11-10; lane B cold review PASS-WITH-AMENDMENTS (F1–F8), amended and re-verified; owner marked DONE 2026-11-11 ("AA5 done") |
 | 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 + AA7 DONE (the Astro major upgrade comes before any public exposure) |
-| 7 | [AA7](PHASES/AA7-astro-major-upgrade.md) | Astro 5 → 7 major upgrade; re-runs the AA2/AA3b/AA3/AA5 gates | IN_PROGRESS — owner: "AA7 -> AA4" (2026-11-11); branched from the AA5 tip (PR #97) because it needs AA5's lockfile; worktree opened by hand (main's INDEX does not list AA7 yet); exit gate written with the phase file; runs before AA4 and AA6 (owner order) |
+| 7 | [AA7](PHASES/AA7-astro-major-upgrade.md) | Astro 5 → 7 major upgrade; re-runs the AA2/AA3b/AA3/AA5 gates | VERIFYING — runner verify exit 0 (third run, after two real breaks fixed); report [PHASE-AA7-REPORT.md](PHASE-AA7-REPORT.md); cold review pending; owner: "AA7 -> AA4" (2026-11-11); branched from the AA5 tip (PR #97) because it needs AA5's lockfile; worktree opened by hand (main's INDEX does not list AA7 yet); exit gate written with the phase file; runs before AA4 and AA6 (owner order) |
 
 ## Live snapshot (2026-11-10)
 

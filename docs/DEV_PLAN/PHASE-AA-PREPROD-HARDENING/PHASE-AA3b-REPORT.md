@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA3b report: permanent locators, wisdom usability, graph IA
 
-**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA3b-COLD-REVIEW.md](PHASE-AA3b-COLD-REVIEW.md)), amended in the same session (§9) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3b` · **Exit gate:**
+**Status:** DONE (owner, 2026-11-11: "AA3b done") · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA3b-COLD-REVIEW.md](PHASE-AA3b-COLD-REVIEW.md)), amended in the same session (§9) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3b` · **Exit gate:**
 [`PHASES/AA3b-locators-wisdom-and-graph-ia.exit-gate.sh`](PHASES/AA3b-locators-wisdom-and-graph-ia.exit-gate.sh)
 plus [`scripts/aa3b-browser-check.mjs`](scripts/aa3b-browser-check.mjs), both written before the code (commit `9e10fe82`).
 **Contract:** [LOCATORS.md](LOCATORS.md), now backed by data:

@@ -31,10 +31,14 @@ import SectionRoute from '../pages/[locale]/wisdom/sections/[section].astro';
 import LevelRoute from '../pages/[locale]/wisdom/levels/[level].astro';
 import TagRoute from '../pages/[locale]/wisdom/tags/[tag].astro';
 import AccountRoute from '../pages/[locale]/account.astro';
+import LoginRoute from '../pages/[locale]/login.astro';
+import RegisterRoute from '../pages/[locale]/register.astro';
+import ProposeRoute from '../pages/[locale]/wisdom/propose.astro';
 
 type RegistryPage = { path: string; ids: string[]; auth?: boolean; owner?: string; conditional?: string[] };
 const pages = registry.pages as RegistryPage[];
-const LIVE_ONLY = ['/{l}/graph/', '/{l}/graph/plano/', '/{l}/graph/code/', '/{l}/oracle/', '/{l}/docs/'];
+// `/{l}/quote/` asks the backend for a live quote (AA4 registered it; the live probes cover it).
+const LIVE_ONLY = ['/{l}/graph/', '/{l}/graph/plano/', '/{l}/graph/code/', '/{l}/oracle/', '/{l}/docs/', '/{l}/quote/'];
 const V = registry.values;
 const locales = ['en', 'es'] as const;
 const idsOf = (l: string) => new Set(corpus.filter((e) => e.lang === l).map((e) => e.id));
@@ -57,6 +61,10 @@ function routeFor(template: string, l: 'en' | 'es'): { route: Route; params: Rec
     return { route, params: { locale: l, [kind === 'sections' ? 'section' : kind === 'levels' ? 'level' : 'tag']: value } };
   }
   if (path === `/${l}/account/`) return { route: AccountRoute, params: { locale: l } };
+  if (path === `/${l}/login/`) return { route: LoginRoute, params: { locale: l } };
+  if (path === `/${l}/register/`) return { route: RegisterRoute, params: { locale: l } };
+  // Before the quote pattern: `propose` would read as a quote id.
+  if (path === `/${l}/wisdom/propose/`) return { route: ProposeRoute, params: { locale: l } };
   m = path.match(/^\/(?:en|es)\/wisdom\/([^/]+)\/$/);
   if (m) return { route: QuoteRoute, params: { locale: l, slug: m[1] } };
   return null;

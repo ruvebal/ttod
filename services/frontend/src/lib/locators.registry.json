@@ -1,5 +1,5 @@
 {
-  "$comment": "LOCATORS.md §4 as data (Phase AA3b). The Vitest registry test (src/tests/locators-registry.test.ts) and the AA3b exit gate's live probe both walk this file. A locator that is not here is not a contract: add it here first. Placeholders: {l} locale; {section} every corpus section of that locale (in ids) or values.section (in paths); {level} {tag} {word} from values; {quote} in ids = at least one corpus id of the locale, in paths = a concrete corpus id; {a} {b} two corpus ids; {other-quote} an id that only exists in the other locale.",
+  "$comment": "LOCATORS.md §4 as data (Phase AA3b). The Vitest registry test (src/tests/locators-registry.test.ts) and the AA3b exit gate's live probe both walk this file. A locator that is not here is not a contract: add it here first. Placeholders: {l} locale; {section} every corpus section of that locale (in ids) or values.section (in paths); {level} {tag} {word} from values; {quote} in ids = at least one corpus id of the locale, in paths = a concrete corpus id; {a} {b} two corpus ids; {other-quote} an id that only exists in the other locale. \"index\": false (AA4) keeps a page out of search engines on any host (robots noindex, no canonical, no hreflang); \"auth\": true implies it. Canonical and hreflang rules read this file (src/lib/seo.ts).",
   "values": {
     "section": "architecture",
     "level": "advanced",
@@ -21,8 +21,13 @@
     { "path": "/{l}/graph/code/", "ids": [] },
     { "path": "/{l}/oracle/", "ids": [] },
     { "path": "/{l}/docs/", "ids": [] },
+    { "path": "/{l}/login/", "ids": [] },
+    { "path": "/{l}/register/", "ids": [] },
+    { "path": "/{l}/wisdom/propose/", "ids": [], "index": false, "$comment": "AA4: a form behind sign-in; anonymous visitors only see a prompt" },
+    { "path": "/{l}/quote/", "ids": [], "index": false, "$comment": "AA4: a different random quote on every visit; its stable address is the quote's own page" },
     { "path": "/{l}/library/", "ids": ["{quote}"], "auth": true },
-    { "path": "/{l}/account/", "ids": ["profile", "password", "sessions"], "auth": true }
+    { "path": "/{l}/account/", "ids": ["profile", "password", "sessions"], "auth": true },
+    { "path": "/{l}/account/reviewer/", "ids": [], "auth": true }
   ],
   "redirects": [
     { "from": "/{l}/wisdom", "to": "/{l}/wisdom/" },

@@ -67,3 +67,22 @@ export function enlazarCambioIdioma(raiz: Document = document) {
     enlace.href = conEstado(enlace.getAttribute('href') ?? enlace.href, location);
   });
 }
+
+/**
+ * La lengua de la portada `/` según `Accept-Language` (AA4, F43): la app instalada abre en `/`
+ * (`start_url` del manifiesto) y antes caía siempre en `/en/`. Gana el valor `q` más alto entre `en`
+ * y `es` (`es-ES` cuenta como `es`); a igual `q`, el primero; `q=0` es «no»; sin nada útil, `en`.
+ */
+export function idiomaPreferido(cabecera: string | null | undefined): 'en' | 'es' {
+  let mejor: { lang: 'en' | 'es'; q: number } | null = null;
+  for (const parte of (cabecera ?? '').split(',')) {
+    const [etiqueta, ...params] = parte.trim().split(';');
+    const base = etiqueta.trim().toLowerCase().split('-')[0];
+    if (base !== 'en' && base !== 'es') continue;
+    const qParam = params.map((p) => p.trim()).find((p) => p.startsWith('q='));
+    const q = qParam ? Number(qParam.slice(2)) : 1;
+    if (!(q > 0)) continue;
+    if (!mejor || q > mejor.q) mejor = { lang: base, q };
+  }
+  return mejor?.lang ?? 'en';
+}

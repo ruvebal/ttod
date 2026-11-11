@@ -33,3 +33,19 @@ describe('language switch (F57, LOCATORS §5)', () => {
     expect(conEstado('/en/wisdom/', { origin: 'http://x', search: '', hash: '#volume-architecture' })).toBe('/en/wisdom/#volume-architecture');
   });
 });
+
+describe('root locale from Accept-Language (AA4, F43)', () => {
+  it('picks the highest q among en and es; regions count; q=0 is no; default en', async () => {
+    const { idiomaPreferido } = await import('./idioma');
+    expect(idiomaPreferido('es-ES,es;q=0.9,en;q=0.5')).toBe('es');
+    expect(idiomaPreferido('en-US,en;q=0.9')).toBe('en');
+    expect(idiomaPreferido('es;q=0.1, en;q=0.9')).toBe('en');
+    expect(idiomaPreferido('fr, es;q=0.5')).toBe('es');
+    expect(idiomaPreferido('fr-FR,fr')).toBe('en');
+    expect(idiomaPreferido('es;q=0, en;q=0.2')).toBe('en');
+    expect(idiomaPreferido('es, en')).toBe('es');
+    expect(idiomaPreferido('')).toBe('en');
+    expect(idiomaPreferido(null)).toBe('en');
+    expect(idiomaPreferido('*')).toBe('en');
+  });
+});

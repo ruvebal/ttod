@@ -48,4 +48,6 @@ Astro posee el documento y las rutas orientadas al contenido. Las islas interact
 
 La referencia rica demuestra contenido localizado, exploración del grafo y un Oracle en flujo. La operación en el navegador, el comportamiento sin conexión y la superficie de pruebas todavía no constituyen una implementación completa lista para el alumnado. Una futura base docente mantendrá cada área principal a profundidad de hello world; esa reducción está prevista, no concluida.
 
+**Sin conexión, hoy:** solo las páginas del Oracle (`/en/oracle/` y `/es/oracle/`) se abren sin red. El service worker guarda una copia anónima de cada una, pedida sin cookies, y sirve primero la red siempre que la hay. Todas las demás páginas necesitan red. Instalar TTOD desde el menú del navegador añade un icono y una ventana propia; no hace que funcionen sin conexión más páginas. La app instalada abre en `/`, que elige `/es/` o `/en/` según el idioma del navegador.
+
 En el [curso FE II](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), esa base es la **Entrega 1** y el producto que se defiende en el parcial de las Unidades 1–7. Consulta el [modelo docente]({{ '/es/teaching/' | relative_url }}).

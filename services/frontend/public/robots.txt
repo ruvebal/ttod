@@ -1,0 +1,6 @@
+# TTOD on a classroom host is noindex (AA0 D7 (a)): every response carries
+# `X-Robots-Tag: noindex` (caddy/Caddyfile, the (seguridad) snippet).
+# Nothing is disallowed, on purpose: a crawler that may not fetch a page never
+# reads its noindex. No sitemap while the host is noindex.
+User-agent: *
+Allow: /

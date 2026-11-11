@@ -31,7 +31,8 @@ console.log(`astro ${v("astro")}, @astrojs/node ${v("@astrojs/node")}`);
 ') || fail "Astro 7 and matching integrations not installed"
 
 # 2. The production audit: no critical, no high.
-(cd "$fe" && npm audit --omit=dev --json 2>/dev/null) | python3 -c '
+# Amended during AA7: npm audit exits non-zero on any advisory (even low); only the verdict below counts.
+(cd "$fe" && npm audit --omit=dev --json 2>/dev/null || true) | python3 -c '
 import json, sys
 m = json.load(sys.stdin)["metadata"]["vulnerabilities"]
 print(f"npm audit --omit=dev: {m}")

@@ -81,7 +81,19 @@ The Astro 7 build passed locally, but the **Docker image crashed at startup** wi
   [`PHASES/AA7-astro-major-upgrade-VERIFY-LOG.md`](PHASES/AA7-astro-major-upgrade-VERIFY-LOG.md). They include the CSP
   inline-script counts against AA1 and the AA0 Lighthouse rule.
 
-## 6. Why the gate re-runs AA2, AA3b, AA3 and AA5
+## 6. Gate amendments (disclosed)
+
+- **Strengthening:** the build-externals scan (§3), falsified against the broken lock layout.
+- **Earlier gates, one allowed edit:** the AA3b and AA3 scope checks ("no backend change since my gate was written")
+  compared against HEAD, so AA5's legitimate backend work counted as theirs. Their window now ends at their own
+  DONE commit (`55279677`, `4cac250d`). The AA7 guard allows exactly those lines and fails on any other edit to
+  an earlier gate or browser check.
+- **Bugs in my own gate:** the integration check assumed every integration declares an Astro peer
+  (`@astrojs/react` declares none), so it now checks the first majors built for Astro 7: node 11, svelte 9,
+  react 7, mdx 8. Also, `npm audit` exits non-zero on any advisory, even low, so only the critical/high verdict
+  counts now.
+
+## 7. Why the gate re-runs AA2, AA3b, AA3 and AA5
 
 The upgrade replaces the compiler, the bundler, the server adapter and how env variables are read. Each earlier
 gate holds a guarantee that lives exactly there:

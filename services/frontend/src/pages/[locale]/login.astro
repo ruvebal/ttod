@@ -104,7 +104,7 @@ const copy = locale === 'es'
 const errorText = loginError === 'credentials' ? copy.credentialsError
   : loginError === 'throttled' ? copy.throttledError
   : loginError === 'service' ? copy.serviceError : '';
-const backHref = next === `/${locale}/account` ? `/${locale}/` : next;
+const backHref = next === `/${locale}/account/` ? `/${locale}/` : next;
 ---
 
 <Page lang={locale} title={copy.title} description={copy.description}>
@@ -150,7 +150,7 @@ const backHref = next === `/${locale}/account` ? `/${locale}/` : next;
         <button type="submit" class="acceso-entrar" data-busy={copy.busy}>{copy.submit}</button>
       </form>
 
-      <p class="acceso-nota">{copy.note} <a href={`/${locale}/register?next=${encodeURIComponent(next)}`}>{copy.register}</a></p>
+      <p class="acceso-nota">{copy.note} <a href={`/${locale}/register/?next=${encodeURIComponent(next)}`}>{copy.register}</a></p>
       <a class="acceso-volver" href={backHref}>{copy.back}</a>
     </div>
   </main>

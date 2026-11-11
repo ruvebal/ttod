@@ -1,0 +1,19 @@
+---
+// /graph/plano/: el plano radial 2D de los aforismos (GraphIsland, Equipo 2), la
+// vista accesible y sin WebGL de la constelación de /graph/ (AA3b, F52). Antes
+// estaba en /graph; `?tag=&node=` son sus claves publicadas y siguen igual.
+import GraphIsland from '../../../components/graph/GraphIsland.svelte';
+import Page from '../../../layouts/Page.astro';
+const locale = Astro.params.locale;
+if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 });
+const copia = {
+  en: { titulo: 'TTOD knowledge graph · accessible view', volver: 'The 3D constellation' },
+  es: { titulo: 'Grafo de TTOD · vista accesible', volver: 'La constelación 3D' },
+}[locale];
+---
+<Page lang={locale} title={copia.titulo}>
+  <nav><a href={`/${locale}/graph/`}>← {copia.volver}</a></nav>
+  <main>
+    <GraphIsland client:load />
+  </main>
+</Page>

@@ -1,0 +1,148 @@
+---
+// /graph/code/: el grafo del código de este repositorio, cada función y quién
+// llama a quién (`?s=` selecciona un símbolo; clave publicada, no se renombra).
+// Antes iba debajo del sendero en /graph/path; AA3b le da su dirección
+// (LOCATORS §4) y /graph/path?s=… redirige aquí.
+import CodigoGrafo from '../../../components/graph/CodigoGrafo.svelte';
+import Page from '../../../layouts/Page.astro';
+import grafo from '../../../../public/data/grafo-codigo.json';
+
+const locale = Astro.params.locale;
+if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 });
+const r = grafo.resumen;
+const miles = (n: number) => n.toLocaleString(locale === 'es' ? 'es-ES' : 'en-GB');
+const copia = {
+  en: {
+    titulo: 'The code that reads itself',
+    intro: 'TTOD keeps a database of wisdom about writing software. This view turns the same instrument on its own repository: every function, every class, and who calls whom.',
+    cifras: [
+      { valor: miles(r.funciones), palabra: 'functions' },
+      { valor: miles(r.clases), palabra: 'classes' },
+      { valor: miles(r.ficheros), palabra: 'files' },
+    ],
+    cierre: `${miles(r.llamadas)} calls, one at a time`,
+    // La dirección se rotula dentro del dibujo, que es donde se mira: en vertical
+    // los que llaman quedan arriba, no a la izquierda, y esta frase mentía.
+    pie: 'Drawing them all at once makes a stain, not a graph. Below, one symbol at a time, with who calls it and what it calls in their own labelled groups.',
+    aforismos: 'The constellation of the aphorisms',
+    titulo_pagina: 'The code that reads itself · TTOD',
+  },
+  es: {
+    titulo: 'El código que se lee a sí mismo',
+    intro: 'TTOD guarda una base de sabiduría sobre escribir software. Esta vista apunta el mismo instrumento a su propio repositorio: cada función, cada clase y quién llama a quién.',
+    cifras: [
+      { valor: miles(r.funciones), palabra: 'funciones' },
+      { valor: miles(r.clases), palabra: 'clases' },
+      { valor: miles(r.ficheros), palabra: 'ficheros' },
+    ],
+    cierre: `${miles(r.llamadas)} llamadas, de una en una`,
+    pie: 'Dibujarlas todas a la vez da una mancha, no un grafo. Abajo, un símbolo cada vez, con quién lo llama y a quién llama, cada grupo con su rótulo.',
+    aforismos: 'La constelación de los aforismos',
+    titulo_pagina: 'El código que se lee a sí mismo · TTOD',
+  },
+}[locale];
+---
+<Page lang={locale} title={copia.titulo_pagina}>
+  <script>
+    // Los datos del grafo, pedidos al leerse la página: la isla los recoge de
+    // `window` en vez de esperar a despertar para pedirlos.
+    const w = window as typeof window & { __codigoDatos?: unknown };
+    w.__codigoDatos = fetch('/data/grafo-codigo.json', { headers: { accept: 'application/json' } })
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+  </script>
+  <main class="grafo-ancho">
+    <section class="grafo-codigo" aria-labelledby="grafo-codigo-titulo">
+      <h1 id="grafo-codigo-titulo">{copia.titulo}</h1>
+      <p class="grafo-codigo__intro">{copia.intro}</p>
+      <ol class="grafo-codigo__cifras">
+        {copia.cifras.map((c) => (
+          <li><span class="grafo-codigo__valor">{c.valor}</span><span class="grafo-codigo__palabra">{c.palabra}</span></li>
+        ))}
+      </ol>
+      <p class="grafo-codigo__pie">{copia.cierre}. {copia.pie}</p>
+      <CodigoGrafo client:load lang={locale} />
+    </section>
+    <p class="grafo-puerta">
+      <a href={`/${locale}/graph/`}>{copia.aforismos} →</a>
+    </p>
+  </main>
+</Page>
+
+<style>
+  /* Esta vista es un instrumento, no una columna de lectura: necesita todo el ancho. */
+  .grafo-ancho {
+    /* `main` viene con la columna de lectura de 48rem; el instrumento no la usa. */
+    max-width: none;
+    width: min(var(--ttod-max-content), calc(100% - 3rem));
+    margin-inline: auto;
+    padding-block: var(--ttod-space-12);
+  }
+  /* El grafo del código abre su propia vista, con su entradilla editorial. */
+  .grafo-codigo h1 {
+    font-family: var(--ttod-font-titular);
+    font-weight: 300;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin: 0 0 var(--ttod-space-4);
+  }
+  .grafo-codigo__intro {
+    font-family: var(--ttod-font-body);
+    font-size: var(--ttod-text-lg);
+    line-height: 1.55;
+    max-width: 46ch;
+    margin: 0;
+  }
+  .grafo-codigo__cifras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ttod-space-6) var(--ttod-space-12);
+    list-style: none;
+    margin: var(--ttod-space-8) 0;
+    padding: 0;
+  }
+  .grafo-codigo__cifras li { display: grid; gap: var(--ttod-space-1); }
+  .grafo-codigo__valor {
+    font-family: var(--ttod-font-titular);
+    font-size: clamp(2.2rem, 7vw, 3.4rem);
+    line-height: 1;
+  }
+  .grafo-codigo__palabra {
+    font-family: var(--ttod-font-ui);
+    font-size: var(--ttod-text-ui);
+    letter-spacing: var(--ttod-tracking-ui);
+    text-transform: uppercase;
+    color: var(--ttod-color-muted);
+  }
+  .grafo-codigo__pie {
+    font-family: var(--ttod-font-body);
+    font-size: var(--ttod-text-base);
+    line-height: 1.6;
+    max-width: 58ch;
+    margin: 0 0 var(--ttod-space-8);
+    color: var(--ttod-color-muted);
+  }
+  .grafo-puerta {
+    margin: var(--ttod-space-12) 0 0;
+    padding-top: var(--ttod-space-6);
+    border-top: 1px solid var(--ttod-color-line-subtle);
+    font-family: var(--ttod-font-ui);
+    font-size: var(--ttod-text-ui);
+    letter-spacing: var(--ttod-tracking-ui);
+    text-transform: uppercase;
+  }
+  /* La puerta es una píldora de 44 px: antes era una línea de 16 px de alto, el
+     único fallo que revisar-pagina marcaba en esta vista a 390 y 768. */
+  .grafo-puerta a {
+    color: var(--ttod-color-accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: var(--ttod-space-4);
+    margin-inline-start: calc(var(--ttod-space-4) * -1);
+    border: 1px solid transparent;
+    border-radius: 999px;
+  }
+  .grafo-puerta a:hover,
+  .grafo-puerta a:focus-visible { border-color: currentColor; }
+</style>

@@ -6,6 +6,8 @@ import ProvenanceBlock from '../../../components/ProvenanceBlock.astro';
 import FavoriteButton from '../../../components/favorites/FavoriteButton';
 import { isLocale, labels, loadWisdom } from '../../../content/wisdom';
 import { SESSION_COOKIE_NAME, getSessionUser } from '../../../lib/auth.server';
+import { gemelasTraduccion } from '../../../lib/grafo.server';
+import { destinoCita } from '../../../lib/idioma';
 import type { FavoriteEntry } from '../../../types/domain';
 import '../../../styles/tokens.css';
 const locale = Astro.params.locale;
@@ -13,6 +15,12 @@ if (!isLocale(locale)) return new Response(null, { status: 404 });
 const { entries, failed } = await loadWisdom(locale);
 const quote = failed ? undefined : entries.find((entry) => entry.id === Astro.params.slug);
 const copy = labels[locale];
+// Una cita que no existe en este idioma es un 404 de verdad, no una página «no
+// encontrada» servida con 200 (F57): así la ve también un buscador o un enlazador.
+if (!failed && !quote) Astro.response.status = 404;
+// El cambio de idioma lleva a la cita gemela (`translation_of`, en los dos sentidos).
+const otro = locale === 'en' ? 'es' : 'en';
+const cambioIdioma = quote ? destinoCita(quote.id, otro, await gemelasTraduccion()) : `/${otro}/wisdom/`;
 const relatedEntries = quote
   ? quote.related.flatMap((relatedId) => {
       const relatedEntry = entries.find((entry) => entry.id === relatedId);
@@ -41,7 +49,7 @@ const crumbs = quote
     ]
   : [{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: copy.notFound }];
 ---
-<Page lang={locale} title={quote ? `${quote.id} · ${copy.wisdom}` : copy.notFound}>
+<Page lang={locale} title={quote ? `${quote.id} · ${copy.wisdom}` : copy.notFound} cambioIdioma={cambioIdioma}>
   <main class="ttod-shell ttod-prose">
     <nav class="ttod-nav"><a href={`/${locale}/wisdom/`}>← {copy.back}</a><a href={`/${locale}/docs/`}>{copy.docs}</a></nav>
     <Breadcrumbs locale={locale} items={crumbs} />

@@ -108,6 +108,25 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
 - **Oracle:** the terminal's "sign in to ask" notice links to `/{locale}/login?next=…`; keep that consistent with the header's account entry (F7).
 - **Live checks** run on `scripts/isolated-stack.sh`, never on the instructor stack.
 
+## Carried from AA3b (amended 2026-11-11)
+
+- **Anchors.** `Page.astro` now holds the one global `html { scroll-padding-top: calc(var(--ttod-header-height) + 1rem) }`
+  (LOCATORS §6). AA3 sets `--ttod-header-height` (4.25rem today) to its new header's real height at each breakpoint;
+  the per-view patches (oracle 6rem, CodigoGrafo 7rem) are already gone. After the header lands, re-run
+  `scripts/aa3b-browser-check.mjs` on the isolated stack: every anchor check must still pass at 390 and 1440.
+- **Keep in `Page.astro`:** the `cambioIdioma` prop (quote pages pass the translation twin), `data-cambio-idioma` on
+  the header and footer switches, the polite live region `#ttod-aviso` (copy-link announcements), the two
+  imports at the top of the header `<script>` (`enlazarCambioIdioma`, `enlazarCopiarEnlace`), and slash-terminated
+  nav hrefs. `Page.test.ts` evaluates the *first* `<script>` as plain JS, so imports must stay out of it.
+- **Library:** cards carry `id={quote.id}` (`/{l}/library/#wis-034` is a registered locator). Keep it in the new layout.
+- **Account fragments:** the registry row `/{l}/account/` (`#profile #password #sessions`) is marked `owner: AA3`.
+  AA3 removes `owner`, maps the page in `src/tests/locators-registry.test.ts` (with a mocked session) and the
+  probe picks it up.
+- **F60:** `/graph/plano/` has CLS 0.4702 (pre-existing). Fix it here if the header work touches it, or record it.
+- **Cold review F2:** the anchor checks must pass on a **throttled** network too (the AA3b browser check already
+  does 150 ms RTT / 1.6 Mb/s / 4× CPU) and must leave the reader's fragment unchanged. A new header that changes
+  scene heights must keep `lib/capitulos.ts`'s rule: no fragment writes before the reader touches the page.
+
 ## Acceptance
 
 - [ ] Header is full-width, not a pill; language switch is not the dominant element; no hamburger at 768 px.

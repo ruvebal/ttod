@@ -270,7 +270,7 @@ const ExchangeView = memo(function ExchangeView({ exchange, index, copy, locale,
           {exchange.notice === copy.signIn && (
             <>
               {' '}
-              <a href={`/${locale}/login?next=${encodeURIComponent(typeof window === 'undefined' ? `/${locale}/oracle` : window.location.pathname)}`}>{copy.signInLink}</a>
+              <a href={`/${locale}/login/?next=${encodeURIComponent(typeof window === 'undefined' ? `/${locale}/oracle/` : window.location.pathname)}`}>{copy.signInLink}</a>
             </>
           )}
         </p>

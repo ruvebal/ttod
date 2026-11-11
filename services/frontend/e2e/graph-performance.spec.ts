@@ -47,7 +47,7 @@ test('renders a large graph and keeps filtering within the interaction budget', 
 		body: JSON.stringify(largeGraphWisdom)
 	}));
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	const graph = page.getByRole('group', {
 		name: `Knowledge graph with ${largeGraphNodes.length} nodes and ${largeGraphEdges.length} edges`
 	});

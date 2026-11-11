@@ -25,6 +25,7 @@
   // Los mismos rótulos que Sabiduría: en /es la sección y el nivel se leen en
   // español («Arquitectura», «Intermedio»), no con el slug del dato.
   import { rotuloNivel, rotuloSeccion } from '../../content/bosque';
+  import { aliasDeNodos, escribirSendero, leerSendero, validarSendero } from './senderoUrl';
 
   interface Props { lang: 'en' | 'es' }
   const { lang }: Props = $props();
@@ -312,6 +313,26 @@
       if (prueba.length >= 4 && prueba.length <= 7) { origen = uno.id; destino = otro.id; return; }
     }
   }
+
+  /**
+   * `?from=&to=&node=` (AA3b): al llegar el grafo, la dirección manda; después,
+   * lo que se elija se escribe en ella con `replaceState` (ver `senderoUrl.ts`).
+   */
+  let direccionLista = $state(false);
+  function restaurarDeLaDireccion() {
+    const pedido = validarSendero(leerSendero(window.location.search), aliasDeNodos(grafo.nodos));
+    if (pedido.from) origen = pedido.from;
+    if (pedido.to) destino = pedido.to;
+    if (pedido.from && !pedido.to) eligiendo = 'destino';
+    if (pedido.node) abierta = pedido.node;
+    direccionLista = true;
+  }
+  $effect(() => {
+    if (!direccionLista) return;
+    const siguiente = escribirSendero(window.location.href, { from: origen, to: destino, node: abierta });
+    const actual = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (siguiente !== actual) history.replaceState(history.state, '', siguiente);
+  });
 
   function limpiar() {
     clearTimeout(cruce);
@@ -1301,6 +1322,7 @@
         if (!respuesta) throw new Error('sin grafo');
         grafo = construirGrafo(respuesta, lang);
         if (!vivo) return;
+        restaurarDeLaDireccion();
         cargando = false;
         if (!hayWebgl()) { sinWebgl = true; return; }
         // La constelación se levanta en cuanto hay datos, sin esperar hueco: es

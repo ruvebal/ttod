@@ -1,8 +1,12 @@
 # PHASE-AA3b: Permanent locators, wisdom usability, graph IA
 
 > **Track:** Astro shell — F8, F49–F52, F54, F57 · A7, A32, A36–A40.  
-> **Status:** BLOCKED until AA0 DONE (AA0 freezes [LOCATORS.md](../LOCATORS.md)) · **may start in parallel with AA3**;
-> **VERIFYING requires AA3's header (A31) merged**, because anchor offsets depend on `--ttod-header-height` (F58).
+> **Status:** DONE 2026-11-11 (owner: "AA3b done"; ran **before** AA3) · [report](../PHASE-AA3b-REPORT.md).
+> *Amended 2026-11-11 (was: "VERIFYING requires AA3's header (A31) merged").* AA3b now carries the one global
+> `html { scroll-padding-top: calc(var(--ttod-header-height, <fallback>) + 1rem) }` rule from LOCATORS §6, with a
+> fallback measured on today's header. The exit gate measures the real header against each landing target, so it
+> does not depend on AA3. AA3 defines `--ttod-header-height` for its new header, removes the per-view patches,
+> and re-runs the AA3b anchor checks.
 
 ## Goal
 
@@ -89,6 +93,24 @@ and the frozen contract docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/LOCATORS.md.
 - Do not rename shipped params (orden, p, s, tag, node).
 - Never hardcode a corpus count. No ttod.yml edits. Reuse tokens/components. No commit unless asked.
 ```
+
+## Planner amendments at gate writing (2026-11-11)
+
+- **Exit gate:** [`AA3b-locators-wisdom-and-graph-ia.exit-gate.sh`](AA3b-locators-wisdom-and-graph-ia.exit-gate.sh) plus
+  [`scripts/aa3b-browser-check.mjs`](../scripts/aa3b-browser-check.mjs). The registry becomes data
+  (`services/frontend/src/lib/locators.registry.json`), walked by both the Vitest test and the live probe.
+- **Search example:** `deuda` matches **0** quotes in today's Spanish corpus (tags are English keys). The gate
+  uses `diseno` / `DISEÑO` (5 quotes, which also proves the accent fold) and compares against an independent
+  Python fold over `/api/v1/wisdom/sample`. The report's screenshot uses `?q=diseno`.
+- **Shipped links keep working:** `/{l}/graph/path?s=…` (the code graph's key) 301s to `/{l}/graph/code/?s=…`;
+  `/{l}/graph/?tag=…` (a 2D-island key) 301s to `/{l}/graph/plano/?tag=…`. These rows join the registry.
+- **No twin:** the switch goes to the other locale's index as `?untranslated={id}`, which shows the notice
+  (a new registered key). Today every quote has a twin (230 `translation_of` edges).
+- **Slashless redirects already shipped:** the library and account sign-in redirects point at `/{l}/login?next=`;
+  they move to `/{l}/login/?next=`. The service worker's `OFFLINE_PAGES` move to slash form, and its cache
+  version goes up.
+- **UX rule tooling:** `baseline.sh` accepts `VIEWS=` (default unchanged), so AA3b measures `/es/graph/` and
+  `/es/graph/plano/`.
 
 ## Carried from AA1 (amended 2026-11-10)
 

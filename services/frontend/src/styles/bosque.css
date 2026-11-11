@@ -563,3 +563,9 @@
   .piedra { background-image: none; border: 1px solid CanvasText; }
   .piedra::before, .piedra::after { display: none; }
 }
+
+/* El id de la losa es también su enlace (AA3b, LOCATORS §7): grabado como
+   antes, subrayado solo al pasar o con el foco. */
+a.piedra-id { color: inherit; text-decoration: none; min-height: 24px; display: inline-flex; align-items: center; }
+a.piedra-id:hover,
+a.piedra-id:focus-visible { text-decoration: underline; text-underline-offset: 4px; }

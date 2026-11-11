@@ -38,7 +38,7 @@ const title = locale === 'es' ? 'Oráculo · 道 El Tao del Desarrollo (TTOD)' :
   /* El oráculo en medio del cielo (el oráculo, en medio): el folio
      (oracle-terminal.css) se centra en la primera pantalla y el dragón vuela a su alrededor, sin
      pasar nunca por detrás. El folio es papel opaco: nada baja el contraste del texto. */
-  html:has(.oraculo) { scroll-padding-top: 6rem; }
+  /* El salto bajo la cabecera lo da la regla global de `Page.astro` (LOCATORS §6, AA3b). */
   .oraculo { position: relative; }
   .oraculo-chat {
     position: relative; z-index: 1; max-width: 60rem; margin: 0 auto; box-sizing: border-box;

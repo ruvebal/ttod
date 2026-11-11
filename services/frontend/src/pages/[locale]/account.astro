@@ -55,8 +55,8 @@ const copy = locale === 'es'
     </dl>
     <nav aria-label={copy.shortcuts}>
       <ul>
-        <li><a href={`/${locale}/library`}>{copy.library}</a></li>
-        {canReview && <li><a href={`/${locale}/account/reviewer`}>{copy.queue}</a></li>}
+        <li><a href={`/${locale}/library/`}>{copy.library}</a></li>
+        {canReview && <li><a href={`/${locale}/account/reviewer/`}>{copy.queue}</a></li>}
       </ul>
     </nav>
     <form method="post" action={`/${locale}/logout`}>

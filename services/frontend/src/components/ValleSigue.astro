@@ -64,6 +64,10 @@ const paradas = secciones.map((s, i) => {
   acumulado += tramo;
   return { ...s, i, tramo, inicio, centro: inicio + tramo / 2 };
 });
+// Dónde empieza cada parada en el recorrido del rollo: a medio camino entre su
+// centro y el de la anterior, la misma cuenta con la que el script decide qué
+// parada se enseña. La usa el fragmento `#map-{sección}` (AA3b, F51).
+const desdeDe = (i: number) => (i === 0 ? 0 : (paradas[i - 1].centro + paradas[i].centro) / 2);
 // El ritmo lo pone Stripe Press, medido a 390 px: 318–334 px de scroll por
 // elemento. Trece paradas × 320 px = 4 160 px
 // de rollo, cinco pantallas de teléfono.
@@ -117,6 +121,7 @@ const copia = {
       'The corpus grows with what the class proposes: every proposal is reviewed before it enters, and it carries its source from the first day.',
     cta: 'Propose a quote',
     ctaFicha: 'Read the governance docs',
+    copiarEnlace: (titulo: string) => `Copy the link to “${titulo}”`,
   },
   es: {
     titularTesis: 'Un corpus que se puede auditar',
@@ -145,6 +150,7 @@ const copia = {
       'El corpus crece con lo que propone la clase: cada propuesta pasa por revisión antes de entrar, y lleva su procedencia desde el primer día.',
     cta: 'Proponer una cita',
     ctaFicha: 'Leer los docs de gobierno',
+    copiarEnlace: (titulo: string) => `Copiar el enlace a «${titulo}»`,
   },
 }[lang];
 
@@ -176,7 +182,7 @@ const dos = (n: number) => String(n).padStart(2, '0');
 
 <section class="sigue" data-sigue aria-labelledby="sigue-tesis">
   <!-- 7 · Tesis: la pintura a un lado, el texto largo al otro -->
-  <div class="tesis">
+  <div id="thesis" class="tesis" data-capitulo>
     <figure class="tesis__lejos" aria-hidden="true">
       <img
         class="tesis__pintura"
@@ -194,13 +200,16 @@ const dos = (n: number) => String(n).padStart(2, '0');
     <div class="tesis__texto">
       <span class="nube-ruyi nube-ruyi--tesis" data-nube="11" aria-hidden="true"></span>
       <h2 class="titular" id="sigue-tesis">{copia.titularTesis}</h2>
+      <a class="ancla-copiar" href="#thesis" data-copiar aria-label={copia.copiarEnlace(copia.titularTesis)}>#</a>
       <p class="parrafo">{copia.parrafo1}</p>
       <p class="parrafo">{copia.parrafo2}</p>
       <dl class="cifras">
         {copia.cifras.map((c) => (
           <div class="cifra">
-            <dt class="cifra__n">{c.n}</dt>
-            <dd class="cifra__t">{c.t}</dd>
+            {/* El rótulo es el término y la cifra su valor (F54): así lo lee un
+                lector de pantalla. Se ve al revés, la cifra arriba, por CSS. */}
+            <dt class="cifra__t">{c.t}</dt>
+            <dd class="cifra__n">{c.n}</dd>
           </div>
         ))}
       </dl>
@@ -221,12 +230,15 @@ const dos = (n: number) => String(n).padStart(2, '0');
        con el dedo, que en un teléfono se pelea con el scroll. Aquí sólo manda
        el scroll vertical; el rollo avanza porque la página baja. -->
   <div
+    id="map"
     class="rollo"
     data-rollo
+    data-capitulo
     style={`--paradas:${paradas.length};--parada:${PARADA_PX}px;--rollo-ratio:${ROLLO_RATIO.toFixed(4)};--inicio:${(1 - paradas[0].centro).toFixed(5)}`}
   >
     <div class="rollo__portada">
       <h2 class="titular titular--mapa" id="sigue-rollo">{copia.titularMapa}</h2>
+      <a class="ancla-copiar" href="#map" data-copiar aria-label={copia.copiarEnlace(copia.titularMapa)}>#</a>
       <p class="rollo__gramatica">{copia.pieMapa}</p>
     </div>
 
@@ -234,7 +246,7 @@ const dos = (n: number) => String(n).padStart(2, '0');
          pantalla que se queda pegada. Dentro no hay scroll secuestrado — es
          `position: sticky`, el mismo truco medido en Stripe Press, donde el
          lienzo nunca se mueve y lo que avanza es la escena de dentro. -->
-    <div class="rollo__escena" data-escena>
+    <div class="rollo__escena" data-escena data-ancla-escena>
       <div class="rollo__ventana" data-ventana>
         <!-- El rollo es un objeto sobre el valle: pintura y colofón en el mismo
              papel, con los dos rollos de las varillas en los cantos de la
@@ -294,8 +306,12 @@ const dos = (n: number) => String(n).padStart(2, '0');
           <ol class="rollo__paradas" data-paradas>
             {paradas.map((p) => (
               <li
+                id={`map-${p.slug}`}
                 class="parada"
                 data-parada
+                data-capitulo
+                data-ancla-desde={desdeDe(p.i).toFixed(5)}
+                data-ancla-progreso={p.centro.toFixed(5)}
                 data-i={p.i}
                 data-centro={p.centro.toFixed(5)}
                 style={`--peso:${(p.total / Math.max(1, paradas[0].total)).toFixed(3)}`}
@@ -355,10 +371,11 @@ const dos = (n: number) => String(n).padStart(2, '0');
   </script>
 
   <!-- 10 · Cierre: el acantilado sube y la página entra en el pie -->
-  <div class="cierre">
+  <div id="close" class="cierre" data-capitulo>
     <div class="cierre__texto">
       <span class="nube-ruyi nube-ruyi--cierre" data-nube="37" aria-hidden="true"></span>
       <h2 class="titular titular--cierre">{copia.titularCierre}</h2>
+      <a class="ancla-copiar" href="#close" data-copiar aria-label={copia.copiarEnlace(copia.titularCierre)}>#</a>
       <p class="parrafo">{copia.parrafoCierre}</p>
       <p class="cierre__acciones">
         <a class="boton" href={`/${lang}/wisdom/propose/`}>{copia.cta}</a>
@@ -521,8 +538,9 @@ const dos = (n: number) => String(n).padStart(2, '0');
     padding-block-start: clamp(1.2rem, 3vh, 2rem);
     border-block-start: 1px solid rgba(247, 243, 231, .26);
   }
-  .cifra { margin: 0; }
+  .cifra { margin: 0; display: flex; flex-direction: column-reverse; }
   .cifra__n {
+    margin: 0;
     font-family: var(--ttod-font-body);
     font-size: clamp(2rem, 4.6vw, 3rem);
     line-height: 1;
@@ -555,6 +573,22 @@ const dos = (n: number) => String(n).padStart(2, '0');
     padding: clamp(2.5rem, 7vh, 6rem) clamp(1.1rem, 5vw, 5.5rem) clamp(1.4rem, 3.5vh, 2.4rem);
   }
   .titular--mapa { margin-bottom: clamp(.9rem, 2vh, 1.4rem); }
+  /* Copiar el enlace a un capítulo (LOCATORS §7): el «#» de los titulares de la
+     documentación, en la misma tinta que el texto y un blanco de 44 px. */
+  .ancla-copiar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    margin-inline-start: -.6rem;
+    font: 500 1.1rem / 1 var(--ttod-font-ui);
+    color: inherit;
+    opacity: .7;
+    text-decoration: none;
+  }
+  .ancla-copiar:hover,
+  .ancla-copiar:focus-visible { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
   .rollo__gramatica {
     margin: 0;
     max-width: 44ch;
@@ -1207,6 +1241,8 @@ const dos = (n: number) => String(n).padStart(2, '0');
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+  import { avisarEscenaLista } from '../lib/capitulos';
+
   gsap.registerPlugin(ScrollTrigger);
 
   const seccion = document.querySelector<HTMLElement>('[data-sigue]');
@@ -1264,6 +1300,9 @@ const dos = (n: number) => String(n).padStart(2, '0');
     const rollo = seccion.querySelector<HTMLElement>('[data-rollo][data-vivo]');
     if (rollo) {
       const escena = rollo.querySelector<HTMLElement>('[data-escena]')!;
+      // La escena es pegajosa: `#map-{sección}` se alcanza con la fracción del
+      // recorrido de su parada, no con un salto nativo (AA3b, F51).
+      escena.setAttribute('data-ancla-viva', '');
       const banda = rollo.querySelector<HTMLElement>('.rollo__banda')!;
       const lienzo = rollo.querySelector<HTMLElement>('[data-lienzo]')!;
       const sellos = [...rollo.querySelectorAll<HTMLElement>('[data-sello]')];
@@ -1362,7 +1401,7 @@ const dos = (n: number) => String(n).padStart(2, '0');
         trigger: escena,
         start: 'top top',
         end: 'bottom bottom',
-        onRefresh: (self) => { medir(); colocar(self.progress); },
+        onRefresh: (self) => { medir(); colocar(self.progress); avisarEscenaLista(); },
         onUpdate: (self) => {
           if (!quieto.matches) return colocar(self.progress);
           let i = centros.length - 1;
@@ -1424,6 +1463,10 @@ const dos = (n: number) => String(n).padStart(2, '0');
   // líneas suben desde su máscara, las cifras y las acciones se asientan, el
   // rollo llega como un objeto que se posa. Todo una vez, al asomar.
   import { nubesRuyi, subirLineas, asentar, asentarEnFila } from './movimiento';
+  // Los capítulos de la portada como fragmentos (AA3b, F51): al llegar, el
+  // fragmento lleva a su sitio; al leer, el capítulo actual se escribe en él.
+  import { enlazarCapitulos } from '../lib/capitulos';
+  enlazarCapitulos();
 
   const sigue = document.querySelector('[data-sigue]');
   if (sigue) {

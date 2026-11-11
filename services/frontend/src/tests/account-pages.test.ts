@@ -87,7 +87,7 @@ describe('logging out', () => {
 
       const response = await logout(context);
 
-      expect(response.headers.get('location')).toBe('/en/account?logout=failed');
+      expect(response.headers.get('location')).toBe('/en/account/?logout=failed');
       expect(cookies.delete).not.toHaveBeenCalled();
     }
   });
@@ -113,7 +113,7 @@ describe('my account', () => {
     mockBackend({ '/api/v1/auth/session': student });
     const { main } = await render(AccountRoute, '/account', 'es');
 
-    expect(main?.querySelector('a[href="/es/library"]')?.textContent).toBe('Mi biblioteca');
+    expect(main?.querySelector('a[href="/es/library/"]')?.textContent).toBe('Mi biblioteca');
     const form = main?.querySelector('form');
     expect(form?.getAttribute('method')).toBe('post');
     expect(form?.getAttribute('action')).toBe('/es/logout');
@@ -122,11 +122,11 @@ describe('my account', () => {
 
   it('links the reviewer queue only for reviewers and instructors', async () => {
     mockBackend({ '/api/v1/auth/session': student });
-    expect((await render(AccountRoute, '/account')).main?.querySelector('a[href="/en/account/reviewer"]')).toBeNull();
+    expect((await render(AccountRoute, '/account')).main?.querySelector('a[href="/en/account/reviewer/"]')).toBeNull();
 
     vi.restoreAllMocks();
     mockBackend({ '/api/v1/auth/session': reviewer });
-    expect((await render(AccountRoute, '/account')).main?.querySelector('a[href="/en/account/reviewer"]')?.textContent)
+    expect((await render(AccountRoute, '/account')).main?.querySelector('a[href="/en/account/reviewer/"]')?.textContent)
       .toBe('Reviewer queue');
   });
 

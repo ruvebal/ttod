@@ -14,7 +14,8 @@ FE_PKG="${FE_PKG:-$HOME/src/ttod/services/frontend/package.json}"   # where play
 LH="lighthouse@12.6.0"
 mkdir -p "$OUT/lighthouse"
 
-views=("/es/" "/es/wisdom/" "/es/graph/path")
+# VIEWS (space-separated) lets a later phase measure its own views; the default is the AA0 set.
+read -r -a views <<< "${VIEWS:-/es/ /es/wisdom/ /es/graph/path}"
 for v in "${views[@]}"; do
   slug="$(echo "$v" | tr '/' '-' | sed 's/^-//; s/-$//')"
   npx -y "$LH" "$BASE$v" --only-categories=accessibility,performance --form-factor=mobile \
@@ -61,12 +62,12 @@ for r in rows:
           f'perf {r["performance"]:3} CLS {r["cls"]:.4f} LCP {r["lcp_ms"]} ms')
 PY
 
-node --input-type=module - "$BASE" "$OUT" "$FE_PKG" <<'JS'
+node --input-type=module - "$BASE" "$OUT" "$FE_PKG" "${views[@]}" <<'JS'
 import { createRequire } from "node:module";
-const [base, out, pkg] = process.argv.slice(2);
+const [base, out, pkg, ...paths] = process.argv.slice(2);
 const { chromium } = createRequire(pkg)("playwright");
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH });
-const views = [["es", "/es/"], ["es-wisdom", "/es/wisdom/"], ["es-graph-path", "/es/graph/path"]];
+const views = paths.map((p) => [p.replace(/^\/|\/$/g, "").replace(/\//g, "-"), p]);
 for (const w of [390, 768, 1440]) {
   const page = await browser.newPage({ viewport: { width: w, height: 900 }, deviceScaleFactor: 1 });
   for (const [slug, path] of views) {

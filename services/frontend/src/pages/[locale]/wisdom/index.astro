@@ -4,18 +4,31 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Estanteria from '../../../components/wisdom/Estanteria.astro';
 import { isLocale, labels, loadWisdom } from '../../../content/wisdom';
 import { copia } from '../../../content/estanteria';
+import { hayFiltros, leerFiltros } from '../../../lib/buscar';
 import '../../../styles/tokens.css';
 import '../../../styles/armario.css';
+// El pasillo de resultados usa las losas del bosque. Su hoja se pide solo cuando
+// hay resultados: en línea en cada visita a /wisdom/ eran 19 KB más en el HTML.
+import bosqueCss from '../../../styles/bosque.css?url';
 const locale = Astro.params.locale;
 if (!isLocale(locale)) return new Response(null, { status: 404 });
 const { entries, failed } = await loadWisdom(locale);
 const copy = labels[locale];
 const t = copia[locale];
+// `?q=&section=&level=&tag=` (LOCATORS §4). Una sola faceta sin búsqueda ya la
+// manda el middleware a su ruta; aquí llegan búsquedas y combinaciones.
+const filtros = leerFiltros(Astro.url.searchParams);
+// El aviso solo nombra una cita que existe en el otro idioma (cold review F5):
+// si no, cualquiera podría escribir lo que quisiera en la página.
+const pedida = Astro.url.searchParams.get('untranslated') ?? '';
+const otras = /^[a-z][a-z0-9-]{0,40}$/.test(pedida) ? (await loadWisdom(locale === 'en' ? 'es' : 'en')).entries : [];
+const sinTraduccion = otras.some((entry) => entry.id === pedida) ? pedida : undefined;
 ---
 <Page lang={locale} title={`${t.titulo} — TTOD`}>
+  {hayFiltros(filtros) && <link rel="stylesheet" href={bosqueCss} />}
   <main class="armario-vista">
     <Breadcrumbs locale={locale} items={[{ label: copy.wisdom }]} />
-    <Estanteria locale={locale} entries={entries} failed={failed} sesion={Astro.cookies.has('ttod_session')}>
+    <Estanteria locale={locale} entries={entries} failed={failed} sesion={Astro.cookies.has('ttod_session')} filtros={filtros} sinTraduccion={sinTraduccion}>
       <a slot="acciones" class="armario-proponer" href={`/${locale}/wisdom/propose/`}>{copy.propose}</a>
     </Estanteria>
   </main>

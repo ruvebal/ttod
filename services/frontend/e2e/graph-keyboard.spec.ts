@@ -38,7 +38,7 @@ async function mockGraphApi(page: Page) {
 
 test('tabs from the labelled filter to visible nodes and activates a node with Enter', async ({ page }) => {
 	await mockGraphApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 
 	const filter = page.getByLabel('Filter by tag');
 	const visibleNodes = page.locator('[data-node-id]');
@@ -64,7 +64,7 @@ test('tabs from the labelled filter to visible nodes and activates a node with E
 
 test('uses the filter with arrow keys and returns focus when history removes a focused node', async ({ page }) => {
 	await mockGraphApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 
 	const filter = page.getByLabel('Filter by tag');
 	await expect(page.locator('[data-node-id]')).toHaveCount(3);

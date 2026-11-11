@@ -36,7 +36,7 @@ const graph = (page: Page, nodes: number, edges: number) => page.getByRole('grou
 
 test('deep link restores tag and selected node', async ({ page }) => {
 	await mockApi(page);
-	await page.goto('/en/graph?tag=architecture&node=arch-002');
+	await page.goto('/en/graph/plano/?tag=architecture&node=arch-002');
 	await expect(graph(page, 2, 1)).toBeVisible();
 	await expect(page.getByLabel('Filter by tag')).toHaveValue('architecture');
 	await expect(details(page)).toContainText('Share pure functions.');
@@ -44,7 +44,7 @@ test('deep link restores tag and selected node', async ({ page }) => {
 
 test('selecting a node and a tag writes the URL, and reload restores it', async ({ page }) => {
 	await mockApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await expect(graph(page, 3, 2)).toBeVisible();
 	await page.locator('[data-node-id="arch-001"]').click();
 	await expect(page).toHaveURL(/node=arch-001/);
@@ -60,7 +60,7 @@ test('selecting a node and a tag writes the URL, and reload restores it', async 
 
 test('back and forward restore filter and selection', async ({ page }) => {
 	await mockApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await expect(graph(page, 3, 2)).toBeVisible();
 	await page.locator('[data-node-id="wis-001"]').click();
 	await page.locator('[data-node-id="arch-001"]').click();
@@ -78,7 +78,7 @@ test('back and forward restore filter and selection', async ({ page }) => {
 
 test('clearing the filter removes the tag param and a hidden node is dropped from the URL', async ({ page }) => {
 	await mockApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await page.locator('[data-node-id="wis-001"]').click();
 	await page.getByLabel('Filter by tag').selectOption('architecture');
 	await expect(page).toHaveURL((url) => url.searchParams.get('tag') === 'architecture' && !url.searchParams.has('node'));
@@ -90,13 +90,13 @@ test('clearing the filter removes the tag param and a hidden node is dropped fro
 
 test('invalid tag or node in the URL resets to a clean default state', async ({ page }) => {
 	await mockApi(page);
-	await page.goto('/en/graph?tag=nope&node=ghost-999');
+	await page.goto('/en/graph/plano/?tag=nope&node=ghost-999');
 	await expect(graph(page, 3, 2)).toBeVisible();
 	await expect(page.getByLabel('Filter by tag')).toHaveValue('');
 	await expect(details(page)).toContainText('Select a node to view its details.');
 	await expect(page).toHaveURL((url) => !url.searchParams.has('tag') && !url.searchParams.has('node'));
 
-	await page.goto('/en/graph?tag=wisdom&node=arch-001');
+	await page.goto('/en/graph/plano/?tag=wisdom&node=arch-001');
 	await expect(graph(page, 1, 0)).toBeVisible();
 	await expect(page.getByLabel('Filter by tag')).toHaveValue('wisdom');
 	await expect(page).toHaveURL((url) => url.searchParams.get('tag') === 'wisdom' && !url.searchParams.has('node'));

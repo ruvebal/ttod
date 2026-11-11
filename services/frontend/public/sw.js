@@ -1,10 +1,12 @@
 const CACHE_PREFIX = 'ttod-pwa-stub-';
 /* v6: cacheFirst sobre /visual-system/ conserva un fichero viejo bajo el mismo
-   nombre; subir la versión purga las pinturas de la portada anterior. */
-const CACHE_NAME = `${CACHE_PREFIX}v6`;
+   nombre; subir la versión purga las pinturas de la portada anterior.
+   v7 (AA3b): las páginas acaban en barra; la forma sin barra es un 301, y una
+   respuesta redirigida guardada en caché no sirve para una navegación. */
+const CACHE_NAME = `${CACHE_PREFIX}v7`;
 const PROOF_ASSET = '/visual-system/tokens.css';
 
-const OFFLINE_PAGES = ['/en/oracle', '/es/oracle'];
+const OFFLINE_PAGES = ['/en/oracle/', '/es/oracle/'];
 const STATIC_ASSETS = [
   PROOF_ASSET,
   '/visual-system/backgrounds.css',

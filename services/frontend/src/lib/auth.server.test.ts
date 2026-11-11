@@ -24,7 +24,7 @@ describe('SSR session guard', () => {
     expect(result).toBeInstanceOf(Response);
     const response = result as Response;
     expect(response.status).toBe(302);
-    expect(response.headers.get('location')).toBe('/es/login?next=%2Fes%2Faccount');
+    expect(response.headers.get('location')).toBe('/es/login/?next=%2Fes%2Faccount');
     await expect(response.text()).resolves.toBe('');
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -46,7 +46,7 @@ describe('SSR session guard', () => {
     const result = await requireUser(accountRequest('en', 'expired-session'));
 
     expect((result as Response).status).toBe(302);
-    expect((result as Response).headers.get('location')).toBe('/en/login?next=%2Fen%2Faccount');
+    expect((result as Response).headers.get('location')).toBe('/en/login/?next=%2Fen%2Faccount');
   });
 
   it('rejects a backend payload that does not match the shared AuthUser contract', async () => {
@@ -91,7 +91,7 @@ describe('SSR role guard', () => {
     const result = await requireRole(accountRequest('es'), 'reviewer');
 
     expect((result as Response).status).toBe(302);
-    expect((result as Response).headers.get('location')).toBe('/es/login?next=%2Fes%2Faccount');
+    expect((result as Response).headers.get('location')).toBe('/es/login/?next=%2Fes%2Faccount');
   });
 });
 
@@ -180,7 +180,7 @@ describe('where login returns to', () => {
   it('keeps a path of this site and refuses anything that leaves it', () => {
     expect(safeNextPath('/es/wisdom/wis-034?x=1', 'es')).toBe('/es/wisdom/wis-034?x=1');
     for (const bad of ['//evil.com', '/\\evil.com', 'https://evil.com', '/es/login', '/en/login?next=/x', '/es/register', '/en/register?next=/x', null, 42]) {
-      expect(safeNextPath(bad, 'es')).toBe('/es/account');
+      expect(safeNextPath(bad, 'es')).toBe('/es/account/');
     }
   });
 });

@@ -1,5 +1,17 @@
 {
+  # F2 (AA5): this Caddy serves **plain HTTP** on both ports. :8443 is NOT TLS; it is a second
+  # HTTP port kept for old bookmarks. HTTPS, when there is one, ends at a proxy in front
+  # (Traefik on Lilith). Never describe this file as "HTTPS".
   auto_https off
+  servers {
+    # Only a proxy listed here may pass X-Forwarded-Proto / -For through; from anyone else Caddy
+    # replaces them, so a student cannot fake https or dodge the per-IP throttles (AA2).
+    # TTOD_TRUSTED_PROXIES = the address(es) or CIDR(s) of the TLS proxy in front, separated by
+    # SPACES (a comma stops Caddy from starting). The default trusts nobody: nothing reaches Caddy from
+    # its own loopback. Never the classroom LAN, never `private_ranges`, and on Docker Desktop never
+    # the host gateway (192.168.65.x): every LAN client arrives from it (cold review AA5, F2).
+    trusted_proxies static {$TTOD_TRUSTED_PROXIES:127.0.0.1/32}
+  }
 }
 
 (seguridad) {
@@ -28,6 +40,15 @@
 
 :8080, :8443 {
   import seguridad
+  # AA5 (cold review F4): @astrojs/node can crash on a malformed port in the Host header (an npm
+  # advisory still open until the Astro major upgrade). Only a hostname or IP, with an optional numeric
+  # port, gets past Caddy.
+  # The Host header is not in Go's header map, so match Caddy's host:port placeholder instead.
+  @hostmalo not vars_regexp {http.request.hostport} ^([A-Za-z0-9.-]+|\[[0-9A-Fa-f:]+\])(:[0-9]{1,5})?$
+  # A `handle` and the first one: Caddy runs `respond` after `handle`, so a bare respond never fired.
+  handle @hostmalo {
+    respond "Bad Request" 400
+  }
 
   @api path /api/* /health
   handle @api {
@@ -50,7 +71,11 @@
       path /api/v1/wisdom/sample
     }
     header @corpus ?Cache-Control "public, max-age=60, stale-while-revalidate=600"
-    reverse_proxy backend:8000
+    # F48: every API request carries Caddy's own id; the backend logs it and returns it.
+    # Set here, so a client-supplied X-Request-ID never reaches the logs.
+    reverse_proxy backend:8000 {
+      header_up X-Request-ID {http.request.uuid}
+    }
   }
 
   @serviceWorker path /sw.js

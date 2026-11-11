@@ -10,6 +10,12 @@ on:
     # Include feature branches: contract drift should be visible before a PR.
     paths:
       - "services/frontend/**"
+      - "services/backend/**"
+      - "ttod_core/**"
+      - "ttod.yml"
+      - "schema/**"
+      - "pyproject.toml"
+      - "cli.py"
       - ".github/workflows/ci.yml"
       - "docs/pwa-offline-queue.md"
       - "docs/pwa-compatibility-monitor.md"
@@ -106,3 +112,27 @@ jobs:
             services/frontend/test-results/pwa-browser/
           if-no-files-found: warn
           retention-days: 7
+
+  # F45 (AA5): the backend suite (auth, throttles, shore stores, health, oracle contract) runs in CI,
+  # the same command as `make test`. It needs no Redis or Ollama: the tests inject in-memory stores.
+  backend-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: |
+            pyproject.toml
+            services/backend/requirements.txt
+            services/mcp/requirements.txt
+      - name: Install the CLI and service dependencies (as `make venv`)
+        run: |
+          python -m pip install -q -e .
+          python -m pip install -q -r services/backend/requirements.txt -r services/mcp/requirements.txt
+      - name: Backend unit tests
+        run: python -m unittest discover -s services/backend/tests -t . -p 'test_*.py'

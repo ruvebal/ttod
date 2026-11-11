@@ -49,6 +49,11 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA6-oracle-quota-and-closeout.md
 - **Close-out inputs:** F59 (es corpus has no `related` edges), F60 (2D plano CLS 0.47), F61 (harness ignores `3b`)
   need a disposition in the AA6 ledger.
 
+## Carried from AA7 planning (2026-11-11)
+
+- AA6 waits for **AA7** (Astro 5 → 7), not only AA5. The close-out hands Phase T a frontend with no critical or high
+  production advisory, so AA6's ledger cites `PHASE-AA7-REPORT.md` for F19.
+
 ## Acceptance
 
 - [ ] Oracle abuse → 429 under synthetic load.

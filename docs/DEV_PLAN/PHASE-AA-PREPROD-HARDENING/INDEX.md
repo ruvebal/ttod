@@ -5,7 +5,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 
 # Phase AA — Pre-production hardening
 
-**Status:** AUTHORIZED 2026-11-10 (owner: "the defaults are ok"; D1–D6 recorded as written, D7 (a) noindex confirmed by name ("D7 a"), D7 (b) per the React authentication lesson: short PAT expiry + `jti` denylist) · AA0, AA1, AA2, AA3, AA3b, AA5 lane A DONE.  
+**Status:** AUTHORIZED 2026-11-10 (owner: "the defaults are ok"; D1–D6 recorded as written, D7 (a) noindex confirmed by name ("D7 a"), D7 (b) per the React authentication lesson: short PAT expiry + `jti` denylist) · AA0, AA1, AA2, AA3, AA3b, AA5 DONE.  
 **Programme letter:** AA (after Z Redis shore).  
 **Depends on:** Phase Z complete on `main`; cohort accounts/register landed.  
 **Related but separate:** [Phase T public release](../PHASE-T-PUBLIC-RELEASE-EXCELLENCE-CASCADE.md) — do not conflate.
@@ -26,7 +26,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | Student brief | [ASSIGNMENTS.md](ASSIGNMENTS.md) |
 | URL / locator contract | [LOCATORS.md](LOCATORS.md) |
 | Orchestrator | [PHASE-AA-PREPROD-HARDENING-CASCADE.md](PHASE-AA-PREPROD-HARDENING-CASCADE.md) |
-| Phases | [PHASES/](PHASES/) AA0→AA6 (+ AA3b locators) |
+| Phases | [PHASES/](PHASES/) AA0→AA7 (+ AA3b locators; AA7 Astro upgrade runs before AA6) |
 
 ## Programme (harness-readable)
 
@@ -41,9 +41,10 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | 2 | [AA2](PHASES/AA2-auth-throttle-and-fallback.md) | Throttles, fallback off, PAT, cookie Secure, allowedDomains, oracle auth, password API | DONE — cold review PASS-WITH-AMENDMENTS, amended; owner marked DONE 2026-11-10 ("AA2 done") |
 | 3 | [AA3](PHASES/AA3-nav-a11y-and-url-hygiene.md) | Classic header, a11y, library, User section UI | DONE — cold review PASS-WITH-AMENDMENTS (F1–F10), amended and re-verified; owner marked DONE 2026-11-11 ("AA3 done") |
 | 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | DONE — cold review PASS-WITH-AMENDMENTS (F1–F11), amended and re-verified; owner marked DONE 2026-11-11 ("AA3b done") |
-| 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | READY — unblocked by AA3 + AA3b DONE (2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
-| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | READY — lane A DONE 2026-11-10 (F25/F27/F28); lane B unblocked by AA1 DONE (its gate checks are appended to the AA5 exit gate before it starts) |
-| 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 DONE (AA2, AA3b DONE) |
+| 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED — queued behind AA7 by owner order ("AA7 -> AA4", 2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
+| 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | DONE — lane A DONE 2026-11-10; lane B cold review PASS-WITH-AMENDMENTS (F1–F8), amended and re-verified; owner marked DONE 2026-11-11 ("AA5 done") |
+| 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 + AA7 DONE (the Astro major upgrade comes before any public exposure) |
+| 7 | [AA7](PHASES/AA7-astro-major-upgrade.md) | Astro 5 → 7 major upgrade; re-runs the AA2/AA3b/AA3/AA5 gates | READY — unblocked by AA5 DONE (2026-11-11); exit gate written with the phase file; runs before AA4 and AA6 (owner order) |
 
 ## Live snapshot (2026-11-10)
 

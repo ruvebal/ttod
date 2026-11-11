@@ -16,5 +16,7 @@ ENV HOST=0.0.0.0 PORT=4321 NODE_ENV=production
 COPY --from=build /app/package.json /app/package-lock.json* ./
 RUN npm ci --omit=dev
 COPY --from=build /app/dist ./dist
+# F16 (AA5): the image's built-in unprivileged `node` user; the app only reads /app.
+USER node
 EXPOSE 4321
 CMD ["node", "./dist/server/entry.mjs"]

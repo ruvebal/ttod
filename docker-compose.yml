@@ -4,7 +4,11 @@ services:
     restart: unless-stopped
     ports:
       - "${HTTP_PORT:-8080}:8080"
+      # A second **plain HTTP** port, not TLS (F2). HTTPS ends at a proxy in front of Caddy.
       - "${ALT_HTTP_PORT:-8443}:8443"
+    environment:
+      # F2: the TLS proxy in front (e.g. Traefik on Lilith) whose X-Forwarded-* Caddy may trust.
+      TTOD_TRUSTED_PROXIES: ${TTOD_TRUSTED_PROXIES:-127.0.0.1/32}
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       # Populated by `make docs-local` (docs/public built with --baseurl /project-docs); empty
@@ -29,11 +33,22 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    # F17: a static file the Node server answers without the backend.
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4321/site.webmanifest').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 15s
+      timeout: 3s
+      retries: 4
+      start_period: 20s
 
   backend:
     build:
       context: .
       dockerfile: services/backend/Dockerfile
+      # F16: `make` passes your uid/gid so the drafts bind stays yours (Makefile, AA5).
+      args:
+        TTOD_UID: ${TTOD_UID:-10001}
+        TTOD_GID: ${TTOD_GID:-10001}
     restart: unless-stopped
     environment:
       OLLAMA_MODE: ${OLLAMA_MODE:-container}
@@ -50,6 +65,11 @@ services:
       TTOD_ADMIN_EMAIL: ${TTOD_ADMIN_EMAIL:-admin@ttod.local}
       TTOD_ADMIN_PASSWORD_HASH: ${TTOD_ADMIN_PASSWORD_HASH:-}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      # F46: Redis client pool (redis_client.py has the same defaults).
+      TTOD_REDIS_SOCKET_TIMEOUT: ${TTOD_REDIS_SOCKET_TIMEOUT:-2}
+      TTOD_REDIS_CONNECT_TIMEOUT: ${TTOD_REDIS_CONNECT_TIMEOUT:-2}
+      TTOD_REDIS_HEALTH_CHECK_INTERVAL: ${TTOD_REDIS_HEALTH_CHECK_INTERVAL:-30}
+      TTOD_REDIS_MAX_CONNECTIONS: ${TTOD_REDIS_MAX_CONNECTIONS:-50}
       # AA2: refuse signed-cookie sessions (F4); trust Caddy's X-Forwarded-For for throttles (F3).
       TTOD_ALLOW_SIGNED_SESSION_FALLBACK: ${TTOD_ALLOW_SIGNED_SESSION_FALLBACK:-0}
       TTOD_TRUST_FORWARDED_FOR: ${TTOD_TRUST_FORWARDED_FOR:-1}
@@ -86,6 +106,9 @@ services:
     build:
       context: .
       dockerfile: services/mcp/Dockerfile
+      args:
+        TTOD_UID: ${TTOD_UID:-10001}
+        TTOD_GID: ${TTOD_GID:-10001}
     restart: unless-stopped
     environment:
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
@@ -95,6 +118,14 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on:
       - ollama
+    # F17: the MCP server is up when its port accepts connections. The backend still only needs it
+    # `started`: the site must not wait on the Oracle's retrieval to serve pages.
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 3001), 2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 4
+      start_period: 15s
 
   # Shore store — per-user / draft runtime state (not ttod.yml).
   # Bind-mounted AOF under ./data/redis so permanence is inspectable on the host.
@@ -103,6 +134,9 @@ services:
     image: redis:7-alpine
     restart: unless-stopped
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    # `make` runs Redis as you (TTOD_REDIS_USER=uid:gid), so data/redis stays readable for backups.
+    # Empty (plain `docker compose`): the image's own `redis` user, which takes /data itself.
+    user: "${TTOD_REDIS_USER:-}"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
       # Host folder for the AOF; override (e.g. a temp dir for an isolated test stack) with TTOD_REDIS_HOST_DIR.
@@ -119,11 +153,14 @@ services:
   # the app at an Ollama you already run yourself is a personal, manual
   # override (set OLLAMA_MODE=host + OLLAMA_BASE_URL yourself) — not a
   # documented project path, so it stays outside this file's defaults.
+  #
+  # F6: pinned by digest (ollama 0.33.3, the image Tanit runs and the cohort tested), not `latest`.
+  # F30: no host port by default: an Ollama on the LAN answers anyone, with no auth. The backend and
+  # the MCP server reach it as ollama:11434. To reach it from the host (e.g. `make review-pr`), add
+  # the loopback-only override: `docker compose -f docker-compose.yml -f docker-compose.ollama-port.yml up -d`.
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama@sha256:32931b46719f673c05fdbaa81ccb26da18ea4a1c57590a754874ab28ba269eb2
     restart: unless-stopped
-    ports:
-      - "${OLLAMA_CONTAINER_PORT:-11435}:11434"
     volumes:
       - ttod_ollama_data:/root/.ollama
 

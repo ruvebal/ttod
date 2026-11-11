@@ -1,5 +1,5 @@
 <!--
-AA5 report. Lane A (shore integrity) only; lane B is appended when AA1 is DONE.
+AA5 report. Lane A (shore integrity, DONE 2026-11-10) and lane B (ops, 2026-11-11).
 Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent does not mark DONE.
 -->
 
@@ -95,3 +95,109 @@ unchanged.
 ### Out of lane A (open)
 
 Lane B covers F2, F6, F16–F19, F29–F31 and F45–F48. It stays BLOCKED until AA1 is DONE.
+
+## Lane B: ops (F2, F6, F16–F19, F29–F31, F45–F48 · I1–I6, I10–I16)
+
+**Status:** DONE (owner, 2026-11-11: "AA5 done") · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA5-COLD-REVIEW.md](PHASE-AA5-COLD-REVIEW.md) § Lane B), amended in the same session (§ Cold review amendments) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` (reopened from `main` at
+`fd2f8278`). **Exit gate:** the same file. The lane B checks were appended before any code (commit `4f529de6`),
+lane A's checks keep running, and lane A's live part moved onto `scripts/isolated-stack.sh` (AA2 cold review F3).
+
+### What changed
+
+| Finding | Change | Where |
+| ------- | ------ | ----- |
+| **F2** TLS honesty (I1) | Caddy says in plain words that `:8443` is NOT TLS. `servers { trusted_proxies static {$TTOD_TRUSTED_PROXIES:127.0.0.1/32} }`: only the TLS proxy in front (Traefik on Lilith) may pass `X-Forwarded-Proto`/`-For`. The default trusts nobody | `caddy/Caddyfile`, compose `reverse-proxy.environment`, `.env.example` |
+| **F6** pins (I4) | Ollama is pinned by digest (`ollama/ollama@sha256:3293…`, 0.33.3, the image Tanit runs). Caddy and Redis still float within a minor or major line (recorded in the Lilith checklist) | `docker-compose.yml` |
+| **F16** non-root (I2) | backend and mcp run as `ttod` (uid 10001, build arg `TTOD_UID`); frontend runs as `node`. The backend image owns its drafts folder, and the Lilith checklist gives the one `chown` a Linux host needs for the bind | three Dockerfiles |
+| **F17** health checks (I3) | frontend: a `fetch` of `/site.webmanifest` (no backend involved). mcp: a TCP connect to 3001. The backend still needs mcp only `started`, so the site never waits on the Oracle's retrieval | `docker-compose.yml` |
+| **F18** Lilith checklist (I5) | Rewritten for current `main`: services and users, `.env` with `TTOD_ALLOWED_HOSTS` / `COOKIE_SECURE` / `TTOD_TRUSTED_PROXIES`, `ensure_env_secrets`, `chown`, the TLS proxy steps, current probes (`wis-034`, headers, 301, 401, request id, maxmemory), and the security boundary | `docs/DEV_PLAN/LILITH-VALIDATION-CHECKLIST.md` |
+| **F19** npm audit (I6) | Re-measured below; fixes deliberately deferred | this report |
+| **F29** Redis memory (I10) | `maxmemory 256mb` with `noeviction` kept: a runaway client now gets a clean error, not an OOM kill | `redis/redis.conf` |
+| **F30** Ollama port (I11) | No host port by default. `docker-compose.ollama-port.yml` is the opt-in, publishing on `127.0.0.1` only. It is needed only when a host tool should use the *stack's* Ollama; `make review-pr` defaults to a native one on `:11434`. The docs that named `:11435` say so | compose, override, guide, `review-local.sh` |
+| **F31** orphans (I13) | A note on why a draft can be orphaned (disk write, then Redis fails) and how to sweep it | `data/proposals/README.md` |
+| **F45** backend tests (I12) | `make test` now also runs `services/backend/tests`, and CI gains a `backend-tests` job (Python 3.12, the `make venv` installs). The push trigger now includes `services/backend/**` and `ttod_core/**` | `Makefile`, `.github/workflows/ci.yml` |
+| **F46** Redis pool (I14) | `socket_timeout` 2 s, `socket_connect_timeout` 2 s, `health_check_interval` 30 s, `max_connections` 50, each overridable by env | `app/redis_client.py`, compose |
+| **F47** sanitized bodies (I15) | `/health`'s 503 says only "TTOD repository unavailable"; the reason goes to the log. The Oracle stream never put exception text in a response (errors inside the stream are logged), so nothing changed there | `app/main.py` |
+| **F48** structured logs (I16) | One JSON line per request (`ts, event, request_id, method, path, status, ms`); only the path, never the query or headers. Caddy stamps its own UUID (`header_up X-Request-ID {http.request.uuid}`), so a client cannot choose the logged id. The backend echoes the id and mints one for direct calls; uvicorn's text access log is off | `app/access_log.py`, `caddy/Caddyfile`, backend Dockerfile |
+
+### Evidence
+
+- **Backend tests:** `health_body_sanitized`, `redis_pool_knobs` (2) and `request_id` (3) in
+  `tests/test_aa5_lane_b.py`. The full backend suite runs 134 tests, OK, and `make test` runs both suites.
+- **Live, isolated stack** (`ttod_aa5gate`, from the gate):
+  - backend, frontend and mcp run with a non-zero uid;
+  - the non-root backend writes a draft into the host bind (201, one more file);
+  - frontend and mcp report `healthy`;
+  - Redis reports `maxmemory` > 0 with `noeviction`;
+  - `/health` through Caddy carries a UUID `X-Request-ID`, and the backend log has a JSON line with that id and
+    path. A client-chosen id does not survive the proxy;
+  - **https login through a proxy Caddy does not trust: `403 plain`. Through a trusted one
+    (`TTOD_TRUSTED_PROXIES` = the stack's subnet): `303 secure`.** The same request in both runs; only the trust
+    setting differs, so the pair falsifies itself;
+  - lane A still holds: drafts survive a recreate, and `/health` answers 503 with Redis down.
+- **`npm audit --omit=dev`** (services/frontend, 2026-11-11): **18** production advisories (1 critical, 8 high,
+  3 moderate, 6 low).
+
+  | Severity | Package (direct?) | Fix |
+  | -------- | ----------------- | --- |
+  | critical | `astro` (direct) | major: astro 7.4.10 |
+  | high | `@astrojs/node` (direct), `sharp`, `zod`, `zod-to-ts` | major: @astrojs/node 11, astro 7 |
+  | high | `devalue`, `source-map-js`, `undici`, `vite` | non-breaking |
+  | moderate | `@tailwindcss/typography` (direct), `postcss-selector-parser` | major |
+  | moderate | `smol-toml` | non-breaking |
+  | low | `@astrojs/mdx`, `@astrojs/svelte` (direct), `esbuild`, three svelte-plugin packages, `deepmerge` | major |
+
+  **Both kinds of fix are deferred deliberately** (I6: "defer majors intentionally"). The Astro 5 → 7 upgrade
+  rebuilds the whole frontend and needs the AA3/AA3b browser checks. The non-breaking fixes change the
+  lockfile under the same frontend. Both belong in one dependency PR with its own tests, not in an ops phase.
+  **Recommendation:** do that PR before any public exposure. The Lilith checklist §7 says the same.
+
+### Amendments (disclosed)
+
+- **Gate bugs fixed while running it** (they don't weaken anything):
+  - the compose-config check piped JSON into a script that was itself on stdin (now a temp file);
+  - the draft check assumed the JSON login sets a cookie, but it returns the token in its body.
+- **Gate strengthened:** the request id must be Caddy's UUID (a backend-minted id has no dashes), and a
+  client-chosen id must not come back. Without this, the check passed even with Caddy out of the picture.
+- **mcp health is a TCP connect, not an HTTP probe.** fastmcp's HTTP transport has no plain health route, and
+  a JSON-RPC probe would test the Oracle's dependencies, not whether the server is up.
+
+### Decisions for the reviewer to challenge
+
+- **uid 10001, not 1000.** It matches no typical host user, so the chown is explicit and documented. 1000
+  would "just work" on many laptops by accident.
+- **The trusted-proxy default is `127.0.0.1/32`.** That is a value Caddy accepts which trusts nothing reachable
+  from outside its container. There is no "trust the LAN" option.
+- **Request ids for API requests only.** Caddy stamps the backend route; frontend page renders call the
+  backend server-to-server without one (they get a backend-minted id). Correlating page views was not asked
+  for.
+
+### Rollout (owner)
+
+1. Run `make rebuild`. It builds the backend and mcp images with your uid, and runs Redis as you (no `chown`
+   anywhere). Ollama is recreated with the pinned image, the same one already running, and keeps its model
+   volume. Its host port `11435` disappears; the override restores it on loopback if a host tool needs the
+   stack's Ollama.
+2. Check: `curl -s -D - -o /dev/null http://127.0.0.1:18080/health | grep -i x-request-id` (a GET; HEAD answers
+   405) and `docker compose logs --tail=5 backend` (JSON lines).
+3. **Optional, GitHub settings:** make `backend-tests` a required check next to `typecheck-and-build`. Today a
+   red backend run would not block a merge.
+
+### Cold review amendments (lane B, 2026-11-11)
+
+The verdict was PASS-WITH-AMENDMENTS, with one P1. Every finding was handled in this session:
+
+| # | Fix | Proof |
+| - | --- | ----- |
+| F1 (P1): on Linux the non-root backend could not write `data/proposals` (every proposal a 500) | `make` exports your uid/gid (`TTOD_UID`, `TTOD_GID`). Compose passes them as build args to backend and mcp, whose Dockerfiles create that user (numeric `USER`, root → 10001). Plain `docker compose` keeps 10001, and the setup guides (en, es) now show Linux users the one `.env` line. The backend logs a clear startup error when the drafts folder is not writable | The gate now runs the live stack with the host uid and checks that the backend **and Redis** run as that uid (the structural proof; Docker Desktop's ownership mapping hides the write failure itself) |
+| F2: the trusted-proxy story had holes | The checklist §4: Traefik must reach Caddy over the Docker network, not the published port (on Docker Desktop every client comes from `192.168.65.x`); Traefik must not forward client `X-Forwarded-*` (keep `forwardedHeaders.insecure` off); several CIDRs are space-separated, never comma; never `private_ranges`. The same rules are in the Caddyfile comment and `.env.example` | — |
+| F3: `chown -R` broke `git pull`; Redis files needed sudo | Gone with F1: under `make`, Redis runs as you too (`TTOD_REDIS_USER`), so `data/` stays yours | gate: Redis uid = host uid |
+| F4: non-breaking npm fixes not covered by I6; no reachability | `npm audit fix` (lockfile only): **18 → 13** (4 highs, 1 moderate gone). The frontend suite (269), `astro check`, the build, and the AA3 + AA3b browser checks pass on a stack built from the new lockfile. **Reachability** of the 13 left (all need Astro 7): the Astro XSS advisories need `define:vars`, spread props, `transition:` directives or server islands, and TTOD uses none (every `transition:` in the code is CSS); `sharp` needs `astro:assets` (unused); `zod` and `esbuild` run at build time. The one reachable, `@astrojs/node` crashing on a malformed `Host` port, is now blocked at Caddy (strict `Host` matcher → 400). The checklist guard now also says that student stacks are reachable by classmates on a shared LAN | gate: `Host: localhost:8x8x` → 400 at Caddy |
+| F5: `curl -sI` sends HEAD (405); the `make review-pr` claim was wrong | Both corrected here and in the checklist | — |
+| F6: `/health` said `redis: ok` at the memory cap; probe log noise | `redis: "full"` and 503 within 5 % of `maxmemory`. Docker's internal `/health` probe (no request id, status 200) is no longer logged; one through Caddy, or any failure, still is. The ~350 ms cost of `/health` predates AA5 and stays recorded | `health_redis_full…`, `request_id_health_probe…` tests |
+| F7: `ms` for streams; `match` + `$` | `ms` is documented as time until the response starts; the request id uses `fullmatch` | `request_id_trailing_newline…` test |
+| F8: CI job not required; trigger paths | The push trigger adds `ttod.yml`, `schema/**`, `pyproject.toml`, `cli.py`. Making `backend-tests` required is a GitHub setting for the owner (rollout step 3). The workflow keeps its name, because renaming it changes nothing about required checks and only adds noise | — |
+
+**Also found while amending:** the first draft of the probe-skip used `return` inside `finally`, which replaced
+the response with `None` (caught by the existing health tests). It now logs from `finally` and never returns
+from it.

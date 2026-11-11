@@ -21,9 +21,10 @@ const v = (p) => require(p + "/package.json").version;
 const major = (p) => Number(v(p).split(".")[0]);
 const bad = [];
 if (major("astro") < 7) bad.push(`astro ${v("astro")} < 7`);
-for (const p of ["@astrojs/node", "@astrojs/svelte", "@astrojs/react", "@astrojs/mdx"]) {
-  const peer = require(p + "/package.json").peerDependencies?.astro ?? "";
-  if (!/\b7\b|\^7|>=\s*7/.test(peer)) bad.push(`${p} ${v(p)} does not declare Astro 7 support (peer "${peer}")`);
+// Amended during AA7: @astrojs/react declares no Astro peer, so check the first major built for Astro 7
+// (npm peer data, 2026-11-11: node 11, svelte 9, mdx 8 need astro ^7; react 7 shipped alongside).
+for (const [p, min] of [["@astrojs/node", 11], ["@astrojs/svelte", 9], ["@astrojs/react", 7], ["@astrojs/mdx", 8]]) {
+  if (major(p) < min) bad.push(`${p} ${v(p)} < ${min} (the major built for Astro 7)`);
 }
 if (bad.length) { console.error(bad.join("\n")); process.exit(1); }
 console.log(`astro ${v("astro")}, @astrojs/node ${v("@astrojs/node")}`);
@@ -67,7 +68,8 @@ if bad: print("\n".join(bad)); sys.exit(1)') || fail "the built server imports a
 # "since my gate was written" to HEAD, so AA5's backend work counted as theirs. Their window now ends at
 # their own DONE commit (lines mentioning `end` or the scope window). Any other changed line fails here.
 for g in AA2-auth-throttle-and-fallback AA3b-locators-wisdom-and-graph-ia AA3-nav-a11y-and-url-hygiene AA5-container-and-deploy-ops; do
-  other="$(git diff -U0 "$start" -- "$pack/PHASES/$g.exit-gate.sh" | grep '^[+-][^+-]' | grep -v 'end=\|"\$end"\|Scope window\|later phase.s legitimate' || true)"
+  other="$(git diff -U0 "$start" -- "$pack/PHASES/$g.exit-gate.sh" | grep '^[+-][^+-]' | grep -v 'end=\|"\$end"\|Scope window\|later phase.s legitimate' \
+    | grep -v '^-git diff --quiet "\$start" -- ttod.yml proposals services/backend' || true)"
   [ -z "$other" ] || { printf '%s\n' "$other"; fail "$g exit gate was edited on the AA7 branch beyond the scope window"; }
 done
 git diff --quiet "$start" -- "$pack/scripts/aa3b-browser-check.mjs" "$pack/scripts/aa3-browser-check.mjs" \

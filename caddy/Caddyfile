@@ -49,6 +49,14 @@
   handle @hostmalo {
     respond "Bad Request" 400
   }
+  # AA7: a path that starts with `//` or `/\` is never a TTOD page, and a browser can read it as another
+  # host. Since Astro 7 the Node adapter normalizes the path when it rebuilds the URL from Caddy's
+  # X-Forwarded-* headers, so the app's open-redirect guard (lib/locators.ts) can no longer see it.
+  # Refuse it here, on the raw request line, before it is proxied.
+  @rutadoble vars_regexp {http.request.orig_uri.path} ^/[/\\]
+  handle @rutadoble {
+    respond "Not Found" 404
+  }
 
   @api path /api/* /health
   handle @api {

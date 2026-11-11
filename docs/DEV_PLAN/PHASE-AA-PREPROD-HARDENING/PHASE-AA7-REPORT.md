@@ -64,9 +64,15 @@ The first full verify **failed** in the AA3b gate: on Astro 7, `GET //evil.examp
   `lib/locators.ts` never saw the doubled slash, and the slash rule redirected.
 - **Was it exploitable?** No: the target is a same-origin path. But it was a changed guarantee, and the gate is
   right to refuse it.
-- **Fix:** `src/middleware.ts` passes `new URL(context.request.url)`, the raw request, to `redireccionLocator`.
-  Probed on the built server: all three `//host` forms answer 404 with no `Location`; slash, facet and legacy
-  graph redirects are unchanged.
+- **First fix, incomplete:** `src/middleware.ts` passes `new URL(context.request.url)`, the raw request, to
+  `redireccionLocator`. Direct to the Node server that restored 404. The re-verify **still failed**, though,
+  because through Caddy the request carries `X-Forwarded-Host`, and the adapter then rebuilds `request.url` from
+  the forwarded headers, normalizing the path there too. Behind a proxy, the app cannot see `//host` at all.
+- **Fix that holds:** the guard moved to the edge. `caddy/Caddyfile` `@rutadoble` matches the raw request line
+  (`{http.request.orig_uri.path} ^/[/\\]`) and answers 404 before proxying. Probed through Caddy: `//`, `/\`
+  and `///` hosts answer 404 with no `Location`; pages, redirects and the API are unchanged. The middleware change
+  stays, for requests that reach Node directly. Caddy was out of AA7's scope; the phase file and the gate's scope
+  check are amended accordingly.
 - **The gate was not edited.** This is the case for re-running earlier gates as they are: no unit test could see
   it, because the normalization happens in the adapter.
 

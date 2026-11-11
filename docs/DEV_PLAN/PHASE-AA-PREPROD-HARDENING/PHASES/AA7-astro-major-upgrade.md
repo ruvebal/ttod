@@ -58,7 +58,8 @@ The only honest proof is to re-run all of them, so the gate composes them.
 **In:** `services/frontend/**` (package files, config, the code the migration needs), `.nvmrc`, the CI Node pin.
 **Out:**
 - any new feature or redesign;
-- backend, Caddy and Compose changes, except a Node pin;
+- backend and Compose changes, except a Node pin. *Amended during AA7:* one Caddy guard is in scope (`@rutadoble`,
+  404 for `//` and `/\` paths), because Astro 7 hides those paths from the app behind a proxy (report §3b);
 - AA4's SEO work. If AA4 lands first, AA7 keeps its output; if not, AA4 rebases onto AA7.
 
 ## Exit gate (planner, written with this file)

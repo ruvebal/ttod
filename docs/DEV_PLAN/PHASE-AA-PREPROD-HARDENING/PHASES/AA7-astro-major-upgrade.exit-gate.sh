@@ -86,6 +86,8 @@ fi
 # 5. Evidence and scope.
 test -f "$pack/PHASE-AA7-REPORT.md" || fail "missing PHASE-AA7-REPORT.md"
 grep -q "heading" "$pack/PHASE-AA7-REPORT.md" || fail "report has no docs heading-id diff"
-git diff --quiet "$start" -- ttod.yml proposals services/backend caddy || fail "AA7 touched the corpus, backend or Caddy"
+# Amended during AA7: Caddy left the forbidden list. Astro 7 normalizes `//host` paths behind a proxy, so
+# the open-redirect guard moved to the edge (caddy/Caddyfile @rutadoble); see PHASE-AA7-REPORT §3b.
+git diff --quiet "$start" -- ttod.yml proposals services/backend || fail "AA7 touched the corpus or the backend"
 git diff --check "$start" -- . ':(exclude)*.md' || fail "whitespace errors"
 echo "AA7 exit gate passed: Astro 7, clean production audit, and the AA2/AA3b/AA3/AA5 guarantees re-proven."

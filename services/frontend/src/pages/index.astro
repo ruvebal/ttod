@@ -1,3 +1,7 @@
 ---
-return Astro.redirect('/en/');
+import { idiomaPreferido } from '../lib/idioma';
+// La portada elige la lengua de quien llega (AA4, F43): es también el `start_url` de la app
+// instalada. 302 y `Vary`, porque la misma dirección responde distinto según la cabecera.
+const lang = idiomaPreferido(Astro.request.headers.get('accept-language'));
+return new Response(null, { status: 302, headers: { Location: `/${lang}/`, Vary: 'Accept-Language' } });
 ---

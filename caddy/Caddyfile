@@ -28,11 +28,16 @@
   #   por los atributos style= del sistema visual. img-src admite blob: por las texturas
   #   generadas en el navegador (estilo/cielo.ts, lib/tinta.ts).
   # - Sin HSTS: el borde es HTTP plano (F2, AA5); anunciar HTTPS aquí sería mentir.
+  # - X-Robots-Tag (AA4, AA0 D7 (a)): un aula no se indexa. En la cabecera y no solo en el HTML, para
+  #   que lo lleve toda respuesta (JSON, ficheros, errores de Caddy). robots.txt no prohíbe nada a
+  #   propósito: quien no puede pedir una página nunca lee su noindex. Abrir la indexación es una
+  #   decisión del propietario, no de un PR.
   header {
     X-Frame-Options "DENY"
     Referrer-Policy "strict-origin-when-cross-origin"
     Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     X-Content-Type-Options "nosniff"
+    X-Robots-Tag "noindex"
     Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'report-sample'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
     -Server
   }

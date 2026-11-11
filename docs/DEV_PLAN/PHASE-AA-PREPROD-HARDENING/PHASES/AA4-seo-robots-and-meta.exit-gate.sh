@@ -325,10 +325,16 @@ for L in ("en", "es"):
     st, hd, _ = get(f"/{L}/library/"); check(st == 302 and "/login/" in (hd.get("location") or ""), f"anonymous /{L}/library/ → {st}")
 
 # A forged Host must not reach canonical, og:url or hreflang.
-for path in ("/es/", "/en/wisdom/"):
-    h, body = raw(f"GET {path} HTTP/1.1\r\nHost: evil.example\r\nConnection: close\r\n\r\n".encode())
-    tags = head(body); leaked = [u for u in canon(tags) + meta(tags, "og:url") + list(alts(tags).values()) if "evil.example" in (u or "")]
-    check(not leaked, f"{path} with Host evil.example: forged host in {leaked[:3]}")
+# Amended during AA4 (a strengthening, PHASE-AA4-REPORT §6): with a Host Astro does not trust (a forged one,
+# or a classroom IP nobody added to TTOD_ALLOWED_HOSTS) its URL falls back to the container's own
+# http://localhost:4321. Neither that nor the forged host may appear; canonical and alternates go
+# root-relative and og:url/og:image are left out.
+for host in ("evil.example", "192.168.77.7:8080"):
+    for path in ("/es/", "/en/wisdom/"):
+        h, body = raw(f"GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n".encode())
+        tags = head(body); headtxt = body.split("</head>", 1)[0]
+        check(host not in headtxt and "localhost:4321" not in headtxt, f"{path} with Host {host}: forged or internal address in the head")
+        check(canon(tags) == [path] and meta(tags, "og:url") == [] and meta(tags, "og:image") == [], f"{path} with Host {host}: canonical {canon(tags)}, og:url {meta(tags, 'og:url')}")
 
 # Root picks the locale (F43).
 for al, want in (("es-ES,es;q=0.9,en;q=0.5", "/es/"), ("es", "/es/"), ("en-US,en;q=0.9", "/en/"), ("fr-FR,fr", "/en/"),

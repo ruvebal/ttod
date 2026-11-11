@@ -10,12 +10,22 @@ interface Props {
    * Sin pasarlo, el layout lo pregunta solo cuando hay cookie de sesión.
    */
   usuario?: AuthUser | null;
+  /**
+   * La gemela en la otra lengua para `hreflang` (AA4). Sin pasarlo, la misma ruta en la otra
+   * lengua; `null` cuando no la hay (una cita sin traducción) y entonces no se anuncia ninguna.
+   */
+  alterna?: string | null;
+  /** `false` deja la página fuera de los buscadores aunque su fila del registro no lo diga. */
+  indexar?: boolean;
+  /** `og:type`: una cita es un artículo; el resto, el sitio. */
+  tipo?: 'website' | 'article';
 }
-const { lang, title, description, fuentesExtra = [], cambioIdioma } = Astro.props;
+const { lang, title, description, fuentesExtra = [], cambioIdioma, alterna, indexar, tipo = 'website' } = Astro.props;
 import '../styles/tokens.css';
 import Footer from '../components/Footer.astro';
 import { getSessionUser } from '../lib/auth.server';
 import { enlaceEntrar, esActual } from '../lib/enlaces-cuenta';
+import { alternas, canonica, indexable, origenPublico } from '../lib/seo';
 import type { AuthUser } from '../types/domain';
 
 // La cabecera sabe si hay sesión (F7): «Entrar» o «Cuenta», y «Biblioteca» solo
@@ -44,7 +54,19 @@ const descripcionPorDefecto = lang === 'es'
 const descripcion = description ?? descripcionPorDefecto;
 
 const otherLocale = lang === 'en' ? 'es' : 'en';
-const switchPath = cambioIdioma ?? '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
+const mismaRutaEnLaOtra = '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
+const switchPath = cambioIdioma ?? mismaRutaEnLaOtra;
+
+// Buscadores y compartir (AA4, F15). El aula entera ya va con `X-Robots-Tag: noindex` desde Caddy
+// (AA0 D7 (a)); esto es lo que la página dice de sí misma. Una página que no es un 200, que pide
+// sesión o que su fila del registro deja fuera lleva `noindex`, y entonces ni canónica ni alternas:
+// no se señala como versión preferida algo que se pide no indexar.
+const sePuedeIndexar = indexar !== false && indexable(Astro.url, Astro.response.status);
+// Sin un origen de fiar (un host que Astro no conoce), direcciones relativas a la raíz.
+const origen = origenPublico(Astro.url, Astro.request.headers);
+const urlCanonica = canonica(Astro.url, origen);
+const listaAlternas = sePuedeIndexar ? alternas(Astro.url, origen, lang, alterna === undefined ? mismaRutaEnLaOtra : alterna) : [];
+const ogLocale = { en: 'en_US', es: 'es_ES' } as const;
 
 // Cuatro destinos (F56). «Inicio» es la marca; en el panel del móvil vuelve como fila.
 const links: Array<{ href: string; label: string }> = [
@@ -63,6 +85,18 @@ const entrar = enlaceEntrar(lang, Astro.url);
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#fbf8f1" />
     <meta name="description" content={descripcion} />
+    {!sePuedeIndexar && <meta name="robots" content="noindex" />}
+    {sePuedeIndexar && <link rel="canonical" href={urlCanonica} />}
+    {listaAlternas.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <meta property="og:site_name" content="TTOD" />
+    <meta property="og:type" content={tipo} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={descripcion} />
+    {sePuedeIndexar && origen && <meta property="og:url" content={urlCanonica} />}
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {listaAlternas.length > 0 && <meta property="og:locale:alternate" content={ogLocale[otherLocale]} />}
+    {origen && <meta property="og:image" content={`${origen}/visual-system/icon-512.png`} />}
+    <meta name="twitter:card" content="summary" />
 
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" href="/visual-system/favicon.svg" type="image/svg+xml" />

@@ -115,6 +115,18 @@ Recommended IA (decided in AA0, see [AA3b](PHASES/AA3b-locators-wisdom-and-graph
 | ------- | ------- |
 | `/{l}/library/#wis-034` | a saved quote |
 | `/{l}/account/#profile` · `#password` · `#sessions` | the User section's blocks (F55) |
+| `/{l}/account/reviewer/` | *(AA4)* the reviewer queue; signed in (`auth`) |
+
+### Search engines and share cards *(AA4)*
+
+The registry also decides what stays out of search engines on **any** host (the classroom host is
+`noindex` entirely through Caddy's `X-Robots-Tag`, AA0 D7 (a)). A row with `"index": false` or
+`"auth": true` renders `<meta name="robots" content="noindex">` and no canonical or `hreflang`; so does
+`?untranslated=` and any page that is not a 200. Rows added in AA4: `/{l}/login/` and `/{l}/register/`
+(indexable), `/{l}/wisdom/propose/` and `/{l}/quote/` (`index: false`: a form behind sign-in, a random
+quote), `/{l}/account/reviewer/` (`auth`). Every other page: canonical = its path without the query
+(`?p=` kept from 2 up), and `hreflang` en, es, `x-default` (= en); a quote's alternate is its translation
+twin, and a quote with no twin announces none. Rules in `services/frontend/src/lib/seo.ts`.
 
 ## 5. Language switch
 

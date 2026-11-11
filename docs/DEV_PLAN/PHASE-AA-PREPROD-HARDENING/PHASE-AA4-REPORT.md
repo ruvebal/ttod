@@ -158,4 +158,12 @@ The rebuild really swapped in each case: the failing messages quote the old outp
 
 ## 8. Cold review
 
-Pending (cascade-cold-reviewer, after the runner's verify).
+[PHASE-AA4-COLD-REVIEW.md](PHASE-AA4-COLD-REVIEW.md): **PASS-WITH-AMENDMENTS**, no P1, nothing blocking. It
+returned **after** the owner marked AA4 DONE, so no amendment is applied without the owner's word.
+
+- **P2s (awaiting the owner's decision):**
+  - F1: `?p=` is kept on any path (`/es/wisdom/?q=x&p=2` → canonical `/es/wisdom/?p=2`, against the AA3b rule;
+    `?p=1e1`, `?p=999`, `/es/?p=7`).
+  - F2: with the backend down, the quote, facet and wisdom pages answer 200 with a canonical and no noindex.
+  - F3: `e2e/i18n-routes.spec.ts` still asserts `/` → `/en/`, which fails on a Spanish-locale machine.
+- **P3s (F4–F10):** carried to AA6 ([AA6 § Carried from AA4](PHASES/AA6-oracle-quota-and-closeout.md)).

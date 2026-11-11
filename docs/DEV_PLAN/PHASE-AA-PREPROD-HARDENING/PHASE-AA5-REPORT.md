@@ -98,7 +98,7 @@ Lane B covers F2, F6, F16–F19, F29–F31 and F45–F48. It stays BLOCKED until
 
 ## Lane B: ops (F2, F6, F16–F19, F29–F31, F45–F48 · I1–I6, I10–I16)
 
-**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA5-COLD-REVIEW.md](PHASE-AA5-COLD-REVIEW.md) § Lane B), amended in the same session (§ Cold review amendments) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` (reopened from `main` at
+**Status:** DONE (owner, 2026-11-11: "AA5 done") · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA5-COLD-REVIEW.md](PHASE-AA5-COLD-REVIEW.md) § Lane B), amended in the same session (§ Cold review amendments) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-5` (reopened from `main` at
 `fd2f8278`). **Exit gate:** the same file. The lane B checks were appended before any code (commit `4f529de6`),
 lane A's checks keep running, and lane A's live part moved onto `scripts/isolated-stack.sh` (AA2 cold review F3).
 

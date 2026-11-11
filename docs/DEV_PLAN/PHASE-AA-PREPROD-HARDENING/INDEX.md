@@ -26,7 +26,7 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | Student brief | [ASSIGNMENTS.md](ASSIGNMENTS.md) |
 | URL / locator contract | [LOCATORS.md](LOCATORS.md) |
 | Orchestrator | [PHASE-AA-PREPROD-HARDENING-CASCADE.md](PHASE-AA-PREPROD-HARDENING-CASCADE.md) |
-| Phases | [PHASES/](PHASES/) AA0→AA6 (+ AA3b locators) |
+| Phases | [PHASES/](PHASES/) AA0→AA7 (+ AA3b locators; AA7 Astro upgrade runs before AA6) |
 
 ## Programme (harness-readable)
 
@@ -43,7 +43,8 @@ Drafted 2026-11-10 from live audit. Author: Rubén Vega Balbás PhD
 | 3b | [AA3b](PHASES/AA3b-locators-wisdom-and-graph-ia.md) | Locators: slash, wisdom ids/search, graph IA, language switch | DONE — cold review PASS-WITH-AMENDMENTS (F1–F11), amended and re-verified; owner marked DONE 2026-11-11 ("AA3b done") |
 | 4 | [AA4](PHASES/AA4-seo-robots-and-meta.md) | robots/sitemap, canonical/hreflang, PWA honesty | BLOCKED — queued behind AA5 lane B by owner order (2026-11-11); exit gate still to be written by the planner; carries from AA1, AA3b, AA3 |
 | 5 | [AA5](PHASES/AA5-container-and-deploy-ops.md) | Lane A: proposal bind, health 503, secrets · lane B: ops | IN_PROGRESS — lane A DONE 2026-11-10; lane B VERIFYING 2026-11-11 (owner chose it over AA4); report [PHASE-AA5-REPORT.md](PHASE-AA5-REPORT.md) § Lane B; cold review PASS-WITH-AMENDMENTS (F1–F8), amended and re-verified; awaiting owner; worktree opened by hand (harness picks the first READY row) |
-| 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 DONE (AA2, AA3b DONE) |
+| 6 | [AA6](PHASES/AA6-oracle-quota-and-closeout.md) | Oracle quota, rubric, disposition, Phase T handoff | BLOCKED until AA5 + AA7 DONE (the Astro major upgrade comes before any public exposure) |
+| 7 | [AA7](PHASES/AA7-astro-major-upgrade.md) | Astro 5 → 7 major upgrade; re-runs the AA2/AA3b/AA3/AA5 gates | BLOCKED until AA5 DONE; exit gate written with the phase file (2026-11-11); runs before AA6 |
 
 ## Live snapshot (2026-11-10)
 

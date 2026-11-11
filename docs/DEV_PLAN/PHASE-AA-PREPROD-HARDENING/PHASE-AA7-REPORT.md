@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA7 report: Astro 5 → 7
 
-**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA7-COLD-REVIEW.md](PHASE-AA7-COLD-REVIEW.md)), amended in the same session (§8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-7`, stacked on AA5
+**Status:** DONE (owner, 2026-11-11: "AA7 done") · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA7-COLD-REVIEW.md](PHASE-AA7-COLD-REVIEW.md)), amended in the same session (§8) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-7`, stacked on AA5
 (PR #97). **Exit gate:** [`PHASES/AA7-astro-major-upgrade.exit-gate.sh`](PHASES/AA7-astro-major-upgrade.exit-gate.sh), written
 with the phase file before any upgrade code. It re-runs the AA1, AA2, AA3b, AA3 and AA5 exit gates. The only edit to them is one
 scope window each in AA1, AA3b and AA3, pinned by file hash (§6).

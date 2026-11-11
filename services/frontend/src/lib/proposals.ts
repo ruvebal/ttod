@@ -1,4 +1,5 @@
 import type { ProposalPayload } from './proposeForm';
+import { backendUrl } from './backend';
 
 // Real fetch against the real path — same pattern as content/wisdom.ts's fetchWisdom(). The
 // endpoint already exists, implemented and tested, in PR #57 (upstream, not merged into main):
@@ -10,7 +11,7 @@ export type ProposalResult =
   | { ok: false; reason: 'unauthenticated' | 'validation' | 'server' | 'not-found' | 'network' };
 
 export async function submitProposal(payload: ProposalPayload): Promise<ProposalResult> {
-  const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+  const backend = backendUrl();
   let response: Response;
   try {
     response = await fetch(`${backend}/api/v1/proposals`, {

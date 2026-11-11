@@ -5,7 +5,7 @@ Author: Rubén Vega Balbás PhD (agent-assisted). Status VERIFYING. The agent do
 
 # PHASE-AA3b report: permanent locators, wisdom usability, graph IA
 
-**Status:** VERIFYING (2026-11-11) · cold review pending · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3b` · **Exit gate:**
+**Status:** VERIFYING (2026-11-11) · cold review **PASS-WITH-AMENDMENTS** ([PHASE-AA3b-COLD-REVIEW.md](PHASE-AA3b-COLD-REVIEW.md)), amended in the same session (§9) · **Branch:** `cascade/PHASE-AA-PREPROD-HARDENING-3b` · **Exit gate:**
 [`PHASES/AA3b-locators-wisdom-and-graph-ia.exit-gate.sh`](PHASES/AA3b-locators-wisdom-and-graph-ia.exit-gate.sh)
 plus [`scripts/aa3b-browser-check.mjs`](scripts/aa3b-browser-check.mjs), both written before the code (commit `9e10fe82`).
 **Contract:** [LOCATORS.md](LOCATORS.md), now backed by data:
@@ -36,13 +36,14 @@ Paste a link and have the reader land in the same place, in either language:
 2. **Wisdom locators (F50).** Every stele, volume page and library card carries `id={quote.id}`. Volumes are
    `<details id="volume-{section}">`. [`lib/volumenes.ts`](../../../services/frontend/src/lib/volumenes.ts) opens one
    from the hash (also when `#wis-034` falls inside a closed volume) and `replaceState`s the hash on toggle. The
-   random-quote dialog already exposed the permalink; copy-link is the stele id itself (`a.piedra-id[data-copiar]`).
+   random-quote dialog exposed the permalink and now also has a copy-link for it (added after the cold review, F3).
+   On a stele, the copy-link is the id itself (`a.piedra-id[data-copiar]`).
 3. **Wisdom usability (F49).** `/wisdom/` now opens with the H1, intro and count, then the search form
    (`#search`, `role="search"`, visible label, `GET ?q=`), then the sections as a compact index with counts. Next
    come either the **results** (the Bosque corridor with `orden`/`p`, whose sort form keeps the query) or the
    shelf, then the pile (`#draw`) and the facet lists (`#facets`). [`lib/buscar.ts`](../../../services/frontend/src/lib/buscar.ts)
    searches SSR over text, teaches, tags and id. It folds case and accents (NFD), caps `q` at 100 characters and
-   requires every word. An empty result shows the EmptyState above the section index. `bosque.css` is linked
+   requires every word. An empty result shows the EmptyState below the section index, so the index stays the way out. `bosque.css` is linked
    only when results show; inlining it would have added 19 KB to every `/wisdom/` visit.
 4. **Landing chapters (F51).** Ids: `#start #doors #thesis #map #map-{section} #close`, with stops generated from the
    corpus. [`lib/capitulos.ts`](../../../services/frontend/src/lib/capitulos.ts) maps a hash inside a live sticky scene
@@ -78,7 +79,8 @@ Paste a link and have the reader land in the same place, in either language:
 - **Live curl probe** of every registry row, both locales: [`baselines/aa3b-2026-11-11/probe.log`](baselines/aa3b-2026-11-11/probe.log)
   (script `probe.sh`, isolated stack). Pages 200; all 11 redirects 301 to the exact Location; `zz-999` and the
   other locale's id 404; exemptions untouched; `POST /es/login` is not redirected (403 from Astro's origin check).
-- **Browser checks:** handscroll hash at 390 and 1440 px and under reduced motion; `#thesis` `#map` `#close` below the header;
+- **Browser checks:** handscroll hash at 390 and 1440 px on loopback, on a **throttled network** (150 ms RTT, 1.6 Mb/s,
+  4× CPU; added after the cold review, F2) and under reduced motion; `#thesis` `#map` `#close` below the header;
   `#doors` visible; › writes the next stop with no history growth and the first viewport clears it; volume open
   and toggle; paged quote; copy-link puts the absolute URL in the clipboard and announces "Enlace copiado"; the
   switch keeps `?q=diseno#search`; graph `from`/`to` kept across reload; `?node=` kept; no page errors.
@@ -164,3 +166,25 @@ pages are now `/xx/oracle/`); old clients refresh on their next visit. Links alr
 - `GraphIsland` (2D) is still English-only (F32, a student assignment); it lives at `/graph/plano/` now.
 - The no-twin path (`?untranslated=`) is proven by unit and registry tests only: every live quote has a twin.
 - The account fragments (`#profile #password #sessions`) are AA3's; their registry row is marked `owner: AA3`.
+
+## 9. Cold review amendments (2026-11-11)
+
+The verdict was PASS-WITH-AMENDMENTS with two P1s ([review](PHASE-AA3b-COLD-REVIEW.md)). Every finding was
+handled in this session:
+
+| # | Fix | Proof |
+| - | --- | ----- |
+| F1 (P1) open redirect | `lib/locators.ts` never redirects a path that starts with `//` or `/\` or contains `\`. Every destination must start with one `/` and resolve to the request's origin, otherwise there is no redirect. Through Caddy, `//evil.example/x` now answers 404 with no `Location` | `middleware.test.ts` builds the URL so the path really is `//evil.com/x`; the gate probes 4 raw paths with `curl --path-as-is` (a strengthening) |
+| F2 (P1) slow-network deep link | `lib/capitulos.ts` records the requested chapter once on arrival and goes back to it on every scene-ready event; the fragment is not written until the reader touches the page; a chapter of a scene that is not live yet does not count | `aa3b-browser-check.mjs` reruns `#map-architecture` and `#doors` throttled at 390 and 1440 and asserts that the stop/visibility is right and the fragment is unchanged. **Falsified:** the old `capitulos.ts` fails all 8 throttled assertions (lands on `map-operations`, `#doors` erased) |
+| F3 dialog copy-link | `Mazo.astro` copy-link synced to the permalink, with a polite status inside the dialog; `direccionDe` resolves any href | report §2.2 corrected |
+| F4 switch carries misleading keys | `conEstado` drops `next`, `untranslated` and quote-id fragments | `idioma.test.ts` |
+| F5 spoofable notice | `?untranslated=` shows only for an id that exists in the other locale | registry test |
+| F6 malformed fragment | `lib/fragmento.ts` decodes safely (`volumenes.ts`, `capitulos.ts`) | — |
+| F7 empty fold / raw q echo | a `q` that folds to nothing is no search; Bosque's sort form echoes the capped `q` | `buscar.test.ts` |
+| F8 twin lookup | 4 s timeout on the graph fetch; after a failure, quote pages stop waiting for 30 s | — |
+| F9 legibility | LOCATORS §2, §4 (`#map`), §5, §6, plus an add-a-locator recipe in §8; report §2.2, §2.3 and §3 corrected | — |
+| F10 soft 404 | facet pages answer 404 for a value that is not in this locale's corpus (the empty state is still shown) | `notFound` rows `sections/zz-none/`, `tags/zz-none/` |
+| F11 no clipboard on LAN HTTP | copy-link writes the link into the address bar and announces "copy it from the address bar" | — |
+
+The suite now runs 239 tests (36 files). The runner's re-verify is
+[`PHASES/AA3b-locators-wisdom-and-graph-ia-VERIFY-LOG.md`](PHASES/AA3b-locators-wisdom-and-graph-ia-VERIFY-LOG.md).

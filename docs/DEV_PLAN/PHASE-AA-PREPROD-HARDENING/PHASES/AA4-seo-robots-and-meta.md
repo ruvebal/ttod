@@ -46,6 +46,10 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA4-seo-robots-and-meta.md.
 - **301s already in place** (middleware): slashless pages, `/graph/path` (→ `/graph/` or `/graph/code/`),
   `/graph/?tag=` → `/graph/plano/`. The sitemap lists slash forms only, plus `/graph/plano/` and `/graph/code/`.
 - **X-Robots-Tag** is still AA4's, in Caddy's `(seguridad)` snippet (carried from AA1).
+- **From the AA3b cold review:** the registry has no rows yet for `/{l}/login/`, `/{l}/register/`,
+  `/{l}/wisdom/propose/`, `/{l}/quote/`, `/{l}/account/reviewer/`; decide which belong in the sitemap and register them.
+  Facet pages now answer 404 for unknown values (F10), so the sitemap lists only corpus values. Graph `from`/`to`
+  values are node ids (LOCATORS §2).
 
 ## Acceptance
 

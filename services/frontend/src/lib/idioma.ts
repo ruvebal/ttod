@@ -36,13 +36,26 @@ export function destinoCita(id: string, otro: 'en' | 'es', gemelas: Map<string, 
   return gemela ? `/${otro}/wisdom/${gemela}/` : `/${otro}/wisdom/?untranslated=${encodeURIComponent(id)}`;
 }
 
+/**
+ * Lo que no sobrevive al cambio de idioma (cold review AA3b, F4):
+ * - `next` es una ruta de **este** idioma (volver a `/es/…` tras entrar en `/en/`);
+ * - `untranslated` es el aviso de esta página, no de la otra;
+ * - un fragmento con forma de id de cita (`#arch-060`): cada idioma tiene sus
+ *   propios ids (0 compartidos), así que en la otra lengua no existe.
+ * Los demás (`q`, `section`, `orden`, `p`, `from`, `to`, `node`, `#map-…`,
+ * `#volume-…`, `#search`) son claves de código y valen igual en los dos.
+ */
+const NO_VIAJAN = new Set(['next', 'untranslated']);
+const ID_DE_CITA = /^[a-z0-9]+-\d+$/;
+
 /** El enlace del servidor, completado con lo que el navegador sabe y él no. */
 export function conEstado(href: string, actual: { search: string; hash: string; origin: string }): string {
   const destino = new URL(href, actual.origin);
   for (const [clave, valor] of new URLSearchParams(actual.search)) {
-    if (!destino.searchParams.has(clave)) destino.searchParams.append(clave, valor);
+    if (NO_VIAJAN.has(clave) || destino.searchParams.has(clave)) continue;
+    destino.searchParams.append(clave, valor);
   }
-  if (!destino.hash && actual.hash) destino.hash = actual.hash;
+  if (!destino.hash && actual.hash && !ID_DE_CITA.test(actual.hash.slice(1))) destino.hash = actual.hash;
   return destino.pathname + destino.search + destino.hash;
 }
 

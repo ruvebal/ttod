@@ -11,6 +11,10 @@ if (!isLocale(locale)) return new Response(null, { status: 404 });
 const section = Astro.params.section ?? '';
 const { entries: all, failed } = await loadWisdom(locale);
 const entries = all.filter((entry) => entry.section === section);
+// Un valor que el corpus de este idioma no tiene no es una lista vacía, es un recurso
+// que no existe: 404, como una cita desconocida (cold review AA3b, F10). La página
+// sigue diciendo «sin coincidencias» y ofreciendo la vuelta.
+if (!failed && entries.length === 0) Astro.response.status = 404;
 const copy = labels[locale];
 const t = copia[locale];
 const rotulo = rotuloSeccion(section, locale);

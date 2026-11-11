@@ -18,8 +18,11 @@ const t = copia[locale];
 // `?q=&section=&level=&tag=` (LOCATORS §4). Una sola faceta sin búsqueda ya la
 // manda el middleware a su ruta; aquí llegan búsquedas y combinaciones.
 const filtros = leerFiltros(Astro.url.searchParams);
+// El aviso solo nombra una cita que existe en el otro idioma (cold review F5):
+// si no, cualquiera podría escribir lo que quisiera en la página.
 const pedida = Astro.url.searchParams.get('untranslated') ?? '';
-const sinTraduccion = /^[a-z][a-z0-9-]{0,40}$/.test(pedida) ? pedida : undefined;
+const otras = /^[a-z][a-z0-9-]{0,40}$/.test(pedida) ? (await loadWisdom(locale === 'en' ? 'es' : 'en')).entries : [];
+const sinTraduccion = otras.some((entry) => entry.id === pedida) ? pedida : undefined;
 ---
 <Page lang={locale} title={`${t.titulo} — TTOD`}>
   {hayFiltros(filtros) && <link rel="stylesheet" href={bosqueCss} />}

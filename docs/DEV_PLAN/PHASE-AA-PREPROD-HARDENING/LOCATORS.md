@@ -35,7 +35,12 @@ Rules that follow from the table:
 ## 2. Keys are code, labels are copy
 
 - Query keys and fragment ids are **identical in `/en/` and `/es/`**, so the language switch can
-  carry `search + hash` verbatim (F57).
+  carry `search + hash` (F57). *Amended after the AA3b cold review:* three things do not travel,
+  because their values belong to one locale. `next` is a path in this language. `untranslated` is this
+  page's notice. A quote-id fragment (`#arch-060`) points at a quote, and en and es share **0** quote ids.
+- **Graph values are node ids** (AA3b): `/{l}/graph/?from=&to=&node=` take the graph node's id, which is the
+  same in both locales. Today, with no `related` edges in Spanish (F59), that is the English quote's id,
+  even on `/es/` where the node shows its Spanish twin. A Spanish id typed by hand is accepted and rewritten.
 - **Values are corpus keys**, never translated labels: `level=advanced`, not `nivel=avanzado`;
   `#map-architecture`, not `#mapa-arquitectura`. Labels on screen stay localized.
 - **New keys use English** to match schema field names (`section`, `level`, `tag`) and the
@@ -66,7 +71,7 @@ exit gate's live probe both walk the file. Rows marked *(AA3b)* were added while
 | `#start` | hero / flagship quote | `#flagship-quote-heading` kept as heading id |
 | `#doors` | the four doors (Wisdom, Docs, Graph, Oracle) | |
 | `#thesis` | thesis + live figures | `#sigue-tesis` kept (it is an `aria-labelledby` target) |
-| `#map` | the handscroll, stop 1 | `#sigue-rollo` kept |
+| `#map` | the handscroll's title, just above stop 1 (*AA3b*: lands on the heading, then stop 01) | `#sigue-rollo` kept |
 | `#map-{section}` | that stop of the handscroll, e.g. `#map-architecture` | one per corpus section, generated, never hand-listed |
 | `#close` | closing colophon | |
 
@@ -122,14 +127,16 @@ the server cannot preserve it. AA3b adds:
    `wis-034 → translation_of → wis-033`, no reverse edge on `wis-033`), so the lookup must resolve
    both directions. If there is no twin, it switches to the other locale's wisdom index with
    a notice, never to a "not found" page (today it lands on a 200 "not found" page; F57).
-3. Keys are shared across locales (§2), so filters and positions survive the switch.
+3. Keys are shared across locales (§2), so filters and structural positions (`#map-…`, `#volume-…`,
+   `#search`) survive the switch. `next`, `untranslated` and quote-id fragments are dropped (§2).
 
 ## 6. Sticky header and anchors
 
 Every fragment jump must land **below** the header, not under it (WCAG 2.2 SC 2.4.11 *Focus Not
-Obscured*). AA3 defines `--ttod-header-height` with the new header and sets
-`html { scroll-padding-top: calc(var(--ttod-header-height) + 1rem) }` once, globally. That replaces
-the per-view patches (`oracle.astro` `scroll-padding-top: 6rem`, `CodigoGrafo` `scroll-margin-top: 7rem`).
+Obscured*). *Amended in AA3b:* the rule `html { scroll-padding-top: calc(var(--ttod-header-height) + 1rem) }`
+lives once in `Page.astro` since AA3b, and the per-view patches (`oracle.astro` 6rem, `CodigoGrafo` 7rem) are gone.
+AA3 sets `--ttod-header-height` (4.25rem today) to its new header. Inside the two sticky scenes of the landing,
+a native jump cannot work; `lib/capitulos.ts` maps the fragment to a scroll offset instead (§4).
 
 ## 7. Copy-link affordance
 
@@ -145,3 +152,17 @@ A table-driven test (Vitest, `src/tests/locators-registry.test.ts`) walks this r
 301/404), each fragment id exists exactly once in the SSR HTML, and en/es share the same id set.
 The live probe in the AA3b report runs `curl` over the same table. **A locator that is not in this
 registry is not a contract.** Add it here first.
+
+### Adding a locator (recipe)
+
+1. **Pick the layer** (§1). Does it change *which items* show? Then it is a query key. Does it only change *where*
+   you are? Then it is a fragment. Is it a new resource? Then it is a path.
+2. **Name it** (§2): lowercase ASCII, English for new keys, corpus keys as values. Never rename a shipped key.
+3. **Register it** in `services/frontend/src/lib/locators.registry.json`. A page gets a row in `pages` with its
+   `ids`. A redirect gets a row in `redirects`, and a 404 a row in `notFound`. Content-dependent ids go in
+   `conditional`. Then add a line to the matching table in §4.
+4. **Implement it.** A redirect goes in `lib/locators.ts`, the only place that answers with a 301, and must stay
+   on this site. An id goes on the element; if it sits inside a sticky scene, add `data-capitulo` and
+   `data-ancla-progreso`.
+5. **Prove it:** `npx vitest run src/middleware.test.ts src/tests/locators-registry.test.ts`, then the live probe
+   (`baselines/aa3b-2026-11-11/probe.sh` against `scripts/isolated-stack.sh`).

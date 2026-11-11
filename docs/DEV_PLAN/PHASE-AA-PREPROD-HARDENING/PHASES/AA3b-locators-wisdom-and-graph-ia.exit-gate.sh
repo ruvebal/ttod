@@ -251,6 +251,13 @@ for path, by in structural.items():
 if errs: print("\n".join(errs[:40])); print(f"({len(errs)} failures)"); sys.exit(1)
 print("live registry probe: statuses, 301 Locations, ids, en/es parity, slash hrefs, search = corpus fold, twins, graph IA")
 PY
+  # Amended after the cold review (F1, a strengthening): the slash rule must never answer with an
+  # off-site Location. Raw paths (curl --path-as-is) a browser would read as another host.
+  for bad in '//evil.example/x' '///evil.example/x' '/\evil.example/x' '//evil.example/graph/path?s=1'; do
+    loc="$(curl -s --path-as-is -o /dev/null -D - "$base$bad" | tr -d '\r' | sed -n 's/^[Ll]ocation: //p')"
+    case "$loc" in //*|*evil.example*|http*) fail "off-site redirect: $bad → Location: $loc (open redirect)";; esac
+  done
+  echo "no off-site Location for //host, ///host, /\\host"
   FE_PKG="$repo_root/$fe/package.json" node "$pack/scripts/aa3b-browser-check.mjs" "$base" "$pack/baselines/aa1-2026-11-10/browser-smoke-after.json" \
     || fail "browser checks (see messages above)"
   if [ "${AA3B_SKIP_UX:-0}" != "1" ]; then

@@ -31,5 +31,6 @@ describe('wisdom search (F49)', () => {
   it('treats blank values as no filter', () => {
     expect(hayFiltros(leerFiltros(new URLSearchParams('q=%20%20&section=')))).toBe(false);
     expect(hayFiltros(leerFiltros(new URLSearchParams('level=advanced')))).toBe(true);
+    expect(hayFiltros(leerFiltros(new URLSearchParams('q=%CC%81')))).toBe(false);
   });
 });

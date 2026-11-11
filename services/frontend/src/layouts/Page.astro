@@ -14,12 +14,12 @@ const nav = {
   en: {
     home: 'Home', wisdom: 'Wisdom', library: 'Library', graph: 'Graph', oracle: 'Oracle', docs: 'Docs',
     skip: 'Skip to content', switchTo: 'Español',
-    menu: 'Menu', copied: 'Link copied',
+    menu: 'Menu', copied: 'Link copied', noClipboard: 'Copy the link from the address bar',
   },
   es: {
     home: 'Inicio', wisdom: 'Sabiduría', library: 'Biblioteca', graph: 'Grafo', oracle: 'Oráculo', docs: 'Docs',
     skip: 'Saltar al contenido', switchTo: 'English',
-    menu: 'Menú', copied: 'Enlace copiado',
+    menu: 'Menú', copied: 'Enlace copiado', noClipboard: 'Copia el enlace de la barra de direcciones',
   },
 }[lang];
 
@@ -276,7 +276,7 @@ const links: Array<{ href: string; label: string }> = [
       <slot />
     </div>
     <Footer lang={lang} switchPath={switchPath} />
-    <p id="ttod-aviso" class="ttod-aviso" role="status" aria-live="polite" data-copiado={nav.copied}></p>
+    <p id="ttod-aviso" class="ttod-aviso" role="status" aria-live="polite" data-copiado={nav.copied} data-sin-portapapeles={nav.noClipboard}></p>
     <script>
       const boundary = document.getElementById('ttod-network-boundary');
 

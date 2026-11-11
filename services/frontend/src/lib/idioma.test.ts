@@ -26,4 +26,10 @@ describe('language switch (F57, LOCATORS §5)', () => {
     expect(conEstado('/en/wisdom/?untranslated=a-1', { ...at, hash: '' })).toBe('/en/wisdom/?untranslated=a-1&q=diseno&orden=nivel');
     expect(conEstado('/es/', { origin: 'http://x', search: '', hash: '#map-architecture' })).toBe('/es/#map-architecture');
   });
+  it('drops what does not survive the switch: next, untranslated, quote-id fragments', () => {
+    expect(conEstado('/en/login/', { origin: 'http://x', search: '?next=%2Fes%2Flibrary%2F', hash: '' })).toBe('/en/login/');
+    expect(conEstado('/en/wisdom/', { origin: 'http://x', search: '?untranslated=wis-033&q=a', hash: '' })).toBe('/en/wisdom/?q=a');
+    expect(conEstado('/en/wisdom/sections/architecture/', { origin: 'http://x', search: '?p=2', hash: '#arch-060' })).toBe('/en/wisdom/sections/architecture/?p=2');
+    expect(conEstado('/en/wisdom/', { origin: 'http://x', search: '', hash: '#volume-architecture' })).toBe('/en/wisdom/#volume-architecture');
+  });
 });

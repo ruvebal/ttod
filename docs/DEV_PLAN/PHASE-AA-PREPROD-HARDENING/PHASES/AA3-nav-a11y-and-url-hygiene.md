@@ -123,6 +123,9 @@ docs/DEV_PLAN/PHASE-AA-PREPROD-HARDENING/PHASES/AA3-nav-a11y-and-url-hygiene.md.
   AA3 removes `owner`, maps the page in `src/tests/locators-registry.test.ts` (with a mocked session) and the
   probe picks it up.
 - **F60:** `/graph/plano/` has CLS 0.4702 (pre-existing). Fix it here if the header work touches it, or record it.
+- **Cold review F2:** the anchor checks must pass on a **throttled** network too (the AA3b browser check already
+  does 150 ms RTT / 1.6 Mb/s / 4× CPU) and must leave the reader's fragment unchanged. A new header that changes
+  scene heights must keep `lib/capitulos.ts`'s rule: no fragment writes before the reader touches the page.
 
 ## Acceptance
 

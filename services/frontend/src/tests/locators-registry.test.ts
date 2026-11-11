@@ -127,8 +127,10 @@ describe('locator registry (LOCATORS §4, §8)', () => {
     expect(none.querySelector('a[href="/es/wisdom/sections/architecture/"]')).not.toBeNull();
   });
 
-  it('the untranslated notice shows only for a well-formed id', async () => {
-    expect((await render('/en/wisdom/?untranslated=solo-001', 'en')).doc.querySelector('.armario-aviso')?.textContent).toContain('solo-001');
+  it('the untranslated notice names only a quote that exists in the other locale', async () => {
+    expect((await render('/en/wisdom/?untranslated=wis-034', 'en')).doc.querySelector('.armario-aviso')?.textContent).toContain('wis-034');
+    expect((await render('/en/wisdom/?untranslated=you-have-been-hacked', 'en')).doc.querySelector('.armario-aviso')).toBeNull();
+    expect((await render('/en/wisdom/?untranslated=wis-033', 'en')).doc.querySelector('.armario-aviso')).toBeNull();
     expect((await render('/en/wisdom/?untranslated=%3Cb%3E', 'en')).doc.querySelector('.armario-aviso')).toBeNull();
   });
 });

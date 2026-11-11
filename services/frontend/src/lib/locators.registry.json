@@ -37,7 +37,7 @@
     { "from": "/{l}/wisdom/?level={level}&orden=nivel", "to": "/{l}/wisdom/levels/{level}/?orden=nivel" },
     { "from": "/{l}/wisdom/?tag={tag}", "to": "/{l}/wisdom/tags/{tag}/" }
   ],
-  "notFound": ["/{l}/wisdom/zz-999/", "/{l}/wisdom/{other-quote}/"],
+  "notFound": ["/{l}/wisdom/zz-999/", "/{l}/wisdom/{other-quote}/", "/{l}/wisdom/sections/zz-none/", "/{l}/wisdom/tags/zz-none/"],
   "exempt": ["/{l}/logout", "/api/v1/graph", "/visual-system/tokens.css", "/sw.js", "/site.webmanifest"],
   "queryKeys": {
     "new": ["q", "section", "level", "tag", "from", "to", "untranslated"],

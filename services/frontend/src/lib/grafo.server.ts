@@ -22,6 +22,7 @@ const VIDA_MS = 60_000;
 const memoria = ((globalThis as any).__ttodGrafo ??= { planos: new Map() }) as {
   guardado?: { t: number; datos: RespuestaGrafo; texto: string };
   enVuelo?: Promise<void>;
+  falloEn?: number;
   planos: Map<string, PlanoGuardado>;
 };
 const { planos } = memoria;
@@ -31,8 +32,10 @@ function refresca(): Promise<void> {
     const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
     memoria.enVuelo = (async () => {
       try {
-        const r = await fetch(`${backend}/api/v1/graph`, { headers: { accept: 'application/json' } });
-        if (!r.ok) return;
+        // Con tope: una cita espera a este grafo para su cambio de idioma, y un
+        // backend colgado no puede colgar la página (cold review AA3b, F8).
+        const r = await fetch(`${backend}/api/v1/graph`, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(4000) });
+        if (!r.ok) { memoria.falloEn = Date.now(); return; }
         const texto = await r.text();
         const datos = JSON.parse(texto) as RespuestaGrafo;
         if (!Array.isArray(datos?.nodes) || !Array.isArray(datos?.edges)) return;
@@ -40,6 +43,7 @@ function refresca(): Promise<void> {
         planos.clear();
       } catch {
         // Sin backend no hay plano incrustado; la página sale igual.
+        memoria.falloEn = Date.now();
       } finally {
         memoria.enVuelo = undefined;
       }
@@ -82,7 +86,10 @@ export function grafoInicial(): string | null {
  */
 let gemelasDe: { datos: RespuestaGrafo; mapa: Map<string, string> } | undefined;
 export async function gemelasTraduccion(): Promise<Map<string, string> | null> {
-  if (!vigente()) await refresca();
+  // Si acaba de fallar, no se vuelve a esperar en cada visita: medio minuto sin
+  // grafo (el enlace va al índice) y se vuelve a intentar por detrás.
+  const recienFallo = memoria.falloEn !== undefined && Date.now() - memoria.falloEn < 30_000;
+  if (!vigente() && !recienFallo) await refresca();
   const guardado = memoria.guardado;
   if (!guardado) return null;
   if (gemelasDe?.datos !== guardado.datos) {

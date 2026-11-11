@@ -17,14 +17,20 @@ const graph = await (await fetch(`${base}/api/v1/graph`)).json();
 const es = corpus.filter((e) => e.lang === "es");
 const sections = [...new Set(es.map((e) => e.section))];
 
-async function open(path, { width = 1440, height = 900, reduced = false } = {}) {
+async function open(path, { width = 1440, height = 900, reduced = false, slow = false } = {}) {
   const ctx = await browser.newContext({ viewport: { width, height }, reducedMotion: reduced ? "reduce" : "no-preference" });
   await ctx.grantPermissions(["clipboard-read", "clipboard-write"], { origin: base });
   const page = await ctx.newPage();
   const pageErrors = [];
   page.on("pageerror", (e) => pageErrors.push(String(e).slice(0, 200)));
-  await page.goto(base + path, { waitUntil: "networkidle" });
-  await page.waitForTimeout(1800);
+  // Amended after the cold review (F2): a classroom phone, not a desktop on loopback.
+  if (slow) {
+    const cdp = await ctx.newCDPSession(page);
+    await cdp.send("Network.emulateNetworkConditions", { offline: false, latency: 150, downloadThroughput: (1.6 * 1024 * 1024) / 8, uploadThroughput: (750 * 1024) / 8 });
+    await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+  }
+  await page.goto(base + path, { waitUntil: slow ? "load" : "networkidle", timeout: 120000 });
+  await page.waitForTimeout(slow ? 6000 : 1800);
   return { ctx, page, pageErrors };
 }
 // The target is visible and the header does not cover it (header hidden, or its bottom above the target).
@@ -45,9 +51,28 @@ for (const width of [390, 1440]) {
   const { ctx, page, pageErrors } = await open(`/es/#map-${target}`, { width, height: width === 390 ? 844 : 900 });
   const cur = await page.evaluate(() => document.querySelector("[data-parada][data-actual]")?.id ?? "");
   ok(cur === `map-${target}`, `${width}px /es/#map-${target}: current stop is "${cur}"`);
+  const kept = await page.evaluate(() => location.hash);
+  ok(kept === `#map-${target}`, `${width}px /es/#map-${target}: the reader's fragment became "${kept}"`);
   const u = await unobscured(page, "[data-contador]"); ok(!u, `${width}px /es/#map-${target}: ${u}`);
   ok(!pageErrors.length, `${width}px /es/: page errors ${pageErrors.join(" | ")}`);
   await ctx.close();
+}
+// Amended after the cold review (F2): the same deep links on a throttled network (150 ms RTT,
+// 1.6 Mb/s, 4× CPU) must land, and must not rewrite the reader's fragment while the page loads.
+for (const [hash, check] of [[`#map-${target}`, "stop"], ["#doors", "doors"]]) {
+  for (const width of [390, 1440]) {
+    const { ctx, page } = await open(`/es/${hash}`, { width, height: width === 390 ? 844 : 900, slow: true });
+    const kept = await page.evaluate(() => location.hash);
+    ok(kept === hash, `slow ${width}px /es/${hash}: the fragment became "${kept}"`);
+    if (check === "stop") {
+      const cur = await page.evaluate(() => document.querySelector("[data-parada][data-actual]")?.id ?? "");
+      ok(cur === hash.slice(1), `slow ${width}px /es/${hash}: current stop is "${cur}"`);
+    } else {
+      const op = await page.evaluate(() => Number(getComputedStyle(document.getElementById("doors")).opacity));
+      ok(op > 0.5, `slow ${width}px /es/#doors: doors chapter opacity ${op} (scrollY ${await page.evaluate(() => scrollY)})`);
+    }
+    await ctx.close();
+  }
 }
 {
   const { ctx, page } = await open(`/es/#map-${target}`, { width: 390, height: 844, reduced: true });

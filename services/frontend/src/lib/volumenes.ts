@@ -5,9 +5,11 @@
  * un volumen reescribe el fragmento con `replaceState`: el botón Atrás no
  * recorre los libros que se han ido hojeando.
  */
+import { idDelFragmento } from './fragmento';
+
 export function enlazarVolumenes(raiz: Document = document) {
   const traerDelFragmento = () => {
-    const id = decodeURIComponent(location.hash.slice(1));
+    const id = idDelFragmento(location.hash);
     if (!id) return;
     const destino = raiz.getElementById(id);
     if (!destino) return;

@@ -93,6 +93,9 @@ export const copia = {
     sinResultados: 'Ninguna cita coincide. Prueba con otra palabra, o entra por una de las secciones de arriba.',
     sinTraduccion: (id: string) => `La cita ${id} todavía no tiene versión en español. Aquí está el resto del corpus.`,
     copiarVolumen: 'Copiar el enlace a este volumen',
+    copiarCita: 'Copiar el enlace a la cita',
+    copiado: 'Enlace copiado',
+    sinPortapapeles: 'Copia el enlace desde «Abrir la cita»',
     estanteTitulo: 'Todos los volúmenes',
     entrada:
       'El corpus cosido en volúmenes: cada sección es un libro y el grosor de su lomo es cuántos aforismos guarda. Saca uno al azar de la pila, o recórrelos todos en la estantería.',
@@ -134,6 +137,9 @@ export const copia = {
     sinResultados: 'No quote matches. Try another word, or go in through one of the sections above.',
     sinTraduccion: (id: string) => `Quote ${id} has no English version yet. Here is the rest of the corpus.`,
     copiarVolumen: 'Copy the link to this volume',
+    copiarCita: 'Copy the link to the quote',
+    copiado: 'Link copied',
+    sinPortapapeles: 'Copy the link from “Open the quote”',
     estanteTitulo: 'All the volumes',
     entrada:
       'The corpus bound into volumes: each section is a book, and the thickness of its spine is how many aphorisms it holds. Draw one at random from the pile, or walk through all of them on the shelf.',

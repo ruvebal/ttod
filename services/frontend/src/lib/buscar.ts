@@ -21,7 +21,10 @@ export interface Filtros {
 
 export function leerFiltros(params: URLSearchParams): Filtros {
   const valor = (clave: string) => (params.get(clave) ?? '').trim();
-  return { q: valor('q').slice(0, LIMITE_Q), section: valor('section'), level: valor('level'), tag: valor('tag') };
+  const q = valor('q').slice(0, LIMITE_Q);
+  // Una búsqueda que al plegarse se queda en nada (una tilde suelta) no es una
+  // búsqueda: si no, devolvería las 230 citas bajo el titular «´».
+  return { q: pliega(q).trim() ? q : '', section: valor('section'), level: valor('level'), tag: valor('tag') };
 }
 
 export const hayFiltros = (f: Filtros) => Boolean(f.q || f.section || f.level || f.tag);

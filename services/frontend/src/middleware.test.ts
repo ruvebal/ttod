@@ -25,6 +25,26 @@ describe('slash policy (LOCATORS §3)', () => {
   });
 });
 
+describe('never an off-site Location (cold review AA3b, F1)', () => {
+  // A URL object, not a string: `new URL('http://localhost' + '//evil.com/x')` would read evil.com as
+  // the host and hide the attack. Built this way the path really is `//evil.com/x`.
+  const raw = (path: string) => {
+    const url = new URL('http://localhost/');
+    url.pathname = path;
+    return redireccionLocator('GET', url);
+  };
+  it('refuses paths that a browser would read as another host', () => {
+    expect(new URL('http://localhost//evil.com/x').pathname).toBe('//evil.com/x');
+    expect(redireccionLocator('GET', new URL('http://localhost//evil.com/x'))).toBeNull();
+    expect(redireccionLocator('GET', new URL('http://localhost/\\evil.com/x'))).toBeNull();
+    expect(redireccionLocator('GET', new URL('http://localhost///evil.com/x?y=1'))).toBeNull();
+    expect(raw('//evil.com/graph/path')).toBeNull();
+  });
+  it('still redirects a doubled slash that stays on this site', () => {
+    expect(redireccionLocator('GET', new URL('http://localhost/es//evil.com/x'))).toBe('/es//evil.com/x/');
+  });
+});
+
 describe('legacy and canonical redirects', () => {
   it('sends /graph/path to /graph/ with the query, or to /graph/code/ for the code graph key', () => {
     expect(at('/es/graph/path')).toBe('/es/graph/');

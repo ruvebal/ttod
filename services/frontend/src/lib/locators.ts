@@ -17,6 +17,11 @@
  *    que ya tiene su ruta: una dirección por recurso.
  * 5. Toda página acaba en barra (decisión D1 de AA0). La consulta viaja intacta,
  *    tal cual llegó (sin volver a codificarla), salvo cuando se le quita una clave.
+ *
+ * Seguridad (cold review AA3b, F1): un `Location` que empieza por `//` (o `/\`,
+ * que el navegador lee igual) es una dirección de **otro sitio**. Una ruta así no
+ * se redirige nunca, y todo destino se comprueba contra el origen pedido: esta
+ * función solo manda dentro de la propia casa.
  */
 const NO_PAGINA = ['/api/', '/_astro/', '/_image', '/_server-islands/', '/visual-system/', '/project-docs/', '/data/'];
 const ENDPOINT = /^\/(?:en|es)\/logout\/?$/;
@@ -33,8 +38,17 @@ const consulta = (params: URLSearchParams) => {
 };
 
 export function redireccionLocator(method: string, url: URL): string | null {
+  const destino = calcular(method, url);
+  if (destino === null) return null;
+  // Último cerrojo: aunque una regla de arriba fallara, nada sale del origen.
+  if (!destino.startsWith('/') || /^\/[\/\\]/.test(destino)) return null;
+  return new URL(destino, url.origin).origin === url.origin ? destino : null;
+}
+
+function calcular(method: string, url: URL): string | null {
   if (method !== 'GET' && method !== 'HEAD') return null;
   const ruta = url.pathname;
+  if (/^\/[\/\\]/.test(ruta) || ruta.includes('\\')) return null;
   if (NO_PAGINA.some((prefijo) => ruta.startsWith(prefijo))) return null;
   if (ruta.slice(ruta.lastIndexOf('/') + 1).includes('.')) return null;
   if (ENDPOINT.test(ruta)) return null;

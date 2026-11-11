@@ -13,6 +13,7 @@ import type { WisdomEntry } from '../../types/domain';
 import type { Locale } from '../../content/wisdom';
 import { labels } from '../../content/wisdom';
 import { copia, esClaveOrden, ORDENES, ordenar, pasilloPedido, POR_PASILLO } from '../../content/bosque';
+import { leerFiltros } from '../../lib/buscar';
 
 interface Props {
   locale: Locale;
@@ -66,9 +67,10 @@ const deOtroPasillo = (n: number) => {
 const folio = (i: number) => String(desde + i + 1).padStart(String(total).length, '0');
 // El formulario de orden manda solo `orden`: lo demás de la consulta (la búsqueda,
 // los filtros) viaja escondido, o reordenar borraría lo que se buscaba.
+const filtros = leerFiltros(Astro.url.searchParams);
 const conservar = (['q', 'section', 'level', 'tag'] as const)
-  .map((clave) => [clave, Astro.url.searchParams.get(clave) ?? ''] as const)
-  .filter(([, valor]) => valor.trim());
+  .map((clave) => [clave, filtros[clave]] as const)
+  .filter(([, valor]) => valor);
 ---
 
 {encabezado ? (

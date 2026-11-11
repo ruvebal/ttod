@@ -50,7 +50,7 @@ const crumbs = quote
   : [{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: copy.notFound }];
 ---
 <Page lang={locale} title={quote ? `${quote.id} · ${copy.wisdom}` : copy.notFound} cambioIdioma={cambioIdioma}>
-  <main class="ttod-shell ttod-prose">
+  <main id="ttod-main" class="ttod-shell ttod-prose">
     <nav class="ttod-nav"><a href={`/${locale}/wisdom/`}>← {copy.back}</a><a href={`/${locale}/docs/`}>{copy.docs}</a></nav>
     <Breadcrumbs locale={locale} items={crumbs} />
     {failed ? <EmptyState variant="error" title={copy.errorTitle} message={copy.errorMessage} /> : !quote ? <EmptyState title={copy.notFound} message={copy.notFoundMessage} action={{ label: copy.back, href: `/${locale}/wisdom/` }} /> : <>

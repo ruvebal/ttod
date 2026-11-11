@@ -9,7 +9,7 @@ const entries = (await getCollection('docs', ({ data }) => data.locale === local
 const copy = labels[locale];
 ---
 <Page lang={locale} title={copy.docs} fuentesExtra={['Gambetta-Medium.woff2']}>
-  <main class="ttod-shell">
+  <main id="ttod-main" class="ttod-shell">
     <nav class="ttod-nav"><a href={`/${locale}/`}>← {locale === 'es' ? 'Inicio' : 'Home'}</a><a href={`/${locale}/wisdom/`}>{copy.wisdom}</a></nav>
     <h1>{copy.docs}</h1>
     <div class="ttod-grid">{entries.map((entry) => <article class="ttod-card"><h2><a href={`/${locale}/docs/${entry.id.split('/').slice(1).join('/')}/`}>{entry.data.title}</a></h2><p>{entry.data.description}</p></article>)}</div>

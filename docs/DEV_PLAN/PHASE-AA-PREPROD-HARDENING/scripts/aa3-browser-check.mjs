@@ -32,7 +32,9 @@ for (const [width, lang] of [[390, "es"], [768, "es"], [1440, "en"], [768, "en"]
     return { left: r.left, width: r.width, height: r.height, radius: parseFloat(cs.borderTopLeftRadius),
       toggleShown: toggle && getComputedStyle(toggle).display !== "none", navShown: getComputedStyle(nav).display !== "none" && nav.getBoundingClientRect().height > 0,
       swBg: getComputedStyle(sw).backgroundColor, swSize: parseFloat(getComputedStyle(sw).fontSize), linkSize: parseFloat(getComputedStyle(link).fontSize),
-      swHreflang: sw.getAttribute("hreflang"), swLang: sw.getAttribute("lang"), vw: document.documentElement.clientWidth };
+      swHreflang: sw.getAttribute("hreflang"), swLang: sw.getAttribute("lang"), vw: document.documentElement.clientWidth,
+      // Amended during AA3 (strengthening): what is *visible* in the bar, not what the markup holds.
+      visible: [...nav.querySelectorAll("a")].filter((a) => a.getClientRects().length && getComputedStyle(a).display !== "none").map((a) => a.getAttribute("href")) };
   });
   const t = await token(page); const px = parseFloat(t) * (t.endsWith("rem") ? await rem(page) : 1);
   ok(g.left <= 0.5 && Math.abs(g.width - g.vw) <= 1, `${width}px: header not full width (${g.left}, ${g.width}/${g.vw})`);
@@ -41,6 +43,7 @@ for (const [width, lang] of [[390, "es"], [768, "es"], [1440, "en"], [768, "en"]
   ok(/rgba\(0, 0, 0, 0\)|transparent/.test(g.swBg) && g.swSize <= g.linkSize + 0.5, `${width}px: language switch is not quiet (bg ${g.swBg}, ${g.swSize}px vs links ${g.linkSize}px)`);
   ok(g.swHreflang && g.swLang, `${width}px: language switch lacks hreflang/lang`);
   if (width >= 640) ok(!g.toggleShown && g.navShown, `${width}px: hamburger shown or primary nav hidden (no hamburger at ≥ 40rem)`);
+  if (width >= 640) ok(g.visible.length === 4 && !g.visible.includes(`/${lang}/`), `${width}px: the bar shows ${g.visible.length} primary links (${g.visible.join(" ")}); want 4, no Home`);
   else ok(g.toggleShown && !g.navShown, `${width}px: no Menu button, or the nav is open by default`);
   ok(!pageErrors.length, `${width}px /${lang}/wisdom/: page errors ${pageErrors.join(" | ")}`);
   await ctx.close();

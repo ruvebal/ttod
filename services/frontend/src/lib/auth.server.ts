@@ -20,7 +20,8 @@ function isAuthUser(value: unknown): value is AuthUser {
     typeof candidate.id === 'string' &&
     typeof candidate.email === 'string' &&
     Array.isArray(candidate.roles) &&
-    candidate.roles.every((role) => SESSION_ROLES.includes(role))
+    candidate.roles.every((role) => SESSION_ROLES.includes(role)) &&
+    (candidate.display_name === undefined || typeof candidate.display_name === 'string')
   );
 }
 
@@ -179,5 +180,93 @@ export async function requireRole(
 
   const allowedRoles: readonly SessionRole[] = typeof allowed === 'string' ? [allowed] : allowed;
   if (user.roles.some((role) => allowedRoles.includes(role))) return user;
-  return new Response('Forbidden', { status: 403, headers: { 'content-type': 'text/plain; charset=utf-8' } });
+  return paginaProhibida(localeOf(request));
+}
+
+/**
+ * 403 en el idioma de la ruta (AA3, F35), no un «Forbidden» en texto plano. Las páginas
+ * que quieren la cabecera y el pie del sitio lo pintan ellas (la cola de revisión);
+ * esto es lo que recibe cualquier otra ruta protegida.
+ */
+export const PROHIBIDO = {
+  es: { title: 'Sin permiso', message: 'Esta página es solo para el equipo de revisión. Tu cuenta no tiene ese rol.', back: 'Volver a mi cuenta' },
+  en: { title: 'Not allowed', message: 'This page is for the review team only. Your account does not have that role.', back: 'Back to my account' },
+} as const;
+
+export function paginaProhibida(locale: 'en' | 'es'): Response {
+  const t = PROHIBIDO[locale];
+  const html = `<!doctype html><html lang="${locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">` +
+    `<title>${t.title} · TTOD</title><link rel="stylesheet" href="/visual-system/tokens.css"></head>` +
+    `<body><main id="ttod-main"><h1>${t.title}</h1><p>${t.message}</p><p><a href="/${locale}/account/">${t.back}</a></p></main></body></html>`;
+  return new Response(html, { status: 403, headers: { 'content-type': 'text/html; charset=utf-8' } });
+}
+
+// --- La sección «Usuario» de la cuenta (AA3, F55): la BFF de los endpoints de AA2. ---
+// Cada función reenvía solo la cookie de sesión y devuelve un resultado con motivo,
+// para que la página diga en su idioma qué ha pasado.
+
+export type PasswordChangeResult =
+  | { ok: true; sessionToken: string; expiresIn: number }
+  | { ok: false; reason: 'wrong-current' | 'invalid' | 'throttled' | 'signed-out' | 'service' };
+
+/** POST /api/v1/auth/password: el backend rota la sesión de quien llama y devuelve la cookie nueva. */
+export async function changePasswordWithBackend(
+  request: Request, currentPassword: string, newPassword: string, revokeOthers: boolean,
+): Promise<PasswordChangeResult> {
+  const sessionToken = readSessionToken(request);
+  if (!sessionToken) return { ok: false, reason: 'signed-out' };
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/v1/auth/password`, {
+      method: 'POST',
+      headers: { ...backendHeaders(clientAddressOf(request)), 'content-type': 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
+      body: JSON.stringify({ current_password: currentPassword, new_password: newPassword, revoke_others: revokeOthers }),
+    });
+    // 401 con sesión válida es la contraseña actual: la sesión la comprueba antes `requireUser`.
+    if (response.status === 401 || response.status === 403) return { ok: false, reason: 'wrong-current' };
+    if (response.status === 422 || response.status === 400) return { ok: false, reason: 'invalid' };
+    if (response.status === 429) return { ok: false, reason: 'throttled' };
+    if (!response.ok) return { ok: false, reason: 'service' };
+    const session = readIssuedSession(await response.json());
+    return session ? { ok: true, ...session } : { ok: false, reason: 'service' };
+  } catch (error) {
+    console.error('The authentication service could not change the password.', error);
+    return { ok: false, reason: 'service' };
+  }
+}
+
+export type ProfileResult = { ok: true } | { ok: false; reason: 'invalid' | 'signed-out' | 'service' };
+
+/** PATCH /api/v1/auth/profile {display_name}. */
+export async function updateProfileWithBackend(request: Request, displayName: string): Promise<ProfileResult> {
+  const sessionToken = readSessionToken(request);
+  if (!sessionToken) return { ok: false, reason: 'signed-out' };
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/v1/auth/profile`, {
+      method: 'PATCH',
+      headers: { ...backendHeaders(clientAddressOf(request)), 'content-type': 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
+      body: JSON.stringify({ display_name: displayName }),
+    });
+    if (response.status === 422 || response.status === 400) return { ok: false, reason: 'invalid' };
+    if (response.status === 401) return { ok: false, reason: 'signed-out' };
+    return response.ok ? { ok: true } : { ok: false, reason: 'service' };
+  } catch (error) {
+    console.error('The authentication service could not update the profile.', error);
+    return { ok: false, reason: 'service' };
+  }
+}
+
+/** POST /api/v1/auth/logout-all: cierra todas las sesiones, también la de quien llama. */
+export async function logoutEverywhereWithBackend(request: Request): Promise<boolean> {
+  const sessionToken = readSessionToken(request);
+  if (!sessionToken) return true;
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/v1/auth/logout-all`, {
+      method: 'POST',
+      headers: { ...backendHeaders(clientAddressOf(request)), accept: 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
+    });
+    return response.ok;
+  } catch (error) {
+    console.error('The authentication service could not close every session.', error);
+    return false;
+  }
 }

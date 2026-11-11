@@ -1,6 +1,8 @@
 ---
 import Page from '../../../../layouts/Page.astro';
-import { SESSION_COOKIE_NAME, requireRole } from '../../../../lib/auth.server';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import EmptyState from '../../../../components/EmptyState.astro';
+import { PROHIBIDO, SESSION_COOKIE_NAME, requireRole } from '../../../../lib/auth.server';
 import { isLocale } from '../../../../content/wisdom';
 
 export const prerender = false;
@@ -9,8 +11,13 @@ const locale = Astro.params.locale;
 if (!isLocale(locale)) return new Response(null, { status: 404 });
 
 // Un estudiante con sesión recibe aquí el 403: la cola no se oculta solo en la interfaz.
-const reviewer = await requireRole(Astro.request, ['reviewer', 'instructor']);
-if (reviewer instanceof Response) return reviewer;
+// Sin sesión, la redirección a entrar; con sesión y sin rol, un 403 con la cabecera y
+// el pie del sitio y el mensaje en su idioma (AA3, F35), no un «Forbidden» suelto.
+const guarda = await requireRole(Astro.request, ['reviewer', 'instructor']);
+if (guarda instanceof Response && guarda.status !== 403) return guarda;
+const prohibido = guarda instanceof Response;
+const reviewer = guarda instanceof Response ? null : guarda;
+if (prohibido) Astro.response.status = 403;
 
 const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
 const sessionCookie = `${SESSION_COOKIE_NAME}=${Astro.cookies.get(SESSION_COOKIE_NAME)?.value ?? ''}`;
@@ -20,7 +27,7 @@ type Proposal = {
   candidate_content: { text?: string; section?: string; origin?: string };
 };
 let proposals: Proposal[] | null = null;
-try {
+if (reviewer) try {
   const response = await fetch(`${backend}/api/v1/proposals`, {
     headers: { accept: 'application/json', cookie: sessionCookie }
   });
@@ -29,28 +36,33 @@ try {
   console.error('Unable to load the reviewer queue.', error);
 }
 // Sin respuesta no se sabe si hay propuestas: «no hay pendientes» sería falso.
-if (proposals === null) Astro.response.status = 503;
+if (reviewer && proposals === null) Astro.response.status = 503;
 const copy = locale === 'es'
   ? {
-      title: 'Cola de revisión', empty: 'No hay propuestas pendientes.', status: 'Estado', section: 'Sección',
-      failed: 'No se ha podido cargar la cola porque el servicio no responde. Las propuestas siguen guardadas: vuelve a intentarlo en un momento.'
+      title: 'Cola de revisión', account: 'Mi cuenta', emptyTitle: 'Nada que revisar', empty: 'No hay propuestas pendientes.', status: 'Estado', section: 'Sección',
+      failedTitle: 'La cola no responde', failed: 'No se ha podido cargar la cola porque el servicio no responde. Las propuestas siguen guardadas: vuelve a intentarlo en un momento.'
     }
   : {
-      title: 'Reviewer queue', empty: 'There are no pending proposals.', status: 'Status', section: 'Section',
-      failed: 'The queue could not be loaded because the service is not answering. The proposals are still stored: please try again in a moment.'
+      title: 'Reviewer queue', account: 'My account', emptyTitle: 'Nothing to review', empty: 'There are no pending proposals.', status: 'Status', section: 'Section',
+      failedTitle: 'The queue is not answering', failed: 'The queue could not be loaded because the service is not answering. The proposals are still stored: please try again in a moment.'
     };
 ---
-<Page lang={locale} title={copy.title}>
-  <main>
-    <h1>{copy.title}</h1>
-    <p class="meta">{reviewer.roles.join(', ')}</p>
-    {proposals === null ? <p role="alert">{copy.failed}</p>
-      : proposals.length === 0 ? <p>{copy.empty}</p> : <section aria-label={copy.title}>
-      {proposals.map((proposal) => <article>
-        <h2>{proposal.proposal_id}</h2>
-        <blockquote>{proposal.candidate_content.text}</blockquote>
-        <p class="meta">{copy.status}: {proposal.status} · {copy.section}: {proposal.candidate_content.section} · {proposal.candidate_content.origin}</p>
-      </article>)}
-    </section>}
+<Page lang={locale} title={prohibido ? PROHIBIDO[locale].title : copy.title} usuario={reviewer ?? undefined}>
+  <main id="ttod-main" class="ttod-shell">
+    <Breadcrumbs locale={locale} items={[{ label: copy.account, href: `/${locale}/account/` }, { label: copy.title }]} />
+    {prohibido ? <>
+      <h1>{PROHIBIDO[locale].title}</h1>
+      <EmptyState variant="error" title={PROHIBIDO[locale].title} message={PROHIBIDO[locale].message} action={{ label: PROHIBIDO[locale].back, href: `/${locale}/account/` }} />
+    </> : <>
+      <h1>{copy.title}</h1>
+      {proposals === null ? <EmptyState variant="error" title={copy.failedTitle} message={copy.failed} />
+        : proposals.length === 0 ? <EmptyState title={copy.emptyTitle} message={copy.empty} /> : <section aria-label={copy.title}>
+        {proposals.map((proposal) => <article class="ttod-card">
+          <h2>{proposal.proposal_id}</h2>
+          <blockquote>{proposal.candidate_content.text}</blockquote>
+          <p class="meta">{copy.status}: {proposal.status} · {copy.section}: {proposal.candidate_content.section} · {proposal.candidate_content.origin}</p>
+        </article>)}
+      </section>}
+    </>}
   </main>
 </Page>

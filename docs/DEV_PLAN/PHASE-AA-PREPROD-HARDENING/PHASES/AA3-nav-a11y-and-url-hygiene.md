@@ -1,7 +1,7 @@
 # PHASE-AA3: Header, a11y, graph i18n, account and library UX
 
 > **Track:** Astro shell — F7, F9–F12, F32–F38, F53, F55 (UI), F56, F58 · A6, A8–A11, A20–A26, A31, A33, A35.  
-> **Status:** IN_PROGRESS 2026-11-11 (owner: "go AA3") · exit gate [`AA3-nav-a11y-and-url-hygiene.exit-gate.sh`](AA3-nav-a11y-and-url-hygiene.exit-gate.sh) + [`scripts/aa3-browser-check.mjs`](../scripts/aa3-browser-check.mjs), written before the code  
+> **Status:** VERIFYING 2026-11-11 (owner: "go AA3") · [report](../PHASE-AA3-REPORT.md) · exit gate [`AA3-nav-a11y-and-url-hygiene.exit-gate.sh`](AA3-nav-a11y-and-url-hygiene.exit-gate.sh) + [`scripts/aa3-browser-check.mjs`](../scripts/aa3-browser-check.mjs), written before the code  
 > **Amended 2026-11-10:** URL/locator work (F8, F49–F52, F54, F57) moved to [AA3b](AA3b-locators-wisdom-and-graph-ia.md).
 > Header redesign, library layout, User section and anchor offset added here.
 

@@ -10,14 +10,17 @@
  * El crédito sale del README del repositorio (Development Team, License): es un
  * proyecto de clase de Front-end II en la UDIT, y así se dice.
  */
-interface Props { lang: 'en' | 'es'; switchPath?: string }
-const { lang } = Astro.props;
+import { enlaceEntrar } from '../lib/enlaces-cuenta';
+import type { AuthUser } from '../types/domain';
+interface Props { lang: 'en' | 'es'; switchPath?: string; usuario?: AuthUser | null }
+const { lang, usuario = null } = Astro.props;
 
 const otherLocale = lang === 'en' ? 'es' : 'en';
 // El mismo destino que el de la cabecera (en una cita, su gemela de traducción).
 const switchPath = Astro.props.switchPath ?? '/' + otherLocale + Astro.url.pathname.replace(/^\/(en|es)/, '');
-// Quien entra desde el pie vuelve a la página donde estaba.
-const loginHref = `/${lang}/login/?next=${encodeURIComponent(Astro.url.pathname)}`;
+// Quien entra desde el pie vuelve a la página donde estaba, nunca a «entrar» (F9);
+// con sesión, el pie lleva a la cuenta, como la cabecera (F7).
+const loginHref = usuario ? `/${lang}/account/` : enlaceEntrar(lang, Astro.url);
 
 const t = {
   es: {
@@ -30,7 +33,7 @@ const t = {
       { href: '/es/graph/code/', label: 'Grafo del código' },
       { href: '/es/oracle/', label: 'Oráculo' },
       { href: '/es/docs/', label: 'Docs' },
-      { href: loginHref, label: 'Iniciar sesión' },
+      { href: loginHref, label: usuario ? 'Mi cuenta' : 'Iniciar sesión' },
     ],
     idioma: 'Read in English',
     credito: 'TTOD, El Tao del Desarrollo, es un proyecto de clase de Front-end II en la UDIT. Idea, corpus y dirección: Rubén Vega Balbás, PhD. Lo construyen los equipos 1 a 5 del curso.',
@@ -49,7 +52,7 @@ const t = {
       { href: '/en/graph/code/', label: 'Code graph' },
       { href: '/en/oracle/', label: 'Oracle' },
       { href: '/en/docs/', label: 'Docs' },
-      { href: loginHref, label: 'Log in' },
+      { href: loginHref, label: usuario ? 'My account' : 'Log in' },
     ],
     idioma: 'Leer en español',
     credito: 'TTOD, The Tao of Development, is a class project for Front-end II at UDIT. Idea, corpus and direction: Rubén Vega Balbás, PhD. Built by teams 1 to 5 of the course.',

@@ -22,7 +22,7 @@
     { "path": "/{l}/oracle/", "ids": [] },
     { "path": "/{l}/docs/", "ids": [] },
     { "path": "/{l}/library/", "ids": ["{quote}"], "auth": true },
-    { "path": "/{l}/account/", "ids": ["profile", "password", "sessions"], "owner": "AA3" }
+    { "path": "/{l}/account/", "ids": ["profile", "password", "sessions"], "auth": true }
   ],
   "redirects": [
     { "from": "/{l}/wisdom", "to": "/{l}/wisdom/" },

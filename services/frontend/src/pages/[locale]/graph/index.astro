@@ -74,23 +74,22 @@ const copia = {
   */}
   {grafoTexto && <script type="application/json" id="ttod-grafo" set:html={grafoTexto.replace(/</g, '\\u003c')} />}
   {plano && <script type="application/json" id={ID_PLANO_INCRUSTADO} set:html={JSON.stringify(plano).replace(/</g, '\\u003c')} />}
-  <SenderoAforismos client:load lang={locale} />
-  <main class="grafo-ancho">
-    <nav class="grafo-puerta" aria-label={copia.otras}>
-      <a href={`/${locale}/graph/plano/`}>{copia.plano} →</a>
-      <a href={`/${locale}/graph/code/`}>{copia.codigo} →</a>
-    </nav>
+  <main id="ttod-main" class="grafo-pagina">
+    <SenderoAforismos client:load lang={locale} />
+    <div class="grafo-ancho">
+      <nav class="grafo-puerta" aria-label={copia.otras}>
+        <a href={`/${locale}/graph/plano/`}>{copia.plano} →</a>
+        <a href={`/${locale}/graph/code/`}>{copia.codigo} →</a>
+      </nav>
+    </div>
   </main>
 </Page>
 
 <style>
-  /* La banda de detrás de la cabecera (ver `Page.astro`) va del tono del canto
-     de arriba de la escena, cuyo velo de lectura empieza en #0c0a07: con el
-     degradado de la sección se veía una costura más clara a 61 px. */
-  :global(.sendero) { --ttod-banda-arriba: #0c0a07; }
+  /* La constelación llega a los dos cantos: el `main` de esta vista no es columna de lectura. */
+  .grafo-pagina { max-width: none; padding: 0; }
   /* Esta vista es un instrumento, no una columna de lectura: necesita todo el ancho. */
   .grafo-ancho {
-    /* `main` viene con la columna de lectura de 48rem; el instrumento no la usa. */
     max-width: none;
     width: min(var(--ttod-max-content), calc(100% - 3rem));
     margin-inline: auto;

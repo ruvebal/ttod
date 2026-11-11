@@ -26,7 +26,7 @@ const sinTraduccion = otras.some((entry) => entry.id === pedida) ? pedida : unde
 ---
 <Page lang={locale} title={`${t.titulo} — TTOD`}>
   {hayFiltros(filtros) && <link rel="stylesheet" href={bosqueCss} />}
-  <main class="armario-vista">
+  <main id="ttod-main" class="armario-vista">
     <Breadcrumbs locale={locale} items={[{ label: copy.wisdom }]} />
     <Estanteria locale={locale} entries={entries} failed={failed} sesion={Astro.cookies.has('ttod_session')} filtros={filtros} sinTraduccion={sinTraduccion}>
       <a slot="acciones" class="armario-proponer" href={`/${locale}/wisdom/propose/`}>{copy.propose}</a>

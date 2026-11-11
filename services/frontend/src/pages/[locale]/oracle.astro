@@ -8,7 +8,7 @@ if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 
 const title = locale === 'es' ? 'Oráculo · 道 El Tao del Desarrollo (TTOD)' : 'Oracle · 道 The Tao of Development (TTOD)';
 ---
 <Page lang={locale} title={title}>
-  <main class="oraculo">
+  <main id="ttod-main" class="oraculo">
     <CieloRuyi dragon rodea=".oracle-terminal" piensa />
     <section class="oraculo-chat">
       <OracleTerminal locale={locale} client:load />

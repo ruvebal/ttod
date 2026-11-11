@@ -1,6 +1,14 @@
 ---
 import Page from '../../layouts/Page.astro';
-import { requireUser } from '../../lib/auth.server';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import {
+  SESSION_COOKIE_NAME,
+  changePasswordWithBackend,
+  logoutEverywhereWithBackend,
+  requireUser,
+  updateProfileWithBackend,
+} from '../../lib/auth.server';
+import { atributosSesion } from '../../lib/cookie-security';
 import { isLocale } from '../../content/wisdom';
 import type { SessionRole } from '../../types/domain';
 
@@ -14,6 +22,57 @@ if (!isLocale(locale)) return new Response(null, { status: 404 });
 const authenticatedUser = await requireUser(Astro.request);
 if (authenticatedUser instanceof Response) return authenticatedUser;
 
+/**
+ * La sección «Usuario» (AA3, F55): tres formularios que se envían a esta misma
+ * página. Cada uno lleva un `intent`; si sale bien se redirige (PRG) con un aviso
+ * en la dirección, y si no se vuelve a pintar con el error en su idioma. Las
+ * contraseñas solo viajan al backend (AA2), que las verifica; aquí no se comparan.
+ */
+type ErrorPerfil = 'invalid' | 'signed-out' | 'service';
+type ErrorClave = 'missing' | 'mismatch' | 'short' | 'wrong-current' | 'invalid' | 'throttled' | 'signed-out' | 'service';
+let errorPerfil: ErrorPerfil | null = null;
+let errorClave: ErrorClave | null = null;
+let errorSesiones = false;
+let nombrePedido = '';
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const intent = String(form.get('intent') ?? '');
+  if (intent === 'profile') {
+    nombrePedido = String(form.get('display_name') ?? '').trim();
+    if (!nombrePedido || nombrePedido.length > 40) errorPerfil = 'invalid';
+    else {
+      const result = await updateProfileWithBackend(Astro.request, nombrePedido);
+      if (result.ok) return Astro.redirect(`/${locale}/account/?ok=profile#profile`, 303);
+      errorPerfil = result.reason;
+    }
+  } else if (intent === 'password') {
+    const actual = String(form.get('current_password') ?? '');
+    const nueva = String(form.get('new_password') ?? '');
+    const repetida = String(form.get('confirm_password') ?? '');
+    if (!actual || !nueva) errorClave = 'missing';
+    else if (nueva !== repetida) errorClave = 'mismatch';
+    else if (nueva.length < 8) errorClave = 'short';
+    else {
+      const result = await changePasswordWithBackend(Astro.request, actual, nueva, form.get('revoke_others') === 'on');
+      if (result.ok) {
+        // El backend rotó la sesión de quien llama: sin la cookie nueva, cambiar la
+        // contraseña te dejaría fuera (AA2). Con los mismos atributos que al entrar.
+        Astro.cookies.set(SESSION_COOKIE_NAME, result.sessionToken, { ...atributosSesion(Astro.request), maxAge: result.expiresIn });
+        return Astro.redirect(`/${locale}/account/?ok=password#password`, 303);
+      }
+      errorClave = result.reason;
+    }
+  } else if (intent === 'logout-all') {
+    if (await logoutEverywhereWithBackend(Astro.request)) {
+      Astro.cookies.delete(SESSION_COOKIE_NAME, atributosSesion(Astro.request));
+      return Astro.redirect(`/${locale}/`, 303);
+    }
+    errorSesiones = true;
+  }
+  Astro.response.status = errorClave === 'wrong-current' ? 401 : errorClave === 'throttled' ? 429 : errorSesiones ? 503 : 400;
+}
+
 const roleNames: Record<'en' | 'es', Record<SessionRole, string>> = {
   es: { student: 'Estudiante', reviewer: 'Revisor', instructor: 'Profesor' },
   en: { student: 'Student', reviewer: 'Reviewer', instructor: 'Instructor' }
@@ -22,45 +81,166 @@ const roleNames: Record<'en' | 'es', Record<SessionRole, string>> = {
 const canReview = authenticatedUser.roles.some((role) => role === 'reviewer' || role === 'instructor');
 // Lo pone /logout cuando el backend no pudo revocar la sesión.
 const logoutFailed = Astro.url.searchParams.get('logout') === 'failed';
+const ok = Astro.url.searchParams.get('ok');
 
 const copy = locale === 'es'
   ? {
-      title: 'Mi cuenta · TTOD', description: 'Tu correo, tus roles y tus accesos en TTOD.',
-      home: 'Inicio', heading: 'Mi cuenta', email: 'Correo electrónico', roles: 'Roles',
-      shortcuts: 'Accesos de tu cuenta', library: 'Mi biblioteca', queue: 'Cola de revisión',
-      logout: 'Cerrar sesión',
-      logoutFailed: 'No se ha podido cerrar la sesión porque el servicio de cuentas no responde. Sigues dentro: inténtalo de nuevo en un momento.'
+      title: 'Mi cuenta · TTOD', description: 'Tu nombre, tu contraseña y tus sesiones en TTOD.',
+      heading: 'Mi cuenta', shortcuts: 'Accesos de tu cuenta', library: 'Mi biblioteca', queue: 'Cola de revisión',
+      profile: 'Perfil', name: 'Nombre de usuario', nameHelp: 'Lo que se ve en la cabecera. De 1 a 40 caracteres.',
+      noName: '—', saveName: 'Guardar el nombre', email: 'Correo electrónico', roles: 'Roles',
+      password: 'Contraseña', current: 'Contraseña actual', next: 'Contraseña nueva', confirm: 'Repite la contraseña nueva',
+      passwordHelp: 'Al menos 8 caracteres.', show: 'Mostrar', hide: 'Ocultar', revoke: 'Cerrar mis otras sesiones (recomendado)',
+      changePassword: 'Cambiar la contraseña',
+      sessions: 'Sesiones', sessionsHelp: 'Cierra esta sesión, o todas: también las de otros dispositivos y los tokens personales.',
+      logout: 'Cerrar esta sesión', logoutAll: 'Cerrar todas mis sesiones',
+      okProfile: 'Nombre guardado.', okPassword: 'Contraseña cambiada. Sigues dentro con una sesión nueva.',
+      logoutFailed: 'No se ha podido cerrar la sesión porque el servicio de cuentas no responde. Sigues dentro: inténtalo de nuevo en un momento.',
+      errProfile: { invalid: 'El nombre tiene que tener entre 1 y 40 caracteres, sin < ni >.', 'signed-out': 'Tu sesión ha caducado: vuelve a entrar.', service: 'El servicio de cuentas no responde. Inténtalo en un momento.' },
+      errPassword: {
+        missing: 'Escribe la contraseña actual y la nueva.', mismatch: 'Las dos contraseñas nuevas no coinciden.',
+        short: 'La contraseña nueva necesita al menos 8 caracteres.', 'wrong-current': 'La contraseña actual no es correcta.',
+        invalid: 'Esa contraseña nueva no vale (al menos 8 caracteres).', throttled: 'Demasiados intentos seguidos. Espera unos minutos.',
+        'signed-out': 'Tu sesión ha caducado: vuelve a entrar.', service: 'El servicio de cuentas no responde. Inténtalo en un momento.',
+      },
+      errSessions: 'No se han podido cerrar las sesiones: el servicio de cuentas no responde.',
     }
   : {
-      title: 'My account · TTOD', description: 'Your email, your roles and your shortcuts in TTOD.',
-      home: 'Home', heading: 'My account', email: 'Email', roles: 'Roles',
-      shortcuts: 'Account shortcuts', library: 'My library', queue: 'Reviewer queue',
-      logout: 'Log out',
-      logoutFailed: 'The session could not be closed because the account service is not answering. You are still logged in: please try again in a moment.'
+      title: 'My account · TTOD', description: 'Your name, your password and your sessions in TTOD.',
+      heading: 'My account', shortcuts: 'Account shortcuts', library: 'My library', queue: 'Reviewer queue',
+      profile: 'Profile', name: 'Username', nameHelp: 'Shown in the header. 1 to 40 characters.',
+      noName: '—', saveName: 'Save the name', email: 'Email', roles: 'Roles',
+      password: 'Password', current: 'Current password', next: 'New password', confirm: 'Repeat the new password',
+      passwordHelp: 'At least 8 characters.', show: 'Show', hide: 'Hide', revoke: 'Sign out my other sessions (recommended)',
+      changePassword: 'Change the password',
+      sessions: 'Sessions', sessionsHelp: 'Sign out of this session, or of all of them: other devices and personal tokens too.',
+      logout: 'Sign out of this session', logoutAll: 'Sign out of every session',
+      okProfile: 'Name saved.', okPassword: 'Password changed. You are still signed in, with a new session.',
+      logoutFailed: 'The session could not be closed because the account service is not answering. You are still logged in: please try again in a moment.',
+      errProfile: { invalid: 'The name must be 1 to 40 characters, without < or >.', 'signed-out': 'Your session expired: please sign in again.', service: 'The account service is not answering. Please try again in a moment.' },
+      errPassword: {
+        missing: 'Type your current password and the new one.', mismatch: 'The two new passwords do not match.',
+        short: 'The new password needs at least 8 characters.', 'wrong-current': 'The current password is not correct.',
+        invalid: 'That new password is not valid (at least 8 characters).', throttled: 'Too many attempts in a row. Please wait a few minutes.',
+        'signed-out': 'Your session expired: please sign in again.', service: 'The account service is not answering. Please try again in a moment.',
+      },
+      errSessions: 'The sessions could not be closed: the account service is not answering.',
     };
 ---
 
-<Page lang={locale} title={copy.title} description={copy.description}>
-  <nav aria-label={locale === 'es' ? 'Navegación de cuenta' : 'Account navigation'}>
-    <a href={`/${locale}/`}>{copy.home}</a>
-  </nav>
-  <main>
+<Page lang={locale} title={copy.title} description={copy.description} usuario={authenticatedUser}>
+  <main id="ttod-main" class="ttod-shell cuenta">
+    <Breadcrumbs locale={locale} items={[{ label: copy.heading }]} />
     <h1>{copy.heading}</h1>
-    {logoutFailed && <p role="alert">{copy.logoutFailed}</p>}
-    <dl>
-      <dt>{copy.email}</dt>
-      <dd>{authenticatedUser.email}</dd>
-      <dt>{copy.roles}</dt>
-      <dd>{authenticatedUser.roles.map((role) => roleNames[locale][role]).join(', ')}</dd>
-    </dl>
-    <nav aria-label={copy.shortcuts}>
-      <ul>
-        <li><a href={`/${locale}/library/`}>{copy.library}</a></li>
-        {canReview && <li><a href={`/${locale}/account/reviewer/`}>{copy.queue}</a></li>}
-      </ul>
+    {logoutFailed && <p class="cuenta-aviso" role="alert">{copy.logoutFailed}</p>}
+
+    <nav class="cuenta-accesos" aria-label={copy.shortcuts}>
+      <a href={`/${locale}/library/`}>{copy.library}</a>
+      {canReview && <a href={`/${locale}/account/reviewer/`}>{copy.queue}</a>}
     </nav>
-    <form method="post" action={`/${locale}/logout`}>
-      <button type="submit">{copy.logout}</button>
-    </form>
+
+    <section id="profile" class="ttod-card cuenta-bloque" aria-labelledby="cuenta-perfil">
+      <h2 id="cuenta-perfil">{copy.profile}</h2>
+      {ok === 'profile' && <p class="cuenta-ok" role="status">{copy.okProfile}</p>}
+      <dl>
+        <dt>{copy.email}</dt>
+        <dd>{authenticatedUser.email}</dd>
+        <dt>{copy.roles}</dt>
+        <dd>{authenticatedUser.roles.map((role) => roleNames[locale][role]).join(', ')}</dd>
+      </dl>
+      <form method="post" action={`/${locale}/account/#profile`} novalidate>
+        <input type="hidden" name="intent" value="profile" />
+        <label for="cuenta-nombre">{copy.name}</label>
+        <input id="cuenta-nombre" name="display_name" type="text" maxlength="40" autocomplete="nickname"
+          value={nombrePedido || authenticatedUser.display_name || ''} placeholder={copy.noName}
+          aria-describedby="cuenta-nombre-ayuda" aria-invalid={errorPerfil ? 'true' : undefined} />
+        <p id="cuenta-nombre-ayuda" class="cuenta-ayuda">{copy.nameHelp}</p>
+        {errorPerfil && <p class="cuenta-error" role="alert">{copy.errProfile[errorPerfil]}</p>}
+        <button type="submit">{copy.saveName}</button>
+      </form>
+    </section>
+
+    <section id="password" class="ttod-card cuenta-bloque" aria-labelledby="cuenta-clave">
+      <h2 id="cuenta-clave">{copy.password}</h2>
+      {ok === 'password' && <p class="cuenta-ok" role="status">{copy.okPassword}</p>}
+      <form method="post" action={`/${locale}/account/#password`} novalidate>
+        <input type="hidden" name="intent" value="password" />
+        {[
+          { id: 'cuenta-actual', name: 'current_password', label: copy.current, auto: 'current-password' },
+          { id: 'cuenta-nueva', name: 'new_password', label: copy.next, auto: 'new-password', help: copy.passwordHelp },
+          { id: 'cuenta-repetida', name: 'confirm_password', label: copy.confirm, auto: 'new-password' },
+        ].map((campo) => (
+          <div class="cuenta-campo">
+            <label for={campo.id}>{campo.label}</label>
+            <span class="cuenta-clave-fila">
+              <input id={campo.id} name={campo.name} type="password" autocomplete={campo.auto} required
+                minlength={campo.name === 'current_password' ? undefined : 8}
+                aria-describedby={campo.help ? `${campo.id}-ayuda` : undefined}
+                aria-invalid={errorClave && (errorClave === 'wrong-current' ? campo.name === 'current_password' : campo.name !== 'current_password') ? 'true' : undefined} />
+              {/* Mostrar u ocultar: lo enciende `lib/verContrasena.ts` desde el guion de la cabecera. */}
+              <button type="button" class="cuenta-ver" data-ver-contrasena={campo.id} data-mostrar={copy.show} data-ocultar={copy.hide} aria-controls={campo.id} aria-pressed="false" hidden>{copy.show}</button>
+            </span>
+            {campo.help && <p id={`${campo.id}-ayuda`} class="cuenta-ayuda">{campo.help}</p>}
+          </div>
+        ))}
+        <label class="cuenta-casilla"><input type="checkbox" name="revoke_others" checked /> {copy.revoke}</label>
+        {errorClave && <p class="cuenta-error" role="alert">{copy.errPassword[errorClave]}</p>}
+        <button type="submit">{copy.changePassword}</button>
+      </form>
+    </section>
+
+    <section id="sessions" class="ttod-card cuenta-bloque" aria-labelledby="cuenta-sesiones">
+      <h2 id="cuenta-sesiones">{copy.sessions}</h2>
+      <p class="cuenta-ayuda">{copy.sessionsHelp}</p>
+      {errorSesiones && <p class="cuenta-error" role="alert">{copy.errSessions}</p>}
+      <div class="cuenta-botones">
+        <form method="post" action={`/${locale}/logout`}>
+          <button type="submit">{copy.logout}</button>
+        </form>
+        <form method="post" action={`/${locale}/account/#sessions`}>
+          <input type="hidden" name="intent" value="logout-all" />
+          <button type="submit" class="cuenta-secundario">{copy.logoutAll}</button>
+        </form>
+      </div>
+    </section>
   </main>
 </Page>
+
+<style>
+  .cuenta h1 { font-family: var(--ttod-font-titular); font-weight: 300; font-size: clamp(2rem, 6vw, 2.8rem); margin: var(--ttod-space-4) 0 var(--ttod-space-6); }
+  .cuenta-accesos { display: flex; flex-wrap: wrap; gap: var(--ttod-space-6); margin-bottom: var(--ttod-space-8); }
+  .cuenta-accesos a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ttod-color-accent); }
+  .cuenta-bloque { margin-bottom: var(--ttod-space-8); font-family: var(--ttod-font-ui); }
+  .cuenta-bloque h2 { margin: 0 0 var(--ttod-space-4); font-family: var(--ttod-font-titular); font-weight: 400; font-size: 1.5rem; }
+  .cuenta-bloque dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--ttod-space-2) var(--ttod-space-6); margin: 0 0 var(--ttod-space-6); }
+  .cuenta-bloque dt { color: var(--ttod-color-muted); }
+  .cuenta-bloque dd { margin: 0; overflow-wrap: anywhere; }
+  /* En el teléfono el término encima del dato: en dos columnas el correo se partía letra a letra. */
+  @media (max-width: 30rem) {
+    .cuenta-bloque dl { grid-template-columns: 1fr; row-gap: 0; }
+    .cuenta-bloque dd { margin-bottom: var(--ttod-space-3); }
+  }
+  .cuenta-bloque label { display: block; margin: var(--ttod-space-4) 0 var(--ttod-space-1); font-weight: 500; }
+  .cuenta-bloque input[type="text"], .cuenta-bloque input[type="password"] {
+    box-sizing: border-box; width: 100%; min-height: 44px; padding: 0 .8rem;
+    font: inherit; font-size: 1rem; color: var(--ttod-color-ink); background: var(--ttod-color-paper);
+    border: 1px solid #b9ab8d; border-radius: .375rem;
+  }
+  .cuenta-bloque input[aria-invalid="true"] { border-color: var(--ttod-color-seal); }
+  .cuenta-clave-fila { display: flex; gap: var(--ttod-space-2); }
+  .cuenta-ayuda { margin: var(--ttod-space-1) 0 0; font-size: var(--ttod-text-sm); color: var(--ttod-color-muted); }
+  .cuenta-casilla { display: flex !important; align-items: center; gap: var(--ttod-space-2); min-height: 44px; font-weight: 400 !important; }
+  .cuenta-casilla input { width: 1.1rem; height: 1.1rem; }
+  .cuenta-error { margin: var(--ttod-space-4) 0 0; color: var(--ttod-color-seal); font-weight: 500; }
+  .cuenta-ok, .cuenta-aviso { margin: 0 0 var(--ttod-space-4); padding: var(--ttod-space-3) var(--ttod-space-4); border-inline-start: .25rem solid var(--ttod-color-accent); background: var(--ttod-color-paper); }
+  .cuenta-bloque button {
+    min-height: 44px; margin-top: var(--ttod-space-6); padding: 0 1.1rem;
+    font: 500 var(--ttod-text-sm) / 1 var(--ttod-font-ui);
+    color: var(--ttod-color-paper); background: var(--ttod-color-ink); border: 1px solid var(--ttod-color-ink); border-radius: .375rem; cursor: pointer;
+  }
+  .cuenta-bloque button:hover { background: var(--ttod-color-accent); border-color: var(--ttod-color-accent); }
+  .cuenta-bloque .cuenta-ver, .cuenta-bloque .cuenta-secundario { margin-top: 0; color: var(--ttod-color-ink); background: transparent; border-color: currentColor; }
+  .cuenta-bloque .cuenta-secundario { margin-top: var(--ttod-space-6); }
+  .cuenta-ver:hover, .cuenta-secundario:hover { color: var(--ttod-color-paper) !important; }
+  .cuenta-botones { display: flex; flex-wrap: wrap; gap: var(--ttod-space-4); }
+</style>

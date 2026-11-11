@@ -21,9 +21,10 @@ const container = async () => {
   return AstroContainer.create({ renderers });
 };
 
+// The form has a confirm field since AA3 (F36); a test that is not about it repeats the password.
 const post = (locale: 'en' | 'es', fields: Record<string, string>) => new Request(
   `http://localhost/${locale}/register`,
-  { method: 'POST', body: new URLSearchParams(fields), headers: { 'content-type': 'application/x-www-form-urlencoded' } }
+  { method: 'POST', body: new URLSearchParams({ confirm_password: fields.password ?? '', ...fields }), headers: { 'content-type': 'application/x-www-form-urlencoded' } }
 );
 
 const send = async (locale: 'en' | 'es', fields: Record<string, string>) =>

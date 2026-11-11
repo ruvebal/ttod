@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { isLocale } from '../../content/wisdom';
 import { SESSION_COOKIE_NAME, logoutWithBackend } from '../../lib/auth.server';
+import { atributosSesion } from '../../lib/cookie-security';
 
 export const prerender = false;
 
@@ -16,7 +17,8 @@ export const POST: APIRoute = async ({ params, request, cookies, redirect }) => 
     return redirect(`/${locale}/account/?logout=failed`, 303);
   }
 
-  cookies.delete(SESSION_COOKIE_NAME, { path: '/' });
+  // Mismos atributos que al ponerla (F37): si no, el navegador no la reconoce como la misma.
+  cookies.delete(SESSION_COOKIE_NAME, atributosSesion(request));
   return redirect(`/${locale}/`, 303);
 };
 

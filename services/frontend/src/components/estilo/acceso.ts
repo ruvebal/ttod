@@ -2,6 +2,14 @@ import { entintar } from './letras';
 
 /** Comportamiento común de las páginas de entrar y de crear cuenta. */
 export function prepararAcceso(): void {
+  // F36: «Repite la contraseña» avisa antes de enviar si no coincide (el servidor lo comprueba igual).
+  document.querySelectorAll<HTMLInputElement>('input[data-igual-que]').forEach((repetida) => {
+    const original = document.getElementById(repetida.dataset.igualQue ?? '');
+    if (!(original instanceof HTMLInputElement)) return;
+    const comprobar = () => repetida.setCustomValidity(repetida.value && repetida.value !== original.value ? repetida.dataset.noCoincide ?? 'Mismatch' : '');
+    repetida.addEventListener('input', comprobar);
+    original.addEventListener('input', comprobar);
+  });
   // El título se entinta letra a letra, como en el oráculo (kit de estilo).
   entintar(document.querySelector('.acceso h1'), { retraso: .15 });
 

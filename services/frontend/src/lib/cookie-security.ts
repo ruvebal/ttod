@@ -27,3 +27,11 @@ export function cookieSecure(request: Request, mode: CookieSecureMode = cookieSe
   if (forwarded) return forwarded === 'https';
   return new URL(request.url).protocol === 'https:';
 }
+
+/**
+ * Los atributos de la cookie de sesión, en un solo sitio (AA3, F37): se borra con los
+ * mismos con los que se puso, o el navegador la trata como otra cookie y no la borra.
+ */
+export function atributosSesion(request: Request) {
+  return { httpOnly: true, sameSite: 'lax' as const, secure: cookieSecure(request), path: '/' };
+}

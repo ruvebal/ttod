@@ -1,36 +1,42 @@
 ---
 import Page from '../../layouts/Page.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import ProvenanceBlock from '../../components/ProvenanceBlock.astro';
 import { pideCorpus } from '../../lib/corpus.server';
 import type { WisdomEntry } from '../../types/domain';
 
 const locale = Astro.params.locale;
 if (locale !== 'en' && locale !== 'es') return new Response(null, { status: 404 });
 const copy = locale === 'es'
-  ? { title: 'Una cita viva', back: 'Inicio', intro: 'Obtenida en directo del corpus gobernado.' }
-  : { title: 'A live quote', back: 'Home', intro: 'Fetched live from the governed corpus.' };
+  ? { title: 'Una cita viva', back: 'Inicio', intro: 'Obtenida en directo del corpus gobernado.', open: 'Abrir su ficha',
+      emptyTitle: 'Todavía no hay citas', empty: 'El corpus no tiene ninguna cita aceptada en este momento.',
+      errorTitle: 'Algo ha fallado', error: 'No hemos podido traer una cita del corpus. Inténtalo de nuevo en un momento.', browse: 'Ir a la sabiduría' }
+  : { title: 'A live quote', back: 'Home', intro: 'Fetched live from the governed corpus.', open: 'Open its page',
+      emptyTitle: 'No quotes yet', empty: 'The corpus has no accepted quote right now.',
+      errorTitle: 'Something went wrong', error: 'We could not fetch a quote from the corpus. Please try again in a moment.', browse: 'Go to the wisdom' };
 // La misma copia del corpus que usa la portada (`lib/corpus.server.ts`): como mucho
 // un minuto de antigüedad y refrescada por detrás. Antes esta vista pedía
 // `/api/v1/wisdom/sample` en cada visita y su TTFB era el segundo del backend
 // (medido: 1,30-1,98 s); con la copia, milisegundos. Si el backend falla y no
 // hay copia, lanza igual que antes.
-const payload = await pideCorpus();
-if (payload.length === 0) {
-  throw new Error('Backend returned no live wisdom entries');
-}
-const quote: WisdomEntry = payload.find((entry) => entry?.lang === locale) ?? payload[0];
+// Sin backend o con el corpus vacío, la página lo dice en su idioma (F34), no un 500.
+let payload: WisdomEntry[] | null = null;
+try { payload = await pideCorpus(); } catch { payload = null; }
+if (payload === null) Astro.response.status = 503;
+const quote: WisdomEntry | undefined = payload?.find((entry) => entry?.lang === locale) ?? payload?.[0];
 ---
 <Page lang={locale} title={copy.title}>
-  <nav><a href={`/${locale}/`}>{copy.back}</a></nav>
-  <main>
+  <main id="ttod-main" class="ttod-shell ttod-prose">
+    <nav class="ttod-nav"><a href={`/${locale}/`}>← {copy.back}</a></nav>
     <h1>{copy.title}</h1>
     <p>{copy.intro}</p>
-    <article>
-      <blockquote>{quote.text}</blockquote>
-      <p class="meta">{quote.id} · {quote.section} · {quote.origin} · {quote.lang}</p>
-    </article>
-    <footer class="meta">
-      {quote.rights.holder ?? 'Rubén Vega Balbás'} · {quote.rights.license} ·
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
-    </footer>
+    {payload === null ? <EmptyState variant="error" title={copy.errorTitle} message={copy.error} action={{ label: copy.browse, href: `/${locale}/wisdom/` }} />
+      : !quote ? <EmptyState title={copy.emptyTitle} message={copy.empty} action={{ label: copy.browse, href: `/${locale}/wisdom/` }} />
+      : <article class="ttod-card">
+        <blockquote lang={quote.lang}>{quote.text}</blockquote>
+        <p class="ttod-meta">{quote.id} · {quote.section} · {quote.origin} · {quote.lang}</p>
+        <p><a href={`/${quote.lang}/wisdom/${quote.id}/`}>{copy.open}</a></p>
+        <ProvenanceBlock entry={quote} locale={locale} />
+      </article>}
   </main>
 </Page>

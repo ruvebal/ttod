@@ -55,6 +55,21 @@ The Astro 7 build passed locally, but the **Docker image crashed at startup** wi
   one to be a top-level, non-dev package in the lockfile. It was falsified against the broken lock layout
   (it names `cookie` and fails).
 
+## 3b. The second break, found by re-running AA3b: `context.url` is normalized
+
+The first full verify **failed** in the AA3b gate: on Astro 7, `GET //evil.example/x` answered `301 Location:
+/evil.example/x/`, where Astro 5 gave 404.
+- **Cause:** Astro 7 hands middleware a normalized `context.url` (`/evil.example/x`), while `context.request.url`
+  keeps the path as sent (`//evil.example/x`; `/\…` arrives as `//…` too). The open-redirect guard in
+  `lib/locators.ts` never saw the doubled slash, and the slash rule redirected.
+- **Was it exploitable?** No: the target is a same-origin path. But it was a changed guarantee, and the gate is
+  right to refuse it.
+- **Fix:** `src/middleware.ts` passes `new URL(context.request.url)`, the raw request, to `redireccionLocator`.
+  Probed on the built server: all three `//host` forms answer 404 with no `Location`; slash, facet and legacy
+  graph redirects are unchanged.
+- **The gate was not edited.** This is the case for re-running earlier gates as they are: no unit test could see
+  it, because the normalization happens in the adapter.
+
 ## 4. Decisions
 
 - **`compressHTML: true`, not v7's default `'jsx'`.** `'jsx'` strips whitespace between inline elements: the

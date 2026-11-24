@@ -70,7 +70,10 @@ PY
 inl_before=$(git grep -c 'is:inline' "$start" -- "$fe/src" | awk -F: '{s+=$NF} END {print s+0}')
 inl_now=$(git grep -c 'is:inline' -- "$fe/src" | awk -F: '{s+=$NF} END {print s+0}')
 [ "$inl_now" -le "$inl_before" ] || fail "is:inline scripts grew $inl_before → $inl_now (AA1 CSP backlog)"
-git diff --quiet "$start" -- ttod.yml proposals services/backend || fail "AA3 touched ttod.yml, proposals or the backend"
+# Scope window (amended in AA7): this phase's own diff ends at its DONE commit. Re-run on a later branch,
+# a later phase's legitimate backend change (AA5) must not count as AA3's.
+end="$(git log --format=%H -1 --grep='owner marks AA3 DONE')"; [ -n "$end" ] || end=HEAD
+git diff --quiet "$start" "$end" -- ttod.yml proposals services/backend || fail "AA3 touched ttod.yml, proposals or the backend"
 test -f "$pack/PHASE-AA3-REPORT.md" || fail "missing PHASE-AA3-REPORT.md"
 git diff --check "$start" -- . ':(exclude)*.md' || fail "whitespace errors"
 

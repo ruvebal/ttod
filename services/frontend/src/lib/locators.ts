@@ -80,3 +80,12 @@ function calcular(method: string, url: URL): string | null {
   if (!ruta.endsWith('/')) return `${ruta}/${url.search}`;
   return null;
 }
+
+/**
+ * The redirect for a request, decided from the request's own URL (`request.url`), never Astro's
+ * `context.url`: since Astro 7 `context.url` arrives normalized, so `//evil.example/x` would read as
+ * `/evil.example/x` and the guard above could not see it (AA7, found by re-running the AA3b gate).
+ * Behind Caddy both are normalized (the adapter rebuilds the URL from X-Forwarded-*), which is why
+ * Caddy also refuses these paths (`@rutadoble`); this keeps the guard for requests that reach Node directly.
+ */
+export const destinoDe = (request: Request) => redireccionLocator(request.method, new URL(request.url));

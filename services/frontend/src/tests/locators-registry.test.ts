@@ -1,6 +1,6 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { loadRenderers } from 'astro:container';
-import { getContainerRenderer } from '@astrojs/react';
+import { getContainerRenderer } from '@astrojs/react/container-renderer';
 import { JSDOM } from 'jsdom';
 import { describe, expect, it, vi } from 'vitest';
 

@@ -1,4 +1,5 @@
 ---
+import { backendUrl } from '../lib/backend';
 /**
  * La ruta que no existe: el sendero que se pierde en la niebla.
  *
@@ -25,7 +26,7 @@ const memoria = ((globalThis as any).__ttodCitas404 ??= { citas: new Map<string,
 };
 const { citas } = memoria;
 function pedirCitas() {
-  memoria.pendiente ??= fetch(`${import.meta.env.BACKEND_URL ?? 'http://backend:8000'}/api/v1/wisdom/sample`)
+  memoria.pendiente ??= fetch(`${backendUrl()}/api/v1/wisdom/sample`)
     .then((r) => (r.ok ? (r.json() as Promise<WisdomEntry[]>) : Promise.reject(r.status)))
     .then((corpus) => {
       for (const [lang, id] of Object.entries(IDS)) {

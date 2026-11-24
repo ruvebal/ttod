@@ -1,0 +1,14 @@
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{uditnavy}{HTML}{0B1F33}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=0.7cm]{../ethics/assets/udit-logo-print.png}}
+\fancyhead[R]{\includegraphics[height=1.0cm]{../ethics/assets/ecsit-logo-print.png}}
+\fancyfoot[L]{\footnotesize\color{uditnavy}ATELIER-IA · Innova EDU UDIT 2026-2027}
+\fancyfoot[R]{\footnotesize\thepage}
+\setlength{\headheight}{32pt}
+\renewcommand{\headrulewidth}{0.3pt}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small}

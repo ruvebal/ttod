@@ -24,7 +24,7 @@ const pedida = Astro.url.searchParams.get('untranslated') ?? '';
 const otras = /^[a-z][a-z0-9-]{0,40}$/.test(pedida) ? (await loadWisdom(locale === 'en' ? 'es' : 'en')).entries : [];
 const sinTraduccion = otras.some((entry) => entry.id === pedida) ? pedida : undefined;
 ---
-<Page lang={locale} title={`${t.titulo} — TTOD`}>
+<Page lang={locale} title={`${t.titulo} — TTOD`} indexar={!failed}>
   {hayFiltros(filtros) && <link rel="stylesheet" href={bosqueCss} />}
   <main id="ttod-main" class="armario-vista">
     <Breadcrumbs locale={locale} items={[{ label: copy.wisdom }]} />

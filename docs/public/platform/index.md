@@ -47,4 +47,6 @@ Astro owns the document and content-oriented routes. Interactive islands are use
 
 The rich reference demonstrates localized content, graph exploration, and a streamed Oracle. Browser operations, offline behavior, and the testing surface are not yet a complete student-ready implementation. A future teaching baseline will keep every major area present at hello-world depth; that reduction is planned, not complete.
 
+**Offline, today:** only the Oracle pages (`/en/oracle/` and `/es/oracle/`) open without a network. The service worker keeps an anonymous copy of each, fetched without cookies, and serves the network first whenever there is one. Every other page needs the network. Installing TTOD from the browser's menu adds an icon and a window of its own; it does not make more pages work offline. The installed app opens at `/`, which picks `/es/` or `/en/` from the browser's language.
+
 In the [FE II course](https://ruvebal.github.io/web-atelier-udit/tracks/feii/), that baseline is **Entrega 1** and the product defended in the Units 1–7 mid-term. See the [teaching model]({{ '/teaching/' | relative_url }}).

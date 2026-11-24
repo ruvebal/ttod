@@ -12,6 +12,8 @@ type InstallManifest = {
   display: string;
   theme_color: string;
   background_color: string;
+  lang?: string;
+  dir?: string;
   icons: ManifestIcon[];
 };
 
@@ -34,6 +36,8 @@ test('pages link one manifest with the expected TTOD installation metadata', asy
     id: '/', name: 'The Tao of Development', short_name: 'TTOD',
     start_url: '/', scope: '/', display: 'standalone',
     theme_color: '#fbf8f1', background_color: '#fbf8f1',
+    // AA4 (F43): the manifest says its language; `/` then picks /es/ or /en/ from Accept-Language.
+    lang: 'en', dir: 'ltr',
   });
   await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', manifest.theme_color);
   const manifestURL = new URL('/site.webmanifest', baseURL!);
@@ -45,6 +49,9 @@ test('pages link one manifest with the expected TTOD installation metadata', asy
     expect.objectContaining({ sizes: '192x192', type: 'image/png' }),
     expect.objectContaining({ sizes: '512x512', type: 'image/png' }),
     expect.objectContaining({ sizes: 'any', type: 'image/svg+xml' }),
+    // AA4 (F44): maskable entries; the glyph sits inside the 40 % safe zone (measured by the AA4 gate).
+    expect.objectContaining({ sizes: '192x192', type: 'image/png', purpose: 'maskable' }),
+    expect.objectContaining({ sizes: '512x512', type: 'image/png', purpose: 'maskable' }),
   ]));
   const diagnostics = await page.context().newCDPSession(page);
   const browserManifest = await diagnostics.send('Page.getAppManifest');

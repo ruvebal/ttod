@@ -9,6 +9,7 @@ import { isLocale, labels, loadWisdom } from '../../../content/wisdom';
 import { SESSION_COOKIE_NAME, getSessionUser } from '../../../lib/auth.server';
 import { gemelasTraduccion } from '../../../lib/grafo.server';
 import { destinoCita } from '../../../lib/idioma';
+import { descripcionCita, tituloCita } from '../../../lib/seo';
 import type { FavoriteEntry } from '../../../types/domain';
 import '../../../styles/tokens.css';
 const locale = Astro.params.locale;
@@ -21,7 +22,11 @@ const copy = labels[locale];
 if (!failed && !quote) Astro.response.status = 404;
 // El cambio de idioma lleva a la cita gemela (`translation_of`, en los dos sentidos).
 const otro = locale === 'en' ? 'es' : 'en';
-const cambioIdioma = quote ? destinoCita(quote.id, otro, await gemelasTraduccion()) : `/${otro}/wisdom/`;
+const gemelas = quote ? await gemelasTraduccion() : null;
+const cambioIdioma = quote ? destinoCita(quote.id, otro, gemelas) : `/${otro}/wisdom/`;
+// `hreflang` solo con gemela de verdad (AA4): sin ella, o sin grafo, no se anuncia ninguna alterna.
+const gemela = quote ? gemelas?.get(quote.id) : undefined;
+const alterna = gemela ? `/${otro}/wisdom/${gemela}/` : null;
 const relatedEntries = quote
   ? quote.related.flatMap((relatedId) => {
       const relatedEntry = entries.find((entry) => entry.id === relatedId);
@@ -50,7 +55,15 @@ const crumbs = quote
     ]
   : [{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: copy.notFound }];
 ---
-<Page lang={locale} title={quote ? `${quote.id} · ${copy.wisdom}` : copy.notFound} cambioIdioma={cambioIdioma}>
+<Page
+  lang={locale}
+  title={quote ? tituloCita(quote.text, copy.wisdom) : copy.notFound}
+  description={quote ? descripcionCita(quote.text, quote.teaches) : undefined}
+  tipo={quote ? 'article' : 'website'}
+  indexar={!failed}
+  cambioIdioma={cambioIdioma}
+  alterna={alterna}
+>
   <main id="ttod-main" class="ttod-shell ttod-prose">
     <nav class="ttod-nav"><a href={`/${locale}/wisdom/`}>← {copy.back}</a><a href={`/${locale}/docs/`}>{copy.docs}</a></nav>
     <Breadcrumbs locale={locale} items={crumbs} />

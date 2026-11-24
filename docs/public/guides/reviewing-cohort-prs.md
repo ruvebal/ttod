@@ -40,7 +40,7 @@ then `gh secret set ANTHROPIC_API_KEY`.
 
 ## Set up once, before the first PR lands
 
-1. **Use host Metal Ollama for review (Tanit default).** `make review-pr` talks to
+1. **Use host Metal Ollama for review (the default).** `make review-pr` talks to
    `http://localhost:11434` and model `qwen2.5-coder:32b` unless you override. Confirm the
    model is pulled on the **host** server:
    ```bash

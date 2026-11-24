@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import registry from './lib/locators.registry.json';
-import { redireccionLocator } from './lib/locators';
+import { destinoDe, redireccionLocator } from './lib/locators';
 
 const at = (path: string, method = 'GET') => redireccionLocator(method, new URL(`http://localhost${path}`));
 const fill = (s: string, l: string) =>
@@ -76,5 +76,18 @@ describe('legacy and canonical redirects', () => {
       }
       for (const e of registry.exempt) expect(at(fill(e, l)), e).toBeNull();
     }
+  });
+});
+
+describe('destinoDe reads the raw request URL (AA7, cold review F9)', () => {
+  it('sees a doubled slash that a normalized URL would hide', () => {
+    expect(new Request('http://localhost//evil.example/x').url).toBe('http://localhost//evil.example/x');
+    expect(destinoDe(new Request('http://localhost//evil.example/x'))).toBeNull();
+    // What `context.url` hands over since Astro 7: the guard cannot tell, and the slash rule fires.
+    expect(redireccionLocator('GET', new URL('http://localhost/evil.example/x'))).toBe('/evil.example/x/');
+  });
+  it('still applies the normal rules', () => {
+    expect(destinoDe(new Request('http://localhost/es/oracle'))).toBe('/es/oracle/');
+    expect(destinoDe(new Request('http://localhost/es/login', { method: 'POST' }))).toBeNull();
   });
 });

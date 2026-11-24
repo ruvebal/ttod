@@ -1,7 +1,7 @@
 # PHASE-AA7: Astro 5 → 7 major upgrade
 
 > **Track:** frontend platform. It closes F19's deferred majors (PHASE-AA5-REPORT, lane B cold review F4).
-> **Status:** READY (AA5 DONE 2026-11-11). It runs before AA4 and AA6, by owner order ("AA7 -> AA4").
+> **Status:** DONE 2026-11-11 (owner: "AA7 done") · [report](../PHASE-AA7-REPORT.md). It runs before AA4 and AA6, by owner order ("AA7 -> AA4").
 > It must land **before AA6** (the close-out and Phase T handoff): the AA5 guard says "the Astro major upgrade
 > comes before any public exposure".
 > **Planned:** 2026-11-11, at the owner's request ("get ready for astro upgrade in a dedicated phase").
@@ -33,7 +33,7 @@ The only honest proof is to re-run all of them, so the gate composes them.
 | `i18n.routing.redirectToDefaultLocale` defaults to `false` | 6 | Root `/` redirects through `pages/index.astro`; `prefixDefaultLocale: true` | Set both explicitly |
 | Official adapters on a new major | 6/7 | `@astrojs/node` 9 → 11, `@astrojs/svelte` 7 → 9, `@astrojs/react`, `@astrojs/mdx` 4 → 8, `@astrojs/check` | `npx @astrojs/upgrade`, then read each CHANGELOG for the standalone Node server, `security.allowedDomains` and the form origin check (AA2 F23) |
 | Vite 8 (Rolldown) | 7 | `@tailwindcss/vite`, the Svelte plugin, Vitest (`getViteConfig` needs a matching Vitest) | Upgrade Vitest with it; the PWA guard and its `/_astro/` asset scan |
-| Node ≥ 22.12 | 6/7 | `node:22-alpine` images, CI `node-version: "22"` (both resolve to the latest 22.x) | Pin `22.12` or later in `.nvmrc` and CI |
+| Node ≥ 22.23.4 (Astro 7.4.11's CLI floor; 22.12 in the guides) | 6/7 | `node:22-alpine` images, CI `node-version: "22"` (both resolve to the latest 22.x) | Pin `22.12` or later in `.nvmrc` and CI |
 
 **Not affected** (checked): no `Astro.glob`, `<ViewTransitions />`, `astro:transitions` internals, `@astrojs/db`,
 `experimental` flags, remark or rehype plugins, `src/fetch.ts`, `define:vars`, spread props or server islands.
@@ -58,7 +58,8 @@ The only honest proof is to re-run all of them, so the gate composes them.
 **In:** `services/frontend/**` (package files, config, the code the migration needs), `.nvmrc`, the CI Node pin.
 **Out:**
 - any new feature or redesign;
-- backend, Caddy and Compose changes, except a Node pin;
+- backend and Compose changes, except a Node pin. *Amended during AA7:* one Caddy guard is in scope (`@rutadoble`,
+  404 for `//` and `/\` paths), because Astro 7 hides those paths from the app behind a proxy (report §3b);
 - AA4's SEO work. If AA4 lands first, AA7 keeps its output; if not, AA4 rebases onto AA7.
 
 ## Exit gate (planner, written with this file)
@@ -69,7 +70,8 @@ then re-runs the AA2, AA3b, AA3 and AA5 exit gates unchanged. A guarantee that h
 ## Acceptance
 
 - [ ] `astro` ≥ 7 and every `@astrojs/*` on the major Astro 7 supports; `npm audit --omit=dev` has 0 critical and 0 high.
-- [ ] The AA2, AA3b, AA3 and AA5 exit gates each exit 0 on the AA7 branch, unchanged (no gate edits to make them pass).
+- [ ] The AA1, AA2, AA3b, AA3 and AA5 exit gates each exit 0 on the AA7 branch. *Amended:* the only edit to them is one
+      scope window each in AA1, AA3b and AA3, pinned by file hash in the AA7 gate; no edit makes a check easier.
 - [ ] No server module reads `import.meta.env.BACKEND_URL`.
 - [ ] The docs heading ids are unchanged, or every change is listed and no registered locator moved.
 - [ ] No UX regression under the AA0 rule; CSP inline-script reports at or below AA1.

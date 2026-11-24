@@ -52,3 +52,13 @@ describe('submitProposal', () => {
     await expect(submitProposal(payload)).resolves.toEqual({ ok: false, reason: 'network' });
   });
 });
+
+describe('submitProposal from the browser (AA7, cold review F6)', () => {
+  afterEach(() => vi.unstubAllGlobals());
+  it('posts to its own origin, never to the Docker-internal backend address', async () => {
+    vi.stubGlobal('window', {});
+    const fetchMock = vi.spyOn(global, 'fetch').mockResolvedValue(new Response(JSON.stringify({ id: 'p-2' }), { status: 201 }));
+    await submitProposal(payload);
+    expect(String(fetchMock.mock.calls[0][0])).toBe('/api/v1/proposals');
+  });
+});

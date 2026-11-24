@@ -2,7 +2,7 @@ import type { AuthLoginResponse, AuthUser, SessionRole } from '../types/domain';
 
 export const SESSION_COOKIE_NAME = 'ttod_session';
 
-const BACKEND_URL = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+import { backendUrl } from './backend';
 const SESSION_ROLES: readonly SessionRole[] = ['student', 'reviewer', 'instructor'];
 
 export type LoginResult =
@@ -71,7 +71,7 @@ export async function loginWithBackend(email: string, password: string, clientAd
   if (email.trim() === '' || password === '') return { ok: false, reason: 'credentials' };
 
   try {
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/login`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/login`, {
       method: 'POST',
       headers: backendHeaders(clientAddress),
       body: JSON.stringify({ email, password })
@@ -92,7 +92,7 @@ export async function registerWithBackend(email: string, password: string, clien
   if (email.trim() === '' || password === '') return { ok: false, reason: 'invalid' };
 
   try {
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/register`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/register`, {
       method: 'POST',
       headers: backendHeaders(clientAddress),
       body: JSON.stringify({ email: email.trim(), password })
@@ -117,7 +117,7 @@ export async function getSessionUser(request: Request): Promise<AuthUser | null>
     // La firma solo la comprueba el backend: Astro reenvía la cookie y no confía en su contenido.
     // Con tope (cold review AA3, F2): la cabecera de cualquier página pregunta esto, y un
     // backend parado no puede dejar colgada la portada. Si no contesta, se pinta sin sesión.
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/session`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/session`, {
       headers: { accept: 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
       signal: AbortSignal.timeout(1500),
     });
@@ -140,7 +140,7 @@ export async function logoutWithBackend(request: Request): Promise<boolean> {
   const sessionToken = readSessionToken(request);
   if (!sessionToken) return true;
   try {
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/logout`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/logout`, {
       method: 'POST',
       headers: { accept: 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` }
     });
@@ -220,7 +220,7 @@ export async function changePasswordWithBackend(
   const sessionToken = readSessionToken(request);
   if (!sessionToken) return { ok: false, reason: 'signed-out' };
   try {
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/password`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/password`, {
       method: 'POST',
       headers: { ...backendHeaders(clientAddressOf(request)), 'content-type': 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
       body: JSON.stringify({ current_password: currentPassword, new_password: newPassword, revoke_others: revokeOthers }),
@@ -245,7 +245,7 @@ export async function updateProfileWithBackend(request: Request, displayName: st
   const sessionToken = readSessionToken(request);
   if (!sessionToken) return { ok: false, reason: 'signed-out' };
   try {
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/profile`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/profile`, {
       method: 'PATCH',
       headers: { ...backendHeaders(clientAddressOf(request)), 'content-type': 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
       body: JSON.stringify({ display_name: displayName }),
@@ -264,7 +264,7 @@ export async function logoutEverywhereWithBackend(request: Request): Promise<boo
   const sessionToken = readSessionToken(request);
   if (!sessionToken) return true;
   try {
-    const response = await fetch(`${BACKEND_URL}/api/v1/auth/logout-all`, {
+    const response = await fetch(`${backendUrl()}/api/v1/auth/logout-all`, {
       method: 'POST',
       headers: { ...backendHeaders(clientAddressOf(request)), accept: 'application/json', cookie: `${SESSION_COOKIE_NAME}=${sessionToken}` },
     });

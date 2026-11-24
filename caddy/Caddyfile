@@ -28,11 +28,16 @@
   #   por los atributos style= del sistema visual. img-src admite blob: por las texturas
   #   generadas en el navegador (estilo/cielo.ts, lib/tinta.ts).
   # - Sin HSTS: el borde es HTTP plano (F2, AA5); anunciar HTTPS aquí sería mentir.
+  # - X-Robots-Tag (AA4, AA0 D7 (a)): un aula no se indexa. En la cabecera y no solo en el HTML, para
+  #   que lo lleve toda respuesta (JSON, ficheros, errores de Caddy). robots.txt no prohíbe nada a
+  #   propósito: quien no puede pedir una página nunca lee su noindex. Abrir la indexación es una
+  #   decisión del propietario, no de un PR.
   header {
     X-Frame-Options "DENY"
     Referrer-Policy "strict-origin-when-cross-origin"
     Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     X-Content-Type-Options "nosniff"
+    X-Robots-Tag "noindex"
     Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'report-sample'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
     -Server
   }
@@ -48,6 +53,16 @@
   # A `handle` and the first one: Caddy runs `respond` after `handle`, so a bare respond never fired.
   handle @hostmalo {
     respond "Bad Request" 400
+  }
+  # AA7: a path with a doubled slash, a backslash, a dot segment (`/./`, `/../`), an encoded dot, slash or
+  # backslash, or an encoded control character is never a TTOD page; normalized, some become `//host`,
+  # which a browser reads as another host (cold review AA7 F3: `/.//`, `/%2e//`, `/%09/` slipped past
+  # the first version). The placeholder holds the *decoded* path, so control characters are matched raw. Since Astro 7 the Node adapter normalizes the path when it rebuilds the URL from Caddy's
+  # X-Forwarded-* headers, so the app's open-redirect guard (lib/locators.ts) can no longer see it.
+  # Refuse it here, on the raw request line, before it is proxied.
+  @rutadoble vars_regexp {http.request.orig_uri.path} (//|\\|/\.\.?(/|$)|%2[eEfF]|%5[cC]|%[01][0-9A-Fa-f]|%7[fF]|[\x00-\x1f\x7f])
+  handle @rutadoble {
+    respond "Not Found" 404
   }
 
   @api path /api/* /health

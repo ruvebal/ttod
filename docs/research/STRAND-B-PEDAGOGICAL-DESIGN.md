@@ -172,6 +172,24 @@ Shihab et al. 2025; López-Pernas et al. 2025; Liu, Fan & Pan 2026; Garcia 2025;
 Nikolić & Basta Nikolić 2026; Davalos & Zhang 2026; *Computer Science Curricula 2023*;
 Prather et al. 2024 (benefits/harms — performance ≠ learning).
 
+### 8.2b Domain warrants added 2026-11-24 (Ahmes evaluator-safe, page-addressed)
+
+Discovered via the DevIAC neural set + Athanor; each passed `ahmes query --cite --require-evaluator-safe`.
+Audit trail: [`innova-edu-2026-27/GROUNDING-LEDGER.md`](innova-edu-2026-27/GROUNDING-LEDGER.md).
+
+| Source | DOI | Supports |
+| ------ | --- | -------- |
+| Alpizar-Chacon & Keuning 2025 (ITiCSE) | 10.1145/3724363.3729106 | GenAI in an *advanced web development* course; consent design precedent at small n (p1, p3) |
+| Isa et al. 2026 (CHI) | 10.1145/3772318.3793207 | Organic LLM logs in a senior web course vs self-report/short tasks (p1, p8); RQ-B1 |
+| Zhu & Liu 2026 | 10.1145/3806980.3806985 | Better assignments, unverified submissions, no gain in no-LLM exams (p2); RQ-B4 |
+| Phung et al. 2025 (AIED) | arXiv 2509.03171 | Planning before help associated with performance, non-causal (p9); "Defer" axis |
+| Nikolić & Basta Nikolić 2026 | 10.3389/frai.2026.1841682 | Four pillars incl. oral defence; explicitly unvalidated (p1); RQ-B3 |
+| Park 2025 (IASDR) | 10.21606/iasdr.2025.845 | GenAI in studio-based design education: critique, responsibility, process assessment (p2, p11) |
+| Mak et al. 2025 (ACM WG) | 10.1145/3724389.3731282 | Ethical/societal impacts frame for higher computing education (p1) |
+| Wohlin et al. 2012 | 10.1007/978-3-642-29044-2 | Case study = observational, lower control (p33) — page now pinned |
+
+Gate failures and corpus gaps to enrich: ledger §§A–C.
+
 ### 8.3 Grounding discipline (how we cite)
 
 Discover ≠ cite; page-addressable preference; no fabricated DOIs; vector similarity ≠ entailment
@@ -196,7 +214,7 @@ Later: ICER / journal only with deeper analytic package or second cycle.
 
 ---
 
-## 10. Status board (2026-09-25)
+## 10. Status board (2026-09-25; ethics row updated 2026-11-24)
 
 | Gate | State |
 | ---- | ----- |
@@ -206,7 +224,7 @@ Later: ICER / journal only with deeper analytic package or second cycle.
 | Department pedagogical framing | Asserted — file confirmation with ethics package |
 | Consent templates | `ethics/` |
 | Signed consents | Private custody log |
-| Ethics committee submission | Prepared |
+| Ethics committee | Replied 22 Oct 2026 — no dictamen needed; four conditions (see `STRAND-B-PROGRAMME.md`) |
 | Research analysis | **Blocked** until clearance + consent B + grades filed |
 | Congress submit | Blocked on analysis + checklist |
 

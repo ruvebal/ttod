@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import asyncio
+
 import json
 from datetime import datetime, timezone
 from typing import Any, AsyncIterator, Protocol
@@ -8,7 +10,6 @@ import httpx
 from fastmcp import Client
 
 from ttod_core.proposals import create_proposal
-from ttod_core.repository import ProposalStore
 
 from .config import Settings
 from .models import OracleProposeRequest, OracleQueryPayload
@@ -225,7 +226,8 @@ class OracleService:
                 envelope["citedQuoteIds"] = cited
             yield f"data: {json.dumps(envelope, ensure_ascii=False)}\n\n".encode()
 
-    async def propose(self, payload: OracleProposeRequest) -> dict[str, Any]:
+    async def propose(self, payload: OracleProposeRequest, store: Any) -> dict[str, Any]:
+        """F26: the draft goes through the app's proposal store (dual-write in Compose), not straight to disk."""
         retrieval = await self.retrieve(payload.query)
         ranked = retrieval["results"]
         frame = thematic_frame(ranked)
@@ -252,7 +254,6 @@ class OracleService:
             }],
         }
         proposal = create_proposal(candidate, "model", self.settings.ollama_model, "oracle-creative-mode")
-        path = ProposalStore(self.settings.proposal_dir).save(proposal)
-        result = proposal.to_dict()
-        result["stored_at"] = str(path)
-        return result
+        await asyncio.to_thread(store.save, proposal)
+        # No `stored_at`: the server path is internal (it used to leak the container layout).
+        return proposal.to_dict()

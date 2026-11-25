@@ -3,7 +3,7 @@ import Page from '../../../../layouts/Page.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import Bosque from '../../../../components/wisdom/Bosque.astro';
 import { isLocale, labels, loadWisdom } from '../../../../content/wisdom';
-import { copia } from '../../../../content/bosque';
+import { copia, pasilloPedido } from '../../../../content/bosque';
 import '../../../../styles/tokens.css';
 import '../../../../styles/bosque.css';
 const locale = Astro.params.locale;
@@ -13,11 +13,20 @@ const tag = Astro.params.tag;
 if (!tag) return new Response(null, { status: 404 });
 const { entries: all, failed } = await loadWisdom(locale);
 const entries = all.filter((entry) => entry.tags.includes(tag));
+// Un valor que el corpus de este idioma no tiene no es una lista vacía, es un recurso
+// que no existe: 404, como una cita desconocida (cold review AA3b, F10). La página
+// sigue diciendo «sin coincidencias» y ofreciendo la vuelta.
+if (!failed && entries.length === 0) Astro.response.status = 404;
 const copy = labels[locale];
 const t = copia[locale];
 ---
-<Page lang={locale} title={`${copy.tags}: ${tag}`}>
-  <main class="bosque">
+<Page
+  lang={locale}
+  title={`${copy.tags}: ${tag}`}
+  pagina={pasilloPedido(Astro.url.searchParams.get('p'), entries.length)}
+  indexar={!failed}
+>
+  <main id="ttod-main" class="bosque">
     <Breadcrumbs locale={locale} items={[{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: tag }]} />
     <Bosque
       locale={locale}

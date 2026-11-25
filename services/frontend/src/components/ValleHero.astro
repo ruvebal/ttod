@@ -56,7 +56,7 @@ const copia = {
 }[lang];
 ---
 
-<section class="valle" data-valle aria-labelledby={headingId}>
+<section id="start" class="valle" data-valle data-capitulo data-ancla-escena aria-labelledby={headingId}>
   <div class="valle__escena">
     <div class="valle__capas" aria-hidden="false">
       {capas.map((c) => (
@@ -129,7 +129,7 @@ const copia = {
       </article>
 
       <!-- 3 · Proceso fijado: contador 01→04 y palabras gigantes que cruzan -->
-      <article class="cap cap--tres" data-cap="3">
+      <article id="doors" class="cap cap--tres" data-cap="3" data-capitulo data-ancla-desde="0.444" data-ancla-progreso="0.62">
         <p class="cap__etiqueta cap__etiqueta--tres">{copia.etiqueta3}</p>
         <ol class="pasos">
           {doors.map((d, i) => (
@@ -709,6 +709,7 @@ const copia = {
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   import { REPARTO, cargaHojaTinta, enciendeTinta, olvidaTinta, pintaTinta } from '../lib/tinta';
+  import { avisarEscenaLista } from '../lib/capitulos';
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -945,9 +946,13 @@ const copia = {
           end: 'bottom bottom',
           scrub: .6,
           invalidateOnRefresh: true,
-          onRefresh: () => marcaVisibles(),
+          onRefresh: () => { marcaVisibles(); avisarEscenaLista(); },
         },
       });
+      // El hero es una escena fijada: `#doors` no se alcanza con un salto nativo,
+      // se alcanza con su fracción del recorrido (`data-ancla-progreso`, AA3b F51).
+      seccion.setAttribute('data-ancla-viva', '');
+      avisarEscenaLista();
 
       // La cámara entra en el valle: cada plano a su velocidad (Escape Cafe/Atlas).
       // Duración 1 = todo el recorrido: así cada posición de abajo es una fracción del scroll.

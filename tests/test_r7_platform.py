@@ -37,6 +37,12 @@ class R7PlatformContracts(unittest.TestCase):
 
     def tearDown(self): self.temp.cleanup()
 
+    def _sign_in(self):
+        # AA2 (F24): the oracle stream and propose require a session.
+        registered = self.client.post("/api/v1/auth/register", json={"email": "r7@example.test", "password": "r7-fixture-password"})
+        self.assertEqual(registered.status_code, 201)
+        self.client.cookies.set("ttod_session", registered.json()["session_token"])
+
     def test_read_endpoint_shapes_rights_and_determinism(self):
         health = self.client.get("/health"); self.assertEqual(health.status_code, 200); self.assertIsInstance(health.json()["status"], str)
         definitions = self.client.get("/api/v1/schema/definitions").json(); self.assertTrue(all(isinstance(definitions[k], dict) for k in ("quote", "ttod", "proposal")))
@@ -63,6 +69,7 @@ class R7PlatformContracts(unittest.TestCase):
 
     def test_oracle_proposal_fixture_can_never_activate(self):
         fixture = json.loads((FIXTURES / "r_negative_oracle_propose_no_active.json").read_text())
+        self._sign_in()
         response = self.client.post("/api/v1/oracle/propose", json=fixture["request"])
         self.assertEqual(response.status_code, 201)
         proposal = response.json(); expected = fixture["required"]
@@ -72,6 +79,7 @@ class R7PlatformContracts(unittest.TestCase):
         self.assertNotIn("accepted_quote_id", proposal)
 
     def test_creative_envelope_has_no_citations(self):
+        self._sign_in()
         creative = self.client.post("/api/v1/oracle/stream", json={"query": "unmatched", "sessionHistory": []}).text
         envelope = json.loads(creative.removeprefix("data: ").strip())
         self.assertEqual(envelope["mode"], "creative"); self.assertNotIn("citedQuoteIds", envelope)

@@ -49,11 +49,22 @@ repetirlo si más adelante eliminas ese volumen.
 
 ```bash
 cp .env.example .env
+python3 scripts/ensure_env_secrets.py   # secretos estables de sesión/PAT; sin ellos el backend no arranca
 docker compose up --build -d
 docker compose ps
 docker compose exec ollama ollama pull llama3.2:1b
 docker compose exec ollama ollama pull nomic-embed-text
 ```
+
+**Linux sin `make`:** los contenedores del backend y de Redis corren con un usuario sin privilegios y
+escriben en `data/`. `make` los ejecuta como *tú*; a mano, dile antes a Compose quién eres, o las propuestas
+web fallarán por permisos (el backend lo avisa: `Proposal drafts folder … is not writable`):
+
+```bash
+printf 'TTOD_UID=%s\nTTOD_GID=%s\nTTOD_REDIS_USER=%s:%s\n' "$(id -u)" "$(id -g)" "$(id -u)" "$(id -g)" >> .env
+```
+
+macOS y Windows (Docker Desktop) no necesitan nada.
 
 **¿Tienes `make` disponible?** macOS y Linux lo traen de serie. Windows no — pero Docker Desktop en
 Windows necesita de todos modos el backend WSL2, y una terminal WSL2 (no PowerShell ni cmd.exe) ya

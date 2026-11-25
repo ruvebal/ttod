@@ -13,6 +13,8 @@ from services.backend.app.config import REPOSITORY_ROOT, Settings
 from services.backend.app.main import create_app
 from services.backend.app.oracle import OracleService
 from services.backend.app.storage import SnapshotService
+from services.backend.app.sessions import MemorySessionStore
+from services.backend.app.users import MemoryUserStore, UserRecord
 
 
 SEEDED_EMAIL = "admin@ttod.local"
@@ -37,7 +39,11 @@ class AccountsTestCase(unittest.TestCase):
         )
         self.snapshots = SnapshotService(self.settings.ttod_path, self.settings.schema_dir)
         oracle = OracleService(self.settings, self.snapshots)
-        self.client = TestClient(create_app(self.settings, oracle))
+        self.users = MemoryUserStore()
+        # AA2 (F4): signed session blobs are refused, so test sessions are real rows in a store
+        # shared by the app and this helper.
+        self.sessions = MemorySessionStore()
+        self.client = TestClient(create_app(self.settings, oracle, users=self.users, sessions=self.sessions))
         self.auth_service = AuthService(
             self.settings.session_secret,
             self.settings.session_ttl_seconds,
@@ -45,6 +51,8 @@ class AccountsTestCase(unittest.TestCase):
             self.settings.admin_password_hash,
             self.settings.pat_secret,
             self.settings.pat_ttl_seconds,
+            users=self.users,
+            sessions=self.sessions,
         )
         favorites = patch("services.backend.app.favorites._favorites", {})
         favorites.start()
@@ -59,9 +67,11 @@ class AccountsTestCase(unittest.TestCase):
         return response.json()["session_token"]
 
     def session_for(self, user_id: str, *roles: str) -> dict[str, str]:
-        """Cookie de sesión firmada para un usuario con los roles indicados."""
+        """Cookie de sesión (fila en el almacén compartido) para un usuario existente con los roles indicados."""
+        email = f"{user_id}@ttod.local"
+        self.users.upsert(UserRecord(user_id=user_id, email=email, password_hash="", roles=tuple(roles)))
         token = self.auth_service.issue_session(
-            SessionClaims(user_id=user_id, email=f"{user_id}@ttod.local", roles=tuple(roles))
+            SessionClaims(user_id=user_id, email=email, roles=tuple(roles))
         )
         return {SESSION_COOKIE_NAME: token}
 

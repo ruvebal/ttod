@@ -1,0 +1,3 @@
+# Two trailing spaces are deliberate Markdown hard line breaks in this pack.
+# Keep every other whitespace and conflict-marker check (git diff --check).
+*.md whitespace=-blank-at-eol

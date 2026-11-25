@@ -85,3 +85,6 @@ docs/DEV_PLAN/ASSIGNMENTS/gradebook-import/
 # Redis shore AOF/RDB (Compose bind mount ./data/redis) — keep README only
 data/redis/*
 !data/redis/README.md
+# Proposal drafts written by the backend (Compose bind mount ./data/proposals, F25) — keep README only
+data/proposals/*
+!data/proposals/README.md

@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
 import type { GraphLink, GraphNode, WisdomEntry } from '../src/types/domain';
 
+test.use({ serviceWorkers: 'block' });
+
 const graphNodes: GraphNode[] = [
 	{ id: 'arch-001', section: 'architecture', origin: 'human', status: 'active', text: 'Keep boundaries clear.', lang: 'en' },
 	{ id: 'arch-002', section: 'architecture', origin: 'studio', status: 'active', text: 'Share pure functions.', lang: 'en' },
@@ -36,7 +38,7 @@ async function mockGraphApi(page: Page) {
 
 test('tabs from the labelled filter to visible nodes and activates a node with Enter', async ({ page }) => {
 	await mockGraphApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 
 	const filter = page.getByLabel('Filter by tag');
 	const visibleNodes = page.locator('[data-node-id]');
@@ -62,9 +64,10 @@ test('tabs from the labelled filter to visible nodes and activates a node with E
 
 test('uses the filter with arrow keys and returns focus when history removes a focused node', async ({ page }) => {
 	await mockGraphApi(page);
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 
 	const filter = page.getByLabel('Filter by tag');
+	await expect(page.locator('[data-node-id]')).toHaveCount(3);
 	await filter.focus();
 	await page.keyboard.press('ArrowDown');
 	await expect(filter).toHaveValue('architecture');

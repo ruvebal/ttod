@@ -11,6 +11,15 @@ ROOT     := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 PYTHON   := $(shell if [ -x "$(ROOT)/.venv/bin/python" ]; then echo "$(ROOT)/.venv/bin/python"; else echo python3; fi)
 CLI      := $(PYTHON) $(ROOT)/cli.py
 COMPOSE  := docker compose
+# AA5 (F16, cold review F1/F3): the containers that write host folders (backend drafts, Redis AOF) run
+# as the user who runs `make`, so files under data/ stay yours: no chown, `git pull` keeps working and
+# backups need no sudo. Root (uid 0) falls back to 10001. Plain `docker compose` uses 10001 and the
+# Redis image's own user; on Linux use `make`, or set TTOD_UID/TTOD_GID/TTOD_REDIS_USER in .env.
+_HOST_UID := $(shell id -u)
+_HOST_GID := $(shell id -g)
+export TTOD_UID ?= $(if $(filter 0,$(_HOST_UID)),10001,$(_HOST_UID))
+export TTOD_GID ?= $(if $(filter 0,$(_HOST_GID)),10001,$(_HOST_GID))
+export TTOD_REDIS_USER ?= $(TTOD_UID):$(TTOD_GID)
 FE       := services/frontend
 DOCS     := docs/public
 HTTP_PORT ?= 8080
@@ -18,7 +27,7 @@ HTTP_PORT ?= 8080
 # Prefer npm when present; never introduce a second package manager at the root.
 NPM := npm --prefix $(FE)
 
-.PHONY: help env venv \
+.PHONY: help env env-secrets venv \
 	up down rebuild ps logs ollama-pull \
 	validate stats snapshot export test check \
 	docs docs-serve docs-clean docs-setup docs-privacy docs-local \
@@ -54,6 +63,9 @@ env: ## Show toolchain resolutions (python, ruby, docker, bundle, npm)
 	@test -f $(ROOT)/.env && echo 'env: .env present' || echo 'env: copy .env.example → .env'
 	@grep -E '^OLLAMA_MODE=' $(ROOT)/.env 2>/dev/null || echo 'OLLAMA_MODE: (.env missing)'
 
+env-secrets: ## Fill empty TTOD session/PAT/admin secrets in .env (idempotent)
+	@$(PYTHON) $(ROOT)/scripts/ensure_env_secrets.py
+
 venv: ## Create .venv (idempotent) and install the editable CLI + service deps
 	@test -d $(ROOT)/.venv || python3 -m venv $(ROOT)/.venv
 	@$(ROOT)/.venv/bin/pip install -q -e $(ROOT)
@@ -67,7 +79,7 @@ venv: ## Create .venv (idempotent) and install the editable CLI + service deps
 # ─────────────────────────────────────────────────────────
 
 up: ## Start the app — its own Ollama included, nothing to install first
-	@test -f $(ROOT)/.env || cp $(ROOT)/.env.example $(ROOT)/.env
+	@$(PYTHON) $(ROOT)/scripts/ensure_env_secrets.py
 	@$(COMPOSE) up --build -d
 	@$(COMPOSE) ps
 	@port=$$(grep -E '^HTTP_PORT=' $(ROOT)/.env | tail -1 | cut -d= -f2); \
@@ -78,6 +90,7 @@ down: ## Stop containers (keeps named volumes)
 	@$(COMPOSE) down
 
 rebuild: ## Rebuild images and recreate the stack
+	@$(PYTHON) $(ROOT)/scripts/ensure_env_secrets.py
 	@$(COMPOSE) up --build -d --force-recreate
 	@$(COMPOSE) ps
 
@@ -108,8 +121,9 @@ export: ## Export canonical JSON and graph projections
 	@$(CLI) export --format json
 	@$(CLI) export --format graph
 
-test: ## Full Python unittest suite
+test: ## Full Python unittest suite: core (tests/) and backend (services/backend/tests, F45)
 	@$(PYTHON) -m unittest discover -s $(ROOT)/tests -p 'test_*.py'
+	@cd $(ROOT) && $(PYTHON) -m unittest discover -s services/backend/tests -t . -p 'test_*.py'
 
 check: validate stats test ## Corpus gate: validate + stats + tests
 	@printf 'check ok\n'

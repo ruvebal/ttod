@@ -31,13 +31,14 @@ Compose run — because Caddy proxies `/api/*` through to the backend.
 | Method & path | Credential | Answer |
 | --- | --- | --- |
 | `POST /api/v1/auth/login` | none (email + password) | `200` with `AuthLoginResponse`; `401` if the credentials are wrong |
+| `POST /api/v1/auth/register` | none (email + password of 8+ characters, 72 bytes at most) | `201` with `AuthLoginResponse` and role `student`; `409` if the email already has an account; `422` if the data is invalid |
 | `GET /api/v1/auth/session` | session cookie | `200` with `AuthUser`; `401` without a valid cookie |
 | `POST /api/v1/auth/token` | session cookie | `200` with `access_token`, `token_type: "Bearer"`, `expires_in` |
 | `GET /api/v1/wisdom/random` | **bearer only** | `200` with one `WisdomEntry`; `401` to anything else |
 | `GET /api/v1/wisdom/sample` | none | `200` with the public corpus |
 | `POST /api/v1/proposals` | session cookie | `201` with `{ proposal_id, status }` |
 | `GET /api/v1/schema/definitions` | none | `200` with the schema definitions |
-| `GET /health` | none | `200` with `{ status, ttod_version }` |
+| `GET /health` | none | `200` with `{ status, ttod_version, redis }`; **`503`** with `status: "degraded"`, `redis: "down"` when Redis is configured but unreachable (`redis` is absent without Redis) |
 
 ## The shapes are the shared types
 

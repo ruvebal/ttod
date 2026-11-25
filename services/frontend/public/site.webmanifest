@@ -1,9 +1,12 @@
 {
   "id": "/",
   "name": "The Tao of Development",
+  "description": "A pedagogical wisdom database of governed quotes, each with its source and level.",
   "short_name": "TTOD",
   "start_url": "/",
   "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
   "display": "standalone",
   "background_color": "#fbf8f1",
   "theme_color": "#fbf8f1",
@@ -19,6 +22,18 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "visual-system/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "visual-system/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "visual-system/favicon.svg",

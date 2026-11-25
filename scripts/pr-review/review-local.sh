@@ -15,7 +15,7 @@
 # Env overrides (Tanit / macOS default = native Metal Ollama on :11434):
 #   OLLAMA_BASE_URL   default: http://localhost:11434
 #   OLLAMA_MODEL      default: qwen2.5-coder:32b
-# Compose-container path (mapped host port, usually 11435) is opt-in, e.g.:
+# Compose-container path (host port 11435, only with the loopback override docker-compose.ollama-port.yml, AA5) is opt-in, e.g.:
 #   OLLAMA_BASE_URL=http://localhost:11435 OLLAMA_MODEL=llama3.2:1b make review-pr PR=9
 # A 404 from /api/chat almost always means the model is not pulled on *that*
 # endpoint — check `curl -s "$OLLAMA_BASE_URL/api/tags"`.

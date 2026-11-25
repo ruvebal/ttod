@@ -59,6 +59,14 @@ class BackendTests(unittest.TestCase):
         self.oracle = OracleService(self.settings, self.snapshots, self.ollama, FakeRetrieval())
         self.client = TestClient(create_app(self.settings, self.oracle))
 
+    def sign_in(self) -> None:
+        """AA2 (F24): the oracle stream and propose require a session."""
+        login = self.client.post(
+            "/api/v1/auth/login", json={"email": "admin@ttod.local", "password": "seeded-user-token"}
+        )
+        self.assertEqual(login.status_code, 200)
+        self.client.cookies.set("ttod_session", login.json()["session_token"])
+
     def tearDown(self):
         self.temp.cleanup()
 
@@ -189,6 +197,7 @@ class BackendTests(unittest.TestCase):
             self.assertEqual(load.call_count, 2)
 
     def test_creative_stream_discloses_mode_without_citations(self):
+        self.sign_in()
         response = self.client.post(
             "/api/v1/oracle/stream",
             json={"query": "unmatched", "sessionHistory": [], "locale": "en"},
@@ -222,6 +231,7 @@ class BackendTests(unittest.TestCase):
         self.assertIn("MUST NOT", CREATIVE_PROMPT)
 
     def test_oracle_propose_cannot_activate_or_allocate_canonical_id(self):
+        self.sign_in()
         response = self.client.post("/api/v1/oracle/propose", json={
             "query": "What should this teach?", "creativeAnswer": "A new candidate answer.",
             "locale": "en",

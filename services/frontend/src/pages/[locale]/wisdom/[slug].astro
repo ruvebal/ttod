@@ -1,4 +1,5 @@
 ---
+import { backendUrl } from '../../../lib/backend';
 import Page from '../../../layouts/Page.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import EmptyState from '../../../components/EmptyState.astro';
@@ -6,6 +7,9 @@ import ProvenanceBlock from '../../../components/ProvenanceBlock.astro';
 import FavoriteButton from '../../../components/favorites/FavoriteButton';
 import { isLocale, labels, loadWisdom } from '../../../content/wisdom';
 import { SESSION_COOKIE_NAME, getSessionUser } from '../../../lib/auth.server';
+import { gemelasTraduccion } from '../../../lib/grafo.server';
+import { destinoCita } from '../../../lib/idioma';
+import { descripcionCita, tituloCita } from '../../../lib/seo';
 import type { FavoriteEntry } from '../../../types/domain';
 import '../../../styles/tokens.css';
 const locale = Astro.params.locale;
@@ -13,6 +17,16 @@ if (!isLocale(locale)) return new Response(null, { status: 404 });
 const { entries, failed } = await loadWisdom(locale);
 const quote = failed ? undefined : entries.find((entry) => entry.id === Astro.params.slug);
 const copy = labels[locale];
+// Una cita que no existe en este idioma es un 404 de verdad, no una página «no
+// encontrada» servida con 200 (F57): así la ve también un buscador o un enlazador.
+if (!failed && !quote) Astro.response.status = 404;
+// El cambio de idioma lleva a la cita gemela (`translation_of`, en los dos sentidos).
+const otro = locale === 'en' ? 'es' : 'en';
+const gemelas = quote ? await gemelasTraduccion() : null;
+const cambioIdioma = quote ? destinoCita(quote.id, otro, gemelas) : `/${otro}/wisdom/`;
+// `hreflang` solo con gemela de verdad (AA4): sin ella, o sin grafo, no se anuncia ninguna alterna.
+const gemela = quote ? gemelas?.get(quote.id) : undefined;
+const alterna = gemela ? `/${otro}/wisdom/${gemela}/` : null;
 const relatedEntries = quote
   ? quote.related.flatMap((relatedId) => {
       const relatedEntry = entries.find((entry) => entry.id === relatedId);
@@ -24,7 +38,7 @@ const relatedEntries = quote
 const user = quote ? await getSessionUser(Astro.request) : null;
 let alreadySaved = false;
 if (user && quote) {
-  const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+  const backend = backendUrl();
   const sessionCookie = `${SESSION_COOKIE_NAME}=${Astro.cookies.get(SESSION_COOKIE_NAME)?.value ?? ''}`;
   try {
     const response = await fetch(`${backend}/api/v1/favorites`, { headers: { accept: 'application/json', cookie: sessionCookie } });
@@ -41,12 +55,20 @@ const crumbs = quote
     ]
   : [{ label: copy.wisdom, href: `/${locale}/wisdom/` }, { label: copy.notFound }];
 ---
-<Page lang={locale} title={quote ? `${quote.id} · ${copy.wisdom}` : copy.notFound}>
-  <main class="ttod-shell ttod-prose">
+<Page
+  lang={locale}
+  title={quote ? tituloCita(quote.text, copy.wisdom) : copy.notFound}
+  description={quote ? descripcionCita(quote.text, quote.teaches) : undefined}
+  tipo={quote ? 'article' : 'website'}
+  indexar={!failed}
+  cambioIdioma={cambioIdioma}
+  alterna={alterna}
+>
+  <main id="ttod-main" class="ttod-shell ttod-prose">
     <nav class="ttod-nav"><a href={`/${locale}/wisdom/`}>← {copy.back}</a><a href={`/${locale}/docs/`}>{copy.docs}</a></nav>
     <Breadcrumbs locale={locale} items={crumbs} />
     {failed ? <EmptyState variant="error" title={copy.errorTitle} message={copy.errorMessage} /> : !quote ? <EmptyState title={copy.notFound} message={copy.notFoundMessage} action={{ label: copy.back, href: `/${locale}/wisdom/` }} /> : <>
-      <article class="ttod-card"><blockquote>{quote.text}</blockquote><p><strong>{copy.teaches}:</strong> {quote.teaches}</p><p class="ttod-meta">{quote.id} · {quote.section} · {quote.level} · {quote.origin} · {quote.lang}</p><div class="ttod-clusters">{quote.tags.map((tag) => <a class="ttod-pill" href={`/${locale}/wisdom/tags/${tag}/`}>#{tag}</a>)}</div>{user && <FavoriteButton client:load quoteId={quote.id} initiallySaved={alreadySaved} />}</article>
+      <article class="ttod-card"><blockquote>{quote.text}</blockquote><p><strong>{copy.teaches}:</strong> {quote.teaches}</p><p class="ttod-meta">{quote.id} · {quote.section} · {quote.level} · {quote.origin} · {quote.lang}</p><div class="ttod-clusters">{quote.tags.map((tag) => <a class="ttod-pill" href={`/${locale}/wisdom/tags/${tag}/`}>#{tag}</a>)}</div>{user && <FavoriteButton client:load quoteId={quote.id} initiallySaved={alreadySaved} locale={locale} />}</article>
       {relatedEntries.length > 0 && <section aria-labelledby="related-wisdom-title"><h2 id="related-wisdom-title">{copy.related}</h2><nav class="ttod-clusters" aria-label={copy.related}>{relatedEntries.map((relatedEntry) => <a class="ttod-pill" href={`/${locale}/wisdom/${relatedEntry.id}/`}>{relatedEntry.id}</a>)}</nav></section>}
       <ProvenanceBlock entry={quote} locale={locale} />
     </>}

@@ -10,13 +10,20 @@ import AxeBuilder from '@axe-core/playwright';
 // docs/DEV_PLAN/PHASE-R-CLOSURE-AND-COHORT-HANDOFF-REPORT.md for the exact commands used to bring
 // this stack up locally for this test run.
 
-test.describe('default-locale fallback', () => {
-	test('/ redirects to the default locale', async ({ page }) => {
-		const response = await page.goto('/');
-		expect(response?.status()).toBeLessThan(400);
-		await expect(page).toHaveURL(/\/en\/?$/);
-		await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-	});
+// AA4 (F43): `/` picks the locale from Accept-Language. Playwright otherwise sends the machine's
+// own locale, so each case pins it (cold review AA4, F3: this failed on a Spanish-locale machine).
+test.describe('root picks the locale', () => {
+	for (const [browserLocale, want] of [['en-US', 'en'], ['fr-FR', 'en'], ['es-ES', 'es']] as const) {
+		test.describe(browserLocale, () => {
+			test.use({ locale: browserLocale });
+			test(`/ redirects to /${want}/`, async ({ page }) => {
+				const response = await page.goto('/');
+				expect(response?.status()).toBeLessThan(400);
+				await expect(page).toHaveURL(new RegExp(`/${want}/?$`));
+				await expect(page.locator('html')).toHaveAttribute('lang', want);
+			});
+		});
+	}
 });
 
 for (const locale of ['en', 'es'] as const) {
@@ -71,7 +78,7 @@ for (const locale of ['en', 'es'] as const) {
 		});
 
 		test(`/${locale}/oracle terminal shell renders and passes axe before any query`, async ({ page }) => {
-			const response = await page.goto(`/${locale}/oracle`);
+			const response = await page.goto(`/${locale}/oracle/`);
 			expect(response?.status()).toBe(200);
 			const results = await new AxeBuilder({ page }).analyze();
 			expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);

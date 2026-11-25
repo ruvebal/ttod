@@ -16,13 +16,19 @@ This folder is the **internal** research home. Public-facing summaries live unde
 | Strand | Question family | Status | Canonical doc |
 | ------ | --------------- | ------ | ------------- |
 | **A — Philosophical / cybernetic** | How do eternal, ontological, gnoseological, epistemological, and transcendental knowledge traditions relate to cybernetics and contemporary technical practice? | **Parked.** Design and corpus work continue; no ethics submission, no student participants, no empirical claims from this strand. | [`STRAND-A-PHILOSOPHICAL-PARKED.md`](STRAND-A-PHILOSOPHICAL-PARKED.md) |
-| **B — Pedagogical / CER (Front-End II)** | Can participation as a developer in a real, agentic-assisted application, inside a cohort of peers, function as a learning activity with observable pedagogical outcomes — *learning by doing*? | **Active.** Pedagogical framing approved by the department in advance; cohort informed consent obtained for participation as described in the ethics package; **institutional ethics-committee review in progress** (submission prepared 2026-09). | [`STRAND-B-PEDAGOGICAL-DESIGN.md`](STRAND-B-PEDAGOGICAL-DESIGN.md) |
+| **B — Pedagogical / CER (Front-End II)** | Can participation as a developer in a real, agentic-assisted application, inside a cohort of peers, function as a learning activity with observable pedagogical outcomes — *learning by doing*? | **Active.** Pedagogical framing approved by the department in advance; cohort informed consent obtained for participation as described in the ethics package; **ethics committee replied 22 Oct 2026: no dictamen needed, four conditions** (see [`STRAND-B-PROGRAMME.md`](STRAND-B-PROGRAMME.md)). Three cases: TTOD (FE II) · Neoplastix (FE I s1) · ATELIER-IA (FE I s2, proposed). | [`STRAND-B-PEDAGOGICAL-DESIGN.md`](STRAND-B-PEDAGOGICAL-DESIGN.md) |
 
 | [`DEPARTMENT-DECISION-BRIEF.md`](DEPARTMENT-DECISION-BRIEF.md) | Internal pedagogical decision brief (context) |
 | [`institutional/`](institutional/) | **Separate pack** — formal A1 letter to Sandra/Fernando + production budget ≥24 mo + PDF |
 
 Strand A never uses student coursework as evidence. Strand B never imports Strand A's
 philosophical claims as empirical warrants.
+
+---
+
+## Programme map (three cases)
+
+[`STRAND-B-PROGRAMME.md`](STRAND-B-PROGRAMME.md) — TTOD · Neoplastix · ATELIER-IA; shared instruments; per-case gaps. Innova EDU UDIT 2026-27 proposal: [`innova-edu-2026-27/`](innova-edu-2026-27/).
 
 ---
 
@@ -123,6 +129,6 @@ labels, Profield run paths, signed-consent locations.
 
 Strand B is a **design-based, rich-data case study** of learning-by-doing in a real
 agentic-assisted front-end product, with **department pedagogical approval**, **participant
-informed consent**, **ethics-committee review underway**, and a **congress-first publication
+informed consent**, **the ethics committee's 22 Oct 2026 position (no dictamen; four conditions)**, and a **congress-first publication
 plan** (JENUI → ITiCSE/SIGCSE) grounded in Profield STEM-code methodology inheritance; Strand A
 remains a separate philosophical programme with **no human subjects**.

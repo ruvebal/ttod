@@ -50,7 +50,7 @@ const datos = {
 const pila = armario;
 ---
 
-<section class="mazo" aria-labelledby="mazo-titulo">
+<section id="draw" class="mazo" aria-labelledby="mazo-titulo">
   <span class="nube-ruyi" data-nube="53" aria-hidden="true"></span>
   <div class="mazo-texto">
     <h2 id="mazo-titulo" class="mazo-titulo">{t.mazoTitulo}</h2>
@@ -89,7 +89,11 @@ const pila = armario;
       <p class="lectura-enlaces">
         <a data-l="cita" href={`/${locale}/wisdom/`}>{t.abrirCita}</a>
         <a data-l="seccion" href={`/${locale}/wisdom/`}>{t.todoElVolumen}</a>
+        <!-- La lectura no tiene dirección propia (es efímera, LOCATORS §1 regla 4):
+             copia la de la cita que enseña. -->
+        <a data-l="copiar" data-copiar href={`/${locale}/wisdom/`}>{t.copiarCita}</a>
       </p>
+      <p class="lectura-aviso" role="status" aria-live="polite" data-aviso-local data-copiado={t.copiado} data-sin-portapapeles={t.sinPortapapeles}></p>
       <div class="lectura-acciones">
         <button type="button" class="lectura-otra" data-mazo-otra>{t.otra}</button>
         <button type="button" class="lectura-cerrar" data-mazo-cerrar autofocus>{t.cerrar}</button>
@@ -181,6 +185,7 @@ const pila = armario;
       campo('nivel').textContent = d.niveles[c.level] ?? c.level;
       campo('procedencia').textContent = [c.rights?.holder, c.rights?.license].filter(Boolean).join(' · ');
       (campo('cita') as HTMLAnchorElement).href = `/${d.locale}/wisdom/${c.id}/`;
+      (campo('copiar') as HTMLAnchorElement).href = `/${d.locale}/wisdom/${c.id}/`;
       (campo('seccion') as HTMLAnchorElement).href = `/${d.locale}/wisdom/sections/${c.section}/`;
       campo('tapa-rotulo').textContent = d.t.volumen;
       campo('tapa-titulo').textContent = v.titulo;

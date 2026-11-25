@@ -25,6 +25,7 @@
   // Los mismos rótulos que Sabiduría: en /es la sección y el nivel se leen en
   // español («Arquitectura», «Intermedio»), no con el slug del dato.
   import { rotuloNivel, rotuloSeccion } from '../../content/bosque';
+  import { aliasDeNodos, escribirSendero, leerSendero, validarSendero } from './senderoUrl';
 
   interface Props { lang: 'en' | 'es' }
   const { lang }: Props = $props();
@@ -312,6 +313,26 @@
       if (prueba.length >= 4 && prueba.length <= 7) { origen = uno.id; destino = otro.id; return; }
     }
   }
+
+  /**
+   * `?from=&to=&node=` (AA3b): al llegar el grafo, la dirección manda; después,
+   * lo que se elija se escribe en ella con `replaceState` (ver `senderoUrl.ts`).
+   */
+  let direccionLista = $state(false);
+  function restaurarDeLaDireccion() {
+    const pedido = validarSendero(leerSendero(window.location.search), aliasDeNodos(grafo.nodos));
+    if (pedido.from) origen = pedido.from;
+    if (pedido.to) destino = pedido.to;
+    if (pedido.from && !pedido.to) eligiendo = 'destino';
+    if (pedido.node) abierta = pedido.node;
+    direccionLista = true;
+  }
+  $effect(() => {
+    if (!direccionLista) return;
+    const siguiente = escribirSendero(window.location.href, { from: origen, to: destino, node: abierta });
+    const actual = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (siguiente !== actual) history.replaceState(history.state, '', siguiente);
+  });
 
   function limpiar() {
     clearTimeout(cruce);
@@ -1301,6 +1322,7 @@
         if (!respuesta) throw new Error('sin grafo');
         grafo = construirGrafo(respuesta, lang);
         if (!vivo) return;
+        restaurarDeLaDireccion();
         cargando = false;
         if (!hayWebgl()) { sinWebgl = true; return; }
         // La constelación se levanta en cuanto hay datos, sin esperar hueco: es
@@ -1915,11 +1937,11 @@
   /* En móvil la constelación ocupa la pantalla entera: es el instrumento, no una
      ilustración de cabecera. El rótulo y la respuesta se montan encima, cada uno
      con su velo para que el texto no caiga sobre los puntos. */
-  /* 61 px es lo que mide la barra de navegación pegajosa de `Page.astro`, que va
-     en el flujo encima de esta sección: sin restarla, la escena se salía por
-     abajo y la leyenda quedaba cortada (medido a 390, 768 y 1440). */
+  /* Lo que mide la barra pegajosa de `Page.astro`, que va en el flujo: su token
+     (`--ttod-header-height`, AA3). Antes eran 61 px a mano y, con la barra de 56, quedaba
+     una franja de 5 px a 390 (cold review AA3, F8d). */
   .sendero__escena {
-    --sendero-nav: 61px;
+    --sendero-nav: var(--ttod-header-height, 3.5rem);
     position: relative;
     height: calc(100svh - var(--sendero-nav));
     min-height: 520px;

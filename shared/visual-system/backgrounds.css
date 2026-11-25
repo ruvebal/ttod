@@ -1,9 +1,6 @@
+/* El fondo del sitio: papel liso. El grano de seda se retiró con la pintura shan shui (16 oct). */
 .ttod-bg-river {
   background-color: var(--ttod-color-paper);
-  background-image: url("./river-contours.svg");
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: min(100rem, 130vw) auto;
 }
 
 .ttod-bg-constellation {

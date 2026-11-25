@@ -1,4 +1,4 @@
-# Cohort PR scorecard — updated 2026-10-17 (post-defense PR close-out)
+# Cohort PR scorecard — updated 2026-11-10 (post-defense merge train)
 
 **Audience:** instructor only (not published under `docs/public/`).
 **Rubric:** §5 — C25 · A25 · T20 · X10 · CI10 · P10 = 100.
@@ -6,22 +6,24 @@
 **Mail draft:** [`MAIL-PENDIENTES-DEFENSA-2026-10-15.es.md`](./MAIL-PENDIENTES-DEFENSA-2026-10-15.es.md) (historical).  
 **AI-critical usage (instructor):** [`ai-critical-usage-2026-10-25/index.html`](./ai-critical-usage-2026-10-25/index.html) · [`AI-CRITICAL-USAGE-CONCLUSIONS-2026-10-25.md`](./AI-CRITICAL-USAGE-CONCLUSIONS-2026-10-25.md).
 
-**Snapshot:** **0** student tip PRs open. Content #65/#67/#68 merged 2026-10-15.  
-**Complete seams (product):** Content Tasks 1–6 · Graph Tasks 1–8 · Oracle · PWA · Accounts.  
+**Snapshot:** **0** student tip PRs open.  
+**Sprint tips:** Content #65/#67/#68 merged 2026-10-15 (defense close-out).  
+**Post-defense waves scored below:** Equipo 3 visual/product series **#79–#85** (2026-10-25); merge train **#88–#92** (2026-11-09).  
+**Complete seams (product):** Content Tasks 1–6 · Graph Tasks 1–8 · Oracle · PWA · Accounts (+ post-defense polish).  
 **Instructor waiver (2026-10-15, class):** **not required** — (a) formal review of another team's PR, and (b) PR / commits into another team's module. Already-delivered cross-module tips (Graph #78) keep their scores.  
-**No tip PR for design-decision Task 10** (Graph / Oracle / PWA / Accounts) — Content T9 shipped as #68. Oral-only memos (if any) are outside this PR matrix.
+**Task 10:** Content T9 = #68; Accounts T10 shipped in **#89**; Graph / Oracle / PWA still no dedicated design-decision tip PR (oral/memo only if any).
 
 ---
 
 ## Group → seam map (current)
 
-| Group | Seam | Authors | Open stack |
+| Group | Seam | Authors | Stack |
 | --- | --- | --- | --- |
-| E1 | Content | `gontugithub` | #43✓→#61✓→…→#68✓ · Tasks 7–8 **WAIVED** · **seam tip PRs complete** |
-| E2 | Graph | `gpfc-git` | #48✓→…→#78✓ · Task 9 **WAIVED** · Task 10 no tip PR |
-| E3 | Oracle | `Andreavilaro0` / fork `nbfrodri/ttod_team3` | **complete** product (#42) · Tasks 8–9 **WAIVED** · Task 10 no tip PR |
-| E4 | PWA | `PRNovoa` | **complete** (+ #74) · Tasks 8–9 **WAIVED** · Task 10 no tip PR |
-| E5 | Accounts | `alexxblaro16` / `Gonsiii11` on #58 | **complete** · Tasks 8–9 **WAIVED** · Task 10 no tip PR |
+| E1 | Content | `gontugithub` | #43✓→#61✓→…→#68✓ · Tasks 7–8 **WAIVED** · **seam tip PRs complete** (no post-defense tip PR) |
+| E2 | Graph | `gpfc-git` | #48✓→…→#78✓ · Task 9 **WAIVED** · Task 10 no tip PR · **+#90** (section colors / tag filters) |
+| E3 | Oracle (+ visual) | `Andreavilaro0` / fork `nbfrodri` | **#42** seam · Tasks 8–9 **WAIVED** · **+#79–#85** visual/product · **+#88** stream/Escape |
+| E4 | PWA | `PRNovoa` | **complete** (+ #74) · Tasks 8–9 **WAIVED** · Task 10 no tip PR · **+#91** icon revert |
+| E5 | Accounts | `alexxblaro16` / `Gonsiii11` on #58 | **complete** · Tasks 8–9 **WAIVED** · **+#89** (T10 + logout/a11y) · **+#92** (Redis register + user favorites) |
 
 ✓ = already **MERGED**.
 
@@ -51,6 +53,7 @@
 | E2 | [#78](https://github.com/ruvebal/ttod/pull/78) **MERGED** 2026-10-15 | graph-task8 · `graph-task8-pr-into-different-module` | 24 | 24 | 18 | 9 | 10 | 9 | **94** | MERGED; related-wisdom links on detail (cross-module) | — |
 | E2 | — **WAIVED** 2026-10-15 | graph-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
 | E2 | — **NO TIP PR** | graph-task10 · design-decision doc for defense | — | — | — | — | — | — | — | No tip PR filed (oral-only if any) | — |
+| E2 | [#90](https://github.com/ruvebal/ttod/pull/90) **MERGED** 2026-11-09 | post-defense · graph section colors + tag filters | 24 | 24 | 16 | 8 | 10 | 8 | **90** | MERGED merge-train; CSS extract; tags filter; section colors (palette vs seal tokens = polish debt) | — |
 | E3 | [#44](https://github.com/ruvebal/ttod/pull/44) **CLOSED** 2026-10-13 | oracle-task1 · `oracle-task1-streamed-response-rendering` | 24 | 24 | 18 | 9 | 10 | 8 | **93** | CLOSED superseded by #42 (Task 1 on main via cumulative) | — |
 | E3 | [#45](https://github.com/ruvebal/ttod/pull/45) **CLOSED** 2026-10-13 | oracle-task2 · `oracle-task2-live-region-announcement` | 24 | 24 | 18 | 10 | 10 | 8 | **94** | CLOSED superseded by #42 | — |
 | E3 | [#38](https://github.com/ruvebal/ttod/pull/38) **CLOSED** 2026-10-13 | oracle-task3 · `oracle-task3-grounded-creative-disclosure` | 24 | 24 | 18 | 10 | 10 | 8 | **94** | CLOSED superseded by #42 | — |
@@ -60,6 +63,15 @@
 | E3 | [#42](https://github.com/ruvebal/ttod/pull/42) **MERGED** 2026-10-11 | oracle-task7 · `oracle-task7-unit-component-tests` | 25 | 25 | 20 | 10 | 10 | 10 | **100** | MERGED; **cumulative Tasks 1–7** (stack explicitly on 1–6) | — |
 | E3 | — **WAIVED** 2026-10-15 | oracle-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
 | E3 | — **WAIVED** 2026-10-15 | oracle-task8 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
+| E3 | — **NO TIP PR** | oracle-task10 · design-decision doc for defense | — | — | — | — | — | — | — | No dedicated T10 tip PR (partially covered by group-3 DECISION docs in #81) | — |
+| E3 | [#79](https://github.com/ruvebal/ttod/pull/79) **MERGED** 2026-10-25 | post-defense · cabecera / pie / 404 + visual base | 24 | 24 | 14 | 10 | 10 | 8 | **90** | MERGED; floating header, tokens, SW v6 precache fix | — |
+| E3 | [#80](https://github.com/ruvebal/ttod/pull/80) **MERGED** 2026-10-25 | post-defense · sabiduría estantería / mazo / estelas | 24 | 24 | 14 | 9 | 10 | 8 | **89** | MERGED; Content-surface visual; front corpus memo cache | — |
+| E3 | [#81](https://github.com/ruvebal/ttod/pull/81) **MERGED** 2026-10-25 | post-defense · `/graph/path` + backend graph cache | 25 | 24 | 16 | 9 | 10 | 9 | **93** | MERGED; sendero + `DECISION-grafo.md` + ETag | — |
+| E3 | [#82](https://github.com/ruvebal/ttod/pull/82) **MERGED** 2026-10-25 | post-defense · portada valle + rollo Dong Qichang | 24 | 24 | 12 | 9 | 10 | 8 | **87** | MERGED; scroll-timeline + GSAP fallback; credits | — |
+| E3 | [#83](https://github.com/ruvebal/ttod/pull/83) **MERGED** 2026-10-25 | post-defense · oráculo en cielo ruyi | 24 | 25 | 16 | 10 | 10 | 8 | **93** | MERGED; keeps PWA e2e open/close contract | — |
+| E3 | [#84](https://github.com/ruvebal/ttod/pull/84) **MERGED** 2026-10-25 | post-defense · login + `safeNextPath` | 24 | 24 | 16 | 9 | 10 | 8 | **91** | MERGED; Accounts-surface login on CieloRuyi | — |
+| E3 | [#85](https://github.com/ruvebal/ttod/pull/85) **MERGED** 2026-10-25 | post-defense · backend `ttod.yml` in-memory preload | 25 | 24 | 14 | 5 | 10 | 8 | **86** | MERGED; SnapshotService fingerprint + lifespan | — |
+| E3 | [#88](https://github.com/ruvebal/ttod/pull/88) **MERGED** 2026-11-09 | post-defense · oracle stream cancel + Escape a11y | 24 | 24 | 16 | 10 | 10 | 8 | **92** | MERGED merge-train; `nbfrodri`; focus return on Escape | — |
 | E4 | [#37](https://github.com/ruvebal/ttod/pull/37) **CLOSED** | pwa-task1-bad · `main` | — | — | — | — | — | — | — | CLOSED; superseded by #51 | — |
 | E4 | [#51](https://github.com/ruvebal/ttod/pull/51) **MERGED** 2026-10-08 | pwa-task1 · `pwa-task1-service-worker` | 24 | 24 | 20 | 10 | 10 | 9 | **97** | MERGED | — |
 | E4 | [#46](https://github.com/ruvebal/ttod/pull/46) **MERGED** 2026-10-11 | pwa-task2 · `pwa-task2-offline-oracle` | 24 | 24 | 18 | 10 | 10 | 9 | **95** | MERGED | — |
@@ -71,6 +83,8 @@
 | E4 | [#74](https://github.com/ruvebal/ttod/pull/74) **MERGED** 2026-10-13 | docs(pwa) · `docs/team-4-ai-use` | 25 | 24 | 16 | 10 | 10 | 10 | **95** | MERGED; `docs/uso-ia-team-4.md` AI-use memo (rejected `tsc` drop) | — |
 | E4 | — **WAIVED** 2026-10-15 | pwa-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
 | E4 | — **WAIVED** 2026-10-15 | pwa-task8 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
+| E4 | — **NO TIP PR** | pwa-task10 · design-decision doc for defense | — | — | — | — | — | — | — | No tip PR (AI memo #74 is process, not T10 design decision) | — |
+| E4 | [#91](https://github.com/ruvebal/ttod/pull/91) **MERGED** 2026-11-09 | post-defense · icon deletion revert | 22 | 22 | 12 | 8 | 10 | 5 | **79** | MERGED merge-train; thin PR body; restores icons (asset hygiene) | — |
 | E5 | [#31](https://github.com/ruvebal/ttod/pull/31)–[#35](https://github.com/ruvebal/ttod/pull/35) **CLOSED** | accounts-task1–5 old | — | — | — | — | — | — | — | CLOSED; replaced by #53/#58/#57/#72/#56 | — |
 | E5 | [#53](https://github.com/ruvebal/ttod/pull/53) **MERGED** 2026-10-13 | accounts-task1 · `accounts-task1-ssr-auth` | 24 | 24 | 16 | 8 | 10 | 9 | **91** | MERGED; empty login reject + `requireUser` | — |
 | E5 | [#58](https://github.com/ruvebal/ttod/pull/58) **MERGED** 2026-10-13 | accounts-task2 · `accounts-task2-personal-library` | 24 | 24 | 16 | 9 | 10 | 9 | **92** | MERGED; FavoriteButton on detail only | — |
@@ -81,24 +95,29 @@
 | E5 | [#59](https://github.com/ruvebal/ttod/pull/59) **MERGED** 2026-10-11 | accounts-task7 · `accounts-task7-auth-library-api-tests` | 24 | 24 | 20 | 8 | 10 | 9 | **95** | MERGED; feature-organized tests + npm test in CI | — |
 | E5 | — **WAIVED** 2026-10-15 | accounts-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
 | E5 | — **WAIVED** 2026-10-15 | accounts-task8 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
+| E5 | [#89](https://github.com/ruvebal/ttod/pull/89) **MERGED** 2026-11-09 | accounts-task10 + post-defense · logout / honest errors / FavoriteButton a11y | 24 | 25 | 18 | 10 | 10 | 9 | **96** | MERGED merge-train; **closes T10 gap**; DECISION session vs token | — |
+| E5 | [#92](https://github.com/ruvebal/ttod/pull/92) **MERGED** 2026-11-09 | post-defense · Redis register + favorites bound to user | 25 | 25 | 18 | 8 | 10 | 9 | **95** | MERGED merge-train; open register always `student`; Redis user keys | — |
 
 ---
 
 ## Group rollup (scored PRs only)
 
-| Group | Scored n | Mean Σ | Median Σ | Notes |
-| --- | ---: | ---: | ---: | --- |
-| E1 Content | 8 | 96 | 98 | #43+#61–#68 merged; Tasks 7–8 waived |
-| E2 Graph | 8 | 96 | 95 | Tasks 1–8 merged (#78 scored); Task 9 waived; Task 10 no tip PR |
-| E3 Oracle | 7 | 94 | 93 | **seam complete** (#42); Tasks 8–9 waived; Task 10 no tip PR |
-| E4 PWA | 8 | 96 | 96 | **seam complete** (+ #74); Tasks 8–9 waived; Task 10 no tip PR |
-| E5 Accounts | 7 | 92 | 92 | **seam complete**; Tasks 8–9 waived; Task 10 no tip PR |
+| Group | Scored n | Mean Σ | Median Σ | Sprint-only Mean Σ | Notes |
+| --- | ---: | ---: | ---: | ---: | --- |
+| E1 Content | 8 | **96** | 98 | 96 | Unchanged; no post-defense tip PR |
+| E2 Graph | 9 | **95** | 95 | 96 | +#90 (90); Tasks 1–8 + post-defense |
+| E3 Oracle | 15 | **92** | 93 | 94 | +#79–#85 + #88; sprint n=7 still mean 94 |
+| E4 PWA | 9 | **94** | 95 | 96 | +#91 (79) pulls mean down; sprint still 96 |
+| E5 Accounts | 9 | **93** | 92 | 92 | +#89 (96) + #92 (95); T10 now scored |
+
+Sprint-only = tip PRs through 2026-10-17 defense close-out (unchanged historical band). Combined Mean includes post-defense waves.
 
 ---
 
 ## Remaining (non-PR)
 
-All student tip PRs that were filed are merged. Design-decision Task 10 for Graph / Oracle / PWA / Accounts has **no tip PR** in this repo (Content T9 = #68). Waived process tips stay waived.
+All student tip PRs that were filed are merged — including post-defense #79–#85 and #88–#92.  
+Design-decision Task 10: **Accounts #89** now scores T10; Graph / Oracle / PWA still have no dedicated T10 tip PR (Content T9 = #68). Waived process tips stay waived.
 
 Instructor Update branch / conflict resolve is merge hygiene — not a student reject reason.
 
@@ -119,8 +138,14 @@ Per-task PRs #44/#45/#38/#39/#40/#41 looked unmergeable (`DIRTY` / `CHANGES_REQU
 
 ---
 
+### Post-defense note (2026-11-10)
+
+Merge train on `main` (order #91→#88→#90→#89→#92) after Phase Z Redis shore. Scores above are instructor draft against §5 using PR bodies + merge evidence; they do **not** rewrite Moodle §4 free-text grades in [`AI-CRITICAL-USAGE-CONCLUSIONS-2026-10-25.md`](./AI-CRITICAL-USAGE-CONCLUSIONS-2026-10-25.md) — only Tip Mean Σ rollups there / in the HTML companion were refreshed to match this combined table.
+
+---
+
 ## Companion CSV
 
 [`COHORT-PR-SCORECARD-2026-10-07.csv`](./COHORT-PR-SCORECARD-2026-10-07.csv) (rewritten same snapshot).
 
-_Updated: 2026-10-17 — Content #65/#67/#68 scored MERGED; 0 open student tip PRs._
+_Updated: 2026-11-10 — scored #79–#85 and #88–#92; Accounts T10 via #89; combined Means refreshed._

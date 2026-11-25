@@ -1,0 +1,70 @@
+## es
+page      /es/                                                       200
+page      /es/wisdom/                                                200
+page      /es/wisdom/?q=diseno                                       200
+page      /es/wisdom/?section=architecture&level=advanced            200
+page      /es/wisdom/a11y-002/                                       200
+page      /es/wisdom/sections/architecture/                          200
+page      /es/wisdom/levels/advanced/                                200
+page      /es/wisdom/tags/koan/                                      200
+page      /es/graph/                                                 200
+page      /es/graph/plano/                                           200
+page      /es/graph/code/                                            200
+page      /es/oracle/                                                200
+page      /es/docs/                                                  200
+page      /es/library/                                               302 /es/login/?next=%2Fes%2Flibrary%2F (signed-in page: redirects to login)
+page      /es/account/                                               302 /es/login/?next=%2Fes%2Faccount%2F (AA3 owns its ids)
+redirect  /es/wisdom                                                 301 /es/wisdom/
+redirect  /es/graph                                                  301 /es/graph/
+redirect  /es/oracle?x=1                                             301 /es/oracle/?x=1
+redirect  /es/graph/path                                             301 /es/graph/
+redirect  /es/graph/path/?from=a11y-002&to=arch-060                  301 /es/graph/?from=a11y-002&to=arch-060
+redirect  /es/graph/path?from=a11y-002&to=arch-060                   301 /es/graph/?from=a11y-002&to=arch-060
+redirect  /es/graph/path?s=services/backend/app/main.py              301 /es/graph/code/?s=services/backend/app/main.py
+redirect  /es/graph/?tag=koan                                        301 /es/graph/plano/?tag=koan
+redirect  /es/wisdom/?section=architecture                           301 /es/wisdom/sections/architecture/
+redirect  /es/wisdom/?level=advanced&orden=nivel                     301 /es/wisdom/levels/advanced/?orden=nivel
+redirect  /es/wisdom/?tag=koan                                       301 /es/wisdom/tags/koan/
+notfound  /es/wisdom/zz-999/                                         404
+notfound  /es/wisdom/a11y-001/                                       404
+exempt    /es/logout                                                 405
+exempt    /api/v1/graph                                              200
+exempt    /visual-system/tokens.css                                  200
+exempt    /sw.js                                                     200
+exempt    /site.webmanifest                                          200
+post      /es/login                                                  403
+## en
+page      /en/                                                       200
+page      /en/wisdom/                                                200
+page      /en/wisdom/?q=simplicity                                   200
+page      /en/wisdom/?section=architecture&level=advanced            200
+page      /en/wisdom/a11y-001/                                       200
+page      /en/wisdom/sections/architecture/                          200
+page      /en/wisdom/levels/advanced/                                200
+page      /en/wisdom/tags/koan/                                      200
+page      /en/graph/                                                 200
+page      /en/graph/plano/                                           200
+page      /en/graph/code/                                            200
+page      /en/oracle/                                                200
+page      /en/docs/                                                  200
+page      /en/library/                                               302 /en/login/?next=%2Fen%2Flibrary%2F (signed-in page: redirects to login)
+page      /en/account/                                               302 /en/login/?next=%2Fen%2Faccount%2F (AA3 owns its ids)
+redirect  /en/wisdom                                                 301 /en/wisdom/
+redirect  /en/graph                                                  301 /en/graph/
+redirect  /en/oracle?x=1                                             301 /en/oracle/?x=1
+redirect  /en/graph/path                                             301 /en/graph/
+redirect  /en/graph/path/?from=a11y-001&to=arch-001                  301 /en/graph/?from=a11y-001&to=arch-001
+redirect  /en/graph/path?from=a11y-001&to=arch-001                   301 /en/graph/?from=a11y-001&to=arch-001
+redirect  /en/graph/path?s=services/backend/app/main.py              301 /en/graph/code/?s=services/backend/app/main.py
+redirect  /en/graph/?tag=koan                                        301 /en/graph/plano/?tag=koan
+redirect  /en/wisdom/?section=architecture                           301 /en/wisdom/sections/architecture/
+redirect  /en/wisdom/?level=advanced&orden=nivel                     301 /en/wisdom/levels/advanced/?orden=nivel
+redirect  /en/wisdom/?tag=koan                                       301 /en/wisdom/tags/koan/
+notfound  /en/wisdom/zz-999/                                         404
+notfound  /en/wisdom/a11y-002/                                       404
+exempt    /en/logout                                                 405
+exempt    /api/v1/graph                                              200
+exempt    /visual-system/tokens.css                                  200
+exempt    /sw.js                                                     200
+exempt    /site.webmanifest                                          200
+post      /en/login                                                  403

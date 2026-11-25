@@ -40,7 +40,7 @@ then `gh secret set ANTHROPIC_API_KEY`.
 
 ## Set up once, before the first PR lands
 
-1. **Use host Metal Ollama for review (Tanit default).** `make review-pr` talks to
+1. **Use host Metal Ollama for review (the default).** `make review-pr` talks to
    `http://localhost:11434` and model `qwen2.5-coder:32b` unless you override. Confirm the
    model is pulled on the **host** server:
    ```bash
@@ -48,7 +48,7 @@ then `gh secret set ANTHROPIC_API_KEY`.
    # if missing:
    ollama pull qwen2.5-coder:32b
    ```
-   The Compose Ollama on `:11435` is a small teaching runtime (`llama3.2:1b` + embed) — not
+   The Compose Ollama on `:11435` (only with the loopback override `docker-compose.ollama-port.yml`, AA5) is a small teaching runtime (`llama3.2:1b` + embed) — not
    where the 32B coder lives. To force compose anyway:
    `OLLAMA_BASE_URL=http://localhost:11435 OLLAMA_MODEL=llama3.2:1b make review-pr PR=<n>`.
 2. **The review worktree**, covered next.

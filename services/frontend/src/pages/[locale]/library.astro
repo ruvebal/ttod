@@ -1,6 +1,12 @@
 ---
+import { backendUrl } from '../../lib/backend';
 import Page from '../../layouts/Page.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import Estela from '../../components/wisdom/Estela.astro';
 import FavoriteButton from '../../components/favorites/FavoriteButton';
+import '../../styles/tokens.css';
+import '../../styles/bosque.css';
 import { SESSION_COOKIE_NAME, requireUser } from '../../lib/auth.server';
 import { isLocale } from '../../content/wisdom';
 import type { FavoriteEntry, WisdomEntry } from '../../types/domain';
@@ -13,41 +19,99 @@ if (!isLocale(locale)) return new Response(null, { status: 404 });
 const authenticatedUser = await requireUser(Astro.request);
 if (authenticatedUser instanceof Response) return authenticatedUser;
 
-const backend = import.meta.env.BACKEND_URL ?? 'http://backend:8000';
+const backend = backendUrl();
 // Al backend solo se reenvía la cookie de sesión, no el resto de cabeceras del navegador.
 const sessionCookie = `${SESSION_COOKIE_NAME}=${Astro.cookies.get(SESSION_COOKIE_NAME)?.value ?? ''}`;
 
-const [favoritesResponse, wisdomResponse] = await Promise.all([
-  fetch(`${backend}/api/v1/favorites`, { headers: { accept: 'application/json', cookie: sessionCookie } }),
-  fetch(`${backend}/api/v1/wisdom/sample`, { headers: { accept: 'application/json' } }),
-]);
-if (!favoritesResponse.ok || !wisdomResponse.ok) {
-  throw new Error('Unable to load the personal library');
+async function getJson<T>(path: string, headers: Record<string, string>): Promise<T | null> {
+  try {
+    const response = await fetch(`${backend}${path}`, { headers: { accept: 'application/json', ...headers } });
+    return response.ok ? await response.json() as T : null;
+  } catch (error) {
+    console.error(`Unable to load ${path} for the personal library.`, error);
+    return null;
+  }
 }
-const favorites = (await favoritesResponse.json()) as FavoriteEntry[];
-const wisdom = (await wisdomResponse.json()) as WisdomEntry[];
-const quotes = favorites
+
+const [favorites, wisdom] = await Promise.all([
+  getJson<FavoriteEntry[]>('/api/v1/favorites', { cookie: sessionCookie }),
+  getJson<WisdomEntry[]>('/api/v1/wisdom/sample', {}),
+]);
+// Si falla cualquiera de las dos peticiones no se sabe qué hay guardado: decir
+// «todavía no has guardado citas» sería mentir. Se avisa del fallo con un 503.
+const failed = favorites === null || wisdom === null;
+if (failed) Astro.response.status = 503;
+
+const quotes = failed ? [] : favorites
   .map((favorite) => ({ favorite, quote: wisdom.find((entry) => entry.id === favorite.quoteId) }))
   .filter((entry): entry is { favorite: FavoriteEntry; quote: WisdomEntry } => Boolean(entry.quote));
+
+const dateFormat = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' });
+const savedOn = (savedAt: string) => {
+  const date = new Date(savedAt);
+  return Number.isNaN(date.getTime()) ? null : { iso: date.toISOString(), text: dateFormat.format(date) };
+};
+
 const copy = locale === 'es'
-  ? { title: 'Mi biblioteca', empty: 'Todavía no has guardado citas.', saved: 'Guardada' }
-  : { title: 'My library', empty: 'You have not saved any quotes yet.', saved: 'Saved' };
----
-<Page lang={locale} title={copy.title}>
-  <style>
-    button { transition: opacity 160ms ease; }
-    @media (prefers-reduced-motion: reduce) {
-      button { transition: none; }
+  ? {
+      title: 'Mi biblioteca', description: 'Las citas que has guardado en TTOD.',
+      intro: 'Las estelas que has guardado, de la más reciente a la primera.', account: 'Mi cuenta',
+      emptyTitle: 'Tu biblioteca está vacía', empty: 'Todavía no has guardado citas.', browse: 'Explorar la sabiduría', saved: 'Guardada el',
+      failedTitle: 'No se ha podido cargar tu biblioteca',
+      failed: 'El servicio no responde. Tus citas siguen guardadas: vuelve a intentarlo en un momento.'
     }
-  </style>
-  <main>
-    <h1>{copy.title}</h1>
-    {quotes.length === 0 ? <p>{copy.empty}</p> : <section aria-label={copy.title}>
-      {quotes.map(({ favorite, quote }) => <article>
-        <blockquote>{quote.text}</blockquote>
-        <p class="meta">{quote.id} · {quote.section} · {copy.saved} {favorite.savedAt}</p>
-        <FavoriteButton client:load quoteId={quote.id} />
-      </article>)}
-    </section>}
+  : {
+      title: 'My library', description: 'The quotes you have saved in TTOD.',
+      intro: 'The steles you have saved, most recent first.', account: 'My account',
+      emptyTitle: 'Your library is empty', empty: 'You have not saved any quotes yet.', browse: 'Browse the wisdom', saved: 'Saved on',
+      failedTitle: 'Your library could not be loaded',
+      failed: 'The service is not answering. Your quotes are still saved: please try again in a moment.'
+    };
+// La más reciente arriba: es la que se acaba de guardar y la que se viene a buscar.
+quotes.sort((a, b) => (b.favorite.savedAt ?? '').localeCompare(a.favorite.savedAt ?? ''));
+---
+<Page lang={locale} title={copy.title} description={copy.description} usuario={authenticatedUser}>
+  {/* La biblioteca se lee en el mismo pasillo de estelas que la sabiduría (AA3, F53):
+      misma losa, sección con su rótulo, y el id de la cita como ancla (LOCATORS §4). */}
+  <main id="ttod-main" class="bosque biblioteca">
+    <Breadcrumbs locale={locale} items={[{ label: copy.account, href: `/${locale}/account/` }, { label: copy.title }]} />
+    <header class="bosque-entrada">
+      <h1 class="bosque-titulo">{copy.title}</h1>
+      <p class="bosque-intro">{copy.intro}</p>
+    </header>
+    {failed ? <EmptyState variant="error" title={copy.failedTitle} message={copy.failed} />
+      : quotes.length === 0 ? <EmptyState title={copy.emptyTitle} message={copy.empty} action={{ label: copy.browse, href: `/${locale}/wisdom/` }} />
+      : <ol class="pasillo">
+      {quotes.map(({ favorite, quote }, i) => {
+        const date = savedOn(favorite.savedAt);
+        return <li class="estela">
+          <Estela entry={quote} locale={locale} folio={String(i + 1).padStart(String(quotes.length).length, '0')} de={quotes.length} />
+          <p class="biblioteca-pie">
+            {date && <span>{copy.saved} <time datetime={date.iso}>{date.text}</time></span>}
+            <FavoriteButton client:visible quoteId={quote.id} locale={locale} initiallySaved />
+          </p>
+        </li>;
+      })}
+    </ol>}
   </main>
 </Page>
+
+<style>
+  .biblioteca-pie {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ttod-space-3);
+    margin: var(--ttod-space-3) 0 0;
+    font-family: var(--ttod-font-ui); font-size: var(--ttod-text-sm); color: var(--ttod-color-muted);
+  }
+  /* El botón de guardar con los tokens de botón del sitio, no el gris del navegador. */
+  .biblioteca-pie :global(button) {
+    min-height: 44px; padding: 0 1rem;
+    font: 500 var(--ttod-text-sm) / 1 var(--ttod-font-ui);
+    color: var(--ttod-color-ink); background: transparent;
+    border: 1px solid currentColor; border-radius: .375rem; cursor: pointer;
+    transition: background-color .16s ease, color .16s ease;
+  }
+  .biblioteca-pie :global(button:hover) { background: var(--ttod-color-ink); color: var(--ttod-color-paper); }
+  @media (prefers-reduced-motion: reduce) {
+    .biblioteca-pie :global(button) { transition: none; }
+  }
+</style>

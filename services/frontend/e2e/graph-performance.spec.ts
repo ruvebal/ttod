@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import type { GraphLink, GraphNode, WisdomEntry } from '../src/types/domain';
 
+test.use({ serviceWorkers: 'block' });
+
 const sectionCount = 8;
 const nodesPerSection = 250;
 const largeGraphNodes: GraphNode[] = Array.from({ length: sectionCount * nodesPerSection }, (_, index) => {
@@ -45,7 +47,7 @@ test('renders a large graph and keeps filtering within the interaction budget', 
 		body: JSON.stringify(largeGraphWisdom)
 	}));
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	const graph = page.getByRole('group', {
 		name: `Knowledge graph with ${largeGraphNodes.length} nodes and ${largeGraphEdges.length} edges`
 	});

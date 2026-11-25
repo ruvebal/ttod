@@ -280,7 +280,7 @@ Z0 is documentation-only; no code expected.
 | Finding | Disposition |
 | --- | --- |
 | **F1** | **Fixed** — `ShoreHttp503Tests` covers login/logout/proposal 503; Z6 → DONE |
-| **F2** | Deferred — Redis AOF restart proven in Z1; full backend session Compose smoke at next `make up` |
+| **F2** | **Closed 2026-11-09** — `#92` restart tests (user+session+favorites across backend reinits on FakeRedis); live Redis AOF restart re-proven. Residual: Compose backend smoke once `.env` secrets are set (see COMPLETENESS-2026-11-09.md) |
 | **F3** | Accepted intentional — disk-first dual-write; Redis failure after disk → 503; file remains CLI-loadable |
 | **F4–F8** | Deferred / non-blocking for classroom land |
 

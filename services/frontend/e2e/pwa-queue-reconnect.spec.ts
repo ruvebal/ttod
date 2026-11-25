@@ -35,7 +35,7 @@ async function install(page: Page, request: APIRequestContext, locale = 'en') {
 }
 
 async function openOracle(page: Page, locale: 'en' | 'es') {
-  await page.goto(`/${locale}/oracle`);
+  await page.goto(`/${locale}/oracle/`);
   const close = page.getByRole('button', { name: locale === 'en' ? 'Close oracle' : 'Cerrar oráculo', exact: true });
   await close.click();
   await page.getByRole('button', { name: locale === 'en' ? 'Open oracle' : 'Abrir oráculo', exact: true }).click();

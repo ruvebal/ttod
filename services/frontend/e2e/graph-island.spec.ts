@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test';
 import { joinTags, radialLayout } from '../src/components/graph/layout';
 import type { GraphLink, GraphNode, WisdomEntry } from '../src/types/domain';
 
+test.use({ serviceWorkers: 'block' });
+
 const graphNodes: GraphNode[] = [
 	{ id: 'arch-001', section: 'architecture', origin: 'human', status: 'active', text: 'Keep boundaries clear.', lang: 'en' },
 	{ id: 'arch-002', section: 'architecture', origin: 'studio', status: 'active', text: 'Share pure functions.', lang: 'en' },
@@ -33,20 +35,19 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 		await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(wisdom) });
 	});
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	const svg = page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' });
 	await expect(svg).toBeVisible();
 	await expect(page.locator('svg line')).toHaveCount(graphEdges.length);
-	await expect(page.getByText('Human', { exact: true })).toBeVisible();
-	await expect(page.getByText('Studio', { exact: true })).toBeVisible();
-	await expect(page.getByText('AI proposal', { exact: true })).toBeVisible();
+	await expect(page.getByText('Architecture & Modularization', { exact: true })).toBeVisible();
+	await expect(page.getByLabel('Section legend').getByText('Wisdom', { exact: true })).toBeVisible();
 	expect(requestedPaths.sort()).toEqual(['/api/v1/graph', '/api/v1/wisdom/sample']);
 
 	const expectedNodes = radialLayout(joinTags(graphNodes, wisdom));
 	const nodeButtons = svg.getByRole('button');
 	await expect(nodeButtons).toHaveCount(expectedNodes.length);
 	for (const node of expectedNodes) {
-			const renderedNode = page.getByRole('button', { name: `${node.id}: ${node.text}, tags: ${node.tags.join(', ')}` });
+			const renderedNode = page.getByRole('button', { name: `${node.id}: ${node.text}, section: ${node.section}, origin: ${node.origin}, tags: ${node.tags.join(', ')}` });
 			await expect(renderedNode).toHaveAttribute('tabindex', '0');
 			await expect(renderedNode).toHaveAttribute('cx', String(node.x));
 			await expect(renderedNode).toHaveAttribute('cy', String(node.y));
@@ -54,7 +55,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 
 		const details = page.getByRole('complementary', { name: 'Selected node' });
 		await expect(details).toHaveAttribute('aria-live', 'polite');
-		const firstNode = page.getByRole('button', { name: 'arch-001: Keep boundaries clear., tags: tag-arch-001, shared' });
+		const firstNode = page.getByRole('button', { name: 'arch-001: Keep boundaries clear., section: architecture, origin: human, tags: tag-arch-001, shared' });
 		await firstNode.click();
 		await expect(details).toContainText('Keep boundaries clear.');
 		await expect(details).toBeVisible();
@@ -62,14 +63,14 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 		await expect(details).toBeInViewport();
 		await firstNode.focus();
 		await firstNode.press('ArrowLeft');
-		await expect(page.getByRole('button', { name: 'arch-002: Share pure functions., tags: tag-arch-002, shared' })).toBeFocused();
-		await page.getByRole('button', { name: 'arch-002: Share pure functions., tags: tag-arch-002, shared' }).press('Enter');
+		await expect(page.getByRole('button', { name: 'arch-002: Share pure functions., section: architecture, origin: studio, tags: tag-arch-002, shared' })).toBeFocused();
+		await page.getByRole('button', { name: 'arch-002: Share pure functions., section: architecture, origin: studio, tags: tag-arch-002, shared' }).press('Enter');
 		await expect(details).toContainText('Share pure functions.');
 		await details.scrollIntoViewIfNeeded();
 		await expect(details).toBeInViewport();
 		await page.getByLabel('Filter by tag').focus();
 		await expect(details).toContainText('Share pure functions.');
-		await page.getByRole('button', { name: 'wis-001: Question the obvious., tags: tag-wis-001, shared' }).press('Space');
+		await page.getByRole('button', { name: 'wis-001: Question the obvious., section: wisdom, origin: blackbox, tags: tag-wis-001, shared' }).press('Space');
 		await expect(details).toContainText('Question the obvious.');
 		await expect(details).toBeVisible();
 
@@ -94,7 +95,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 			body: JSON.stringify(wisdom)
 		}));
 
-		await page.goto('/en/graph');
+		await page.goto('/en/graph/plano/');
 		const filter = page.getByLabel('Filter by tag');
 		await expect(filter).toHaveValue('');
 		const node = page.locator('[data-node-id="arch-001"]');
@@ -136,7 +137,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 			})))
 		}));
 
-		await page.goto('/en/graph');
+		await page.goto('/en/graph/plano/');
 		const filter = page.getByLabel('Filter by tag');
 		const details = page.getByRole('complementary', { name: 'Selected node' });
 		await expect(page.getByRole('group', { name: 'Knowledge graph with 3 nodes and 2 edges' })).toBeVisible();
@@ -189,7 +190,7 @@ test('fetches, lays out, renders, and selects graph nodes accessibly', async ({ 
 			})))
 		}));
 
-		await page.goto('/en/graph?tag=architecture');
+		await page.goto('/en/graph/plano/?tag=architecture');
 		await expect(page.getByLabel('Filter by tag')).toHaveValue('architecture');
 		await expect(page.getByRole('group', { name: 'Knowledge graph with 2 nodes and 1 edges' })).toBeVisible();
 	});
@@ -209,7 +210,7 @@ test('shows loading and empty states while a successful graph response is pendin
 		body: JSON.stringify([])
 	}));
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await expect(page.getByText('Loading live graph…')).toBeVisible();
 	releaseGraphResponse();
 	await expect(page.getByText('No graph nodes are available.')).toBeVisible();
@@ -228,6 +229,6 @@ test('announces graph fetch failures', async ({ page }) => {
 		body: JSON.stringify([])
 	}));
 
-	await page.goto('/en/graph');
+	await page.goto('/en/graph/plano/');
 	await expect(page.getByRole('alert')).toHaveText('The live graph is unavailable.');
 });

@@ -1,0 +1,302 @@
+{
+  "base": "http://127.0.0.1:28081",
+  "recorded": "2026-11-10T18:59:53.104Z",
+  "results": [
+    {
+      "path": "/es/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "// Antes de pintar: con JavaScript la fi",
+          "line": 54
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 68
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 68
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 68
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/wisdom/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 122
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 122
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 122
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/wisdom/wis-034/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 12
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/graph/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var e=async t=>{await(await t())()",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var A=Object.defineProperty;var g=",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 13
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 13
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/graph/path/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var e=async t=>{await(await t())()",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var A=Object.defineProperty;var g=",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var a=(s,i,o)=>{let r=async()=>{aw",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 15
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 15
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/oracle/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var e=async t=>{await(await t())()",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "(()=>{var A=Object.defineProperty;var g=",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 14
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/es/login/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 14
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 14
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    },
+    {
+      "path": "/en/docs/",
+      "consoleErrors": [],
+      "failed": [],
+      "violations": [
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.querySelector(\"[data-pi",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const e=document.getElementById(\"ttod-si",
+          "line": 12
+        },
+        {
+          "directive": "script-src-elem",
+          "blocked": "inline",
+          "sample": "const n=document.getElementById(\"ttod-ne",
+          "line": 12
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "xfo": "DENY",
+        "cspro": true
+      },
+      "swRegistered": true
+    }
+  ]
+}

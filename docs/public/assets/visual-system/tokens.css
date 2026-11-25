@@ -1,15 +1,73 @@
+/* Gambetta (Fontshare / Indian Type Foundry, ITF Free Font License 2.0 —
+   el texto está en fonts/LICENCIA-Gambetta-FFL.txt, no es la OFL),
+   autoalojada: ni Google Fonts ni CDN externo.
+   Serif de contraste caligrafico: su modulacion de trazo viene del pincel, que
+   es la misma logica que la tinta de la pintura del hero. Ver CREDITOS.md */
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Gambetta-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/Gambetta-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Gambetta';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/Gambetta-Medium.woff2') format('woff2');
+}
+
+/* Switzer (Fontshare / Indian Type Foundry, ITF Free Font License 2.0 —
+   texto en fonts/LICENCIA-Switzer-FFL.txt), autoalojada igual que Gambetta.
+   Grotesca neutra para la capa de interfaz (nav, folios, etiquetas): a 13 px
+   en versales y con tracking abierto aguanta la lectura, cosa que la sans del
+   sistema no hacía. Deliberadamente sin voz: la voz la pone Gambetta.
+   Archivo variable: un solo woff2 (43 KB) cubre de 300 a 700. */
+/* Erode (Fontshare / Indian Type Foundry, ITF Free Font License 2.0 — texto en
+   fonts/LICENCIA-Erode-FFL.txt), autoalojada como las otras dos.
+   Serif de trazo erosionado: sus cantos no son limpios, son el borde de la
+   tinta cuando empapa el papel. Es la letra de los titulares, el tamaño grande
+   donde esa erosión se ve; para leer seguidos están Gambetta y Switzer. */
+@font-face {
+  font-family: 'Erode';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Erode-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('./fonts/Switzer-Variable.woff2') format('woff2-variations');
+}
+
 :root {
   color-scheme: light;
-  --ttod-color-ink: #211c15;
-  --ttod-color-muted: #665e52;
-  --ttod-color-paper: #fbf8f1;
-  --ttod-color-surface: #f1eadb;
-  --ttod-color-surface-raised: #fffdf8;
-  --ttod-color-accent: #845f18;
+  /* Tinta sobre seda: tomados de la propia pintura (Cleveland 1953.126). */
+  --ttod-color-ink: #1b1710;
+  --ttod-color-muted: #544b3c;
+  /* El papel no es un crema cualquiera: es el tono de la seda de la obra del hero. */
+  --ttod-paper-rgb: 232 224 203;
+  --ttod-color-paper: rgb(var(--ttod-paper-rgb));
+  --ttod-color-surface: #ded4ba;
+  --ttod-color-surface-raised: #f2ecda;
+  --ttod-color-accent: #8a2f22;
   --ttod-color-botanical: #486e5b;
   --ttod-color-line: #8f8068;
-  --ttod-color-line-subtle: #d5c8ae;
+  --ttod-color-line-subtle: #c9bca0;
   --ttod-color-focus: #245d92;
+  --ttod-color-seal: #9a3324;
   --ttod-space-1: .25rem;
   --ttod-space-2: .5rem;
   --ttod-space-3: .75rem;
@@ -17,12 +75,18 @@
   --ttod-space-6: 1.5rem;
   --ttod-space-8: 2rem;
   --ttod-space-12: 3rem;
-  --ttod-font-body: ui-serif, Georgia, serif;
-  --ttod-font-ui: ui-sans-serif, system-ui, sans-serif;
+  --ttod-font-body: 'Gambetta', ui-serif, Georgia, serif;
+  --ttod-font-titular: 'Erode', 'Gambetta', ui-serif, Georgia, serif;
+  --ttod-font-ui: 'Switzer', ui-sans-serif, system-ui, sans-serif;
+  /* Suelo de legibilidad de la capa de interfaz: 13 px. Debajo de esto las
+     versales con tracking dejan de leerse, que es lo que pasaba a 11 px. */
+  --ttod-text-ui: .8125rem;
   --ttod-text-sm: .875rem;
-  --ttod-text-base: 1rem;
+  --ttod-text-base: 1.0625rem;
   --ttod-text-lg: 1.25rem;
   --ttod-text-xl: clamp(1.8rem, 5vw, 3.25rem);
+  --ttod-text-display: clamp(2.5rem, 6.2vw, 5.25rem);
+  --ttod-tracking-ui: .14em;
   --ttod-radius-sm: .5rem;
   --ttod-radius-lg: 1rem;
   --ttod-max-content: 74rem;
@@ -32,6 +96,18 @@
   outline: 3px solid var(--ttod-color-focus);
   outline-offset: 3px;
 }
+
+/* Columna de lectura: global, porque el <main> lo pone cada página, no el layout. */
+main {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: 0 clamp(1rem, 5vw, 1.5rem) var(--ttod-space-12);
+}
+main > nav { display: flex; gap: var(--ttod-space-4); font-family: var(--ttod-font-ui); }
+article { border-inline-start: 1px solid var(--ttod-color-line); margin-block: var(--ttod-space-8); padding-inline: var(--ttod-space-6); }
+.meta { font-family: var(--ttod-font-ui); font-size: var(--ttod-text-sm); color: var(--ttod-color-muted); }
+h1, h2, h3 { font-weight: 500; line-height: 1.15; letter-spacing: -.01em; }
+
 
 @media (forced-colors: active) {
   :root { --ttod-color-line: CanvasText; }

@@ -1,8 +1,14 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
   import type { GraphLink, GraphNode, WisdomEntry } from '../../types/domain';
-  import { filterGraph, joinTags, radialLayout, type PositionedNode } from './layout';
+  import { filterGraph, joinTags, radialLayout, sectionColor, sectionColorKey, type PositionedNode } from './layout';
   import { parseUrlState, resolveUrlState, writeUrlState } from './urlState';
+  import { copiaPlano, rotuloDeSeccion, type Lang } from './graphIslandCopy';
+
+  // F32 (AA3): el plano habla el idioma de la página. Sin `lang`, inglés (como antes).
+  const { lang = 'en' }: { lang?: Lang } = $props();
+  const t = copiaPlano[lang];
+  import './GraphIsland.css';
 
   let allNodes = $state<Array<GraphNode & { tags: string[] }>>([]);
   let allEdges = $state<GraphLink[]>([]);
@@ -14,6 +20,7 @@
   let tagFilter: HTMLSelectElement | undefined = $state();
 
   const tags = $derived([...new Set(allNodes.flatMap((node) => node.tags))].sort());
+  const sections = $derived([...new Set(allNodes.map((node) => node.section))].sort());
   const filtered = $derived(filterGraph(allNodes, allEdges, activeTag));
   const nodes = $derived(radialLayout(filtered.nodes));
   const positioned = $derived(new Map(nodes.map((node) => [node.id, node])));
@@ -106,7 +113,7 @@
           fetch('/api/v1/graph', { cache: 'no-store' }),
           fetch('/api/v1/wisdom/sample', { cache: 'no-store' })
         ]);
-        if (!graphResponse.ok || !wisdomResponse.ok) throw new Error('The live graph is unavailable.');
+        if (!graphResponse.ok || !wisdomResponse.ok) throw new Error(t.unavailable);
         const graph: { nodes: GraphNode[]; edges: GraphLink[] } = await graphResponse.json();
         const wisdom: WisdomEntry[] = await wisdomResponse.json();
         allNodes = joinTags(graph.nodes, wisdom);
@@ -114,7 +121,7 @@
         loaded = true;
         await syncFromUrl();
       } catch (reason) {
-        error = reason instanceof Error ? reason.message : 'The live graph is unavailable.';
+        error = t.unavailable;
       } finally {
         loading = false;
       }
@@ -125,51 +132,39 @@
 
 <section class="graph-island" aria-labelledby="graph-title">
   <header>
-    <div><h1 id="graph-title">TTOD knowledge graph</h1><p>{nodes.length} nodes · {edges.length} edges</p></div>
-    <label for="tag-filter">Filter by tag
+    <div><h1 id="graph-title">{t.title}</h1><p>{t.counts(nodes.length, edges.length)}</p></div>
+    <label for="tag-filter">{t.filter}
       <select id="tag-filter" bind:this={tagFilter} value={activeTag} onchange={(event) => setTag(event.currentTarget.value)}>
-        <option value="">All tags</option>
+        <option value="">{t.allTags}</option>
         {#each tags as tag}<option value={tag}>{tag}</option>{/each}
       </select>
     </label>
   </header>
-  <div class="legend" aria-label="Origin legend">
-    <span class="human">Human</span><span class="studio">Studio</span><span class="blackbox">AI proposal</span><span class="mixed">Mixed</span><span class="legacy-unknown">Legacy</span>
-  </div>
-  <p class="sr-only" aria-live="polite" aria-atomic="true">{activeTag ? `Filtered to tag: ${activeTag}` : 'Showing all tags'}</p>
-  {#if loading}<p>Loading live graph…</p>{:else if error}<p role="alert">{error}</p>{:else if nodes.length === 0}<p>{activeTag ? 'No nodes carry this tag.' : 'No graph nodes are available.'}</p>{:else}
-    <svg bind:this={graphRoot} viewBox="0 0 960 620" role="group" aria-label={`Knowledge graph with ${nodes.length} nodes and ${edges.length} edges`}>
+  <p class="sr-only" aria-live="polite" aria-atomic="true">{activeTag ? t.filtered(activeTag) : t.showingAll}</p>
+  <!-- F60 (AA3): the stage keeps the graph's 960:620 box from the first paint, so the data's arrival
+       does not push the page down (CLS 0.47 measured on /es/graph/plano/ before). -->
+  <div class="graph-stage">
+  {#if loading}<p>{t.loading}</p>{:else if error}<p role="alert">{error}</p>{:else if nodes.length === 0}<p>{activeTag ? t.noTagNodes : t.noNodes}</p>{:else}
+    <svg bind:this={graphRoot} viewBox="0 0 960 620" role="group" aria-label={t.graphLabel(nodes.length, edges.length)}>
       <g class="edges">{#each edges as edge}<line x1={positioned.get(edge.source)?.x} y1={positioned.get(edge.source)?.y} x2={positioned.get(edge.target)?.x} y2={positioned.get(edge.target)?.y}><title>{edge.rel}</title></line>{/each}</g>
-      <g>{#each nodes as node (node.id)}<circle data-node-id={node.id} class:deprecated={node.status === 'deprecated'} class={`node ${node.origin}`} cx={node.x} cy={node.y} r="5" tabindex="0" focusable="true" role="button" aria-label={`${node.id}: ${node.text}${node.tags.length ? `, tags: ${node.tags.join(', ')}` : ''}`} onclick={() => selectNode(node)} onkeydown={(event) => handleNodeKeydown(event, node)}><title>{node.id} · {node.origin} · {node.text}</title></circle>{/each}</g>
+      <g>{#each nodes as node (node.id)}<circle data-node-id={node.id} data-section-color={sectionColorKey(node.section)} data-origin={node.origin} style={`--section-color: ${sectionColor(node.section)}`} class:deprecated={node.status === 'deprecated'} class="node" cx={node.x} cy={node.y} r="5" tabindex="0" focusable="true" role="button" aria-label={t.nodeLabel(node.id, node.text, lang === 'es' ? rotuloDeSeccion(node.section, lang) : node.section, node.origin, node.tags)} onclick={() => selectNode(node)} onkeydown={(event) => handleNodeKeydown(event, node)}><title>{node.id} · {node.section} · {node.origin} · {node.text}</title></circle>{/each}</g>
     </svg>
   {/if}
+  </div>
   <aside aria-labelledby="graph-node-details-title" aria-live="polite" aria-atomic="true">
-    <h2 id="graph-node-details-title">Selected node</h2>
+    <h2 id="graph-node-details-title">{t.selected}</h2>
     {#if selected}
       <strong>{selected.id}</strong>
       <p>{selected.text}</p>
-      <small>{selected.section} · {selected.origin}</small>
+      <small>{lang === 'es' ? rotuloDeSeccion(selected.section, lang) : selected.section} · {selected.origin}</small>
     {:else}
-      <p>Select a node to view its details.</p>
+      <p>{t.selectHint}</p>
     {/if}
   </aside>
+  <!-- The legend grows with the data; below the details it shifts nothing on screen. -->
+  <div class="legend" aria-label={t.legend}>
+    {#each sections as section}
+      <span data-section-color={sectionColorKey(section)} style={`--section-color: ${sectionColor(section)}`}>{rotuloDeSeccion(section, lang)}</span>
+    {/each}
+  </div>
 </section>
-
-<style>
-  .graph-island { font-family: ui-sans-serif, system-ui, sans-serif; }
-  header { align-items: end; display: flex; justify-content: space-between; gap: 1rem; }
-  h1 { margin-bottom: 0; } header p { margin-top: .25rem; opacity: .7; }
-  select { display: block; padding: .45rem; min-width: 12rem; }
-  select:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-  svg { background: color-mix(in srgb, Canvas 96%, #9c7a31); border: 1px solid #7775; border-radius: 1rem; width: 100%; }
-  line { stroke: #7776; stroke-width: .65; }
-  circle { cursor: pointer; fill: #678; stroke: Canvas; stroke-width: 1.5; }
-  circle.human { fill: #208a58; } circle.studio { fill: #3178c6; } circle.blackbox { fill: #d33; stroke: #ffda00; stroke-width: 2.5; } circle.mixed { fill: #d3a11f; } circle.legacy-unknown { fill: #777; }
-  circle:focus-visible { stroke: CanvasText; stroke-width: 3; }
-  circle.deprecated { opacity: .35; stroke-dasharray: 2 2; }
-  .legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1rem; }
-  .legend span::before { background: #678; border-radius: 50%; content: ''; display: inline-block; height: .7rem; margin-right: .35rem; width: .7rem; }
-  .legend .human::before { background: #208a58; } .legend .studio::before { background: #3178c6; } .legend .blackbox::before { background: #d33; outline: 2px solid #ffda00; } .legend .mixed::before { background: #d3a11f; } .legend .legacy-unknown::before { background: #777; }
-  aside { margin-block: 1rem; border-inline-start: .25rem solid #9c7a31; padding: .75rem 1rem; }
-</style>

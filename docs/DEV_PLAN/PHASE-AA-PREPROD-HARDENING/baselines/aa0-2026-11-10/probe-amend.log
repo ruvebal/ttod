@@ -1,0 +1,21 @@
+# probe amendment: 2026-11-10T17:04:27Z on tanit.crea-comm.loc · read-only · answers cold review F7, F10, F11
+
+## F11 live images (docker compose images, project ttod_oracle)
+ttod_oracle-mcp-server-1 : sha256:2135b86586c4
+ttod_oracle-frontend-1 : sha256:52401bfad7ad
+ttod_oracle-backend-1 : sha256:0c74d0a58260
+ttod_oracle-ollama-1 ollama/ollama:latest sha256:32931b46719f
+ttod_oracle-reverse-proxy-1 caddy:2.10-alpine sha256:4c6e91c6ed0e
+ttod_oracle-redis-1 redis:7-alpine sha256:6ba19c50b567
+
+## F32 English strings rendered (count per page)
+/es/graph/: All tags;Loading live graph…;Section legend;Select a node to view its details.;Selected node;TTOD knowledge graph;
+/es/graph/path/:
+
+## F10/F23 Host × Origin matrix (POST /es/login, junk credentials)
+Host localhost · Origin http://localhost → 200
+Host localhost · Origin http://tanit.crea-comm.loc → 403
+Host localhost · Origin none → 403
+Host tanit.crea-comm.loc · Origin http://localhost → 200
+Host tanit.crea-comm.loc · Origin http://tanit.crea-comm.loc → 403
+Host tanit.crea-comm.loc · Origin none → 403

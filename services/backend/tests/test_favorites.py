@@ -15,8 +15,10 @@ from services.backend.app.auth import SESSION_COOKIE_NAME, AuthService, SessionC
 from services.backend.app.config import REPOSITORY_ROOT, Settings
 from services.backend.app.favorites import RedisFavoriteStore
 from services.backend.app.main import create_app
+from services.backend.app.sessions import MemorySessionStore
 from services.backend.app.oracle import OracleService
 from services.backend.app.storage import SnapshotService
+from services.backend.app.users import MemoryUserStore, UserRecord
 
 
 class FakeRedis:
@@ -67,7 +69,7 @@ class FakeRetrieval:
         return {"results": [], "indexDigest": "test", "indexedQuotes": 0}
 
 
-def auth_service_for(settings: Settings) -> AuthService:
+def auth_service_for(settings: Settings, sessions=None, users=None) -> AuthService:
     """`AuthService` recibe los parámetros del PAT a partir de la Tarea 5.
 
     Se le pasa solo lo que acepta su firma actual para que este test siga
@@ -80,6 +82,9 @@ def auth_service_for(settings: Settings) -> AuthService:
         "admin_password_hash": settings.admin_password_hash,
         "pat_secret": getattr(settings, "pat_secret", None),
         "pat_ttl_seconds": getattr(settings, "pat_ttl_seconds", None),
+        # AA2 (F4): sessions must be rows in the app's store; signed blobs are refused.
+        "sessions": sessions,
+        "users": users,
     }
     accepted = inspect.signature(AuthService.__init__).parameters
     return AuthService(**{name: value for name, value in candidates.items() if name in accepted})
@@ -99,17 +104,21 @@ class FavoritesTestCase(unittest.TestCase):
         )
         self.snapshots = SnapshotService(self.settings.ttod_path, self.settings.schema_dir)
         self.oracle = OracleService(self.settings, self.snapshots, FakeOllama(), FakeRetrieval())
-        self.client = TestClient(create_app(self.settings, self.oracle))
-        self.auth_service = auth_service_for(self.settings)
+        self.users = MemoryUserStore()
+        self.sessions = MemorySessionStore()
+        self.client = TestClient(create_app(self.settings, self.oracle, users=self.users, sessions=self.sessions))
+        self.auth_service = auth_service_for(self.settings, sessions=self.sessions, users=self.users)
         # El almacén es un diccionario de módulo: se aísla para que los tests no se contaminen.
         store = patch("services.backend.app.favorites._favorites", {})
         store.start()
         self.addCleanup(store.stop)
 
     def session_for(self, user_id: str, *roles: str) -> dict[str, str]:
-        """Cookie de sesión firmada para un usuario con los roles indicados."""
+        """Cookie de sesión firmada para un usuario existente con los roles indicados."""
+        email = f"{user_id}@ttod.local"
+        self.users.upsert(UserRecord(user_id=user_id, email=email, password_hash="", roles=tuple(roles)))
         token = self.auth_service.issue_session(
-            SessionClaims(user_id=user_id, email=f"{user_id}@ttod.local", roles=tuple(roles))
+            SessionClaims(user_id=user_id, email=email, roles=tuple(roles))
         )
         return {SESSION_COOKIE_NAME: token}
 
@@ -232,12 +241,24 @@ class RedisFavoritesApiTests(FavoritesTestCase):
     def setUp(self):
         super().setUp()
         self.client = TestClient(
-            create_app(self.settings, self.oracle, favorites=RedisFavoriteStore("redis://unused", client=FakeRedis()))
+            create_app(
+                self.settings,
+                self.oracle,
+                favorites=RedisFavoriteStore("redis://unused", client=FakeRedis()),
+                users=self.users,
+                sessions=self.sessions,
+            )
         )
 
     def test_redis_outage_returns_503(self):
         broken = TestClient(
-            create_app(self.settings, self.oracle, favorites=RedisFavoriteStore("redis://unused", client=BrokenRedis()))
+            create_app(
+                self.settings,
+                self.oracle,
+                favorites=RedisFavoriteStore("redis://unused", client=BrokenRedis()),
+                users=self.users,
+                sessions=self.sessions,
+            )
         )
         student = self.session_for("student-1", "student")
         response = broken.post("/api/v1/favorites", json={"quoteId": "wis-001"}, cookies=student)
